@@ -1,0 +1,6 @@
+site_name: BSA Course Content
+nav:
+    - SES250:
+        - 'Lab Outline': 'ses250/index.md'
+        - 'Lab 1': 'ses250/lab1.md'
+    - SEH500: 'seh500/index.md'
