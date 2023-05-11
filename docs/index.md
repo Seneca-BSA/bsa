@@ -1,3 +1,3 @@
 # Lab Manuals
 
-- [SES250 Elecromagnetics Lab Manual](ses250/index.md)
+- [SES250 Elecromagnetics Lab Manual](ses250/instruction.md)
