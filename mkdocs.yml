@@ -13,8 +13,6 @@ nav:
         - 'Lab 8': 'ses250/lab8.md'
         - 'Lab 9': 'ses250/lab9.md'
         - 'Lab 10': 'ses250/lab10.md'
-    - SEH500 Lab Manual:
-        - 'Lab Outline': 'seh500/index.md'
 theme:
     name: readthedocs
 extra_css:
