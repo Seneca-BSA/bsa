@@ -19,12 +19,12 @@ SES250 Electromagnatics
 >
 >Source: [Quantifying the triboelectric series by Zou et. al.](https://www.nature.com/articles/s41467-019-09461-x)
 
-In this lab, similar to [Lab 1](lab1.md), the attractive and / or repulsive electrostatic force between charged objects will be observed using a setup shown in Figure 2.1.
+In this lab, similar to [Lab 1](lab1.md), the attractive and/or repulsive electrostatic force between charged objects will be observed using a setup shown in Figure 2.1.
 
 ![Figure 2.1 Lab 1 Setup](lab1-setup.png)
 ***Figure 2.1** Lab 2 Setup*
 
-You will build on top of the observation you made and expand your expirement to eight materials and rank them into a triboelectric series.
+You will build on top of the observation you made and expand your experiment to eight materials and rank them into a triboelectric series.
 
 ## Materials
 - A stand
@@ -49,31 +49,35 @@ There are a total of eight materials available to you in this lab. Only the plas
 >
 > Design an experiment in terms of having one object rubbed with a softer material to expand your list (triboelectric series) from [Lab 1](lab1.md).
 >
-> In [Lab 1](lab1.md), it was defined that when the plastic straw is rubbed by wool, the wool loses electrons and the plastic straw gain electrons. To help you started, out of all the materials available in this Lab, glass is the most positive in the triboelectric series. Therefore, we can place them on our triboelectric series as such:
+> In [Lab 1](lab1.md), it was defined that when the plastic straw is rubbed with wool, the wool loses electrons and the plastic straw gains electrons. To help you get started, out of all the materials available in this Lab, glass is the most positive in the triboelectric series. Therefore, we can place them on our triboelectric series as such:
+>>
+>> **More Positive (more likely to lose electrons)**
+>> 
+>> Glass
+>> 
+>> ...
+>> 
+>> Wool
+>> 
+>> ...
+>>
+>> Plastic Straw
+>> 
+>> ...
+>> 
+>> **More Negative (more likely to gain electrons)**
+>>
+> Your task is to determine where Plastic Wrap, Wooden Dowel, Silk, Cotton, and Plastic Rod (Acrylic) fall into the triboelectric series. Design a series of tests to systematically determine the relative triboelectric position of each material. 
 >
-> **More Positive (more likely to lose electrons)**
+> **For example:**
 > 
-> Glass
-> 
-> ...
-> 
-> Wool
-> 
-> ...
+> **Case 1:** If Plastic Straw rubbed by Wool attract with Plastic Straw rubbed by Material-A, then we know the Plastic Straw rubbed by Material-A is positively charged meaning that Material-A is more negative in the triboelectric series.
 >
-> Plastic Straw
-> 
-> ...
-> 
-> **More Negative (more likely to gain electrons)**
-
-For example:
-    • When Glass is rubbed with Cotton, the Glass will lose electrons (positively charged). When Straw is rubbed with Cotton, if the Glass and Straw attract (meaning the Straw is now negative), the Straw gain electrons from the Cotton and is more negative on the series. However, if the Glass and Straw repel (meaning the Straw is now positive), the Straw loses electrons to the Cotton and is more positive on the series.
-
-Copy the table below with your planned steps into your notebook and use it to record your observation. Add more material pairs to the table as you see fit. Object 1 can be assumed to be the suspended object.
-
+> **Case 2:** If Plastic Straw rubbed by Wool attract with Material-B rubbed by Wool, then we know Material-B rubbed by Wool is positively charged meaning that Material-B is more positive in the triboelectric series.
 >
->    |Test|Object 1|Rubbed by|Object 2|Rubbed by|Observation|Conclusion|
+> Copy the table below with your planned steps into your notebook and use it to record your observation. Add more material pairs to the table as you see fit. Object 1 can be assumed to be the suspended object.
+>
+>    |Test|Object 1|Rubbed with|Object 2|Rubbed with|Observation|Conclusion|
 >    |---|---|---|---|---|---|---|
 >    |1|Plastic Straw|Wool|Plastic Straw|Plastic Wrap|||
 >    |2|Plastic Straw||||||

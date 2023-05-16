@@ -45,7 +45,7 @@ Lab preparation must be done individually in the lab notebook.
 > 1. Summarize in your notebook or print out the lab manual for lab 1 as the power in the lab room will NOT be ON for this lab.
 > 1. Create and fill in the following observation table in your notebook (except for the observation column):
     >
-    >    |Step|Object 1|Rubbed by|Object 2|Rubbed by|Observation (Attract/Repel)|
+    >    |Step|Object 1|Rubbed with|Object 2|Rubbed with|Observation (Attract/Repel)|
     >    |---|---|---|---|---|---|
     >    |6|Plastic Straw|Wool|Plastic Straw|Wool||
     >    |8|Plastic Straw|Wool||||
