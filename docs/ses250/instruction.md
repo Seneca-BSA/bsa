@@ -34,7 +34,10 @@ SES250 Electromagnatics
     ![Safety Station](instruction-safety-station.png)
 
 1. **No food or drink** at any time inside the laboratory
-1. Safety glasses are mandatory when the <u>power is **ON**</u>
+1. Safety glasses are **mandatory** when the <u>power is **ON**</u>
+
+    ![Safety Glasses](instruction-safety-glasses.png)
+
 1. Other precautionary safety equipment will be used or worn when necessary. No open-toed shoes or sandals. Long hair must be tied back.
 1. All laboratory equipment brought into the laboratory must be CSA approved and in good working order
 1. Vandalism of any kind will not be tolerated. Please note that security cameras are in place for the protection of college property and occupant safety. Offenders will be subject to the terms of the College’s Student Rights and Responsibilities Policy.
