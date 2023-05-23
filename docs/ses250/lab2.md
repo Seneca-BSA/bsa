@@ -5,9 +5,10 @@ Seneca College</br>
 SES250 Electromagnatics
 </font>
 
-## Objectives:
+## Objectives
 - To compare the electrostatic properties of various insulating and conducting materials
 - To be familiar with scientific experimental techniques
+- Use experimental observation and apply logical reasoning to build a triboelectric series
 
 ## Purpose
 - Perform qualitative observation between various charged materials
@@ -24,78 +25,63 @@ In this lab, similar to [Lab 1](lab1.md), the attractive and/or repulsive electr
 ![Figure 2.1 Lab 1 Setup](lab1-setup.png)
 ***Figure 2.1** Lab 2 Setup*
 
-You will build on top of the observation you made and expand your experiment to eight materials and rank them into a triboelectric series.
+You will use the technique and experimental method you acquired in Lab 1 to rank four materials (Plastic Wrap, Plastic Rod, Silk Cloth or Cotton Cloth and Wooden Dowel) into a triboelectric series.
 
 ## Materials
 - A stand
 - String or fishing line
 - Paper clip
-- Plastic Straw (Polypropylene)
 - Plastic Wrap
-- Wool Cloth
-- Glass Rod
 - Wooden Rod / Dowel
-- Silk Cloth
-- Cotton Cloth
+- Silk Cloth or Cotton Cloth
 - Plastic Rod (Acrylic)
 
 ## Preparation
 
-Study the lab description and procedure then answer all the lab preparation questions at the end of this document in your lab notebook BEFORE your lab session.
+Answer all the lab preparation questions at the end of this document in your lab notebook BEFORE your lab session. Students who did not complete the lab preparation will be asked not to join the lab and receive a grade of ZERO (0) for the lab.
 
-There are a total of eight materials available to you in this lab. Only the plastic straw can be suspended from the stand.
+Lab preparation must be done individually in the lab notebook.
 
-> **Lab Preparation Question:**
+There are four materials: Plastic Wrap, Plastic Rod, Silk Cloth or Cotton Cloth and Wooden Dowel, available to you in this lab. Only the plastic rod and wood dowel can be carefully suspended (and balanced) using the paper clip.
+
+> ### Lab Preparation Question
 >
-> Design an experiment in terms of having one object rubbed with a softer material to expand your list (triboelectric series) from [Lab 1](lab1.md).
+> Design an experiment to develop a triboelectric series similar to [Lab 1](lab1.md). Your experiment should be a series of tests that use soft materials to charge hard objects and then observe if the hard objects attract or repel. You'll also need to use logical reasoning (similar to a Seduko puzzle) to draw your conclusion.
 >
-> In [Lab 1](lab1.md), it was defined that when the plastic straw is rubbed with wool, the wool loses electrons and the plastic straw gains electrons. To help you get started, out of all the materials available in this Lab, glass is the most positive in the triboelectric series. Therefore, we can place them on our triboelectric series as such:
->>
->> **More Positive (more likely to lose electrons)**
->> 
->> Glass
->> 
->> ...
->> 
->> Wool
->> 
->> ...
->>
->> Plastic Straw
->> 
->> ...
->> 
->> **More Negative (more likely to gain electrons)**
->>
-> Your task is to determine where Plastic Wrap, Wooden Dowel, Silk, Cotton, and Plastic Rod (Acrylic) fall into the triboelectric series. Design a series of tests to systematically determine the relative triboelectric position of each material. 
+> 1. Copy the following observation table in your notebook. To help you get started, note the following:
+>     - a suggested Test #1 is given
+>     - Plastic Wrap is the most negative on the triboelectric series out of the four materials
 >
-> **For example:**
+>     |Test|Object 1|Rubbed with|Object 2|Rubbed with|Observation (Attract/Repel)|Conclusion|
+>     |---|---|---|---|---|---|---|
+>     |1|Plastic Rod|Plastic Wrap|Plastic Rod|Silk|||
+>     |2|||||||
+>     |3|||||||
+>     |...|||||||
+>
+> 1. Add more tests to the table above as necessary. One approach is to test all possible combinations but keep in mind that only a soft material can rub a hard object.
+> 1. Read the following cases to understand the logic:
 > 
-> **Case 1:** If Plastic Straw rubbed by Wool attract with Plastic Straw rubbed by Material-A, then we know the Plastic Straw rubbed by Material-A is positively charged meaning that Material-A is more negative in the triboelectric series.
+>     **Case 1: Plastic Wrap**
 >
-> **Case 2:** If Plastic Straw rubbed by Wool attract with Material-B rubbed by Wool, then we know Material-B rubbed by Wool is positively charged meaning that Material-B is more positive in the triboelectric series.
+>     If Material-A is rubbed with Plastic Wrap, Material-A is positively charged (lose electrons) because the Plastic Wrap is more negative (gain electrons).
 >
-> Copy the table below with your planned steps into your notebook and use it to record your observation. Add more material pairs to the table as you see fit. Object 1 can be assumed to be the suspended object.
+>     **Case 2:**
 >
->    |Test|Object 1|Rubbed with|Object 2|Rubbed with|Observation|Conclusion|
->    |---|---|---|---|---|---|---|
->    |1|Plastic Straw|Wool|Plastic Straw|Plastic Wrap|||
->    |2|Plastic Straw||||||
->    |3|Plastic Straw||||||
->    |4|Plastic Straw||||||
->    |...|||||||
->
+>     If Material-A rubbed with Material-B is attracted to Material-C rubbed with Material-B, then we know the charge on Material-A is opposite to the charge on Material-C. However, to determine which one is positively charged and which on is negatively charged, we must know the properties of Material-B relative to Material-A and Material-C. As a result, always start your experiment with the known material (Plastic Wrap).
 
 ## Procedures
 
 1. If not enough stands are available, work in groups of 2. All questions in the lab must be answered individually and every member must individually demostrate completion of the lab.
-1. Place and secure the stand on the table. Attach a paper clip onto a strong then hang the paper clip about 5cm below the end hook of the stand. The paper clip is used to hold a plastic straw.
-1. Carefully secure a plastic straw onto the paper clip so it evenly sits on the paper clip and it's free to rotate on the stand.
+1. Place and secure the stand on the table. Attach a paper clip onto a strong then hang the paper clip about 5cm below the end hook of the stand. The paper clip is used to hold the plastic rod or wooden dowel.
+1. Carefully secure a plastic rod or wooden dowel (as per your experiment) onto the paper clip so it evenly sits on the paper clip and it's free to rotate on the stand.
     
     **NOTE:** In some instant, it might be beneficial to hang the stand off the side of the table to allow full rotation of the straw once it's attached to the paper clip.
 
-1. Technique and attention to detail is the key to this lab and in any of your future lab. Remove the plastic straw from the paper clip then rub both ends of a plastic straw with the wool cloth. ONLY handle the middle of the straw as handling the ends you've charged will alter its charge.
-
 1. Perform the procedure(s) you've defined in your pre-lab.
 
-Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and your observation. You might be asked to explain some of the concepts you've learned in this lab.
+Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
+
+## Post-Lab
+
+1. Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.

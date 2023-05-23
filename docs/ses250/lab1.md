@@ -5,7 +5,7 @@ Seneca College</br>
 SES250 Electromagnatics
 </font>
 
-## Objectives:
+## Objectives
 - To demonstrate that there are two types of electric charges in nature
 - To be familiar with scientific experimental techniques
 
@@ -40,10 +40,10 @@ Answer all the lab preparation questions at the end of this document in your lab
 
 Lab preparation must be done individually in the lab notebook.
 
-> **Lab Preparation Question:**
+> ### Lab Preparation Question
 > 
 > 1. Summarize in your notebook or print out the lab manual for lab 1 as the power in the lab room will NOT be ON for this lab.
-> 1. Create and fill in the following observation table in your notebook (except for the observation column):
+> 1. Copy and fill in the following observation table in your notebook (except for the observation column):
     >
     >    |Step|Object 1|Rubbed with|Object 2|Rubbed with|Observation (Attract/Repel)|
     >    |---|---|---|---|---|---|
@@ -107,4 +107,8 @@ Lab preparation must be done individually in the lab notebook.
 
     > **Lab Question 6:** What interaction between the rod and the straw do you observe? Write it down into the observation table you created in the pre-lab. Explain the phenomenon. Refer to [Chapter 5.2 in the University Physic Volume 2 textbook](https://openstax.org/books/university-physics-volume-2/pages/5-2-conductors-insulators-and-charging-by-induction) if required.
 
-Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and your observation. You might be asked to explain some of the concepts you've learned in this lab.
+Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
+
+## Post-Lab
+
+1. Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.
