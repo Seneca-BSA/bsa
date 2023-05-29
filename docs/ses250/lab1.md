@@ -22,6 +22,7 @@ Objects are usually electrically neutral. The number of positive charges and neg
 In this lab, the attractive and/or repulsive electrostatic force between charged objects will be observed using a setup shown in Figure 1.1. You will confirm the presence of electric charges and the forces exerted by these charges.
 
 ![Figure 1.1 Lab 1 Setup](lab1-setup.png)
+
 ***Figure 1.1** Lab 1 Setup*
 
 ## Materials

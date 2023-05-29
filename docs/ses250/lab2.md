@@ -23,6 +23,7 @@ SES250 Electromagnatics
 In this lab, similar to [Lab 1](lab1.md), the attractive and/or repulsive electrostatic force between charged objects will be observed using a setup shown in Figure 2.1.
 
 ![Figure 2.1 Lab 1 Setup](lab1-setup.png)
+
 ***Figure 2.1** Lab 2 Setup*
 
 You will use the technique and experimental method you acquired in Lab 1 to rank four materials (Plastic Wrap, Plastic Rod, Silk Cloth or Cotton Cloth and Wooden Dowel) into a triboelectric series.
