@@ -21,6 +21,7 @@ A multimeter is a measuring instrument that can measure multiple electrical prop
 Source: [Wikipedia: Multimeter](https://en.wikipedia.org/wiki/Multimeter)
 
 ![Figure 3.1 Keysight 34461A Digital Multimeter](lab3-DMM.png)
+
 ***Figure 3.1** Keysight 34461A Digital Multimeter*
 
 In the electronics lab, you will be using a Keysight 34461A (or similar) Digital Multimeter. Its manual can be found here: [DMM Manual](lab3-DMM-manual.pdf)
@@ -30,7 +31,8 @@ In the electronics lab, you will be using a Keysight 34461A (or similar) Digital
 An adjustable DC power supply converts electricity from the power grid to a specified voltage and current then provide them at it output connector.
 
 ![Figure 3.2 Agilent E3632A DC Power Supply](lab3-PS.png)
-***Figure 3.1** Agilent E3632A DC Power Supply*
+
+***Figure 3.2** Agilent E3632A DC Power Supply*
 
 In the electronics lab, you will be using an Agilent E3632A (or E3631A or similar) DC Power Supply. Its manual can be found here: [DC Power Supply Manual](lab3-PS-manual.pdf)
 
@@ -47,7 +49,23 @@ Lab preparation must be done individually in the lab notebook.
 
 ## Procedures
 
+### Part 1: Safety
+
+1. Ensure that you are wearing your safety glasses, not wearing open-toe shoes, and any long hair must be tied-up.
+1. At the top of your workbench, you’ll see a red “Emergency Stop” button (shown in Figure 3.3). At any time when the button is in the pressed position, your workbench will be disconnected from the power source. Press this button if there are any issues with your equipment or circuit (such as unusual heat, unusual smell, smoke, spark, or fire). To release the button, twist it as per the symbol on the button and the button will no longer be pressed.
+
+    ![Figure 3.3 Emergency Stop Button](lab3-stop-button.png)
+
+    ***Figure 3.3** Emergency Stop Button*
+
+
+1. Ensure the Emergency Stop button is in the released position.
+
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
+
+### Part 2: Digital Multimeter (DMM) and DC Voltage Measurement
+
+
 
 ## Post-Lab
 
