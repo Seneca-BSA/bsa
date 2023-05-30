@@ -55,6 +55,7 @@ Answer all the lab preparation questions at the end of this document in your lab
 Lab preparation must be done individually in the lab notebook.
 
 > **Lab Preparation Question:**
+>
 > 1. Copy the following observation table in your notebook for this lab:
     >
     >    ||Output: +1V|Output: +2V|Output: +5V|Output: +10V|
@@ -178,7 +179,6 @@ Lab preparation must be done individually in the lab notebook.
     >    |Range: 100V||||||
     >    |Range: 1000V||||||
     >
-
     > **Lab Question 4:** If we want the most precise reading, what is the best setting for each DC output voltage in the table? Circle the most precise reading for each voltage output in the table above.
 
 1. Turn off the DC power supply and disconnect the alligator clips.
