@@ -160,7 +160,7 @@ Lab preparation must be done individually in the lab notebook.
 
 1. Afterward, decrease the voltage of the DC power supply slowly to 5V.
 
-    > **Lab Question 2:** At what, power supply voltage did the DMM change back “Auto 10V”? How are the significant figures and decimal places the same or different from the voltage readings from the previous step?
+    > **Lab Question 2:** At what power supply voltage did the DMM change back “Auto 10V”? How are the number of digits and decimal places the same or different when the voltage range changes? What does that mean for the precision of the readings?
 
 1. Using the DMM reading only, adjust the output voltage of the DC power supply so the reading on the DMM will display +1.000V. **Note:** Switch the output range and terminal as necessary.
 
@@ -168,7 +168,9 @@ Lab preparation must be done individually in the lab notebook.
 
 1. Adjust the DC power supply output voltage to +1.000V then change the voltage Range on the DMM from "Auto" to "100mV" using the Range selection button. The DMM should not display "OVERLOAD" because the 1V output from the power supply is higher than the maximum 100mV range that can be measured.
 
-1. Change the DMM range setting and power supply voltage output to record the voltage reading on the DMM in the table below. Repeat this step for DV output voltage of +2V, +5V, and +10V. **NOTE:** The reading might fluctuate but record at least 4 significant digits to the best of your ability in estimating.
+1. Manually change the DMM "Range" setting and power supply voltage output according to the table below. Then record the voltage reading on the DMM in the and do this for DC output voltage of +1V, +2V, +5V, and +10V.
+
+    **NOTE:** The reading might fluctuate but record at least 4 significant digits to the best of your ability in estimating **AND record all LEADING ZEROS**.
 
     >
     >    ||Output: +1V|Output: +2V|Output: +5V|Output: +10V|
