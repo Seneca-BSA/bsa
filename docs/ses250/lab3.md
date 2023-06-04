@@ -20,6 +20,7 @@ SES250 Electromagnatics
 <li>Any signal (voltage, current) must be adjusted to the specified value (amplitude and/or frequency) <strong>before</strong> applying them to a circuit.</li>
 <li>An instrument must be set up for the required mode of operation <strong>before</strong> it is connected to a circuit.</li>
 <li>The power supply must be switched off <strong>before</strong> making any changes to the circuit.</li>
+</ol>
 </div>
 
 ## Description
@@ -46,7 +47,7 @@ An adjustable DC power supply converts electricity from the power grid to a spec
 In the electronics lab, you will be using an Agilent E3632A (or E3631A or similar) DC Power Supply. Its manual can be found here: [DC Power Supply Manual](lab3-PS-manual.pdf)
 
 ## Materials
-- Safety Glasses (PPE)
+- Safety glasses (PPE)
 
 ## Preparation
 
