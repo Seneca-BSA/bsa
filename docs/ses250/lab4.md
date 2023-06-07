@@ -7,10 +7,11 @@ SES250 Electromagnatics
 
 ## Objectives
 - To study the relationship between voltage, resistance, and current
+- To explore direct current (DC)
 - To verify Ohm's Law
 
 ## Purpose
-- Assemble electronics components onto a breadboard
+- Assemble electronic components onto a breadboard
 - Measurements voltage from a breadboard using a digital multimeter (DMM)
 
 ## Important Rules for this Lab
@@ -24,6 +25,10 @@ SES250 Electromagnatics
 </div>
 
 ## Description
+
+Direct current (DC) is the one-directional flow of electric charge. An electrochemical cell is a prime example of DC power. Direct current may flow through a conductor such as a wire, but can also flow through semiconductors, insulators, or even through a vacuum as in electron or ion beams. The electric current flows in a constant direction, distinguishing it from alternating current (AC).
+
+Source: [Wikipedia: Direct Current](https://en.wikipedia.org/wiki/Direct_current)
 
 A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element. In electronic circuits, resistors are used to reduce current flow, adjust signal levels, divide voltages, bias active elements, and terminate transmission lines, among other uses. A resistor’s resistance is specified by a colour code on the resistor as per Figure 4.1.
 
@@ -46,7 +51,7 @@ The internal conductive strip of the breadboard is assembly such a way that:
 - each row (1-63) from column “a” to “e” are inter-connected
 - each row (1-63) from column “f” to “j” are inter-connected
 
-Figure 4.2 and 4.3 are photos of a full-size breadboard and half-size breadboard.
+Figures 4.2 and 4.3 are photos of a full-size breadboard and a half-size breadboard. Note how the tie-points are connected together by the metal strips. Only one component connection should connect to each tie-point.
 
 ![Figure 4.2 Full-Size 830 Tie Points Breadboard](lab4-full-size-breadboard.png)
 
@@ -56,7 +61,7 @@ Figure 4.2 and 4.3 are photos of a full-size breadboard and half-size breadboard
 
 ***Figure 4.3** Half-Size 400 Tie Points Breadboard and Showing of Internal Conductive Strips*
 
-When express an electronics circuit in a diagram, circuit symbols are used. Below are some of the circuit symbols that you'll see in the lab.
+When expressing an electronic circuit in a diagram, circuit symbols are used. Below are some of the circuit symbols that you'll see in the lab.
 
 ![Figure 4.4 Circuit Symbols](lab4-circuit-symbols.png)
 
@@ -68,25 +73,30 @@ When express an electronics circuit in a diagram, circuit symbols are used. Belo
 - Breadboard
 - Jumper wires
 
+_Optional:_ If you want to purchase the lab supplies for this lab, details can be found in the [Lab Supplies](supplies.md) page.
+
 ## Preparation
 
 > **Lab Preparation Question:**
 >
-> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to circuit shown in Step 10. Clearly show which tie point will the wire, resistor, DMM, and power supply be attached to. Use [TinkerCAD Circuit](https://www.tinkercad.com/) as an aid if necessary.
+> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Step 10. Clearly show which tie point will the wire, resistor, DMM, and power supply be attached to. Use [TinkerCAD Circuit](https://www.tinkercad.com/) as an aid if necessary.
 >
     >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
+    >    Example:
+    >    ![Breadboard Sketch Example](lab4-breadboard-sketch-example.png)
+    >    Note how the tie-points are connected together by the straight lines.
 >
-> 1. Copy two of following Table 1 into your notebook for this lab:
+> 1. Copy two (2x) of the following Table 1 into your notebook for this lab:
 >
     >    Table 1
     >
-    >    |Resistor #|First Band|Second Band|Multiplier|Nonimal Ω|Measured Ω|
+    >    |Resistor #|First Band|Second Band|Multiplier|Nonimal Ω|Measured Ω|
     >    |---|---|---|---|---|---|
     >    |Colour||||Total||
     >    |Value|||x 10 ^|||
 >
-> 1. If the voltage source in Step 10 is 5V and R1 is 1kΩ, calculate the current of the circuit.
-> 1. Repeat the calculation above for a 10kΩ resistor.
+> 1. If the voltage source in Step 10 is 5V and R1 is 1kΩ, calculate the current of the circuit.
+> 1. Repeat the calculation above for a 10kΩ resistor.
 > 1. Copy the following Table 2 into your notebook for this lab:
 >
     >    Table 2
@@ -98,22 +108,22 @@ When express an electronics circuit in a diagram, circuit symbols are used. Belo
 
 ## Procedures
 
-1. Obtain an 1kΩ resistor, a 10kΩ resistor, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.
+1. Obtain a 1kΩ resistor, a 10kΩ resistor, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.
 
-    > **Lab Question 1:** Write down the colour code of each resistor then determine their resistance value using the resistor colour chart. Use the table below to help you determine the resistance value of each resistor. Fill in the "Measured Ω" in the next step.
+    > **Lab Question 1:** Write down the colour code of each resistor then determine their resistance value using the resistor colour chart. Use the table below to help you determine the resistance value of each resistor. Fill in the "Measured Ω" in the next step.
     >
     > (Example)
     >
-    > |Resistor #|First Band|Second Band|Multiplier|Nonimal Ω|Measured Ω|
+    > |Resistor #|First Band|Second Band|Multiplier|Nonimal Ω|Measured Ω|
     > |---|---|---|---|---|---|
     > |Colour|Brown|Black|Red|Total||
-    > |Value|1|0|x 10 ^ 2|1 kΩ|1.013 kΩ|
+    > |Value|1|0|x 10 ^ 2|1 kΩ|1.013 kΩ|
 
-1. Turn on the one of DMM at your workbench and turn it into the “Ω 2W” resistance measurement mode. Connect the red alligator clip of the DMM to one lead of one of the resistors and the black alligator clip to the other lead of the resistor.
+1. Turn on the one of DMM at your workbench and turn it into the “Ω 2W” resistance measurement mode. Connect the red alligator clip of the DMM to one lead of one of the resistors and the black alligator clip to the other lead of the resistor.
 
-    > **Lab Question 2:** Write down the measured resistance (at least 3 significant figures) in the "Measured Ω" column of the table you created in the pre-lab. Does this value agree with the colour band value? What is the % error? Is the error within the tolerance of the resistor (indicated by the tolerance band)?
+    > **Lab Question 2:** Write down the measured resistance (at least 3 significant figures) in the "Measured Ω" column of the table you created in the pre-lab. Does this value agree with the colour band value? What is the % error? Is the error within the tolerance of the resistor (indicated by the tolerance band)?
 
-1. Repeat step 1 and 2 for the second resistor then disconnect the DMM from the resistor.
+1. Repeat steps 1 and 2 for the second resistor then disconnect the DMM from the resistor.
 
 1. Place the breadboard on the workbench and ensure one jumper wire (any colour) is connected to the “Va” banana post and one jumper wire (any colour) is connected to the “GND” banana post.
 
@@ -141,7 +151,7 @@ When express an electronics circuit in a diagram, circuit symbols are used. Belo
 
     ***Figure 4.8***
 
-1. Once the DMM is in DC current mode, connect a jumper wire to each of DMM’s alligator clips.
+1. Once the DMM is in DC current mode, connect a jumper wire to each of the DMM’s alligator clips.
 
     ![Figure 4.9](lab4-connection-4.png)
 
@@ -159,11 +169,11 @@ When express an electronics circuit in a diagram, circuit symbols are used. Belo
 
     ***Figure 4.11***
 
-1. Double verify that the circuit is assembled properly and that there is no short circuit. **Tips:** follow the flow of current from the positive (+) terminal of the power supply to the resistor, then to the ammeter, then to the negative terminal of the power supply to verify proper connections.
+1. Double-verify that the circuit is assembled properly and that there is no short circuit. **Tips:** Follow the flow of current from the positive (+) terminal of the power supply to the resistor, then to the ammeter, then to the negative terminal of the power supply to verify proper connections.
 
 1. Turn on the output of the power supply and ensure the output is at 5V.
 
-    > **Lab Question 3:** What value do you see on the voltmeter (DMM in DC voltage mode) and the Ammeter (DMM in DC current mode)? Record the measured voltage and measured current into Table 2 then use Ohm’s law to calculate the resistance. Does the calculated resistance agree more with the resistance value provided by the manufacturer or with the resistance you measured earlier?
+    > **Lab Question 3:** What value do you see on the voltmeter (DMM in DC voltage mode) and the Ammeter (DMM in DC current mode)? Record the measured voltage and measured current in Table 2 then use Ohm’s law to calculate the resistance. Does the calculated resistance agree more with the resistance value provided by the manufacturer or with the resistance you measured earlier?
     
 1. Repeat steps 10-12 for the second resistor.
 

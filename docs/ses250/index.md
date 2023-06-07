@@ -2,6 +2,7 @@
 
 - [Lab Instruction](instruction.md)
 - [Lab Safety](safety.md)
+- [Lab Supplies](supplies.md)
 - [Lab 1 Electrostatics](lab1.md)
 - [Lab 2 Triboelectric Series](lab2.md)
 - [Lab 3 Digital Multimeter](lab3.md)

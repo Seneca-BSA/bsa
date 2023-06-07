@@ -14,6 +14,8 @@ SES250 Electromagnatics
 - Safety Glasses
 - Bound Notebook
 
+More details on where you can purchase them can be found in the [Lab Supplies](supplies.md) page.
+
 ## Each student is expected to
 1. Maintain a **bound** (ie. No loose sheets) laboratory/engineering notebook. The notebook shall include all preparations work and documentation of all work done during the laboratory. You are not required to have a new notebook. You can continue using one you already have or share it with another course.
     - Always write in pen, never in pencil, and never use white-out in the notebook. If a mistake needs to be corrected, it shall be neatly crossed out with a single line and corrections shall be added.
