@@ -83,7 +83,7 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
 >
     >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
     >
-    >    Example:
+    >    **Example:**
     >    ![Breadboard Sketch Example](lab4-breadboard-sketch-example.png)
     >    Note how the tie-points are connected together by the straight lines.
     >
@@ -93,7 +93,7 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
 >
 > 1. Copy two (2x) of the following Table 1 into your notebook for this lab:
 >
-    >    Table 1
+    >    **Table 1:**
     >
     >    |Resistor #|First Band|Second Band|Multiplier|Nonimal Ω|Measured Ω|
     >    |---|---|---|---|---|---|
@@ -104,7 +104,7 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
 > 1. Repeat the calculation above for a 10kΩ resistor.
 > 1. Copy the following Table 2 into your notebook for this lab:
 >
-    >    Table 2
+    >    **Table 2:**
     >
     >    ||Measured Voltage|Measured Current|Calculated Resistance|
     >    |---|---|---|---|
@@ -117,7 +117,7 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
 
     > **Lab Question 1:** Write down the colour code of each resistor then determine their resistance value using the resistor colour chart. Use the table below to help you determine the resistance value of each resistor. Fill in the "Measured Ω" in the next step.
     >
-    > (Example)
+    > **Example:**
     >
     > |Resistor #|First Band|Second Band|Multiplier|Nonimal Ω|Measured Ω|
     > |---|---|---|---|---|---|
@@ -150,7 +150,7 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
 
 1. Turn on the DC power supply and set the output to 5V then turn on the output. Verify the voltage reading on the DMM agrees with the output of the DC power supply then **turn it off**. If you are not seeing 5VDC at the DMM, verify your wiring and that you are using the correct output channel of the power supply.
 
-1. Next, we’ll set up **a second DMM** for the current measurement. For this, we’ll connect the black banana cable to the “LO” Input (3) and the red banana cable to the “3A” Input (4). Afterward, press the “SHIFT” button (1) and the “DCV” button (2) together to enter DC current mode. 
+1. Next, we’ll set up **a second DMM** for the current measurement. For this, we’ll connect the black banana cable to the “LO” Input (3) and the red banana cable to the “3A” Input (4). Afterward, press the “SHIFT” button (1) and the “DCV” button (2) together to enter DC current mode (DCI). 
 
     ![Figure 4.8](lab4-dmm-1.png)
 
@@ -162,7 +162,7 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
 
     ***Figure 4.9***
 
-1. Next, we’ll assemble the following circuit using the breadboard and one of the resistors from earlier. Notice the voltmeter (DMM in DC voltage mode) is connected in parallel with the resistor and the Ammeter (DMM in DC current mode) is connected in series with the circuit. An example of some of the connections is shown.
+1. Next, we’ll assemble the following circuit using the breadboard and one of the resistors from earlier. A power supply will act as the DC Voltage Source. Notice the voltmeter (DMM in DC voltage mode (DCV)) is connected in parallel with the resistor and the Ammeter (DMM in DC current mode (DCI)) is connected in series with the circuit. A small example of some of the connections is shown.
 
     ![Figure 4.10](lab4-connection-5.png)
 
