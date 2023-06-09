@@ -79,12 +79,17 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
 
 > **Lab Preparation Question:**
 >
-> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Step 10. Clearly show which tie point will the wire, resistor, DMM, and power supply be attached to. Use [TinkerCAD Circuit](https://www.tinkercad.com/) as an aid if necessary.
+> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Step 10. Clearly show which tie point will the wire, resistor, DMM, and power supply be attached to.
 >
     >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
+    >
     >    Example:
     >    ![Breadboard Sketch Example](lab4-breadboard-sketch-example.png)
     >    Note how the tie-points are connected together by the straight lines.
+    >
+    >    [TinkerCAD Circuit](https://www.tinkercad.com/) is a nice tool that you can use to practice assembling a circuit with a virtual breadboard. See the diagram below as an example.
+    >
+    >    ![Figure 4.11](lab4-tinkercad-1.png)
 >
 > 1. Copy two (2x) of the following Table 1 into your notebook for this lab:
 >
@@ -162,12 +167,6 @@ _Optional:_ If you want to purchase the lab supplies for this lab, details can b
     ![Figure 4.10](lab4-connection-5.png)
 
     ***Figure 4.10***
-
-    [TinkerCAD Circuit](https://www.tinkercad.com/) is a nice tool that you can use to practice assembling the circuit using a virtual breadboard.
-
-    ![Figure 4.11](lab4-tinkercad-1.png)
-
-    ***Figure 4.11***
 
 1. Double-verify that the circuit is assembled properly and that there is no short circuit. **Tips:** Follow the flow of current from the positive (+) terminal of the power supply to the resistor, then to the ammeter, then to the negative terminal of the power supply to verify proper connections.
 
