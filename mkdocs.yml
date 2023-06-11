@@ -3,6 +3,7 @@ nav:
     - SES250 Lab Manual:
         - 'Lab Instruction': 'ses250/instruction.md'
         - 'Lab Safety': 'ses250/safety.md'
+        - 'Lab Supplies': 'ses250/supplies.md'
         - 'Lab 1': 'ses250/lab1.md'
         - 'Lab 2': 'ses250/lab2.md'
         - 'Lab 3': 'ses250/lab3.md'
@@ -15,6 +16,12 @@ nav:
         - 'Lab 10': 'ses250/lab10.md'
 theme:
     name: readthedocs
+
+markdown_extensions:
+    - mdx_math
+
+extra_javascript:
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
 extra_css:
     - css/extra.css
-

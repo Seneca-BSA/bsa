@@ -91,7 +91,7 @@ Lab preparation must be done individually in the lab notebook.
 
     ***Figure 3.4***
 
-1. Set the DMM to DC voltage measurement mode as follows: If the DMM is not already powered on, push the power button (1). Once the DMM is ON, push the DC voltage (DCV)measurement mode button (4). If the “Range” indicator (3) is not showing “Auto”, press the menu button under “Range” (2) and change it to “Auto”.
+1. Set the DMM to DC voltage measurement mode as follows: If the DMM is not already powered on, push the power button (1). Once the DMM is ON, push the DC voltage (DCV) measurement mode button (4). If the “Range” indicator (3) is not showing “Auto”, press the menu button under “Range” (2) and change it to “Auto”.
 
 1. Identify the two cables that are next to the DMM with a banana connector on one end and an alligator clip on the other end.
 
