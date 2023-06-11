@@ -1,4 +1,4 @@
-# Lab 5
+# Lab 5 Capacitor and Resistor Circuits
 
 <font size="5">
 Seneca College</br>

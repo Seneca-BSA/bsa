@@ -1,4 +1,4 @@
-# Lab 3
+# Lab 3 Digital Multimeter
 
 <font size="5">
 Seneca College</br>
