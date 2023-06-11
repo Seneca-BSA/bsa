@@ -6,12 +6,12 @@ SES250 Electromagnatics
 </font>
 
 ## Objectives
-- To understand the relationship between the capacitance and the seperation distance of a parallel sheets capacitor
+- To understand the relationship between the capacitance and the separation distance of a parallel sheets capacitor
 - To understand and verify Kirchhoff's Law
 
 ## Purpose
 - Assemble electronic components onto a breadboard
-- Measure capacitance of a capacitor using a digital multimeter (DMM)
+- Measure the capacitance of a capacitor using a digital multimeter (DMM)
 
 ## Important Rules for this Lab
 
@@ -25,7 +25,7 @@ SES250 Electromagnatics
 
 ## Description
 
-A capacitor is an electronics device for storing electrical energy, consisting of two conductors in close proximity and insulated from each other. A simple example of such a storage device is the parallel-plate capacitor. If positive charges with total charge +Q are deposited on one of the conductors and an equal amount of negative charge −Q is deposited on the second conductor, the capacitor is said to have a charge Q.
+A capacitor is an electronic device for storing electrical energy, consisting of two conductors in close proximity and insulated from each other. A simple example of such a storage device is the parallel-plate capacitor. If positive charges with total charge +Q are deposited on one of the conductors and an equal amount of negative charge −Q is deposited on the second conductor, the capacitor is said to have a charge Q.
 
 Source: [Britannica: capacitor](https://www.britannica.com/technology/capacitor)
 
@@ -35,10 +35,10 @@ $$ C = {{\epsilon_0 A} \over {s}} $$
 
 where \(\epsilon_0\) is the permittivity in vacuum and have a value of \(\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}\), \(A\) is the area of the plates, and \(s\) is the distance between the plates.
 
-When analyzing electronics circuit, an often used methods is the Kirchhoff's current law (KCL). KCL or Kirchhoff's first law, or Kirchhoff's junction rule, states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node; or equivalently: the algebraic sum of currents in a network of conductors meeting at a point is zero:
+When analyzing electronic circuits, a method often used is Kirchhoff's current law (KCL). KCL, Kirchhoff's first law, or Kirchhoff's junction rule, states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node; or equivalently: the algebraic sum of currents in a network of conductors meeting at a point is zero:
 
 $$
-\displaystyle\sum_{i=1}^{n} I_i = 0
+\displaystyle\sum_{i=1}^{n} I_i = \sum_{i=1}^{n} {{V_i} \over {R_i}} = 0
 $$
 
 <img src="../lab5-kcl.png" width="50%" height="50%"/>
@@ -48,8 +48,8 @@ $$
 Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws)
 
 ## Materials
-- Alumimum foils
-- Letter size printer paper
+- Aluminum foils
+- Letter-size printer paper
 - Tape
 - 1kΩ or similar value resistor
 - 10kΩ or similar value resistor
@@ -60,7 +60,7 @@ Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirc
 
 > **Lab Preparation Question:**
 >
-> 1. Copy the following table with at least 10 trails into your notebook for Part 1 of this lab:
+> 1. Copy the following table with at least 10 trials into your notebook for Part 1 of this lab:
 >
     >    |Trial|# of sheet|Separation (mm)|Measured C [nF]|Foil C [nF]|
     >    |---|---|---|---|---|
@@ -74,19 +74,23 @@ Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirc
     >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
 >
 > 1. Repeat the previous step three times to sketch the breadboard connection diagram for each of the following:
-    >
+>
     >    - Include a DMM as a voltmeter to measure the voltage between note A and note B
-    >    - Include a DMM as a ammeter to measure the current through R1
-    >    - Include a DMM as a ammeter to measure the current through R2
-    >    - Include a DMM as a ammeter to measure the current through R3
+    >    - Include a DMM as an ammeter to measure the current through R1
+    >    - Include two DMM each as an ammeter to measure the current through R2 and R3
+    >
+    >    ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
+    >    |---|---|---|---|---|
+    >    |Calculated Value|||||
+>
 
 ## Procedures
 
 ### Part 1: Parallel Plate Capacitor
 
-In this part the lab, we will be exploring the capacitance of a parallel plate capacitor.
+In this part of the lab, we will be exploring the capacitance of a parallel plate capacitor.
 
-1. Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the termainl labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).
+1. Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).
 
     ![Figure 5.2](lab5-dmm-capacitance.png)
 
@@ -94,7 +98,7 @@ In this part the lab, we will be exploring the capacitance of a parallel plate c
 
     > **Lab Question 1:** Record the capacitance with the alligator clip not connected to anything. This is the capacitance due to just the cable.
 
-1. Obtain two pieces of aluminum foils of at about 20cm x 20xm in size and obtain several sheets of paper that are larger than the aluminum foil. Record the size of each aluminum foil.
+1. Obtain two pieces of aluminum foil of about 20cm x 20xm in size and obtain several sheets of paper that are larger than the aluminum foil. Record the size of each aluminum foil.
 
     > **Lab Question 2:** Record the size of the capacitor.
 
@@ -104,7 +108,7 @@ In this part the lab, we will be exploring the capacitance of a parallel plate c
 
     ***Figure 5.3***
 
-1. Connect the red alligator clip from the DMM to one corner of the first aluminum foils and the black alligator clip to another corner of the second aluminum foil as shown in Figure 5.4.
+1. Connect the red alligator clip from the DMM to one corner of the first aluminum foil and the black alligator clip to another corner of the second aluminum foil as shown in Figure 5.4.
 
     ![Figure 5.4](lab5-capacitor-2.png)
 
@@ -116,7 +120,7 @@ In this part the lab, we will be exploring the capacitance of a parallel plate c
 
 1. Record the capacitance then repeat the test for other thicknesses by increasing the number of sheets of paper in between the aluminum foil. Increment in multiple of 3-5 sheets. Each sheet of 20lbs paper is about 0.097mm.
 
-    **NOTE: It is important to ensure the weight apply and its application is the same throughout the entire experiment. Also, as the weight settles onto the aluminum foils and papers stack, it will continuously press the parallel foils closer. Just choose a consistent settling time for each step when recording the capacitance value because we cannot wait until the weight completely settle.**
+    **NOTE: It is important to ensure the weight apply and its application is the same throughout the entire experiment. Also, as the weight settles onto the aluminum foils and papers stack, it will continuously press the parallel foils closer. Just choose a consistent settling time for each step when recording the capacitance value because we cannot wait until the weight completely settles.**
 
 1. Conduct at least 10 trials of various thicknesses or until a change in capacitance can no longer be observed.
 
@@ -127,23 +131,23 @@ In this part the lab, we will be exploring the capacitance of a parallel plate c
     > |1|||||
     > |...|||||
     >
-    > **Note:** the capacitor setup already have one sheet as seperation
+    > **Note:** The capacitor setup already has one sheet as a separation
     >
     > **Lab Question 4 (Post-Lab):** Using the area of the aluminum foils you measured and the separation distance of each step from your experiment into the relationship. Plot your results (Capacitance along the y-axis and separation distance along the x-axis) then draw the trend line. This can be done by hand or software. **Hint:** It's not a linear relationship.
     >
-    > **Lab Question 5 (Post-Lab):** Calculate the coefficient for the trend line? Does it agree with the theoretical value of \(\epsilon_0\)? Explain why do you think it is the same or not the same as the theoretical (other than human measurement error).
+    > **Lab Question 5 (Post-Lab):** Calculate the coefficient for the trend line? Does it agree with the theoretical value of \(\epsilon_0\)? Explain why you think it is the same or not the same as the theoretical (other than human measurement error).
 
-1. Disconnect the DMM and return the aluminim foil once you are done.
+1. Disconnect the DMM and return the aluminum foil once you are done.
 
 ### Part 2: Resistors in Parallel and in Series
 
-In this part the lab, we will be exploring resistor in parallel and in series configuration.
+In this part of the lab, we will be exploring resistors in parallel and series configurations.
 
 1. Obtain a 1kΩ resistor, two 10kΩ resistors, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.
 
 1. Use the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.
 
-    > **Lab Question 6:** Record the resistance (at least 3 S.F.) of each resistor into the table below:
+    > **Lab Question 6:** Record the resistance (at least 3 S.F.) of each resistor in the table below:
     >
     > ||R1 (1kΩ)|R2 (10kΩ)|R3 (10kΩ)|
     > |---|---|---|---|
@@ -165,7 +169,7 @@ In this part the lab, we will be exploring resistor in parallel and in series co
 
     ***Figure 5.6***
 
-    > **Lab Question 7:** Record the measured values into the table below.
+    > **Lab Question 7:** Record the measured values in the table below.
     >
     > ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
     > |---|---|---|---|---|
