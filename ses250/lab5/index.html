@@ -125,13 +125,13 @@ SES250 Electromagnatics
 </font></p>
 <h2 id="objectives">Objectives</h2>
 <ul>
-<li>To understand the relationship between the capacitance and the seperation distance of a parallel sheets capacitor</li>
+<li>To understand the relationship between the capacitance and the separation distance of a parallel sheets capacitor</li>
 <li>To understand and verify Kirchhoff's Law</li>
 </ul>
 <h2 id="purpose">Purpose</h2>
 <ul>
 <li>Assemble electronic components onto a breadboard</li>
-<li>Measure capacitance of a capacitor using a digital multimeter (DMM)</li>
+<li>Measure the capacitance of a capacitor using a digital multimeter (DMM)</li>
 </ul>
 <h2 id="important-rules-for-this-lab">Important Rules for this Lab</h2>
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
@@ -143,17 +143,17 @@ SES250 Electromagnatics
 </div>
 
 <h2 id="description">Description</h2>
-<p>A capacitor is an electronics device for storing electrical energy, consisting of two conductors in close proximity and insulated from each other. A simple example of such a storage device is the parallel-plate capacitor. If positive charges with total charge +Q are deposited on one of the conductors and an equal amount of negative charge −Q is deposited on the second conductor, the capacitor is said to have a charge Q.</p>
+<p>A capacitor is an electronic device for storing electrical energy, consisting of two conductors in close proximity and insulated from each other. A simple example of such a storage device is the parallel-plate capacitor. If positive charges with total charge +Q are deposited on one of the conductors and an equal amount of negative charge −Q is deposited on the second conductor, the capacitor is said to have a charge Q.</p>
 <p>Source: <a href="https://www.britannica.com/technology/capacitor">Britannica: capacitor</a></p>
 <p>The capacitance of a parallel plate capacitor can be calculated using:</p>
 <p>
 <script type="math/tex; mode=display"> C = {{\epsilon_0 A} \over {s}} </script>
 </p>
 <p>where <script type="math/tex">\epsilon_0</script> is the permittivity in vacuum and have a value of <script type="math/tex">\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}</script>, <script type="math/tex">A</script> is the area of the plates, and <script type="math/tex">s</script> is the distance between the plates.</p>
-<p>When analyzing electronics circuit, an often used methods is the Kirchhoff's current law (KCL). KCL or Kirchhoff's first law, or Kirchhoff's junction rule, states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node; or equivalently: the algebraic sum of currents in a network of conductors meeting at a point is zero:</p>
+<p>When analyzing electronic circuits, a method often used is Kirchhoff's current law (KCL). KCL, Kirchhoff's first law, or Kirchhoff's junction rule, states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node; or equivalently: the algebraic sum of currents in a network of conductors meeting at a point is zero:</p>
 <p>
 <script type="math/tex; mode=display">
-\displaystyle\sum_{i=1}^{n} I_i = 0
+\displaystyle\sum_{i=1}^{n} I_i = \sum_{i=1}^{n} {{V_i} \over {R_i}} = 0
 </script>
 </p>
 <p><img src="../lab5-kcl.png" width="50%" height="50%"/></p>
@@ -161,8 +161,8 @@ SES250 Electromagnatics
 <p>Source: <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws">Wikipedia: Kirchhoff's circuit laws</a></p>
 <h2 id="materials">Materials</h2>
 <ul>
-<li>Alumimum foils</li>
-<li>Letter size printer paper</li>
+<li>Aluminum foils</li>
+<li>Letter-size printer paper</li>
 <li>Tape</li>
 <li>1kΩ or similar value resistor</li>
 <li>10kΩ or similar value resistor</li>
@@ -174,7 +174,7 @@ SES250 Electromagnatics
 <p><strong>Lab Preparation Question:</strong></p>
 <ol>
 <li>
-<p>Copy the following table with at least 10 trails into your notebook for Part 1 of this lab:</p>
+<p>Copy the following table with at least 10 trials into your notebook for Part 1 of this lab:</p>
 <blockquote>
 <table>
 <thead>
@@ -219,20 +219,46 @@ SES250 Electromagnatics
 <blockquote>
 <ul>
 <li>Include a DMM as a voltmeter to measure the voltage between note A and note B</li>
-<li>Include a DMM as a ammeter to measure the current through R1</li>
-<li>Include a DMM as a ammeter to measure the current through R2</li>
-<li>Include a DMM as a ammeter to measure the current through R3</li>
+<li>Include a DMM as an ammeter to measure the current through R1</li>
+<li>Include two DMM each as an ammeter to measure the current through R2 and R3</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Voltage A-B (<script type="math/tex">V_{AB}</script>)</th>
+<th>Current of R1 (<script type="math/tex">I_1</script>)</th>
+<th>Current of R1 (<script type="math/tex">I_2</script>)</th>
+<th>Current of R1 (<script type="math/tex">I_3</script>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Calculated Value</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </blockquote>
 </li>
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
 <h3 id="part-1-parallel-plate-capacitor">Part 1: Parallel Plate Capacitor</h3>
-<p>In this part the lab, we will be exploring the capacitance of a parallel plate capacitor.</p>
+<p>In this part of the lab, we will be exploring the capacitance of a parallel plate capacitor.</p>
 <ol>
 <li>
-<p>Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the termainl labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).</p>
+<p>Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).</p>
 <p><img alt="Figure 5.2" src="../lab5-dmm-capacitance.png" /></p>
 <p><strong><em>Figure 5.2</em></strong></p>
 <blockquote>
@@ -240,7 +266,7 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Obtain two pieces of aluminum foils of at about 20cm x 20xm in size and obtain several sheets of paper that are larger than the aluminum foil. Record the size of each aluminum foil.</p>
+<p>Obtain two pieces of aluminum foil of about 20cm x 20xm in size and obtain several sheets of paper that are larger than the aluminum foil. Record the size of each aluminum foil.</p>
 <blockquote>
 <p><strong>Lab Question 2:</strong> Record the size of the capacitor.</p>
 </blockquote>
@@ -251,7 +277,7 @@ SES250 Electromagnatics
 <p><strong><em>Figure 5.3</em></strong></p>
 </li>
 <li>
-<p>Connect the red alligator clip from the DMM to one corner of the first aluminum foils and the black alligator clip to another corner of the second aluminum foil as shown in Figure 5.4.</p>
+<p>Connect the red alligator clip from the DMM to one corner of the first aluminum foil and the black alligator clip to another corner of the second aluminum foil as shown in Figure 5.4.</p>
 <p><img alt="Figure 5.4" src="../lab5-capacitor-2.png" /></p>
 <p><strong><em>Figure 5.4</em></strong></p>
 </li>
@@ -261,7 +287,7 @@ SES250 Electromagnatics
 </li>
 <li>
 <p>Record the capacitance then repeat the test for other thicknesses by increasing the number of sheets of paper in between the aluminum foil. Increment in multiple of 3-5 sheets. Each sheet of 20lbs paper is about 0.097mm.</p>
-<p><strong>NOTE: It is important to ensure the weight apply and its application is the same throughout the entire experiment. Also, as the weight settles onto the aluminum foils and papers stack, it will continuously press the parallel foils closer. Just choose a consistent settling time for each step when recording the capacitance value because we cannot wait until the weight completely settle.</strong></p>
+<p><strong>NOTE: It is important to ensure the weight apply and its application is the same throughout the entire experiment. Also, as the weight settles onto the aluminum foils and papers stack, it will continuously press the parallel foils closer. Just choose a consistent settling time for each step when recording the capacitance value because we cannot wait until the weight completely settles.</strong></p>
 </li>
 <li>
 <p>Conduct at least 10 trials of various thicknesses or until a change in capacitance can no longer be observed.</p>
@@ -294,17 +320,17 @@ SES250 Electromagnatics
 </tr>
 </tbody>
 </table>
-<p><strong>Note:</strong> the capacitor setup already have one sheet as seperation</p>
+<p><strong>Note:</strong> The capacitor setup already has one sheet as a separation</p>
 <p><strong>Lab Question 4 (Post-Lab):</strong> Using the area of the aluminum foils you measured and the separation distance of each step from your experiment into the relationship. Plot your results (Capacitance along the y-axis and separation distance along the x-axis) then draw the trend line. This can be done by hand or software. <strong>Hint:</strong> It's not a linear relationship.</p>
-<p><strong>Lab Question 5 (Post-Lab):</strong> Calculate the coefficient for the trend line? Does it agree with the theoretical value of <script type="math/tex">\epsilon_0</script>? Explain why do you think it is the same or not the same as the theoretical (other than human measurement error).</p>
+<p><strong>Lab Question 5 (Post-Lab):</strong> Calculate the coefficient for the trend line? Does it agree with the theoretical value of <script type="math/tex">\epsilon_0</script>? Explain why you think it is the same or not the same as the theoretical (other than human measurement error).</p>
 </blockquote>
 </li>
 <li>
-<p>Disconnect the DMM and return the aluminim foil once you are done.</p>
+<p>Disconnect the DMM and return the aluminum foil once you are done.</p>
 </li>
 </ol>
 <h3 id="part-2-resistors-in-parallel-and-in-series">Part 2: Resistors in Parallel and in Series</h3>
-<p>In this part the lab, we will be exploring resistor in parallel and in series configuration.</p>
+<p>In this part of the lab, we will be exploring resistors in parallel and series configurations.</p>
 <ol>
 <li>
 <p>Obtain a 1kΩ resistor, two 10kΩ resistors, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.</p>
@@ -312,7 +338,7 @@ SES250 Electromagnatics
 <li>
 <p>Use the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.</p>
 <blockquote>
-<p><strong>Lab Question 6:</strong> Record the resistance (at least 3 S.F.) of each resistor into the table below:</p>
+<p><strong>Lab Question 6:</strong> Record the resistance (at least 3 S.F.) of each resistor in the table below:</p>
 <table>
 <thead>
 <tr>
@@ -350,7 +376,7 @@ SES250 Electromagnatics
 <p><img alt="Figure 5.6" src="../lab5-circuit.png" /></p>
 <p><strong><em>Figure 5.6</em></strong></p>
 <blockquote>
-<p><strong>Lab Question 7:</strong> Record the measured values into the table below.</p>
+<p><strong>Lab Question 7:</strong> Record the measured values in the table below.</p>
 <table>
 <thead>
 <tr>
