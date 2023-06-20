@@ -1,4 +1,4 @@
-# Lab 4 DC Circuit and Resistor
+# Lab 4 : DC Circuit and Resistor
 
 <font size="5">
 Seneca College</br>

@@ -1,4 +1,4 @@
-# Lab 1 Electrostatics
+# Lab 1 : Electrostatics
 
 <font size="5">
 Seneca College</br>

@@ -1,4 +1,4 @@
-# Lab 5 Capacitor and Resistor Circuits
+# Lab 5 : Capacitor and Resistor Circuits
 
 <font size="5">
 Seneca College</br>
@@ -75,7 +75,7 @@ Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirc
 >
 > 1. Repeat the previous step three times to sketch the breadboard connection diagram for each of the following:
 >
-    >    - Include a DMM as a voltmeter to measure the voltage between note A and note B
+    >    - Include a DMM as a voltmeter to measure the voltage between node A and node B
     >    - Include a DMM as an ammeter to measure the current through R1
     >    - Include two DMM each as an ammeter to measure the current through R2 and R3
     >
@@ -135,7 +135,7 @@ In this part of the lab, we will be exploring the capacitance of a parallel plat
     >
     > **Lab Question 4 (Post-Lab):** Using the area of the aluminum foils you measured and the separation distance of each step from your experiment into the relationship. Plot your results (Capacitance along the y-axis and separation distance along the x-axis) then draw the trend line. This can be done by hand or software. **Hint:** It's not a linear relationship.
     >
-    > **Lab Question 5 (Post-Lab):** Calculate the coefficient for the trend line? Does it agree with the theoretical value of \(\epsilon_0\)? Explain why you think it is the same or not the same as the theoretical (other than human measurement error).
+    > **Lab Question 5 (Post-Lab):** Calculate the coefficient for the trend line. Does it agree with the theoretical value of \(\epsilon_0\)? Explain why you think it is the same or not the same as the theoretical (other than human measurement error).
 
 1. Disconnect the DMM and return the aluminum foil once you are done.
 
@@ -145,7 +145,7 @@ In this part of the lab, we will be exploring resistors in parallel and series c
 
 1. Obtain a 1kΩ resistor, two 10kΩ resistors, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.
 
-1. Use the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.
+1. Turn on the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.
 
     > **Lab Question 6:** Record the resistance (at least 3 S.F.) of each resistor in the table below:
     >
@@ -153,7 +153,7 @@ In this part of the lab, we will be exploring resistors in parallel and series c
     > |---|---|---|---|
     > |Measured Resistance [kΩ]||||
 
-1. Assemble the circuit shown below then measure the resistance between note A and note B.
+1. Assemble the circuit shown below then measure the resistance between node A and node B.
 
     ![Figure 5.5](lab5-circuit-open.png)
 
@@ -162,7 +162,7 @@ In this part of the lab, we will be exploring resistors in parallel and series c
     > **Lab Question 6:** Does the measured resistance agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?
 
 1. Assemble the circuit shown below then measure the following as per the circuit and connection diagram you prepared in the pre-lab:
-    - the voltage between note A and note B
+    - the voltage between node A and node B
     - the current through R1, R2, R3
 
     ![Figure 5.6](lab5-circuit.png)

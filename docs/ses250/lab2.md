@@ -1,4 +1,4 @@
-# Lab 2 Triboelectric Series
+# Lab 2 : Triboelectric Series
 
 <font size="5">
 Seneca College</br>
