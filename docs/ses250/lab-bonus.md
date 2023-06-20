@@ -61,21 +61,15 @@ Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirc
 
 > **Lab Preparation Question:**
 >
-> 1. Using the circuit shown in Part 2 Step 4 along with R1 = 1kΩ, R2 = R3 = 10kΩ. Calculate \(V_AB\), \(I_1\), \(I_2\), \(I_3\) using Kirchhoff's Current Laws
+> 1. Using the circuit shown in Step 3 of the lab, along with R1 = 10kΩ, R2 = 1kΩ, R3 = 1kΩ, R4 = 470Ω, and R5 = 330kΩ, calculate the votlage across and current through each resistor using Kirchhoff's Current Law or Kirchhoff's Voltage Law.
 >
-> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Part 2 Step 4. Clearly show which tie point will the wire, resistor and power supply be attached to.
+> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Step 3. Clearly show which tie point will the wire, resistor and power supply be attached to.
 >
     >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
 >
-> 1. Repeat the previous step three times to sketch the breadboard connection diagram for each of the following:
+> 1. Repeat the previous step for as many times as required to sketch the breadboard connection diagram for using the DMMs to measure the votlage across and current through each resistor.
 >
-    >    - Include a DMM as a voltmeter to measure the voltage between note A and note B
-    >    - Include a DMM as an ammeter to measure the current through R1
-    >    - Include two DMM each as an ammeter to measure the current through R2 and R3
-    >
-    >    ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
-    >    |---|---|---|---|---|
-    >    |Calculated Value|||||
+> 1. Copy the resistance, voltage, and current recording tables found in the lab into your notebook.
 >
 
 ## Procedures
