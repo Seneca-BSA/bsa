@@ -1,4 +1,4 @@
-# Bnous Lab : More Resistor Circuits
+# Bnous Lab : More Resistor Circuit
 
 <font size="5">
 Seneca College</br>
