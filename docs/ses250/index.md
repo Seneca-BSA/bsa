@@ -8,7 +8,7 @@
 - [Lab 3 : Digital Multimeter](lab3.md)
 - [Lab 4 : DC Circuit](lab4.md)
 - [Lab 5 : Capacitor and Resistor Circuit](lab5.md)
-- [Bonus Lab : More Resistor Circuit]: (lab-bonus.md)
+- [Bonus Lab : More Resistor Circuit](lab-bonus.md)
 - [Lab 6 : DSO, RC Circuit, and DC Circuit Project](lab6.md)
 - [Lab 7 : Magnetic Force](lab7.md)
 - [Lab 8 : Induction](lab8.md)
