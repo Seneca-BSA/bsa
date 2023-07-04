@@ -67,6 +67,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#important-rules-for-this-lab">Important Rules for this Lab</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#description">Description</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#materials">Materials</a>
@@ -112,26 +114,183 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-6">Lab 6</h1>
+                <h1 id="lab-6-thevenin-circuit">Lab 6 : Thévenin Circuit</h1>
 <p><font size="5">
 Seneca College</br>
 SES250 Electromagnatics
 </font></p>
 <h2 id="objectives">Objectives</h2>
 <ul>
-<li>To learn how to operate the function generator and digital storage oscilloscope (DSO)</li>
+<li>To understand and verify Thévenin's theorem</li>
 </ul>
 <h2 id="purpose">Purpose</h2>
 <ul>
-<li>Measure the ampitude and frequency of an electronics signal waveform using a digital storage oscilloscope (DSO)</li>
+<li>Assemble electronic components onto a breadboard and measure current and voltage using a DMM</li>
 </ul>
+<h2 id="important-rules-for-this-lab">Important Rules for this Lab</h2>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ol>
+<li>Any signal (voltage, current) must be adjusted to the specified value (amplitude and/or frequency) <strong>before</strong> applying them to a circuit.</li>
+<li>An instrument must be set up for the required mode of operation <strong>before</strong> it is connected to a circuit.</li>
+<li>The power supply must be switched off <strong>before</strong> making any changes to the circuit.</li>
+</ol>
+</div>
+
 <h2 id="description">Description</h2>
+<p>Thévenin theorem is a method often used to simply circuit analysis from a complex circuit to a simple with only a Thévenin voltage source in series with a Thévenin resistor.</p>
+<p>Any linear electrical network containing only voltage sources, current sources and resistances can be replaced at terminals A–B by an equivalent combination of a voltage source <script type="math/tex">V_{th}</script> in a series connection with a resistance <script type="math/tex">R_{th}</script>.</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem">Wikipedia: Thévenin's theorem</a></p>
+<p><img alt="Figure 6.1" src="../lab6-thevenin.png" /></p>
+<ol>
+<li>The equivalent voltage <script type="math/tex">V_{th}</script> is the voltage obtained at terminals A–B of the network with terminals A–B open circuited.</li>
+<li>The equivalent resistance <script type="math/tex">R_{th}</script> is the resistance that the circuit between terminals A and B would have if all ideal voltage sources in the circuit were replaced by a short circuit and all ideal current sources were replaced by an open circuit.</li>
+<li>If terminals A and B are connected to one another, the current flowing from A and B will be <script type="math/tex">V_{th} over R_{th}</script>. This means that <script type="math/tex">R_{th}</script> could alternatively be calculated as <script type="math/tex">V_{th}</script> divided by the short-circuit current between A and B when they are connected together.</li>
+</ol>
 <h2 id="materials">Materials</h2>
+<ul>
+<li>(1x) 330Ω</li>
+<li>(2x) 470Ω</li>
+<li>(4x) 1kΩ<ul>
+<li>or (3x) 1kΩ and (1x) 2kΩ</li>
+</ul>
+</li>
+<li>Breadboard</li>
+<li>Jumper wires</li>
+</ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <p><strong>Lab Preparation Question:</strong></p>
+<ol>
+<li>
+<p>Using the circuit shown in Figure 6.2, calculate the Thevenin voltage <script type="math/tex">V_{th}</script> and resistance <script type="math/tex">R_{th}</script> of the circuit by removing <script type="math/tex">R_L</script>.</p>
+</li>
+<li>
+<p>Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Figure 6.2 and 6.3. Clearly show which tie point will the wire, resistor and power supply be attached to.</p>
+<blockquote>
+<p><img alt="Breadboard Sketch" src="../lab4-breadboard-sketch.png" /></p>
+</blockquote>
+</li>
+<li>
+<p>Copy the observation tables found in this lab into your notebook.
+</p>
+</li>
+</ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
+<p>In this part of the lab, we will be exploring resistors in parallel and series configurations.</p>
+<ol>
+<li>
+<p>Obtain the necessary resistors, a breadboard and a few jumper wires. If a resistor value is not available, use resistors of very similar value.</p>
+<ul>
+<li>If a 2 kΩ resistor is available, <script type="math/tex">R_1</script> and <script type="math/tex">R_2</script> can be combined and replaced with the 2 kΩ resistor.</li>
+</ul>
+</li>
+<li>
+<p>Turn on the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.</p>
+<blockquote>
+<p><strong>Lab Question 1:</strong> Record the resistance (at least 3 S.F.) of each resistor in the table below:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>R1 (1kΩ)</th>
+<th>R2 (1kΩ)</th>
+<th>R3 (1kΩ)</th>
+<th>R4 (470Ω)</th>
+<th>R5 (470Ω)</th>
+<th>RL (1kΩ)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Measured Resistance [Ω]</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>
+<p>Assemble the circuit shown below then measure the current through the load resistor.</p>
+<p><strong>REMEMBER:</strong> To measure current, the digital multimeter needs to be in DC current mode (DCI) to act as an ammeter. An ammeter needs to be connected in series with a resistor to measure the current.</p>
+<p><img alt="Figure 6.2" src="../lab6-circuit.png" /></p>
+<p><strong><em>Figure 6.2</em></strong></p>
+<blockquote>
+<p><strong>Lab Question 2:</strong> Record the measured values in the table below by supplying the circuit with 5V.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>
+<script type="math/tex">R_L</script> (<script type="math/tex">I_L</script>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current through resistors</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lab Question 3:</strong> Does the measured value agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?</p>
+</blockquote>
+</li>
+<li>
+<p>From the pre-lab, you should've calculated the <script type="math/tex">V_{th}</script> and <script type="math/tex">R_{th}</script> for the circuit above. Obtain a resistor that's very close to the <script type="math/tex">R_{th}</script> value you calculated.</p>
+<blockquote>
+<p><strong>Lab Question 4:</strong> Record the resistance (at least 3 S.F.) of each resistor in the table below:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>
+<script type="math/tex">R_{th}</script>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Measured Resistance [Ω]</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>
+<p>Assemble the thevenin circuit shown below.</p>
+<p><strong>REMEMBER:</strong> To measure current, the digital multimeter needs to be in DC current mode (DCI) to act as an ammeter. An ammeter needs to be connected in series with a resistor to measure the current.</p>
+<p><img alt="Figure 6.3" src="../lab6-circuit-thevenin.png" /></p>
+<p><strong><em>Figure 6.3</em></strong></p>
+</li>
+<li>
+<p>Set the DC power supply to the <script type="math/tex">V_{th}</script> value you calculated in the pre-lab then turn it on to measure the current through the load resistor.</p>
+<blockquote>
+<p><strong>Lab Question 5:</strong> Record the measured values in the table below by supplying the circuit with <script type="math/tex">V_{th}</script>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>
+<script type="math/tex">R_L</script> (<script type="math/tex">I_L</script>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Current through resistors</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lab Question 6:</strong> Does the measured value agree with the value you calculated in the pre-lab and the value you obatined earlier? What is the percentage error?</p>
+</blockquote>
+</li>
+</ol>
 <p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.</p>
 <h2 id="post-lab">Post-Lab</h2>
 <ol>
