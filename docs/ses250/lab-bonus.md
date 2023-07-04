@@ -50,6 +50,7 @@ where \(i\) is the loop current.
 Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws)
 
 ## Materials
+
 - (1x) 330Ω or similar value resistor
 - (1x) 470Ω or similar value resistor
 - (2x) 1kΩ or similar value resistor
@@ -82,7 +83,7 @@ In this part of the lab, we will be exploring resistors in parallel and series c
 
     > **Lab Question 1:** Record the resistance (at least 3 S.F.) of each resistor in the table below:
     >
-    > ||R1 (10kΩ)|R2 (1kΩ)|R3 (1kΩ)|R4 (470Ω)|R5 (330kΩ)
+    > ||R1 (10kΩ)|R2 (1kΩ)|R3 (1kΩ)|R4 (470Ω)|R5 (330Ω)
     > |---|---|---|---|---|---|
     > |Measured Resistance [kΩ]||||||
 
