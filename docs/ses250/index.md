@@ -11,6 +11,6 @@
 - [Bonus Lab : More Resistive Circuit](lab-bonus.md)
 - [Lab 6 : Thévenin Circuit](lab6.md)
 - [Lab 7 : Magnetic Force](lab7.md)
-- [Lab 8 : DSO and RC Circuit](lab8.md)
+- [Lab 8 : DSO and RC/RL Circuit](lab8.md)
 - [Lab 9 : AC Circuit](lab9.md)
 - [Lab 10 : RLC Circuit](lab10.md)

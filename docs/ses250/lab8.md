@@ -1,4 +1,4 @@
-# Lab 8
+# Lab 8 : DSO and RC/RL Circuit
 
 <font size="5">
 Seneca College</br>
@@ -6,8 +6,10 @@ SES250 Electromagnatics
 </font>
 
 ## Objectives
+- To learn how to operate the function generator and digital storage oscilloscope (DSO)
 
 ## Purpose
+- Measure the ampitude and frequency of an electronics signal waveform using a digital storage oscilloscope (DSO)
 
 ## Description
 

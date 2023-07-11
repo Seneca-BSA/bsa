@@ -23,7 +23,7 @@ SES250 Electromagnatics
 
 ## Description
 
-Thévenin theorem is a method often used to simply circuit analysis from a complex circuit to a simple with only a Thévenin voltage source in series with a Thévenin resistor.
+Thévenin theorem is a method often used to simplify circuit analysis from a complex circuit to a simple with only a Thévenin voltage source in series with a Thévenin resistor.
 
 Any linear electrical network containing only voltage sources, current sources and resistances can be replaced at terminals A–B by an equivalent combination of a voltage source \(V_{th}\) in a series connection with a resistance \(R_{th}\).
 
@@ -31,7 +31,7 @@ Source: [Wikipedia: Thévenin's theorem](https://en.wikipedia.org/wiki/Th%C3%A9v
 
 ![Figure 6.1](lab6-thevenin.png)
 
-1. The equivalent voltage \(V_{th}\) is the voltage obtained at terminals A–B of the network with terminals A–B open circuited.
+1. The equivalent voltage \(V_{th}\) is the voltage obtained at terminals A–B of the network with terminals A–B open-circuited.
 1. The equivalent resistance \(R_{th}\) is the resistance that the circuit between terminals A and B would have if all ideal voltage sources in the circuit were replaced by a short circuit and all ideal current sources were replaced by an open circuit.
 1. If terminals A and B are connected to one another, the current flowing from A and B will be \(V_{th} over R_{th}\). This means that \(R_{th}\) could alternatively be calculated as \(V_{th}\) divided by the short-circuit current between A and B when they are connected together.
 
@@ -50,7 +50,7 @@ Source: [Wikipedia: Thévenin's theorem](https://en.wikipedia.org/wiki/Th%C3%A9v
 >
 > 1. Using the circuit shown in Figure 6.2, calculate the Thevenin voltage \(V_{th}\) and resistance \(R_{th}\) of the circuit by removing \(R_L\).
 >
-> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Figure 6.2 and 6.3. Clearly show which tie point will the wire, resistor and power supply be attached to.
+> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Figures 6.2 and 6.3. Clearly show which tie point will the wire, resistor and power supply be attached to.
 >
     >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
 >
@@ -68,7 +68,7 @@ In this part of the lab, we will be exploring resistors in parallel and series c
 
     > **Lab Question 1:** Record the resistance (at least 3 S.F.) of each resistor in the table below:
     >
-    > ||R1 (1kΩ)|R2 (1kΩ)|R3 (1kΩ)|R4 (470Ω)|R5 (470Ω)|RL (1kΩ)|
+    > ||\(R_1\) (1kΩ)|\(R_2\) (1kΩ)|\(R_3\) (1kΩ)|\(R_4\) (470Ω)|\(R_5\) (470Ω)|\(R_L\) (1kΩ)|
     > |---|---|---|---|---|---|---|
     > |Measured Resistance [Ω]|||||||
 
@@ -82,7 +82,7 @@ In this part of the lab, we will be exploring resistors in parallel and series c
 
     > **Lab Question 2:** Record the measured values in the table below by supplying the circuit with 5V.
     >
-    > ||\(R_L\) (\(I_L\))|
+    > ||\(I_{R_L}\)|
     > |---|---|
     > |Current through resistors||
     >
@@ -96,11 +96,11 @@ In this part of the lab, we will be exploring resistors in parallel and series c
     > |---|---|
     > |Measured Resistance [Ω]||
 
-1. Assemble the thevenin circuit shown below.
+1. Assemble the Thevenin circuit shown below.
 
     **REMEMBER:** To measure current, the digital multimeter needs to be in DC current mode (DCI) to act as an ammeter. An ammeter needs to be connected in series with a resistor to measure the current.
     
-    ![Figure 6.3](lab6-circuit-thevenin.png)
+    <img src="../lab6-circuit-thevenin.png" width="50%" height="50%"/>
 
     ***Figure 6.3***
 
@@ -108,11 +108,11 @@ In this part of the lab, we will be exploring resistors in parallel and series c
 
     > **Lab Question 5:** Record the measured values in the table below by supplying the circuit with \(V_{th}\).
     >
-    > ||\(R_L\) (\(I_L\))|
+    > ||\(I_{R_L}\)|
     > |---|---|
     > |Current through resistors||
     >
-    > **Lab Question 6:** Does the measured value agree with the value you calculated in the pre-lab and the value you obatined earlier? What is the percentage error?
+    > **Lab Question 6:** Does the measured value agree with the value you calculated in the pre-lab and the value you obtained earlier? What is the percentage error?
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
 
