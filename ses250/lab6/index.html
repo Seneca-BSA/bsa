@@ -137,12 +137,12 @@ SES250 Electromagnatics
 </div>
 
 <h2 id="description">Description</h2>
-<p>Thévenin theorem is a method often used to simply circuit analysis from a complex circuit to a simple with only a Thévenin voltage source in series with a Thévenin resistor.</p>
+<p>Thévenin theorem is a method often used to simplify circuit analysis from a complex circuit to a simple with only a Thévenin voltage source in series with a Thévenin resistor.</p>
 <p>Any linear electrical network containing only voltage sources, current sources and resistances can be replaced at terminals A–B by an equivalent combination of a voltage source <script type="math/tex">V_{th}</script> in a series connection with a resistance <script type="math/tex">R_{th}</script>.</p>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem">Wikipedia: Thévenin's theorem</a></p>
 <p><img alt="Figure 6.1" src="../lab6-thevenin.png" /></p>
 <ol>
-<li>The equivalent voltage <script type="math/tex">V_{th}</script> is the voltage obtained at terminals A–B of the network with terminals A–B open circuited.</li>
+<li>The equivalent voltage <script type="math/tex">V_{th}</script> is the voltage obtained at terminals A–B of the network with terminals A–B open-circuited.</li>
 <li>The equivalent resistance <script type="math/tex">R_{th}</script> is the resistance that the circuit between terminals A and B would have if all ideal voltage sources in the circuit were replaced by a short circuit and all ideal current sources were replaced by an open circuit.</li>
 <li>If terminals A and B are connected to one another, the current flowing from A and B will be <script type="math/tex">V_{th} over R_{th}</script>. This means that <script type="math/tex">R_{th}</script> could alternatively be calculated as <script type="math/tex">V_{th}</script> divided by the short-circuit current between A and B when they are connected together.</li>
 </ol>
@@ -165,7 +165,7 @@ SES250 Electromagnatics
 <p>Using the circuit shown in Figure 6.2, calculate the Thevenin voltage <script type="math/tex">V_{th}</script> and resistance <script type="math/tex">R_{th}</script> of the circuit by removing <script type="math/tex">R_L</script>.</p>
 </li>
 <li>
-<p>Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Figure 6.2 and 6.3. Clearly show which tie point will the wire, resistor and power supply be attached to.</p>
+<p>Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Figures 6.2 and 6.3. Clearly show which tie point will the wire, resistor and power supply be attached to.</p>
 <blockquote>
 <p><img alt="Breadboard Sketch" src="../lab4-breadboard-sketch.png" /></p>
 </blockquote>
@@ -193,12 +193,18 @@ SES250 Electromagnatics
 <thead>
 <tr>
 <th></th>
-<th>R1 (1kΩ)</th>
-<th>R2 (1kΩ)</th>
-<th>R3 (1kΩ)</th>
-<th>R4 (470Ω)</th>
-<th>R5 (470Ω)</th>
-<th>RL (1kΩ)</th>
+<th>
+<script type="math/tex">R_1</script> (1kΩ)</th>
+<th>
+<script type="math/tex">R_2</script> (1kΩ)</th>
+<th>
+<script type="math/tex">R_3</script> (1kΩ)</th>
+<th>
+<script type="math/tex">R_4</script> (470Ω)</th>
+<th>
+<script type="math/tex">R_5</script> (470Ω)</th>
+<th>
+<script type="math/tex">R_L</script> (1kΩ)</th>
 </tr>
 </thead>
 <tbody>
@@ -227,7 +233,8 @@ SES250 Electromagnatics
 <tr>
 <th></th>
 <th>
-<script type="math/tex">R_L</script> (<script type="math/tex">I_L</script>)</th>
+<script type="math/tex">I_{R_L}</script>
+</th>
 </tr>
 </thead>
 <tbody>
@@ -263,9 +270,9 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Assemble the thevenin circuit shown below.</p>
+<p>Assemble the Thevenin circuit shown below.</p>
 <p><strong>REMEMBER:</strong> To measure current, the digital multimeter needs to be in DC current mode (DCI) to act as an ammeter. An ammeter needs to be connected in series with a resistor to measure the current.</p>
-<p><img alt="Figure 6.3" src="../lab6-circuit-thevenin.png" /></p>
+<p><img src="../lab6-circuit-thevenin.png" width="50%" height="50%"/></p>
 <p><strong><em>Figure 6.3</em></strong></p>
 </li>
 <li>
@@ -277,7 +284,8 @@ SES250 Electromagnatics
 <tr>
 <th></th>
 <th>
-<script type="math/tex">R_L</script> (<script type="math/tex">I_L</script>)</th>
+<script type="math/tex">I_{R_L}</script>
+</th>
 </tr>
 </thead>
 <tbody>
@@ -287,7 +295,7 @@ SES250 Electromagnatics
 </tr>
 </tbody>
 </table>
-<p><strong>Lab Question 6:</strong> Does the measured value agree with the value you calculated in the pre-lab and the value you obatined earlier? What is the percentage error?</p>
+<p><strong>Lab Question 6:</strong> Does the measured value agree with the value you calculated in the pre-lab and the value you obtained earlier? What is the percentage error?</p>
 </blockquote>
 </li>
 </ol>
