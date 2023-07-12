@@ -129,6 +129,8 @@ The custom apparatus for Part 1 of this lab consists of a thin wire in a silicon
     
     **NOTE: In the next step, the output of the power supply will drop to zero because we are effectively shorting the power supply with the magnetic wire.**
 
+    **NOTE: If there is doubt that the magnetic wire might be broken, the continuity of the apparatus can be verified by measuring the resistance between the two leads. If there is resistance, the wire is still connecting the two resistors.**
+
 1. Quickly touch then remove the second alligator that you are holding to the second alligator clip. Observe the thin wire closely, it should move slightly from its normal position. If a movement cannot be observed, observe more closely as the movement is very small. If movement still cannot be observed, carefully hold the board firmly against the workbench to reduce vibration, increment the current limit by 25mA then try again. Do not exceed 300mA.
 
     > **Lab Question 1:** Draw a diagram of the apparatus set up (wire and magnet) in your notebook with the current flow direction and the thin wire movement direction.
@@ -144,7 +146,7 @@ The custom apparatus for Part 1 of this lab consists of a thin wire in a silicon
 
 There are various custom-made solenoids wrapped around a ferrous core for Part 2 of the lab. Ferrous materials have magnetic properties that allow for magnetic attraction. When a solenoid is wrapped around a ferrous core that is naturally non-magnetic, an electromagnet is created when an electric current flow through the coil to produce a magnetic field.
 
-1. Obtain a custom solenoid for Part 2 of this lab and a few paper clips or ferrous materials to be used as mass.
+1. Obtain a custom solenoid for Part 2 of this lab, a magnet, and a few paper clips or ferrous materials to be used as mass.
 
     > **Lab Question 3:** Estimate the turns per unit length for the solenoid by counting and filling in the table below:
     >
@@ -154,7 +156,7 @@ There are various custom-made solenoids wrapped around a ferrous core for Part 2
 
 1. Set up the power supply as described below but do **NOT** connect it to the circuit and do **NOT** turn on the output.
     - Use the “Display Limit” button to see the power supply settings
-    - Set the voltage output to 5.0V
+    - Set the voltage output to 10.0V
     - Set the current output limit to 0.1A
 1. Connect one alligator clip to one lead of the solenoid and the other alligator clip to the other lead of the solenoid.
 
@@ -163,6 +165,8 @@ There are various custom-made solenoids wrapped around a ferrous core for Part 2
     ***Figure 7.3***
 
 1. Turn on the output of the power supply then try to lift a paper clip using the head side of the bolt as shown above. Slowly increase or decrease the current limit until just one paper clip can be lifted. Record the current in the table below. Stop the power output and let the coil cool down between trials.
+
+    **NOTE: At the end of each trial, use the permanent magnet to remove any residual magnetism from the electromagnet. Attach the permanent magnet to the electro-magnet then repeat a few times with a revised polarity.**
 
     > **Lab Question 4:** Repeat step 5 but try to lift two paperclips then three and so on. Always add a paperclip to the first paperclip. Stop the experiment when the current limit is at 3A or 10 paper clip is lifted. Afterward, calculate the magnetic field and force using the formula in the lab description at each step:
     >
