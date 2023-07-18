@@ -74,6 +74,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#purpose">Purpose</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#description">Description</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#capacitor">Capacitor</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rc-circuit">RC circuit</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#materials">Materials</a>
     </li>
@@ -112,15 +118,52 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-9">Lab 9</h1>
+                <h1 id="lab-9-rc-and-rl-circuit">Lab 9 : RC and RL Circuit</h1>
 <p><font size="5">
 Seneca College</br>
 SES250 Electromagnatics
 </font></p>
 <h2 id="objectives">Objectives</h2>
+<ul>
+<li>To observe the charging and discharging of a capacitor in an RC circuit</li>
+</ul>
 <h2 id="purpose">Purpose</h2>
+<ul>
+<li>Measure the raise time (or time constant) of an RC circuit using a DSO</li>
+</ul>
 <h2 id="description">Description</h2>
+<h3 id="capacitor">Capacitor</h3>
+<p>Similar to a Resistor, Capacitor use special marking to indicate their values. Since the amount of area for markings on a capacitor is limited, there are also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
+- First line: capacitance (in pF or μF) [and tolerance (J=5%, K=10%, M=20%)]
+- Second line: rated DC voltage [and code for the dielectric material]</p>
+<p>For a ceramic capacitor, often only a three-digit code is given. The first two digits correspond to the first two digits of the value whilst the third digit is a multiplier which gives the number of zeros to be added to give the value in pF. For example, 104 means 10 x 104 pF = 100nF.</p>
+<p>Furthermore, some capacitors such as electrolytic capacitors are marked with symbols (“+” and “-”) to indicate the correct polarity - failure to observe these markings when connecting a capacitor to a circuit can be catastrophic!</p>
+<p><img alt="Figure 8.1" src="../lab8-capacitor-marking.png" /></p>
+<p><strong><em>Figure 8.1 Various Capacitor Markings</em></strong></p>
+<p>Source: <a href="https://www.matrixtsl.com/courses/ecc/index.php?n=Capacitors.CapacitorMarkings">Capacitor Markings</a></p>
+<h3 id="rc-circuit">RC circuit</h3>
+<p>A resistor-capacitor circuit (RC circuit), or RC filter or RC network, is an electric circuit composed of resistors and capacitors. It may be driven by a voltage or current source and these will produce different responses. A first order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit.</p>
+<p><img alt="Figure 8.2" src="../lab8-rc-circuit.png" /></p>
+<p><strong><em>Figure 8.2 Series RC circuit</em></strong></p>
+<p>A series RC circuit with a capacitor that is initially charged to <script type="math/tex">V_0 = {Q_0 \over C}</script> then allowed to discharge through a resistor <script type="math/tex">R</script> will exhibit the following relationship for the voltage across the capacitor over a period of time:</p>
+<p>
+<script type="math/tex; mode=display"> V_C(t) = V_0 e^{(-{t \over {RC}})} </script>
+</p>
+<p>where <script type="math/tex">V_0</script> is the capacitor voltage at <script type="math/tex">t = 0</script>
+</p>
+<p>The time required for the voltage to fall to <script type="math/tex">V_0 \over e</script> or about 37% or 1/3 of <script type="math/tex">V_0</script> is called the RC time constant and is given by:</p>
+<p>
+<script type="math/tex; mode=display"> \tau = RC </script>
+</p>
+<p>where <script type="math/tex">\tau</script> is measured in seconds, <script type="math/tex">R</script> in ohms and <script type="math/tex">C</script> in farads.</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/RC_circuit">Wikipedia: RC Circuit</a></p>
 <h2 id="materials">Materials</h2>
+<ul>
+<li>Resistors of various resistance greater then 1kΩ</li>
+<li>Capacitors of various capacitance</li>
+<li>Breadboard</li>
+<li>Jumper wires</li>
+</ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <p><strong>Lab Preparation Question:</strong></p>
