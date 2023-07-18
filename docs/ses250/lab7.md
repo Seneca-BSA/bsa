@@ -142,6 +142,10 @@ The custom apparatus for Part 1 of this lab consists of a thin wire in a silicon
 
     > **Lab Question 2:** Comment on your observation and use it to determine the polarity (which end is the north pole and which end is the south pole) of the magnet. The magnetic field line for a magnet is shown below.
 
+    ![Figure 7.3](lab7-magnetic-field.png)
+
+    ***Figure 7.3***
+
 ### Part 2: Magnetic Force of a Solenoid
 
 There are various custom-made solenoids wrapped around a ferrous core for Part 2 of the lab. Ferrous materials have magnetic properties that allow for magnetic attraction. When a solenoid is wrapped around a ferrous core that is naturally non-magnetic, an electromagnet is created when an electric current flow through the coil to produce a magnetic field.
@@ -162,7 +166,7 @@ There are various custom-made solenoids wrapped around a ferrous core for Part 2
 
     <img src="../lab7-solenoid-magnet.png" width="30%" height="30%"/>
 
-    ***Figure 7.3***
+    ***Figure 7.4***
 
 1. Turn on the output of the power supply then try to lift a paper clip using the head side of the bolt as shown above. Slowly increase or decrease the current limit until just one paper clip can be lifted. Record the current in the table below. Stop the power output and let the coil cool down between trials.
 
@@ -170,7 +174,7 @@ There are various custom-made solenoids wrapped around a ferrous core for Part 2
 
     > **Lab Question 4:** Repeat step 5 but try to lift two paperclips then three and so on. Always add a paperclip to the first paperclip. Stop the experiment when the current limit is at 3A or 10 paper clip is lifted. Afterward, calculate the magnetic field and force using the formula in the lab description at each step:
     >
-    > |# of paperclip lifted|Current (< 3A)|Magnetic Field|Magnetic Force|
+    > |# of paperclip lifted|Current (< 3A)|Estimated Magnetic Field|Estimated Magnetic Force|
     > |---|---|---|---|
     > |1||||
     > |2||||
@@ -178,7 +182,8 @@ There are various custom-made solenoids wrapped around a ferrous core for Part 2
     > |...||||
     >
     > **Lab Question 5:** Comment on the mathematic relationship between the number of paperclips lifted (force of an electromagnet and the magnetic field).
-    > **Lab Question 6: (Post-Lab)** Plot both magnetic field and force vs the number of paperclips lifted then calculate the coefficient for the trend line. Does it agree with the nature of the mathematic relationship?
+    >
+    > **Lab Question 6: (Post-Lab)** Plot both magnetic field (y-axis) and force (y-axis) vs the number of paperclips lifted (x-axis) then calculate the coefficient for the trend line. Does it agree with the nature (linear, exponential, etc.) of the mathematic relationship?
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
 
