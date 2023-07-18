@@ -31,7 +31,7 @@ A function generator is a piece of electronic test equipment or software used to
 
 ***Figure 8.1** Keysight 33500B Function Generator*
 
-In the electronics lab, you will be using a Keysight 33500B (or similar) Function Generator. Its manual can be found here: [DMM Manual](lab8-FG-manual.pdf)
+In the electronics lab, you will be using a Keysight 33500B (or similar) Function Generator. Its manual can be found here: [Function Generator Manual](lab8-FG-manual.pdf)
 
 Source: [Wikipedia: Function Generator](https://en.wikipedia.org/wiki/Function_generator)
 
@@ -43,7 +43,7 @@ An oscilloscope, or DSO (for the more modern digital storage oscilloscope), is a
 
 ***Figure 8.2** Keysight 33500B Function Generator*
 
-In the electronics lab, you will be using a Keysight DSO-X 2002A (or similar) Digital Storage Oscilloscope. Its manual can be found here: [DMM Manual](lab8-DSO-manual.pdf)
+In the electronics lab, you will be using a Keysight DSO-X 2002A (or similar) Digital Storage Oscilloscope. Its manual can be found here: [DSO Manual](lab8-DSO-manual.pdf)
 
 Source: [Wikipedia: Oscilloscope](https://en.wikipedia.org/wiki/Oscilloscope)
 
