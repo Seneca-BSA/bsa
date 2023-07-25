@@ -55,8 +55,6 @@ Source: [Wikipedia: Oscilloscope](https://en.wikipedia.org/wiki/Oscilloscope)
 
 ## Procedures
 
-### Part 1: Digital Oscilloscope (DSO) and Function Generator
-
 1. Identify the Digital Oscilloscope at your workbench. Disconnect any cable plugged into it so it is as shown below.
 
     ![Figure 8.5](lab8-dso-1.png)
@@ -154,7 +152,7 @@ Source: [Wikipedia: Oscilloscope](https://en.wikipedia.org/wiki/Oscilloscope)
 
 1. Adjust the settings so that at least three but no more than ten periods are showing on the DSO display and at least four voltage divisions of peak-to-peak voltage. Change the output parameters of the function generator and repeat the scaling process so you are competent with manually scaling an oscilloscope.
 
-    > **Lab Question 10: (Post-Lab)** Demostrate to the lab professor or instructor that you are competent in manually scaling (non-using auto scale) the display of an oscilloscope.
+    > **Lab Question 10: (During-Lab)** Demostrate to the lab professor or instructor that you are competent in manually scaling (non-using auto scale) the display of an oscilloscope.
 
 1. Turn off the function generator and disconnect the alligator clips.
 
