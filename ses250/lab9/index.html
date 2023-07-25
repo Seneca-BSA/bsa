@@ -77,7 +77,9 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#capacitor">Capacitor</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#rc-circuit">RC circuit</a>
+    <li class="toctree-l3"><a class="reference internal" href="#rc-circuit">RC Circuit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#alternating-current">Alternating Current</a>
     </li>
         </ul>
     </li>
@@ -86,6 +88,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#procedures">Procedures</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#part-1-rc-circuit-in-dc">Part 1 : RC Circuit in DC</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#part-2-rc-circuit-in-ac">Part 2 : RC Circuit in AC</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#post-lab">Post-Lab</a>
     </li>
@@ -118,7 +126,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-9-rc-and-rl-circuit">Lab 9 : RC and RL Circuit</h1>
+                <h1 id="lab-9-rc-in-dc-and-ac-circuits">Lab 9 : RC in DC and AC Circuits</h1>
 <p><font size="5">
 Seneca College</br>
 SES250 Electromagnatics
@@ -126,26 +134,30 @@ SES250 Electromagnatics
 <h2 id="objectives">Objectives</h2>
 <ul>
 <li>To observe the charging and discharging of a capacitor in an RC circuit</li>
+<li>To learn how to measure the frequency and the period of a periodic signal using an oscilloscope</li>
+<li>To observe the phase shift of an RC circuit in AC</li>
 </ul>
 <h2 id="purpose">Purpose</h2>
 <ul>
-<li>Measure the raise time (or time constant) of an RC circuit using a DSO</li>
+<li>Generate an impulse signal to an RC circuit</li>
+<li>Measure the rise time (or time constant) of an RC circuit using a Digital Storage Oscilloscope (DSO)</li>
+<li>Measure the phase shift of an RC circuit using a DSO</li>
 </ul>
 <h2 id="description">Description</h2>
 <h3 id="capacitor">Capacitor</h3>
-<p>Similar to a Resistor, Capacitor use special marking to indicate their values. Since the amount of area for markings on a capacitor is limited, there are also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
+<p>Similar to resistors, capacitors use special markings to indicate their values. Since the amount of area for markings on a capacitor is limited, there are also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
 - First line: capacitance (in pF or μF) [and tolerance (J=5%, K=10%, M=20%)]
 - Second line: rated DC voltage [and code for the dielectric material]</p>
 <p>For a ceramic capacitor, often only a three-digit code is given. The first two digits correspond to the first two digits of the value whilst the third digit is a multiplier which gives the number of zeros to be added to give the value in pF. For example, 104 means 10 x 104 pF = 100nF.</p>
 <p>Furthermore, some capacitors such as electrolytic capacitors are marked with symbols (“+” and “-”) to indicate the correct polarity - failure to observe these markings when connecting a capacitor to a circuit can be catastrophic!</p>
-<p><img alt="Figure 8.1" src="../lab8-capacitor-marking.png" /></p>
-<p><strong><em>Figure 8.1 Various Capacitor Markings</em></strong></p>
+<p><img alt="Figure 9.1" src="../lab9-capacitor-marking.png" /></p>
+<p><strong><em>Figure 9.1 Various Capacitor Markings</em></strong></p>
 <p>Source: <a href="https://www.matrixtsl.com/courses/ecc/index.php?n=Capacitors.CapacitorMarkings">Capacitor Markings</a></p>
-<h3 id="rc-circuit">RC circuit</h3>
-<p>A resistor-capacitor circuit (RC circuit), or RC filter or RC network, is an electric circuit composed of resistors and capacitors. It may be driven by a voltage or current source and these will produce different responses. A first order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit.</p>
-<p><img alt="Figure 8.2" src="../lab8-rc-circuit.png" /></p>
-<p><strong><em>Figure 8.2 Series RC circuit</em></strong></p>
-<p>A series RC circuit with a capacitor that is initially charged to <script type="math/tex">V_0 = {Q_0 \over C}</script> then allowed to discharge through a resistor <script type="math/tex">R</script> will exhibit the following relationship for the voltage across the capacitor over a period of time:</p>
+<h3 id="rc-circuit">RC Circuit</h3>
+<p>A resistor-capacitor circuit (RC circuit), RC filter or RC network, is an electric circuit composed of resistors and capacitors. It may be driven by a voltage or current source and these will produce different responses. A first-order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit.</p>
+<p><img alt="Figure 9.2" src="../lab9-rc-circuit.png" /></p>
+<p><strong><em>Figure 9.2 Series RC circuit</em></strong></p>
+<p>A series RC circuit with a capacitor that is initially charged to <script type="math/tex">V_0 = {Q_0 \over C}</script> and then allowed to discharge through a resistor <script type="math/tex">R</script> will exhibit the following relationship for the voltage across the capacitor over some time:</p>
 <p>
 <script type="math/tex; mode=display"> V_C(t) = V_0 e^{(-{t \over {RC}})} </script>
 </p>
@@ -156,19 +168,184 @@ SES250 Electromagnatics
 <script type="math/tex; mode=display"> \tau = RC </script>
 </p>
 <p>where <script type="math/tex">\tau</script> is measured in seconds, <script type="math/tex">R</script> in ohms and <script type="math/tex">C</script> in farads.</p>
+<p>The chart below shows a typical curve of the voltage across the capacitor during discharge in an RC circuit.</p>
+<p><img alt="Figure 9.3" src="../lab9-rc-response.png" /></p>
+<p><strong><em>Figure 9.3 Voltage curve of a capacitor during discharge in an RC circuit</em></strong></p>
 <p>Source: <a href="https://en.wikipedia.org/wiki/RC_circuit">Wikipedia: RC Circuit</a></p>
+<h3 id="alternating-current">Alternating Current</h3>
+<p>Alternating current (AC) is an electric current which periodically reverses direction and changes its magnitude continuously with time, in contrast to direct current (DC), which flows only in one direction.</p>
+<p>The usual waveform of alternating current in most electric power circuits is a sine wave, whose positive half-period corresponds with the positive direction of the current and vice versa (the full period is called a cycle). In certain applications, different waveforms are used, such as triangular waves or square waves.</p>
+<p><img alt="Figure 9.4" src="../lab9-ac-wave.png" /></p>
+<p><strong><em>Figure 9.4 Various AC Waveforms. From Left to Right and Top to Bottom: Sine, Square, Sawtooth or Ramp, Triangular</em></strong></p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Alternating_current">Wikipedia: Alternating current</a></p>
+<p>Source: <a href="https://circuitdigest.com/tutorial/ac-circuit-theory-2-waveforms-and-their-properties">Circuit Digest: AC Circuit Theory (Part 2)</a></p>
+<p>A Capacitive Circuit that consists of R and C in series exhibits a timing difference between the peak amplitude of the current and voltage. This timing difference is called Phase Shift. As the Capacitor opposes a change in Voltage and stores energy from the Power Supply in the form of an Electric Field, the Capacitor Voltage vC lags the Capacitor Current iC by 90° and lags the Power Supply Voltage v by a Phase Angle Φ.</p>
+<p>This phase shift between voltage and current can be calculated by:</p>
+<p>
+<script type="math/tex; mode=display"> \Phi = tan^{-1} {\left({-1} \over {2 \pi fRC}\right)} </script>
+</p>
+<p>where <script type="math/tex">f</script> is AC frequency in Hz, <script type="math/tex">R</script> in ohms and <script type="math/tex">C</script> in farads.</p>
+<p><img alt="Figure 9.5" src="../lab9-rc-shift.png" /></p>
+<p><strong><em>Figure 9.5 V-I Relationship of the Circuits RC</em></strong></p>
+<p>Source: <a href="https://www.cmm.gov.mo/eng/exhibition/secondfloor/moreinfo/2_4_4_PhaseShift.html">CMM: Phase Shift</a></p>
+<!-- ### Root Mean Square (RMS)
+
+For alternating electric current, RMS is equal to the value of the constant direct current that would produce the same power dissipation in a resistive load.
+
+Electrical engineers often need to know the power, P, dissipated by electrical resistance, R. It is easy to do the calculation when there is a constant current, I, through the resistance. However, if the current is a time-varying function, I(t), this formula must be extended to reflect the fact that the current (and thus the instantaneous power) is varying over time. If the function is periodic (such as household AC power), it is still meaningful to discuss the average power dissipated over time.
+
+When measuring AC using a DMM, often time, you are not measuring the maximum amplitude of the current and voltage but \(1 \over \sqrt{2}\) of the amplitude. This is the root-mean-square (rms) value of a sine waveform: \(V_{rms}\) and \(I_{rms}\).
+
+$$ V_{rms} = {V_0 \over \sqrt{2}} $$
+$$ I_{rms} = {I_0 \over \sqrt{2}} $$ -->
+
 <h2 id="materials">Materials</h2>
 <ul>
-<li>Resistors of various resistance greater then 1kΩ</li>
-<li>Capacitors of various capacitance</li>
+<li>Resistors: 10kΩ or similar value resistor</li>
+<li>Capacitors: 10nF or similar value capacitor</li>
 <li>Breadboard</li>
 <li>Jumper wires</li>
 </ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <p><strong>Lab Preparation Question:</strong></p>
+<ol>
+<li>
+<p>Using a resistor value of 10kΩ and a capacitor value of 10nF, find the RC time constant.</p>
+</li>
+<li>
+<p>Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Figures 9.6 and 9.7. Clearly show which tie point will the wire, resistor, capacitor, function generator and oscilloscope channel(s) be attached to.</p>
+<blockquote>
+<p><img alt="Breadboard Sketch" src="../lab4-breadboard-sketch.png" /></p>
+</blockquote>
+</li>
+<li>
+<p>Using a resistor value of 10kΩ and a capacitor value of 10nF, find the theoretical phase shift between voltage and current for an RC circuit in a 1kHz AC signal. Repeat the calculation for a 500Hz AC signal.</p>
+</li>
+<li>
+<p>Copy the observation tables found in this lab into your notebook.</p>
+</li>
+</ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
+<h3 id="part-1-rc-circuit-in-dc">Part 1 : RC Circuit in DC</h3>
+<p>To observe the transient response of an RC circuit, the circuit will be driven with a periodic square wave to simulate the opening and closing of a switch. The period of the square wave should be much longer than the time constant, <script type="math/tex">\tau = RC</script>, of the circuit to allow the circuit to reach a steady state.</p>
+<ol>
+<li>
+<p>Acquire a 10kΩ or similar value resistor, a 10nF or similar value capacitor, a breadboard, and some jumper wires.</p>
+<blockquote>
+<p><strong>Lab Question 1:</strong> Measure the resistance and capacitance of the resistor and capacitor respectively and write down the values in Table 1.</p>
+<p><strong>Lab Question 2:</strong> Calculate the time constant <script type="math/tex">\tau = RC</script> of the RC circuit and write down the values in Table 1. The time constant should be around 0.1ms.</p>
+<p><strong>Table 1:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Measured Resistance</th>
+<th>Measured Capacitance</th>
+<th>Calculated <script type="math/tex">\tau = RC</script>
+</th>
+<th>Measured <script type="math/tex">\tau</script>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>
+<p>Assemble the circuit shown below then measure the current through the load resistor.</p>
+<p><strong>REMEMBER:</strong> Refer to <a href="../lab4/">Lab 4</a> for circuit component symbols.</p>
+<p><img alt="Figure 9.6" src="../lab9-rc-1.png" /></p>
+<p><strong><em>Figure 9.6</em></strong></p>
+</li>
+<li>
+<p>Set the function generator to a 1kHz (or 500Hz if the capacitor doesn't fully discharge) square wave and 3Vpp as the amplitude with no offset.</p>
+<p><strong>REMEMBER:</strong> The output should be set to High-Z.</p>
+</li>
+<li>
+<p>Check your circuit to ensure there is no short circuit then turn on the function generator.</p>
+</li>
+<li>A RC response curve should show up on the DSO. Adjust the time and voltage division (using the adjustment knobs) as well as the position of the signal so one discharge period (similar to Figure 9.3 above) can be seen on the DSO.</li>
+<li>
+<p>Use the measurement tool, cursor on the oscilloscope, or the division lines, to estimate the time it takes for the voltage across the capacitor to drop ~63%.</p>
+<blockquote>
+<p><strong>Lab Question 3:</strong> Does it agree with the time constant you calculated earlier?</p>
+<p><strong>Lab Question 4: (During-Lab)</strong> Demostrate to the lab professor or instructor your RC response observation on the display of the oscilloscope.</p>
+</blockquote>
+</li>
+<li>
+<p>Keep the RC circuit intact for Part 2 of this lab.</p>
+</li>
+</ol>
+<h3 id="part-2-rc-circuit-in-ac">Part 2 : RC Circuit in AC</h3>
+<p>The next part of this lab is to observe the AC response of an RC Circuit and the relationship between the voltage <script type="math/tex">V(t)</script> and the current <script type="math/tex">I(t)</script> using an oscilloscope. Since we cannot measure <script type="math/tex">I(t)</script> directly using an oscilloscope, we'll be measuring the voltage of the resistor <script type="math/tex">V_R(t)</script> since the current and voltage is always in phase at the resistor.</p>
+<ol>
+<li>
+<p>Using a 10kΩ or similar value resistor and 10nF or similar capacitor, assemble the circuit shown below if it's not assembled already.</p>
+<p><img alt="Figure 9.7" src="../lab9-rc-2.png" /></p>
+<p><strong><em>Figure 9.7</em></strong></p>
+</li>
+<li>
+<p>Ensure that the function generator’s output is off then set the output of the function generator to high Z (Channel &gt; Load Z &gt; High Z).</p>
+</li>
+<li>This time, set the output waveform to be a sine wave then set the output amplitude to 6 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.</li>
+<li>
+<p>Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.</p>
+<p><strong>NOTE:</strong> The ground (black cable) for both CH1 and CH2 is connected to the negative (black) node of the function generator.</p>
+</li>
+<li>
+<p>Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division as necessary.</p>
+</li>
+<li>
+<p>From the two signals that you see, find a peak from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest peak from CH2 (measuring <script type="math/tex">V_R(t) = I(t)</script>).</p>
+<blockquote>
+<p><strong>Lab Question 5:</strong> Which signal is leading? Does it agree with the observation you expect from an RC circuit?</p>
+<p><strong>Lab Question 6:</strong> Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.</p>
+<p>
+<script type="math/tex; mode=display"> \Phi = 2 \pi {\Delta t \over T} </script>
+</p>
+<p><strong>NOTE:</strong> The time difference might be in ms and the phase angle difference might be in RAD depending on your setting.</p>
+<p><strong>Table 2:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Measured Resistance</th>
+<th>Measured Capacitance</th>
+<th>Measured Time Diff</th>
+<th>Measured Phase Shift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 kHz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>500 Hz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>
+<p>Replace Steps 5 to 9 for a frequency of 500 Hz.</p>
+</li>
+</ol>
 <p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.</p>
 <h2 id="post-lab">Post-Lab</h2>
 <ol>
