@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 1 : Setup - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 1 : Setup";
+        var mkdocs_page_input_path = "seh500/lab1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SEH500 Microprocessors</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Lab 1 : Setup</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-1-setup">Lab 1 : Setup</h1>
+<p><font size="5">
+Seneca College</br>
+SEH500 Electromagnatics
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>The Freedom-K64F and Freedom-K66F are both low-cost development platform using the NXP Kinetis series of microcontroller.</p>
+<table>
+<thead>
+<tr>
+<th>Features</th>
+<th><a href="https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-k64-k63-and-k24-mcus:FRDM-K64F">K64F</a></th>
+<th><a href="https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-k66-k65-and-k26-mcus:FRDM-K66F">K66F</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Microcontroller</strong></td>
+<td>MK64FN1M0VLL12</td>
+<td>MK66FN2M0VMD18</td>
+</tr>
+<tr>
+<td><strong>Speed</strong></td>
+<td>120 MHz</td>
+<td>180 MHz</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>256 kB</td>
+<td>256 kB</td>
+</tr>
+<tr>
+<td><strong>External Memory</strong></td>
+<td>N/A</td>
+<td>microSD socket</td>
+</tr>
+<tr>
+<td><strong>Connectivity</strong></td>
+<td>USB, Ethernet, Add-on Bluetooth</td>
+<td>USB, Ethernet, Add-on Bluetooth</td>
+</tr>
+<tr>
+<td><strong>Audio</strong></td>
+<td>N/A</td>
+<td>Audio codec and Jacks</td>
+</tr>
+<tr>
+<td><strong>Sensors</strong></td>
+<td>Accelerometer and Magnetometer<br/>(FXOS8700CQ)</td>
+<td>Accelerometer and Magnetometer<br/>(FXOS8700CQ)<br/>Gyroscope (FXAS21002)</td>
+</tr>
+<tr>
+<td><strong>Debug</strong></td>
+<td>OpenSDAv2<br/>Virtual Serial Port</td>
+<td>OpenSDAv2<br/>Virtual Serial Port</td>
+</tr>
+<tr>
+<td><strong>User Components</strong></td>
+<td>RGB LED</td>
+<td>RGB LED<br/>Two user push buttons</td>
+</tr>
+</tbody>
+</table>
+<h2 id="procedures">Procedures</h2>
+<h3 id="firmware-update">Firmware Update</h3>
+<ol>
+<li>
+<p>If you are using the Freedom-K64F, you might need to update it's firmware before using it with Windows 10.</p>
+<ul>
+<li>When you plug your board into the USB and see "MBED (X:)" as a dirve, <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">follow the steps found here</a> to update the bootloader.</li>
+</ul>
+<p><img alt="Figure 1.1 Showing MBED drive" src="../lab1-mbed.png" /></p>
+<p><em><strong>Figure 1.1</strong> Showing MBED drive</em></p>
+</li>
+</ol>
+<h3 id="install-ide">Install IDE</h3>
+<ol>
+<li>
+<p>Install the <a href="https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources">MCUXpresso IDE from NXP</a> (account creation required) or using <a href="https://myapps.senecacollege.ca/">Seneca MyApps</a>. <strong>NOTE:</strong> Download and install the necessary driver from the <a href="(https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources)">NXP page</a> if you are using Windows OS.</p>
+<p><img alt="Figure 1.2 Seneca MyApps" src="../lab1-myapps.png" /></p>
+<p><em><strong>Figure 1.2</strong> Seneca MyApps</em></p>
+</li>
+<li>
+<p>Select an approtiate location to save your workspace. It must be a directory you have write premission.</p>
+<p><img alt="Figure 1.3 Select Workspace Directory" src="../lab1-workspace.png" /></p>
+<p><em><strong>Figure 1.3</strong> Select Workspace Directory</em></p>
+</li>
+</ol>
+<h3 id="install-sdk">Install SDK</h3>
+<ol>
+<li>
+<p>Once MCUXpresso open, click "Download and Install SDK" from the quick-start menu.</p>
+<p><img alt="Figure 1.4 Download and Install SDK" src="../lab1-download-install-sdk.png" /></p>
+<p><em><strong>Figure 1.4</strong> Download and Install SDK</em></p>
+</li>
+<li>
+<p>Filter for "K64" or "K66" depending on the version of the board you are using then install the SDK.</p>
+<p><img alt="Figure 1.5 Filter SDK" src="../lab1-filter-sdk.png" /></p>
+<p><em><strong>Figure 1.5</strong> Filter SDK</em></p>
+<p><img alt="Figure 1.6 Select SDK" src="../lab1-select-sdk.png" /></p>
+<p><em><strong>Figure 1.6</strong> Select SDK</em></p>
+<p><img alt="Figure 1.7 Install SDK" src="../lab1-install-sdk.png" /></p>
+<p><em><strong>Figure 1.7</strong> Install SDK</em></p>
+</li>
+</ol>
+<h3 id="import-sdk-example">Import SDK Example</h3>
+<ol>
+<li>
+<p>After downloading and installing the SDK, close the welcome screen. At the bottom left Quickstart Panel, click "Import SDK example(s)...".</p>
+<p><img alt="Figure 1.8 Import SDK Example" src="../lab1-import-example.png" /></p>
+<p><em><strong>Figure 1.8</strong> Install SDK</em></p>
+</li>
+<li>
+<p>Select the appropiate example library.</p>
+<p><img alt="Figure 1.9 Select Example Library" src="../lab1-select-example.png" /></p>
+<p><em><strong>Figure 1.9</strong> Select Example Library</em></p>
+</li>
+<li>
+<p>Find the "hello_world" example from "demo_apps".</p>
+<p><img alt="Figure 1.10 Select Hello World Demo" src="../lab1-hello-world.png" /></p>
+<p><em><strong>Figure 1.10</strong> Select Hello World Demo</em></p>
+</li>
+<li>
+<p>Ensure "SDK Debug Console" under Project Options is selected as UART then click "Next".</p>
+<p><img alt="Figure 1.11 SDK Debug Console UART" src="../lab1-uart.png" /></p>
+<p><em><strong>Figure 1.11</strong> SDK Debug Console UART</em></p>
+</li>
+<li>
+<p>In the project Advanced Settings page, ensure to CLEAR the "Redirect SDK PRINTF to C library printf" option then click "Finish".</p>
+<p><img alt="Figure 1.12 Clear Redirect SDK PRINTF to C library printf" src="../lab1-printf.png" /></p>
+<p><em><strong>Figure 1.12</strong> Clear Redirect SDK PRINTF to C library printf</em></p>
+</li>
+</ol>
+<h3 id="code-build-and-debug-project">Code, Build and Debug Project</h3>
+<ol>
+<li>
+<p>By now, you should be able to see a familiar interface with a project tree on the left and a code in the middle. Take a look at the code and get an idea of what it is performing. Afterward, click "Build" at the lower left Quickstart Panel to compile the code.</p>
+<p><img alt="Figure 1.13 Demo Project Code" src="../lab1-project-code.png" /></p>
+<p><em><strong>Figure 1.13</strong> Demo Project Code</em></p>
+<p><img alt="Figure 1.14 Build Project" src="../lab1-build.png" /></p>
+<p><em><strong>Figure 1.14</strong> Build Project</em></p>
+</li>
+<li>
+<p>Once the project is built, click "Debug" to run the project in debug mode.</p>
+<p><img alt="Figure 1.15 Run in Debug Mode" src="../lab1-debug.png" /></p>
+<p><em><strong>Figure 1.15</strong> Run in Debug Mode</em></p>
+</li>
+<li>
+<p>The IDE should automatically probe for and connect to the target microcontroller board. Click "OK".</p>
+<p><img alt="Figure 1.16 Connect to target" src="../lab1-probe.png" /></p>
+<p><em><strong>Figure 1.16</strong> Connect to target</em></p>
+</li>
+</ol>
+<h3 id="serial-terminal">Serial Terminal</h3>
+<ol>
+<li>
+<p>Open a Serial terminal in the IDE by clicking on the "Terminal" tab beside the "Console" tab at the bottom of the screen. Select the appropiate COM port that the microcontroller board is connected to (check the device manager of your computer). Ensure the settings are 115200 baud rate with 8 bit data size, no parity bit, and 1 stop bit.</p>
+<p><img alt="Figure 1.17 Start a Serial Terminal" src="../lab1-serial-terminal.png" /></p>
+<p><em><strong>Figure 1.17</strong> Start a Serial Terminal</em></p>
+</li>
+<li>
+<p>Once the terminal is connected, press "Resume" from the debug menu and you should see "Hello World" in the serial terminal.</p>
+<p><img alt="Figure 1.18 Press Resume" src="../lab1-resume.png" /></p>
+<p><em><strong>Figure 1.18</strong> Press Resume</em></p>
+<p><img alt="Figure 1.19 Hello World in Serial Terminal" src="../lab1-hello-world-output.png" /></p>
+<p><em><strong>Figure 1.19</strong> Hello World in Serial Terminal</em></p>
+</li>
+</ol>
+<h3 id="view-assembly-code">View Assembly Code</h3>
+<ol>
+<li>
+<p>Lastly, let's take a look at the assembly language code. From the project tree on the left, find the "Debug" directory. Within the directory, right click on the .axf file then click Binary Utilities &gt; Disassemble.</p>
+<p><img alt="Figure 1.20 View Disassembled Code" src="../lab1-tree-debug.png" /></p>
+<p><em><strong>Figure 1.20</strong> View Disassembled Code</em></p>
+</li>
+<li>
+<p>A new .dis file should be created. Open the file to see the disassembled code.</p>
+<p><img alt="Figure 1.21 Disassembled Code" src="../lab1-disassembled-code.png" /></p>
+<p><em><strong>Figure 1.21</strong> Disassembled Code</em></p>
+</li>
+</ol>
+<h2 id="post-lab">Post-Lab</h2>
+<ol>
+<li>Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.</li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
