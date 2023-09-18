@@ -7,7 +7,7 @@ SEH500 Microprocessors and Computer Architecture
 
 ## Introduction
 
-The Freedom-K64F and Freedom-K66F are both low-cost development platform using the NXP Kinetis series of microcontroller.
+The Freedom-K64F and Freedom-K66F are both low-cost development platforms using the NXP Kinetis series of microcontrollers.
 
 |Features|[K64F](https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-k64-k63-and-k24-mcus:FRDM-K64F)|[K66F](https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-k66-k65-and-k26-mcus:FRDM-K66F)|
 |---|---|---|
@@ -21,12 +21,32 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platform using t
 |**Debug**|OpenSDAv2<br/>Virtual Serial Port|OpenSDAv2<br/>Virtual Serial Port|
 |**User Components**|RGB LED|RGB LED<br/>Two user push buttons|
 
+## Preparation
+
+Read over the lab manual for this lab. Acquire the Freedom microcontroller board and install the necessary IDE as described in the lab manual.
+
+Be familiar with the following resources:
+
+- [FRDMK64FUG, FRDM-K64F Freedom Module User's Guide](https://os.mbed.com/media/uploads/GregC/frdm-k64f_ug_rev0.1.pdf)
+- [The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors](https://senecacollege.primo.exlibrisgroup.com/permalink/01SENC_INST/goqo0g/alma997357584903226) by Joseph Yiu
+- [Cortex-M4 Technical Reference Manual](https://developer.arm.com/documentation/ddi0439/b/)
+
+> ### Lab Preparation Question
+>
+> Answer the following questions on Blackboard once the pre-load quiz becomes available 24 hours before the lab session.
+> 
+> 1. Referring to the Memory map shown in class or from Figure 4.18 of Yiu, what is the starting address and ending address of the instruction code region?
+> 1. Referring to the Memory map shown in class or from Figure 4.18 of Yiu, what is the starting address and ending address of the general purpose data memory region?
+> 1. How many bytes (exact whole number) of memory are available for each of the regions above?
+> 1. Referring to Yiu or the Cortex-M4 Technical Reference, what is the instruction for loading data from memory into a register?
+> 1. Referring to Yiu or the Cortex-M4 Technical Reference, what is the instruction for storing data from a register in memory?
+
 ## Procedures
 
 ### Firmware Update
 
-1. If you are using the Freedom-K64F, you might need to update it's firmware before using it with Windows 10.
-    - When you plug your board into the USB and see "MBED (X:)" as a dirve, [follow the steps found here](https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1) to update the bootloader.
+1. If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10.
+    - When you plug your board into the USB and see "MBED (X:)" as a drive, [follow the steps found here](https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1) to update the bootloader.
 
     ![Figure 1.1 Showing MBED drive](lab1-mbed.png)
 
@@ -40,7 +60,7 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platform using t
 
     ***Figure 1.2** Seneca MyApps*
 
-1. Select an approtiate location to save your workspace. It must be a directory you have write premission.
+1. Select an appropriate location to save your workspace. It must be a directory to which you have write permission.
 
     ![Figure 1.3 Select Workspace Directory](lab1-workspace.png)
 
@@ -48,7 +68,7 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platform using t
 
 ### Install SDK
 
-1. Once MCUXpresso open, click "Download and Install SDK" from the quick-start menu.
+1. Once MCUXpresso opens, click "Download and Install SDK" from the quick-start menu.
 
     ![Figure 1.4 Download and Install SDK](lab1-download-install-sdk.png)
 
@@ -76,7 +96,7 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platform using t
 
     ***Figure 1.8** Install SDK*
 
-1. Select the appropiate example library.
+1. Select the appropriate example library.
 
     ![Figure 1.9 Select Example Library](lab1-select-example.png)
 
@@ -126,7 +146,7 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platform using t
 
 ### Serial Terminal
 
-1. Open a Serial terminal in the IDE by clicking on the "Terminal" tab beside the "Console" tab at the bottom of the screen. Select the appropiate COM port that the microcontroller board is connected to (check the device manager of your computer). Ensure the settings are 115200 baud rate with 8 bit data size, no parity bit, and 1 stop bit.
+1. Open a Serial terminal in the IDE by clicking on the "Terminal" tab beside the "Console" tab at the bottom of the screen. Select the appropriate COM port that the microcontroller board is connected to (check the device manager of your computer). Ensure the settings are 115200 baud rate with 8-bit data size, no parity bit, and 1 stop bit.
 
     ![Figure 1.17 Start a Serial Terminal](lab1-serial-terminal.png)
 
@@ -144,7 +164,7 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platform using t
 
 ### View Assembly Code
 
-1. Lastly, let's take a look at the assembly language code. From the project tree on the left, find the "Debug" directory. Within the directory, right click on the .axf file then click Binary Utilities > Disassemble.
+1. Lastly, let's take a look at the assembly language code. From the project tree on the left, find the "Debug" directory. Within the directory, right-click on the .axf file then click Binary Utilities > Disassemble.
 
     ![Figure 1.20 View Disassembled Code](lab1-tree-debug.png)
 
@@ -156,6 +176,33 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platform using t
 
     ***Figure 1.21** Disassembled Code*
 
+### View the Registers Value and Memory Data during Debug
+
+This step can only be done with a microcontroller board running during debugging.
+
+1. To view the register values during debugging, select the "Registers" tab beside the Project Explorer tab on the left-hand side. You should now see the register from r0-r12, sp, lr, pc, ...
+
+1. To view memory data, at the bottom right, select the "Memory" tab. Click the plus (+) symbol then type in the memory address you want to view. Usually, the memory area you want to view will be somewhere between 0x20000000 to 0x3FFFFFFF.
+
 ## Post-Lab
 
-1. Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.
+Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
+
+1. In the hello_world.c example, what is the first line of code that it halts on once you start debugging? Both line numbers in the C-code and instruction address.
+
+    **Note:** The instruction is at a hex address within the instruction region. You can find it in the disabled code or the Disassembly view during debug.
+
+    **Hint:** The main function starts at address 0x00000924.
+
+1. Look at the register map, what is the value of the Program Counter (PC) when you first start debugging? What do you notice with respect to the question above and the memory region you found during pre-lab?
+
+1. What is the value of the Stack Pointer (SP)? Does it correspond to the memory region you found during pre-lab?
+
+1. Find an example of the load instruction within the main function. What is its address and explain the instruction?
+
+1. Find an example of the store instruction within the main function. What is its address and explain the instruction?
+
+1. Change the C-code to also display your name and student number within the print statement. Copy your main function onto Blackboard.
+
+1. Run the code and view the result using a serial terminal. Place a screenshot of the printout onto Blackboard.
+
