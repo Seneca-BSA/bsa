@@ -1,4 +1,4 @@
-# Lab 1 : Writing in Assembly
+# Lab 2 : Writing in Assembly
 
 <font size="5">
 Seneca College</br>
