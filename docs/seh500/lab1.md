@@ -7,7 +7,7 @@ SEH500 Microprocessors and Computer Architecture
 
 ## Introduction
 
-The Freedom-K64F and Freedom-K66F are both low-cost development platforms using the NXP Kinetis series of microcontrollers.
+The Freedom-K64F and Freedom-K66F are both low-cost development platforms using the NXP Kinetis series of microcontrollers that is based on the ARM Cortex-M4 processor.
 
 |Features|[K64F](https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-k64-k63-and-k24-mcus:FRDM-K64F)|[K66F](https://www.nxp.com/design/development-boards/freedom-development-boards/mcu-boards/freedom-development-platform-for-kinetis-k66-k65-and-k26-mcus:FRDM-K66F)|
 |---|---|---|
@@ -45,12 +45,20 @@ Be familiar with the following resources:
 
 ### Firmware Update
 
-1. If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10.
-    - When you plug your board into the USB and see "MBED (X:)" as a drive, [follow the steps found here](https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1) to update the bootloader.
-
-    ![Figure 1.1 Showing MBED drive](lab1-mbed.png)
-
-    ***Figure 1.1** Showing MBED drive*
+1. If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10. Even if you are not using Windows 10, updating the firmware might be a good idea.
+    1. Unplug the Freedom board then hold down the "RESET SW1" button as you plug the board into your computer to enter bootloader mode.
+    
+        ![Figure 1.1 Start in Bootloader Mode](lab1-bootloader.png)
+        
+        ***Figure 1.1** Start in Bootloader Mode*
+    
+    1. Once plugged in, if you see anything else but "MAINTENANCE" (such as seeing "BOOTLOADER"), then we need to update the firmware.
+    1. Follow only step 1-10 on the [Getting Started with the FRDM-K64F](https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1).
+        - Here are the files if the one in the provide link is not available:
+            - [0244_k20dx_bl_0x5000.bin](0244_k20dx_bl_0x5000.bin) for updating OpenSDA bootloader
+            - [0244_k20dx_bootloader_update_0x5000.bin](0244_k20dx_bootloader_update_0x5000.bin) for updating OpenSDA bootloader if the one above firmware doesn't re-enumerate to MAINTENANCE drive. Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/).
+            - [02_OpenSDA_FRDM-K64F](02_OpenSDA_FRDM-K64F.bin) for loading the CMSIS-DAP application back onto the board
+        - If the bootloader drive is not showing, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. [Follow the instruction here](https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/).
 
 ### Install IDE
 
