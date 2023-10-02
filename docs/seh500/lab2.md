@@ -83,11 +83,11 @@ Documentation of the Cortex-M4 instruction set can be found here:
 > 1. Write the instruction that load the address 0x20000010 into register R0?
 > 1. What is the difference between mov, movw, and movt?
 > 1. Refer to the Cortex-M4 manual, define the following four flags of the Program Status Register and how they will be triggered.
->
->    - N: Negative flag
->    - Z: Zero flag
->    - C: Carry (or NOT borrow) flag
->    - V: Overflow flag
+    >
+    >   - N: Negative flag
+    >   - Z: Zero flag
+    >   - C: Carry (or NOT borrow) flag
+    >   - V: Overflow flag
 
 ## Procedures
 
@@ -179,35 +179,32 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
     ldr     R7, =0x87654321     @ R7 = ?
 
-    add     R1,R2,R3            @ R1 = ?
-    movw    R3, #0xFFFFFFFF     @ R3 = ?
-    adds    R1,R2,R3            @ R1 = ?   
-                    @ specify Condition Code updates
+    add     R1, R2, R3          @ R1 = ?
+    movt    R3, #0xFFFF         @ R3 = ?
+    add     R1, R2, R3          @ R1 = ?   
 
-    subs    R1,R2,R3            @ R1 = ?   
-                    @ specify Condition Code updates
+    sub     R1,R2,R3            @ R1 = ?   
 
-    mov     R4, #0xFFFFFFFF     @ R4 = ?
+    movw    R4, #0xFFFF         @ R4 = ?
     add     R1, R2, R4          @ R1 = ?   
                     @ How are the PSR flags affected?
 
-    adds    R1, R2, R4          @ R1 = ?  
-                    @ specify Condition Code updates
-                    @ and what happened to the PSR flags now?
+    add     R1, R2, R4          @ R1 = ?  
+                    @ What happened to the PSR flags now?
 
     mov     R2, #0x00000002     @ R2 = ?
-    adds    R1, R2, R4          @ R1 = ?
+    add     R1, R2, R4          @ R1 = ?
                     @ again, what happened to the PSR flags?
 
     mov     R2, #0x00000001     @ R2 = ?
     mov     R3, #0x00000002     @ R3 = ?
-    adds    R1, R2, R3          @ R1 = ?   
+    add     R1, R2, R3          @ R1 = ?   
                     @ Add some small numbers again
                     @ and check the PSR flags again......
 
     @ Add numbers that will create an overflow
-    mov     R2, #0x7FFFFFFF     @ R2 = ?
-    mov     R3, #0x7FFFFFFF     @ R3 = ?
+    movw    R2, #0x7FFF         @ R2 = ?
+    movw    R3, #0x7FFF         @ R3 = ?
 
     adds    R1, R2, R3          @ R1 = ?
                     @ Check and see what happened to the PSR flags.
