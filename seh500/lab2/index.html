@@ -167,12 +167,11 @@ SEH500 Microprocessors and Computer Architecture
 <li>
 <p>Replace the code within the file with the following:</p>
 <p><hr/><pre>
-    .syntax unified
-    .cpu cortex-m4
-    .thumb</p>
-<pre><code>.global main                @ declare main as a global variable
-.type main, %function       @ set main to function type
-</code></pre>
+.syntax unified             @ unified syntax used
+.cpu cortex-m4              @ cpu is cortex-m4
+.thumb                      @ use thumb encoding</p>
+<p>.global main                @ declare main as a global variable
+.type main, %function       @ set main to function type</p>
 <p>main:                           @ start of main code with an label
     ldr     r0, =0x20000000     @ load 0x20000000 to R0
     mov     r1, #8              @ move #8 to R1
