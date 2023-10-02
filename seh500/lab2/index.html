@@ -130,8 +130,8 @@ SEH500 Microprocessors and Computer Architecture
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
 <p>Answer the following questions on Blackboard once the pre-load quiz becomes available 24 hours before the lab session.</p>
 <ol>
-<li>Referring to the Cortex-M4 technical manual, how many "Add" instruction are there and what are they?</li>
-<li>Write the instruction that load the address 0x20000010 into register R0?</li>
+<li>Referring to the Cortex-M4 technical manual, how many "Add" instructions are there and what are they?</li>
+<li>Write the instruction that loads the address 0x20000010 into register R0.</li>
 <li>What is the difference between mov, movw, and movt?</li>
 <li>
 <p>Refer to the Cortex-M4 manual, define the following four flags of the Program Status Register and how they will be triggered.</p>
@@ -167,8 +167,12 @@ SEH500 Microprocessors and Computer Architecture
 <li>
 <p>Replace the code within the file with the following:</p>
 <p><hr/><pre>
-    .global main                @ declare main as a global variable
-    .type main, %function       @ set main to function type</p>
+    .syntax unified
+    .cpu cortex-m4
+    .thumb</p>
+<pre><code>.global main                @ declare main as a global variable
+.type main, %function       @ set main to function type
+</code></pre>
 <p>main:                           @ start of main code with an label
     ldr     r0, =0x20000000     @ load 0x20000000 to R0
     mov     r1, #8              @ move #8 to R1
