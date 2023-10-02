@@ -56,13 +56,14 @@ Be familiar with the following resources:
     1. Follow only step 1-10 on the [Getting Started with the FRDM-K64F](https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1).
         - Here are the files if the one in the provide link is not available:
             - [0244_k20dx_bl_0x5000.bin](0244_k20dx_bl_0x5000.bin) for updating OpenSDA bootloader
-            - [0244_k20dx_bootloader_update_0x5000.bin](0244_k20dx_bootloader_update_0x5000.bin) for updating OpenSDA bootloader if the one above firmware doesn't re-enumerate to MAINTENANCE drive. Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/).
+            - [0244_k20dx_bootloader_update_0x5000.bin](0244_k20dx_bootloader_update_0x5000.bin) for updating OpenSDA bootloader if the one above firmware doesn't re-enumerate to MAINTENANCE drive.<br/>
+            (Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/))
             - [02_OpenSDA_FRDM-K64F](02_OpenSDA_FRDM-K64F.bin) for loading the CMSIS-DAP application back onto the board
         - If the bootloader drive is not showing, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. [Follow the instruction here](https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/).
 
 ### Install IDE
 
-1. Install the [MCUXpresso IDE from NXP](https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources) (account creation required) or using [Seneca MyApps](https://myapps.senecacollege.ca/). **NOTE:** Download and install the necessary driver from the [NXP page]((https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources)) if you are using Windows OS.
+1. Install the [MCUXpresso IDE from NXP](https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources) (account creation required) or using [Seneca MyApps](https://myapps.senecacollege.ca/). **NOTE:** If the board is not recognized by Windows, [download latest driver](https://os.mbed.com/media/downloads/drivers/mbedWinSerial_16466.exe) for Windows. Links to other drivers such as P&E Micro and Segger Jlink can be found here: [OpenSDA Serial and Debug Adapter](https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K64F).
 
     ![Figure 1.2 Seneca MyApps](lab1-myapps.png)
 
