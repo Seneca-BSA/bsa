@@ -79,8 +79,8 @@ Documentation of the Cortex-M4 instruction set can be found here:
 >
 > Answer the following questions on Blackboard once the pre-load quiz becomes available 24 hours before the lab session.
 > 
-> 1. Referring to the Cortex-M4 technical manual, how many "Add" instruction are there and what are they?
-> 1. Write the instruction that load the address 0x20000010 into register R0?
+> 1. Referring to the Cortex-M4 technical manual, how many "Add" instructions are there and what are they?
+> 1. Write the instruction that loads the address 0x20000010 into register R0.
 > 1. What is the difference between mov, movw, and movt?
 > 1. Refer to the Cortex-M4 manual, define the following four flags of the Program Status Register and how they will be triggered.
     >
@@ -113,6 +113,10 @@ Documentation of the Cortex-M4 instruction set can be found here:
 1. Replace the code within the file with the following:
 
     <hr/><pre>
+        .syntax unified
+        .cpu cortex-m4
+        .thumb
+
         .global main                @ declare main as a global variable
         .type main, %function       @ set main to function type
 
