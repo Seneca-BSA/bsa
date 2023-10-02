@@ -77,7 +77,7 @@ Seneca College</br>
 SEH500 Microprocessors and Computer Architecture
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>The Freedom-K64F and Freedom-K66F are both low-cost development platforms using the NXP Kinetis series of microcontrollers.</p>
+<p>The Freedom-K64F and Freedom-K66F are both low-cost development platforms using the NXP Kinetis series of microcontrollers that is based on the ARM Cortex-M4 processor.</p>
 <table>
 <thead>
 <tr>
@@ -157,18 +157,34 @@ SEH500 Microprocessors and Computer Architecture
 <h3 id="firmware-update">Firmware Update</h3>
 <ol>
 <li>
-<p>If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10.</p>
-<ul>
-<li>When you plug your board into the USB and see "MBED (X:)" as a drive, <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">follow the steps found here</a> to update the bootloader.</li>
+<p>If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10. Even if you are not using Windows 10, updating the firmware might be a good idea.</p>
+<ol>
+<li>
+<p>Unplug the Freedom board then hold down the "RESET SW1" button as you plug the board into your computer to enter bootloader mode.</p>
+<p><img alt="Figure 1.1 Start in Bootloader Mode" src="../lab1-bootloader.png" /></p>
+<p><em><strong>Figure 1.1</strong> Start in Bootloader Mode</em></p>
+</li>
+<li>
+<p>Once plugged in, if you see anything else but "MAINTENANCE" (such as seeing "BOOTLOADER"), then we need to update the firmware.</p>
+</li>
+<li>Follow only step 1-10 on the <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">Getting Started with the FRDM-K64F</a>.<ul>
+<li>Here are the files if the one in the provide link is not available:<ul>
+<li><a href="../0244_k20dx_bl_0x5000.bin">0244_k20dx_bl_0x5000.bin</a> for updating OpenSDA bootloader</li>
+<li><a href="../0244_k20dx_bootloader_update_0x5000.bin">0244_k20dx_bootloader_update_0x5000.bin</a> for updating OpenSDA bootloader if the one above firmware doesn't re-enumerate to MAINTENANCE drive.<br/>
+(Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
+<li><a href="../02_OpenSDA_FRDM-K64F.bin">02_OpenSDA_FRDM-K64F</a> for loading the CMSIS-DAP application back onto the board</li>
 </ul>
-<p><img alt="Figure 1.1 Showing MBED drive" src="../lab1-mbed.png" /></p>
-<p><em><strong>Figure 1.1</strong> Showing MBED drive</em></p>
+</li>
+<li>If the bootloader drive is not showing, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/">Follow the instruction here</a>.</li>
+</ul>
+</li>
+</ol>
 </li>
 </ol>
 <h3 id="install-ide">Install IDE</h3>
 <ol>
 <li>
-<p>Install the <a href="https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources">MCUXpresso IDE from NXP</a> (account creation required) or using <a href="https://myapps.senecacollege.ca/">Seneca MyApps</a>. <strong>NOTE:</strong> Download and install the necessary driver from the <a href="(https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources)">NXP page</a> if you are using Windows OS.</p>
+<p>Install the <a href="https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources">MCUXpresso IDE from NXP</a> (account creation required) or using <a href="https://myapps.senecacollege.ca/">Seneca MyApps</a>. <strong>NOTE:</strong> If the board is not recognized by Windows, <a href="https://os.mbed.com/media/downloads/drivers/mbedWinSerial_16466.exe">download latest driver</a> for Windows. Links to other drivers such as P&amp;E Micro and Segger Jlink can be found here: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K64F">OpenSDA Serial and Debug Adapter</a>.</p>
 <p><img alt="Figure 1.2 Seneca MyApps" src="../lab1-myapps.png" /></p>
 <p><em><strong>Figure 1.2</strong> Seneca MyApps</em></p>
 </li>

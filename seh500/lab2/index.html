@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 1 : Writing in Assembly - BSA Lab Manuals</title>
+    <title>Lab 2 : Writing in Assembly - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 1 : Writing in Assembly";
+        var mkdocs_page_name = "Lab 2 : Writing in Assembly";
         var mkdocs_page_input_path = "seh500/lab2.md";
         var mkdocs_page_url = null;
       </script>
@@ -62,7 +62,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Lab 1 : Writing in Assembly</li>
+      <li>Lab 2 : Writing in Assembly</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -71,20 +71,189 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-1-writing-in-assembly">Lab 1 : Writing in Assembly</h1>
+                <h1 id="lab-2-writing-in-assembly">Lab 2 : Writing in Assembly</h1>
 <p><font size="5">
 Seneca College</br>
 SEH500 Microprocessors and Computer Architecture
 </font></p>
 <h2 id="introduction">Introduction</h2>
+<h3 id="cortex-m4-memory-map">Cortex-M4 Memory Map</h3>
+<p>The 4GB address space of the Cortex®-M processors is partitioned into a number of memory regions (Figure 2.1). The partitioning is based on typical usages so that different areas are designed to be used primarily for:</p>
+<ul>
+<li>Program code accesses (e.g., CODE region)</li>
+<li>Data accesses (e.g., SRAM region)</li>
+<li>Peripherals (e.g., Peripheral region)</li>
+<li>Processor’s internal control and debug components (e.g., Private Peripheral Bus)</li>
+</ul>
+<p>The architecture also allows high flexibility to allow memory regions to be used for other purposes. For example, programs can be executed from the CODE as well as the SRAM region, and a microcontroller can also integrate SRAM blocks in CODE region.</p>
+<p><img alt="Figure 2.1 Memory map" src="../lab2-memory-map.jpg" /></p>
+<p><em><strong>Figure 2.1</strong> Memory map</em></p>
+<p>In practice, many microcontroller devices only use a small portion of each region for program flash, SRAM, and peripherals. Some of the regions can be unused. Different microcontrollers have different memory sizes and peripheral address locations. This information is usually outlined in user manuals or datasheets from microcontroller vendors.</p>
+<h3 id="cortex-m4-registers">Cortex-M4 Registers</h3>
+<p>The register bank in the Cortex-M3 and Cortex-M4 processors has 16 registers. Thirteen of them are general-purpose 32-bit registers, and the other three have special uses, as can be seen in Figure 2.2.</p>
+<p><img alt="Figure 2.2 Registers in the register bank" src="../lab2-registers-bank.jpg" /></p>
+<p><em><strong>Figure 2.2</strong> Registers in the register bank</em></p>
+<h4 id="r0-r12">R0 – R12</h4>
+<p>Registers R0 to R12 are general-purpose registers. The first eight (R0 – R7) are also called low registers. Due to the limited available space in the instruction set, many 16-bit instructions can only access the low registers. The high registers (R8 – R12) can be used with 32-bit instructions, and a few with 16-bit instructions, like MOV (move). The initial values of R0 to R12 are undefined.</p>
+<h4 id="r13-stack-pointer-sp">R13, stack pointer (SP)</h4>
+<p>R13 is the Stack Pointer. It is used for accessing the stack memory via PUSH and POP operations. </p>
+<h4 id="r14-link-register-lr">R14, link register (LR)</h4>
+<p>R14 is also called the Link Register (LR). This is used for holding the return address when calling a function or subroutine. At the end of the function or subroutine, the program control can return to the calling program and resume by loading the value of LR into the Program Counter (PC). When a function or subroutine call is made, the value of LR is updated automatically. If a function needs to call another function or subroutine, it needs to save the value of LR in the stack first. Otherwise, the current value in LR will be lost when the function call is made.</p>
+<h4 id="r15-program-counter-pc">R15, program counter (PC)</h4>
+<p>R15 is the Program Counter (PC). It is readable and writeable: a read returns the current instruction address plus 4 (this is due to the pipeline nature of the design, and compatibility requirement with the ARM7TDMI™ processor). Writing to PC (e.g., using data transfer/processing instructions) causes a branch operation.</p>
+<h4 id="program-status-registers">Program status registers</h4>
+<p>The Program Status Register is composed of three status registers:</p>
+<ul>
+<li>Application PSR (APSR)</li>
+<li>Execution PSR (EPSR)</li>
+<li>Interrupt PSR (IPSR)</li>
+</ul>
+<p>These three registers can be accessed as one combined register, referred to as xPSR in some documentation. In ARM® assembler, when accessing xPSR (Figure 2.3), the symbol PSR is used.</p>
+<p><img alt="Figure 2.3 Combined xPSR" src="../lab2-xpsr.jpg" /></p>
+<p><em><strong>Figure 2.3</strong> Combined xPSR</em></p>
+<p>The main 4 status bits of interest are:</p>
+<ul>
+<li><strong>N</strong>: Negative flag</li>
+<li><strong>Z</strong>: Zero flag</li>
+<li><strong>C</strong>: Carry (or NOT borrow) flag</li>
+<li><strong>V</strong>: Overflow flag</li>
+</ul>
+<p>Reference: Yiu, Ch 4</p>
+<h3 id="assembly-instruction">Assembly Instruction</h3>
+<p>Documentation of the Cortex-M4 instruction set can be found here:</p>
+<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+</ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
 <p>Answer the following questions on Blackboard once the pre-load quiz becomes available 24 hours before the lab session.</p>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
+<ol>
+<li>
+<p>Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.</p>
+<p><img alt="Figure 2.3 New Project" src="../lab2-new-project.PNG" /></p>
+<p><em><strong>Figure 2.3</strong> New Project</em></p>
+</li>
+<li>
+<p>In the new project configuration, rename the project then leave all other settings as default. Even though we will be programming in assembly language, we'll still like the IDE to use the SDK template to set up the Freedom board so we don't have to bother with the startup configuration (ie. vector table, ISR, stack address, heap address, etc.)</p>
+<p><img alt="Figure 2.4a New Project Name" src="../lab2-project-name.PNG" />
+<img alt="Figure 2.4b New Project Settings" src="../lab2-project-setting.PNG" /></p>
+<p><em><strong>Figure 2.4</strong> New Project Name and Settings</em></p>
+</li>
+<li>
+<p>Once the project is created, rename the C-code file from ".c" to ".s". If the IDE is not allowing you to rename, delete the C-code file and create a new file of the same name but with the extension ".s".</p>
+<p><img alt="Figure 2.5 Rename File" src="../lab2-rename.PNG" /></p>
+<p><em><strong>Figure 2.5</strong> Rename File</em></p>
+</li>
+<li>
+<p>Replace the code within the file with the following:</p>
+<p><hr/><pre>
+    .global main                @ declare main as a global variable
+    .type main, %function       @ set main to function type</p>
+<p>main:                           @ start of main code with an label
+    ldr     r0, =0x20000000     @ load 0x20000000 to R0
+    mov     r1, #8              @ move #8 to R1
+    add     r1, r1, #4          @ add #4 to R1 and write to R1
+    str     r1, [r0]            @ store value of R1 to address of R0</p>
+<p>stop:                           @ define a new label called stop
+    nop                         @ do nothing
+    b       stop                @ jump back label stop to form a loop
+</pre><hr/></p>
+<p>Your code should now look like this.</p>
+<p><img alt="Figure 2.6 Assembly Code" src="../lab2-assembly-code.PNG" /></p>
+<p><em><strong>Figure 2.6</strong> Assembly Code</em></p>
+</li>
+<li>
+<p>Build and run the code using the debug option. Open both the register view and the memory view to address 0x20000000.</p>
+<p><img alt="Figure 2.7a Register and Memory View" src="../lab2-registers.PNG" />
+<img alt="Figure 2.7b Register and Memory View" src="../lab2-memory.PNG" /></p>
+<p><em><strong>Figure 2.7</strong> Register and Memory View</em></p>
+</li>
+<li>
+<p>Step through the code and pay attention to the changes in the registers and memory. Step until you reach the stop label. Your code should not go any further as it will loop between the nop and b instructions. You can also see the program counter jumping back and forward. Answer question 1 of the post-lab.</p>
+</li>
+<li>
+<p>Next, re-run the code but this time, expand the program status register and notice the flags that change especially after an arithmetics instruction.</p>
+<p><img alt="Figure 2.8 Program Status Register Flags" src="../lab2-flags.PNG" /></p>
+<p><em><strong>Figure 2.8</strong> Program Status Register Flags</em></p>
+</li>
+<li>
+<p>Now, to test your skills, write an assembly code that performs Exercise #2 from the module 3 lecture: Perform the calculation: A + B – C = D.</p>
+<ul>
+<li>Use 0x20000010 for variable A = first 2 digits of your student #</li>
+<li>Use 0x20000014 for variable B = next 2 digits of your student #</li>
+<li>Use 0x20000018 for variable C = next 2 digits of your student #</li>
+<li>Use 0x2000001C for variable D = 0</li>
+</ul>
+<p>Is your answer correct? Copy your code into the post-lab assignment on Blackboard.</p>
+</li>
+</ol>
 <h2 id="post-lab-questions">Post-Lab Questions</h2>
 <p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
+<ol>
+<li>
+<p>In step 6 of the first program example, what value got saved to which address at the end of the str instruction?</p>
+</li>
+<li>
+<p>Paste your assembly code in step 8 here.</p>
+</li>
+<li>
+<p>Fill in the blank as necessary and run the following code. Comment out with "@" any line that becomes invalid and explain why. Put your answer into your code and copy it into Blackboard for submission.</p>
+</li>
+</ol>
+<hr/>
+<pre>
+    mov R2, #           @ use the first 2 digits of your student ID
+    mov R3, #           @ use the last 2 digits of your student ID
+
+    @Other examples to move immediate values
+    mov     R5, #0x1234         @ R5 = ?
+    movt    R5, #0x8765         @ R5 = ?
+    movt    R5, #0x5678         @ R5 = ?
+    movw    R6, #0x12345678     @ R6 = ?
+    movw    R5, #0x5678         @ R6 = ?
+
+    ldr     R7, =0x87654321     @ R7 = ?
+
+    add     R1,R2,R3            @ R1 = ?
+    movw    R3, #0xFFFFFFFF     @ R3 = ?
+    adds    R1,R2,R3            @ R1 = ?   
+                    @ specify Condition Code updates
+
+    subs    R1,R2,R3            @ R1 = ?   
+                    @ specify Condition Code updates
+
+    mov     R4, #0xFFFFFFFF     @ R4 = ?
+    add     R1, R2, R4          @ R1 = ?   
+                    @ How are the PSR flags affected?
+
+    adds    R1, R2, R4          @ R1 = ?  
+                    @ specify Condition Code updates
+                    @ and what happened to the PSR flags now?
+
+    mov     R2, #0x00000002     @ R2 = ?
+    adds    R1, R2, R4          @ R1 = ?
+                    @ again, what happened to the PSR flags?
+
+    mov     R2, #0x00000001     @ R2 = ?
+    mov     R3, #0x00000002     @ R3 = ?
+    adds    R1, R2, R3          @ R1 = ?   
+                    @ Add some small numbers again
+                    @ and check the PSR flags again......
+
+    @ Add numbers that will create an overflow
+    mov     R2, #0x7FFFFFFF     @ R2 = ?
+    mov     R3, #0x7FFFFFFF     @ R3 = ?
+
+    adds    R1, R2, R3          @ R1 = ?
+                    @ Check and see what happened to the PSR flags.
+</pre>
+<h2 id="reference">Reference</h2>
+<p>[1] Yiu, J. (2013). The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors. (3rd ed.). Elsevier Science &amp; Technology.</p>
+<hr/>
               
             </div>
           </div><footer>
