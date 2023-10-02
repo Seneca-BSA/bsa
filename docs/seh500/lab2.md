@@ -113,12 +113,12 @@ Documentation of the Cortex-M4 instruction set can be found here:
 1. Replace the code within the file with the following:
 
     <hr/><pre>
-        .syntax unified
-        .cpu cortex-m4
-        .thumb
+    .syntax unified             @ unified syntax used
+    .cpu cortex-m4              @ cpu is cortex-m4
+    .thumb                      @ use thumb encoding
 
-        .global main                @ declare main as a global variable
-        .type main, %function       @ set main to function type
+    .global main                @ declare main as a global variable
+    .type main, %function       @ set main to function type
 
     main:                           @ start of main code with an label
         ldr     r0, =0x20000000     @ load 0x20000000 to R0
@@ -137,7 +137,7 @@ Documentation of the Cortex-M4 instruction set can be found here:
 
     ***Figure 2.6** Assembly Code*
 
-5. Build and run the code using the debug option. Open both the register view and the memory view to address 0x20000000.
+1. Build and run the code using the debug option. Open both the register view and the memory view to address 0x20000000.
 
     ![Figure 2.7a Register and Memory View](lab2-registers.PNG)
     ![Figure 2.7b Register and Memory View](lab2-memory.PNG)
