@@ -78,6 +78,16 @@ Documentation of the Cortex-M4 instruction set can be found here:
 > ### Lab Preparation Question
 >
 > Answer the following questions on Blackboard once the pre-load quiz becomes available 24 hours before the lab session.
+> 
+> 1. Referring to the Cortex-M4 technical manual, how many "Add" instruction are there and what are they?
+> 1. Write the instruction that load the address 0x20000010 into register R0?
+> 1. What is the difference between mov, movw, and movt?
+> 1. Refer to the Cortex-M4 manual, define the following four flags of the Program Status Register and how they will be triggered.
+>
+>    - N: Negative flag
+>    - Z: Zero flag
+>    - C: Carry (or NOT borrow) flag
+>    - V: Overflow flag
 
 ## Procedures
 
@@ -105,7 +115,7 @@ Documentation of the Cortex-M4 instruction set can be found here:
     <hr/><pre>
         .global main                @ declare main as a global variable
         .type main, %function       @ set main to function type
-        
+
     main:                           @ start of main code with an label
         ldr     r0, =0x20000000     @ load 0x20000000 to R0
         mov     r1, #8              @ move #8 to R1
