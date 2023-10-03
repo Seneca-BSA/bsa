@@ -171,9 +171,9 @@ Using the skills and knowledge acquired from this lab, answer the following post
 1. Fill in the blank as necessary and run the following code. Comment out with "@" any line that becomes invalid and explain why. Put your answer into your code and copy it into Blackboard for submission.
 
 <hr/><pre>
-    mov R2, #           @ use the first 2 digits of your student ID
+    mov R2, #          @ use the first 2 digits of your student ID
     mov R3, #           @ use the last 2 digits of your student ID
-        
+
     @Other examples to move immediate values
     mov     R5, #0x1234         @ R5 = ?
     movt    R5, #0x8765         @ R5 = ?
@@ -185,33 +185,35 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
     add     R1, R2, R3          @ R1 = ?
     movt    R3, #0xFFFF         @ R3 = ?
-    add     R1, R2, R3          @ R1 = ?   
+    adds    R1, R2, R3          @ R1 = ?
+                    @ What are the PSR (N, Z, C, V) flags now?
 
-    sub     R1,R2,R3            @ R1 = ?   
-
-    movw    R4, #0xFFFF         @ R4 = ?
-    add     R1, R2, R4          @ R1 = ?   
+    subs    R1, R2, R3          @ R1 = ?
                     @ How are the PSR flags affected?
 
-    add     R1, R2, R4          @ R1 = ?  
+    mov     R4, #0xFFFFFFFF     @ R4 = ?
+    add     R1, R2, R4          @ R1 = ?
+                    @ How are the PSR flags affected?
+
+    adds    R1, R2, R4          @ R1 = ?
                     @ What happened to the PSR flags now?
 
     mov     R2, #0x00000002     @ R2 = ?
-    add     R1, R2, R4          @ R1 = ?
+    adds    R1, R2, R4          @ R1 = ?
                     @ again, what happened to the PSR flags?
 
     mov     R2, #0x00000001     @ R2 = ?
     mov     R3, #0x00000002     @ R3 = ?
-    add     R1, R2, R3          @ R1 = ?   
+    adds    R1, R2, R3          @ R1 = ?
                     @ Add some small numbers again
-                    @ and check the PSR flags again......
+                    @ and check the PSR flags again, what happened?
 
     @ Add numbers that will create an overflow
-    movw    R2, #0x7FFF         @ R2 = ?
-    movw    R3, #0x7FFF         @ R3 = ?
+    mov     R2, #0x7FFFFFFF     @ R2 = ?
+    mov     R3, #0x7FFFFFFF     @ R3 = ?
 
     adds    R1, R2, R3          @ R1 = ?
-                    @ Check and see what happened to the PSR flags.
+                    @ Check and see what happened to the PSR flags?
 </pre><hr/>
 
 ## Reference
