@@ -57,7 +57,7 @@ Be familiar with the following resources:
         - For K64F: here are the files if the one in the provide link is not available:
             - [0244_k20dx_bootloader_update_0x5000.bin](0244_k20dx_bootloader_update_0x5000.bin) for updating the OpenSDA bootloader <br/>
             (Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/))
-            - [02_OpenSDA_FRDM-K64F](02_OpenSDA_FRDM-K64F.bin) for loading the CMSIS-DAP application back onto the board
+            - [k20dx_frdmk64f_if_crc_legacy_0x5000](k20dx_frdmk64f_if_crc_legacy_0x5000.bin) for loading the CMSIS-DAP application back onto the board
         - For K66F: here are the files if the one in the provide link is not available:
             - [0244_k20dx_bootloader_update_0x8000.bin](0244_k20dx_bootloader_update_0x8000.bin) for updating the OpenSDA bootloader <br/>
             (Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/))
