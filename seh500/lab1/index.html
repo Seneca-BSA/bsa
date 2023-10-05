@@ -167,21 +167,22 @@ SEH500 Microprocessors and Computer Architecture
 <li>
 <p>Once plugged in, if you see anything else but "MAINTENANCE" (such as seeing "BOOTLOADER"), then we need to update the firmware.</p>
 </li>
-<li>Follow only step 1-10 on the <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">Getting Started with the FRDM-K64F</a>.<ul>
-<li>For K64F: here are the files if the one in the provide link is not available:<ul>
+<li>Follow only step 1-10 on the <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">Getting Started with the FRDM-K64F</a> BUT USE THE FILES BELOW.<ul>
+<li>For K64F: here are the files:<ul>
 <li><a href="../0244_k20dx_bootloader_update_0x5000.bin">0244_k20dx_bootloader_update_0x5000.bin</a> for updating the OpenSDA bootloader <br/>
 (Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
-<li><a href="../k20dx_frdmk64f_if_crc_legacy_0x5000.bin">k20dx_frdmk64f_if_crc_legacy_0x5000</a> for loading the CMSIS-DAP application back onto the board</li>
+<li><a href="../k20dx_frdmk64f_if_crc_legacy_0x5000.bin">k20dx_frdmk64f_if_crc_legacy_0x5000</a> for loading the CMSIS-DAP application back onto the board <br/>
+(Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
 </ul>
 </li>
-<li>For K66F: here are the files if the one in the provide link is not available:<ul>
+<li>For K66F: here are the files:<ul>
 <li><a href="../0244_k20dx_bootloader_update_0x8000.bin">0244_k20dx_bootloader_update_0x8000.bin</a> for updating the OpenSDA bootloader <br/>
 (Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
 <li><a href="../k20dx_frdmk66f_if_crc.bin">k20dx_frdmk66f_if_crc</a> for loading the CMSIS-DAP application back onto the board <br/>
 (Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
 </ul>
 </li>
-<li>If the bootloader drive is not showing, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/">Follow the instruction here</a>.</li>
+<li>If the bootloader drive is not showing, try updating the bootloader using non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/">Follow the instruction here</a>.</li>
 </ul>
 </li>
 </ol>

@@ -76,6 +76,442 @@
 Seneca College</br>
 SEH500 Microprocessors and Computer Architecture
 </font></p>
+<h2 id="introduction">Introduction</h2>
+<p>Documentation of the Cortex-M4 instruction set can be found here:</p>
+<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+</ul>
+<p>As you've seen in the previous lab, the ARM processor have a Program Status Register with 4 flags that might get set or clear depending on the previous ALU operation.</p>
+<ul>
+<li>N = 1, if result was negative</li>
+<li>Z = 1, if result was zero</li>
+<li>C = 1, if result had a carry-out</li>
+<li>V = 1, if result was an overflow</li>
+</ul>
+<p>These flags can then be used for decision making within the program.</p>
+<p>Below are instructions that might set or clear the status flag.</p>
+<h3 id="arithmetic-instructions">Arithmetic Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Mnemonic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Addition</td>
+<td>ADD   R0, R1, R2</td>
+<td>R0 = R1 + R2</td>
+</tr>
+<tr>
+<td>Addition</td>
+<td>ADDS  R0, R1, R2</td>
+<td>R0 = R1 + R2, and FLAGs are updated</td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td>SUB   R1, R2, R3</td>
+<td>R1 = R2 - R3</td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td>SUBS  R1, R2, R3</td>
+<td>R1 = R2 - R3, and FLAGs are updated</td>
+</tr>
+<tr>
+<td>Subtraction</td>
+<td>SUBS  R7, R6, #20</td>
+<td>R7 = R6 - 20, Sets the flags on the result</td>
+</tr>
+<tr>
+<td>Reverse Subtraction</td>
+<td>RSB R4, R4, #120</td>
+<td>R4 = 120 - R4</td>
+</tr>
+<tr>
+<td>Multiply</td>
+<td>MUL   R0, R1, R2</td>
+<td>R0 = R1 * R2</td>
+</tr>
+<tr>
+<td>Division</td>
+<td>SDIV  R0, R2, R4</td>
+<td>Signed divide, R0 = R2/R4</td>
+</tr>
+<tr>
+<td>Dividion</td>
+<td>UDIV  R8, R8, R1</td>
+<td>Unsigned divide, R8 = R8/R1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples-of-move-instructions">Examples of Move Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Mnemonic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MOV R1, #0xFA05</td>
+<td>Write value of 0xFA05 to R1, flags are not updated</td>
+</tr>
+<tr>
+<td>MOVS R11, #0x000B</td>
+<td>Write value of 0x000B to R11, flags get updated</td>
+</tr>
+<tr>
+<td>MOVS R10, R12</td>
+<td>Write value in R12 to R10, flags get updated</td>
+</tr>
+<tr>
+<td>MOV R3, #23</td>
+<td>Write value of 23 to R3</td>
+</tr>
+<tr>
+<td>MOV R8, SP</td>
+<td>Write value of stack pointer to R8</td>
+</tr>
+<tr>
+<td>MVNS R2, #0xF</td>
+<td>Write value of 0xFFFFFFF0 (bitwise inverse of 0xF), to the R2 and update flags.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="logical-operation-instructions">Logical Operation Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Mnemonic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AND R9, R2, R1</td>
+<td>R9 = R2 AND R1</td>
+</tr>
+<tr>
+<td>AND R9, R2, #0xFF00</td>
+<td>R9 = R2 AND #0xFF00</td>
+</tr>
+<tr>
+<td>ORR R9, R2, R1</td>
+<td>R9 = R2 OR R1</td>
+</tr>
+<tr>
+<td>ORR R9, R2, #0xFF00</td>
+<td></td>
+</tr>
+<tr>
+<td>ORREQ R2, R0, R5</td>
+<td></td>
+</tr>
+<tr>
+<td>ANDS R9, R8, #0x19</td>
+<td></td>
+</tr>
+<tr>
+<td>EOR  R7, R11, R10</td>
+<td>R7 = R11 XOR R10</td>
+</tr>
+<tr>
+<td>EORS R7, R11, #0x18181818</td>
+<td></td>
+</tr>
+<tr>
+<td>BIC R0, R1, #0xab</td>
+<td>R0 = R1 AND (NOT(#0xab))</td>
+</tr>
+<tr>
+<td>ORN R7, R11, R14, ROR #4</td>
+<td>R7 = R11 OR (NOT(R14 ROR #4))</td>
+</tr>
+<tr>
+<td>ORNS R7, R11, R14, ROR #2</td>
+<td>update the flags</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shift-instructions">Shift Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Mnemonic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LSL R4, R5, #2</td>
+<td>Logical shift left by 2 bits</td>
+</tr>
+<tr>
+<td>LSR R4, R5, #6</td>
+<td>Logical shift right by 6 bits</td>
+</tr>
+<tr>
+<td>LSLS R1, R2, #3</td>
+<td>Logical shift left by 3 bits with flag update</td>
+</tr>
+<tr>
+<td>ROR R4, R5, R6</td>
+<td>Rotate right by the value in the bottom byte of R6</td>
+</tr>
+<tr>
+<td>RRX R4, R5</td>
+<td>Rotate right with extend (one bit only).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="branching-instructions">Branching Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Mnemonic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B label</td>
+<td>Branch</td>
+</tr>
+<tr>
+<td>B{cond} label</td>
+<td>Branch with condition</td>
+</tr>
+<tr>
+<td>BL label</td>
+<td>Branch with Link</td>
+</tr>
+<tr>
+<td>BL{cond} label</td>
+<td>Branch with Link with condition</td>
+</tr>
+<tr>
+<td>BX Rm</td>
+<td>Branch to register value</td>
+</tr>
+<tr>
+<td>BX{cond} Rm</td>
+<td>Branch to register value with condition</td>
+</tr>
+<tr>
+<td>BLX Rm</td>
+<td>Branch with Link to register value</td>
+</tr>
+<tr>
+<td>BLX{cond} Rm</td>
+<td>Branch with Link to register value with condition</td>
+</tr>
+</tbody>
+</table>
+<p>See below for condition.</p>
+<h3 id="branching-conditions">Branching Conditions</h3>
+<p>The APSR contains the following condition flags:</p>
+<ul>
+<li>
+<p><strong>N</strong>: Set to 1 when the result of the operation was negative, cleared to 0 otherwise.</p>
+</li>
+<li>
+<p><strong>Z</strong>: Set to 1 when the result of the operation was zero, cleared to 0 otherwise.</p>
+</li>
+<li>
+<p><strong>C</strong>: Set to 1 when the operation resulted in a carry, cleared to 0 otherwise.</p>
+</li>
+<li>
+<p><strong>V</strong>: Set to 1 when the operation caused overflow, cleared to 0 otherwise.</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Flags</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EQ</td>
+<td>Z = 1</td>
+<td>Equal</td>
+</tr>
+<tr>
+<td>NE</td>
+<td>Z = 0</td>
+<td>Not equal</td>
+</tr>
+<tr>
+<td>CS or HS</td>
+<td>C = 1</td>
+<td>Higher or same, unsigned</td>
+</tr>
+<tr>
+<td>CC or LO</td>
+<td>C = 0</td>
+<td>Lower, unsigned</td>
+</tr>
+<tr>
+<td>MI</td>
+<td>N = 1</td>
+<td>Negative</td>
+</tr>
+<tr>
+<td>PL</td>
+<td>N = 0</td>
+<td>Positive or zero</td>
+</tr>
+<tr>
+<td>VS</td>
+<td>V = 1</td>
+<td>Overflow</td>
+</tr>
+<tr>
+<td>VC</td>
+<td>V = 0</td>
+<td>No overflow</td>
+</tr>
+<tr>
+<td>HI</td>
+<td>C = 1 and Z = 0</td>
+<td>Higher, unsigned</td>
+</tr>
+<tr>
+<td>LS</td>
+<td>C = 0 or Z = 1</td>
+<td>Lower or same, unsigned</td>
+</tr>
+<tr>
+<td>GE</td>
+<td>N = V</td>
+<td>Greater than or equal, signed</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>N != V</td>
+<td>Less than, signed</td>
+</tr>
+<tr>
+<td>GT</td>
+<td>Z = 0 and N = V</td>
+<td>Greater than, signed</td>
+</tr>
+<tr>
+<td>LE</td>
+<td>Z = 1 and N != V</td>
+<td>Less than or equal, signed</td>
+</tr>
+<tr>
+<td>AL</td>
+<td>Can have any value</td>
+<td>Always. This is the default when no suffix is specified.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="preparation">Preparation</h2>
+<blockquote>
+<h3 id="lab-preparation-question">Lab Preparation Question</h3>
+<ol>
+<li>Read over the label write a pseudocode for the post lab exercise 3. Copy your pseudocode into Blackboard.</li>
+</ol>
+</blockquote>
+<h2 id="procedures">Procedures</h2>
+<p>Similar to the previous lab.</p>
+<ol>
+<li>
+<p>Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.</p>
+</li>
+<li>
+<p>In the new project configuration, rename the project then leave all other settings as default.</p>
+</li>
+<li>
+<p>Once the project is created, rename the C-code file from ".c" to ".s". If the IDE is not allowing you to rename, delete the C-code file and create a new file of the same name but with the extension ".s".</p>
+</li>
+<li>
+<p>Replace the code within the file with the following:</p>
+<p><hr/><pre>
+.syntax unified             @ unified syntax used
+.cpu cortex-m4              @ cpu is cortex-m4
+.thumb                      @ use thumb encoding</p>
+<p>.global main                @ declare main as a global variable
+.type main, %function       @ set main to function type</p>
+<p>main:                           @ start of main code with an label
+    mov r0, #7                  @ x = 7 
+    mul r1, r0, r0              @ r1 = x^2 @ record register value
+    mov r4, #5
+    mul r1, r1, r4              @ r1 = 5x^2 @ record register value
+    mov r5, #6
+    mul r2, r0, r5              @ r2 = 6x   @ record register value
+    sub r3, r1, r2              @ r3 = 5x^2 - 6x
+                                @ record register value
+    add r3, r3, #8              @ r3 = 5x^2 - 6x + 8
+                                @ record register value</p>
+<p>stop:                           @ define a new label called stop
+    nop                         @ do nothing
+    b       stop                @ jump back label stop to form a loop
+</pre><hr/></p>
+</li>
+<li>
+<p>Execute the code above, pay attention the what is happening in each register and record the PSR flags after each arthemetic instruction and submit it as part of the post lab.</p>
+</li>
+<li>
+<p>Another example with variables and shifting. Although variables cannot be declared in the high level way of programming, it is possible to tell the assembler to automatically assign an address with a label and always reference to it using such label. Replace the code within the file with the following:</p>
+<p><hr/><pre>
+.syntax unified             @ unified syntax used
+.cpu cortex-m4              @ cpu is cortex-m4
+.thumb                      @ use thumb encoding</p>
+<p>.data                       @ put data in the data section
+sum:    .word 0             @ declare a label for data of word size
+num:    .word 5             @ declare a label for data of word size</p>
+<p>.global main                @ declare main as a global variable
+.type main, %function       @ set main to function type</p>
+<p>main:                       @ start of main code with an label
+    ldr r1, =num            @ Load count into R1
+    ldr r1, [r1]            @ Load count into R1
+    mov r0, #0              @ Clear accumulator R0</p>
+<p>loop:
+    add r0, r0, r1          @ Add number into R0
+    subs r1, r1, #1         @ Decrement loop counter R1
+    bgt loop                @ Branch back if not done
+    ldr r3, =sum            @ Load address of SUM to R3
+    str r0, [r3]            @ Store SUM
+    ldr r4, [r3]</p>
+<p>stop:                           @ define a new label called stop
+    nop                         @ do nothing
+    b       stop                @ jump back label stop to form a loop</p>
+<p></pre><hr/></p>
+</li>
+<li>
+<p>Execute the code above, pay attention the what is happening in each register and record the PSR flags after each arthemetic instruction and submit it as part of the post lab.</p>
+</li>
+</ol>
+<h2 id="post-lab-questions">Post-Lab Questions</h2>
+<p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
+<ol>
+<li>
+<p>Execute the code from step 4 then record the PSR flags. Copy and paste your code with PSR flags into Blackboard.</p>
+</li>
+<li>
+<p>Execute the code from step 6 then record the PSR flags. Copy and paste your code with PSR flags into Blackboard.</p>
+</li>
+<li>
+<p>Write a program that convert Celsius to Fahrenheit or from Fahrenheit to Celsius depending on the input. If the input is above 32, it will assume the value is Fahrenheit and convert it to Celsius. If not, it will assume the value is Celsius and convert it to Fahrenheit. The input will be go into R0 and it will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labeled space in memory). You can use the following as your conversion equation.</p>
+<p>C = 5 * (F - 32) / 9</p>
+<p>F = (9 * C / 5) + 32</p>
+</li>
+<li>
+<p>For the code above, take a screenshot of your register bank, your memory space showing the variable then copy your code into Blackboard.</p>
+</li>
+</ol>
+<h2 id="reference">Reference</h2>
+<p>[1] Yiu, J. (2013). The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors. (3rd ed.). Elsevier Science &amp; Technology.</p>
               
             </div>
           </div><footer>
