@@ -174,6 +174,7 @@ Similar to the previous lab.
     sum:	.word 0             @ declare a label for data of word size
     num:	.word 5             @ declare a label for data of word size
 
+    .text
     .global main                @ declare main as a global variable
     .type main, %function       @ set main to function type
 
