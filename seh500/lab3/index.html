@@ -470,7 +470,8 @@ SEH500 Microprocessors and Computer Architecture
 <p>.data                       @ put data in the data section
 sum:    .word 0             @ declare a label for data of word size
 num:    .word 5             @ declare a label for data of word size</p>
-<p>.global main                @ declare main as a global variable
+<p>.text
+.global main                @ declare main as a global variable
 .type main, %function       @ set main to function type</p>
 <p>main:                       @ start of main code with an label
     ldr r1, =num            @ Load count into R1
