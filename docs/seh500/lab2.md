@@ -160,6 +160,8 @@ Documentation of the Cortex-M4 instruction set can be found here:
 
     Is your answer correct? Copy your code into the post-lab assignment on Blackboard.
 
+1. Complete Question 3 of the post-lab.
+
 ## Post-Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
