@@ -82,14 +82,14 @@ SEH500 Microprocessors and Computer Architecture
 <li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
 </ul>
-<p>As you've seen in the previous lab, the ARM processor have a Program Status Register with 4 flags that might get set or clear depending on the previous ALU operation.</p>
+<p>As you've seen in the previous lab, the ARM processor has a Program Status Register with 4 flags that might get set or clear depending on the previous ALU operation.</p>
 <ul>
-<li>N = 1, if result was negative</li>
-<li>Z = 1, if result was zero</li>
-<li>C = 1, if result had a carry-out</li>
-<li>V = 1, if result was an overflow</li>
+<li>N = 1, if the result was negative</li>
+<li>Z = 1, if the result was zero</li>
+<li>C = 1, if the result had a carry-out</li>
+<li>V = 1, if the result was an overflow</li>
 </ul>
-<p>These flags can then be used for decision making within the program.</p>
+<p>These flags can then be used for decision-making within the program.</p>
 <p>Below are instructions that might set or clear the status flag.</p>
 <h3 id="arithmetic-instructions">Arithmetic Instructions</h3>
 <table>
@@ -312,7 +312,7 @@ SEH500 Microprocessors and Computer Architecture
 </tr>
 </tbody>
 </table>
-<p>See below for condition.</p>
+<p>See below for conditions that are set by a compare, usually CMP, instruction. The CMP Rm, Rn instruction operates Rm-Rn for the sole purpose of setting the condition flags.</p>
 <h3 id="branching-conditions">Branching Conditions</h3>
 <p>The APSR contains the following condition flags:</p>
 <ul>
@@ -419,7 +419,7 @@ SEH500 Microprocessors and Computer Architecture
 <blockquote>
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
 <ol>
-<li>Read over the label write a pseudocode for the post lab exercise 3. Copy your pseudocode into Blackboard.</li>
+<li>Read over the lab and write a pseudocode for the post-lab exercise 3. Copy your pseudocode into Blackboard.</li>
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
@@ -442,7 +442,7 @@ SEH500 Microprocessors and Computer Architecture
 .thumb                      @ use thumb encoding</p>
 <p>.global main                @ declare main as a global variable
 .type main, %function       @ set main to function type</p>
-<p>main:                           @ start of main code with an label
+<p>main:                           @ start of main code with a label
     mov r0, #7                  @ x = 7 
     mul r1, r0, r0              @ r1 = x^2 @ record register value
     mov r4, #5
@@ -459,10 +459,10 @@ SEH500 Microprocessors and Computer Architecture
 </pre><hr/></p>
 </li>
 <li>
-<p>Execute the code above, pay attention the what is happening in each register and record the PSR flags after each arthemetic instruction and submit it as part of the post lab.</p>
+<p>Execute the code above, pay attention to what is happening in each register then record the PSR flags after each arithmetic instruction and submit it as part of the post lab.</p>
 </li>
 <li>
-<p>Another example with variables and shifting. Although variables cannot be declared in the high level way of programming, it is possible to tell the assembler to automatically assign an address with a label and always reference to it using such label. Replace the code within the file with the following:</p>
+<p>Another example with variables and shifting. Although variables cannot be declared in the high-level way of programming, it is possible to tell the assembler to automatically assign an address with a label and always reference it using the same label. Replace the code within the file with the following:</p>
 <p><hr/><pre>
 .syntax unified             @ unified syntax used
 .cpu cortex-m4              @ cpu is cortex-m4
@@ -470,10 +470,10 @@ SEH500 Microprocessors and Computer Architecture
 <p>.data                       @ put data in the data section
 sum:    .word 0             @ declare a label for data of word size
 num:    .word 5             @ declare a label for data of word size</p>
-<p>.text
+<p>.text                       @ put code in the text section
 .global main                @ declare main as a global variable
 .type main, %function       @ set main to function type</p>
-<p>main:                       @ start of main code with an label
+<p>main:                       @ start of main code with a label
     ldr r1, =num            @ Load count into R1
     ldr r1, [r1]            @ Load count into R1
     mov r0, #0              @ Clear accumulator R0</p>
@@ -490,7 +490,7 @@ num:    .word 5             @ declare a label for data of word size</p>
 <p></pre><hr/></p>
 </li>
 <li>
-<p>Execute the code above, pay attention the what is happening in each register and record the PSR flags after each arthemetic instruction and submit it as part of the post lab.</p>
+<p>Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arthemetic instruction and submit it as part of the post lab.</p>
 </li>
 </ol>
 <h2 id="post-lab-questions">Post-Lab Questions</h2>
@@ -503,12 +503,12 @@ num:    .word 5             @ declare a label for data of word size</p>
 <p>Execute the code from step 6 then record the PSR flags. Copy and paste your code with PSR flags into Blackboard.</p>
 </li>
 <li>
-<p>Write a program that convert Celsius to Fahrenheit or from Fahrenheit to Celsius depending on the input. If the input is above 32, it will assume the value is Fahrenheit and convert it to Celsius. If not, it will assume the value is Celsius and convert it to Fahrenheit. The input will be go into R0 and it will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labeled space in memory). You can use the following as your conversion equation.</p>
+<p>Write a program that converts Celsius to Fahrenheit or from Fahrenheit to Celsius depending on the input. If the input is above 32, it will assume the value is Fahrenheit and convert it to Celsius. If not, it will assume the value is Celsius and convert it to Fahrenheit. The input will go into R0 and it will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labelled space in memory). You can use the following as your conversion equation.</p>
 <p>C = 5 * (F - 32) / 9</p>
 <p>F = (9 * C / 5) + 32</p>
 </li>
 <li>
-<p>For the code above, take a screenshot of your register bank, your memory space showing the variable then copy your code into Blackboard.</p>
+<p>For the code above, at the end of execution, take a screenshot of your register bank, and your memory space showing the variable then copy your code into Blackboard.</p>
 </li>
 </ol>
 <h2 id="reference">Reference</h2>

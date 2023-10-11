@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 4 : More Branching, Array and String in Assembly - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 4 : More Branching, Array and String in Assembly";
+        var mkdocs_page_input_path = "seh500/lab4.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SEH500 Microprocessors</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Lab 4 : More Branching, Array and String in Assembly</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-4-more-branching-array-and-string-in-assembly">Lab 4 : More Branching, Array and String in Assembly</h1>
+<p><font size="5">
+Seneca College</br>
+SEH500 Microprocessors and Computer Architecture
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>Documentation of the Cortex-M4 instruction set can be found here:</p>
+<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+</ul>
+<p>In the previous lab, we explored how to use the program status flags and how to perform branching. In this lab, we'll further explore branching and variables in the form of arrays and strings.</p>
+<h3 id="review-of-branching-instructions">Review of Branching Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Mnemonic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B label</td>
+<td>Branch</td>
+</tr>
+<tr>
+<td>B{cond} label</td>
+<td>Branch with condition</td>
+</tr>
+<tr>
+<td>BL label</td>
+<td>Branch with Link</td>
+</tr>
+<tr>
+<td>BL{cond} label</td>
+<td>Branch with Link with condition</td>
+</tr>
+<tr>
+<td>BX Rm</td>
+<td>Branch to register value</td>
+</tr>
+<tr>
+<td>BX{cond} Rm</td>
+<td>Branch to register value with condition</td>
+</tr>
+<tr>
+<td>BLX Rm</td>
+<td>Branch with Link to register value</td>
+</tr>
+<tr>
+<td>BLX{cond} Rm</td>
+<td>Branch with Link to register value with condition</td>
+</tr>
+</tbody>
+</table>
+<p>See below for conditions that are set by a compare, usually CMP, instruction. The CMP Rm, Rn instruction operates Rm-Rn for the sole purpose of setting the condition flags.</p>
+<h3 id="review-of-branching-conditions">Review of Branching Conditions</h3>
+<p>The APSR contains the following condition flags:</p>
+<ul>
+<li>
+<p><strong>N</strong>: Set to 1 when the result of the operation was negative, cleared to 0 otherwise.</p>
+</li>
+<li>
+<p><strong>Z</strong>: Set to 1 when the result of the operation was zero, cleared to 0 otherwise.</p>
+</li>
+<li>
+<p><strong>C</strong>: Set to 1 when the operation resulted in a carry, cleared to 0 otherwise.</p>
+</li>
+<li>
+<p><strong>V</strong>: Set to 1 when the operation caused overflow, cleared to 0 otherwise.</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Suffix</th>
+<th>Flags</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EQ</td>
+<td>Z = 1</td>
+<td>Equal</td>
+</tr>
+<tr>
+<td>NE</td>
+<td>Z = 0</td>
+<td>Not equal</td>
+</tr>
+<tr>
+<td>CS or HS</td>
+<td>C = 1</td>
+<td>Higher or same, unsigned, &gt;=</td>
+</tr>
+<tr>
+<td>CC or LO</td>
+<td>C = 0</td>
+<td>Lower, unsigned, &lt;</td>
+</tr>
+<tr>
+<td>MI</td>
+<td>N = 1</td>
+<td>Negative</td>
+</tr>
+<tr>
+<td>PL</td>
+<td>N = 0</td>
+<td>Positive or zero</td>
+</tr>
+<tr>
+<td>VS</td>
+<td>V = 1</td>
+<td>Overflow</td>
+</tr>
+<tr>
+<td>VC</td>
+<td>V = 0</td>
+<td>No overflow</td>
+</tr>
+<tr>
+<td>HI</td>
+<td>C = 1 and Z = 0</td>
+<td>Higher, unsigned, &gt;</td>
+</tr>
+<tr>
+<td>LS</td>
+<td>C = 0 or Z = 1</td>
+<td>Lower or same, unsigned, &lt;=</td>
+</tr>
+<tr>
+<td>GE</td>
+<td>N = V</td>
+<td>Greater than or equal, signed, &gt;=</td>
+</tr>
+<tr>
+<td>LT</td>
+<td>N != V</td>
+<td>Less than, signed, &lt;</td>
+</tr>
+<tr>
+<td>GT</td>
+<td>Z = 0 and N = V</td>
+<td>Greater than, signed, &gt;</td>
+</tr>
+<tr>
+<td>LE</td>
+<td>Z = 1 and N != V</td>
+<td>Less than or equal, signed, &lt;=</td>
+</tr>
+<tr>
+<td>AL</td>
+<td>Can have any value</td>
+<td>Always. This is the default when no suffix is specified.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="examples-of-compare-instructions">Examples of Compare Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Mnemonic</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CBZ R5, label</td>
+<td>Compare and branch to label if R5 is zero</td>
+</tr>
+<tr>
+<td>CBNZ R0, label</td>
+<td>Compare and branch to label if R0 is not zero</td>
+</tr>
+<tr>
+<td>CMP R2, R9</td>
+<td>Compare R2 - R9, update the N, Z, C and V flags<br/>Same as SUBS except the result is discarded</td>
+</tr>
+<tr>
+<td>CMN R0, #64</td>
+<td>Compare (negative) R0 + #64, update the N, Z, C and V flags<br/>Same as ADDS except the result is discarded</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-of-branching-instructions">Example of Branching Instructions</h3>
+<p>Following a compare instruction.</p>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B label</td>
+<td>Branch to label unconditionally</td>
+</tr>
+<tr>
+<td>BEQ label</td>
+<td>Conditionally branch to label, when Z = 1</td>
+</tr>
+<tr>
+<td>BNE label</td>
+<td>branch to label when Z = 0</td>
+</tr>
+<tr>
+<td>BMI label</td>
+<td>branch to label when N = 1</td>
+</tr>
+<tr>
+<td>BPL label</td>
+<td>branch to label when N = 0</td>
+</tr>
+<tr>
+<td>BLT label</td>
+<td>Conditionally branch to label, when N is set and V is clear or N is clear and V is set<br/>i.e. N != V</td>
+</tr>
+<tr>
+<td>BLE label</td>
+<td>Conditionally branch to label, when less than or equal, <br/>Z is set or N is set and V is clear or N is clear and V is set<br/>i.e. Z = 1 or N != V</td>
+</tr>
+<tr>
+<td>BGT  label</td>
+<td>Conditionally branch to label, when Z is clear <br/>and either N is set and V is set or N is clear and V is clear<br/>i.e.   Z = 0 and N == V</td>
+</tr>
+<tr>
+<td>BGE label</td>
+<td>Conditionally branch to label, when greater than or equal to zero, <br/>Z is set or N is set and V is clear or N is clear and V is set<br/>i.e. Z = 1 or N == V</td>
+</tr>
+<tr>
+<td>BL label</td>
+<td>Branch with link (Call) to label, with return address stored in LR (register R14)</td>
+</tr>
+<tr>
+<td>BX LR</td>
+<td>Return from function call, loading LR into PC</td>
+</tr>
+<tr>
+<td>BXNE R0</td>
+<td>Conditionally branch to address stored in R0</td>
+</tr>
+<tr>
+<td>BLX R0</td>
+<td>Branch with link (Call) to an address stored in R0,<br/>with return address stored in LR (register R14)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="register-addressing-mode">Register Addressing Mode</h3>
+<p>In addition to the basic LDR and STR, there are also a few other different ways to specify the address for load and store instructions.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Examples</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Register to register<br/>Register direct</td>
+<td>MOV R0, R1</td>
+<td></td>
+</tr>
+<tr>
+<td>Absolute<br/>Direct</td>
+<td>LDR R0, =address</td>
+<td></td>
+</tr>
+<tr>
+<td>Literal<br/>Immediate</td>
+<td>MOV R0, #15<br/>ADD R1, R2, #12</td>
+<td></td>
+</tr>
+<tr>
+<td>Indexed, base<br/>Register indirect</td>
+<td>LDR R0, [R1]</td>
+<td>Load R0<br/>with the word pointed by R1</td>
+</tr>
+<tr>
+<td>Pre-indexed, base with displacement<br/>Register indirect with offset</td>
+<td>LDR R0, [R1, #4]</td>
+<td>Load R0<br/>with the word pointed by<br/>R1+4</td>
+</tr>
+<tr>
+<td>Pre-indexed, autoindexing<br/>Register indirect pre-incrementing</td>
+<td>LDR R0, [R1, #4]!</td>
+<td>Load R0<br/>with the word pointed by<br/>R1+4 then add 4 to R1</td>
+</tr>
+<tr>
+<td>Post-indexing, autoindexed<br/>Register indirect post-increment</td>
+<td>LDR R0, [R1], #4</td>
+<td>Load R0<br/>with the word pointed by R1<br/>then add 4 to R1</td>
+</tr>
+<tr>
+<td>Double Reg indirect<br/>Register indirect register indexed</td>
+<td>LDR R0, [R1, R2]</td>
+<td>Load R0<br/>with the word pointed by<br/>R1+R2</td>
+</tr>
+<tr>
+<td>Program counter relative</td>
+<td>LDR R0, [PC, #offset]</td>
+<td>Load R0<br/>with the word pointed by<br/>PC+offset</td>
+</tr>
+</tbody>
+</table>
+<h2 id="preparation">Preparation</h2>
+<blockquote>
+<h3 id="lab-preparation-question">Lab Preparation Question</h3>
+<ol>
+<li>Read over the lab and write a pseudocode for the post-lab exercise 4. Copy your pseudocode into Blackboard.</li>
+</ol>
+</blockquote>
+<h2 id="procedures">Procedures</h2>
+<p>Similar to the previous lab.</p>
+<ol>
+<li>
+<p>Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.</p>
+</li>
+<li>
+<p>In the new project configuration, rename the project then leave all other settings as default.</p>
+</li>
+<li>
+<p>Once the project is created, rename the C-code file from ".c" to ".s". If the IDE is not allowing you to rename, delete the C-code file and create a new file of the same name but with the extension ".s".</p>
+</li>
+<li>
+<p>In the previous lab, we also explored the idea of using a label to reference address in memory used in the same manner as variables in high-level programming language, this time, we'll explore the use of string. Replace the code within the file with the following:</p>
+<p><hr/><pre>
+.syntax unified             @ unified syntax used
+.cpu cortex-m4              @ cpu is cortex-m4
+.thumb                      @ use thumb encoding</p>
+<p>.data                       @ put data in the data section
+myString: .string "Hello world!"
+    @ declare a label for a string with a null terminator</p>
+<p>.text
+.global main                @ declare main as a global variable
+.type main, %function       @ set main to function type</p>
+<p>main:
+    ldr r0, =myString       @ Load the address of myString into R0
+                            @ R0 = ?
+    mov r1, #0              @ Initialize the counter
+                            @ R1 = ?</p>
+<p>loopCount:
+    ldrb r2, [r0]           @ Load the character from the address in R0
+    cmp r2, #0              @ check for null terminator
+                            @ R2 = ? During the first loop
+                            @ R2 = ? At the end of the program
+                            @ Which ASCII characters are they?
+    beq countDone           @ If it is zero...null terminated...
+                            @ We are done with the string.
+                            @ The length is in R1.
+    add r0, #1              @ Otherwise, increment the address to the next character
+                            @ R0 = ? During the first loop
+                            @ R0 = ? At the end of the program
+    add r1, #1              @ increment the counter for length
+                            @ R1 = ? During the first loop
+                            @ R1 = ? At the end of the program
+                            @ What is the length of the string?
+    b loopCount</p>
+<p>countDone:
+stop:                           @ define a new label called stop
+    nop                         @ do nothing
+    b       stop                @ jump back label stop to form a loop
+</pre><hr/></p>
+</li>
+<li>
+<p>Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the string is saved then take a screenshot showing the memory address along with the value and ASCII character saved in it. Submit your code and screenshot it as part of the post-lab.</p>
+</li>
+<li>
+<p>In the previous code, we explored the idea of using string. In this code, we'll take a look at the use of an array. Replace the code within the file with the following:</p>
+<p><hr/><pre>
+.syntax unified             @ unified syntax used
+.cpu cortex-m4              @ cpu is cortex-m4
+.thumb                      @ use thumb encoding</p>
+<p>.data                       @ put data in the data section
+sump: .word sum              @ a pointer for sum
+pointer: .word num1          @ a pointer for num1
+n: .word 5                   @ variable n
+num1: .word 3, -7, 2, -2, 10 @ array num1 with 5 element
+sum: .word 0                 @ variable sum</p>
+<p>.text
+.global main                @ declare main as a global variable
+.type main, %function       @ set main to function type</p>
+<p>main:
+    ldr r1, =n               @ load size of array, R1 = ? 
+    @ a counter for how many elements are left to process
+    ldr r2, =pointer        @ load base pointer of array, R2 = ?
+    mov r0, #0              @ initialize counter, R0 = ?</p>
+<p>loop: <br />
+    ldr r3, [r2], #4        @ load value from array
+                            @ R3 = ? for the first loop
+                            @ R3 = ? for the second loop
+        @ increment array pointer to next word (index)
+    add r0, r0, r3          @ add value from array to counter
+                            @ R0 = ? for the first loop
+                            @ R0 = ? for the second loop
+    subs r1, r1, #1         @ decrement work counter
+                            @ R1 = ? for the first loop
+                            @ R1 = ? for the second loop
+    bgt loop                @ keep looping until the counter is zero
+    ldr r4, =sump           @ get memory address to store sum
+    str r0, [r4]            @ store answer
+    ldr r6, [r4]            @ Check the value in the sum</p>
+<p>stop:                           @ define a new label called stop
+    nop                         @ do nothing
+    b       stop                @ jump back label stop to form a loop
+</pre><hr/></p>
+</li>
+<li>
+<p>Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the array is saved then take a screenshot showing the memory address along with the value and highlight the negative. Submit your code and screenshot it as part of the post-lab.</p>
+</li>
+<li>
+<p>Lastly, the code from the first example can also be written as follows using an array instead of a string. Also, a different comparison statement is used.</p>
+<p><hr/><pre>
+.syntax unified             @ unified syntax used
+.cpu cortex-m4              @ cpu is cortex-m4
+.thumb                      @ use thumb encoding</p>
+<p>.data                       @ put data in the data section
+myString: .ascii "Hello world!\0"
+    @ declare a label for a string with a null terminator</p>
+<p>.text
+.global main                @ declare main as a global variable
+.type main, %function       @ set main to function type</p>
+<p>main:
+    ldr r0, =myString       @ Load the address of myString into R0
+    mov r1, #0              @ Initialize the counter</p>
+<p>loopCount:
+    ldrb r2, [r0], #1       @ Load the character from the address in R0
+                            @ and update the pointer R0
+    cbz r2, countDone       @ check for null terminator in one line
+                            @ If it is zero...null terminated...
+                            @ We are done with the string.
+                            @ The length is in R1.
+    add r1, #1              @ increment the counter for length
+    b loopCount</p>
+<p>countDone:
+stop:                           @ define a new label called stop
+    nop                         @ do nothing
+    b       stop                @ jump back label stop to form a loop
+</pre><hr/></p>
+</li>
+<li>
+<p>Compare the third example code with the first example code and find the difference between then explain which line got added, removed, changed and why. Also, discuss its effect on the code then put your answer in the post-lab exercise.</p>
+</li>
+</ol>
+<h2 id="post-lab-questions">Post-Lab Questions</h2>
+<p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
+<ol>
+<li>
+<p>Execute the code from step 4 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.</p>
+</li>
+<li>
+<p>Execute the code from step 6 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.</p>
+</li>
+<li>
+<p>Execute the code from step 8 then compare the difference between them. Put your answers into Blackboard.</p>
+</li>
+<li>
+<p>Write a program in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! <your name here>" (REPLACE <your name here> with your name).</p>
+<ul>
+<li>Hint: put your string into memory using the .string directive</li>
+<li>use R0 to hold the address for the string or character</li>
+<li>use R1 as the counter for vowel</li>
+<li>use R2 as the counter for non-vowel</li>
+</ul>
+</li>
+<li>
+<p>For the code above, at the end of execution, take a screenshot of your register bank, and your memory space showing the string then copy your code into Blackboard.</p>
+</li>
+</ol>
+<h2 id="reference">Reference</h2>
+<p>[1] Yiu, J. (2013). The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors. (3rd ed.). Elsevier Science &amp; Technology.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
