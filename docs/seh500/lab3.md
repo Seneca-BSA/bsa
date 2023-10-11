@@ -12,14 +12,14 @@ Documentation of the Cortex-M4 instruction set can be found here:
 - [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
 
-As you've seen in the previous lab, the ARM processor have a Program Status Register with 4 flags that might get set or clear depending on the previous ALU operation.
+As you've seen in the previous lab, the ARM processor has a Program Status Register with 4 flags that might get set or clear depending on the previous ALU operation.
 
-- N = 1, if result was negative
-- Z = 1, if result was zero
-- C = 1, if result had a carry-out
-- V = 1, if result was an overflow
+- N = 1, if the result was negative
+- Z = 1, if the result was zero
+- C = 1, if the result had a carry-out
+- V = 1, if the result was an overflow
 
-These flags can then be used for decision making within the program.
+These flags can then be used for decision-making within the program.
 
 Below are instructions that might set or clear the status flag.
 
@@ -87,7 +87,7 @@ Below are instructions that might set or clear the status flag.
 | BLX Rm | Branch with Link to register value |
 | BLX{cond} Rm| Branch with Link to register value with condition |
 
-See below for condition.
+See below for conditions that are set by a compare, usually CMP, instruction. The CMP Rm, Rn instruction operates Rm-Rn for the sole purpose of setting the condition flags.
 
 ### Branching Conditions
 
@@ -103,26 +103,26 @@ The APSR contains the following condition flags:
 
 | Suffix | Flags | Meaning |
 |---|---|---|
-| EQ | 	Z = 1 | 	Equal |
-| NE | 	Z = 0 | 	Not equal |
-| CS or HS | 	C = 1 | 	Higher or same, unsigned |
-| CC or LO | 	C = 0 | 	Lower, unsigned |
-| MI | 	N = 1 | 	Negative |
-| PL | 	N = 0 | 	Positive or zero
-| VS | 	V = 1 | 	Overflow |
-| VC | 	V = 0 | 	No overflow |
-| HI | 	C = 1 and Z = 0 | 	Higher, unsigned |
-| LS | 	C = 0 or Z = 1 | 	Lower or same, unsigned |
-| GE | 	N = V | 	Greater than or equal, signed |
-| LT | 	N != V | 	Less than, signed |
-| GT | 	Z = 0 and N = V | 	Greater than, signed |
-| LE | 	Z = 1 and N != V |  Less than or equal, signed |
-| AL | 	Can have any value | 	Always. This is the default when no suffix is specified. |
+| EQ |  Z = 1 |     Equal |
+| NE |  Z = 0 |     Not equal |
+| CS or HS |    C = 1 |     Higher or same, unsigned |
+| CC or LO |    C = 0 |     Lower, unsigned |
+| MI |  N = 1 |     Negative |
+| PL |  N = 0 |     Positive or zero
+| VS |  V = 1 |     Overflow |
+| VC |  V = 0 |     No overflow |
+| HI |  C = 1 and Z = 0 |   Higher, unsigned |
+| LS |  C = 0 or Z = 1 |    Lower or same, unsigned |
+| GE |  N = V |     Greater than or equal, signed |
+| LT |  N != V |    Less than, signed |
+| GT |  Z = 0 and N = V |   Greater than, signed |
+| LE |  Z = 1 and N != V |  Less than or equal, signed |
+| AL |  Can have any value |    Always. This is the default when no suffix is specified. |
 
 ## Preparation
 
 > ### Lab Preparation Question
-> 1. Read over the label write a pseudocode for the post lab exercise 3. Copy your pseudocode into Blackboard.
+> 1. Read over the lab and write a pseudocode for the post-lab exercise 3. Copy your pseudocode into Blackboard.
 
 ## Procedures
 
@@ -144,16 +144,16 @@ Similar to the previous lab.
     .global main                @ declare main as a global variable
     .type main, %function       @ set main to function type
 
-    main:                           @ start of main code with an label
-        mov r0, #7	                @ x = 7 
-		mul r1, r0, r0	            @ r1 = x^2 @ record register value
-		mov r4, #5
-		mul r1, r1, r4              @ r1 = 5x^2 @ record register value
-		mov r5, #6
-		mul r2, r0, r5	            @ r2 = 6x   @ record register value
-		sub r3, r1, r2	            @ r3 = 5x^2 - 6x
+    main:                           @ start of main code with a label
+        mov r0, #7                  @ x = 7 
+        mul r1, r0, r0              @ r1 = x^2 @ record register value
+        mov r4, #5
+        mul r1, r1, r4              @ r1 = 5x^2 @ record register value
+        mov r5, #6
+        mul r2, r0, r5              @ r2 = 6x   @ record register value
+        sub r3, r1, r2              @ r3 = 5x^2 - 6x
                                     @ record register value
-		add r3, r3, #8	            @ r3 = 5x^2 - 6x + 8
+        add r3, r3, #8              @ r3 = 5x^2 - 6x + 8
                                     @ record register value
 
     stop:                           @ define a new label called stop
@@ -161,9 +161,9 @@ Similar to the previous lab.
         b       stop                @ jump back label stop to form a loop
     </pre><hr/>
 
-1. Execute the code above, pay attention the what is happening in each register and record the PSR flags after each arthemetic instruction and submit it as part of the post lab.
+1. Execute the code above, pay attention to what is happening in each register then record the PSR flags after each arithmetic instruction and submit it as part of the post lab.
 
-1. Another example with variables and shifting. Although variables cannot be declared in the high level way of programming, it is possible to tell the assembler to automatically assign an address with a label and always reference to it using such label. Replace the code within the file with the following:
+1. Another example with variables and shifting. Although variables cannot be declared in the high-level way of programming, it is possible to tell the assembler to automatically assign an address with a label and always reference it using the same label. Replace the code within the file with the following:
 
     <hr/><pre>
     .syntax unified             @ unified syntax used
@@ -171,25 +171,25 @@ Similar to the previous lab.
     .thumb                      @ use thumb encoding
 
     .data                       @ put data in the data section
-    sum:	.word 0             @ declare a label for data of word size
-    num:	.word 5             @ declare a label for data of word size
+    sum:    .word 0             @ declare a label for data of word size
+    num:    .word 5             @ declare a label for data of word size
 
-    .text
+    .text                       @ put code in the text section
     .global main                @ declare main as a global variable
     .type main, %function       @ set main to function type
 
-    main:                       @ start of main code with an label
-        ldr r1, =num 		    @ Load count into R1
-        ldr r1, [r1] 		    @ Load count into R1
-	    mov r0, #0 		        @ Clear accumulator R0
+    main:                       @ start of main code with a label
+        ldr r1, =num            @ Load count into R1
+        ldr r1, [r1]            @ Load count into R1
+        mov r0, #0              @ Clear accumulator R0
 
     loop:
-	    add r0, r0, r1 		    @ Add number into R0
-	    subs r1, r1, #1 	    @ Decrement loop counter R1
-	    bgt loop 		        @ Branch back if not done
-	    ldr r3, =sum		    @ Load address of SUM to R3
-	    str r0, [r3]		    @ Store SUM
-	    ldr r4, [r3]
+        add r0, r0, r1          @ Add number into R0
+        subs r1, r1, #1         @ Decrement loop counter R1
+        bgt loop                @ Branch back if not done
+        ldr r3, =sum            @ Load address of SUM to R3
+        str r0, [r3]            @ Store SUM
+        ldr r4, [r3]
 
     stop:                           @ define a new label called stop
         nop                         @ do nothing
@@ -197,7 +197,7 @@ Similar to the previous lab.
 
     </pre><hr/>
 
-1. Execute the code above, pay attention the what is happening in each register and record the PSR flags after each arthemetic instruction and submit it as part of the post lab.
+1. Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arthemetic instruction and submit it as part of the post lab.
 
 ## Post-Lab Questions
 
@@ -207,13 +207,13 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Execute the code from step 6 then record the PSR flags. Copy and paste your code with PSR flags into Blackboard.
 
-1. Write a program that convert Celsius to Fahrenheit or from Fahrenheit to Celsius depending on the input. If the input is above 32, it will assume the value is Fahrenheit and convert it to Celsius. If not, it will assume the value is Celsius and convert it to Fahrenheit. The input will be go into R0 and it will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labeled space in memory). You can use the following as your conversion equation.
+1. Write a program that converts Celsius to Fahrenheit or from Fahrenheit to Celsius depending on the input. If the input is above 32, it will assume the value is Fahrenheit and convert it to Celsius. If not, it will assume the value is Celsius and convert it to Fahrenheit. The input will go into R0 and it will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labelled space in memory). You can use the following as your conversion equation.
 
     C = 5 * (F - 32) / 9
-	
-	F = (9 * C / 5) + 32
+    
+    F = (9 * C / 5) + 32
 
-1. For the code above, take a screenshot of your register bank, your memory space showing the variable then copy your code into Blackboard.
+1. For the code above, at the end of execution, take a screenshot of your register bank, and your memory space showing the variable then copy your code into Blackboard.
 
 ## Reference
 
