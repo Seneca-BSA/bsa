@@ -262,7 +262,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Execute the code from step 8 then compare the difference between them. Put your answers into Blackboard.
 
-1. Write a program in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! <your name here>" (REPLACE <your name here> with your name).
+1. Write a program in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! (your name here)" (REPLACE (your name here) with your name).
 
     - Hint: put your string into memory using the .string directive
     - use R0 to hold the address for the string or character
