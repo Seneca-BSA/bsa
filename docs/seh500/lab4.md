@@ -149,7 +149,8 @@ Similar to the previous lab.
         beq countDone           @ If it is zero...null terminated...
                                 @ We are done with the string.
                                 @ The length is in R1.
-        add r0, #1              @ Otherwise, increment the address to the next character
+        add r0, #1              @ Otherwise, increment the
+                                @ address to the next character
                                 @ R0 = ? During the first loop
                                 @ R0 = ? At the end of the program
         add r1, #1              @ increment the counter for length
@@ -174,18 +175,19 @@ Similar to the previous lab.
     .thumb                      @ use thumb encoding
 
     .data                       @ put data in the data section
-    sump: .word sum              @ a pointer for sum
-    pointer: .word num1          @ a pointer for num1
-    n: .word 5                   @ variable n
-    num1: .word 3, -7, 2, -2, 10 @ array num1 with 5 element
-    sum: .word 0                 @ variable sum
+    sump: .word sum             @ a pointer for sum
+    pointer: .word num1         @ a pointer for num1
+    n: .word 5                  @ variable n
+    num1: .word 3, -7, 2, -2, 10
+                                @ array num1 with 5 element
+    sum: .word 0                @ variable sum
     
     .text
     .global main                @ declare main as a global variable
     .type main, %function       @ set main to function type
 
     main:
-        ldr r1, =n               @ load size of array, R1 = ? 
+        ldr r1, =n              @ load size of array, R1 = ? 
         @ a counter for how many elements are left to process
         ldr r2, =pointer        @ load base pointer of array, R2 = ?
         mov r0, #0              @ initialize counter, R0 = ?
