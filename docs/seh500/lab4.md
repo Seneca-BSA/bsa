@@ -187,9 +187,11 @@ Similar to the previous lab.
     .type main, %function       @ set main to function type
 
     main:
-        ldr r1, =n              @ load size of array, R1 = ? 
+        ldr r1, =n
+        ldr r1, [r1]            @ load size of array, R1 = ?
         @ a counter for how many elements are left to process
-        ldr r2, =pointer        @ load base pointer of array, R2 = ?
+        ldr r2, =pointer        
+        ldr r2, [r2]            @ load base pointer of array, R2 = ?
         mov r0, #0              @ initialize counter, R0 = ?
 
     loop:   
@@ -204,7 +206,8 @@ Similar to the previous lab.
                                 @ R1 = ? for the first loop
                                 @ R1 = ? for the second loop
         bgt loop                @ keep looping until the counter is zero
-        ldr r4, =sump           @ get memory address to store sum
+        ldr r4, =sump           
+        ldr r4, [r4]            @ get memory address to store sum
         str r0, [r4]            @ store answer
         ldr r6, [r4]            @ Check the value in the sum
 
