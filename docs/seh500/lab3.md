@@ -172,7 +172,7 @@ Similar to the previous lab.
 
     .data                       @ put data in the data section
     sum:    .word 0             @ declare a label for data of word size
-    num:    .word 5             @ declare a label for data of word size
+    num:    .word 5             @ sum and num with value of 0 and 5
 
     .text                       @ put code in the text section
     .global main                @ declare main as a global variable

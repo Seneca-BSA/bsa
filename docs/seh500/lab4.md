@@ -177,10 +177,10 @@ Similar to the previous lab.
     .data                       @ put data in the data section
     sump: .word sum             @ a pointer for sum
     pointer: .word num1         @ a pointer for num1
-    n: .word 5                  @ variable n
+    n: .word 5                  @ variable n, word size, value 5
     num1: .word 3, -7, 2, -2, 10
-                                @ array num1 with 5 element
-    sum: .word 0                @ variable sum
+                                @ array num1 with 5 element, word size
+    sum: .word 0                @ variable sum, word size, value 0
     
     .text
     .global main                @ declare main as a global variable
@@ -190,7 +190,7 @@ Similar to the previous lab.
         ldr r1, =n
         ldr r1, [r1]            @ load size of array, R1 = ?
         @ a counter for how many elements are left to process
-        ldr r2, =pointer        
+        ldr r2, =pointer
         ldr r2, [r2]            @ load base pointer of array, R2 = ?
         mov r0, #0              @ initialize counter, R0 = ?
 
@@ -206,7 +206,7 @@ Similar to the previous lab.
                                 @ R1 = ? for the first loop
                                 @ R1 = ? for the second loop
         bgt loop                @ keep looping until the counter is zero
-        ldr r4, =sump           
+        ldr r4, =sump
         ldr r4, [r4]            @ get memory address to store sum
         str r0, [r4]            @ store answer
         ldr r6, [r4]            @ Check the value in the sum
