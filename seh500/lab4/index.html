@@ -143,92 +143,23 @@ SEH500 Microprocessors and Computer Architecture
 <p><strong>V</strong>: Set to 1 when the operation caused overflow, cleared to 0 otherwise.</p>
 </li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Suffix</th>
-<th>Flags</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>EQ</td>
-<td>Z = 1</td>
-<td>Equal</td>
-</tr>
-<tr>
-<td>NE</td>
-<td>Z = 0</td>
-<td>Not equal</td>
-</tr>
-<tr>
-<td>CS or HS</td>
-<td>C = 1</td>
-<td>Higher or same, unsigned, &gt;=</td>
-</tr>
-<tr>
-<td>CC or LO</td>
-<td>C = 0</td>
-<td>Lower, unsigned, &lt;</td>
-</tr>
-<tr>
-<td>MI</td>
-<td>N = 1</td>
-<td>Negative</td>
-</tr>
-<tr>
-<td>PL</td>
-<td>N = 0</td>
-<td>Positive or zero</td>
-</tr>
-<tr>
-<td>VS</td>
-<td>V = 1</td>
-<td>Overflow</td>
-</tr>
-<tr>
-<td>VC</td>
-<td>V = 0</td>
-<td>No overflow</td>
-</tr>
-<tr>
-<td>HI</td>
-<td>C = 1 and Z = 0</td>
-<td>Higher, unsigned, &gt;</td>
-</tr>
-<tr>
-<td>LS</td>
-<td>C = 0 or Z = 1</td>
-<td>Lower or same, unsigned, &lt;=</td>
-</tr>
-<tr>
-<td>GE</td>
-<td>N = V</td>
-<td>Greater than or equal, signed, &gt;=</td>
-</tr>
-<tr>
-<td>LT</td>
-<td>N != V</td>
-<td>Less than, signed, &lt;</td>
-</tr>
-<tr>
-<td>GT</td>
-<td>Z = 0 and N = V</td>
-<td>Greater than, signed, &gt;</td>
-</tr>
-<tr>
-<td>LE</td>
-<td>Z = 1 and N != V</td>
-<td>Less than or equal, signed, &lt;=</td>
-</tr>
-<tr>
-<td>AL</td>
-<td>Can have any value</td>
-<td>Always. This is the default when no suffix is specified.</td>
-</tr>
-</tbody>
-</table>
+<p>| Suffix | Flags | Meaning |f
+|---|---|---|
+| EQ | Z = 1 | Equal |
+| NE | Z = 0 | Not equal |
+| CS or HS | C = 1 | Higher or same, unsigned, &gt;= |
+| CC or LO | C = 0 | Lower, unsigned, &lt; |
+| MI | N = 1 | Negative |
+| PL | N = 0 | Positive or zero
+| VS | V = 1 | Overflow |
+| VC | V = 0 | No overflow |
+| HI | C = 1 and Z = 0 | Higher, unsigned, &gt; |
+| LS | C = 0 or Z = 1 | Lower or same, unsigned, &lt;= |
+| GE | N = V | Greater than or equal, signed, &gt;= |
+| LT | N != V | Less than, signed, &lt; |
+| GT | Z = 0 and N = V | Greater than, signed, &gt; |
+| LE | Z = 1 and N != V | Less than or equal, signed, &lt;= |
+| AL | Can have any value | Always. This is the default when no suffix is specified. |</p>
 <h3 id="examples-of-compare-instructions">Examples of Compare Instructions</h3>
 <table>
 <thead>
