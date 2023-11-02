@@ -450,14 +450,16 @@ delay:
     subs    r5, r5, #1      @ R5 = ? after first execution
     bne     delay
     pop     {r5, pc}        @ pop out the saved value from the stack, 
-                            @ check the value in the R5 and if it is the saved value
+                            @ check the value in the R5
+                            @ and see if it is the saved value
                             @ R5 = ?, PC = ?</p>
 <p>.global main                @ declare main as a global variable
 .type main, %function       @ set main to function type</p>
 <p>main:
     mov     r1, #0x75       @ SP = ? then memory monitor to SP address
     mov     r3, #10
-    push    {r0, R3}        @ SP = ? which address did #0x75 and #5 got saved to?
+    push    {r0, R3}        @ SP = ? which address did #0x75
+                            @ and #5 got saved to?
     mov     r0, #6          @ R0 = ?
     mov     r3, #7          @ R3 = ?
     pop     {r0, r3}        @ after pop, R0 = ?, R3 = ?, SP = ?
