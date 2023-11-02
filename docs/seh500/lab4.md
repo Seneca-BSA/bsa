@@ -41,7 +41,7 @@ The APSR contains the following condition flags:
 
 - **V**: Set to 1 when the operation caused overflow, cleared to 0 otherwise.
 
-| Suffix | Flags | Meaning |
+| Suffix | Flags | Meaning |f
 |---|---|---|
 | EQ | Z = 1 | Equal |
 | NE | Z = 0 | Not equal |

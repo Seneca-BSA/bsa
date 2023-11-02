@@ -1,4 +1,4 @@
-# Lab 5 : More Branching, Array and String in Assembly
+# Lab 5 : More Branching, Subroutine, and Stack
 
 <font size="5">
 Seneca College</br>
@@ -137,6 +137,7 @@ Depending on what the stack pointer points to we can categorize the stacks into 
 	for an Ascending Stack.
 
 So now we can have four possible types of stacks. They are:
+
 1. full-ascending stack,
 2. full-descending stack,
 3. empty-ascending stack,
@@ -163,7 +164,7 @@ A subroutine call can be implemented by pushing the return address on the stack 
 ## Preparation
 
 > ### Lab Preparation Question
-> 1. Read over the lab and write a pseudocode for the post-lab exercise 4. Copy your pseudocode into Blackboard.
+> 1. Read over the lab and write a pseudocode for the post-lab exercise 4. It should just be a small modification from the one your did in the previous lab. Submission on Blackboard is not required.
 
 ## Procedures
 
@@ -253,7 +254,8 @@ Similar to the previous lab.
 	    subs	r5, r5, #1      @ R5 = ? after first execution
 	    bne     delay
 	    pop     {r5, pc}        @ pop out the saved value from the stack, 
-			                    @ check the value in the R5 and if it is the saved value
+			                    @ check the value in the R5
+                                @ and see if it is the saved value
                                 @ R5 = ?, PC = ?
 
     .global main                @ declare main as a global variable
@@ -262,7 +264,8 @@ Similar to the previous lab.
     main:
         mov 	r1, #0x75       @ SP = ? then memory monitor to SP address
         mov 	r3, #10
-	    push	{r0, R3}        @ SP = ? which address did #0x75 and #5 got saved to?
+	    push	{r0, R3}        @ SP = ? which address did #0x75
+                                @ and #5 got saved to?
         mov 	r0, #6          @ R0 = ?
         mov 	r3, #7          @ R3 = ?
 	    pop     {r0, r3}        @ after pop, R0 = ?, R3 = ?, SP = ?
