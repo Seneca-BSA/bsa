@@ -194,7 +194,6 @@ Similar to the previous lab.
     stop:                           @ define a new label called stop
         nop                         @ do nothing
         b       stop                @ jump back label stop to form a loop
-
     </pre><hr/>
 
 1. Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arthemetic instruction and submit it as part of the post lab.
