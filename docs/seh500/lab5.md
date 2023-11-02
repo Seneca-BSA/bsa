@@ -294,7 +294,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Execute the code from step 6 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
 
-1. Rewrite the program from the last lab in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! (your name here)" (REPLACE (your name here) with your name). But this time, you must use at least one subroutine in your code.
+1. Rewrite the program from the last lab in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! (your name here)" (REPLACE (your name here) with your name). But this time, you must use at least one subroutine in your code along with the stack.
 
     - Hint: put your string into memory using the .string directive
     - use R0 to hold the address for the string or character
