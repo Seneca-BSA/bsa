@@ -34,24 +34,24 @@ Similar to the previous lab.
 
 1. In previous labs, we wrote all of our code in assembly language using the .s file extension. In this lab, we are going to explore how to integrate C-code together with assembly code in a single project. The first way of integrating assembly code into a C-program is by using the inline assembler method.
 
-    ```
+    <pre>
     __asm volatile (" <Assembly Code Here> ");
-    ```
+    </pre>
 
     Replace (or comment out) the PRINTF "Hello World" line with the following:
 
-    ```
+    <pre>
     __asm volatile (" mov r1, #0x75 ");
-    ```
+    </pre>
 
 1. Build and create the dissambly code (or from the dissambly view window during debug). Find the inline assembly code that you wrote. Take a screenshot of it and confirm that the C-code and the assembly code are the same. Paste your result into the Post-Lab question on blackboard.
 
 1. You can also write multi-line inline assembly code as below. As the __asm function is direct replicate of what you wrote into assembly, you'll need to use newline character to specify a newline in assembly. You can also align your C-code to make it more readable.
 
-    ```
+    <pre>
     __asm volatile (" mov r1, #0x75 \n"
                     " mov r3, #10 ");
-    ```
+    </pre>
 
 1. Open up [Lab 5](lab5.md) and transfer the code from the main label (up to but not including the code within the loop) into inline assembly code and include it into the inline code you have.
 
@@ -92,25 +92,27 @@ Similar to the previous lab.
     
     Paste the following handler code into your program.
 
-    ```
+    <pre>
     void PIT_CHANNEL_0_IRQHANDLER(void) /*ISR to process PIT channel 0 interrupts*/
     {
         PIT_ClearStatusFlags(PIT, PIT_CHANNEL_0, kPIT_TimerFlag); /*clear PIT channel 0 interrupt status flag*/
         PRINTF("*\r\n");
     }
-    ```
+    </pre>
 
     Then use the following code to start the PIT in your main function. You can put it at the beginning of main after all the initialization or just before the empty while loop.
 
-    ```
+    <pre>
     PIT_StartTimer(PIT_PERIPHERAL, PIT_CHANNEL_0);
-    ```
+    </pre>
 
 1. Build and debug. Open a serial monitor to see the serial output. Let the program run and you should see an "*" being printed every second.
 
 ## Post-Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
+
+1. Answer all the questions in the lab in Blackboard.
 
 1. Modify your code so instead of printing "*" every second, print a statement that display the number of minutes and seconds since the timer started.
 
