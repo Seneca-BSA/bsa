@@ -98,7 +98,7 @@ Similar to the previous lab.
     void PIT_CHANNEL_0_IRQHANDLER(void) /*ISR to process PIT channel 0 interrupts*/
     {
         PIT_ClearStatusFlags(PIT, PIT_CHANNEL_0, kPIT_TimerFlag);
-        /*clear PIT channel 0 interrupt status flag*/
+        //clear PIT channel 0 interrupt status flag
         PRINTF("*\r\n");
     }
     </pre>
