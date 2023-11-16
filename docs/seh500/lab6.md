@@ -106,7 +106,7 @@ Similar to the previous lab.
     PIT_StartTimer(PIT_PERIPHERAL, PIT_CHANNEL_0);
     </pre>
 
-1. Build and debug. Open a serial monitor to see the serial output. Let the program run and you should see an "*" being printed every second.
+1. Build and debug. Open a serial monitor to see the serial output. Let the program run and you should see an "*" being printed every second. Verify with a watch that the output is once per second. Take a screenshot of your serial monitor output and paste it into blackboard.
 
 ## Post-Lab Questions
 
