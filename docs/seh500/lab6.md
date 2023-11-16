@@ -80,7 +80,7 @@ Similar to the previous lab.
 
 1. Your task now is to translate the assembly code in the loop portion of Lab5 to C-code without using any assembly code except for moving data into register 5. You can use a for loop or a while loop. After you are done and get the desired result, compare the compiled assembly code with the one we have from Lab5 and comment on the difference. The code that you write should still be on top of the while(1) loop. Copy or take a screenshot of your loop and it's assembly code and paste it into Blackboard.
 
-1. Lastly, we are going to include a periodic interrupt timer (PIT) into our code to generate an interrupt once every second. We'll use the built-in ConfigTools in MCUXpresso for ease of implementation. The ConfigTools allow us to setup components of the processor and the microcontroller board in a quick and fast manner instead of manually coding all the necessary settings. Go to "ConfigTools > Peripherals" from the top menu. Under "Peripheral drivers (Device specific)" add the "PIT" configuration components.
+1. Lastly, we are going to include a periodic interrupt timer (PIT) into our code to generate an interrupt once every second. We'll use the built-in ConfigTools in MCUXpresso for ease of implementation. The ConfigTools allow us to setup components of the processor and the microcontroller board in a quick and fast manner instead of manually coding all the necessary settings. Go to "ConfigTools > Peripherals" from the top menu. In the "Components" tab, Under "Peripheral drivers (Device specific)" add the "PIT" configuration components.
 
 1. Under the PIT settings, **uncheck** "start channel". Leave everything default so the setting page should look like this:
 
