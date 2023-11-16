@@ -456,9 +456,9 @@ delay:
 <p>.global main                @ declare main as a global variable
 .type main, %function       @ set main to function type</p>
 <p>main:
-    mov     r1, #0x75       @ SP = ? then memory monitor to SP address
+    mov     r0, #0x75       @ SP = ? then memory monitor to SP address
     mov     r3, #10
-    push    {r0, R3}        @ SP = ? which address did #0x75
+    push    {r0, r3}        @ SP = ? which address did #0x75
                             @ and #5 got saved to?
     mov     r0, #6          @ R0 = ?
     mov     r3, #7          @ R3 = ?
