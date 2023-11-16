@@ -95,7 +95,8 @@ Similar to the previous lab.
     <pre>
     void PIT_CHANNEL_0_IRQHANDLER(void) /*ISR to process PIT channel 0 interrupts*/
     {
-        PIT_ClearStatusFlags(PIT, PIT_CHANNEL_0, kPIT_TimerFlag); /*clear PIT channel 0 interrupt status flag*/
+        PIT_ClearStatusFlags(PIT, PIT_CHANNEL_0, kPIT_TimerFlag);
+        /*clear PIT channel 0 interrupt status flag*/
         PRINTF("*\r\n");
     }
     </pre>
@@ -114,7 +115,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Answer all the questions in the lab in Blackboard.
 
-1. Modify your code so instead of printing "*" every second, print a statement that display the number of minutes and seconds since the timer started.
+1. Modify your code so instead of printing "*" every second, print a statement that display the number of minutes and seconds since the timer started. Paste your code into blackboard.
 
 ## Reference
 
