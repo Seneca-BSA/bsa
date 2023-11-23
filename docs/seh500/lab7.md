@@ -124,19 +124,19 @@ Similar to the previous lab.
 1. Lastly, add the following code at the end of your program and comment out or remove the function call to the assembly code. Run your code and the LED should turn on and off as you press the buttons.
 
     <pre>
-    void SW2_GPIOC_IRQHANDLER(void) /*Interrupt Service Routine for SW2*/
+    void SW2_GPIOC_IRQHANDLER(void) //Interrupt Service Routine for SW2
     {
-        /* clear interrupt flag set by button SW2 connected to pin PTC6 */
+        // clear interrupt flag set by button SW2 connected to pin PTC6
         GPIO_PortClearInterruptFlags(GPIOC, 1U << 6U);
         LED_RED_ON();
-        /* turn ON RED LED */
+        // turn ON RED LED
     }
-    void SW3_GPIOA_IRQHANDLER(void) /*Interrupt Service Routine for SW3*/
+    void SW3_GPIOA_IRQHANDLER(void) //Interrupt Service Routine for SW3
     {
-        /* clear interrupt flag set by button SW3 connected to pin PTA4 */
+        // clear interrupt flag set by button SW3 connected to pin PTA4
         GPIO_PortClearInterruptFlags(GPIOA, 1U << 4U);
         LED_RED_OFF();
-        /* turn OFF RED LED */
+        // turn OFF RED LED
     }
     </pre>
 
