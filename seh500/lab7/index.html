@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 7 : GPIO and Interrupt - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 7 : GPIO and Interrupt";
+        var mkdocs_page_input_path = "seh500/lab7.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SEH500 Microprocessors</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Lab 7 : GPIO and Interrupt</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-7-gpio-and-interrupt">Lab 7 : GPIO and Interrupt</h1>
+<p><font size="5">
+Seneca College</br>
+SEH500 Microprocessors and Computer Architecture
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
+<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a></li>
+</ul>
+<p>In the previous lab, we explored the use of the built-in ConfigTools in MCUXpresso IDE to help with setting up interrupts. In this lab, we'll explore how to use assembly instruction to setup GPIO as well as using the ConfigTools to do the same.</p>
+<h3 id="freedom-board-tricolour-led">Freedom Board Tricolour LED</h3>
+<p>The Tricolour LED on the Freedom K64 board is connected to:
+- <strong>Red</strong>: Port B Pin 22
+- <strong>Blue</strong>: Port B Pin 21
+- <strong>Green</strong>: Port E Pin 26</p>
+<pre><code>![Figure 7.1 Tricolour LED connection and schematics](lab7-leds.png)
+
+***Figure 7.1** Tricolour LED connection and schematics*
+</code></pre>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
+</div>
+
+<h3 id="freedom-board-buttons">Freedom Board Buttons</h3>
+<p>The Tricolour LED on the Freedom K64 board is connected to:
+- <strong>SW2</strong>: Port C Pin 6
+- <strong>SW3</strong>: Port A Pin 4</p>
+<pre><code>![Figure 7.2 Buttons connection](lab7-buttons.png)
+
+***Figure 7.2** Buttons connection*
+</code></pre>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
+</div>
+
+<h2 id="preparation">Preparation</h2>
+<blockquote>
+<h3 id="lab-preparation-question">Lab Preparation Question</h3>
+<ol>
+<li>Read over the lab and understand the procedures.</li>
+</ol>
+</blockquote>
+<h2 id="procedures">Procedures</h2>
+<p>Similar to the previous lab.</p>
+<ol>
+<li>
+<p>Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.</p>
+</li>
+<li>
+<p>In the new project configuration, we can keep everything to default as we won't be using the timer interrupt.</p>
+</li>
+<li>
+<p>First, we'll setup the GPIO for the LED output using assembly code. Create a file called function.s in the source folder. Write the following code to it. In the code, we created two functions, one for setting up the pins as GPIO output and another for turning the LED on and off.</p>
+<p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
+</div></p>
+<p><hr/><pre>
+.syntax unified             @ unified syntax used
+.cpu cortex-m4              @ cpu is cortex-m4
+.thumb                      @ use thumb encoding</p>
+<p>.text                       @ put code in the code section</p>
+<p>.global setup               @ declare as a global variable
+.type setup, %function      @ set to function type</p>
+<p>setup:
+    ldr r1, =0x4004A058     @ PTB22 PCR register address
+    mov r0, #0x00000100     @ set to GPIO mode
+    str r0, [r1]            @ apply setting
+    ldr r1, =0x400FF054     @ GPIOB PDDR register address
+    mov r0, #0x00400000     @ set to output mode
+    str r0, [r1]            @ apply setting
+    bx  lr</p>
+<p>.global function1           @ declare as a global variable
+.type function1, %function  @ set to function type</p>
+<p>function1:
+    ldr r1, =0x400FF040     @ GPIOB PDOR register address
+led_off:
+    mov r0, #0x00400000     @ set output to HIGH, LED off
+    str r0, [r1]            @ apply setting
+led_on:
+    mov r0, #0x00000000     @ set output to LOW, LED on
+    str r0, [r1]            @ apply setting
+    b   led_off
+</pre><hr/></p>
+<p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
+</div></p>
+</li>
+<li>
+<p>Next, place a "setup" and "function1" function prototype at the top of your code and function calls before the while loop in your main function. You can also comment out or remove the print statement.</p>
+</li>
+<li>
+<p>Build and run your code in debug mode. Step Over (F6) the initial functions until you get to the setup function. Then Step Into (F5) the led_setup and the function1 function. While you are stepping through the code, the RED led should turn on and off. Take a photo of your led turning on and paste it into Blackboard.</p>
+</li>
+<li>
+<p>Next, we'll setup an interrupt with the onboard switch to control the LED. To do that, we'll use the ConfigTools to help setup the interrupt as setting it up using assembly require knowledge of the vector table (a more lengthy process). Open the ConfigTools &gt; Config Tools Overview windows. Under Pins Functional groups, enable BOARD_InitPins, BOARD_InitBUTTONsPins, BOARD_InitLEDsPins, and BOARD_InitDEBUG_UARTPins. Under Peripherals Functional groups, enable BOARD_InitPeripherals. Close and Update Code.</p>
+<p><img alt="Figure 7.3" src="../lab7-config-overview.png" /></p>
+<p><strong><em>Figure 7.3</em></strong></p>
+</li>
+<li>
+<p>Next, open the ConfigTools &gt; Peripherals Windows. On the left hand side, go to the Peripherals tab. Check GPIOC and check Enable interrupt request. Afterward, click Enable custom handler name and we'll name it: SW2_GPIOC_IRQHANDLER. Update code.</p>
+<p><img alt="Figure 7.4" src="../lab7-interrupt.png" /></p>
+<p><strong><em>Figure 7.4</em></strong></p>
+</li>
+<li>
+<p>Repeat the same for switch 3 in GPIOA. Name the handler as SW3_GPIOA_IRQHANDLER.</p>
+</li>
+<li>
+<p>Lastly, add the following code at the end of your program and comment out or remove the function call to the assembly code. Run your code and the LED should turn on and off as you press the buttons.</p>
+<p><pre>
+void SW2_GPIOC_IRQHANDLER(void) /<em>Interrupt Service Routine for SW2</em>/
+{
+    /<em> clear interrupt flag set by button SW2 connected to pin PTC6 </em>/
+    GPIO_PortClearInterruptFlags(GPIOC, 1U &lt;&lt; 6U);
+    LED_RED_ON();
+    /<em> turn ON RED LED </em>/
+}
+void SW3_GPIOA_IRQHANDLER(void) /<em>Interrupt Service Routine for SW3</em>/
+{
+    /<em> clear interrupt flag set by button SW3 connected to pin PTA4 </em>/
+    GPIO_PortClearInterruptFlags(GPIOA, 1U &lt;&lt; 4U);
+    LED_RED_OFF();
+    /<em> turn OFF RED LED </em>/
+}
+</pre></p>
+</li>
+</ol>
+<h2 id="post-lab-questions">Post-Lab Questions</h2>
+<p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
+<ol>
+<li>
+<p>Answer all the questions in the lab in Blackboard.</p>
+</li>
+<li>
+<p>Modify your code so all three colours of the LED will turn on and off for the two examples done in the lab.</p>
+</li>
+</ol>
+<h2 id="reference">Reference</h2>
+<p>[1] Yiu, J. (2013). The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors. (3rd ed.). Elsevier Science &amp; Technology.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
