@@ -18,7 +18,7 @@ In the previous lab, we explored how to use basic branching to control the flow 
 ## Preparation
 
 > ### Lab Preparation Question
-> 1. Read over the lab and write a pseudocode for the post-lab exercise 4. It should just be a small modification from the one your did in the previous lab. Submission on Blackboard is not required.
+> 1. Read over the lab and understand the procedures.
 
 ## Procedures
 
@@ -28,9 +28,9 @@ Similar to the previous lab.
 
 1. In the new project configuration, this time, also select "pit" as one of the rename the project then leave all other settings as default.
 
-    ![Figure 6.1 Seneca MyApps](lab6-pit.png)
+    ![Figure 6.1 Select pit in the project setting](lab6-pit.png)
 
-    ***Figure 6.1** Seneca MyApps*
+    ***Figure 6.1** Select pit in the project setting*
 
 1. In previous labs, we wrote all of our code in assembly language using the .s file extension. In this lab, we are going to explore how to integrate C-code together with assembly code in a single project. The first way of integrating assembly code into a C-program is by using the inline assembler method.
 
@@ -84,9 +84,9 @@ Similar to the previous lab.
 
 1. Under the PIT settings, **uncheck** "start channel". Leave everything default so the setting page should look like this:
 
-    ![Figure 6.2 Seneca MyApps](lab6-pit-settings.png)
+    ![Figure 6.2 PIT settings](lab6-pit-settings.png)
 
-    ***Figure 6.2** Seneca MyApps*
+    ***Figure 6.2** PIT settings*
 
 1. Once confirmed, click "Update Code" at the top menu button bar and click yes when prompted. The peripherals.c and peripherals.h will not be updated accordingly to include the timer interrupt settings.
 
