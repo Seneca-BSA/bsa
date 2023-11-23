@@ -25,9 +25,9 @@ The Tricolour LED on the Freedom K64 board is connected to:
 - **Blue**: Port B Pin 21
 - **Green**: Port E Pin 26
 
-    ![Figure 7.1 Tricolour LED connection and schematics](lab7-leds.png)
+![Figure 7.1 Tricolour LED connection and schematics](lab7-leds.png)
 
-    ***Figure 7.1** Tricolour LED connection and schematics*
+***Figure 7.1** Tricolour LED connection and schematics*
 
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
@@ -39,9 +39,9 @@ The Tricolour LED on the Freedom K64 board is connected to:
 - **SW2**: Port C Pin 6
 - **SW3**: Port A Pin 4
 
-    ![Figure 7.2 Buttons connection](lab7-buttons.png)
+![Figure 7.2 Buttons connection](lab7-buttons.png)
 
-    ***Figure 7.2** Buttons connection*
+***Figure 7.2** Buttons connection*
 
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
