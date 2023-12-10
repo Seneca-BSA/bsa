@@ -77,6 +77,9 @@ Similar to the previous lab.
     .type setup, %function      @ set to function type
 
     setup:
+        ldr r1, =0x40048038     @ System Clock Gate register
+        mov r0, #0x00000400     @ enable gating for port B
+        str r0, [r1]            @ apply setting
         ldr r1, =0x4004A058		@ PTB22 PCR register address
         mov r0, #0x00000100		@ set to GPIO mode
         str r0, [r1]			@ apply setting
@@ -121,7 +124,7 @@ Similar to the previous lab.
 
 1. Repeat the same for switch 3 in GPIOA. Name the handler as SW3_GPIOA_IRQHANDLER.
 
-1. Lastly, add the following code at the end of your program and comment out or remove the function call to the assembly code. Run your code and the LED should turn on and off as you press the buttons.
+1. Lastly, add the following two functions at the end of your program (outside of your main function) and comment out or remove the function call to the assembly code. Run your code and the LED should turn on and off as you press the buttons.
 
     <pre>
     void SW2_GPIOC_IRQHANDLER(void) //Interrupt Service Routine for SW2
