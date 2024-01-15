@@ -13,6 +13,7 @@ SES250 Electromagnatics
 ## Materials/Equipment required by each student
 - Safety Glasses
 - Bound Notebook
+- Lab Electronics Kit (Details TBA)
 
 More details on where you can purchase them can be found in the [Lab Supplies](supplies.md) page.
 

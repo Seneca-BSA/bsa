@@ -35,7 +35,13 @@ Also included on the list are some of the places you can purchase the items. The
 
 | Item | [Canada Robotix](https://www.canadarobotix.com/) | [Creatron](https://www.creatroninc.com/) | [Sayal](https://sayal.com/) |
 | --- | --- | --- | --- |
-| Full-size Breadboard | [Breadboard](https://www.canadarobotix.com/products/160) | [Breadboard](https://www.creatroninc.com/product/full-size-breadboard-white/) | [Breadboard with Jumper Wire](https://secure.sayal.com/STORE4/prodetails.php?SKU=162075) |
-| Jumper Wires | [Jumper Wire Kit](https://www.canadarobotix.com/products/158) | [Jumper Wire Kit](https://www.creatroninc.com/product/22awg-hookup-wire-box-140pcs/) | [Breadboard with Jumper Wire](https://secure.sayal.com/STORE4/prodetails.php?SKU=162075) |
-| 1kΩ 1/4W 5% Resistor | [5pcs](https://www.canadarobotix.com/products/708) | [10pcs](https://www.creatroninc.com/product/1-4w-5-resistor-10-pack/) | [10pcs](https://secure.sayal.com/STORE4/prodetails.php?SKU=198462) |
-| 10kΩ 1/4W 5% Resistor | [5pcs](https://www.canadarobotix.com/products/918) | [10pcs](https://www.creatroninc.com/product/1-4w-5-resistor-10-pack/) | [10pcs](https://secure.sayal.com/STORE4/prodetails.php?SKU=198840) |
+| (1x) Full-size Breadboard | [Breadboard](https://www.canadarobotix.com/products/160) | [Breadboard](https://www.creatroninc.com/product/full-size-breadboard-white/) | [Breadboard with Jumper Wire](https://secure.sayal.com/STORE4/prodetails.php?SKU=162075) |
+| (20x) Jumper Wires | [Jumper Wire Kit](https://www.canadarobotix.com/products/158) | [Jumper Wire Kit](https://www.creatroninc.com/product/22awg-hookup-wire-box-140pcs/) | [Breadboard with Jumper Wire](https://secure.sayal.com/STORE4/prodetails.php?SKU=162075) |
+| (5x) 100Ω 1/4W 5% Resistor | | | |
+| (5x) 330Ω 1/4W 5% Resistor | | | |
+| (5x) 1kΩ 1/4W 5% Resistor | | | |
+| (5x) 4.7kΩ 1/4W 5% Resistor | | | |
+| (5x) 10kΩ 1/4W 5% Resistor | | | |
+| (2x) 100nF 50V 20% Ceramic Capacitor | | | |
+| (2x) 10μF 50V 20% Electrolytic Capacitor | | | |
+| (2x) 100μF 50C 20% Electrolytic Capacitor | | | |
