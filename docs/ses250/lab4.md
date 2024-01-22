@@ -5,12 +5,12 @@ Seneca College</br>
 SES250 Electromagnatics
 </font>
 
-## Objectives
+## Purposes
 - To study the relationship between voltage, resistance, and current
 - To explore direct current (DC)
 - To verify Ohm's Law
 
-## Purpose
+## Objectives
 - Assemble electronic components onto a breadboard
 - Measurements voltage from a breadboard using a digital multimeter (DMM)
 
@@ -26,46 +26,7 @@ SES250 Electromagnatics
 
 ## Description
 
-Direct current (DC) is the one-directional flow of electric charge. An electrochemical cell is a prime example of DC power. Direct current may flow through a conductor such as a wire, but can also flow through semiconductors, insulators, or even through a vacuum as in electron or ion beams. The electric current flows in a constant direction, distinguishing it from alternating current (AC).
 
-Source: [Wikipedia: Direct Current](https://en.wikipedia.org/wiki/Direct_current)
-
-A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element. In electronic circuits, resistors are used to reduce current flow, adjust signal levels, divide voltages, bias active elements, and terminate transmission lines, among other uses. A resistor’s resistance is specified by a colour code on the resistor as per Figure 4.1.
-
-Source: [Wikipedia: Resistor](https://en.wikipedia.org/wiki/Resistor)
-
-![Figure 4.1 Resistor Band Colour](lab4-resistor.png)
-
-***Figure 4.1** Resistor Band Colour*
-
-An electronics breadboard is a solderless circuit prototyping board. They are great for making temporary circuits and prototyping, and they require no soldering.
-
-Source: [SparkFun: How to User a Breadboard](https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all)
-
-The internal conductive strip of the breadboard is assembly such a way that:
-
-- all tie points of the top power rail (labelled red) are inter-connected
-- all tie points of the top ground rail (labelled blue) are inter-connected
-- all tie points of the bottom power rail (labelled red) are inter-connected
-- all tie points of the bottom ground rail (labelled blue) are inter-connected
-- each row (1-63) from column “a” to “e” are inter-connected
-- each row (1-63) from column “f” to “j” are inter-connected
-
-Figures 4.2 and 4.3 are photos of a full-size breadboard and a half-size breadboard. Note how the tie-points are connected together by the metal strips. Only one component connection should connect to each tie-point.
-
-![Figure 4.2 Full-Size 830 Tie Points Breadboard](lab4-full-size-breadboard.png)
-
-***Figure 4.2** Full-Size 830 Tie Points Breadboard*
-
-![Figure 4.3 Half-Size 400 Tie Points Breadboard and Showing of Internal Conductive Strips](lab4-half-size-breadboard.png)
-
-***Figure 4.3** Half-Size 400 Tie Points Breadboard and Showing of Internal Conductive Strips*
-
-When expressing an electronic circuit in a diagram, circuit symbols are used. Below are some of the circuit symbols that you'll see in the lab.
-
-![Figure 4.4 Circuit Symbols](lab4-circuit-symbols.png)
-
-***Figure 4.4** Circuit Symbols*
 
 ## Materials
 - 1kΩ or similar value resistor

@@ -4,8 +4,8 @@
 - [Lab Safety](safety.md)
 - [Lab Supplies](supplies.md)
 - [Lab 1 : Electrostatics and Triboelectric Series](lab1.md)
+- [Lab 2 : Digital Multimeter, Power Supply, and Ohm's Law](lab2.md)
 <!--
-- [Lab 2 : Triboelectric Series](lab2.md)
 - [Lab 3 : Digital Multimeter](lab3.md)
 - [Lab 4 : DC Circuit](lab4.md)
 - [Lab 5 : Capacitor and Resistor Circuit](lab5.md)

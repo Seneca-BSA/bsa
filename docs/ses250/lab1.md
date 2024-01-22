@@ -5,12 +5,12 @@ Seneca College</br>
 SES250 Electromagnatics
 </font>
 
-## Objectives
+## Purposes
 - To demonstrate that there are two types of electric charges in nature
 - To be familiar with scientific experimental techniques
 - Use experimental observation and apply logical reasoning to build a triboelectric series
 
-## Purpose
+## Objectives
 - Perform qualitative observation of the following:
     - the separation of electric charges by friction
     - the existence of two types of charges
