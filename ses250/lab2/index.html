@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 2 : Triboelectric Series - BSA Lab Manuals</title>
+    <title>Lab 2 : Digital Multimeter, Power Supply, and Ohm's Law - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 2 : Triboelectric Series";
+        var mkdocs_page_name = "Lab 2 : Digital Multimeter, Power Supply, and Ohm\u0027s Law";
         var mkdocs_page_input_path = "ses250/lab2.md";
         var mkdocs_page_url = null;
       </script>
@@ -47,7 +47,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded System</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
                   </li>
               </ul>
       </div>
@@ -64,7 +64,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Lab 2 : Triboelectric Series</li>
+      <li>Lab 2 : Digital Multimeter, Power Supply, and Ohm's Law</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -73,99 +73,137 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-2-triboelectric-series">Lab 2 : Triboelectric Series</h1>
+                <h1 id="lab-2-digital-multimeter-power-supply-and-ohms-law">Lab 2 : Digital Multimeter, Power Supply, and Ohm's Law</h1>
 <p><font size="5">
 Seneca College</br>
 SES250 Electromagnatics
 </font></p>
+<h2 id="purposes">Purposes</h2>
+<ul>
+<li>To learn how to operate the power supply and digital multimeter (DMM)</li>
+<li>To become familiar with measurement techniques of direct current (DC)</li>
+<li>To study the relationship between voltage, resistance, and current</li>
+<li>To verify Ohm's Law</li>
+</ul>
 <h2 id="objectives">Objectives</h2>
 <ul>
-<li>To compare the electrostatic properties of various insulating and conducting materials</li>
-<li>To be familiar with scientific experimental techniques</li>
-<li>Use experimental observation and apply logical reasoning to build a triboelectric series</li>
+<li>Operate a DC power supply</li>
+<li>Setup and read measurements from a digital multimeter (DMM)</li>
+<li>Assemble electronic components onto a breadboard</li>
+<li>Measurements voltage from a breadboard using a digital multimeter (DMM)</li>
 </ul>
-<h2 id="purpose">Purpose</h2>
-<ul>
-<li>Perform qualitative observation between various charged materials</li>
-<li>Categorization of materials based on the triboelectric effect</li>
-</ul>
+<h2 id="important-rules-for-this-lab">Important Rules for this Lab</h2>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ol>
+<li>Any signal (voltage, current) must be adjusted to the specified value (amplitude and/or frequency) <strong>before</strong> applying them to a circuit.</li>
+<li>An instrument must be set up for the required mode of operation <strong>before</strong> it is connected to a circuit.</li>
+<li>The power supply must be switched off <strong>before</strong> making any changes to the circuit.</li>
+</ol>
+</div>
+
 <h2 id="description">Description</h2>
-<blockquote>
-<p>"The triboelectric series ranks various materials according to their tendency to gain or lose electrons, which reflects the natural physical property of materials. Static electricity occurs when there is an excess of positive or negative charges on an object’s surface by rubbing certain materials together. The position of the material in the triboelectric series determines how effectively the charges will be exchanged. Normally, the build-up of static electricity would be undesirable because it can result in product failure or a serious safety hazard11,12 caused by electrostatic discharge and/or electrostatic attraction. This series can be used to select materials that will minimize static charging to prevent the electrostatic discharge or electrostatic attraction."</p>
-<p>Source: <a href="https://www.nature.com/articles/s41467-019-09461-x">Quantifying the triboelectric series by Zou et. al.</a></p>
-</blockquote>
-<p>In this lab, similar to <a href="../lab1/">Lab 1</a>, the attractive and/or repulsive electrostatic force between charged objects will be observed using a setup shown in Figure 2.1.</p>
-<p><img alt="Figure 2.1 Lab 1 Setup" src="../lab1-setup.png" /></p>
-<p><em><strong>Figure 2.1</strong> Lab 2 Setup</em></p>
-<p>You will use the technique and experimental method you acquired in Lab 1 to rank four materials (Plastic Wrap, Plastic Rod, Silk Cloth or Cotton Cloth and Wooden Dowel) into a triboelectric series.</p>
+<h3 id="direct-current-dc">Direct Current (DC)</h3>
+<p>Direct current (DC) is the one-directional flow of electric charge. An electrochemical cell is a prime example of DC power. Direct current may flow through a conductor such as a wire, but can also flow through semiconductors, insulators, or even through a vacuum as in electron or ion beams. The electric current flows in a constant direction, distinguishing it from alternating current (AC).</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Direct_current">Wikipedia: Direct Current</a></p>
+<h3 id="digital-multimeter-dmm">Digital Multimeter (DMM)</h3>
+<p>A multimeter is a measuring instrument that can measure multiple electrical properties. A typical multimeter can measure voltage, resistance, and current. However, some multimeters, such as the one in the electronics lab, can also measure capacitance. Digital multimeters (DMM) have numeric displays and have made analog multimeters obsolete as they are cheaper, more precise, and more physically robust than analog multimeters.</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Multimeter">Wikipedia: Multimeter</a></p>
+<p><img alt="Figure 2.1 Keysight 34461A Digital Multimeter" src="../lab2-DMM.png" /></p>
+<p><em><strong>Figure 2.1</strong> Keysight 34461A Digital Multimeter</em></p>
+<p>In the electronics lab, you will be using a Keysight 34461A (or similar) Digital Multimeter. Its manual can be found here: <a href="../lab2-DMM-manual.pdf">DMM Manual</a></p>
+<h3 id="direct-current-dc-power-supply">Direct Current (DC) Power Supply</h3>
+<p>An adjustable DC power supply converts electricity from the power grid to a specified voltage and current and then provides them at its output connector.</p>
+<p><img alt="Figure 2.2 Agilent E3632A DC Power Supply" src="../lab2-PS.png" /></p>
+<p><em><strong>Figure 2.2</strong> Agilent E3632A DC Power Supply</em></p>
+<p>In the electronics lab, you will be using an Agilent E3632A (or E3631A or similar) DC Power Supply. Its manual can be found here: <a href="../lab2-PS-manual.pdf">DC Power Supply Manual</a></p>
+<h3 id="resistor">Resistor</h3>
+<p>A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element. In electronic circuits, resistors are used to reduce current flow, adjust signal levels, divide voltages, bias active elements, and terminate transmission lines, among other uses. A resistor’s resistance is specified by a colour code on the resistor as per Figure 2.3.</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Resistor">Wikipedia: Resistor</a></p>
+<p><img alt="Figure 2.3 Resistor Band Colour" src="../lab2-resistor.png" /></p>
+<p><em><strong>Figure 2.3</strong> Resistor Band Colour</em></p>
+<h3 id="breadboard">Breadboard</h3>
+<p>An electronics breadboard is a solderless circuit prototyping board. They are great for making temporary circuits and prototyping, and they require no soldering.</p>
+<p>Source: <a href="https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all">SparkFun: How to User a Breadboard</a></p>
+<p>The internal conductive strip of the breadboard is assembly such a way that:</p>
+<ul>
+<li>all tie points of the top power rail (labelled red) are inter-connected</li>
+<li>all tie points of the top ground rail (labelled blue) are inter-connected</li>
+<li>all tie points of the bottom power rail (labelled red) are inter-connected</li>
+<li>all tie points of the bottom ground rail (labelled blue) are inter-connected</li>
+<li>each row (1-63) from column “a” to “e” are inter-connected</li>
+<li>each row (1-63) from column “f” to “j” are inter-connected</li>
+</ul>
+<p>Figures 2.4 and 2.5 are photos of a full-size breadboard and a half-size breadboard. Note how the tie-points are connected together by the metal strips. Only one component connection should connect to each tie-point. Figure 2.6 shows an electrical connection sketch of a half-size breadboard.</p>
+<p><img alt="Figure 2.4 Full-Size 830 Tie Points Breadboard" src="../lab2-full-size-breadboard.png" /></p>
+<p><em><strong>Figure 2.4</strong> Full-Size 830 Tie Points Breadboard</em></p>
+<p><img alt="Figure 2.5 Half-Size 400 Tie Points Breadboard and Showing of Internal Conductive Strips" src="../lab2-half-size-breadboard.png" /></p>
+<p><em><strong>Figure 2.5</strong> Half-Size 400 Tie Points Breadboard and Showing of Internal Conductive Strips</em></p>
+<p><img alt="Breadboard Sketch" src="../lab2-breadboard-sketch.png" /></p>
+<p><em><strong>Figure 2.6</strong> Half-Size 400 Tie Points Breadboard Electrical Sketch</em></p>
+<h3 id="circuit-symbols">Circuit Symbols</h3>
+<p>When expressing an electronic circuit in a diagram, circuit symbols are used. Below are some of the circuit symbols that you'll see in the lab.</p>
+<p><img alt="Figure 2.7 Circuit Symbols" src="../lab2-circuit-symbols.png" /></p>
+<p><em><strong>Figure 2.7</strong> Circuit Symbols</em></p>
 <h2 id="materials">Materials</h2>
 <ul>
-<li>A stand</li>
-<li>String or fishing line</li>
-<li>Paper clip</li>
-<li>Plastic Wrap</li>
-<li>Wooden Rod / Dowel</li>
-<li>Silk Cloth or Cotton Cloth</li>
-<li>Plastic Rod (Acrylic)</li>
+<li>Safety glasses (PPE)</li>
+<li><a href="../supplies/">Lab Supplies</a><ul>
+<li>Breadboard</li>
+<li>Jumper Wires</li>
+<li>100Ω Resistor</li>
+</ul>
+</li>
 </ul>
 <h2 id="preparation">Preparation</h2>
 <p>Answer all the lab preparation questions at the end of this document in your lab notebook BEFORE your lab session. Students who did not complete the lab preparation will be asked not to join the lab and receive a grade of ZERO (0) for the lab.</p>
 <p>Lab preparation must be done individually in the lab notebook.</p>
-<p>There are four materials: Plastic Wrap, Plastic Rod, Silk Cloth or Cotton Cloth and Wooden Dowel, available to you in this lab. Only the plastic rod and wood dowel can be carefully suspended (and balanced) using the paper clip.</p>
 <blockquote>
-<h3 id="lab-preparation-question">Lab Preparation Question</h3>
-<p>Design an experiment to develop a triboelectric series similar to <a href="../lab1/">Lab 1</a>. Your experiment should be a series of tests that use soft materials to charge hard objects and then observe if the hard objects attract or repel. You'll also need to use logical reasoning (similar to a Seduko puzzle) to draw your conclusion.</p>
+<p><strong>Lab Preparation Question:</strong></p>
 <ol>
 <li>
-<p>Copy the following observation table in your notebook. To help you get started, note the following:</p>
-<ul>
-<li>a suggested Test #1 is given</li>
-<li>Plastic Wrap is the most negative on the triboelectric series out of the four materials</li>
-</ul>
+<p>Copy the following observation table in your notebook for this lab:</p>
+<blockquote>
 <table>
 <thead>
 <tr>
-<th>Test</th>
-<th>Object 1</th>
-<th>Rubbed with</th>
-<th>Object 2</th>
-<th>Rubbed with</th>
-<th>Observation (Attract/Repel)</th>
-<th>Conclusion</th>
+<th></th>
+<th>Output: +1V</th>
+<th>Output: +2V</th>
+<th>Output: +5V</th>
+<th>Output: +10V</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>Plastic Rod</td>
-<td>Plastic Wrap</td>
-<td>Plastic Rod</td>
-<td>Silk</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>2</td>
-<td></td>
-<td></td>
+<td>Range: 100mV</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>3</td>
-<td></td>
-<td></td>
+<td>Range: 1V</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>...</td>
+<td>Range: 10V</td>
 <td></td>
 <td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Range: 100V</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Range: 1000V</td>
 <td></td>
 <td></td>
 <td></td>
@@ -173,29 +211,202 @@ SES250 Electromagnatics
 </tr>
 </tbody>
 </table>
+</blockquote>
 </li>
 <li>
-<p>Add more tests to the table above as necessary. One approach is to test all possible combinations but keep in mind that only a soft material can rub a hard object.</p>
+<p>Copy Figure 2.13 into your notebook then draw a voltmeter symbol and its connection into the diagram according to the circuit in Figure 2.14.</p>
 </li>
-<li>
-<p>Read the following cases to understand the logic:</p>
-<p><strong>Case 1: Plastic Wrap</strong></p>
-<p>If Material-A is rubbed with Plastic Wrap, Material-A is positively charged (lose electrons) because the Plastic Wrap is more negative (gain electrons).</p>
-<p><strong>Case 2:</strong></p>
-<p>If Material-A rubbed with Material-B is attracted to Material-C rubbed with Material-B, then we know the charge on Material-A is opposite to the charge on Material-C. However, to determine which one is positively charged and which on is negatively charged, we must know the properties of Material-B relative to Material-A and Material-C. As a result, always start your experiment with the known material (Plastic Wrap).</p>
-</li>
+<li>Research: beside voltage, resistance, and current, list two other electronics-related properties a modem DMM can measure.</li>
+<li>In your own word, explain the difference between the two ON/OFF settings (Power ON/OFF and Output ON/OFF) of the DC power supply we use in this lab.</li>
+<li>Using Ohm's Law: <script type="math/tex">V = IR</script>, calculate the current through a 100Ω if 5V of potential difference is applied across the resistor.</li>
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
+<h3 id="part-1-safety">Part 1: Safety</h3>
 <ol>
-<li>If not enough stands are available, work in groups of 2. All questions in the lab must be answered individually and every member must individually demostrate completion of the lab.</li>
-<li>Place and secure the stand on the table. Attach a paper clip onto a strong then hang the paper clip about 5cm below the end hook of the stand. The paper clip is used to hold the plastic rod or wooden dowel.</li>
 <li>
-<p>Carefully secure a plastic rod or wooden dowel (as per your experiment) onto the paper clip so it evenly sits on the paper clip and it's free to rotate on the stand.</p>
-<p><strong>NOTE:</strong> In some instant, it might be beneficial to hang the stand off the side of the table to allow full rotation of the straw once it's attached to the paper clip.</p>
+<p>Ensure that you are wearing your safety glasses, not wearing open-toe shoes, and any long hair must be tied-up.</p>
 </li>
 <li>
-<p>Perform the procedure(s) you've defined in your pre-lab.</p>
+<p>At the top of your workbench, you’ll see a red “Emergency Stop” button (shown in Figure 2.8). At any time when the button is in the pressed position, your workbench will be disconnected from the power source. Press this button if there are any issues with your equipment or circuit (such as unusual heat, unusual smell, smoke, spark, or fire). To release the button, twist it as per the symbol on the button and the button will no longer be pressed.</p>
+<p><img alt="Figure 2.8 Emergency Stop Button" src="../lab2-stop-button.png" /></p>
+<p><em><strong>Figure 2.8</strong> Emergency Stop Button</em></p>
+</li>
+<li>
+<p>Ensure the Emergency Stop button is in the released position.</p>
+</li>
+</ol>
+<h3 id="part-2-digital-multimeter-dmm-and-dc-voltage-measurement">Part 2: Digital Multimeter (DMM) and DC Voltage Measurement</h3>
+<ol>
+<li>
+<p>Assemble the 100Ω resistor from the lab materials onto the breadboard as shown in Figure 2.9. Ensure the two leads of the resistor are on different row on the breadboard so they are not electrically connected (shorted). The exact tie-point to use within column doesn't matter are they are electrically connected.</p>
+<p><img alt="Figure 2.9" src="lab2-resistor-breadboard.png" /></p>
+<p><strong><em>Figure 2.9</em></strong></p>
+</li>
+<li>
+<p>Identify the digital multimeter (DMM) at your workbench. If there are two DMMs, use the one on the left-hand side. Disconnect any cables that are plugged in it so the DMM is as shown in Figure 2.10 below.</p>
+<p><img alt="Figure 2.10" src="../lab2-dmm-1.png" /></p>
+<p><strong><em>Figure 2.10</em></strong></p>
+</li>
+<li>
+<p>Set the DMM to DC voltage measurement mode as follows: If the DMM is not already powered on, push the power button (1). Once the DMM is ON, push the DC voltage (DCV) measurement mode button (4). If the “Range” indicator (3) is not showing “Auto”, press the menu button under “Range” (2) and change it to “Auto”.</p>
+</li>
+<li>
+<p>Identify the two cables that are next to the DMM with a banana connector on one end and an alligator clip on the other end.</p>
+</li>
+<li>
+<p>Connect the banana connector from the red cable to the red terminal labelled with “HI” under “Input VΩ►|” (5).</p>
+</li>
+<li>
+<p>Connect the banana connector from the black cable to the black terminal labelled with “LO” under “Input VΩ►|” (6)</p>
+<p><img alt="Figure 2.11" src="../lab2-dmm-2.png" /></p>
+<p><strong><em>Figure 2.11</em></strong></p>
+</li>
+<li>
+<p>Verify the cables are connected as per shown in Figure 2.5 above. At this point, your DMM is set up to measure direct current (DC) voltage. We’ll be discussing direct current voltage during class. Remember this configuration for future labs and careers as measuring DC voltage is a very important skill for working with electronics.</p>
+</li>
+<li>
+<p>Identify the DC power supply at your workbench. If there are two DC power supplies, use the one that's most similar to the one shown. Disconnect any cables that are plugged in so it is as shown in Figure 2.11 below.</p>
+<p><img alt="Figure 2.12" src="../lab2-ps-1.png" /></p>
+<p><strong><em>Figure 2.12</em></strong></p>
+</li>
+<li>
+<p>Turn on the DC power supply (1) and then press the “Display Limit” button (2).</p>
+</li>
+<li>
+<p>Select the appropriate output voltage range (10) and use the lowest possible setting for a 5V output. In Figure 2.6 above, the lowest setting is "15V, 7A", however, the lowest output range varies between different models of power supply.</p>
+</li>
+<li>
+<p>Adjust the voltage output to +5.000V (9) using the digit selector (6) and the adjustment knob (7). Depending on the model of the power supply, the number of significant figures of the voltage output might be different.</p>
+</li>
+<li>
+<p>Identify the black cable with two leads that are next to the DC power supply with a banana connector on one end and an alligator clip on the other end.</p>
+</li>
+<li>
+<p>Connect the red banana connector from the cable to the red “Output” terminal labelled with “+” (9)</p>
+<p><strong>NOTE:</strong> In some models of power supply, there might be multiple output terminals. connect to the appropriate output terminal depending on the output range you selected earlier.</p>
+</li>
+<li>
+<p>Connect the black banana connector from the cable to the black “Output” terminal labelled with “-“ (10)</p>
+</li>
+<li>
+<p>You’ve now set up the power supply for DC output.</p>
+</li>
+<li>
+<p>Attach a jumper cable to each of the alligator clips as shown in Figure 2.12. It can be jumper wire of any type and colour.</p>
+<p><img alt="Figure 2.12" src="../lab2-connection-1.png" /></p>
+<p><strong><em>Figure 2.12</em></strong></p>
+<p><div style="padding: 15px; border: 1px solid red; background-color: red; color: white;"><font size="4"><strong>SHORT CIRCUIT WARNING:</strong> Ensure the exposed portion of the red alligator clip or wire is NOT touching the exposed portion of the black alligator clip or wire.</font></div></p>
+</li>
+<li>
+<p>Connect the jumper wire from the red cable of the power supply to the same row as the first resistor lead. Then connect the jumper wire from the black cable of the power supply to the same row as the second resistor lead to assemble the circuit below.</p>
+<p><img alt="Figure 2.13a" src="../lab2-breadboard-resistor-sketch.png" /></p>
+<p><strong><em>Figure 2.13</em></strong></p>
+</li>
+<li>
+<p>Connect the jumper wire from the red cable of the DMM to the same row as the first resistor lead. Then connect the jumper wire from the black cable of the DMM to the same row as the second resistor lead.</p>
+<p><img alt="Figure 2.14a" src="../lab2-voltage-circuit.png" /></p>
+<p><img alt="Figure 2.14b" src="lab2-connection-2.png" /></p>
+<p><strong><em>Figure 2.14</em></strong></p>
+</li>
+<li>
+<p>Press the "Display Limit" button (2) on the power supply again and verify the voltage is adjusted to +5.000V and the banana cables are connected. Also, verify that the exposed portion of the red alligator clip is NOT touching the exposed portion of the black alligator clip.</p>
+</li>
+<li>
+<p>Turn on the power supply output by pressing the Output On/Off button (8).</p>
+<p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+NOTE: There is a difference between the power supply being ON/OF and the power supply OUTPUT being ON/OFF. The power supply can be ON with its power output OFF.
+</div></p>
+</li>
+<li>
+<p>Notice that the DMM should now read about +5V, similar to as shown in Figure 3.9. Make a note of the range value beside the “Auto” on the DMM display.</p>
+<p><img alt="Figure 3.9" src="../lab2-reading-1.png" /></p>
+<p><strong><em>Figure 3.9</em></strong></p>
+</li>
+<li>
+<p>With the power supply output ON, adjust the output voltage to +13V. <strong>Note:</strong> If the output range does not allow you to go to 13V, switch the output range (10) and terminals as necessary.</p>
+<blockquote>
+<p><strong>Lab Question 1:</strong> What happened to the Range setting on the DMM? If you don't notice the change, decrease the output voltage back to 5V and try again.</p>
+</blockquote>
+</li>
+<li>
+<p>Afterward, decrease the voltage of the DC power supply slowly to 5V.</p>
+<blockquote>
+<p><strong>Lab Question 2:</strong> At what power supply voltage did the DMM change back to “Auto 10V”? How are the number of digits and decimal places the same or different when the voltage range changes? What does that mean for the accuracy of the readings?</p>
+</blockquote>
+</li>
+<li>
+<p>Using the DMM reading only, adjust the output voltage of the DC power supply so the reading on the DMM will display +1.000V. <strong>Note:</strong> Switch the output range and terminal as necessary.</p>
+<blockquote>
+<p><strong>Lab Question 3:</strong> What is the output voltage of the DC power supply? Do they agree exactly with each other? If not, which one is higher and what is the percentage difference?</p>
+</blockquote>
+</li>
+<li>
+<p>Adjust the DC power supply output voltage to +1.000V then change the voltage Range on the DMM from "Auto" to "100mV" using the Range selection button. The DMM should not display "OVERLOAD" because the 1V output from the power supply is higher than the maximum 100mV range that can be measured.</p>
+</li>
+<li>
+<p>Manually change the DMM "Range" setting and power supply voltage output according to the table below. Then record the voltage reading on the DMM in the and do this for DC output voltage of +1V, +2V, +5V, and +10V.</p>
+<p><strong>NOTE:</strong> The reading might fluctuate but record at least 4 significant digits to the best of your ability in estimating <strong>AND record all LEADING ZEROS</strong>.</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Output: +1V</th>
+<th>Output: +2V</th>
+<th>Output: +5V</th>
+<th>Output: +10V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Range: 100mV</td>
+<td>OVERLOAD</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Range: 1V</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Range: 10V</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Range: 100V</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Range: 1000V</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lab Question 4:</strong> If we want the most precise reading, what is the best setting for each DC output voltage in the table? Circle the most precise reading for each voltage output in the table above.</p>
+</blockquote>
+</li>
+<li>
+<p>Change the DMM "Range" setting back to Auto then set the power supply output back to 5V. Take a look at the current output value (Figure 2.11 (8)) from the power supply.</p>
+<blockquote>
+<p><strong>Lab Question 5:</strong> Does this value agrees with the Ohm's law connection you made earlier in the pre-lab?</p>
+</blockquote>
+</li>
+<li>
+<p>Turn off the DC power supply and disconnect the alligator clips.</p>
 </li>
 </ol>
 <p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.</p>

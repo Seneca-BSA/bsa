@@ -47,7 +47,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded System</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
                   </li>
               </ul>
       </div>
@@ -78,13 +78,13 @@
 Seneca College</br>
 SES250 Electromagnatics
 </font></p>
-<h2 id="objectives">Objectives</h2>
+<h2 id="purposes">Purposes</h2>
 <ul>
 <li>To study the relationship between voltage, resistance, and current</li>
 <li>To explore direct current (DC)</li>
 <li>To verify Ohm's Law</li>
 </ul>
-<h2 id="purpose">Purpose</h2>
+<h2 id="objectives">Objectives</h2>
 <ul>
 <li>Assemble electronic components onto a breadboard</li>
 <li>Measurements voltage from a breadboard using a digital multimeter (DMM)</li>
@@ -99,31 +99,6 @@ SES250 Electromagnatics
 </div>
 
 <h2 id="description">Description</h2>
-<p>Direct current (DC) is the one-directional flow of electric charge. An electrochemical cell is a prime example of DC power. Direct current may flow through a conductor such as a wire, but can also flow through semiconductors, insulators, or even through a vacuum as in electron or ion beams. The electric current flows in a constant direction, distinguishing it from alternating current (AC).</p>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Direct_current">Wikipedia: Direct Current</a></p>
-<p>A resistor is a passive two-terminal electrical component that implements electrical resistance as a circuit element. In electronic circuits, resistors are used to reduce current flow, adjust signal levels, divide voltages, bias active elements, and terminate transmission lines, among other uses. A resistor’s resistance is specified by a colour code on the resistor as per Figure 4.1.</p>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Resistor">Wikipedia: Resistor</a></p>
-<p><img alt="Figure 4.1 Resistor Band Colour" src="../lab4-resistor.png" /></p>
-<p><em><strong>Figure 4.1</strong> Resistor Band Colour</em></p>
-<p>An electronics breadboard is a solderless circuit prototyping board. They are great for making temporary circuits and prototyping, and they require no soldering.</p>
-<p>Source: <a href="https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all">SparkFun: How to User a Breadboard</a></p>
-<p>The internal conductive strip of the breadboard is assembly such a way that:</p>
-<ul>
-<li>all tie points of the top power rail (labelled red) are inter-connected</li>
-<li>all tie points of the top ground rail (labelled blue) are inter-connected</li>
-<li>all tie points of the bottom power rail (labelled red) are inter-connected</li>
-<li>all tie points of the bottom ground rail (labelled blue) are inter-connected</li>
-<li>each row (1-63) from column “a” to “e” are inter-connected</li>
-<li>each row (1-63) from column “f” to “j” are inter-connected</li>
-</ul>
-<p>Figures 4.2 and 4.3 are photos of a full-size breadboard and a half-size breadboard. Note how the tie-points are connected together by the metal strips. Only one component connection should connect to each tie-point.</p>
-<p><img alt="Figure 4.2 Full-Size 830 Tie Points Breadboard" src="../lab4-full-size-breadboard.png" /></p>
-<p><em><strong>Figure 4.2</strong> Full-Size 830 Tie Points Breadboard</em></p>
-<p><img alt="Figure 4.3 Half-Size 400 Tie Points Breadboard and Showing of Internal Conductive Strips" src="../lab4-half-size-breadboard.png" /></p>
-<p><em><strong>Figure 4.3</strong> Half-Size 400 Tie Points Breadboard and Showing of Internal Conductive Strips</em></p>
-<p>When expressing an electronic circuit in a diagram, circuit symbols are used. Below are some of the circuit symbols that you'll see in the lab.</p>
-<p><img alt="Figure 4.4 Circuit Symbols" src="../lab4-circuit-symbols.png" /></p>
-<p><em><strong>Figure 4.4</strong> Circuit Symbols</em></p>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>1kΩ or similar value resistor</li>
@@ -139,12 +114,12 @@ SES250 Electromagnatics
 <li>
 <p>Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Step 10. Clearly show which tie point will the wire, resistor, DMM, and power supply be attached to.</p>
 <blockquote>
-<p><img alt="Breadboard Sketch" src="../lab4-breadboard-sketch.png" /></p>
+<p><img alt="Breadboard Sketch" src="lab4-breadboard-sketch.png" /></p>
 <p><strong>Example:</strong>
-   <img alt="Breadboard Sketch Example" src="../lab4-breadboard-sketch-example.png" />
+   <img alt="Breadboard Sketch Example" src="lab4-breadboard-sketch-example.png" />
    Note how the tie-points are connected together by the straight lines.</p>
 <p><a href="https://www.tinkercad.com/">TinkerCAD Circuit</a> is a nice tool that you can use to practice assembling a circuit with a virtual breadboard. See the diagram below as an example.</p>
-<p><img alt="Figure 4.11" src="../lab4-tinkercad-1.png" /></p>
+<p><img alt="Figure 4.11" src="lab4-tinkercad-1.png" /></p>
 </blockquote>
 </li>
 <li>
@@ -279,7 +254,7 @@ SES250 Electromagnatics
 </li>
 <li>
 <p>Set up one of the DMM for voltage measurement (Review Lab 2 for procedure). Connect one jumper cable to each of the alligator clips then connect the black wire with its jumper wire to the blue (-) rail and the red wire with its jumper wire to the red (+) rail of the breadboard.</p>
-<p><img alt="Figure 4.7" src="../lab4-connection-3.png" /></p>
+<p><img alt="Figure 4.7" src="lab4-connection-3.png" /></p>
 <p><strong><em>Figure 4.7</em></strong></p>
 </li>
 <li>
@@ -287,17 +262,17 @@ SES250 Electromagnatics
 </li>
 <li>
 <p>Next, we’ll set up <strong>a second DMM</strong> for the current measurement. For this, we’ll connect the black banana cable to the “LO” Input (3) and the red banana cable to the “3A” Input (4). Afterward, press the “SHIFT” button (1) and the “DCV” button (2) together to enter DC current mode (DCI). </p>
-<p><img alt="Figure 4.8" src="../lab4-dmm-1.png" /></p>
+<p><img alt="Figure 4.8" src="lab4-dmm-1.png" /></p>
 <p><strong><em>Figure 4.8</em></strong></p>
 </li>
 <li>
 <p>Once the DMM is in DC current mode, connect a jumper wire to each of the DMM’s alligator clips.</p>
-<p><img alt="Figure 4.9" src="../lab4-connection-4.png" /></p>
+<p><img alt="Figure 4.9" src="lab4-connection-4.png" /></p>
 <p><strong><em>Figure 4.9</em></strong></p>
 </li>
 <li>
 <p>Next, we’ll assemble the following circuit using the breadboard and one of the resistors from earlier. A power supply will act as the DC Voltage Source. Notice the voltmeter (DMM in DC voltage mode (DCV)) is connected in parallel with the resistor and the Ammeter (DMM in DC current mode (DCI)) is connected in series with the circuit. A small example of some of the connections is shown.</p>
-<p><img alt="Figure 4.10" src="../lab4-connection-5.png" /></p>
+<p><img alt="Figure 4.10" src="lab4-connection-5.png" /></p>
 <p><strong><em>Figure 4.10</em></strong></p>
 </li>
 <li>
