@@ -15,7 +15,7 @@ SES250 Electromagnatics
 - Operate a DC power supply
 - Setup and read measurements from a digital multimeter (DMM)
 - Assemble electronic components onto a breadboard
-- Measurements voltage from a breadboard using a digital multimeter (DMM)
+- Measure voltage from a breadboard using a digital multimeter (DMM)
 
 ## Important Rules for this Lab
 
@@ -81,7 +81,7 @@ The internal conductive strip of the breadboard is assembly such a way that:
 - each row (1-63) from column “a” to “e” are inter-connected
 - each row (1-63) from column “f” to “j” are inter-connected
 
-Figures 2.4 and 2.5 are photos of a full-size breadboard and a half-size breadboard. Note how the tie-points are connected together by the metal strips. Only one component connection should connect to each tie-point. Figure 2.6 shows an electrical connection sketch of a half-size breadboard.
+Figures 2.4 and 2.5 are photos of a full-size breadboard and a half-size breadboard. Note how the tie points are connected by the metal strips. Only one component connection should connect to each tie-point. Figure 2.6 shows an electrical connection sketch of a half-size breadboard.
 
 ![Figure 2.4 Full-Size 830 Tie Points Breadboard](lab2-full-size-breadboard.png)
 
@@ -129,15 +129,15 @@ Lab preparation must be done individually in the lab notebook.
     >    |Range: 1000V||||||
     >
 > 1. Copy Figure 2.13 into your notebook then draw a voltmeter symbol and its connection into the diagram according to the circuit in Figure 2.14.
-> 1. Research: beside voltage, resistance, and current, list two other electronics-related properties a modem DMM can measure.
-> 1. In your own word, explain the difference between the two ON/OFF settings (Power ON/OFF and Output ON/OFF) of the DC power supply we use in this lab.
-> 1. Using Ohm's Law: \(V = IR\), calculate the current through a 100Ω if 5V of potential difference is applied across the resistor.
+> 1. Research: Besides voltage, resistance, and current, list two other electronics-related properties a modem DMM can measure.
+> 1. In your words, explain the difference between the two ON/OFF settings (Power ON/OFF and Output ON/OFF) of the DC power supply we use in this lab.
+> 1. Using Ohm's Law: \(V = IR\), calculate the current through a 100Ω resistor if 5V of potential difference is applied across the resistor.
 
 ## Procedures
 
 ### Part 1: Safety
 
-1. Ensure that you are wearing your safety glasses, not wearing open-toe shoes, and any long hair must be tied-up.
+1. Ensure that you are wearing your safety glasses, not wearing open-toe shoes, and any long hair must be tied up.
 
 1. At the top of your workbench, you’ll see a red “Emergency Stop” button (shown in Figure 2.8). At any time when the button is in the pressed position, your workbench will be disconnected from the power source. Press this button if there are any issues with your equipment or circuit (such as unusual heat, unusual smell, smoke, spark, or fire). To release the button, twist it as per the symbol on the button and the button will no longer be pressed.
 
@@ -149,13 +149,13 @@ Lab preparation must be done individually in the lab notebook.
 
 ### Part 2: Digital Multimeter (DMM) and DC Voltage Measurement
 
-1. Assemble the 100Ω resistor from the lab materials onto the breadboard as shown in Figure 2.9. Ensure the two leads of the resistor are on different row on the breadboard so they are not electrically connected (shorted). The exact tie-point to use within column doesn't matter are they are electrically connected.
+1. Assemble the 100Ω resistor from the lab materials onto the breadboard as shown in Figure 2.9. Ensure the two leads of the resistor are on different rows on the breadboard so they are not electrically connected (shorted). The exact tie-point to use within the column doesn't matter are they are electrically connected.
 
     ![Figure 2.9](lab2-resistor-breadboard.png)
 
     ***Figure 2.9***
 
-1. Identify the digital multimeter (DMM) at your workbench. If there are two DMMs, use the one on the left-hand side. Disconnect any cables that are plugged in it so the DMM is as shown in Figure 2.10 below.
+1. Identify the digital multimeter (DMM) at your workbench. If there are two DMMs, use the one on the left-hand side. Disconnect any cables that are plugged into it so the DMM is as shown in Figure 2.10 below.
 
     ![Figure 2.10](lab2-dmm-1.png)
 
@@ -173,7 +173,7 @@ Lab preparation must be done individually in the lab notebook.
 
     ***Figure 2.11***
 
-1. Verify the cables are connected as per shown in Figure 2.5 above. At this point, your DMM is set up to measure direct current (DC) voltage. We’ll be discussing direct current voltage during class. Remember this configuration for future labs and careers as measuring DC voltage is a very important skill for working with electronics.
+1. Verify the cables are connected as shown in Figure 2.5 above. At this point, your DMM is set up to measure direct current (DC) voltage. We’ll be discussing direct current voltage during class. Remember this configuration for future labs and careers as measuring DC voltage is a very important skill for working with electronics.
 
 1. Identify the DC power supply at your workbench. If there are two DC power supplies, use the one that's most similar to the one shown. Disconnect any cables that are plugged in so it is as shown in Figure 2.11 below.
 
@@ -264,12 +264,8 @@ Lab preparation must be done individually in the lab notebook.
 
 1. Change the DMM "Range" setting back to Auto then set the power supply output back to 5V. Take a look at the current output value (Figure 2.11 (8)) from the power supply.
 
-    > **Lab Question 5:** Does this value agrees with the Ohm's law connection you made earlier in the pre-lab?
+    > **Lab Question 5:** Does this value agree with the Ohm's law calculation you made earlier in the pre-lab?
 
 1. Turn off the DC power supply and disconnect the alligator clips.
 
-Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
-
-## Post-Lab
-
-1. Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.
+Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
