@@ -108,7 +108,7 @@ When expressing an electronic circuit in a diagram, circuit symbols are used. Be
 - [Lab Supplies](supplies.md)
     - Breadboard
     - Jumper Wires
-    - 1kΩ Resistor
+    - 1kΩ Resistor (brown-black-red)
 
 ## Preparation
 
