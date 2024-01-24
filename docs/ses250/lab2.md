@@ -245,7 +245,7 @@ Lab preparation must be done individually in the lab notebook.
 
     > **Lab Question 3:** What is the output voltage of the DC power supply? Do they agree exactly with each other? If not, which one is higher and what is the percentage difference?
 
-1. Adjust the DC power supply output voltage to +1.000V then change the voltage Range on the DMM from "Auto" to "100mV" using the Range selection button. The DMM should not display "OVERLOAD" because the 1V output from the power supply is higher than the maximum 100mV range that can be measured.
+1. Adjust the DC power supply output voltage to +1.000V then change the voltage Range on the DMM from "Auto" to "100mV" using the Range selection button. The DMM should display "OVERLOAD" because the 1V output from the power supply is higher than the maximum 100mV range that can be measured.
 
 1. Manually change the DMM "Range" setting and power supply voltage output according to the table below. Then record the voltage reading on the DMM in the and do this for DC output voltage of +1V, +2V, +5V, and +10V.
 
