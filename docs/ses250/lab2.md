@@ -108,7 +108,7 @@ When expressing an electronic circuit in a diagram, circuit symbols are used. Be
 - [Lab Supplies](supplies.md)
     - Breadboard
     - Jumper Wires
-    - 10kΩ Resistor
+    - 1kΩ Resistor
 
 ## Preparation
 
@@ -131,7 +131,7 @@ Lab preparation must be done individually in the lab notebook.
 > 1. Copy Figure 2.13 into your notebook then draw a voltmeter symbol and its connection into the diagram according to the circuit in Figure 2.14.
 > 1. Research: Besides voltage, resistance, and current, list two other electronics-related properties a modem DMM can measure.
 > 1. In your words, explain the difference between the two ON/OFF settings (Power ON/OFF and Output ON/OFF) of the DC power supply we use in this lab.
-> 1. Using Ohm's Law: \(V = IR\), calculate the current through a 10kΩ resistor if 5V of potential difference is applied across the resistor.
+> 1. Using Ohm's Law: \(V = IR\), calculate the current through a 1kΩ resistor if 5V of potential difference is applied across the resistor.
 
 ## Procedures
 
