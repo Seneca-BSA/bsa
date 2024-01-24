@@ -149,7 +149,7 @@ Lab preparation must be done individually in the lab notebook.
 
 ### Part 2: Digital Multimeter (DMM) and DC Voltage Measurement
 
-1. Assemble the 100Ω resistor from the lab materials onto the breadboard as shown in Figure 2.9. Ensure the two leads of the resistor are on different rows on the breadboard so they are not electrically connected (shorted). The exact tie-point to use within the column doesn't matter are they are electrically connected.
+1. Assemble the 1kΩ resistor (brown-black-red) from the lab materials onto the breadboard as shown in Figure 2.9. Ensure the two leads of the resistor are on different rows on the breadboard so they are not electrically connected (shorted). The exact tie-point to use within the column doesn't matter are they are electrically connected.
 
     ![Figure 2.9](lab2-resistor-breadboard.png)
 
