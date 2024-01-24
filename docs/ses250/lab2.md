@@ -227,11 +227,11 @@ Lab preparation must be done individually in the lab notebook.
     NOTE: There is a difference between the power supply being ON/OF and the power supply OUTPUT being ON/OFF. The power supply can be ON with its power output OFF.
     </div>
 
-1. Notice that the DMM should now read about +5V, similar to as shown in Figure 3.9. Make a note of the range value beside the “Auto” on the DMM display.
+1. Notice that the DMM should now read about +5V, similar to as shown in Figure 2.15. Make a note of the range value beside the “Auto” on the DMM display.
 
-    ![Figure 3.9](lab2-reading-1.png)
+    ![Figure 2.15](lab2-reading-1.png)
 
-    ***Figure 3.9***
+    ***Figure 2.15***
 
 1. With the power supply output ON, adjust the output voltage to +13V. **Note:** If the output range does not allow you to go to 13V, switch the output range (10) and terminals as necessary.
 
