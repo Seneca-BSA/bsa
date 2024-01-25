@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 2 - BSA Lab Manuals</title>
+    <title>Lab 2 : Digital I/O - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 2";
+        var mkdocs_page_name = "Lab 2 : Digital I/O";
         var mkdocs_page_input_path = "sep600/lab2.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,7 +64,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Lab 2</li>
+      <li>Lab 2 : Digital I/O</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -73,7 +73,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-2">Lab 2</h1>
+                <h1 id="lab-2-digital-io">Lab 2 : Digital I/O</h1>
 <p><font size="5">
 Seneca College</br>
 SEP600 Embedded Systems
@@ -83,13 +83,22 @@ SEP600 Embedded Systems
 <ul>
 <li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a></li>
+<li><a href="../FRDMK64FUG.pdf">FRDM-K64F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">nxp.com</a>)</li>
+<li><a href="../K64P144M120SF5RM.pdf">Kinetis K64 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">nxp.com</a>)</li>
+<li><a href="../FRDMK66FUG.pdf">FRDM-K66F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">nxp.com</a>)</li>
+<li><a href="../K66P144M180SF5RMV2.pdf">Kinetis K66 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">nxp.com</a>)</li>
 </ul>
-<p>In the previous lab, we explored the use of the built-in ConfigTools in MCUXpresso IDE to help with setting up interrupts. In this lab, we'll explore how to use assembly instruction to setup GPIO as well as using the ConfigTools to do the same.</p>
+<h2 id="materials">Materials</h2>
+<ul>
+<li>Safety glasses (PPE)</li>
+<li>Breadboard</li>
+<li>Jumper Wires</li>
+<li>(1x) 1kΩ-10kΩ Resistor</li>
+<li>(1x) Button (optional)</li>
+<li>(1x) 0.1-10µF Capacitor (ceramic or electrolytic)</li>
+</ul>
 <h2 id="preparation">Preparation</h2>
+<p>Read over the lab manual for this lab. Acquire the Freedom microcontroller board and install the necessary IDE as described in the lab manual.</p>
 <blockquote>
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
 <ol>
@@ -97,9 +106,119 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<h2 id="post-lab-questions">Post-Lab Questions</h2>
-<p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
+<h3 id="ide-option-1-mcuxpresso">IDE Option 1: MCUXpresso</h3>
+<ol>
+<li>Go to the following link to download the code for a simple blink LED program. This is the code you'll base your lab exercise with. <a href="https://github.com/Seneca-BSA/bsa-sep600">https://github.com/Seneca-BSA/bsa-sep600</a></li>
+<li>Once you've downloaded the code above, unzip it locally.</li>
+<li>Open MCUXpresso then import the project by File &gt; Import Project from File System or Archive. Find the folder that you've unzipped the code from above then select the folder "lab" for import.</li>
+<li>Click Finish to import the project.</li>
+</ol>
+<h3 id="ide-option-2-mbed-studio">IDE Option 2: Mbed Studio</h3>
+<ol>
+<li>Go to the following link to download Mbed Studio. <a href="https://os.mbed.com/studio/">https://os.mbed.com/studio/</a></li>
+<li>You'll need to sign up for an Mbed account.</li>
+<li>Install Mbed Studio and sign in to Mbed Studio using the account you just created.</li>
+<li>Follow the instructions <a href="https://os.mbed.com/docs/mbed-studio/current/getting-started/index.html">here</a> to load the LED blink program to test your setup.</li>
+<li>Select the appropriate board then replace the default code with the following:</li>
+</ol>
+<hr/>
+<pre>
+int main()
+{
+    // Initialise the digital pin LED1 as an output
+    DigitalOut led(LED1);
+    // remove ifdef from the default code
+
+    printf("Program started!\r\n"); // added to test serial
+
+    while (true) {
+        led = !led;
+        printf("Blinking!\r\n"); // added to test serial
+        ThisThread::sleep_for(BLINKING_RATE);
+    }
+}
+</pre>
+
+<h3 id="part-1-pull-up-and-pull-down">Part 1: Pull-Up and Pull-Down</h3>
+<p><img alt="Figure 2.1" src="../lab2-pull-up-down.png" /></p>
+<p><em><strong>Figure 2.1</strong> (A) Pull-Up Input. (B) Pull-Down Input.</em></p>
+<ol>
+<li>Acquire a breadboard, a 1kΩ (or higher resistor), a button (or using jumper wires as a switch), and jumper wires.</li>
+<li>Assemble a Pull-Up circuit as given above and attach the signal to one of the digital input pins of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
+    &gt; <strong>Lab Question:</strong> What is the current passing through the resistor when the switch is closed? Is this a safe current for the resistor? (Hint: what is the maximum power the resistor can handle?)
+    &gt; <strong>Lab Question:</strong> What can we modify to reduce the energy consumption of this circuit?</li>
+<li>Modify the code provided to you earlier to include a DigitalIn object for accepting digital input. Remember, you'll need to set up a digital pin for input first.
+    <hr/><pre>
+    int main()
+    {
+        // Initialise the digital pin LED1 as an output
+        DigitalOut led(LED1);
+        DigitalIn button(PTXX); // Replace XX with your input pin
+        ...
+    }
+    </pre></li>
+<li>Since the input is pull-up, the normal state will be HIGH. To detect a button press, we need to check for a LOW state. Replace the while loop with the following:
+    <hr/><pre>
+    while (true)
+    {
+        if (!button)
+        {
+            led = 0; // LED ON
+        } else
+        {
+            led = 1; // LED OFF
+        }
+    }
+    </pre></li>
+<li>Run and test your program.</li>
+<li>Without taking apart your Pull-up circuit, assemble another Pull-Down circuit as given above and attach the signal to another of the digital input pins of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.</li>
+<li>Modify your code so the second switch you assembled will trigger the second LED (LED2) to turn on.</li>
+<li>Run and test your program.</li>
+</ol>
+<h3 id="part-2-pwm-out-and-rc">Part 2: PWM Out and RC</h3>
+<p><img alt="Figure 2.2" src="../lab2-rc-circuit.png" /></p>
+<p><em><strong>Figure 2.2</strong> RC Circuit.</em></p>
+<ol>
+<li>Without removing your pull-up and pull-down circuit, assemble an RC circuit as given above and attach the input PWM signal to a PWM-capable pin of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
+    &gt; <strong>Lab Question:</strong> What is the RC time constant for your circuit? You'll need this for your program.</li>
+<li>Modify your code to set up a PWM pin.
+    <hr/><pre>
+    int main()
+    {
+        ...
+        PwmOut pwm(PTXX); // Replace XX with your pwm pin
+        ...
+    }
+    </pre></li>
+<li>Add the following code to start PWM. Use a period that is at least twice your RC time constant.
+    <hr/><pre>
+    while (true)
+    {
+        ...
+        pwm.period(XXXf); // period in s
+        pwm.write(0.50f); // duty cycle 0.5f = 50%
+        ...
+    }
+    </pre></li>
+<li>Turn on the DSO and connect CH1 to the output pin and CH2 to the RC circuit output.</li>
+<li>Run and test your program.</li>
+<li>
+<p>Adjust the DSO so both CH1 and CH2 are in view. Your signal should look like the graph below.</p>
+<p><img alt="Figure 2.2" src="../lab2-rc-pwm.png" /></p>
+<p><em><strong>Figure 2.2</strong> PWM signal after RC smoothing.</em>
+1. Adjust your PWM settings so there's less than 10% fluctuation between the high and low voltage after the RC filter (CH2).</p>
+<blockquote>
+<p><strong>Lab Question:</strong> What is the PWM frequency to achieve this?</p>
+</blockquote>
+</li>
+</ol>
 <h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">mbed I/O API</a></li>
+<li><a href="https://os.mbed.com/handbook/DigitalIn">DigitalIn</a></li>
+<li><a href="https://os.mbed.com/handbook/DigitalOut">DigitalOut</a></li>
+<li><a href="https://os.mbed.com/handbook/PwmOut">PwmOut</a></li>
+</ul>
               
             </div>
           </div><footer>
