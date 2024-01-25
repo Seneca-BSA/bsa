@@ -43,16 +43,16 @@ Read over the lab manual for this lab. Acquire the Freedom microcontroller board
 ### IDE Option 2: Mbed Studio
 
 1. Go to the following link to download Mbed Studio. [https://os.mbed.com/studio/](https://os.mbed.com/studio/)
-1. You'll need to sign-up for an Mbed account.
-1. Install Mbed Studio and sign-in to Mbed Studio using the account you just created.
-1. Follow the instruction [here](https://os.mbed.com/docs/mbed-studio/current/getting-started/index.html) to load the LED blink program to test your setup.
-1. Select the approtiate board then replace the default code with the following:
+1. You'll need to sign up for an Mbed account.
+1. Install Mbed Studio and sign in to Mbed Studio using the account you just created.
+1. Follow the instructions [here](https://os.mbed.com/docs/mbed-studio/current/getting-started/index.html) to load the LED blink program to test your setup.
+1. Select the appropriate board then replace the default code with the following:
 <hr/><pre>
 int main()
 {
     // Initialise the digital pin LED1 as an output
     DigitalOut led(LED1);
-    // remove ifdef from default code
+    // remove ifdef from the default code
 
     printf("Program started!\r\n"); // added to test serial
 
@@ -71,10 +71,10 @@ int main()
 ***Figure 2.1** (A) Pull-Up Input. (B) Pull-Down Input.*
 
 1. Acquire a breadboard, a 1kΩ (or higher resistor), a button (or using jumper wires as a switch), and jumper wires.
-1. Assemble a Pull-Up circuit as given above and attach the signal to one of the digital input pin of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
+1. Assemble a Pull-Up circuit as given above and attach the signal to one of the digital input pins of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
     > **Lab Question:** What is the current passing through the resistor when the switch is closed? Is this a safe current for the resistor? (Hint: what is the maximum power the resistor can handle?)
-    > **Lab Question:** What can we modify to reduce energy consumption of this circuit?
-1. Modify the code provided to you earlier to include a DigitalIn object for accepting digital input. Remember, you'll need to setup a digital pin for input first.
+    > **Lab Question:** What can we modify to reduce the energy consumption of this circuit?
+1. Modify the code provided to you earlier to include a DigitalIn object for accepting digital input. Remember, you'll need to set up a digital pin for input first.
     <hr/><pre>
     int main()
     {
@@ -84,9 +84,9 @@ int main()
         ...
     }
     </pre>
-1. Since the input is pull-up, the normal state will be HIGH. In order to detect a button press, we need to check for a LOW state. Replace the while loop with the following:
+1. Since the input is pull-up, the normal state will be HIGH. To detect a button press, we need to check for a LOW state. Replace the while loop with the following:
     <hr/><pre>
-    whilte (true)
+    while (true)
     {
         if (!button)
         {
@@ -98,7 +98,7 @@ int main()
     }
     </pre>
 1. Run and test your program.
-1. Without taking apart your Pull-up circuit, assemble another Pull-Down circuit as given above and attach the signal to another of the digital input pin of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
+1. Without taking apart your Pull-up circuit, assemble another Pull-Down circuit as given above and attach the signal to another of the digital input pins of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
 1. Modify your code so the second switch you assembled will trigger the second LED (LED2) to turn on.
 1. Run and test your program.
 
@@ -108,9 +108,9 @@ int main()
 
 ***Figure 2.2** RC Circuit.*
 
-1. Without removing your pull-up and pull-down circuit, assemble a RC circuit as given above and attach the input PWM signal to a PWM capable pin of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
+1. Without removing your pull-up and pull-down circuit, assemble an RC circuit as given above and attach the input PWM signal to a PWM-capable pin of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
     > **Lab Question:** What is the RC time constant for your circuit? You'll need this for your program.
-1. Modify your code to setup a PWM pin.
+1. Modify your code to set up a PWM pin.
     <hr/><pre>
     int main()
     {
@@ -121,7 +121,7 @@ int main()
     </pre>
 1. Add the following code to start PWM. Use a period that is at least twice your RC time constant.
     <hr/><pre>
-    whilte (true)
+    while (true)
     {
         ...
         pwm.period(XXXf); // period in s
@@ -136,8 +136,8 @@ int main()
     ![Figure 2.2](lab2-rc-pwm.png)
 
     ***Figure 2.2** PWM signal after RC smoothing.*
-1. Adjust your PWM settings so there's less then 10% fluctuation between the high and low voltage after the RC filter (CH2).
-    > **Lab Question:** What is the PWM frequency to achive this?
+1. Adjust your PWM settings so there's less than 10% fluctuation between the high and low voltage after the RC filter (CH2).
+    > **Lab Question:** What is the PWM frequency to achieve this?
 
 ## Reference
 
