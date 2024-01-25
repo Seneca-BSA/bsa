@@ -1,7 +1,7 @@
 # SEP600 Lab Manual
 
 - [Lab 1 : mbed library](lab1.md)
-- Lab 2 : Digital I/O
+- [Lab 2 : Digital I/O](lab2.md)
 - Lab 3 : ADC
 - Lab 4 : LCD
 - Lab 5 : Serial
