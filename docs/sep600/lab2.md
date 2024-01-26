@@ -121,7 +121,7 @@ int main()
     </pre>
 1. Add the following code to start PWM. Use a period that is at least twice your RC time constant.
     <hr/><pre>
-    while (true)
+    int main()
     {
         ...
         pwm.period(XXXf); // period in s
