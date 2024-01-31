@@ -97,7 +97,7 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
     > |Colour|Brown|Black|Red|Total|||
     > |Value|1|0|x 10 ^ 2|1 kΩ|1.013 kΩ|1.3%|
 
-1. Turn on the one of DMM at your workbench and turn it into the “Ω 2W” resistance measurement mode. Ensure the banana plugs are connected to the resistance input terminals as shown in Figure 3.3.
+1. Turn on the one of DMM at your workbench and turn it into the “Ω 2W” (1) resistance measurement mode. Ensure the banana plugs are connected to the resistance input terminals as shown in Figure 3.3 (2)(3).
 
     ![Figure 3.3 DMM Resistance Mode](lab3-dmm-resistance.png)
 
@@ -125,7 +125,7 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
 
     ![Figure 3.5a](lab3-voltage-current-circuit.png)
 
-    ![Figure 3.5b](lab3-connection-2.png)
+    ![Figure 3.5b](lab3-connection-1.png)
 
     ***Figure 3.5***
 
