@@ -92,9 +92,9 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
     >
     > **Example:**
     >
-    > |Resistor #|First Band|Second Band|Multiplier|Nonimal Ω|Measured Ω| % Error |
+    > ||1st Band|2nd Band|Multiplier|Nonimal Ω|Measured Ω| % Error |
     > |---|---|---|---|---|---|---|
-    > |Colour|Brown|Black|Red|Total|||
+    > |Colour|Brown|Black|Red|Total|-|-|
     > |Value|1|0|x 10 ^ 2|1 kΩ|1.013 kΩ|1.3%|
 
 1. Turn on the one of DMM at your workbench and turn it into the “Ω 2W” (1) resistance measurement mode. Ensure the banana plugs are connected to the resistance input terminals as shown in Figure 3.3 (2)(3).
