@@ -8,21 +8,22 @@
     <title>Lab 3 : Series and Parallel Resistive Circuit - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
         <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 3 : Series and Parallel Resistive Circuit";
-        var mkdocs_page_input_path = "ses250\\lab3.md";
+        var mkdocs_page_input_path = "ses250/lab3.md";
         var mkdocs_page_url = null;
       </script>
     
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -62,8 +63,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 3 : Series and Parallel Resistive Circuit</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Lab 3 : Series and Parallel Resistive Circuit</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -219,8 +220,8 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Turn on the one of DMM at your workbench and turn it into the “Ω 2W” resistance measurement mode. Ensure the banana plugs are connected to the resistance input terminals as shown in Figure 3.3.</p>
-<p><img alt="Figure 3.3 DMM Resistance Mode" src="lab3-dmm-resistance.png" /></p>
+<p>Turn on the one of DMM at your workbench and turn it into the “Ω 2W” (1) resistance measurement mode. Ensure the banana plugs are connected to the resistance input terminals as shown in Figure 3.3 (2)(3).</p>
+<p><img alt="Figure 3.3 DMM Resistance Mode" src="../lab3-dmm-resistance.png" /></p>
 <p><strong><em>Figure 3.3</em> DMM Resistance Mode</strong></p>
 </li>
 <li>
@@ -249,7 +250,7 @@ SES250 Electromagnatics
 <li>
 <p>Next, insert one of the resistors onto a breadboard the same way as shown in Figure 2.9 from <a href="../lab2/">Lab 2</a> then connect the jumper wires from DMMs and the power supply to form the following circuit. Notice the voltmeter (DMM in DC voltage mode (DCV)) is connected in parallel with the resistor and the Ammeter (DMM in DC current mode (DCI)) is connected in series with the circuit. A small example of some of the connections is shown.</p>
 <p><img alt="Figure 3.5a" src="../lab3-voltage-current-circuit.png" /></p>
-<p><img alt="Figure 3.5b" src="lab3-connection-2.png" /></p>
+<p><img alt="Figure 3.5b" src="../lab3-connection-1.png" /></p>
 <p><strong><em>Figure 3.5</em></strong></p>
 </li>
 <li>
@@ -402,16 +403,15 @@ SES250 Electromagnatics
     
   </span>
 </div>
-    <script src="../../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "../..";</script>
-    <script src="../../js/theme_extra.js"></script>
-    <script src="../../js/theme.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script src="../../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>
