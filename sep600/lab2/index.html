@@ -128,25 +128,25 @@ SEP600 Embedded Systems
 <li>You'll need to sign up for an Mbed account.</li>
 <li>Install Mbed Studio and sign in to Mbed Studio using the account you just created.</li>
 <li>Follow the instructions <a href="https://os.mbed.com/docs/mbed-studio/current/getting-started/index.html">here</a> to load the LED blink program to test your setup.</li>
-<li>Select the appropriate board then replace the default code with the following:</li>
-</ol>
-<pre>
-    int main()
-    {
-        // Initialise the digital pin LED1 as an output
-        DigitalOut led(LED1);
-        // remove ifdef from the default code
+<li>Select the appropriate board then replace the default code with the following:
+    <pre><pre><code>int main()
+{
+    // Initialise the digital pin LED1 as an output
+    DigitalOut led(LED1);
+    // remove ifdef from the default code
 
-        printf("Program started!\r\n"); // added to test serial
+    printf("Program started!\r\n"); // added to test serial
 
-        while (true) {
-            led = !led;
-            printf("Blinking!\r\n"); // added to test serial
-            ThisThread::sleep_for(500);
-        }
+    while (true) {
+        led = !led;
+        printf("Blinking!\r\n"); // added to test serial
+        ThisThread::sleep_for(500);
     }
+}
+</code></pre>
 </pre>
-
+</li>
+</ol>
 <h3 id="part-1-pull-up-and-pull-down">Part 1: Pull-Up and Pull-Down</h3>
 <p><img alt="Figure 2.1" src="../lab2-pull-up-down.png" /></p>
 <p><em><strong>Figure 2.1</strong> (A) Pull-Up Input. (B) Pull-Down Input.</em></p>
@@ -157,30 +157,30 @@ SEP600 Embedded Systems
     &gt; <strong>Lab Question:</strong> What can we modify to reduce the energy consumption of this circuit?</li>
 <li>
 <p>Modify the code provided to you earlier to include a DigitalIn object for accepting digital input. Remember, you'll need to set up a digital pin for input first.
-    <pre>
-        int main()
-        {
-            // Initialise the digital pin LED1 as an output
-            DigitalOut led(LED1);
-            DigitalIn button(PTXX); // Replace XX with your input pin
-            ...
-        }
-    </pre></p>
-</li>
-<li>
-<p>Since the input is pull-up, the normal state will be HIGH. To detect a button press, we need to check for a LOW state. Replace the while loop with the following:
-    <pre>
-        while (true)
-        {
-            if (!button)
-            {
-                led = 0; // LED ON
-            } else
-            {
-                led = 1; // LED OFF
-            }
-        }
-    </pre></p>
+    <pre></p>
+<pre><code>int main()
+{
+    // Initialise the digital pin LED1 as an output
+    DigitalOut led(LED1);
+    DigitalIn button(PTXX); // Replace XX with your input pin
+    ...
+}
+</code></pre>
+<p></pre>
+1. Since the input is pull-up, the normal state will be HIGH. To detect a button press, we need to check for a LOW state. Replace the while loop with the following:
+<pre></p>
+<pre><code>while (true)
+{
+    if (!button)
+    {
+        led = 0; // LED ON
+    } else
+    {
+        led = 1; // LED OFF
+    }
+}
+</code></pre>
+</pre>
 </li>
 <li>
 <p>Run and test your program.</p>
@@ -197,26 +197,28 @@ SEP600 Embedded Systems
     &gt; <strong>Lab Question:</strong> What is the RC time constant for your circuit? You'll need this for your program.</li>
 <li>
 <p>Modify your code to set up a PWM pin.
-    <pre>
-        int main()
-        {
-            ...
-            PwmOut pwm(PTXX); // Replace XX with your pwm pin
-            ...
-        }
-    </pre></p>
+    <pre></p>
+<pre><code>int main()
+{
+    ...
+    PwmOut pwm(PTXX); // Replace XX with your pwm pin
+    ...
+}
+</code></pre>
+</pre>
 </li>
 <li>
 <p>Add the following code to start PWM. Use a period that is at least twice your RC time constant.
-    <pre>
-        int main()
-        {
-            ...
-            pwm.period(XXXf); // period in s
-            pwm.write(0.50f); // duty cycle 0.5f = 50%
-            ...
-        }
-    </pre></p>
+    <pre></p>
+<pre><code>int main()
+{
+    ...
+    pwm.period(XXXf); // period in s
+    pwm.write(0.50f); // duty cycle 0.5f = 50%
+    ...
+}
+</code></pre>
+</pre>
 </li>
 <li>
 <p>Turn on the DSO and connect CH1 to the output pin and CH2 to the RC circuit output.</p>
