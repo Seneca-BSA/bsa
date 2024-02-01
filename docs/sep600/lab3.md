@@ -42,7 +42,7 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 
 ### Part 1: PWM Output vs DAC Output
 
-In Part, we'll set up a PWM and a DAC to compare the difference between the output.
+In Part 1, we'll set up a PWM and a DAC to compare the difference between the output.
 
 1. Connect a PWM output pin to CH1 of the DSO. Refer to the mbed board pages to identify which pin is a PWM pin.
 1. Connect a DAC output pin to CH2 of the DSO. Refer to the mbed board pages to identify which pin is a DAC pin.
