@@ -69,7 +69,7 @@ In Part 1, we'll set up a PWM and a DAC to compare the difference between the ou
                     pwm = i; // set PWM duty cycle %
 
                     // delay for 10ms, 1000ms for each ramp up
-                    ThisThread::sleep_for(10);
+                    ThisThread::sleep_for(10ms);
                 }
                 
                 // loop to cycle from 100% to 0%
@@ -79,7 +79,7 @@ In Part 1, we'll set up a PWM and a DAC to compare the difference between the ou
                     pwm = i; // set PWM duty cycle %
 
                     // delay for 10ms, 1000ms for each ramp down
-                    ThisThread::sleep_for(10);
+                    ThisThread::sleep_for(10ms);
                 }
             }
         }

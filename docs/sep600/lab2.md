@@ -57,22 +57,23 @@ Read over the lab manual for this lab. Acquire the Freedom microcontroller board
 1. Install Mbed Studio and sign in to Mbed Studio using the account you just created.
 1. Follow the instructions [here](https://os.mbed.com/docs/mbed-studio/current/getting-started/index.html) to load the LED blink program to test your setup.
 1. Select the appropriate board then replace the default code with the following:
-<pre>
-    int main()
-    {
-        // Initialise the digital pin LED1 as an output
-        DigitalOut led(LED1);
-        // remove ifdef from the default code
+    <pre>
 
-        printf("Program started!\r\n"); // added to test serial
+        int main()
+        {
+            // Initialise the digital pin LED1 as an output
+            DigitalOut led(LED1);
+            // remove ifdef from the default code
 
-        while (true) {
-            led = !led;
-            printf("Blinking!\r\n"); // added to test serial
-            ThisThread::sleep_for(500);
+            printf("Program started!\r\n"); // added to test serial
+
+            while (true) {
+                led = !led;
+                printf("Blinking!\r\n"); // added to test serial
+                ThisThread::sleep_for(500);
+            }
         }
-    }
-</pre>
+    </pre>
 
 ### Part 1: Pull-Up and Pull-Down
 
@@ -86,6 +87,7 @@ Read over the lab manual for this lab. Acquire the Freedom microcontroller board
     > **Lab Question:** What can we modify to reduce the energy consumption of this circuit?
 1. Modify the code provided to you earlier to include a DigitalIn object for accepting digital input. Remember, you'll need to set up a digital pin for input first.
     <pre>
+
         int main()
         {
             // Initialise the digital pin LED1 as an output
@@ -94,9 +96,9 @@ Read over the lab manual for this lab. Acquire the Freedom microcontroller board
             ...
         }
     </pre>
-
 1. Since the input is pull-up, the normal state will be HIGH. To detect a button press, we need to check for a LOW state. Replace the while loop with the following:
     <pre>
+        
         while (true)
         {
             if (!button)
@@ -124,6 +126,7 @@ Read over the lab manual for this lab. Acquire the Freedom microcontroller board
     > **Lab Question:** What is the RC time constant for your circuit? You'll need this for your program.
 1. Modify your code to set up a PWM pin.
     <pre>
+
         int main()
         {
             ...
@@ -134,6 +137,7 @@ Read over the lab manual for this lab. Acquire the Freedom microcontroller board
 
 1. Add the following code to start PWM. Use a period that is at least twice your RC time constant.
     <pre>
+
         int main()
         {
             ...
