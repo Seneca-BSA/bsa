@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 3 - BSA Lab Manuals</title>
+    <title>Lab 3 : DAC and ADC - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 3";
+        var mkdocs_page_name = "Lab 3 : DAC and ADC";
         var mkdocs_page_input_path = "sep600/lab3.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,7 +64,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Lab 3</li>
+      <li>Lab 3 : DAC and ADC</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -73,22 +73,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-3">Lab 3</h1>
+                <h1 id="lab-3-dac-and-adc">Lab 3 : DAC and ADC</h1>
 <p><font size="5">
 Seneca College</br>
 SEP600 Embedded Systems
 </font></p>
 <h2 id="introduction">Introduction</h2>
 <p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
+<h3 id="cortex-m4">Cortex M4</h3>
 <ul>
 <li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a></li>
 </ul>
-<p>In the previous lab, we explored the use of the built-in ConfigTools in MCUXpresso IDE to help with setting up interrupts. In this lab, we'll explore how to use assembly instruction to setup GPIO as well as using the ConfigTools to do the same.</p>
+<h3 id="frdm-k64f">FRDM-K64F</h3>
+<ul>
+<li><a href="../FRDMK64FUG.pdf">FRDM-K64F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">nxp.com</a>)</li>
+<li><a href="../K64P144M120SF5RM.pdf">Kinetis K64 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">nxp.com</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F mbed</a></li>
+</ul>
+<h3 id="frdm-k66f">FRDM-K66F</h3>
+<ul>
+<li><a href="../FRDMK66FUG.pdf">FRDM-K66F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">nxp.com</a>)</li>
+<li><a href="../K66P144M180SF5RMV2.pdf">Kinetis K66 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">nxp.com</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F mbed</a></li>
+</ul>
+<h2 id="materials">Materials</h2>
+<ul>
+<li>Safety glasses (PPE)</li>
+<li>Breadboard</li>
+<li>Jumper Wires</li>
+<li>(1x) 1kΩ-10kΩ Resistor</li>
+<li>(1x) Potentiometer (Optional)</li>
+</ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
@@ -97,9 +113,156 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<h2 id="post-lab-questions">Post-Lab Questions</h2>
-<p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
+<h3 id="part-1-pwm-output-vs-dac-output">Part 1: PWM Output vs DAC Output</h3>
+<p>In Part, we'll set up a PWM and a DAC to compare the difference between the output.</p>
+<ol>
+<li>Connect a PWM output pin to CH1 of the DSO. Refer to the mbed board pages to identify which pin is a PWM pin.</li>
+<li>Connect a DAC output pin to CH2 of the DSO. Refer to the mbed board pages to identify which pin is a DAC pin.</li>
+<li>
+<p>Upload the following code to generate a PWM and a DAC output. Remember, you'll need to replace PTXX with the PWM pin that you are using.
+    <pre></p>
+<pre><code>int main()
+{
+    // setup pins
+    PwmOut pwm(PTXX); // replace with a PWM pin
+    AnalogOut aout(DAC0_OUT);
+
+    // pwm settings
+    pwm.period(0.02f); // 50Hz pwm, 0.02s period
+
+    printf("Program started!\r\n"); // added to test serial
+
+    while (true) 
+    {
+        // loop to cycle from 0% to 100%
+        for (float i = 0.0f; i &lt; 1.0f; i += 0.01f)
+        {
+            aout = i; // set DAC out %
+            pwm = i; // set PWM duty cycle %
+
+            // delay for 10ms, 1000ms for each ramp up
+            ThisThread::sleep_for(10);
+        }
+
+        // loop to cycle from 100% to 0%
+        for (float i = 1.0f; i &gt; 0.0f; i -= 0.01f)
+        {
+            aout = i; // set DAC out %
+            pwm = i; // set PWM duty cycle %
+
+            // delay for 10ms, 1000ms for each ramp down
+            ThisThread::sleep_for(10);
+        }
+    }
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Turn on the DSO and run the program. You should see something similar to the figure below on your DSO except it'll be a triangular wave instead of a sine wave.</p>
+<p><img alt="Figure 3.1" src="../lab3-dac-pwm.png" /></p>
+<p><em><strong>Figure 3.1</strong> DAC and PWM output</em></p>
+<blockquote>
+<p><strong>Lab Question:</strong> What circuit should you apply to the PWM output if you want to see the same waveform as the DAC output?</p>
+</blockquote>
+</li>
+<li>
+<p>Keep the DSO connected.</p>
+</li>
+</ol>
+<h3 id="part-2-adc-input">Part 2: ADC Input</h3>
+<p>Next, we'll connect the ADC to an analog voltage input so it can be read into the microcontroller. The voltage signal will come from the bench power supply. To prevent damaging the ADC, we'll first use a voltage division to halve the signal. <strong>Never connect the power supply directly to the ADC without a resistor.</strong></p>
+<p><img alt="Figure 3.2" src="../lab3-vs-adc.png" /></p>
+<p><em><strong>Figure 3.2</strong> Voltage division circuit for ADC input</em></p>
+<ol>
+<li>Assemble the voltage division circuit above on your breadboard and connect the voltage divider output to an analog input pin. Vs will be provided by the bench power supply. Ensure the power supply output is OFF. Optionally, you can use a potentiometer to achieve the same.</li>
+<li>As a precaution, we only want to supply a maximum of 3.3V to the ADC pin, this means the power supply output should never to above 6.6V. Set the power supply output to 1V.</li>
+<li>
+<p>Add the following code in the main function of your code but before the while loop to set up an analog input pin. Remember, you'll need to replace PTXX with the PWM pin that you are using.
+    <pre></p>
+<pre><code>int main()
+{
+    ...
+    AnalogIn ain(PTXX); // replace with a ADC pin
+    ...
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Next, replace the while loop with the following code so we are controlling the DAC output and the PWM duty cycle with the analog input.
+    <pre></p>
+<pre><code>while (true)
+{
+    i = ain; // read ADC
+    aout = i; // set DAC out %
+    pwm = i; // set PWM duty cycle %
+
+    // delay for 10ms, 1000ms for each ramp up
+    ThisThread::sleep_for(100);
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Next, let's also use the ADC reading to control the LED and print the reading out as well. Modify your code to include the following respectively.
+    <pre></p>
+<pre><code>int main()
+{
+    ...
+    PwmOut led(LED1); // set LED
+    ...
+    led.period(0.02f); // 50Hz pwm, 0.02s period
+    ...
+}
+</code></pre>
+</pre>
+<pre>
+<pre><code>while (true)
+{
+    ...
+    pwm = i; // set PWM duty cycle %
+    ...
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Lastly, let's also print out the ADC value in serial so we can take a look at the input.
+    <pre></p>
+<pre><code>while (true)
+{
+    ...
+    // print the percentage, 16 bit normalized values, and something we understand
+    printf("percentage: %3.3f%% ", ain.read() * 100.0f);
+    printf("normalized: 0x%04X ", ain.read_u16());
+    printf("normalized: %3.3fV \n", ain * 3.3); // % * 3.3V
+    ...
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Turn on the power supply output and run the program. You should see a constant 0.5V on the DSO, a about 15% duty cycle PWM wave, the Red LED light at 15% on, and a serial output state of about 15% and 0.5V.</p>
+<blockquote>
+<p><strong>Lab Question:</strong> What do you think can be done to reduce reading fluctuation? How do you think that can be achieved?</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="part-3-led-colour-mixing">Part 3: LED Colour Mixing</h3>
+<p>Consider the figure below for a framework on how to achieve LED colour mixing. When the ADC input is 0%, the R-LED should output 100% and the others at 0%. As the ADC input goes up to 25%, the B-LED output will increase proportionally to 100% to get the colour purple.</p>
+<p><img alt="Figure 3.3" src="../lab3-mixing.png" /></p>
+<p><em><strong>Figure 3.3</strong> Colour Mixing</em></p>
+<blockquote>
+<p><strong>Lab Question:</strong> Write a program that will achieve the colour mixing effect described above using the ADC as input and all three colour channels as output. Keep the DSO connected and serial output for the demo.</p>
+</blockquote>
 <h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">mbed I/O API</a></li>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/pwmout.html">PwmOut</a></li>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/analogout.html">AnalogOut</a></li>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">AnalogIn</a></li>
+</ul>
               
             </div>
           </div><footer>

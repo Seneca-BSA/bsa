@@ -80,13 +80,22 @@ SEP600 Embedded Systems
 </font></p>
 <h2 id="introduction">Introduction</h2>
 <p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
+<h3 id="cortex-m4">Cortex M4</h3>
 <ul>
 <li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+</ul>
+<h3 id="frdm-k64f">FRDM-K64F</h3>
+<ul>
 <li><a href="../FRDMK64FUG.pdf">FRDM-K64F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">nxp.com</a>)</li>
 <li><a href="../K64P144M120SF5RM.pdf">Kinetis K64 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">nxp.com</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F mbed</a></li>
+</ul>
+<h3 id="frdm-k66f">FRDM-K66F</h3>
+<ul>
 <li><a href="../FRDMK66FUG.pdf">FRDM-K66F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">nxp.com</a>)</li>
 <li><a href="../K66P144M180SF5RMV2.pdf">Kinetis K66 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">nxp.com</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F mbed</a></li>
 </ul>
 <h2 id="materials">Materials</h2>
 <ul>
@@ -108,7 +117,7 @@ SEP600 Embedded Systems
 <h2 id="procedures">Procedures</h2>
 <h3 id="ide-option-1-mcuxpresso">IDE Option 1: MCUXpresso</h3>
 <ol>
-<li>Go to the following link to download the code for a simple blink LED program. This is the code you'll base your lab exercise with. <a href="https://github.com/Seneca-BSA/bsa-sep600">https://github.com/Seneca-BSA/bsa-sep600</a></li>
+<li>Go to the following link to download the code for a simple blink LED program. This is the code you'll base your lab exercise on. <a href="https://github.com/Seneca-BSA/bsa-sep600">https://github.com/Seneca-BSA/bsa-sep600</a></li>
 <li>Once you've downloaded the code above, unzip it locally.</li>
 <li>Open MCUXpresso then import the project by File &gt; Import Project from File System or Archive. Find the folder that you've unzipped the code from above then select the folder "lab" for import.</li>
 <li>Click Finish to import the project.</li>
@@ -121,22 +130,21 @@ SEP600 Embedded Systems
 <li>Follow the instructions <a href="https://os.mbed.com/docs/mbed-studio/current/getting-started/index.html">here</a> to load the LED blink program to test your setup.</li>
 <li>Select the appropriate board then replace the default code with the following:</li>
 </ol>
-<hr/>
 <pre>
-int main()
-{
-    // Initialise the digital pin LED1 as an output
-    DigitalOut led(LED1);
-    // remove ifdef from the default code
+    int main()
+    {
+        // Initialise the digital pin LED1 as an output
+        DigitalOut led(LED1);
+        // remove ifdef from the default code
 
-    printf("Program started!\r\n"); // added to test serial
+        printf("Program started!\r\n"); // added to test serial
 
-    while (true) {
-        led = !led;
-        printf("Blinking!\r\n"); // added to test serial
-        ThisThread::sleep_for(BLINKING_RATE);
+        while (true) {
+            led = !led;
+            printf("Blinking!\r\n"); // added to test serial
+            ThisThread::sleep_for(500);
+        }
     }
-}
 </pre>
 
 <h3 id="part-1-pull-up-and-pull-down">Part 1: Pull-Up and Pull-Down</h3>
@@ -147,30 +155,36 @@ int main()
 <li>Assemble a Pull-Up circuit as given above and attach the signal to one of the digital input pins of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
     &gt; <strong>Lab Question:</strong> What is the current passing through the resistor when the switch is closed? Is this a safe current for the resistor? (Hint: what is the maximum power the resistor can handle?)
     &gt; <strong>Lab Question:</strong> What can we modify to reduce the energy consumption of this circuit?</li>
-<li>Modify the code provided to you earlier to include a DigitalIn object for accepting digital input. Remember, you'll need to set up a digital pin for input first.
-    <hr/><pre>
-    int main()
-    {
-        // Initialise the digital pin LED1 as an output
-        DigitalOut led(LED1);
-        DigitalIn button(PTXX); // Replace XX with your input pin
-        ...
-    }
-    </pre></li>
-<li>Since the input is pull-up, the normal state will be HIGH. To detect a button press, we need to check for a LOW state. Replace the while loop with the following:
-    <hr/><pre>
-    while (true)
-    {
-        if (!button)
+<li>
+<p>Modify the code provided to you earlier to include a DigitalIn object for accepting digital input. Remember, you'll need to set up a digital pin for input first.
+    <pre>
+        int main()
         {
-            led = 0; // LED ON
-        } else
-        {
-            led = 1; // LED OFF
+            // Initialise the digital pin LED1 as an output
+            DigitalOut led(LED1);
+            DigitalIn button(PTXX); // Replace XX with your input pin
+            ...
         }
-    }
-    </pre></li>
-<li>Run and test your program.</li>
+    </pre></p>
+</li>
+<li>
+<p>Since the input is pull-up, the normal state will be HIGH. To detect a button press, we need to check for a LOW state. Replace the while loop with the following:
+    <pre>
+        while (true)
+        {
+            if (!button)
+            {
+                led = 0; // LED ON
+            } else
+            {
+                led = 1; // LED OFF
+            }
+        }
+    </pre></p>
+</li>
+<li>
+<p>Run and test your program.</p>
+</li>
 <li>Without taking apart your Pull-up circuit, assemble another Pull-Down circuit as given above and attach the signal to another of the digital input pins of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.</li>
 <li>Modify your code so the second switch you assembled will trigger the second LED (LED2) to turn on.</li>
 <li>Run and test your program.</li>
@@ -181,26 +195,32 @@ int main()
 <ol>
 <li>Without removing your pull-up and pull-down circuit, assemble an RC circuit as given above and attach the input PWM signal to a PWM-capable pin of your microcontroller. Refer to the microcontroller board manual for details on pin assignment.
     &gt; <strong>Lab Question:</strong> What is the RC time constant for your circuit? You'll need this for your program.</li>
-<li>Modify your code to set up a PWM pin.
-    <hr/><pre>
-    int main()
-    {
-        ...
-        PwmOut pwm(PTXX); // Replace XX with your pwm pin
-        ...
-    }
-    </pre></li>
-<li>Add the following code to start PWM. Use a period that is at least twice your RC time constant.
-    <hr/><pre>
-    int main()
-    {
-        ...
-        pwm.period(XXXf); // period in s
-        pwm.write(0.50f); // duty cycle 0.5f = 50%
-        ...
-    }
-    </pre></li>
-<li>Turn on the DSO and connect CH1 to the output pin and CH2 to the RC circuit output.</li>
+<li>
+<p>Modify your code to set up a PWM pin.
+    <pre>
+        int main()
+        {
+            ...
+            PwmOut pwm(PTXX); // Replace XX with your pwm pin
+            ...
+        }
+    </pre></p>
+</li>
+<li>
+<p>Add the following code to start PWM. Use a period that is at least twice your RC time constant.
+    <pre>
+        int main()
+        {
+            ...
+            pwm.period(XXXf); // period in s
+            pwm.write(0.50f); // duty cycle 0.5f = 50%
+            ...
+        }
+    </pre></p>
+</li>
+<li>
+<p>Turn on the DSO and connect CH1 to the output pin and CH2 to the RC circuit output.</p>
+</li>
 <li>Run and test your program.</li>
 <li>
 <p>Adjust the DSO so both CH1 and CH2 are in view. Your signal should look like the graph below.</p>
@@ -208,7 +228,7 @@ int main()
 <p><em><strong>Figure 2.2</strong> PWM signal after RC smoothing.</em>
 1. Adjust your PWM settings so there's less than 10% fluctuation between the high and low voltage after the RC filter (CH2).</p>
 <blockquote>
-<p><strong>Lab Question:</strong> What is the PWM frequency to achieve this?</p>
+<p><strong>Lab Question:</strong> What is the PWM frequency needed to achieve this?</p>
 </blockquote>
 </li>
 </ol>
@@ -217,7 +237,7 @@ int main()
 <li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">mbed I/O API</a></li>
 <li><a href="https://os.mbed.com/handbook/DigitalIn">DigitalIn</a></li>
 <li><a href="https://os.mbed.com/handbook/DigitalOut">DigitalOut</a></li>
-<li><a href="https://os.mbed.com/handbook/PwmOut">PwmOut</a></li>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/pwmout.html">PwmOut</a></li>
 </ul>
               
             </div>
