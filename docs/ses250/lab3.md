@@ -74,7 +74,7 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
     >    |Colour||||Total||
     >    |Value|||x 10 ^|||
 >
-> 1. Sketch the breadboard sketch below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figures 3.5, 3.6, and 3.7. Clearly show which tie point the wire, resistor, DMM, and power supply be attached to. Using [TinkerCAD Circuit](https://www.tinkercad.com/) to help with your understanding of breadboard and component wiring. You may also simulate all the steps as preparation for the lab. Refer the [Lab 2](lab2.md) Figure 2.13 for a breadboard diagram example.
+> 1. Sketch the breadboard sketch below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figures 3.5, 3.6, and 3.7. Clearly show which tie point the wire, resistor, DMM, and power supply be attached to. Use [TinkerCAD Circuit](https://www.tinkercad.com/) to help with your understanding of breadboard and component wiring. You may also simulate all the steps as preparation for the lab. Refer the [Lab 2](lab2.md) Figure 2.13 for a breadboard diagram example.
 >
     >    ![Breadboard Sketch](lab2-breadboard-sketch.png)
     >
@@ -134,7 +134,7 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
 1. Turn on the DC power supply and set the output to 5V then turn on the output. Verify the voltage reading on the DMM agrees with the output of the DC power supply then **turn it off**. If you are not seeing 5VDC at the DMM, verify your wiring and that you are using the correct output channel of the power supply. 
 
     >
-    > **Lab Question 3:** Adjust the power supply output to 1V, 2V, 5V, 10V, and 12V to complete the table below. Do the measurements agree with Ohm's Law?
+    > **Lab Question 3:** Adjust the power supply output to 1V, 2V, 5V, and 10V to complete the table below. Do the measurements agree with Ohm's Law?
     >
     > |Power Supply Voltage [V]|1V|2V|5V|10V|
     > |---|---|---|---|---|
@@ -154,7 +154,7 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
 1. Set the DC power supply to 1V output then turn on the output. Verify the voltage reading on the DMM agrees with the output of the DC power supply then **turn it off**. If you are not seeing 1VDC at the DMM, verify your wiring and that you are using the correct output channel of the power supply. 
 
     >
-    > **Lab Question 4:** Adjust the power supply output to 1V, 2V, 5V, 10V, and 12V to complete the table below. Do the measurements agree with the estimate you made in the pre-lab?
+    > **Lab Question 4:** Adjust the power supply output to 1V, 2V, 5V, and 10V to complete the table below. Do the measurements agree with the estimate you made in the pre-lab?
     >
     > |Power Supply Voltage [V]|1V|2V|5V|10V|
     > |---|---|---|---|---|
@@ -170,7 +170,7 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
 1. Set the DC power supply to 1V output then turn on the output. Verify the voltage reading on the DMM agrees with the output of the DC power supply then **turn it off**. If you are not seeing 1VDC at the DMM, verify your wiring and that you are using the correct output channel of the power supply. 
 
     >
-    > **Lab Question 5:** Adjust the power supply output to 1V, 2V, 5V, 10V, and 12V to complete the table below. Do the measurements agree with the estimate you made in the pre-lab?
+    > **Lab Question 5:** Adjust the power supply output to 1V, 2V, 5V, and 10V to complete the table below. Do the measurements agree with the estimate you made in the pre-lab?
     >
     > |Power Supply Voltage [V]|1V|2V|5V|10V|
     > |---|---|---|---|---|

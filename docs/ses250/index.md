@@ -6,8 +6,8 @@
 - [Lab 1 : Electrostatics and Triboelectric Series](lab1.md)
 - [Lab 2 : Digital Multimeter, Power Supply, and Ohm's Law](lab2.md)
 - [Lab 3 : Series and Parallel Resistive Circuit](lab3.md)
+- [Lab 4 : Kirchhoff's Laws and Thévenin Theorem](lab4.md)
 <!--
-- [Lab 4 : DC Circuit](lab4.md)
 - [Lab 5 : Capacitor and Resistor Circuit](lab5.md)
 - [Bonus Lab : More Resistive Circuit](lab-bonus.md)
 - [Lab 6 : Thévenin Circuit](lab6.md)
