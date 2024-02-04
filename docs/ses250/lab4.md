@@ -9,7 +9,7 @@ SES250 Electromagnatics
 - To become familiar with measurement techniques of direct current (DC)
 - To study the relationship between voltage, resistance, and current
 - To understand and verify Kirchhoff's Laws
-- To understand and verify Kirchhoff's Law
+- To understand and verify Thévenin Theorem
 
 ## Objectives
 - Assemble electronic components onto a breadboard
