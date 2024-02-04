@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 4 : Series-Parallel Resistive Circuit - BSA Lab Manuals</title>
+    <title>Lab 4 : Kirchhoff's Laws and Thévenin Theorem - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 4 : Series-Parallel Resistive Circuit";
+        var mkdocs_page_name = "Lab 4 : Kirchhoff\u0027s Laws and Th\u00e9venin Theorem";
         var mkdocs_page_input_path = "ses250/lab4.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,7 +64,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Lab 4 : Series-Parallel Resistive Circuit</li>
+      <li>Lab 4 : Kirchhoff's Laws and Thévenin Theorem</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -73,7 +73,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-4-series-parallel-resistive-circuit">Lab 4 : Series-Parallel Resistive Circuit</h1>
+                <h1 id="lab-4-kirchhoffs-laws-and-thevenin-theorem">Lab 4 : Kirchhoff's Laws and Thévenin Theorem</h1>
 <p><font size="5">
 Seneca College</br>
 SES250 Electromagnatics
@@ -82,7 +82,7 @@ SES250 Electromagnatics
 <ul>
 <li>To become familiar with measurement techniques of direct current (DC)</li>
 <li>To study the relationship between voltage, resistance, and current</li>
-<li>To verify Ohm's Law</li>
+<li>To understand and verify Kirchhoff's Laws</li>
 <li>To understand and verify Kirchhoff's Law</li>
 </ul>
 <h2 id="objectives">Objectives</h2>
@@ -108,33 +108,45 @@ SES250 Electromagnatics
 \displaystyle\sum_{i=1}^{n} I_i = \sum_{i=1}^{n} {{V_i} \over {R_i}} = 0
 </script>
 </p>
-<p><img src="../lab4-kcl.png" width="50%" height="50%"/></p>
-<p><strong><em>Figure 4.1 The current entering any junction is equal to the current leaving that junction. i2 + i3 = i1 + i4</em></strong></p>
+<div style="text-align:center;"><img src="../lab4-kcl.png" width="50%" height="50%"/></div>
+
+<p><em><strong>Figure 4.1</strong> The current entering any junction is equal to the current leaving that junction. i2 + i3 = i1 + i4</em></p>
 <h3 id="kirchhoffs-voltage-law-kvl">Kirchhoff's Voltage Law (KVL)</h3>
-<p>KVL, Kirchhoff's second law, or Kirchhoff's loop rule, states that, the directed sum of the potential differences (voltages) around any closed loop is zero. Similarly to Kirchhoff's current law, the voltage law can be stated as:</p>
+<p>KVL, Kirchhoff's second law, or Kirchhoff's loop rule, states that the directed sum of the potential differences (voltages) around any closed loop is zero. Similarly to Kirchhoff's current law, the voltage law can be stated as:</p>
 <p>
 <script type="math/tex; mode=display">
 \displaystyle\sum_{i=1}^{n} V_i = \sum_{i=1}^{n} {{I_i} {R_i}} = 0
 </script>
 </p>
 <p><img alt="Figure 4.2" src="../lab4-kvl.jpg" /></p>
-<p><strong><em>Figure 4.2 The voltages around any closed loop is zero</em></strong></p>
+<p><em><strong>Figure 4.2</strong> The voltages around any closed loop are zero</em></p>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws">Wikipedia: Kirchhoff's circuit laws</a></p>
+<h3 id="thevenin-theorem">Thévenin Theorem</h3>
+<p>Thévenin theorem is a method often used to simplify circuit analysis from a complex circuit to a simpler one with only a Thévenin voltage source in series with a Thévenin resistor.</p>
+<p>Any linear electrical network containing only voltage sources, current sources and resistances can be replaced at terminals A–B by an equivalent combination of a voltage source <script type="math/tex">V_{th}</script> in a series connection with a resistance <script type="math/tex">R_{th}</script>.</p>
+<p><img alt="Figure 4.3" src="../lab4-thevenin.png" /></p>
+<p><em><strong>Figure 4.3</strong> Thévenin equivalent circuit</em></p>
+<ol>
+<li>The equivalent voltage <script type="math/tex">V_{th}</script> is the voltage obtained at terminals A–B of the network with terminals A–B open-circuited.</li>
+<li>The equivalent resistance <script type="math/tex">R_{th}</script> is the resistance that the circuit between terminals A and B would have if all ideal voltage sources in the circuit were replaced by a short circuit and all ideal current sources were replaced by an open circuit.</li>
+<li>If terminals A and B are connected to one another, the current flowing from A and B will be <script type="math/tex">V_{th} over R_{th}</script>. This means that <script type="math/tex">R_{th}</script> could alternatively be calculated as <script type="math/tex">V_{th}</script> divided by the short-circuit current between A and B when they are connected together.</li>
+</ol>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem">Wikipedia: Thévenin's theorem</a></p>
 <h3 id="tinkercad-breadboard-simulator">TinkerCAD Breadboard Simulator</h3>
 <p>There are many breadboard simulators available online. In particular, <a href="https://www.tinkercad.com/">TinkerCAD Circuit</a> is a nice tool that you can use to practice assembling a circuit with a virtual breadboard. See the diagram below as an example. Use this tool to help you prepare for this and future labs.</p>
-<p><img alt="Figure 4.3" src="../lab3-tinkercad-1.png" /></p>
-<p><strong><em>Figure 4.3</em> TinkerCAD Circuit Simulation Tool</strong></p>
+<p><img alt="Figure 4.4" src="../lab3-tinkercad-1.png" /></p>
+<p><strong><em>Figure 4.4</em> TinkerCAD Circuit Simulation Tool</strong></p>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>Safety glasses (PPE)</li>
 <li><a href="../supplies/">Lab Supplies</a><ul>
 <li>Breadboard</li>
 <li>Jumper Wires</li>
-<li>100Ω Resistor (brown-black-brown)</li>
-<li>330Ω Resistor (orange-orange-brown)</li>
-<li>1kΩ Resistor (brown-black-red)</li>
-<li>4.7kΩ Resistor (yellow-purple-red)</li>
-<li>10kΩ resistor (brown-black-orange)</li>
+<li>(2x) 100Ω Resistor (brown-black-brown)</li>
+<li>(2x) 330Ω Resistor (orange-orange-brown)</li>
+<li>(2x) 1kΩ Resistor (brown-black-red)</li>
+<li>(1x) 4.7kΩ Resistor (yellow-purple-red)</li>
+<li>(2x) 10kΩ resistor (brown-black-orange)</li>
 </ul>
 </li>
 </ul>
@@ -143,158 +155,163 @@ SES250 Electromagnatics
 <p><strong>Lab Preparation Question:</strong></p>
 <ol>
 <li>Read and summarize the lab as necessary.</li>
+<li>Copy the three (3x) observation tables of this lab into your notebook.</li>
 <li>
-<p>Copy two (2x) of the following Table 1 into your notebook for this lab:</p>
+<p>Sketch the breadboard diagram below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figure 4.5 for measuring:</p>
 <blockquote>
-<p><strong>Table 1:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Resistor #</th>
-<th>First Band</th>
-<th>Second Band</th>
-<th>Multiplier</th>
-<th>Nonimal Ω</th>
-<th>Measured Ω</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Colour</td>
-<td></td>
-<td></td>
-<td></td>
-<td>Total</td>
-<td></td>
-</tr>
-<tr>
-<td>Value</td>
-<td></td>
-<td></td>
-<td>x 10 ^</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</blockquote>
+<ul>
+<li>
+<script type="math/tex">I_1</script>
 </li>
 <li>
-<p>Sketch the breadboard sketch below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figures 3.5, 3.6, and 3.7. Clearly show which tie point the wire, resistor, DMM, and power supply be attached to. Using <a href="https://www.tinkercad.com/">TinkerCAD Circuit</a> to help with your understanding of breadboard and component wiring. You may also simulate all the steps as preparation for the lab. Refer the <a href="../lab2/">Lab 2</a> Figure 2.13 for a breadboard diagram example.</p>
-<blockquote>
+<script type="math/tex">I_2</script>
+</li>
+<li>
+<script type="math/tex">I_L</script>
+</li>
+<li>
+<script type="math/tex">V_a</script> and <script type="math/tex">V_b</script>
+</li>
+</ul>
+<p>Clearly show which tie point the wire, resistor, DMM, and power supply be attached to. Use <a href="https://www.tinkercad.com/">TinkerCAD Circuit</a> to help with your understanding of breadboard and component wiring. You may also simulate all the steps as preparation for the lab. Refer the <a href="../lab2/">Lab 2</a> Figure 2.13 for a breadboard diagram example.</p>
 <p><img alt="Breadboard Sketch" src="../lab2-breadboard-sketch.png" /></p>
 </blockquote>
 </li>
 <li>
-<p>Copy the table in Lab Questions 3, 4 and 5 into your notebook.</p>
+<p>Repeat the above breadboard sketch for measuring <script type="math/tex">I_L</script> and <script type="math/tex">V_{ab}</script> in Figure 4.5 and Figure 4.6.</p>
 </li>
-<li>Calculate the theoretical reading of the voltmeter and ammeter of the circuit in Figures 3.6 and 3.7 for a supply voltage of 1V, 2V, 5V, and 10V. </li>
+<li>Use KCL or KVL to calculate the estimated values for <script type="math/tex">I_1</script>, <script type="math/tex">I_2</script>, <script type="math/tex">I_L</script>, <script type="math/tex">V_a</script>and <script type="math/tex">V_b</script> in Figure 4.5 then fill in the appropriate cell in the Part 1 observation table. Use 1kΩ for <script type="math/tex">R_L</script>.</li>
+<li>Find the Thévenin equivalent circuit for Figure 4.5 then choose the closest resistor you have to <script type="math/tex">R_{th}</script> for Part 2 of the lab.</li>
+<li>Use Thévenin Theorem to calculate the estimated values for <script type="math/tex">I_L</script> in Figure 4.5 for each of the <script type="math/tex">R_L</script> values in Part 2 then fill in the appropriate cell in the Part 2 observation table.</li>
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<h3 id="part-1-resistance-measurement">Part 1: Resistance Measurement</h3>
+<h3 id="part-1-current-and-voltage-measurement">Part 1: Current and Voltage Measurement</h3>
+<p>For this lab, below is the circuit that you'll be working with. However, do NOT assemble the circuit as shown on your breadboard as <strong>current measurement needs to be in <u>series</u></strong> with the branch.</p>
+<p><img alt="Figure 4.5" src="../lab4-circuit.png" /></p>
+<p><strong><em>Figure 4.5</em></strong></p>
 <ol>
+<li>Assemble the above circuit shown onto your breadboard as how you prepared during your pre-lab for measuring current <script type="math/tex">I_1</script>. Use 1kΩ for <script type="math/tex">R_L</script>.</li>
 <li>
-<p>Take out a 1kΩ resistor and a 10kΩ resistor from your lab kit.</p>
+<p>Turn on the power supplies and set the DMM for the appropriate measurement then write down your measurement into the observation table.</p>
 <blockquote>
-<p><strong>Lab Question 1:</strong> Write down the colour code of each resistor then determine their resistance value using the resistor colour chart in <a href="../lab2/">Lab 2</a>. Use the table below to help you determine the resistance value of each resistor. Leave the "Measured Ω" blank.</p>
-<p><strong>Example:</strong></p>
+<p><strong>Lab Question 1:</strong> Write down the measured current into the appropriate cell in the table below.</p>
+<p><strong>Observation Table:</strong></p>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>1st Band</th>
-<th>2nd Band</th>
-<th>Multiplier</th>
-<th>Nonimal Ω</th>
-<th>Measured Ω</th>
-<th>% Error</th>
+<th>
+<script type="math/tex">I_1</script>
+</th>
+<th>
+<script type="math/tex">I_2</script>
+</th>
+<th>
+<script type="math/tex">I_L</script>
+</th>
+<th>
+<script type="math/tex">V_a</script>
+</th>
+<th>
+<script type="math/tex">V_b</script>
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Colour</td>
-<td>Brown</td>
-<td>Black</td>
-<td>Red</td>
-<td>Total</td>
-<td>-</td>
-<td>-</td>
+<td>Estimated Value</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td>Value</td>
-<td>1</td>
-<td>0</td>
-<td>x 10 ^ 2</td>
-<td>1 kΩ</td>
-<td>1.013 kΩ</td>
-<td>1.3%</td>
+<td>Measured Value</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>% Error</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </blockquote>
 </li>
 <li>
-<p>Turn on the one of DMM at your workbench and turn it into the “Ω 2W” (1) resistance measurement mode. Ensure the banana plugs are connected to the resistance input terminals as shown in Figure 3.3 (2)(3).</p>
-<p><img alt="Figure 3.3 DMM Resistance Mode" src="../lab3-dmm-resistance.png" /></p>
-<p><strong><em>Figure 3.3</em> DMM Resistance Mode</strong></p>
+<p>Turn off the output of the power supplies.</p>
 </li>
+<li>Modify the circuit on your breadboard for measuring current <script type="math/tex">I_2</script> and <script type="math/tex">I_L</script> as how you prepared during your pre-lab. You may use both DMM.</li>
 <li>
-<p>Connect the red alligator clip of the DMM to one lead of one of the resistors and the black alligator clip to the other lead of the resistor.</p>
+<p>Turn on the power supplies then write down your measurement into the observation table.</p>
 <blockquote>
-<p><strong>Lab Question 2:</strong> Write down the measured resistance (at least 3 significant figures) in the "Measured Ω" column of the table you created in the pre-lab. Does this value agree with the normal resistor value according to the colour band value? What is the % error? Is the error within the tolerance of the resistor (indicated by the tolerance band)?</p>
+<p><strong>Lab Question 2:</strong> Write down the measured current into the appropriate cell in the observation table.</p>
 </blockquote>
 </li>
 <li>
-<p>Repeat step 3 for the second resistor then disconnect the DMM from the resistor.</p>
+<p>Repeat the above steps for the measurement of voltage measurement <script type="math/tex">V_a</script> and <script type="math/tex">V_b</script>. You may use both DMM.</p>
+<blockquote>
+<p><strong>Lab Question 3:</strong> Does all the % error falls within the tolarance of the resistors?</p>
+</blockquote>
 </li>
 </ol>
-<h3 id="part-2-voltage-and-current-measurement">Part 2: Voltage and Current Measurement</h3>
+<h3 id="part-2-thevenin-equivalent-circuit">Part 2: Thévenin Equivalent Circuit</h3>
 <ol>
+<li>Assemble the circuit in Part 1 onto your breadboard as how you prepared during your pre-lab for measuring current <script type="math/tex">I_L</script> and <script type="math/tex">V_{ab}</script>.</li>
 <li>
-<p>Ensure the DC power supply is OFF. Locate its red and black cables then attach jumper wires to the alligator clips as shown in Figure 2.12 from <a href="../lab2/">Lab 2</a>.</p>
-</li>
-<li>
-<p>Set up one of the DMMs to voltage mode (Refer to <a href="../lab2/">Lab 2</a> if you don't remember the procedure) and ensure the banana cables are connected properly to the DMM for voltage measure. Connect jumper wires to each of the alligator clips.</p>
-</li>
-<li>
-<p>Set up the other DMM at your workbench to the current mode (DCI) by holding the "SHIFT" button (1) and the "DCV" button (2). Afterward, ensure the banana cable is connected properly to the DMM for voltage measurement by connecting the black banana cable to the "LO" Input (3) and the red banana cable to the "3A" Input (4) as shown in Figure 3.4. Then Connect jumper wires to each of the alligator clips.</p>
-<p><img alt="Figure 3.4" src="../lab3-dmm-current.png" /></p>
-<p><strong><em>Figure 3.4</em></strong></p>
-</li>
-<li>
-<p>Next, insert one of the resistors onto a breadboard the same way as shown in Figure 2.9 from <a href="../lab2/">Lab 2</a> then connect the jumper wires from DMMs and the power supply to form the following circuit. Notice the voltmeter (DMM in DC voltage mode (DCV)) is connected in parallel with the resistor and the Ammeter (DMM in DC current mode (DCI)) is connected in series with the circuit. A small example of some of the connections is shown.</p>
-<p><img alt="Figure 3.5a" src="../lab3-voltage-current-circuit.png" /></p>
-<p><img alt="Figure 3.5b" src="../lab3-connection-1.png" /></p>
-<p><strong><em>Figure 3.5</em></strong></p>
-</li>
-<li>
-<p>Double-verify that the circuit is assembled properly and that there is no short circuit. <strong>Tips:</strong> Follow the flow of the current on your physical circuit from the positive (+) terminal of the power supply to the resistor, then to the ammeter, then to the negative terminal of the power supply to verify proper connections.</p>
-</li>
-<li>
-<p>Turn on the DC power supply and set the output to 5V then turn on the output. Verify the voltage reading on the DMM agrees with the output of the DC power supply then <strong>turn it off</strong>. If you are not seeing 5VDC at the DMM, verify your wiring and that you are using the correct output channel of the power supply. </p>
+<p>Turn on the power supplies then write down your measurement into the observation table.</p>
 <blockquote>
-<p><strong>Lab Question 3:</strong> Adjust the power supply output to 1V, 2V, 5V, 10V, and 12V to complete the table below. Do the measurements agree with Ohm's Law?</p>
+<p><strong>Lab Question 4:</strong> Write down the measured current into the appropriate cell in the table below.</p>
+<p><strong>Original Observation Table:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Power Supply Voltage [V]</th>
-<th>1V</th>
-<th>2V</th>
-<th>5V</th>
-<th>10V</th>
+<th>
+<script type="math/tex">R_L</script>
+</th>
+<th>Estimated <script type="math/tex">I_L</script>
+</th>
+<th>Estimated <script type="math/tex">V_{ab}</script>
+</th>
+<th>Measured <script type="math/tex">I_L</script>
+</th>
+<th>Measured <script type="math/tex">V_{ab}</script>
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Current Using 1kΩ Resistor [A]</td>
+<td>100Ω</td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>Current Using 10kΩ Resistor [A]</td>
+<td>330Ω</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1kΩ</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10kΩ</td>
 <td></td>
 <td></td>
 <td></td>
@@ -305,41 +322,52 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Turn off the DC power supply output.</p>
-</li>
-</ol>
-<h3 id="part-3-series-and-parallel-resistive-circuit">Part 3: Series and Parallel Resistive Circuit</h3>
-<ol>
-<li>
-<p>Next, we’ll assemble the following series of resistive circuits using the 1kΩ and 10kΩ breadboard. The power supply will act as the DC Voltage Source. </p>
-<p><img alt="Figure 3.6" src="../lab3-series-circuit.png" /></p>
-<p><strong><em>Figure 3.6</em></strong></p>
+<p>Turn off the output of the power supplies then repeat the measurement above for <script type="math/tex">R_L</script> of 100Ω and 10kΩ.</p>
 </li>
 <li>
-<p>Set the DC power supply to 1V output then turn on the output. Verify the voltage reading on the DMM agrees with the output of the DC power supply then <strong>turn it off</strong>. If you are not seeing 1VDC at the DMM, verify your wiring and that you are using the correct output channel of the power supply. </p>
+<p>Next, assemble the Thévenin circuit given below with the resistor value you calculate in the pre-lab.</p>
+<p><img alt="Figure 4.6" src="../lab4-thevenin-circuit.png" /></p>
+<p><strong><em>Figure 4.6</em></strong></p>
+</li>
+<li>
+<p>Apply the Thévenin voltage you calculated from the pre-lab then turn on the power supplies. Write down your measurement in the observation table.</p>
 <blockquote>
-<p><strong>Lab Question 4:</strong> Adjust the power supply output to 1V, 2V, 5V, 10V, and 12V to complete the table below. Do the measurements agree with the estimate you made in the pre-lab?</p>
+<p><strong>Lab Question 5:</strong> Write down the measured current into the appropriate cell in the table below.</p>
+<p><strong>Thévenin Circuit Observation Table:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Power Supply Voltage [V]</th>
-<th>1V</th>
-<th>2V</th>
-<th>5V</th>
-<th>10V</th>
+<th>
+<script type="math/tex">R_L</script>
+</th>
+<th>Measured <script type="math/tex">I_L</script>
+</th>
+<th>Measured <script type="math/tex">V_{ab}</script>
+</th>
+<th>Power Dissipated</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Voltmeter Reading [V]</td>
-<td></td>
+<td>100Ω</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>Ammeter Reading [A]</td>
+<td>330Ω</td>
 <td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1kΩ</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10kΩ</td>
 <td></td>
 <td></td>
 <td></td>
@@ -349,45 +377,11 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Lastly, we’ll assemble the following parallel resistive circuit using the 1kΩ and 10kΩ breadboard. The power supply will act as the DC Voltage Source. </p>
-<p><img alt="Figure 3.7" src="../lab3-parallel-circuit.png" /></p>
-<p><strong><em>Figure 3.7</em></strong></p>
-</li>
-<li>
-<p>Set the DC power supply to 1V output then turn on the output. Verify the voltage reading on the DMM agrees with the output of the DC power supply then <strong>turn it off</strong>. If you are not seeing 1VDC at the DMM, verify your wiring and that you are using the correct output channel of the power supply. </p>
+<p>Turn off the output of the power supplies then repeat the measurement above for <script type="math/tex">R_L</script> of 100Ω and 10kΩ.</p>
 <blockquote>
-<p><strong>Lab Question 5:</strong> Adjust the power supply output to 1V, 2V, 5V, 10V, and 12V to complete the table below. Do the measurements agree with the estimate you made in the pre-lab?</p>
-<table>
-<thead>
-<tr>
-<th>Power Supply Voltage [V]</th>
-<th>1V</th>
-<th>2V</th>
-<th>5V</th>
-<th>10V</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Voltmeter Reading [V]</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Ammeter Reading [A]</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<p><strong>Lab Question 6:</strong> Does the value agree closely with the original circuit? Note that the <script type="math/tex">R_{th}</script> you've chosen might not exactly match the theoretical <script type="math/tex">R_{th}</script>.</p>
+<p><strong>Lab Question 7:</strong> Calculate the power dissipation <script type="math/tex">P = IV</script> by the load resistor in each case. Which resistor dissipated the most power?</p>
 </blockquote>
-</li>
-<li>
-<p>Turn off the DC power supply output.</p>
 </li>
 </ol>
 <p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
