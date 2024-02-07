@@ -110,9 +110,10 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
     >
 >
 > 1. Repeat the above breadboard sketch for measuring \(I_L\) and \(V_{ab}\) in Figure 4.5 and Figure 4.6.
-> 1. Use KCL or KVL to calculate the estimated values for \(I_1\), \(I_2\), \(I_L\), \(V_a\)and \(V_b\) in Figure 4.5 then fill in the appropriate cell in the Part 1 observation table. Use 1kΩ for \(R_L\).
-> 1. Find the Thévenin equivalent circuit for Figure 4.5 then choose the closest resistor you have to \(R_{th}\) for Part 2 of the lab.
-> 1. Use Thévenin Theorem to calculate the estimated values for \(I_L\) in Figure 4.5 for each of the \(R_L\) values in Part 2 then fill in the appropriate cell in the Part 2 observation table.
+> 1. Use KCL or KVL to calculate the estimated values for \(I_1\), \(I_2\), \(I_L\), \(V_a\)and \(V_b\) in Figure 4.5 then fill in the appropriate cell in the observation table 1. Use 1kΩ for \(R_L\).
+> 1. Use KCL or KVL to calculate the estimated values for \(I_L\), \(V_{ab}\) in Figure 4.5 for vthe arious \(R_L\) value given in part 2 then fill in the appropriate cell in the observation table 2.
+> 1. Find the Thévenin equivalent circuit for Figure 4.5 then choose the closest resistor you have to \(R_{th}\) for Part 3 of the lab.
+> 1. Use Thévenin Theorem to calculate the estimated values for \(I_L\) in Figure 4.5 for each of the \(R_L\) values in Part 3 then fill in the appropriate cell in the observation table 3.
 
 ## Procedures
 
@@ -129,7 +130,7 @@ For this lab, below is the circuit that you'll be working with. However, do NOT 
 
     > **Lab Question 1:** Write down the measured current into the appropriate cell in the table below.
     >
-    > **Observation Table:**
+    > **Tabel 1: Observation Table:**
     >
     > ||\(I_1\)|\(I_2\)|\(I_L\)|\(V_a\)|\(V_b\)|
     > |---|---|---|---|---|---|
@@ -147,14 +148,14 @@ For this lab, below is the circuit that you'll be working with. However, do NOT 
 
     > **Lab Question 3:** Does all the % error falls within the tolarance of the resistors?
 
-### Part 2: Thévenin Equivalent Circuit
+### Part 2: \(I_L\) and \(V_{ab}\) for various \(R_L\)
 
-1. Assemble the circuit in Part 1 onto your breadboard as how you prepared during your pre-lab for measuring current \(I_L\) and \(V_{ab}\).
+1. Using the circuit from Part 1, replace the \(R_L\) resistor with the various value on the table below then measure current \(I_L\) and \(V_{ab}\) for each value.
 1. Turn on the power supplies then write down your measurement into the observation table.
 
     > **Lab Question 4:** Write down the measured current into the appropriate cell in the table below.
     >
-    > **Original Observation Table:**
+    > **Tabel 2: \(R_L\) Observation Table:**
     >
     > |\(R_L\)|Estimated \(I_L\)|Estimated \(V_{ab}\)|Measured \(I_L\)|Measured \(V_{ab}\)|
     > |---|---|---|---|---|
@@ -164,6 +165,9 @@ For this lab, below is the circuit that you'll be working with. However, do NOT 
     > |10kΩ|||||
 
 1. Turn off the output of the power supplies then repeat the measurement above for \(R_L\) of 100Ω and 10kΩ.
+
+### Part 3: Thévenin Equivalent Circuit
+
 1. Next, assemble the Thévenin circuit given below with the resistor value you calculate in the pre-lab.
 
     ![Figure 4.6](lab4-thevenin-circuit.png)
@@ -174,7 +178,7 @@ For this lab, below is the circuit that you'll be working with. However, do NOT 
 
     > **Lab Question 5:** Write down the measured current into the appropriate cell in the table below.
     >
-    > **Thévenin Circuit Observation Table:**
+    > **Table 3: Thévenin Circuit Observation Table:**
     >
     > |\(R_L\)|Measured \(I_L\)|Measured \(V_{ab}\)|Power Dissipated|
     > |---|---|---|---|
