@@ -119,7 +119,7 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
 
 ### Part 1: Current and Voltage Measurement
 
-For this lab, below is the circuit that you'll be working with. However, do NOT assemble the circuit as shown on your breadboard as **current measurement needs to be in <u>series</u>** with the branch.
+For this lab, below is the circuit that you'll be working with. However, do NOT assemble the circuit as shown onto your breadboard. You'll need to add voltmeter and ammeter into the circuit. Remember, **current measurement needs to be in <u>series</u>** with the branch.
 
 ![Figure 4.5](lab4-circuit.png)
 
