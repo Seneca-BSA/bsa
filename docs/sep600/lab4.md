@@ -158,27 +158,27 @@ In this part of the lab, you'll be working with the group beside you to communic
 1. Then add the following in the `main` function before the `while` loop.
     <pre>
 
-    // Set desired properties (9600-8-N-1).
-    serial_port.baud(9600);
-    serial_port.format(
-        /* bits */ 8,
-        /* parity */ SerialBase::None,
-        /* stop bit */ 1
-    );
+        // Set desired properties (9600-8-N-1).
+        serial_port.baud(9600);
+        serial_port.format(
+            /* bits */ 8,
+            /* parity */ SerialBase::None,
+            /* stop bit */ 1
+        );
 
-    // Register a callback to process a Rx (receive) interrupt.
-    serial_port.attach(&on_rx_interrupt, SerialBase::RxIrq);
+        // Register a callback to process a Rx (receive) interrupt.
+        serial_port.attach(&on_rx_interrupt, SerialBase::RxIrq);
     </pre>
 
 1. Add the following in your `while` loop to send some data.
     <pre>
 
-    static char c = 'a';
-    static int x = 1;
-    serial_port.write(&c, 1);
-    if (c >= 'z' || c <= 'a')
-        x *= -1;
-    c += x;
+        static char c = 'a';
+        static int x = 1;
+        serial_port.write(&c, 1);
+        if (c >= 'z' || c <= 'a')
+            x *= -1;
+        c += x;
     </pre>
 
 1. Connect the UART TX pin from one board to the UART RX pin on another board. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be display on the serial console.
