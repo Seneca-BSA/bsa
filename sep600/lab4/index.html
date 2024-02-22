@@ -287,9 +287,9 @@ serial_port.attach(&amp;on_rx_interrupt, SerialBase::RxIrq);
 <pre><code>static char c = 'a';
 static int x = 1;
 serial_port.write(&amp;c, 1);
+c += x;
 if (c &gt;= 'z' || c &lt;= 'a')
     x *= -1;
-c += x;
 </code></pre>
 </pre>
 </li>
