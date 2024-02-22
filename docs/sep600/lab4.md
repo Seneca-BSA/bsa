@@ -176,9 +176,9 @@ In this part of the lab, you'll be working with the group beside you to communic
         static char c = 'a';
         static int x = 1;
         serial_port.write(&c, 1);
+        c += x;
         if (c >= 'z' || c <= 'a')
             x *= -1;
-        c += x;
     </pre>
 
 1. Connect the UART TX pin from one board to the UART RX pin on another board. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be display on the serial console.
