@@ -126,34 +126,11 @@ Next, we'll connect the ADC to an analog voltage input so it can be read into th
             pwm = i; // set PWM duty cycle %
 
             // delay for 10ms, 1000ms for each ramp up
-            ThisThread::sleep_for(100);
+            ThisThread::sleep_for(100ms);
         }
     </pre>
 
-1. Next, let's also use the ADC reading to control the LED and print the reading out as well. Modify your code to include the following respectively.
-    <pre>
-    
-        int main()
-        {
-            ...
-            PwmOut led(LED1); // set LED
-            ...
-            led.period(0.02f); // 50Hz pwm, 0.02s period
-            ...
-        }
-    </pre>
-
-    <pre>
-    
-        while (true)
-        {
-            ...
-            pwm = i; // set PWM duty cycle %
-            ...
-        }
-    </pre>
-
-1. Lastly, let's also print out the ADC value in serial so we can take a look at the input.
+1. Next, let's print the reading out as well. Modify your code to include the following respectively.
     <pre>
     
         while (true)
@@ -167,19 +144,21 @@ Next, we'll connect the ADC to an analog voltage input so it can be read into th
         }
     </pre>
 
-1. Turn on the power supply output and run the program. You should see a constant 0.5V on the DSO, a about 15% duty cycle PWM wave, the Red LED light at 15% on, and a serial output state of about 15% and 0.5V.
+1. Per [Minimal printf and snprintf](https://github.com/ARMmbed/mbed-os/blob/master/platform/source/minimal-printf/README.md), as of mbed OS 6, printf no longer print floating point by default to save memory. In order to enable printing of floating point value, enable it by creating a file called `mbed_app.json` in the root project folder and add the following code to it.
+    <pre>
+
+        {
+            "target_overrides": {
+                "*": {
+                    "target.printf_lib": "std"
+                }
+            }
+        }
+    </pre>
+
+1. Turn on the power supply output and run the program. You should see a constant 0.5V on the DSO, at about 15% duty cycle PWM wave, and a serial output state of about 15% and 0.5V.
 
     > **Lab Question:** What do you think can be done to reduce reading fluctuation? How do you think that can be achieved?
-
-### Part 3: LED Colour Mixing
-
-Consider the figure below for a framework on how to achieve LED colour mixing. When the ADC input is 0%, the R-LED should output 100% and the others at 0%. As the ADC input goes up to 25%, the B-LED output will increase proportionally to 100% to get the colour purple.
-
-![Figure 3.3](lab3-mixing.png)
-
-***Figure 3.3** Colour Mixing*
-
-> **Lab Question:** Write a program that will achieve the colour mixing effect described above using the ADC as input and all three colour channels as output. Keep the DSO connected and serial output for the demo.
 
 ## Reference
 
