@@ -112,9 +112,9 @@ SEP600 Embedded Systems
 </blockquote>
 <h2 id="procedures">Procedures</h2>
 <h3 id="part-1-onboard-i2c-accelerometer-and-magnetometer">Part 1: Onboard I2C Accelerometer and Magnetometer</h3>
-<p>In Part 1, we'll take a look at how to setup getting reading from the onboard accelerometer and magnetometer.</p>
+<p>In Part 1, we'll take a look at how to get reading from the onboard accelerometer and magnetometer.</p>
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-Check to see if the accelerometer is assembled on your board. NXP had a production change in 2023 and no longer assemble the FXOS8700CQ onto the Freedom board. If your board is missing the accelerometer chip (as shown in Figure 4.1 below), this part of the Lab will no work.
+Check to see if the accelerometer is assembled on your board. NXP had a production change in 2023 and no longer assembles the FXOS8700CQ onto the Freedom board. If your board is missing the accelerometer chip (as shown in Figure 4.1 below), this part of the Lab will not work.
 </div>
 
 <p>The location U8 on the Freedom Board should be assembled with the FXOS8700CQ accelerometer chip.</p>
@@ -122,10 +122,10 @@ Check to see if the accelerometer is assembled on your board. NXP had a producti
 <p><em><strong>Figure 4.1</strong> Freedom Board with missing FXOS8700CQ accelerometer chip</em></p>
 <ol>
 <li>
-<p>In order to use the FXOS8700CQ, you'll need to add the FXOS8700CQ library to your project. Start Mbed Studio than go to File &gt; Add Library to Active Program. When prompted, provide the following link <a href="https://os.mbed.com/teams/NXP/code/FXOS8700Q/">https://os.mbed.com/teams/NXP/code/FXOS8700Q/</a>.</p>
+<p>To use the FXOS8700CQ, you'll need to add the FXOS8700CQ library to your project. Start Mbed Studio then go to File &gt; Add Library to Active Program. When prompted, provide the following link <a href="https://os.mbed.com/teams/NXP/code/FXOS8700Q/">https://os.mbed.com/teams/NXP/code/FXOS8700Q/</a>.</p>
 </li>
 <li>
-<p>The I2C pins used to connect to the accelerometer for the Freedom board are as follow:</p>
+<p>The I2C pins used to connect to the accelerometer for the Freedom board are as follows:</p>
 <table>
 <thead>
 <tr>
@@ -147,7 +147,7 @@ Check to see if the accelerometer is assembled on your board. NXP had a producti
 </tr>
 </tbody>
 </table>
-<p>Start your program with the following code to include the proper library and setup I2C.
+<p>Start your program with the following code to include the proper library and set up I2C.
 <pre></p>
 <pre><code>#include "mbed.h"
 #include "FXOS8700Q.h"
@@ -191,7 +191,7 @@ mag.enable();
 </pre>
 </li>
 <li>
-<p>Per <a href="https://github.com/ARMmbed/mbed-os/blob/master/platform/source/minimal-printf/README.md">Minimal printf and snprintf</a>, as of mbed OS 6, printf no longer print floating point by default to save memory. In order to enable printing of floating point value, enable it by creating a file called <code>mbed_app.json</code> in the root project folder and add the following code to it.
+<p>Per <a href="https://github.com/ARMmbed/mbed-os/blob/master/platform/source/minimal-printf/README.md">Minimal printf and snprintf</a>, as of mbed OS 6, printf no longer prints floating point by default to save memory. To enable printing of floating point value, enable it by creating a file called <code>mbed_app.json</code> in the root project folder and adding the following code to it.
     <pre></p>
 <pre><code>{
     "target_overrides": {
@@ -204,18 +204,22 @@ mag.enable();
 </pre>
 </li>
 <li>
-<p>Run your program and you should now see accelerometer and magnetometer readings. Refer to the FXOS8700Q libraries for other library functions and reading you can get.
-    &gt; <strong>Lab Question:</strong> Try getting reading from different axis to figure out which direction is X, Y, and Z? When there are acceleration in an axis, you'll get acceleration reading on that axis (including gravity).</p>
+<p>Run your program and you should now see accelerometer and magnetometer readings. Refer to the FXOS8700Q libraries for other library functions and reading you can get.</p>
+<blockquote>
+<p><strong>Lab Question:</strong> Try getting readings from different axes to figure out which direction is X, Y, and Z? When there is acceleration in an axis, you'll get acceleration reading on that axis (including gravity).</p>
+</blockquote>
 </li>
 </ol>
 <h3 id="part-2-visualize-i2c-signal">Part 2: Visualize I2C Signal</h3>
 <ol>
 <li>
-<p>Power off the Freedom board and connect the SDA pin to CH1 and SCL pin to CH2 of the oscilloscope.</p>
+<p>Power off the Freedom board and connect the SDA pin to CH1 and the SCL pin to CH2 of the oscilloscope. If you are using the K66F board, use I2C1 at PTC11 and PTC10 for this part of the lab.</p>
 </li>
 <li>
-<p>With the I2C code running, adjust the oscilloscope to see the full I2C data frame. You might need to do this manually. If you cannot see the I2C signal, decrease the delay in each loop so data are send more often.
-    &gt; <strong>Lab Question:</strong> Using the figure below as a reference, identify the start condition, the address, ACK, data, and stop condition of your I2C signal.</p>
+<p>With the I2C code running, adjust the oscilloscope to see the full I2C data frame. Use the "Serial" option under Measure on the right of the face plate to align the I2C signal. If Serial measurement is not available, you might need to do this manually. If you cannot see the I2C signal, decrease the delay in each loop so data are sent more often and use "Single" reading instead of continuous readings.</p>
+<blockquote>
+<p><strong>Lab Question:</strong> Using the figure below as a reference, identify the start condition, the address, ACK, data, and stop condition of your I2C signal. You should be able to identify the address you are sending from Part 1.</p>
+</blockquote>
 <p><img alt="Figure 4.2" src="../lab4-i2c-frame.jpg" /></p>
 <p><em><strong>Figure 4.2</strong> I2C data frame [1]</em></p>
 </li>
@@ -224,7 +228,7 @@ mag.enable();
 <p>In this part of the lab, you'll be working with the group beside you to communicate between processor board.</p>
 <ol>
 <li>
-<p>Add the following code to your program create a unbuffered serial object for UART.</p>
+<p>Add the following code to your program create an unbuffered serial object for UART.</p>
 <table>
 <thead>
 <tr>
@@ -294,7 +298,10 @@ if (c &gt;= 'z' || c &lt;= 'a')
 </pre>
 </li>
 <li>
-<p>Connect the UART TX pin from one board to the UART RX pin on another board. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be display on the serial console.</p>
+<p>Connect the UART TX pin from one board to the UART RX pin on another board. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be displayed on the serial console.</p>
+<blockquote>
+<p><strong>Lab Question:</strong> Change your code to send multiple characters through UART.</p>
+</blockquote>
 </li>
 </ol>
 <h2 id="reference">Reference</h2>
