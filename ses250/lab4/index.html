@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 4 : Kirchhoff's Laws and Thévenin Theorem - BSA Lab Manuals</title>
+    <title>Lab 4 : Kirchhoff's Laws - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 4 : Kirchhoff\u0027s Laws and Th\u00e9venin Theorem";
+        var mkdocs_page_name = "Lab 4 : Kirchhoff\u0027s Laws";
         var mkdocs_page_input_path = "ses250/lab4.md";
         var mkdocs_page_url = null;
       </script>
@@ -64,7 +64,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Lab 4 : Kirchhoff's Laws and Thévenin Theorem</li>
+      <li>Lab 4 : Kirchhoff's Laws</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -73,7 +73,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-4-kirchhoffs-laws-and-thevenin-theorem">Lab 4 : Kirchhoff's Laws and Thévenin Theorem</h1>
+                <h1 id="lab-4-kirchhoffs-laws">Lab 4 : Kirchhoff's Laws</h1>
 <p><font size="5">
 Seneca College</br>
 SES250 Electromagnatics
@@ -121,21 +121,10 @@ SES250 Electromagnatics
 <p><img alt="Figure 4.2" src="../lab4-kvl.jpg" /></p>
 <p><em><strong>Figure 4.2</strong> The voltages around any closed loop are zero</em></p>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws">Wikipedia: Kirchhoff's circuit laws</a></p>
-<h3 id="thevenin-theorem">Thévenin Theorem</h3>
-<p>Thévenin theorem is a method often used to simplify circuit analysis from a complex circuit to a simpler one with only a Thévenin voltage source in series with a Thévenin resistor.</p>
-<p>Any linear electrical network containing only voltage sources, current sources and resistances can be replaced at terminals A–B by an equivalent combination of a voltage source <script type="math/tex">V_{th}</script> in a series connection with a resistance <script type="math/tex">R_{th}</script>.</p>
-<p><img alt="Figure 4.3" src="../lab4-thevenin.png" /></p>
-<p><em><strong>Figure 4.3</strong> Thévenin equivalent circuit</em></p>
-<ol>
-<li>The equivalent voltage <script type="math/tex">V_{th}</script> is the voltage obtained at terminals A–B of the network with terminals A–B open-circuited.</li>
-<li>The equivalent resistance <script type="math/tex">R_{th}</script> is the resistance that the circuit between terminals A and B would have if all ideal voltage sources in the circuit were replaced by a short circuit and all ideal current sources were replaced by an open circuit.</li>
-<li>If terminals A and B are connected to one another, the current flowing from A and B will be <script type="math/tex">V_{th} over R_{th}</script>. This means that <script type="math/tex">R_{th}</script> could alternatively be calculated as <script type="math/tex">V_{th}</script> divided by the short-circuit current between A and B when they are connected together.</li>
-</ol>
-<p>Source: <a href="https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem">Wikipedia: Thévenin's theorem</a></p>
 <h3 id="tinkercad-breadboard-simulator">TinkerCAD Breadboard Simulator</h3>
 <p>There are many breadboard simulators available online. In particular, <a href="https://www.tinkercad.com/">TinkerCAD Circuit</a> is a nice tool that you can use to practice assembling a circuit with a virtual breadboard. See the diagram below as an example. Use this tool to help you prepare for this and future labs.</p>
-<p><img alt="Figure 4.4" src="../lab3-tinkercad-1.png" /></p>
-<p><strong><em>Figure 4.4</em> TinkerCAD Circuit Simulation Tool</strong></p>
+<p><img alt="Figure 4.3" src="../lab3-tinkercad-1.png" /></p>
+<p><strong><em>Figure 4.3</em> TinkerCAD Circuit Simulation Tool</strong></p>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>Safety glasses (PPE)</li>
@@ -155,9 +144,9 @@ SES250 Electromagnatics
 <p><strong>Lab Preparation Question:</strong></p>
 <ol>
 <li>Read and summarize the lab as necessary.</li>
-<li>Copy the three (3x) observation tables of this lab into your notebook.</li>
+<li>Copy observation table 1 into your notebook.</li>
 <li>
-<p>Sketch the breadboard diagram below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figure 4.5 for measuring:</p>
+<p>Sketch the breadboard diagram below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figure 4.4 for measuring:</p>
 <blockquote>
 <ul>
 <li>
@@ -170,7 +159,10 @@ SES250 Electromagnatics
 <script type="math/tex">I_L</script>
 </li>
 <li>
-<script type="math/tex">V_a</script> and <script type="math/tex">V_b</script>
+<script type="math/tex">V_a</script>
+</li>
+<li>
+<script type="math/tex">V_b</script>
 </li>
 </ul>
 <p>Clearly show which tie point the wire, resistor, DMM, and power supply be attached to. Use <a href="https://www.tinkercad.com/">TinkerCAD Circuit</a> to help with your understanding of breadboard and component wiring. You may also simulate all the steps as preparation for the lab. Refer the <a href="../lab2/">Lab 2</a> Figure 2.13 for a breadboard diagram example.</p>
@@ -178,19 +170,15 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Repeat the above breadboard sketch for measuring <script type="math/tex">I_L</script> and <script type="math/tex">V_{ab}</script> in Figure 4.5 and Figure 4.6.</p>
+<p>Use KCL or KVL to calculate the estimated (therotical) values for <script type="math/tex">I_1</script>, <script type="math/tex">I_2</script>, <script type="math/tex">I_L</script>, <script type="math/tex">V_a</script>and <script type="math/tex">V_b</script> in Figure 4.4 then fill in the appropriate cell in the observation table 1. Use 1kΩ for <script type="math/tex">R_L</script> and show all calculation.</p>
 </li>
-<li>Use KCL or KVL to calculate the estimated values for <script type="math/tex">I_1</script>, <script type="math/tex">I_2</script>, <script type="math/tex">I_L</script>, <script type="math/tex">V_a</script>and <script type="math/tex">V_b</script> in Figure 4.5 then fill in the appropriate cell in the observation table 1. Use 1kΩ for <script type="math/tex">R_L</script>.</li>
-<li>Use KCL or KVL to calculate the estimated values for <script type="math/tex">I_L</script>, <script type="math/tex">V_{ab}</script> in Figure 4.5 for vthe arious <script type="math/tex">R_L</script> value given in part 2 then fill in the appropriate cell in the observation table 2.</li>
-<li>Find the Thévenin equivalent circuit for Figure 4.5 then choose the closest resistor you have to <script type="math/tex">R_{th}</script> for Part 3 of the lab.</li>
-<li>Use Thévenin Theorem to calculate the estimated values for <script type="math/tex">I_L</script> in Figure 4.5 for each of the <script type="math/tex">R_L</script> values in Part 3 then fill in the appropriate cell in the observation table 3.</li>
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<h3 id="part-1-current-and-voltage-measurement">Part 1: Current and Voltage Measurement</h3>
-<p>For this lab, below is the circuit that you'll be working with. However, do NOT assemble the circuit as shown onto your breadboard. You'll need to add voltmeter and ammeter into the circuit. Remember, <strong>current measurement needs to be in <u>series</u></strong> with the branch.</p>
-<p><img alt="Figure 4.5" src="../lab4-circuit.png" /></p>
-<p><strong><em>Figure 4.5</em></strong></p>
+<h3 id="current-and-voltage-measurement">Current and Voltage Measurement</h3>
+<p>For this lab, below is the circuit that you'll be working with. You'll need to add voltmeter and ammeter into the circuit to measure the branch current and node voltage. Remember, <strong>current measurement needs to be in <u>series</u></strong> with the branch.</p>
+<p><img alt="Figure 4.4" src="../lab4-circuit.png" /></p>
+<p><strong><em>Figure 4.4</em></strong></p>
 <ol>
 <li>Assemble the above circuit shown onto your breadboard as how you prepared during your pre-lab for measuring current <script type="math/tex">I_1</script>. Use 1kΩ for <script type="math/tex">R_L</script>.</li>
 <li>
@@ -264,129 +252,8 @@ SES250 Electromagnatics
 <p><strong>Lab Question 3:</strong> Does all the % error falls within the tolarance of the resistors?</p>
 </blockquote>
 </li>
-</ol>
-<h3 id="part-2-i_l-and-v_ab-for-various-r_l">Part 2: <script type="math/tex">I_L</script> and <script type="math/tex">V_{ab}</script> for various <script type="math/tex">R_L</script>
-</h3>
-<ol>
-<li>Using the circuit from Part 1, replace the <script type="math/tex">R_L</script> resistor with the various value on the table below then measure current <script type="math/tex">I_L</script> and <script type="math/tex">V_{ab}</script> for each value.</li>
 <li>
-<p>Turn on the power supplies then write down your measurement into the observation table.</p>
-<blockquote>
-<p><strong>Lab Question 4:</strong> Write down the measured current into the appropriate cell in the table below.</p>
-<p><strong>Tabel 2: <script type="math/tex">R_L</script> Observation Table:</strong></p>
-<table>
-<thead>
-<tr>
-<th>
-<script type="math/tex">R_L</script>
-</th>
-<th>Estimated <script type="math/tex">I_L</script>
-</th>
-<th>Estimated <script type="math/tex">V_{ab}</script>
-</th>
-<th>Measured <script type="math/tex">I_L</script>
-</th>
-<th>Measured <script type="math/tex">V_{ab}</script>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>100Ω</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>330Ω</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1kΩ</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>10kΩ</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</blockquote>
-</li>
-<li>
-<p>Turn off the output of the power supplies then repeat the measurement above for <script type="math/tex">R_L</script> of 100Ω and 10kΩ.</p>
-</li>
-</ol>
-<h3 id="part-3-thevenin-equivalent-circuit">Part 3: Thévenin Equivalent Circuit</h3>
-<ol>
-<li>
-<p>Next, assemble the Thévenin circuit given below with the resistor value you calculate in the pre-lab.</p>
-<p><img alt="Figure 4.6" src="../lab4-thevenin-circuit.png" /></p>
-<p><strong><em>Figure 4.6</em></strong></p>
-</li>
-<li>
-<p>Apply the Thévenin voltage you calculated from the pre-lab then turn on the power supplies. Write down your measurement in the observation table.</p>
-<blockquote>
-<p><strong>Lab Question 5:</strong> Write down the measured current into the appropriate cell in the table below.</p>
-<p><strong>Table 3: Thévenin Circuit Observation Table:</strong></p>
-<table>
-<thead>
-<tr>
-<th>
-<script type="math/tex">R_L</script>
-</th>
-<th>Measured <script type="math/tex">I_L</script>
-</th>
-<th>Measured <script type="math/tex">V_{ab}</script>
-</th>
-<th>Power Dissipated</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>100Ω</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>330Ω</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1kΩ</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>10kΩ</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</blockquote>
-</li>
-<li>
-<p>Turn off the output of the power supplies then repeat the measurement above for <script type="math/tex">R_L</script> of 100Ω and 10kΩ.</p>
-<blockquote>
-<p><strong>Lab Question 6:</strong> Does the value agree closely with the original circuit? Note that the <script type="math/tex">R_{th}</script> you've chosen might not exactly match the theoretical <script type="math/tex">R_{th}</script>.</p>
-<p><strong>Lab Question 7:</strong> Calculate the power dissipation <script type="math/tex">P = IV</script> by the load resistor in each case. Which resistor dissipated the most power?</p>
-</blockquote>
+<p>You can keep your circuit assembled for Lab 5.</p>
 </li>
 </ol>
 <p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
