@@ -1,189 +1,181 @@
-# Lab 7 : Magnetic Force
+# Lab 7 : Capacitor and RC Circuit
 
 <font size="5">
 Seneca College</br>
 SES250 Electromagnatics
 </font>
 
-## Objectives
-- To observe the magnetic force on a current-carrying conductor
-- To observe the magnetic force created by a solenoid
+## Purposes
+- To understand the relationship between the voltage and capacitance of a capacitor
 
-## Purpose
-- Perform qualitative observation on the force created by a magnetic field on a currency
-- Measure the force created by a solenoid with an applied current
+## Objectives
+- Assemble electronic components onto a breadboard
+- Measure the capacitance of a capacitor using a digital multimeter (DMM)
+- Measure the response of a RC circuit using a Digital Storage Oscilloscope (DSO)
 
 ## Important Rules for this Lab
 
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 <ol>
-<li>Some of the tools used in this lab are VERY FRAGILE! Do not touch any thin wires as they can break easily.</li>
-<li>Do NOT connect any coil or solenoid for a prolonged period as they can get hot and burnt.</li>
+<li>Any signal (voltage, current) must be adjusted to the specified value (amplitude and/or frequency) <strong>before</strong> applying them to a circuit.</li>
+<li>An instrument must be set up for the required mode of operation <strong>before</strong> it is connected to a circuit.</li>
 <li>The power supply must be switched off <strong>before</strong> making any changes to the circuit.</li>
 </ol>
 </div>
 
 ## Description
 
-Moving charges experience a force in a magnetic field. If these moving charges are in a wire — that is, if the wire is carrying a current — the wire [will] also experience a force.
+A capacitor is an electronic device for storing electrical energy, consisting of two conductors in close proximity and insulated from each other. A simple example of such a storage device is the parallel-plate capacitor. If positive charges with total charge +Q are deposited on one of the conductors and an equal amount of negative charge −Q is deposited on the second conductor, the capacitor is said to have a charge Q.
 
-Source: [University Physics Volume 2: Chapter 11.4](https://openstax.org/books/university-physics-volume-2/pages/11-4-magnetic-force-on-a-current-carrying-conductor)
+Source: [Britannica: capacitor](https://www.britannica.com/technology/capacitor)
 
-The force on a length of a wire is:
+The capacitance of a parallel plate capacitor can be calculated using:
 
-$$ \vec F = l \vec I \times \vec B $$
+$$ C = {{\epsilon_0 A} \over {s}} $$
 
-where \(l\) is the length of the wire section, \(\vec I\) is the current, and \(\vec B\) is the magnetic field.
+where \(\epsilon_0\) is the permittivity in vacuum and have a value of \(\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}\), \(A\) is the area of the plates, and \(s\) is the distance between the plates.
 
-In this lab, the magnetic force on the small section of magnetic wire used is difficult to measure. As a result, you'll only be observing the effect of the magnetic force qualitatively using right-hand rules.
+When analyzing electronic circuits, a method often used is Kirchhoff's current law (KCL). KCL, Kirchhoff's first law, or Kirchhoff's junction rule, states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node; or equivalently: the algebraic sum of currents in a network of conductors meeting at a point is zero:
 
-![Figure 7.1 Right-hand rule](lab7-right-hand-rule.png)
+$$
+\displaystyle\sum_{i=1}^{n} I_i = \sum_{i=1}^{n} {{V_i} \over {R_i}} = 0
+$$
 
-***Figure 7.1** Right-hand rule for a current-carrying wire in a magnetic field B*
+<img src="../lab5-kcl.png" width="50%" height="50%"/>
 
-Source: [Wikipedia: Lorentz force](https://en.wikipedia.org/wiki/Lorentz_force)
+***Figure 5.1 The current entering any junction is equal to the current leaving that junction. i2 + i3 = i1 + i4***
 
-A solenoid is a type of electromagnet formed by a helical coil of wire whose length is substantially greater than its diameter, which generates a controlled magnetic field.
-
-The magnetic field produced by a solenoid can be estimated by:
-
-$$ B = {\mu_0 n I} $$
-
-where:
-
-- \(B\) is the magnetic field (T)
-- \(\mu_0\) is a constant (\(4 \pi \times 10^{-7}\))
-- \(n\) is the number of turns per unit length
-
-And
-
-$$ n = {N \over L} $$
-
-where:
-
-- \(N\) is the number of turns in the coil
-- \(L\) is the length of coil
-
-Source: [Wikipedia: Solenoid](https://en.wikipedia.org/wiki/Solenoid)
-
-An electromagnet is a type of magnet in which the magnetic field is produced by an electric current. Electromagnets usually consist of wire wound into a coil. A current through the wire creates a magnetic field which is concentrated in the hole in the center of the coil. The magnetic field disappears when the current is turned off. The wire turns are often wound around a magnetic core made from a ferromagnetic or ferrimagnetic material such as iron; the magnetic core concentrates the magnetic flux and makes a more powerful magnet.
-
-Source: [Wikipedia: Electromagnet](https://en.wikipedia.org/wiki/Electromagnet)
-
-The force produced by a solenoid can be estimated by:
-
-$$ F = {c A (nI)^2 \over {2d^2}} $$
-
-where:
-
-- \(F\) is the force (newtons)
-- \(n\) is the number of turns per unit length
-- \(I\) is the current (amps)
-- \(c\) is a constant (\(12.566 \times 10^{-7}\))
-- \(A\) is the area (m^2)
-- \(d\) is the distance between the solenoid and the metal
-
-Source: [Solenoid Force Calculator](https://calculator.academy/solenoid-force-calculator/)
+Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws)
 
 ## Materials
-
+- Aluminum foils
+- Letter-size printer paper
+- Tape
+- 1kΩ or similar value resistor
+- 10kΩ or similar value resistor
 - Breadboard
-- Custom-made magnetic wire apparatus
-- Magnet
-- Solenoid wrapped around ferrous material
-- Paper clips or other small ferrous materials as mass
+- Jumper wires
 
 ## Preparation
 
 > **Lab Preparation Question:**
 >
-> 1. Copy the observation tables found in this lab into your notebook.
+> 1. Copy the following table with at least 10 trials into your notebook for Part 1 of this lab:
+>
+    >    |Trial|# of sheet|Separation (mm)|Measured C [nF]|Foil C [nF]|
+    >    |---|---|---|---|---|
+    >    |1|||||
+    >    |...|||||
+>
+> 1. Using the circuit shown in Part 2 Step 4 along with R1 = 1kΩ, R2 = R3 = 10kΩ. Calculate \(V_AB\), \(I_1\), \(I_2\), \(I_3\) using Kirchhoff's Current Laws
+>
+> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Part 2 Step 4. Clearly show which tie point will the wire, resistor and power supply be attached to.
+>
+    >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
+>
+> 1. Repeat the previous step three times to sketch the breadboard connection diagram for each of the following:
+>
+    >    - Include a DMM as a voltmeter to measure the voltage between node A and node B
+    >    - Include a DMM as an ammeter to measure the current through R1
+    >    - Include two DMM each as an ammeter to measure the current through R2 and R3
+    >
+    >    ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
+    >    |---|---|---|---|---|
+    >    |Calculated Value|||||
+>
 
 ## Procedures
 
-Part 1 and Part 2 does not have to be completed sequentially. If the materials for Part 1 are not available, Part 2 can be conducted first.
+### Part 1: Parallel Plate Capacitor
 
-### Part 1: Magnetic Force on a Current-Carrying Wire
+In this part of the lab, we will be exploring the capacitance of a parallel plate capacitor.
 
-<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-<strong>WARNING: the apparatus is VERY FRAGILE! Do not bench the apparatus as it can break easily.</strong>
-</div>
+1. Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).
 
-The custom apparatus for Part 1 of this lab consists of a thin wire in a silicon tube connected with two 100Ω resistors in series to limit the current flow. The silicon tube is used to protect the thin magnetic wire. When using the apparatus, do NOT clip both ends of the apparatus with an alligator clip. Only attach one alligator clip to one of the connection lead and manually use the second alligator to touch the other connection lead.
+    ![Figure 5.2](lab5-dmm-capacitance.png)
 
-1. Obtain a breadboard, a custom-made magnetic wire apparatus, and a magnet.
-1. Carefully place the custom-made magnetic wire apparatus on a breadboard and a magnet with the black side up under the wire (between the apparatus and the breadboard) (magnet not shown in the figure below).
+    ***Figure 5.2***
 
-    ![Figure 7.2](lab7-wire-breadboard.png)
+    > **Lab Question 1:** Record the capacitance with the alligator clip not connected to anything. This is the capacitance due to just the cable.
 
-    ***Figure 7.2***
+1. Obtain two pieces of aluminum foil of about 20cm x 20xm in size and obtain several sheets of paper that are larger than the aluminum foil. Record the size of each aluminum foil.
 
-1. Set up a power supply as described below but do **NOT** connect it to the circuit and do **NOT** turn on the output.
-    - Use the “Display Limit” button to see the power supply settings
-    - Set the voltage output to 5.0V
-    - Set the current output limit to 100mA
-1. Connect one alligator clip from the power supply to one of the connection leads of the apparatus.
-    <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-    <strong>Do NOT connect the second alligator clip. Hold onto the second alligator clip from the power supply then turn on the power supply output.</strong>
-    </div>
-    
-    **NOTE: In the next step, the output of the power supply will drop to zero because we are effectively shorting the power supply with the magnetic wire.**
+    > **Lab Question 2:** Record the size of the capacitor.
 
-    **NOTE: If there is doubt that the magnetic wire might be broken, the continuity of the apparatus can be verified by measuring the resistance between the two leads. If there is resistance, the wire is still connecting the two resistors.**
+1. Tape each aluminum foil to a piece of paper with the corners not taped for an alligator clip connection.
 
-1. Quickly touch then remove the second alligator that you are holding to the second alligator clip. Observe the thin wire closely, it should move slightly from its normal position. If a movement cannot be observed, observe more closely as the movement is very small. If movement still cannot be observed, carefully hold the board firmly against the workbench to reduce vibration, increment the current limit by 25mA then try again. Do not exceed 300mA.
+    ![Figure 5.3](lab5-capacitor-1.png)
 
-    > **Lab Question 1:** Draw a diagram of the apparatus set up (wire and magnet) in your notebook with the current flow direction and the thin wire movement direction.
-    
-1. Carefully remove, then flip, and re-place the magnet under the magnetic wire so the red tape side of the magnet is facing up.
-1. Repeat steps 5 with the flipped magnet.
-1. Disconnect the alligator clip from the apparatus and switch it with the second alligator clip so the current flow in the opposite direction.
-1. Repeat steps 5 to 7 with the opposite current.
+    ***Figure 5.3***
 
-    > **Lab Question 2:** Comment on your observation and use it to determine the polarity (which end is the north pole and which end is the south pole) of the magnet. The magnetic field line for a magnet is shown below.
+1. Connect the red alligator clip from the DMM to one corner of the first aluminum foil and the black alligator clip to another corner of the second aluminum foil as shown in Figure 5.4.
 
-    ![Figure 7.3](lab7-magnetic-field.png)
+    ![Figure 5.4](lab5-capacitor-2.png)
 
-    ***Figure 7.3***
+    ***Figure 5.4***
 
-### Part 2: Magnetic Force of a Solenoid
+1. Arrange the aluminum foil and papers as per the figure below to create a parallel plate capacitor. Use a flat weight (ie. a textbook) to keep the capacitor in place.
 
-There are various custom-made solenoids wrapped around a ferrous core for Part 2 of the lab. Ferrous materials have magnetic properties that allow for magnetic attraction. When a solenoid is wrapped around a ferrous core that is naturally non-magnetic, an electromagnet is created when an electric current flow through the coil to produce a magnetic field.
+    **NOTE:** It is very important to ensure the two aluminum foils are not touching and isolated by the paper. Also, ensure the aluminum foils and papers stack is as close to each other as possible with no air gap in between.
 
-1. Obtain a custom solenoid for Part 2 of this lab, a magnet, and a few paper clips or ferrous materials to be used as mass.
+1. Record the capacitance then repeat the test for other thicknesses by increasing the number of sheets of paper in between the aluminum foil. Increment in multiple of 3-5 sheets. Each sheet of 20lbs paper is about 0.097mm.
 
-    > **Lab Question 3:** Estimate the turns per unit length for the solenoid by counting and filling in the table below:
+    **NOTE: It is important to ensure the weight apply and its application is the same throughout the entire experiment. Also, as the weight settles onto the aluminum foils and papers stack, it will continuously press the parallel foils closer. Just choose a consistent settling time for each step when recording the capacitance value because we cannot wait until the weight completely settles.**
+
+1. Conduct at least 10 trials of various thicknesses or until a change in capacitance can no longer be observed.
+
+    > **Lab Question 3:** Record your observation in the table below. Foil Capacitance = Measured Capacitance - Cable Capacitance, \(C_{foil} = C_{total} - C_{cable}\).
     >
-    > ||Length, L|# of turns, N|n = N / L|
+    > |Trial|# of seperating sheet|Separation (mm)|Measured C [nF]|Foil C [nF]|
+    > |---|---|---|---|---|
+    > |1|||||
+    > |...|||||
+    >
+    > **Note:** The capacitor setup already has one sheet as a separation
+    >
+    > **Lab Question 4 (Post-Lab):** Using the area of the aluminum foils you measured and the separation distance of each step from your experiment into the relationship. Plot your results (Capacitance along the y-axis and separation distance along the x-axis) then draw the trend line. This can be done by hand or software. **Hint:** It's not a linear relationship.
+    >
+    > **Lab Question 5 (Post-Lab):** Calculate the coefficient for the trend line. Does it agree with the theoretical value of \(\epsilon_0\)? Explain why you think it is the same or not the same as the theoretical (other than human measurement error).
+
+1. Disconnect the DMM and return the aluminum foil once you are done.
+
+### Part 2: Resistors in Parallel and in Series
+
+In this part of the lab, we will be exploring resistors in parallel and series configurations.
+
+1. Obtain a 1kΩ resistor, two 10kΩ resistors, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.
+
+1. Turn on the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.
+
+    > **Lab Question 6:** Record the resistance (at least 3 S.F.) of each resistor in the table below:
+    >
+    > ||R1 (1kΩ)|R2 (10kΩ)|R3 (10kΩ)|
     > |---|---|---|---|
-    > |Solenoid||||
+    > |Measured Resistance [kΩ]||||
 
-1. Set up the power supply as described below but do **NOT** connect it to the circuit and do **NOT** turn on the output.
-    - Use the “Display Limit” button to see the power supply settings
-    - Set the voltage output to 10.0V
-    - Set the current output limit to 0.1A
-1. Connect one alligator clip to one lead of the solenoid and the other alligator clip to the other lead of the solenoid.
+1. Assemble the circuit shown below then measure the resistance between node A and node B.
 
-    <img src="../lab7-solenoid-magnet.png" width="30%" height="30%"/>
+    ![Figure 5.5](lab5-circuit-open.png)
 
-    ***Figure 7.4***
+    ***Figure 5.5***
 
-1. Turn on the output of the power supply then try to lift a paper clip using the head side of the bolt as shown above. Slowly increase or decrease the current limit until just one paper clip can be lifted. Record the current in the table below. Stop the power output and let the coil cool down between trials.
+    > **Lab Question 6:** Does the measured resistance agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?
 
-    **NOTE: At the end of each trial, use the permanent magnet to remove any residual magnetism from the electromagnet. Attach the permanent magnet to the electro-magnet then repeat a few times with a revised polarity.**
+1. Assemble the circuit shown below then measure the following as per the circuit and connection diagram you prepared in the pre-lab:
+    - the voltage between node A and node B
+    - the current through R1, R2, R3
 
-    > **Lab Question 4:** Repeat step 5 but try to lift two paperclips then three and so on. Always add a paperclip to the first paperclip. Stop the experiment when the current limit is at 3A or 10 paper clip is lifted. Afterward, calculate the magnetic field and force using the formula in the lab description at each step:
+    ![Figure 5.6](lab5-circuit.png)
+
+    ***Figure 5.6***
+
+    > **Lab Question 7:** Record the measured values in the table below.
     >
-    > |# of paperclip lifted|Current (< 3A)|Estimated Magnetic Field|Estimated Magnetic Force|
-    > |---|---|---|---|
-    > |1||||
-    > |2||||
-    > |3||||
-    > |...||||
+    > ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
+    > |---|---|---|---|---|
+    > |Measured Value|||||
     >
-    > **Lab Question 5:** Comment on the mathematic relationship between the number of paperclips lifted (force of an electromagnet and the magnetic field).
-    >
-    > **Lab Question 6: (Post-Lab)** Plot both magnetic field (y-axis) and force (y-axis) vs the number of paperclips lifted (x-axis) then calculate the coefficient for the trend line. Does it agree with the nature (linear, exponential, etc.) of the mathematic relationship?
+    > **Lab Question 8:** Does the measured value agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
 

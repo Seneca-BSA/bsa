@@ -1,17 +1,18 @@
-# Lab 5 : Capacitor and Resistor Circuits
+# Lab 5 : Thévenin Circuit
 
 <font size="5">
 Seneca College</br>
 SES250 Electromagnatics
 </font>
 
-## Objectives
-- To understand the relationship between the capacitance and the separation distance of a parallel sheets capacitor
-- To understand and verify Kirchhoff's Law
+## Purposes
+- To become familiar with measurement techniques of direct current (DC)
+- To study the relationship between voltage, resistance, and current
+- To understand and verify Thévenin Theorem
 
-## Purpose
+## Objectives
 - Assemble electronic components onto a breadboard
-- Measure the capacitance of a capacitor using a digital multimeter (DMM)
+- Measure voltage and current from a breadboard using a digital multimeter (DMM)
 
 ## Important Rules for this Lab
 
@@ -25,160 +26,102 @@ SES250 Electromagnatics
 
 ## Description
 
-A capacitor is an electronic device for storing electrical energy, consisting of two conductors in close proximity and insulated from each other. A simple example of such a storage device is the parallel-plate capacitor. If positive charges with total charge +Q are deposited on one of the conductors and an equal amount of negative charge −Q is deposited on the second conductor, the capacitor is said to have a charge Q.
+If you don't remember how to operate the DMM and read the resistor colour band, refer to the description section of [Lab 2](lab2.md).
 
-Source: [Britannica: capacitor](https://www.britannica.com/technology/capacitor)
+### Thévenin Theorem
 
-The capacitance of a parallel plate capacitor can be calculated using:
+Thévenin theorem is a method often used to simplify circuit analysis from a complex circuit to a simpler one with only a Thévenin voltage source in series with a Thévenin resistor.
 
-$$ C = {{\epsilon_0 A} \over {s}} $$
+Any linear electrical network containing only voltage sources, current sources and resistances can be replaced at terminals A–B by an equivalent combination of a voltage source \(V_{th}\) in a series connection with a resistance \(R_{th}\).
 
-where \(\epsilon_0\) is the permittivity in vacuum and have a value of \(\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}\), \(A\) is the area of the plates, and \(s\) is the distance between the plates.
+![Figure 5.1](lab5-thevenin.png)
 
-When analyzing electronic circuits, a method often used is Kirchhoff's current law (KCL). KCL, Kirchhoff's first law, or Kirchhoff's junction rule, states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node; or equivalently: the algebraic sum of currents in a network of conductors meeting at a point is zero:
+***Figure 5.1** Thévenin equivalent circuit*
 
-$$
-\displaystyle\sum_{i=1}^{n} I_i = \sum_{i=1}^{n} {{V_i} \over {R_i}} = 0
-$$
+1. The equivalent voltage \(V_{th}\) is the voltage obtained at terminals A–B of the network with terminals A–B open-circuited.
+1. The equivalent resistance \(R_{th}\) is the resistance that the circuit between terminals A and B would have if all ideal voltage sources in the circuit were replaced by a short circuit and all ideal current sources were replaced by an open circuit.
+1. If terminals A and B are connected to one another, the current flowing from A and B will be \(V_{th} over R_{th}\). This means that \(R_{th}\) could alternatively be calculated as \(V_{th}\) divided by the short-circuit current between A and B when they are connected together.
 
-<img src="../lab5-kcl.png" width="50%" height="50%"/>
-
-***Figure 5.1 The current entering any junction is equal to the current leaving that junction. i2 + i3 = i1 + i4***
-
-Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws)
+Source: [Wikipedia: Thévenin's theorem](https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem)
 
 ## Materials
-- Aluminum foils
-- Letter-size printer paper
-- Tape
-- 1kΩ or similar value resistor
-- 10kΩ or similar value resistor
-- Breadboard
-- Jumper wires
+- Safety glasses (PPE)
+- [Lab Supplies](supplies.md)
+    - Breadboard
+    - Jumper Wires
+    - (2x) 100Ω Resistor (brown-black-brown)
+    - (2x) 330Ω Resistor (orange-orange-brown)
+    - (2x) 1kΩ Resistor (brown-black-red)
+    - (1x) 4.7kΩ Resistor (yellow-purple-red)
+    - (2x) 10kΩ resistor (brown-black-orange)
 
 ## Preparation
 
 > **Lab Preparation Question:**
 >
-> 1. Copy the following table with at least 10 trials into your notebook for Part 1 of this lab:
->
-    >    |Trial|# of sheet|Separation (mm)|Measured C [nF]|Foil C [nF]|
-    >    |---|---|---|---|---|
-    >    |1|||||
-    >    |...|||||
->
-> 1. Using the circuit shown in Part 2 Step 4 along with R1 = 1kΩ, R2 = R3 = 10kΩ. Calculate \(V_AB\), \(I_1\), \(I_2\), \(I_3\) using Kirchhoff's Current Laws
->
-> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Part 2 Step 4. Clearly show which tie point will the wire, resistor and power supply be attached to.
->
-    >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
->
-> 1. Repeat the previous step three times to sketch the breadboard connection diagram for each of the following:
->
-    >    - Include a DMM as a voltmeter to measure the voltage between node A and node B
-    >    - Include a DMM as an ammeter to measure the current through R1
-    >    - Include two DMM each as an ammeter to measure the current through R2 and R3
+> 1. Read and summarize the lab as necessary.
+> 1. Copy observation table 1 and 2 of this lab into your notebook.
+> 1. Sketch a breadboard diagram of Figure 5.2 and Figure 5.3 onto your notebook for measuring:
     >
-    >    ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
-    >    |---|---|---|---|---|
-    >    |Calculated Value|||||
+    >   - \(I_L\)
+    >   - \(V_{ab}\) (or the potential difference between \(V_a\) and \(V_b\))
+    >
 >
+> 1. Use KCL or KVL to calculate the estimated values for \(I_L\), \(V_{ab}\) in Figure 5.2 then fill in the appropriate cell in the observation table 1. Perform the calculation using 100Ω, 330Ω, 1kΩ, and 10kΩ for \(R_L\).
+> 1. Find the Thévenin equivalent circuit for Figure 5.2 then choose the closest resistor you have to \(R_{th}\) for Part 2 of the lab.
+> 1. Use Thévenin Theorem to calculate the estimated values for \(I_L\) in Figure 5.3 for each of the \(R_L\) values in Part 1 then fill in the appropriate cell in the observation table 2.
 
 ## Procedures
 
-### Part 1: Parallel Plate Capacitor
+For this lab, you'll be using the same circuit as the one from Lab 4 but you'll be varying the value of the load resistor to understand the concept of Thévenin Circuit. Use 1kΩ for \(R_L\).
 
-In this part of the lab, we will be exploring the capacitance of a parallel plate capacitor.
+![Figure 5.2](lab4-circuit.png)
 
-1. Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).
+***Figure 5.2***
 
-    ![Figure 5.2](lab5-dmm-capacitance.png)
+### Part 1: \(I_L\) and \(V_{ab}\) for various \(R_L\)
 
-    ***Figure 5.2***
+1. Assemble the circuit above as how you've prepare in your pre-lab. Replace the \(R_L\) resistor with the various value on the table below then measure current \(I_L\) and \(V_{ab}\) for each value.
+1. Turn on the power supplies then write down your measurement into the observation table.
 
-    > **Lab Question 1:** Record the capacitance with the alligator clip not connected to anything. This is the capacitance due to just the cable.
+    > **Lab Question 1:** Write down the measured current into the appropriate cell in the table below.
+    >
+    > **Tabel 1: \(R_L\) Observation Table:**
+    >
+    > |\(R_L\)|Estimated \(I_L\)|Estimated \(V_{ab}\)|Measured \(I_L\)|Measured \(V_{ab}\)|
+    > |---|---|---|---|---|
+    > |100Ω|||||
+    > |330Ω|||||
+    > |1kΩ|||||
+    > |10kΩ|||||
 
-1. Obtain two pieces of aluminum foil of about 20cm x 20xm in size and obtain several sheets of paper that are larger than the aluminum foil. Record the size of each aluminum foil.
+1. Turn off the output of the power supplies then repeat the measurement above for all \(R_L\) values.
 
-    > **Lab Question 2:** Record the size of the capacitor.
+### Part 3: Thévenin Equivalent Circuit
 
-1. Tape each aluminum foil to a piece of paper with the corners not taped for an alligator clip connection.
+1. Next, assemble the Thévenin circuit given below with the resistor value you calculate in the pre-lab. Start with 1kΩ for \(R_L\). 
 
-    ![Figure 5.3](lab5-capacitor-1.png)
+    ![Figure 5.3](lab5-thevenin-circuit.png)
 
     ***Figure 5.3***
 
-1. Connect the red alligator clip from the DMM to one corner of the first aluminum foil and the black alligator clip to another corner of the second aluminum foil as shown in Figure 5.4.
+1. Apply the Thévenin voltage you calculated from the pre-lab then turn on the power supplies. Write down your measurement in the observation table.
 
-    ![Figure 5.4](lab5-capacitor-2.png)
-
-    ***Figure 5.4***
-
-1. Arrange the aluminum foil and papers as per the figure below to create a parallel plate capacitor. Use a flat weight (ie. a textbook) to keep the capacitor in place.
-
-    **NOTE:** It is very important to ensure the two aluminum foils are not touching and isolated by the paper. Also, ensure the aluminum foils and papers stack is as close to each other as possible with no air gap in between.
-
-1. Record the capacitance then repeat the test for other thicknesses by increasing the number of sheets of paper in between the aluminum foil. Increment in multiple of 3-5 sheets. Each sheet of 20lbs paper is about 0.097mm.
-
-    **NOTE: It is important to ensure the weight apply and its application is the same throughout the entire experiment. Also, as the weight settles onto the aluminum foils and papers stack, it will continuously press the parallel foils closer. Just choose a consistent settling time for each step when recording the capacitance value because we cannot wait until the weight completely settles.**
-
-1. Conduct at least 10 trials of various thicknesses or until a change in capacitance can no longer be observed.
-
-    > **Lab Question 3:** Record your observation in the table below. Foil Capacitance = Measured Capacitance - Cable Capacitance, \(C_{foil} = C_{total} - C_{cable}\).
+    > **Lab Question 2:** Write down the measured current into the appropriate cell in the table below.
     >
-    > |Trial|# of seperating sheet|Separation (mm)|Measured C [nF]|Foil C [nF]|
-    > |---|---|---|---|---|
-    > |1|||||
-    > |...|||||
+    > **Table 2: Thévenin Circuit Observation Table:**
     >
-    > **Note:** The capacitor setup already has one sheet as a separation
-    >
-    > **Lab Question 4 (Post-Lab):** Using the area of the aluminum foils you measured and the separation distance of each step from your experiment into the relationship. Plot your results (Capacitance along the y-axis and separation distance along the x-axis) then draw the trend line. This can be done by hand or software. **Hint:** It's not a linear relationship.
-    >
-    > **Lab Question 5 (Post-Lab):** Calculate the coefficient for the trend line. Does it agree with the theoretical value of \(\epsilon_0\)? Explain why you think it is the same or not the same as the theoretical (other than human measurement error).
-
-1. Disconnect the DMM and return the aluminum foil once you are done.
-
-### Part 2: Resistors in Parallel and in Series
-
-In this part of the lab, we will be exploring resistors in parallel and series configurations.
-
-1. Obtain a 1kΩ resistor, two 10kΩ resistors, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.
-
-1. Turn on the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.
-
-    > **Lab Question 6:** Record the resistance (at least 3 S.F.) of each resistor in the table below:
-    >
-    > ||R1 (1kΩ)|R2 (10kΩ)|R3 (10kΩ)|
+    > |\(R_L\)|Measured \(I_L\)|Measured \(V_{ab}\)|Power Dissipated|
     > |---|---|---|---|
-    > |Measured Resistance [kΩ]||||
+    > |100Ω||||
+    > |330Ω||||
+    > |1kΩ||||
+    > |10kΩ||||
 
-1. Assemble the circuit shown below then measure the resistance between node A and node B.
+1. Turn off the output of the power supplies then repeat the measurement above for all \(R_L\) values.
 
-    ![Figure 5.5](lab5-circuit-open.png)
+    > **Lab Question 3:** Does the value agree closely with the original circuit? Note that the \(R_{th}\) you've chosen might not exactly match the theoretical \(R_{th}\).
 
-    ***Figure 5.5***
-
-    > **Lab Question 6:** Does the measured resistance agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?
-
-1. Assemble the circuit shown below then measure the following as per the circuit and connection diagram you prepared in the pre-lab:
-    - the voltage between node A and node B
-    - the current through R1, R2, R3
-
-    ![Figure 5.6](lab5-circuit.png)
-
-    ***Figure 5.6***
-
-    > **Lab Question 7:** Record the measured values in the table below.
-    >
-    > ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
-    > |---|---|---|---|---|
-    > |Measured Value|||||
-    >
-    > **Lab Question 8:** Does the measured value agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?
-
-Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
-
-## Post-Lab
-
-1. Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.
+    > **Lab Question 4:** Calculate the power dissipation \(P = IV\) by the load resistor in each case. Which resistor dissipated the most power? This is the load resistor value that allow for the maximum amount of power to be transferred from the voltage source to the load (Maxium Power Transferred).
+    
+Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.

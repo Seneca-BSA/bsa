@@ -1,4 +1,4 @@
-# Lab 4 : Kirchhoff's Laws and Thévenin Theorem
+# Lab 4 : Kirchhoff's Laws
 
 <font size="5">
 Seneca College</br>
@@ -55,29 +55,13 @@ $$
 
 Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws)
 
-### Thévenin Theorem
-
-Thévenin theorem is a method often used to simplify circuit analysis from a complex circuit to a simpler one with only a Thévenin voltage source in series with a Thévenin resistor.
-
-Any linear electrical network containing only voltage sources, current sources and resistances can be replaced at terminals A–B by an equivalent combination of a voltage source \(V_{th}\) in a series connection with a resistance \(R_{th}\).
-
-![Figure 4.3](lab4-thevenin.png)
-
-***Figure 4.3** Thévenin equivalent circuit*
-
-1. The equivalent voltage \(V_{th}\) is the voltage obtained at terminals A–B of the network with terminals A–B open-circuited.
-1. The equivalent resistance \(R_{th}\) is the resistance that the circuit between terminals A and B would have if all ideal voltage sources in the circuit were replaced by a short circuit and all ideal current sources were replaced by an open circuit.
-1. If terminals A and B are connected to one another, the current flowing from A and B will be \(V_{th} over R_{th}\). This means that \(R_{th}\) could alternatively be calculated as \(V_{th}\) divided by the short-circuit current between A and B when they are connected together.
-
-Source: [Wikipedia: Thévenin's theorem](https://en.wikipedia.org/wiki/Th%C3%A9venin%27s_theorem)
-
 ### TinkerCAD Breadboard Simulator
 
 There are many breadboard simulators available online. In particular, [TinkerCAD Circuit](https://www.tinkercad.com/) is a nice tool that you can use to practice assembling a circuit with a virtual breadboard. See the diagram below as an example. Use this tool to help you prepare for this and future labs.
 
-![Figure 4.4](lab3-tinkercad-1.png)
+![Figure 4.3](lab3-tinkercad-1.png)
 
-***Figure 4.4* TinkerCAD Circuit Simulation Tool**
+***Figure 4.3* TinkerCAD Circuit Simulation Tool**
 
 ## Materials
 - Safety glasses (PPE)
@@ -95,13 +79,14 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
 > **Lab Preparation Question:**
 >
 > 1. Read and summarize the lab as necessary.
-> 1. Copy the three (3x) observation tables of this lab into your notebook.
-> 1. Sketch the breadboard diagram below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figure 4.5 for measuring:
+> 1. Copy observation table 1 into your notebook.
+> 1. Sketch the breadboard diagram below onto your notebook then draw how the components (voltage source, resistor, voltmeter, and ammeter) will be connected on the breadboard according to the circuit in Figure 4.4 for measuring:
     >
     >   - \(I_1\)
     >   - \(I_2\)
     >   - \(I_L\)
-    >   - \(V_a\) and \(V_b\)
+    >   - \(V_a\)
+    >   - \(V_b\)
     >
     >
     >   Clearly show which tie point the wire, resistor, DMM, and power supply be attached to. Use [TinkerCAD Circuit](https://www.tinkercad.com/) to help with your understanding of breadboard and component wiring. You may also simulate all the steps as preparation for the lab. Refer the [Lab 2](lab2.md) Figure 2.13 for a breadboard diagram example.
@@ -109,21 +94,17 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
     >   ![Breadboard Sketch](lab2-breadboard-sketch.png)
     >
 >
-> 1. Repeat the above breadboard sketch for measuring \(I_L\) and \(V_{ab}\) in Figure 4.5 and Figure 4.6.
-> 1. Use KCL or KVL to calculate the estimated values for \(I_1\), \(I_2\), \(I_L\), \(V_a\)and \(V_b\) in Figure 4.5 then fill in the appropriate cell in the observation table 1. Use 1kΩ for \(R_L\).
-> 1. Use KCL or KVL to calculate the estimated values for \(I_L\), \(V_{ab}\) in Figure 4.5 for vthe arious \(R_L\) value given in part 2 then fill in the appropriate cell in the observation table 2.
-> 1. Find the Thévenin equivalent circuit for Figure 4.5 then choose the closest resistor you have to \(R_{th}\) for Part 3 of the lab.
-> 1. Use Thévenin Theorem to calculate the estimated values for \(I_L\) in Figure 4.5 for each of the \(R_L\) values in Part 3 then fill in the appropriate cell in the observation table 3.
+> 1. Use KCL or KVL to calculate the estimated (therotical) values for \(I_1\), \(I_2\), \(I_L\), \(V_a\)and \(V_b\) in Figure 4.4 then fill in the appropriate cell in the observation table 1. Use 1kΩ for \(R_L\) and show all calculation.
 
 ## Procedures
 
-### Part 1: Current and Voltage Measurement
+### Current and Voltage Measurement
 
-For this lab, below is the circuit that you'll be working with. However, do NOT assemble the circuit as shown onto your breadboard. You'll need to add voltmeter and ammeter into the circuit. Remember, **current measurement needs to be in <u>series</u>** with the branch.
+For this lab, below is the circuit that you'll be working with. You'll need to add voltmeter and ammeter into the circuit to measure the branch current and node voltage. Remember, **current measurement needs to be in <u>series</u>** with the branch.
 
-![Figure 4.5](lab4-circuit.png)
+![Figure 4.4](lab4-circuit.png)
 
-***Figure 4.5***
+***Figure 4.4***
 
 1. Assemble the above circuit shown onto your breadboard as how you prepared during your pre-lab for measuring current \(I_1\). Use 1kΩ for \(R_L\).
 1. Turn on the power supplies and set the DMM for the appropriate measurement then write down your measurement into the observation table.
@@ -148,49 +129,6 @@ For this lab, below is the circuit that you'll be working with. However, do NOT 
 
     > **Lab Question 3:** Does all the % error falls within the tolarance of the resistors?
 
-### Part 2: \(I_L\) and \(V_{ab}\) for various \(R_L\)
-
-1. Using the circuit from Part 1, replace the \(R_L\) resistor with the various value on the table below then measure current \(I_L\) and \(V_{ab}\) for each value.
-1. Turn on the power supplies then write down your measurement into the observation table.
-
-    > **Lab Question 4:** Write down the measured current into the appropriate cell in the table below.
-    >
-    > **Tabel 2: \(R_L\) Observation Table:**
-    >
-    > |\(R_L\)|Estimated \(I_L\)|Estimated \(V_{ab}\)|Measured \(I_L\)|Measured \(V_{ab}\)|
-    > |---|---|---|---|---|
-    > |100Ω|||||
-    > |330Ω|||||
-    > |1kΩ|||||
-    > |10kΩ|||||
-
-1. Turn off the output of the power supplies then repeat the measurement above for \(R_L\) of 100Ω and 10kΩ.
-
-### Part 3: Thévenin Equivalent Circuit
-
-1. Next, assemble the Thévenin circuit given below with the resistor value you calculate in the pre-lab.
-
-    ![Figure 4.6](lab4-thevenin-circuit.png)
-
-    ***Figure 4.6***
-
-1. Apply the Thévenin voltage you calculated from the pre-lab then turn on the power supplies. Write down your measurement in the observation table.
-
-    > **Lab Question 5:** Write down the measured current into the appropriate cell in the table below.
-    >
-    > **Table 3: Thévenin Circuit Observation Table:**
-    >
-    > |\(R_L\)|Measured \(I_L\)|Measured \(V_{ab}\)|Power Dissipated|
-    > |---|---|---|---|
-    > |100Ω||||
-    > |330Ω||||
-    > |1kΩ||||
-    > |10kΩ||||
-
-1. Turn off the output of the power supplies then repeat the measurement above for \(R_L\) of 100Ω and 10kΩ.
-
-    > **Lab Question 6:** Does the value agree closely with the original circuit? Note that the \(R_{th}\) you've chosen might not exactly match the theoretical \(R_{th}\).
-
-    > **Lab Question 7:** Calculate the power dissipation \(P = IV\) by the load resistor in each case. Which resistor dissipated the most power?
+1. You can keep your circuit assembled for Lab 5.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
