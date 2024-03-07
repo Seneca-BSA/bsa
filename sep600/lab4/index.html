@@ -264,6 +264,7 @@ serial_port.write(&amp;c, 1);
 c += x;
 if (c &gt;= 'z' || c &lt;= 'a')
     x *= -1;
+ThisThread::sleep_for(1s);
 </code></pre>
 </pre>
 </li>
@@ -272,7 +273,8 @@ if (c &gt;= 'z' || c &lt;= 'a')
     <pre></p>
 <pre><code>if (serial_port.read(&amp;c, 1)) {
     // Echo the input back to the terminal.
-    printf("%c", c);
+    ThisThread::sleep_for(100ms); // allow reading to finish
+    printf("%c\n", c);
 }
 </code></pre>
 </pre>
