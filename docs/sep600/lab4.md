@@ -140,35 +140,7 @@ In this part of the lab, you'll be working with the group beside you to communic
 
     <pre>
     
-        static UnbufferedSerial serial_port(UART_TX, UART_RX); // replace with UART pins
-    </pre>
-
-1. Add the following interrupt code to send incoming UART data to USB.
-    <pre>
-
-        void on_rx_interrupt() {
-            char c;
-
-            if (serial_port.read(&c, 1)) {
-                // Echo the input back to the terminal.
-                printf("%c", c);
-            }
-        }
-    </pre>
-
-1. Then add the following in the `main` function before the `while` loop.
-    <pre>
-
-        // Set desired properties (9600-8-N-1).
-        serial_port.baud(9600);
-        serial_port.format(
-            /* bits */ 8,
-            /* parity */ SerialBase::None,
-            /* stop bit */ 1
-        );
-
-        // Register a callback to process a Rx (receive) interrupt.
-        serial_port.attach(&on_rx_interrupt, SerialBase::RxIrq);
+        static BufferedSerial serial_port(UART_TX, UART_RX, 9600); // replace with UART pins
     </pre>
 
 1. Add the following in your `while` loop to send some data.
@@ -180,9 +152,21 @@ In this part of the lab, you'll be working with the group beside you to communic
         c += x;
         if (c >= 'z' || c <= 'a')
             x *= -1;
+        ThisThread::sleep_for(1s);
     </pre>
 
-1. Connect the UART TX pin from one board to the UART RX pin on another board. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be displayed on the serial console.
+1. Add the following code in the while loop to read incoming UART data from buffer and print it to terminal.
+    <pre>
+
+        if (serial_port.read(&c, 1)) {
+            // Echo the input back to the terminal.
+            ThisThread::sleep_for(100ms); // allow reading to finish
+            printf("%c\n", c);
+        }
+        
+    </pre>
+
+1. Connect the UART TX pin from one board to the UART RX pin on another board as well as a common ground. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be displayed on the serial console.
 
     > **Lab Question:** Change your code to send multiple characters through UART.
 
