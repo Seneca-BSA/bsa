@@ -25,6 +25,8 @@ SES250 Electromagnatics
 
 ## Description
 
+### Capacitor
+
 A capacitor is an electronic device for storing electrical energy, consisting of two conductors in close proximity and insulated from each other. A simple example of such a storage device is the parallel-plate capacitor. If positive charges with total charge +Q are deposited on one of the conductors and an equal amount of negative charge −Q is deposited on the second conductor, the capacitor is said to have a charge Q.
 
 Source: [Britannica: capacitor](https://www.britannica.com/technology/capacitor)
@@ -35,17 +37,47 @@ $$ C = {{\epsilon_0 A} \over {s}} $$
 
 where \(\epsilon_0\) is the permittivity in vacuum and have a value of \(\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}\), \(A\) is the area of the plates, and \(s\) is the distance between the plates.
 
-When analyzing electronic circuits, a method often used is Kirchhoff's current law (KCL). KCL, Kirchhoff's first law, or Kirchhoff's junction rule, states that, for any node (junction) in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node; or equivalently: the algebraic sum of currents in a network of conductors meeting at a point is zero:
+Similar to resistors, capacitors use special markings to indicate their values. Since the amount of area for markings on a capacitor is limited, there are also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
+- First line: capacitance (in pF or μF) [and tolerance (J=5%, K=10%, M=20%)]
+- Second line: rated DC voltage [and code for the dielectric material]
 
-$$
-\displaystyle\sum_{i=1}^{n} I_i = \sum_{i=1}^{n} {{V_i} \over {R_i}} = 0
-$$
+For a ceramic capacitor, often only a three-digit code is given. The first two digits correspond to the first two digits of the value whilst the third digit is a multiplier which gives the number of zeros to be added to give the value in pF. For example, 104 means 10 x 104 pF = 100nF.
 
-<img src="../lab5-kcl.png" width="50%" height="50%"/>
+Furthermore, some capacitors such as electrolytic capacitors are marked with symbols (“+” and “-”) to indicate the correct polarity - failure to observe these markings when connecting a capacitor to a circuit can be catastrophic!
 
-***Figure 5.1 The current entering any junction is equal to the current leaving that junction. i2 + i3 = i1 + i4***
+![Figure 9.1](lab9-capacitor-marking.png)
 
-Source: [Wikipedia: Kirchhoff's circuit laws](https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws)
+***Figure 9.1 Various Capacitor Markings***
+
+Source: [Capacitor Markings](https://www.matrixtsl.com/courses/ecc/index.php?n=Capacitors.CapacitorMarkings)
+
+### RC Circuit
+
+A resistor-capacitor circuit (RC circuit), RC filter or RC network, is an electric circuit composed of resistors and capacitors. It may be driven by a voltage or current source and these will produce different responses. A first-order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit.
+
+![Figure 9.2](lab9-rc-circuit.png)
+
+***Figure 9.2 Series RC circuit***
+
+A series RC circuit with a capacitor that is initially charged to \(V_0 = {Q_0 \over C}\) and then allowed to discharge through a resistor \(R\) will exhibit the following relationship for the voltage across the capacitor over some time:
+
+$$ V_C(t) = V_0 e^{(-{t \over {RC}})} $$
+
+where \(V_0\) is the capacitor voltage at \(t = 0\)
+
+The time required for the voltage to fall to \(V_0 \over e\) or about 37% or 1/3 of \(V_0\) is called the RC time constant and is given by:
+
+$$ \tau = RC $$
+
+where \(\tau\) is measured in seconds, \(R\) in ohms and \(C\) in farads.
+
+The chart below shows a typical curve of the voltage across the capacitor during discharge in an RC circuit.
+
+![Figure 9.3](lab9-rc-response.png)
+
+***Figure 9.3 Voltage curve of a capacitor during discharge in an RC circuit***
+
+Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
 
 ## Materials
 - Aluminum foils
