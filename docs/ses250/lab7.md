@@ -43,21 +43,31 @@ Similar to resistors, capacitors use special markings to indicate their values. 
 
 For a ceramic capacitor, often only a three-digit code is given. The first two digits correspond to the first two digits of the value whilst the third digit is a multiplier which gives the number of zeros to be added to give the value in pF. For example, 104 means 10 x 104 pF = 100nF.
 
-Furthermore, some capacitors such as electrolytic capacitors are marked with symbols (“+” and “-”) to indicate the correct polarity - failure to observe these markings when connecting a capacitor to a circuit can be catastrophic!
+Furthermore, some capacitors such as electrolytic capacitors are marked with symbols (“+” and “-”) to indicate the correct polarity. **Failure to observe these markings when connecting a capacitor to a circuit can be catastrophic!**
 
-![Figure 9.1](lab9-capacitor-marking.png)
+![Figure 7.1](lab7-capacitor-marking.png)
 
-***Figure 9.1 Various Capacitor Markings***
+***Figure 7.1 Various Capacitor Markings***
+
+![Figure 7.2](lab7-non-polarized-vc-polarized.jpg)
+
+***Figure 7.2 Non-polarized vs Polarized Capacitor***
+
+![Figure 7.3](lab7-polarized-capacitor-lead.jpg)
+
+***Figure 7.3 Polarized Capacitor Leads***
 
 Source: [Capacitor Markings](https://www.matrixtsl.com/courses/ecc/index.php?n=Capacitors.CapacitorMarkings)
+
+Source: [What Is Non-polarized Capacitor](https://www.jakelectronics.com/blog/what-is-non-polarized-capacitor)
 
 ### RC Circuit
 
 A resistor-capacitor circuit (RC circuit), RC filter or RC network, is an electric circuit composed of resistors and capacitors. It may be driven by a voltage or current source and these will produce different responses. A first-order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit.
 
-![Figure 9.2](lab9-rc-circuit.png)
+![Figure 7.4](lab7-rc-circuit.png)
 
-***Figure 9.2 Series RC circuit***
+***Figure 7.2 Series RC circuit***
 
 A series RC circuit with a capacitor that is initially charged to \(V_0 = {Q_0 \over C}\) and then allowed to discharge through a resistor \(R\) will exhibit the following relationship for the voltage across the capacitor over some time:
 
@@ -73,144 +83,116 @@ where \(\tau\) is measured in seconds, \(R\) in ohms and \(C\) in farads.
 
 The chart below shows a typical curve of the voltage across the capacitor during discharge in an RC circuit.
 
-![Figure 9.3](lab9-rc-response.png)
+![Figure 7.5](lab7-rc-response.png)
 
-***Figure 9.3 Voltage curve of a capacitor during discharge in an RC circuit***
+***Figure 7.5 Voltage curve of a capacitor during discharge in an RC circuit***
 
 Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
 
 ## Materials
-- Aluminum foils
-- Letter-size printer paper
-- Tape
-- 1kΩ or similar value resistor
-- 10kΩ or similar value resistor
-- Breadboard
-- Jumper wires
+- Safety glasses (PPE)
+- [Lab Supplies](supplies.md)
+    - Breadboard
+    - Jumper Wires
+    - (1x) 1kΩ Resistor (brown-black-red)
+    - (1x) 10kΩ resistor (brown-black-orange)
+    - (1x) 100nF Capacitor
+    - (1x) 10μF Capacitor
 
 ## Preparation
 
 > **Lab Preparation Question:**
 >
-> 1. Copy the following table with at least 10 trials into your notebook for Part 1 of this lab:
->
-    >    |Trial|# of sheet|Separation (mm)|Measured C [nF]|Foil C [nF]|
-    >    |---|---|---|---|---|
-    >    |1|||||
-    >    |...|||||
->
-> 1. Using the circuit shown in Part 2 Step 4 along with R1 = 1kΩ, R2 = R3 = 10kΩ. Calculate \(V_AB\), \(I_1\), \(I_2\), \(I_3\) using Kirchhoff's Current Laws
->
-> 1. Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Part 2 Step 4. Clearly show which tie point will the wire, resistor and power supply be attached to.
->
-    >    ![Breadboard Sketch](lab4-breadboard-sketch.png)
->
-> 1. Repeat the previous step three times to sketch the breadboard connection diagram for each of the following:
->
-    >    - Include a DMM as a voltmeter to measure the voltage between node A and node B
-    >    - Include a DMM as an ammeter to measure the current through R1
-    >    - Include two DMM each as an ammeter to measure the current through R2 and R3
-    >
-    >    ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
-    >    |---|---|---|---|---|
-    >    |Calculated Value|||||
->
+> 1. Read and summarize the lab as necessary.
+> 1. Copy observation table 1, 2 and 3 of this lab into your notebook.
+> 1. Sketch a breadboard diagram of Figure 7.7 onto your notebook.
+> 1. Calculate the theortical RC time constant (τ) for each combination of R-C in table 2.
+> 1. Calculate the voltage at τ if the initial voltage of a R-C circuit is 1V. Show all calculation.
+> 1. Derive the formula for the current through the resistor in a RC circuit.
 
 ## Procedures
 
-### Part 1: Parallel Plate Capacitor
+### Part 1: Measuring Capacitance
 
-In this part of the lab, we will be exploring the capacitance of a parallel plate capacitor.
+In this part of the lab, we will be exploring the capacitance of a capacitor.
 
 1. Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).
 
-    ![Figure 5.2](lab5-dmm-capacitance.png)
+    ![Figure 7.6](lab7-dmm-capacitance.png)
 
-    ***Figure 5.2***
+    ***Figure 7.6***
 
-    > **Lab Question 1:** Record the capacitance with the alligator clip not connected to anything. This is the capacitance due to just the cable.
-
-1. Obtain two pieces of aluminum foil of about 20cm x 20xm in size and obtain several sheets of paper that are larger than the aluminum foil. Record the size of each aluminum foil.
-
-    > **Lab Question 2:** Record the size of the capacitor.
-
-1. Tape each aluminum foil to a piece of paper with the corners not taped for an alligator clip connection.
-
-    ![Figure 5.3](lab5-capacitor-1.png)
-
-    ***Figure 5.3***
-
-1. Connect the red alligator clip from the DMM to one corner of the first aluminum foil and the black alligator clip to another corner of the second aluminum foil as shown in Figure 5.4.
-
-    ![Figure 5.4](lab5-capacitor-2.png)
-
-    ***Figure 5.4***
-
-1. Arrange the aluminum foil and papers as per the figure below to create a parallel plate capacitor. Use a flat weight (ie. a textbook) to keep the capacitor in place.
-
-    **NOTE:** It is very important to ensure the two aluminum foils are not touching and isolated by the paper. Also, ensure the aluminum foils and papers stack is as close to each other as possible with no air gap in between.
-
-1. Record the capacitance then repeat the test for other thicknesses by increasing the number of sheets of paper in between the aluminum foil. Increment in multiple of 3-5 sheets. Each sheet of 20lbs paper is about 0.097mm.
-
-    **NOTE: It is important to ensure the weight apply and its application is the same throughout the entire experiment. Also, as the weight settles onto the aluminum foils and papers stack, it will continuously press the parallel foils closer. Just choose a consistent settling time for each step when recording the capacitance value because we cannot wait until the weight completely settles.**
-
-1. Conduct at least 10 trials of various thicknesses or until a change in capacitance can no longer be observed.
-
-    > **Lab Question 3:** Record your observation in the table below. Foil Capacitance = Measured Capacitance - Cable Capacitance, \(C_{foil} = C_{total} - C_{cable}\).
+    > **Lab Question 1:** Without connecting the cable to anything, record the capacitance with the alligator clip not connected to anything. This is the capacitance due to just the cable (open circuit capacitance).
     >
-    > |Trial|# of seperating sheet|Separation (mm)|Measured C [nF]|Foil C [nF]|
+    > **Table 1**
+    >
+    > |Capacitor #|Cable Capacitance (μF)|Marked C (μF)|Measured C with Cable (μF)|Measured C (μF)|
     > |---|---|---|---|---|
     > |1|||||
-    > |...|||||
+    > |2|||||
+
+1. Acquire a 100nF Capacitor (usually small and orange with marking 104 for 10 x 10^4 pF) then connector the two lead of the capacitor to the DMM.
+
+    > **Lab Question 2:** Record the capacitance. Remember, this is the capacitance with the cable.
     >
-    > **Note:** The capacitor setup already has one sheet as a separation
+    > **Lab Question 3:** Subtract the cable capacitance from the value to get the capacitor capacitance. Record this into the table 1.
+
+1. Acquire a 10μF Capacitor (usually round cylindrical with marking 10μF) then connector the two lead of the capacitor to the DMM per the polarity of the capacitor. Red clip connected to the (+) lead and black clip connected to the (-) lead.
+
+    <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
+    <p style="font-size: 18px"><strong>INCORRECT CONNECTION AS PER THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
+    </div>
+
+    > **Lab Question 4:** Record the capacitance by repeating step 2 with the 10μF Capacitor.
+
+1. Disconnect the DMM and the capacitor.
+
+### Part 2: RC Circuit
+
+In this part of the lab, we will be exploring the transisent response (discharging and charging) of a RC circuit. A function generator set to square wave output will act as the closing and opening of the circuit.
+
+![Figure 7.7](lab7-rc-circuit-1.png)
+
+***Figure 7.7***
+
+1. Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, and a few jumper wires. You should also have the capacitor you worked with eariler.
+
+    > **Lab Question 5:** Measure the resistance value of your resistor and recorded into Table 2. Refer to [Lab 2](lab2.md) if you don't remember how to measure resistance.
     >
-    > **Lab Question 4 (Post-Lab):** Using the area of the aluminum foils you measured and the separation distance of each step from your experiment into the relationship. Plot your results (Capacitance along the y-axis and separation distance along the x-axis) then draw the trend line. This can be done by hand or software. **Hint:** It's not a linear relationship.
+    > **Table 2**
     >
-    > **Lab Question 5 (Post-Lab):** Calculate the coefficient for the trend line. Does it agree with the theoretical value of \(\epsilon_0\)? Explain why you think it is the same or not the same as the theoretical (other than human measurement error).
-
-1. Disconnect the DMM and return the aluminum foil once you are done.
-
-### Part 2: Resistors in Parallel and in Series
-
-In this part of the lab, we will be exploring resistors in parallel and series configurations.
-
-1. Obtain a 1kΩ resistor, two 10kΩ resistors, a breadboard and a few jumper wires. If the resistor value is not available, use resistors of similar value.
-
-1. Turn on the DMM at your workbench and turn it to the “Ω 2W” resistance measurement mode. Measure and record the resistance of each resistor.
-
-    > **Lab Question 6:** Record the resistance (at least 3 S.F.) of each resistor in the table below:
-    >
-    > ||R1 (1kΩ)|R2 (10kΩ)|R3 (10kΩ)|
-    > |---|---|---|---|
-    > |Measured Resistance [kΩ]||||
-
-1. Assemble the circuit shown below then measure the resistance between node A and node B.
-
-    ![Figure 5.5](lab5-circuit-open.png)
-
-    ***Figure 5.5***
-
-    > **Lab Question 6:** Does the measured resistance agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?
-
-1. Assemble the circuit shown below then measure the following as per the circuit and connection diagram you prepared in the pre-lab:
-    - the voltage between node A and node B
-    - the current through R1, R2, R3
-
-    ![Figure 5.6](lab5-circuit.png)
-
-    ***Figure 5.6***
-
-    > **Lab Question 7:** Record the measured values in the table below.
-    >
-    > ||Voltage A-B (\(V_{AB}\))|Current of R1 (\(I_1\))|Current of R1 (\(I_2\))|Current of R1 (\(I_3\))|
+    > |Resistor|Capacitor|Measured R (kΩ)|Measured C (μF)|RC Constant (τ) (ms)|
     > |---|---|---|---|---|
-    > |Measured Value|||||
+    > |1kΩ|10μF||||
+    > |1kΩ|100nF||||
+    > |10kΩ|100nF||||
     >
-    > **Lab Question 8:** Does the measured value agree with the value you calculated in the pre-lab? What is the percentage error? Is it within the tolerance of the resistor?
+    > **Lab Question 6:** Calculate the RC time constant τ = RC for each of the configuration above.
 
-Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.
+1. Setup your circuit as per Figure 7.7 using a 1kΩ resistor and a 10μF capacitor on a breadboard with CH1 of the DSO measuring the voltage across the capacitor. The transisent current through can only be estimated using the voltage across the capacitor in this configuration.
 
-## Post-Lab
+    <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
+    <p style="font-size: 18px"><strong>INCORRECT CONNECTION AS PER THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
+    </div>
 
-1. Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.
+1. Turn on the function generator and set the output to a 1V square wave at 10Hz. Leave all other setting as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+
+1. Turn on the DSO and adjust the settings so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+
+    > **Lab Question 7:** Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RC time constant.
+    >
+    > **Table 3**
+    >
+    > |Resistor|Capacitor|Calculated τ (ms)|Measured τ (ms)|% Error|
+    > |---|---|---|---|---|
+    > |1kΩ|10μF||||
+    > |1kΩ|100nF||||
+    > |10kΩ|100nF||||
+    >
+    > **Lab Question 8:** Calculate the precentage error of the estimated and measured RC time constant.
+
+1. Repeat step 2 with the various values of resistors and capacitors.
+
+    > **Lab Question 9:** What do you observe regardind to the RC time constant as the resistor and the capacitor value increase and decrease.
+
+Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
