@@ -175,7 +175,11 @@ In this part of the lab, we will be exploring the transient response (dischargin
     <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
     </div>
 
-1. Turn on the function generator and set the output to a 1V square wave at 10Hz. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the function generator and set the output to a 1V square wave at 10Hz **and a 1V DC Offset**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+
+    <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
+    <p style="font-size: 18px"><strong>Ensure the function generator is set to 1V DC offset</strong><p>
+    </div>
 
 1. Turn on the DSO and adjust the settings so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
