@@ -11,7 +11,7 @@ SES250 Electromagnatics
 ## Objectives
 - Assemble electronic components onto a breadboard
 - Measure the capacitance of a capacitor using a digital multimeter (DMM)
-- Measure the response of a RC circuit using a Digital Storage Oscilloscope (DSO)
+- Measure the response of an RC circuit using a Digital Storage Oscilloscope (DSO)
 
 ## Important Rules for this Lab
 
@@ -37,7 +37,7 @@ $$ C = {{\epsilon_0 A} \over {s}} $$
 
 where \(\epsilon_0\) is the permittivity in vacuum and have a value of \(\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}\), \(A\) is the area of the plates, and \(s\) is the distance between the plates.
 
-Similar to resistors, capacitors use special markings to indicate their values. Since the amount of area for markings on a capacitor is limited, there are also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
+Similar to resistors, capacitors use special markings to indicate their values. Since the amount of area for markings on a capacitor is limited, there is also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
 - First line: capacitance (in pF or μF) [and tolerance (J=5%, K=10%, M=20%)]
 - Second line: rated DC voltage [and code for the dielectric material]
 
@@ -104,11 +104,11 @@ Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
 > **Lab Preparation Question:**
 >
 > 1. Read and summarize the lab as necessary.
-> 1. Copy observation table 1, 2 and 3 of this lab into your notebook.
+> 1. Copy observation tables 1, 2 and 3 of this lab into your notebook.
 > 1. Sketch a breadboard diagram of Figure 7.7 onto your notebook.
-> 1. Calculate the theortical RC time constant (τ) for each combination of R-C in table 2.
-> 1. Calculate the voltage at τ if the initial voltage of a R-C circuit is 1V. Show all calculation.
-> 1. Derive the formula for the current through the resistor in a RC circuit.
+> 1. Calculate the theoretical RC time constant (τ) for each combination of R-C in Table 2.
+> 1. Calculate the voltage at τ if the initial voltage of an R-C circuit is 1V. Show all calculations.
+> 1. Derive the formula for the current through the resistor in an RC circuit.
 
 ## Procedures
 
@@ -131,16 +131,16 @@ In this part of the lab, we will be exploring the capacitance of a capacitor.
     > |1|||||
     > |2|||||
 
-1. Acquire a 100nF Capacitor (usually small and orange with marking 104 for 10 x 10^4 pF) then connector the two lead of the capacitor to the DMM.
+1. Acquire a 100nF Capacitor (usually small and orange with marking 104 for 10 x 10^4 pF) then connect the two leads of the capacitor to the DMM.
 
     > **Lab Question 2:** Record the capacitance. Remember, this is the capacitance with the cable.
     >
     > **Lab Question 3:** Subtract the cable capacitance from the value to get the capacitor capacitance. Record this into the table 1.
 
-1. Acquire a 10μF Capacitor (usually round cylindrical with marking 10μF) then connector the two lead of the capacitor to the DMM per the polarity of the capacitor. Red clip connected to the (+) lead and black clip connected to the (-) lead.
+1. Acquire a 10μF Capacitor (usually round cylindrical with marking 10μF) then connect the two leads of the capacitor to the DMM per the polarity of the capacitor. The red clip is connected to the (+) lead and the black clip is connected to the (-) lead.
 
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
-    <p style="font-size: 18px"><strong>INCORRECT CONNECTION AS PER THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
+    <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
     </div>
 
     > **Lab Question 4:** Record the capacitance by repeating step 2 with the 10μF Capacitor.
@@ -149,15 +149,15 @@ In this part of the lab, we will be exploring the capacitance of a capacitor.
 
 ### Part 2: RC Circuit
 
-In this part of the lab, we will be exploring the transisent response (discharging and charging) of a RC circuit. A function generator set to square wave output will act as the closing and opening of the circuit.
+In this part of the lab, we will be exploring the transient response (discharging and charging) of an RC circuit. A function generator set to square wave output will act as the closing and opening of the circuit.
 
 ![Figure 7.7](lab7-rc-circuit-1.png)
 
 ***Figure 7.7***
 
-1. Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, and a few jumper wires. You should also have the capacitor you worked with eariler.
+1. Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, and a few jumper wires. You should also have the capacitor you worked with earlier.
 
-    > **Lab Question 5:** Measure the resistance value of your resistor and recorded into Table 2. Refer to [Lab 2](lab2.md) if you don't remember how to measure resistance.
+    > **Lab Question 5:** Measure the resistance value of your resistor and record it in Table 2. Refer to [Lab 2](lab2.md) if you don't remember how to measure resistance.
     >
     > **Table 2**
     >
@@ -169,13 +169,13 @@ In this part of the lab, we will be exploring the transisent response (dischargi
     >
     > **Lab Question 6:** Calculate the RC time constant τ = RC for each of the configuration above.
 
-1. Setup your circuit as per Figure 7.7 using a 1kΩ resistor and a 10μF capacitor on a breadboard with CH1 of the DSO measuring the voltage across the capacitor. The transisent current through can only be estimated using the voltage across the capacitor in this configuration.
+1. Set up your circuit as per Figure 7.7 using a 1kΩ resistor and a 10μF capacitor on a breadboard with CH1 of the DSO measuring the voltage across the capacitor. The transient current through can only be estimated using the voltage across the capacitor in this configuration.
 
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
-    <p style="font-size: 18px"><strong>INCORRECT CONNECTION AS PER THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
+    <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
     </div>
 
-1. Turn on the function generator and set the output to a 1V square wave at 10Hz. Leave all other setting as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the function generator and set the output to a 1V square wave at 10Hz. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
 1. Turn on the DSO and adjust the settings so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
@@ -189,10 +189,10 @@ In this part of the lab, we will be exploring the transisent response (dischargi
     > |1kΩ|100nF||||
     > |10kΩ|100nF||||
     >
-    > **Lab Question 8:** Calculate the precentage error of the estimated and measured RC time constant.
+    > **Lab Question 8:** Calculate the percentage error of the estimated and measured RC time constant.
 
 1. Repeat step 2 with the various values of resistors and capacitors.
 
-    > **Lab Question 9:** What do you observe regardind to the RC time constant as the resistor and the capacitor value increase and decrease.
+    > **Lab Question 9:** What do you observe regarding the RC time constant as the resistor and the capacitor value increase and decrease?
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
