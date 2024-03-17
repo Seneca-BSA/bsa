@@ -81,6 +81,7 @@ SES250 Electromagnatics
 <h2 id="purposes">Purposes</h2>
 <ul>
 <li>To understand the relationship between the voltage and capacitance of a capacitor</li>
+<li>To understand the discharging and charging of a capacitor</li>
 </ul>
 <h2 id="objectives">Objectives</h2>
 <ul>
@@ -106,9 +107,11 @@ SES250 Electromagnatics
 <script type="math/tex; mode=display"> C = {{\epsilon_0 A} \over {s}} </script>
 </p>
 <p>where <script type="math/tex">\epsilon_0</script> is the permittivity in vacuum and have a value of <script type="math/tex">\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}</script>, <script type="math/tex">A</script> is the area of the plates, and <script type="math/tex">s</script> is the distance between the plates.</p>
-<p>Similar to resistors, capacitors use special markings to indicate their values. Since the amount of area for markings on a capacitor is limited, there is also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
-- First line: capacitance (in pF or μF) [and tolerance (J=5%, K=10%, M=20%)]
-- Second line: rated DC voltage [and code for the dielectric material]</p>
+<p>Similar to resistors, capacitors use special markings to indicate their values. Since the amount of area for markings on a capacitor is limited, there is also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:</p>
+<ul>
+<li>First line: capacitance (in pF or μF) [and tolerance (J=5%, K=10%, M=20%)]</li>
+<li>Second line: rated DC voltage [and code for the dielectric material]</li>
+</ul>
 <p>For a ceramic capacitor, often only a three-digit code is given. The first two digits correspond to the first two digits of the value whilst the third digit is a multiplier which gives the number of zeros to be added to give the value in pF. For example, 104 means 10 x 104 pF = 100nF.</p>
 <p>Furthermore, some capacitors such as electrolytic capacitors are marked with symbols (“+” and “-”) to indicate the correct polarity. <strong>Failure to observe these markings when connecting a capacitor to a circuit can be catastrophic!</strong></p>
 <p><img alt="Figure 7.1" src="../lab7-capacitor-marking.png" /></p>
@@ -122,14 +125,14 @@ SES250 Electromagnatics
 <h3 id="rc-circuit">RC Circuit</h3>
 <p>A resistor-capacitor circuit (RC circuit), RC filter or RC network, is an electric circuit composed of resistors and capacitors. It may be driven by a voltage or current source and these will produce different responses. A first-order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit.</p>
 <p><img alt="Figure 7.4" src="../lab7-rc-circuit.png" /></p>
-<p><strong><em>Figure 7.2 Series RC circuit</em></strong></p>
+<p><strong><em>Figure 7.4 Series RC circuit</em></strong></p>
 <p>A series RC circuit with a capacitor that is initially charged to <script type="math/tex">V_0 = {Q_0 \over C}</script> and then allowed to discharge through a resistor <script type="math/tex">R</script> will exhibit the following relationship for the voltage across the capacitor over some time:</p>
 <p>
 <script type="math/tex; mode=display"> V_C(t) = V_0 e^{(-{t \over {RC}})} </script>
 </p>
 <p>where <script type="math/tex">V_0</script> is the capacitor voltage at <script type="math/tex">t = 0</script>
 </p>
-<p>The time required for the voltage to fall to <script type="math/tex">V_0 \over e</script> or about 37% or 1/3 of <script type="math/tex">V_0</script> is called the RC time constant and is given by:</p>
+<p>The time required for the voltage to fall to <script type="math/tex">V_0 e^{-1}</script> or about 37% (roughly 1/3 of <script type="math/tex">V_0</script>) is called the RC time constant and is given by:</p>
 <p>
 <script type="math/tex; mode=display"> \tau = RC </script>
 </p>
@@ -146,8 +149,8 @@ SES250 Electromagnatics
 <li>Jumper Wires</li>
 <li>(1x) 1kΩ Resistor (brown-black-red)</li>
 <li>(1x) 10kΩ resistor (brown-black-orange)</li>
-<li>(1x) 100nF Ceramic Capacitor (Usually orange with 104 marking)</li>
-<li>(1x) 10μF Electrolytic Capacitor (Usually blue or black with 10μF marking)</li>
+<li>(1x) 100nF Ceramic Capacitor (usually orange with 104 marking)</li>
+<li>(1x) 10μF Electrolytic Capacitor (usually blue or black with 10μF marking)</li>
 </ul>
 </li>
 </ul>
