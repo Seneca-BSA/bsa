@@ -143,7 +143,7 @@ Source: [Wikipedia: Oscilloscope](https://en.wikipedia.org/wiki/Oscilloscope)
     > **Lab Question 8:** Is this peak-to-peak voltage (Pk-Pk) value the same or different from the peak-to-peak voltage amplitude (Vpp) value you set at the function generator earlier? Describe how are they the same or different.
 
 1. Turn off the output of the function generator. Reminder: Press the Channel button then Output Off.
-1. Afterward, press the Output Load button (6.7-10) and change the setting to "High-Z".
+1. Afterward, press the Output Load button (6.7-10) and change the setting to "High-Z". If you are using the 33220A, the High-Z setting is in Utility > Output Setting.
 1. Then change the amplitude of the Sine wave to 3 Vpp. Reminder: press “Parameters” to access the settings. Keep the Offset and Phase at 0.
 1. Turn on the output of the function generator.
 1. You should now see a 3 V peak-to-peak signal on the oscilloscope. Adjust the voltage division knob (6.3-7) so the sine wave will fit into the screen again.

@@ -10,7 +10,7 @@
 - [Lab 5 : Thévenin Theorem](lab5.md)
 - [Lab 6 : Digital Storage Oscilloscope (DSO)](lab6.md)
 - [Lab 7 : Capacitor and RC Circuit](lab7.md)
+- [Lab 8 : RL Circuit and Filters](lab8.md)
 <!--
-- [Lab 8 : Digital Storage Oscilloscope (DSO)](lab8.md)
 - [Lab 9 : RC and RL Circuit](lab9.md)
 - [Lab 10 : RLC Circuit](lab10.md)-->

@@ -7,6 +7,7 @@ SES250 Electromagnatics
 
 ## Purposes
 - To understand the relationship between the voltage and capacitance of a capacitor
+- To understand the discharging and charging of a capacitor
 
 ## Objectives
 - Assemble electronic components onto a breadboard
@@ -38,6 +39,7 @@ $$ C = {{\epsilon_0 A} \over {s}} $$
 where \(\epsilon_0\) is the permittivity in vacuum and have a value of \(\epsilon_0 = {8.854 \times 10^{-12} {Nm^2 \over C^2}}\), \(A\) is the area of the plates, and \(s\) is the distance between the plates.
 
 Similar to resistors, capacitors use special markings to indicate their values. Since the amount of area for markings on a capacitor is limited, there is also a set of rules for specifying the capacitance value of a capacitor. Manufacturers often use two separate lines for their capacitor markings and these have the following meanings:
+
 - First line: capacitance (in pF or μF) [and tolerance (J=5%, K=10%, M=20%)]
 - Second line: rated DC voltage [and code for the dielectric material]
 
@@ -67,7 +69,7 @@ A resistor-capacitor circuit (RC circuit), RC filter or RC network, is an electr
 
 ![Figure 7.4](lab7-rc-circuit.png)
 
-***Figure 7.2 Series RC circuit***
+***Figure 7.4 Series RC circuit***
 
 A series RC circuit with a capacitor that is initially charged to \(V_0 = {Q_0 \over C}\) and then allowed to discharge through a resistor \(R\) will exhibit the following relationship for the voltage across the capacitor over some time:
 
@@ -75,7 +77,7 @@ $$ V_C(t) = V_0 e^{(-{t \over {RC}})} $$
 
 where \(V_0\) is the capacitor voltage at \(t = 0\)
 
-The time required for the voltage to fall to \(V_0 \over e\) or about 37% or 1/3 of \(V_0\) is called the RC time constant and is given by:
+The time required for the voltage to fall to \(V_0 e^{-1}\) or about 37% (roughly 1/3 of \(V_0\)) is called the RC time constant and is given by:
 
 $$ \tau = RC $$
 
@@ -96,8 +98,8 @@ Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
     - Jumper Wires
     - (1x) 1kΩ Resistor (brown-black-red)
     - (1x) 10kΩ resistor (brown-black-orange)
-    - (1x) 100nF Capacitor
-    - (1x) 10μF Capacitor
+    - (1x) 100nF Ceramic Capacitor (usually orange with 104 marking)
+    - (1x) 10μF Electrolytic Capacitor (usually blue or black with 10μF marking)
 
 ## Preparation
 
@@ -175,7 +177,7 @@ In this part of the lab, we will be exploring the transient response (dischargin
     <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
     </div>
 
-1. Turn on the function generator and set the output to a 1V square wave at 10Hz **and a 1V DC Offset**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the function generator and set the output to a 1Vpp square wave at 10Hz **with a 1V DC Offset at High-Z ouptut mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
     <p style="font-size: 18px"><strong>Ensure the function generator is set to 1V DC offset</strong><p>
