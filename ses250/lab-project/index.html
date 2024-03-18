@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab Project : RC Lowpass Filters - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab Project : RC Lowpass Filters";
+        var mkdocs_page_input_path = "ses250/lab-project.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Lab Project : RC Lowpass Filters</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-project-rc-lowpass-filters">Lab Project : RC Lowpass Filters</h1>
+<p><font size="5">
+Seneca College<br>
+SES250 Electromagnatics<br>
+Due Date: Sunday, Apr 7, 11:59 PM
+</font></p>
+<h2 id="purposes">Purposes</h2>
+<ul>
+<li>To understand simple capacitive low-pass filter circuit</li>
+<li>To understand how to write a lab report</li>
+</ul>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Assemble electronic components onto a breadboard</li>
+<li>Measure the filtering of signals using a Digital Storage Oscilloscope (DSO)</li>
+<li>Document your processes and results in a lab report</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Using what you've learned from <a href="../lab7/">Lab 7</a> and <a href="../lab8/">Lab 8</a> about capacitive and low-pass filters, your task is to create a capacitive low-pass circuit (series RC circuit) to filter out a noisy signal.</p>
+<h2 id="task">Task</h2>
+<ol>
+<li>
+<p>You may work in groups of up to 2 members.</p>
+</li>
+<li>
+<p>Design a series RC circuit that will filter out noise above 1kHz but not signal below 1kHz (ie. the cutoff frequency should be within 10% of 1kHz). You can use any of the resistors and capacitors you have in your lab kit.</p>
+</li>
+<li>
+<p>Apply a signal with a 2V DC offset with a 1kHz 1Vpp triangular (saw) wave to simulate noise to your circuit. Remember the function generator should be set to High-Z mode.</p>
+</li>
+<li>
+<p>Using the DSO, demostrate that the 1kHz 1Vpp noise is reduced by at least 70.7% after passing through your circuit (ie. show the raw signal with noise and the filtered signal).</p>
+</li>
+<li>
+<p>Document your procedure and result in a lab report.</p>
+</li>
+</ol>
+<h2 id="deliverables">Deliverables</h2>
+<div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
+<p style="font-size: 18px"><strong>Plagiarism is using another individual’s (INCLUDING AI) work (e.g., words, images, ideas, logic, phrases, signatures or computations) and presenting it as one’s own, without properly citing the source.</strong></p>
+<p>Refer to: <a href="https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html">Academic Integrity Policy</a></p>
+</div>
+
+<ol>
+<li>
+<p>A lab report of no more than 5 pages and less than 1000 words consisting of the following sections:</p>
+<ol>
+<li><strong>Introduction</strong> of the problem being studied and any relevant background information regarding to low-pass filter. (max. 300 words)</li>
+<li><strong>Methods and Materials</strong> describing your circuit, and the materials and steps you used to test your circuit. This section must consist of figures and photos of:<ul>
+<li>list of materials/components used</li>
+<li>list of steps you've taken (ie. someone must be able to repeat what you've done)</li>
+<li>circuit diagram</li>
+<li>breadboard diagram</li>
+<li>photos of your component setup on a breadboard</li>
+<li>photos of your test using a function generator and DSO</li>
+</ul>
+</li>
+<li><strong>Results</strong> from testing of your circuit by showing photos or a descriptive sketch of what you see from the DSO and measurement of any relevant voltage or current readings</li>
+<li><strong>Discussion</strong> of your finding and explain what you see from the result. How can you prove that the 1kHz noise is filtered by 70.7%? Also discussed the following if applicable:<ul>
+<li>Are there any unexpected results or errors?</li>
+<li>If you suspect any errors, analyze them.</li>
+<li>Explain your result with relevant theories.</li>
+</ul>
+</li>
+<li><strong>Conclusion</strong> of what you've done, what challenges you faced, and what you've learned.</li>
+<li><strong>Reference</strong> to cite any resource you've used in your introduction, methods, or discussion section. (Not included in pages and word count)</li>
+</ol>
+</li>
+<li>
+<p>The report must be in PDF format with the name and student number of all members.</p>
+</li>
+</ol>
+<h2 id="deadline-and-late-submission">Deadline and Late Submission</h2>
+<p>Submit the lab report on Blackboard by the submission deadline. Only one submission is required per group.</p>
+<p>Any late submission will receive a 50% mark deduction within 24 hours after the deadline, no mark will be rewarded afterwards.</p>
+<h2 id="marking-rubrics">Marking Rubrics</h2>
+<h3 id="introduction">Introduction</h3>
+<p>(10 marks) Did this section clearly explain all necessary concepts and theories to understand the problem?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks</p>
+<h3 id="methods-and-materials">Methods and Materials</h3>
+<p>(5 marks) Did this section list all materials/components used?
+- Yes - 5 mark
+- Somewhat - 3 marks
+- No - 0 marks</p>
+<p>(25 marks) Did this section list all steps that were taken with photos and figures (ie. someone must be able to repeat what you've done)
+- Yes - 25 mark
+- Somewhat - 15 marks
+- Minimal - 10 marks
+- No - 0 marks</p>
+<p>(5 marks) Did this section contain a diagram of the circuit?
+- Yes - 5 mark
+- Somewhat - 3 marks
+- No - 0 marks</p>
+<p>(5 marks) Did this section contain a diagram of the breadboard configuration?
+- Yes - 5 mark
+- Somewhat - 3 marks
+- No - 0 marks</p>
+<h3 id="results">Results</h3>
+<p>(10 marks) Did this section display results from the testing by showing photos or descriptive sketches of what you see from the DSO and measurement of any relevant voltage or current readings without any bias discussion?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks</p>
+<h3 id="discussion">Discussion</h3>
+<p>(20 marks) Did this section clearly explain the result and finding by providing a good discussion of the test and prove?
+- Yes - 20 mark
+- Somewhat - 14 marks
+- Minimal - 10 marks
+- No - 0 marks</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>(10 marks) Did this section provide a clear summary of what you've done, what challenges you faced, and what you've learned?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks</p>
+<h3 id="reference">Reference</h3>
+<p>(10 marks) Was a proper citation given in a recognizable reference format such as IEEE or MLA?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
