@@ -1,0 +1,130 @@
+# Lab Project : RC Lowpass Filters
+
+<font size="5">
+Seneca College<br>
+SES250 Electromagnatics<br>
+Due Date: Sunday, Apr 7, 11:59 PM
+</font>
+
+## Purposes
+- To understand simple capacitive low-pass filter circuit
+- To understand how to write a lab report
+
+## Objectives
+- Assemble electronic components onto a breadboard
+- Measure the filtering of signals using a Digital Storage Oscilloscope (DSO)
+- Document your processes and results in a lab report
+
+## Description
+
+Using what you've learned from [Lab 7](lab7.md) and [Lab 8](lab8.md) about capacitive and low-pass filters, your task is to create a capacitive low-pass circuit (series RC circuit) to filter out a noisy signal.
+
+## Task
+
+1. You may work in groups of up to 2 members.
+
+1. Design a series RC circuit that will filter out noise above 1kHz but not signal below 1kHz (ie. the cutoff frequency should be within 10% of 1kHz). You can use any of the resistors and capacitors you have in your lab kit.
+
+1. Apply a signal with a 2V DC offset with a 1kHz 1Vpp triangular (saw) wave to simulate noise to your circuit. Remember the function generator should be set to High-Z mode.
+
+1. Using the DSO, demostrate that the 1kHz 1Vpp noise is reduced by at least 70.7% after passing through your circuit (ie. show the raw signal with noise and the filtered signal).
+
+1. Document your procedure and result in a lab report.
+
+## Deliverables
+
+<div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
+<p style="font-size: 18px"><strong>Plagiarism is using another individual’s (INCLUDING AI) work (e.g., words, images, ideas, logic, phrases, signatures or computations) and presenting it as one’s own, without properly citing the source.</strong></p>
+<p>Refer to: <a href="https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html">Academic Integrity Policy</a></p>
+</div>
+
+1. A lab report of no more than 5 pages and less than 1000 words consisting of the following sections:
+
+    1. **Introduction** of the problem being studied and any relevant background information regarding to low-pass filter. (max. 300 words)
+    1. **Methods and Materials** describing your circuit, and the materials and steps you used to test your circuit. This section must consist of figures and photos of:
+        - list of materials/components used
+        - list of steps you've taken (ie. someone must be able to repeat what you've done)
+        - circuit diagram
+        - breadboard diagram
+        - photos of your component setup on a breadboard
+        - photos of your test using a function generator and DSO
+    1. **Results** from testing of your circuit by showing photos or a descriptive sketch of what you see from the DSO and measurement of any relevant voltage or current readings
+    1. **Discussion** of your finding and explain what you see from the result. How can you prove that the 1kHz noise is filtered by 70.7%? Also discussed the following if applicable:
+        - Are there any unexpected results or errors?
+        - If you suspect any errors, analyze them.
+        - Explain your result with relevant theories.
+    1. **Conclusion** of what you've done, what challenges you faced, and what you've learned.
+    1. **Reference** to cite any resource you've used in your introduction, methods, or discussion section. (Not included in pages and word count)
+
+1. The report must be in PDF format with the name and student number of all members.
+
+## Deadline and Late Submission
+
+Submit the lab report on Blackboard by the submission deadline. Only one submission is required per group.
+
+Any late submission will receive a 50% mark deduction within 24 hours after the deadline, no mark will be rewarded afterwards.
+
+## Marking Rubrics
+
+### Introduction
+
+(10 marks) Did this section clearly explain all necessary concepts and theories to understand the problem?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks
+
+### Methods and Materials
+
+(5 marks) Did this section list all materials/components used?
+- Yes - 5 mark
+- Somewhat - 3 marks
+- No - 0 marks
+
+(25 marks) Did this section list all steps that were taken with photos and figures (ie. someone must be able to repeat what you've done)
+- Yes - 25 mark
+- Somewhat - 15 marks
+- Minimal - 10 marks
+- No - 0 marks
+
+(5 marks) Did this section contain a diagram of the circuit?
+- Yes - 5 mark
+- Somewhat - 3 marks
+- No - 0 marks
+
+(5 marks) Did this section contain a diagram of the breadboard configuration?
+- Yes - 5 mark
+- Somewhat - 3 marks
+- No - 0 marks
+
+### Results
+
+(10 marks) Did this section display results from the testing by showing photos or descriptive sketches of what you see from the DSO and measurement of any relevant voltage or current readings without any bias discussion?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks
+
+### Discussion
+
+(20 marks) Did this section clearly explain the result and finding by providing a good discussion of the test and prove?
+- Yes - 20 mark
+- Somewhat - 14 marks
+- Minimal - 10 marks
+- No - 0 marks
+
+### Conclusion
+
+(10 marks) Did this section provide a clear summary of what you've done, what challenges you faced, and what you've learned?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks
+
+### Reference
+
+(10 marks) Was a proper citation given in a recognizable reference format such as IEEE or MLA?
+- Yes - 10 mark
+- Somewhat - 7 marks
+- Minimal - 5 marks
+- No - 0 marks

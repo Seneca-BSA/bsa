@@ -1,5 +1,7 @@
 # SES250 Lab Manual
 
+## Labs
+
 - [Lab Instruction](instruction.md)
 - [Lab Safety](safety.md)
 - [Lab Supplies](supplies.md)
@@ -14,3 +16,7 @@
 <!--
 - [Lab 9 : RC and RL Circuit](lab9.md)
 - [Lab 10 : RLC Circuit](lab10.md)-->
+
+## Lab Project
+
+- [Lab Project](lab-project.md)
