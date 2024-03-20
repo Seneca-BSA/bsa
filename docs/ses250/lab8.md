@@ -179,11 +179,11 @@ In this part of the lab, we will be exploring the transient response (de-energiz
     >
     > **Lab Question 2:** Calculate the theoretical RL time constant using the measured resistance value and the marked inductance value.
 
-1. Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.
+1. Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. If the inductor doesn't go into the breadboard, use jumper wires and alligaor clips from the DSO to help with the connection. The transient current through the inductor can only be estimated using the voltage across.
 
 1. Turn on the function generator and set the output to a 1Vpp square wave at 10kHz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
-1. Turn on the DSO and adjust the settings so you'll see a single period of the RL waveform similar to Figure 8.4. Remember, the function generator is simulating the closing and opening of the circuit at 10kHz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the DSO and adjust the settings so you'll see a single period of the RL waveform similar to Figure 8.4. Remember, the function generator is simulating the closing and opening of the circuit at 10kHz. You should see something similar to Figure 8.8 below if you setup your circuit properly. If not, verify your connection. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
     ![Figure 8.8](lab8-rl-curve.png)
 
