@@ -148,7 +148,7 @@ Source: [All About Circuits: Low-pass Filters](https://www.allaboutcircuits.com/
 > 1. Copy observation tables 1, and 2 of this lab into your notebook.
 > 1. Sketch a breadboard diagram of Figure 8.7 onto your notebook.
 > 1. Derive a formula to find the inductance of an inductor from the RL response formula.
-> 1. If we need to reduce a 500Hz noise by at least 70.7% with an RL low-pass filter. Which resistor from our lab material should we if you are given a 15μH inductor?
+> 1. If we need to reduce a 500kHz noise by at least 70.7% with an RL low-pass filter. Which resistor from our lab material should we if you are given a 50μH inductor?
 
 ## Procedures
 
@@ -181,9 +181,13 @@ In this part of the lab, we will be exploring the transient response (de-energiz
 
 1. Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.
 
-1. Turn on the function generator and set the output to a 1Vpp square wave at 10Hz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the function generator and set the output to a 1Vpp square wave at 10kHz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
-1. Turn on the DSO and adjust the settings so you'll see a single period of the RL waveform similar to Figure 8.4. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the DSO and adjust the settings so you'll see a single period of the RL waveform similar to Figure 8.4. Remember, the function generator is simulating the closing and opening of the circuit at 10kHz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+
+    ![Figure 8.8](lab8-rl-curve.png)
+
+    ***Figure 8.8 Series RL Circuit Voltage Curve (Red) Sourse (Black) Inductor Voltage***
 
     > **Lab Question 3:** Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RL time constant.
     >
@@ -193,9 +197,9 @@ In this part of the lab, we will be exploring the transient response (de-energiz
 
 In this part of the lab, we'll explore a simple filter circuit using a resistor and an inductor called an inductive low-pass filter. You'll be exploring another simple filter circuit called the capacitive low-pass filter as part of the course project. A triangular (saw) wave from a signal generator will be used to simulate noise.
 
-![Figure 8.8](lab8-rl-filter.png)
+![Figure 8.9](lab8-rl-filter.png)
 
-***Figure 8.8***
+***Figure 8.9***
 
 1. Using the toroidal inductor from Part 1, calculate the cutoff frequency for an inductive low-pass filter for the various resistor values in Table 2.
 
@@ -213,16 +217,16 @@ In this part of the lab, we'll explore a simple filter circuit using a resistor 
 
 1. Set up your circuit as per Figure 8.8 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.
 
-1. Turn on the function generator and set the output to a 1Vpp triangular (saw) wave at 1kHz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1kHz.
+1. Turn on the function generator and set the output to a 1Vpp triangular (saw) wave or noise at 1MHz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.
 
-1. Turn on the output of the function generator and observe the difference between the raw signal (1VDC signal plus 1kHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.9 with the centre at 1V instead of 0V.
+1. Turn on the output of the function generator and observe the difference between the raw signal (1VDC signal plus 10MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 1V instead of 0V.
 
-    ![Figure 8.9](lab8-filter-curve.png)
+    ![Figure 8.10](lab8-filter-curve.png)
 
-    ***Figure 8.9 (Blue Line) Raw signal, (Orange Line) Filtered signal***
+    ***Figure 8.10 (Blue Line) Raw signal, (Orange Line) Filtered signal***
 
 1. Take a photo or make a sketch of your observation then repeat for all the resistor values.
 
-    > **Lab Question 5:** At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 1kHz noise? What is the cutoff frequency?
+    > **Lab Question 5:** At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 1MHz noise? What is the cutoff frequency?
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
