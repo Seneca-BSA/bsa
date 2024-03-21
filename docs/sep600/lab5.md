@@ -133,7 +133,9 @@ Interrupt is a way for the microcontroller to listen to events without continuou
     <pre>
 
         void button_isr(){
-            // display and interrupt messages on the LCD
+            // display an interrupt messages on the LCD
+            // USE wait_us for delay
+            // DO NOT use ThisThread::sleep_for
         }
 
     </pre>
