@@ -276,7 +276,9 @@ int main() {
 <p>Add the following interrupt routine before <code>main()</code> and add the appropriate code for displaying a message on the LCD.
     <pre></p>
 <pre><code>void button_isr(){
-    // display and interrupt messages on the LCD
+    // display an interrupt messages on the LCD
+    // USE wait_us for delay
+    // DO NOT use ThisThread::sleep_for
 }
 </code></pre>
 </pre>
