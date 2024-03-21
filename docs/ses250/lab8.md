@@ -227,6 +227,6 @@ In this part of the lab, we'll explore a simple filter circuit using a resistor 
 
 1. Take a photo or make a sketch of your observation then repeat for all the resistor values.
 
-    > **Lab Question 5:** At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 1MHz noise? What is the cutoff frequency?
+    > **Lab Question 6:** At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 1MHz noise? What is the cutoff frequency?
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
