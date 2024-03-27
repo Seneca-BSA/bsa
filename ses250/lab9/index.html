@@ -107,8 +107,9 @@ SES250 Electromagnatics
 <script type="math/tex; mode=display"> I_{rms} = {I_0 \over \sqrt{2}} </script>
 </p>
 <p><img alt="Figure 9.2" src="../lab9-rms.png" /></p>
-<p><strong><em>Figure 9.2 AC Waveforms showing the difference between <script type="math/tex">V_{rms}</script>, <script type="math/tex">V_{pk}</script>, and <script type="math/tex">V_{pp}</script></em></strong></p>
+<p><strong><em>Figure 9.2 AC Waveforms showing the difference between <script type="math/tex">V_{rms}</script>, <script type="math/tex">V_{pk} = V_0</script>, and <script type="math/tex">V_{pp}</script></em></strong></p>
 <p>Source: <a href="https://circuitdigest.com/tutorial/ac-circuit-theory-2-waveforms-and-their-properties">Circuit Digest: RMS Voltage</a></p>
+<p><strong>Note:</strong> Keep in mind that <script type="math/tex">V_{rms}</script> calculation uses <script type="math/tex">V_{0}</script>, not <script type="math/tex">V_{pp}</script>.</p>
 <h3 id="rc-circuit-phase-shift">RC Circuit Phase Shift</h3>
 <p>A Capacitive Circuit that consists of R and C in series exhibits a timing difference between the peak amplitude of the current and voltage. This timing difference is called Phase Shift. As the Capacitor opposes a change in Voltage and stores energy from the Power Supply in the form of an Electric Field, the Capacitor Voltage <script type="math/tex">V_{C}</script> lags the Capacitor Current <script type="math/tex">I_{C}</script> by 90° and lags the Power Supply Voltage V by a Phase Angle <script type="math/tex">\Phi</script>.</p>
 <p>This phase shift between voltage and current can be calculated by:</p>
@@ -153,8 +154,8 @@ SES250 Electromagnatics
 <ol>
 <li>Read and summarize the lab as necessary.</li>
 <li>Copy observation Tables 1, and 2 of this lab into your notebook.</li>
-<li>Sketch a breadboard diagram of Figure 9.5 and Figure 9.6 onto your notebook.</li>
-<li>Calculate the <script type="math/tex">V_{rms}</script> for a 3Vpp sine signal.</li>
+<li>Sketch a breadboard diagram of Figure 9.5 and Figure 9.7 onto your notebook.</li>
+<li>Calculate the <script type="math/tex">V_{rms}</script> for a <script type="math/tex">3 V_{pp}</script> (Not <script type="math/tex">V_{0}</script>)sine signal.</li>
 <li>Calculate the phase difference between voltage and current of an RC circuit with 10kΩ, 1kΩ, and 100Ω resistors, 100nF capacitor, and at 1kHz and 500Hz. Show all calculations.</li>
 <li>Calculate the phase difference between the voltage and current of an RL circuit with a 10kΩ, 1kΩ, and 100Ω resistors, the inductor you used in Lab 9, and at 1MHz and 500kHz. Show all calculations.</li>
 </ol>
@@ -205,6 +206,7 @@ SES250 Electromagnatics
 <p>
 <script type="math/tex; mode=display"> \Phi = 2 \pi {\Delta t \over T} </script>
 </p>
+<p>where <script type="math/tex">\Delta t</script> is the time difference and <script type="math/tex">T</script> is the period.</p>
 <p><strong>NOTE:</strong> <script type="math/tex">I(t)</script> leading means the time difference is a negative time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.</p>
 <p><strong>Table 1:</strong></p>
 <table>
@@ -255,9 +257,11 @@ SES250 Electromagnatics
 </table>
 </blockquote>
 </li>
-<li>
-<p>Repeat the measurement with various resistor values and frequencies to complete Table 1 to understand their relationships.</p>
-</li>
+</ol>
+<p><img alt="Figure 9.6" src="../lab9-shift.png" /></p>
+<p><strong><em>Figure 9.6</em></strong></p>
+<ol>
+<li>Repeat the measurement with various resistor values and frequencies to complete Table 1 to understand their relationships.</li>
 </ol>
 <h3 id="part-3-rl-circuit-in-ac">Part 3 : RL Circuit in AC</h3>
 <p>The next part of this lab is to observe the AC response of an RL Circuit and the relationship between the voltage <script type="math/tex">V(t)</script> and the current <script type="math/tex">I(t)</script> using an oscilloscope. Since we cannot measure <script type="math/tex">I(t)</script> directly using an oscilloscope, we'll be measuring the voltage across the resistor <script type="math/tex">V_R(t)</script> since the current and voltage are always in phase at the resistor.</p>
