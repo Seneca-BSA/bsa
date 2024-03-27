@@ -44,9 +44,11 @@ $$ I_{rms} = {I_0 \over \sqrt{2}} $$
 
 ![Figure 9.2](lab9-rms.png)
 
-***Figure 9.2 AC Waveforms showing the difference between \(V_{rms}\), \(V_{pk}\), and \(V_{pp}\)***
+***Figure 9.2 AC Waveforms showing the difference between \(V_{rms}\), \(V_{pk} = V_0\), and \(V_{pp}\)***
 
 Source: [Circuit Digest: RMS Voltage](https://circuitdigest.com/tutorial/ac-circuit-theory-2-waveforms-and-their-properties)
+
+**Note:** Keep in mind that \(V_{rms}\) calculation uses \(V_{0}\), not \(V_{pp}\).
 
 ### RC Circuit Phase Shift
 
@@ -99,8 +101,8 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
 >
 > 1. Read and summarize the lab as necessary.
 > 1. Copy observation Tables 1, and 2 of this lab into your notebook.
-> 1. Sketch a breadboard diagram of Figure 9.5 and Figure 9.6 onto your notebook.
-> 1. Calculate the \(V_{rms}\) for a 3Vpp sine signal.
+> 1. Sketch a breadboard diagram of Figure 9.5 and Figure 9.7 onto your notebook.
+> 1. Calculate the \(V_{rms}\) for a \(3 V_{pp}\) (Not \(V_{0}\))sine signal.
 > 1. Calculate the phase difference between voltage and current of an RC circuit with 10kΩ, 1kΩ, and 100Ω resistors, 100nF capacitor, and at 1kHz and 500Hz. Show all calculations.
 > 1. Calculate the phase difference between the voltage and current of an RL circuit with a 10kΩ, 1kΩ, and 100Ω resistors, the inductor you used in Lab 9, and at 1MHz and 500kHz. Show all calculations.
 
@@ -151,6 +153,8 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
     >
     > $$ \Phi = 2 \pi {\Delta t \over T} $$
     >
+    > where \(\Delta t\) is the time difference and \(T\) is the period.
+    >
     > **NOTE:** \(I(t)\) leading means the time difference is a negative time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.
     >
     >   **Table 1:**
@@ -161,6 +165,10 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
     >   |1 kHz|1 kΩ|100 nF|||
     >   |500 Hz|1 kΩ|100 nF|||
     >   |500 Hz|100 Ω|100 nF|||
+
+![Figure 9.6](lab9-shift.png)
+
+***Figure 9.6***
 
 1. Repeat the measurement with various resistor values and frequencies to complete Table 1 to understand their relationships.
 

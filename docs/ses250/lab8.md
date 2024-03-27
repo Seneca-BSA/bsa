@@ -219,7 +219,7 @@ In this part of the lab, we'll explore a simple filter circuit using a resistor 
 
 1. Turn on the function generator and set the output to a 1Vpp triangular (saw) wave or noise at 1MHz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.
 
-1. Turn on the output of the function generator and observe the difference between the raw signal (1VDC signal plus 10MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 1V instead of 0V.
+1. Turn on the output of the function generator and observe the difference between the raw signal (1VDC signal plus 1MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 1V instead of 0V.
 
     ![Figure 8.10](lab8-filter-curve.png)
 
