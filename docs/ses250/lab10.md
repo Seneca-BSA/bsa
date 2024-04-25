@@ -78,7 +78,7 @@ In this lab, we'll observe the AC response of an RLC Circuit and the relationshi
     >
     >   **Table 1:**  
     > 
-    >   |Freq|Theoretical (\Phi\)|Measured \(V_{Rpp}\)|\(\Delta T\)|\(\Phi\)|\(\|I\|\)|\(\|Z_T\|\)|
+    >   |Freq|Theoretical \(Phi\)|Measured \(V_{Rpp}\)|\(\Delta T\)|\(\Phi\)|\(\|I\|\)|\(\|Z_T\|\)|
     >   |---|---|---|---|---|---|---|
     >   |10 Hz|
     >   |500 Hz|
