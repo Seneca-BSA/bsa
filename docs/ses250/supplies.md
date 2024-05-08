@@ -45,5 +45,8 @@ Also included on the list are some of the places you can purchase the items. The
 | (2x) 100nF 50V 20% Ceramic Capacitor | [5 pcs](https://www.canadarobotix.com/products/905) | | |
 | (2x) 10μF 50V 20% Electrolytic Capacitor | [2 pcs](https://www.canadarobotix.com/products/960) | | |
 | (2x) 100μF 50C 20% Electrolytic Capacitor | [2 pcs](https://www.canadarobotix.com/products/1087) | | |
+| (1x) 100μH Inductor | | | |
+| (1x) Red 5mm LED | [5pcs](https://www.canadarobotix.com/products/706) | | |
+| (1x) Potentiometer | [1 pcs](https://www.canadarobotix.com/products/553) | | |
 
 Canada Robotix has bundled the above components into a single kit: [SES250 Lab Kit](https://www.canadarobotix.com/products/5122)

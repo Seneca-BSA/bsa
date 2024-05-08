@@ -120,7 +120,7 @@ Lab preparation must be done individually in the lab notebook.
 
     _The steps above demonstrate transferring of charges on the surface of insulators. In the next step, you will observe what will happen when charging a conducting object._
 
-13. Leaving the neutral plastic straw suspended. Rub one end of a steel rod with the wool cloth then hold it near the neutral plastic straw.
+1. Leaving the neutral plastic straw suspended. Rub one end of a steel rod with the wool cloth then hold it near the neutral plastic straw.
 
     > **Lab Question 8:** What interaction between the rod and the straw do you observe? Write it down into the observation table you created in the pre-lab. Explain the phenomenon. Refer to [Chapter 5.2 in the University Physic Volume 2 textbook](https://openstax.org/books/university-physics-volume-2/pages/5-2-conductors-insulators-and-charging-by-induction) if required.
 
