@@ -37,7 +37,7 @@ Source: [Wikipedia: RLC circuit](https://en.wikipedia.org/wiki/RLC_circuit)
     - Jumper Wires
     - (1x) 10kΩ resistor (brown-black-orange)
     - (1x) 100nF Ceramic Capacitor
-    - (1x) 47μH to 1000μH toroidal inductor (supplied by the instructor)
+    - (1x) 100μH toroidal inductor (supplied by the instructor)
 
 ## Preparation
 

@@ -91,6 +91,16 @@ The chart below shows a typical curve of the voltage across the capacitor during
 
 Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
 
+## Light-emitting diode (LED)
+
+A light-emitting diode (LED) is a semiconductor device that emits light when current flows through it. Electrons in the semiconductor recombine with electron holes, releasing energy in the form of photons. The color of the light (corresponding to the energy of the photons) is determined by the energy required for electrons to cross the band gap of the semiconductor.White light is obtained by using multiple semiconductors or a layer of light-emitting phosphor on the semiconductor device.
+
+![Figure 7.6a](lab7-led.png) ![Figure 7.6b](lab7-led-symbol.png)
+
+***Figure 7.6 Left: The flat spot of the LED indicate the Cathode (-) lead. Right: LED Electronic Symbol.***
+
+Source: [Wikipedia: Light-emitting diode](https://en.wikipedia.org/wiki/Light-emitting_diode)
+
 ## Materials
 - Safety glasses (PPE)
 - [Lab Supplies](supplies.md)
@@ -100,6 +110,7 @@ Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
     - (1x) 10kΩ resistor (brown-black-orange)
     - (1x) 100nF Ceramic Capacitor (usually orange with 104 marking)
     - (1x) 10μF Electrolytic Capacitor (usually blue or black with 10μF marking)
+    - (1x) 100μF Electrolytic Capacitor (usually blue or black with 100μF marking)
 
 ## Preparation
 
@@ -107,7 +118,7 @@ Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
 >
 > 1. Read and summarize the lab as necessary.
 > 1. Copy observation tables 1, 2 and 3 of this lab into your notebook.
-> 1. Sketch a breadboard diagram of Figure 7.7 onto your notebook.
+> 1. Sketch a breadboard diagram of Figure 7.8 onto your notebook.
 > 1. Calculate the theoretical RC time constant (τ) for each combination of R-C in Table 2.
 > 1. Calculate the voltage at τ if the initial voltage of an R-C circuit is 1V. Show all calculations.
 > 1. Derive the formula for the current through the resistor in an RC circuit.
@@ -118,11 +129,11 @@ Source: [Wikipedia: RC Circuit](https://en.wikipedia.org/wiki/RC_circuit)
 
 In this part of the lab, we will be exploring the capacitance of a capacitor.
 
-1. Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).
+1. Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode) then release. Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).
 
-    ![Figure 7.6](lab7-dmm-capacitance.png)
+    ![Figure 7.7](lab7-dmm-capacitance.png)
 
-    ***Figure 7.6***
+    ***Figure 7.7***
 
     > **Lab Question 1:** Without connecting the cable to anything, record the capacitance with the alligator clip not connected to anything. This is the capacitance due to just the cable (open circuit capacitance).
     >
@@ -132,6 +143,7 @@ In this part of the lab, we will be exploring the capacitance of a capacitor.
     > |---|---|---|---|---|
     > |1|||||
     > |2|||||
+    > |3|||||
 
 1. Acquire a 100nF Capacitor (usually small and orange with marking 104 for 10 x 10^4 pF) then connect the two leads of the capacitor to the DMM.
 
@@ -145,7 +157,7 @@ In this part of the lab, we will be exploring the capacitance of a capacitor.
     <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
     </div>
 
-    > **Lab Question 4:** Record the capacitance by repeating step 2 with the 10μF Capacitor.
+    > **Lab Question 4:** Record the capacitance into the table 1. Repeat for a 100μF Capacitor.
 
 1. Disconnect the DMM and the capacitor.
 
@@ -153,11 +165,11 @@ In this part of the lab, we will be exploring the capacitance of a capacitor.
 
 In this part of the lab, we will be exploring the transient response (discharging and charging) of an RC circuit. A function generator set to square wave output will act as the closing and opening of the circuit.
 
-![Figure 7.7](lab7-rc-circuit-1.png)
+![Figure 7.8](lab7-rc-circuit-1.png)
 
-***Figure 7.7***
+***Figure 7.8***
 
-1. Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, and a few jumper wires. You should also have the capacitor you worked with earlier.
+1. Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, a LED and a few jumper wires. You should also have the capacitor you worked with earlier.
 
     > **Lab Question 5:** Measure the resistance value of your resistor and record it in Table 2. Refer to [Lab 2](lab2.md) if you don't remember how to measure resistance.
     >
@@ -168,22 +180,23 @@ In this part of the lab, we will be exploring the transient response (dischargin
     > |1kΩ|10μF||||
     > |1kΩ|100nF||||
     > |10kΩ|100nF||||
+    > |10kΩ|100μF||||
     >
     > **Lab Question 6:** Calculate the RC time constant τ = RC for each of the configuration above.
 
-1. Set up your circuit as per Figure 7.7 using a 1kΩ resistor and a 10μF capacitor on a breadboard with CH1 of the DSO measuring the voltage across the capacitor. The transient current through can only be estimated using the voltage across the capacitor in this configuration.
+1. Set up your circuit as per Figure 7.8 using a 1kΩ resistor and a 10μF capacitor on a breadboard with CH1 of the DSO measuring the voltage across the capacitor. Pay attention to the direction / polarity of the LED. The transient current through can only be estimated using the voltage across the capacitor in this configuration. However, the current can also be observed using the LED as it will light up when there are current. Additionally, the LED also act as a reverse current protection for the polarized capacitor.
 
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
     <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
     </div>
 
-1. Turn on the function generator and set the output to a 1Vpp square wave at 10Hz **with a 1V DC Offset at High-Z ouptut mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the function generator and set the output to a 3Vpp square wave at 10Hz **with a 3V DC Offset at High-Z ouptut mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
     <p style="font-size: 18px"><strong>Ensure the function generator is set to 1V DC offset</strong><p>
     </div>
 
-1. Turn on the DSO and adjust the settings so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the DSO and adjust the settings to zoom into the falling edge of the square wave so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
     > **Lab Question 7:** Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RC time constant.
     >
@@ -194,11 +207,16 @@ In this part of the lab, we will be exploring the transient response (dischargin
     > |1kΩ|10μF||||
     > |1kΩ|100nF||||
     > |10kΩ|100nF||||
+    > |10kΩ|100μF||||
     >
     > **Lab Question 8:** Calculate the percentage error of the estimated and measured RC time constant.
 
 1. Repeat step 2 with the various values of resistors and capacitors.
 
     > **Lab Question 9:** What do you observe regarding the RC time constant as the resistor and the capacitor value increase and decrease?
+
+    > **Lab Question 10:** What do you observe from the LED in term of the charging / discharging cycle of the capacitor? Remember, where there are current, the LED will turn on.
+
+1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.

@@ -267,6 +267,8 @@ Lab preparation must be done individually in the lab notebook.
 
     > **Lab Question 5:** Does this value agree with the Ohm's law calculation you made earlier in the pre-lab?
 
+1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.
+
 1. Turn off the DC power supply and disconnect the alligator clips.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.

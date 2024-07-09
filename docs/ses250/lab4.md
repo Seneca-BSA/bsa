@@ -129,6 +129,8 @@ For this lab, below is the circuit that you'll be working with. You'll need to a
 
     > **Lab Question 3:** Does all the % error falls within the tolarance of the resistors?
 
+1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.
+
 1. You can keep your circuit assembled for Lab 5.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.

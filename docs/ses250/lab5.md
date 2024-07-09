@@ -123,5 +123,7 @@ For this lab, you'll be using the same circuit as the one from Lab 4 but you'll 
     > **Lab Question 3:** Does the value agree closely with the original circuit? Note that the \(R_{th}\) you've chosen might not exactly match the theoretical \(R_{th}\).
 
     > **Lab Question 4:** Calculate the power dissipation \(P = IV\) by the load resistor in each case. Which resistor dissipated the most power? This is the load resistor value that allow for the maximum amount of power to be transferred from the voltage source to the load (Maxium Power Transferred).
-    
+
+1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.
+
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.

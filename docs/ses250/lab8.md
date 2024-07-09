@@ -128,6 +128,16 @@ $$ f_c = {1 \over {2 \pi R C}} $$
 
 Source: [All About Circuits: Low-pass Filters](https://www.allaboutcircuits.com/textbook/alternating-current/chpt-8/low-pass-filters/)
 
+## Potentiometer
+
+A potentiometer is a three-terminal resistor with a sliding or rotating contact that forms an adjustable voltage divider.[1] If only two terminals are used, one end and the wiper, it acts as a variable resistor or rheostat. The measuring instrument called a potentiometer is essentially a voltage divider used for measuring electric potential (voltage); the component is an implementation of the same principle, hence its name.
+
+![Figure 8.7a](lab8-pot.png) ![Figure 8.7b](lab8-pot-symbol.png)
+
+***Figure 8.7 (Left) Potentiometer with leg indication, (Right) Potentiometer Electronics Symbol***
+
+Source: [Wikipedia: Potentiometer](https://en.wikipedia.org/wiki/Potentiometer)
+
 ## Materials
 - Safety glasses (PPE)
 - [Lab Supplies](supplies.md)
@@ -138,7 +148,8 @@ Source: [All About Circuits: Low-pass Filters](https://www.allaboutcircuits.com/
     - (1x) 1kΩ Resistor (brown-black-red)
     - (1x) 4.7kΩ resistor (yellow-violet-red)
     - (1x) 10kΩ resistor (brown-black-orange)
-    - (1x) 47μH to 1000μH toroidal inductor (supplied by the instructor)
+    - (1x) 100μH drum inductor
+    - (1x) 10kΩ Potentiometer (Blue Trimpot)
 
 ## Preparation
 
@@ -146,9 +157,9 @@ Source: [All About Circuits: Low-pass Filters](https://www.allaboutcircuits.com/
 >
 > 1. Read and summarize the lab as necessary.
 > 1. Copy observation tables 1, and 2 of this lab into your notebook.
-> 1. Sketch a breadboard diagram of Figure 8.7 onto your notebook.
+> 1. Sketch three breadboard diagram, one for each of Figure 8.8, Figure 8.10 and Figure 8.12 onto your notebook.
 > 1. Derive a formula to find the inductance of an inductor from the RL response formula.
-> 1. If we need to reduce a 500kHz noise by at least 70.7% with an RL low-pass filter. Which resistor from our lab material should we if you are given a 50μH inductor?
+> 1. If we need to reduce a 500kHz noise to at least 70.7% of it's original value with an RL low-pass filter. Which resistor from our lab material should we if you are using the 100μH inductor?
 
 ## Procedures
 
@@ -156,13 +167,13 @@ Source: [All About Circuits: Low-pass Filters](https://www.allaboutcircuits.com/
 
 In this part of the lab, we will be exploring the transient response (de-energizing and energizing) of an RL circuit. A function generator set to square wave output will act as the closing and opening of the circuit.
 
-![Figure 8.7](lab8-rl-circuit-1.png)
+![Figure 8.8](lab8-rl-circuit-1.png)
 
-***Figure 8.7***
+***Figure 8.8***
 
-1. Obtain a toroidal inductor that is between 47μH to 1000μH. The inductance of an inductor cannot be easily measured using the DMM we have in the lab. As a result, in addition to observing the RL response, you'll also be estimating the inductance of the inductor.
+1. Obtain a 100μH inductor. The inductance of an inductor cannot be easily measured using the DMM we have in the lab. As a result, in addition to observing the RL response, you'll also be estimating the inductance of the inductor.
 
-1. Depending on the inductor, select a resistor value that will give you an RL time constant, \(\tau = {L \over R}\), of about and smaller than 0.01ms. You'll also need a breadboard and a few jumper wires.
+1. Select a resistor value that will give you an RL time constant, \(\tau = {L \over R}\), of about 1μs. You'll also need a breadboard and a few jumper wires.
 
     > **Lab Question 1:** Measure the resistance value of your resistor and record it in Table 1. Refer to [Lab 2](lab2.md) if you don't remember how to measure resistance.
     >
@@ -172,22 +183,22 @@ In this part of the lab, we will be exploring the transient response (de-energiz
     > |---|---|
     > | Measured Resistance (R) [Ω] ||
     > | Marked Inductance (L) [H] ||
-    > | Theoretical RL Constant (\(\tau = {L \over R}\)) [ms] ||
-    > | Measured τ [ms] ||
+    > | Theoretical RL Constant (\(\tau = {L \over R}\)) [s] ||
+    > | Measured τ [s] ||
     > | Estimated Inductance [H] ||
     > | % Error Inductance ||
     >
     > **Lab Question 2:** Calculate the theoretical RL time constant using the measured resistance value and the marked inductance value.
 
-1. Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. If the inductor doesn't go into the breadboard, use jumper wires and alligaor clips from the DSO to help with the connection. The transient current through the inductor can only be estimated using the voltage across.
+1. Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.
 
-1. Turn on the function generator and set the output to a 1Vpp square wave at 10kHz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the function generator and set the output to a 3Vpp square wave at 100kHz **with a 3V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
-1. Turn on the DSO and adjust the settings so you'll see a single period of the RL waveform similar to Figure 8.4. Remember, the function generator is simulating the closing and opening of the circuit at 10kHz. You should see something similar to Figure 8.8 below if you setup your circuit properly. If not, verify your connection. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the DSO and adjust the settings so you'll see a single period of the RL waveform similar to Figure 8.4. Remember, the function generator is simulating the closing and opening of the circuit at 100kHz. You should see something similar to Figure 8.8 below if you setup your circuit properly. If not, verify your connection. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
-    ![Figure 8.8](lab8-rl-curve.png)
+    ![Figure 8.9](lab8-rl-curve.png)
 
-    ***Figure 8.8 Series RL Circuit Voltage Curve (Red) Sourse (Black) Inductor Voltage***
+    ***Figure 8.9 Series RL Circuit Voltage Curve: (Red) Voltage Source, (Black) Voltage Across Inductor***
 
     > **Lab Question 3:** Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RL time constant.
     >
@@ -197,11 +208,11 @@ In this part of the lab, we will be exploring the transient response (de-energiz
 
 In this part of the lab, we'll explore a simple filter circuit using a resistor and an inductor called an inductive low-pass filter. You'll be exploring another simple filter circuit called the capacitive low-pass filter as part of the course project. A triangular (saw) wave from a signal generator will be used to simulate noise.
 
-![Figure 8.9](lab8-rl-filter.png)
+![Figure 8.10](lab8-rl-filter.png)
 
-***Figure 8.9***
+***Figure 8.10***
 
-1. Using the toroidal inductor from Part 1, calculate the cutoff frequency for an inductive low-pass filter for the various resistor values in Table 2.
+1. Using the 100μH inductor from Part 1, calculate the cutoff frequency for an inductive low-pass filter for the various resistor values in Table 2.
 
     > **Lab Question 5:** Calculate the cutoff frequency for an inductive low-pass filter for various resistor values and record it in Table 2.
     >
@@ -215,18 +226,32 @@ In this part of the lab, we'll explore a simple filter circuit using a resistor 
     > | 4.7kΩ ||
     > | 10kΩ ||
 
-1. Set up your circuit as per Figure 8.8 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.
+1. Set up your circuit using a 10kΩ as per Figure 8.8 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.
 
-1. Turn on the function generator and set the output to a 1Vpp triangular (saw) wave or noise at 1MHz **with a 1V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.
+1. Turn on the function generator and set the output to a 3Vpp triangular (saw) wave or noise at 1MHz **with a 3V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.
 
-1. Turn on the output of the function generator and observe the difference between the raw signal (1VDC signal plus 1MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 1V instead of 0V.
+1. Turn on the output of the function generator and observe the difference between the raw signal (3VDC signal plus 1MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 3V instead of 0V.
 
-    ![Figure 8.10](lab8-filter-curve.png)
+    ![Figure 8.11](lab8-filter-curve.png)
 
-    ***Figure 8.10 (Blue Line) Raw signal, (Orange Line) Filtered signal***
+    ***Figure 8.11 (Blue Line) Raw signal, (Orange Line) Filtered signal***
 
 1. Take a photo or make a sketch of your observation then repeat for all the resistor values.
 
     > **Lab Question 6:** At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 1MHz noise? What is the cutoff frequency?
+
+### Part 3: RL Low-pass Filters using Potentiometer
+
+Lastly, we are going to using a potentiometer so we can fine adjust the RL filter parameter.
+
+1. Set up your circuit using a 1kΩ resistor, a 10kΩ Potentiometer as per Figure 8.12 with CH1 and CH2 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal).
+
+    ![Figure 8.12](lab8-rl-filter-pot.png)
+
+    ***Figure 8.12***
+
+1. Turn the potentiometer to see the filtering effect at various resistance value.
+
+1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.

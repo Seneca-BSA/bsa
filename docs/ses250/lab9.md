@@ -93,7 +93,7 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
     - (1x) 1kΩ resistor (brown-black-red)
     - (1x) 10kΩ resistor (brown-black-orange)
     - (1x) 100nF Ceramic Capacitor
-    - (1x) 47μH to 1000μH toroidal inductor (supplied by the instructor)
+    - (1x) 100μH drum inductor
 
 ## Preparation
 
@@ -138,7 +138,7 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
     <p style="font-size: 18px"><strong>DO NOT USE A POLARIZED CAPACITOR!</strong><p>
     </div>
 1. Ensure that the function generator’s output is off then set the output of the function generator to High-Z.
-1. Set the output waveform to be a sine wave then set the output amplitude to 6 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.
+1. Set the output waveform to be a sine wave then set the output amplitude to 3 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.
 1. Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.
 
     **NOTE:** The ground (black cable) for both CH1 and CH2 is connected to the negative (black) node of the function generator.
@@ -182,7 +182,7 @@ The next part of this lab is to observe the AC response of an RL Circuit and the
 
 1. Set up the circuit in Figure 9.6 using a 10kΩ resistor and 47μH (or the inductor you used in Lab 8).
 1. Ensure that the function generator’s output is off then set the output of the function generator to High-Z.
-1. Set the output waveform to be a sine wave then set the output amplitude to 6 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.
+1. Set the output waveform to be a sine wave then set the output amplitude to 3 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.
 1. Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.
 
     **NOTE:** The ground (black cable) for both CH1 and CH2 is connected to the negative (black) node of the function generator.
@@ -203,10 +203,10 @@ The next part of this lab is to observe the AC response of an RL Circuit and the
     >
     >   |Freq|R|L|Theoretical Phase Shift|Time Diff|Phase Shift|
     >   |---|---|---|---|---|---|
-    >   |1 MHz|10 kΩ|(From Lab 8)|||
-    >   |1 MHz|1 kΩ|(From Lab 8)|||
-    >   |500 kHz|1 kΩ|(From Lab 8)|||
-    >   |500 kHz|100 Ω|(From Lab 8)|||
+    >   |1 MHz|10 kΩ|100 μH|||
+    >   |1 MHz|1 kΩ|100 μH|||
+    >   |500 kHz|1 kΩ|100 μH|||
+    >   |500 kHz|100 Ω|100 μH|||
 
 1. Repeat the measurement with various resistor values and frequencies to complete Table 1 to understand their relationships.
 

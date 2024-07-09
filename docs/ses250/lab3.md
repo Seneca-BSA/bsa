@@ -177,6 +177,8 @@ There are many breadboard simulators available online. In particular, [TinkerCAD
     > |Voltmeter Reading [V]|||||
     > |Ammeter Reading [A]|||||
 
+1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.
+
 1. Turn off the DC power supply output.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
