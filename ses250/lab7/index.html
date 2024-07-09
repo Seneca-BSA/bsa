@@ -140,6 +140,11 @@ SES250 Electromagnatics
 <p><img alt="Figure 7.5" src="../lab7-rc-response.png" /></p>
 <p><strong><em>Figure 7.5 Voltage curve of a capacitor during discharge in an RC circuit</em></strong></p>
 <p>Source: <a href="https://en.wikipedia.org/wiki/RC_circuit">Wikipedia: RC Circuit</a></p>
+<h2 id="light-emitting-diode-led">Light-emitting diode (LED)</h2>
+<p>A light-emitting diode (LED) is a semiconductor device that emits light when current flows through it. Electrons in the semiconductor recombine with electron holes, releasing energy in the form of photons. The color of the light (corresponding to the energy of the photons) is determined by the energy required for electrons to cross the band gap of the semiconductor.White light is obtained by using multiple semiconductors or a layer of light-emitting phosphor on the semiconductor device.</p>
+<p><img alt="Figure 7.6a" src="../lab7-led.png" /> <img alt="Figure 7.6b" src="../lab7-led-symbol.png" /></p>
+<p><strong><em>Figure 7.6 Left: The flat spot of the LED indicate the Cathode (-) lead. Right: LED Electronic Symbol.</em></strong></p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Light-emitting_diode">Wikipedia: Light-emitting diode</a></p>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>Safety glasses (PPE)</li>
@@ -150,6 +155,7 @@ SES250 Electromagnatics
 <li>(1x) 10kΩ resistor (brown-black-orange)</li>
 <li>(1x) 100nF Ceramic Capacitor (usually orange with 104 marking)</li>
 <li>(1x) 10μF Electrolytic Capacitor (usually blue or black with 10μF marking)</li>
+<li>(1x) 100μF Electrolytic Capacitor (usually blue or black with 100μF marking)</li>
 </ul>
 </li>
 </ul>
@@ -159,7 +165,7 @@ SES250 Electromagnatics
 <ol>
 <li>Read and summarize the lab as necessary.</li>
 <li>Copy observation tables 1, 2 and 3 of this lab into your notebook.</li>
-<li>Sketch a breadboard diagram of Figure 7.7 onto your notebook.</li>
+<li>Sketch a breadboard diagram of Figure 7.8 onto your notebook.</li>
 <li>Calculate the theoretical RC time constant (τ) for each combination of R-C in Table 2.</li>
 <li>Calculate the voltage at τ if the initial voltage of an R-C circuit is 1V. Show all calculations.</li>
 <li>Derive the formula for the current through the resistor in an RC circuit.</li>
@@ -170,9 +176,9 @@ SES250 Electromagnatics
 <p>In this part of the lab, we will be exploring the capacitance of a capacitor.</p>
 <ol>
 <li>
-<p>Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode). Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).</p>
-<p><img alt="Figure 7.6" src="../lab7-dmm-capacitance.png" /></p>
-<p><strong><em>Figure 7.6</em></strong></p>
+<p>Turn on a DMM and set it to capacitance mode by pressing the SHIFT (1) + Freq (2) button (to access the -||- mode) then release. Ensure the alligator clips are connected to the terminals labelled “HI” under “Input VΩ►|” (3) and “LO” under “Input VΩ►|” (4).</p>
+<p><img alt="Figure 7.7" src="../lab7-dmm-capacitance.png" /></p>
+<p><strong><em>Figure 7.7</em></strong></p>
 <blockquote>
 <p><strong>Lab Question 1:</strong> Without connecting the cable to anything, record the capacitance with the alligator clip not connected to anything. This is the capacitance due to just the cable (open circuit capacitance).</p>
 <p><strong>Table 1</strong></p>
@@ -201,6 +207,13 @@ SES250 Electromagnatics
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 </blockquote>
@@ -218,7 +231,7 @@ SES250 Electromagnatics
 <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
 </div></p>
 <blockquote>
-<p><strong>Lab Question 4:</strong> Record the capacitance by repeating step 2 with the 10μF Capacitor.</p>
+<p><strong>Lab Question 4:</strong> Record the capacitance into the table 1. Repeat for a 100μF Capacitor.</p>
 </blockquote>
 </li>
 <li>
@@ -227,11 +240,11 @@ SES250 Electromagnatics
 </ol>
 <h3 id="part-2-rc-circuit">Part 2: RC Circuit</h3>
 <p>In this part of the lab, we will be exploring the transient response (discharging and charging) of an RC circuit. A function generator set to square wave output will act as the closing and opening of the circuit.</p>
-<p><img alt="Figure 7.7" src="../lab7-rc-circuit-1.png" /></p>
-<p><strong><em>Figure 7.7</em></strong></p>
+<p><img alt="Figure 7.8" src="../lab7-rc-circuit-1.png" /></p>
+<p><strong><em>Figure 7.8</em></strong></p>
 <ol>
 <li>
-<p>Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, and a few jumper wires. You should also have the capacitor you worked with earlier.</p>
+<p>Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, a LED and a few jumper wires. You should also have the capacitor you worked with earlier.</p>
 <blockquote>
 <p><strong>Lab Question 5:</strong> Measure the resistance value of your resistor and record it in Table 2. Refer to <a href="../lab2/">Lab 2</a> if you don't remember how to measure resistance.</p>
 <p><strong>Table 2</strong></p>
@@ -267,25 +280,32 @@ SES250 Electromagnatics
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>10kΩ</td>
+<td>100μF</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <p><strong>Lab Question 6:</strong> Calculate the RC time constant τ = RC for each of the configuration above.</p>
 </blockquote>
 </li>
 <li>
-<p>Set up your circuit as per Figure 7.7 using a 1kΩ resistor and a 10μF capacitor on a breadboard with CH1 of the DSO measuring the voltage across the capacitor. The transient current through can only be estimated using the voltage across the capacitor in this configuration.</p>
+<p>Set up your circuit as per Figure 7.8 using a 1kΩ resistor and a 10μF capacitor on a breadboard with CH1 of the DSO measuring the voltage across the capacitor. Pay attention to the direction / polarity of the LED. The transient current through can only be estimated using the voltage across the capacitor in this configuration. However, the current can also be observed using the LED as it will light up when there are current. Additionally, the LED also act as a reverse current protection for the polarized capacitor.</p>
 <p><div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
 <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
 </div></p>
 </li>
 <li>
-<p>Turn on the function generator and set the output to a 1Vpp square wave at 10Hz <strong>with a 1V DC Offset at High-Z ouptut mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
+<p>Turn on the function generator and set the output to a 3Vpp square wave at 10Hz <strong>with a 3V DC Offset at High-Z ouptut mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
 <p><div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
 <p style="font-size: 18px"><strong>Ensure the function generator is set to 1V DC offset</strong><p>
 </div></p>
 </li>
 <li>
-<p>Turn on the DSO and adjust the settings so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
+<p>Turn on the DSO and adjust the settings to zoom into the falling edge of the square wave so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
 <blockquote>
 <p><strong>Lab Question 7:</strong> Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RC time constant.</p>
 <p><strong>Table 3</strong></p>
@@ -321,6 +341,13 @@ SES250 Electromagnatics
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>10kΩ</td>
+<td>100μF</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <p><strong>Lab Question 8:</strong> Calculate the percentage error of the estimated and measured RC time constant.</p>
@@ -330,7 +357,11 @@ SES250 Electromagnatics
 <p>Repeat step 2 with the various values of resistors and capacitors.</p>
 <blockquote>
 <p><strong>Lab Question 9:</strong> What do you observe regarding the RC time constant as the resistor and the capacitor value increase and decrease?</p>
+<p><strong>Lab Question 10:</strong> What do you observe from the LED in term of the charging / discharging cycle of the capacitor? Remember, where there are current, the LED will turn on.</p>
 </blockquote>
+</li>
+<li>
+<p>DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.</p>
 </li>
 </ol>
 <p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
