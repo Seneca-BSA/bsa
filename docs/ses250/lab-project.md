@@ -3,7 +3,7 @@
 <font size="5">
 Seneca College<br>
 SES250 Electromagnatics<br>
-Due Date: Sunday, Apr 7, 11:59 PM
+Due Date: Sunday, Aug 4, 11:59 PM
 </font>
 
 ## Purposes
@@ -23,11 +23,11 @@ Using what you've learned from [Lab 7](lab7.md) and [Lab 8](lab8.md) about capac
 
 1. You may work in groups of up to 2 members.
 
-1. Design a series RC circuit that will filter out noise above 1kHz but not signal below 1kHz (ie. the cutoff frequency should be within 10% of 1kHz). You can use any of the resistors and capacitors you have in your lab kit.
+1. Design a series RC circuit that will filter out noise above 2kHz but not signal below 2kHz (ie. the cutoff frequency should be within 10% of 2kHz). You can use any of the resistors and capacitors you have in your lab kit.
 
-1. Apply a signal with a 2V DC offset with a 1kHz 1Vpp triangular (saw) wave to simulate noise to your circuit. Remember the function generator should be set to High-Z mode.
+1. Apply a signal with a 3V DC offset with a 2kHz 1Vpp triangular (saw) wave to simulate noise to your circuit. Remember the function generator should be set to High-Z mode.
 
-1. Using the DSO, demostrate that the 1kHz 1Vpp noise is reduced to at least 70.7% after passing through your circuit (ie. show the raw signal with noise and the filtered signal).
+1. Using the DSO, demostrate that the 2kHz 1Vpp noise is reduced to at least 70.7% of the original level after passing through your circuit (ie. show the raw signal with noise and the filtered signal).
 
 1. Document your procedure and result in a lab report.
 
