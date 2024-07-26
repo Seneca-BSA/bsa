@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 8 : RL Circuit and Filters - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 8 : RL Circuit and Filters";
+        var mkdocs_page_input_path = "ses250/lab8.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lab 8 : RL Circuit and Filters</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-8-rl-circuit-and-filters">Lab 8 : RL Circuit and Filters</h1>
+<p><font size="5">
+Seneca College<br>
+SES250 Electromagnatics
+</font></p>
+<h2 id="purposes">Purposes</h2>
+<ul>
+<li>To understand the relationship between the voltage and inductance of an inductor</li>
+<li>To understand the de-energize and energize of an inductor</li>
+</ul>
+<h2 id="objectives">Objectives</h2>
+<ul>
+<li>Assemble electronic components onto a breadboard</li>
+<li>Measure the response of an RL circuit using a Digital Storage Oscilloscope (DSO)</li>
+<li>Estimate the inductance of an inductor using its RL transient response</li>
+</ul>
+<h2 id="important-rules-for-this-lab">Important Rules for this Lab</h2>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ol>
+<li>Any signal (voltage, current) must be adjusted to the specified value (amplitude and/or frequency) <strong>before</strong> applying them to a circuit.</li>
+<li>An instrument must be set up for the required mode of operation <strong>before</strong> it is connected to a circuit.</li>
+<li>The power supply must be switched off <strong>before</strong> making any changes to the circuit.</li>
+</ol>
+</div>
+
+<h2 id="description">Description</h2>
+<h3 id="inductor">Inductor</h3>
+<p>An inductor, also called a coil, choke, or reactor, is a passive two-terminal electrical component that stores energy in a magnetic field when electric current flows through it. An inductor typically consists of an insulated wire wound into a coil.</p>
+<p>When the current flowing through the coil changes, the time-varying magnetic field induces an electromotive force (emf) (voltage) in the conductor, described by Faraday's law of induction. According to Lenz's law, the induced voltage has a polarity (direction) which opposes the change in current that created it. As a result, inductors oppose any changes in current through them.</p>
+<p><img alt="Figure 8.1" src="../lab8-inductor.jpg" /></p>
+<p><strong><em>Figure 8.1 Inductors</em></strong></p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Inductor">Wikipedia: Inductor</a></p>
+<p>The inductance of a coil-type inductor can be calculated using:</p>
+<p>
+<script type="math/tex; mode=display"> L = {{\mu_0 \pi N^2 R^2} \over {l}} </script>
+</p>
+<p>where:</p>
+<ul>
+<li>
+<script type="math/tex">\mu_0</script> is the permeability in vacuum and have a value of <script type="math/tex">\mu_0 = {4 \pi \times 10^{-7} {H \over m}}</script>
+</li>
+<li>
+<script type="math/tex">N</script> is the number of loops in the coil</li>
+<li>
+<script type="math/tex">R</script> is the radius of the coil</li>
+<li>
+<script type="math/tex">l</script> is the length of the coil (not the length of the wire)</li>
+</ul>
+<p>Similar to capacitors, the vast majority of inductors use written markings to indicate values, working current, and tolerance. The most usual method of marking ferrite-cored inductors involves quoting the value (in mH or μH), the tolerance (often either 5% or 10%), and the maximum working current (where appropriate). The marking scheme follows a similar convention to that used with small capacitors:</p>
+<ul>
+<li>First line: Inductance (in mH or μH) and tolerance (J=5%, K=10%, M=20%).</li>
+<li>Second line: rated d.c. current (where specified).</li>
+</ul>
+<p>A three-digit code is often used to mark small inductors. The first two digits correspond to the first two digits of the value whilst the third digit is a multiplier which gives the number of zeros to be added to give the value in μH.</p>
+<p><img alt="Figure 8.2" src="../lab8-inductor-marking.png" /></p>
+<p><strong><em>Figure 8.2 Various Inductor Markings</em></strong></p>
+<p>Source: <a href="https://www.matrixtsl.com/courses/ecc/index.php?n=Inductors.InductorMarkings">Inductor Markings</a></p>
+<h3 id="rl-circuit">RL Circuit</h3>
+<p>A resistor–inductor circuit (RL circuit), RL filter or RL network, is an electric circuit composed of resistors and inductors driven by a voltage or current source. A first-order RL circuit is composed of one resistor and one inductor, either in series driven by a voltage source or in parallel driven by a current source. It is one of the simplest analogue infinite impulse response electronic filters.</p>
+<p><img alt="Figure 8.3" src="../lab8-rl-circuit.png" /></p>
+<p><strong><em>Figure 8.3 Series RL circuit</em></strong></p>
+<p>A series RL circuit with an inductor that is initially energized to <script type="math/tex">I_0 = {V_in \over R}</script> and then allowed to de-energized through a resistor <script type="math/tex">R</script> will exhibit the following relationship for the current through the inductor over some time:</p>
+<p>
+<script type="math/tex; mode=display"> I_L(t) = I_0 e^{(-{R \over L} t)} </script>
+</p>
+<p>where <script type="math/tex">I_0</script> is the inductor current at <script type="math/tex">t = 0</script>
+</p>
+<p>The time required for the current to fall to <script type="math/tex">I_0 e^{-1}</script> or about 37% (roughly 1/3 of <script type="math/tex">I_0</script>) is called the RL time constant and is given by:</p>
+<p>
+<script type="math/tex; mode=display"> \tau = {L \over R} </script>
+</p>
+<p>where <script type="math/tex">\tau</script> is measured in seconds, <script type="math/tex">R</script> in ohms and <script type="math/tex">L</script> in henry.</p>
+<p>Since the current through an inductor is often difficult to measure directly, voltage measurements are often used to study the transient response of an RL circuit by using the following relationship:</p>
+<p>
+<script type="math/tex; mode=display"> V_in(t) = V_L(t) + V_R(t) </script>
+</p>
+<p>where:</p>
+<p>
+<script type="math/tex; mode=display"> V_L(t) = V_0 e^{(-{R \over L} t)} </script>
+<script type="math/tex; mode=display"> V_R(t) = V_0 ( 1 - e^{(-{R \over L} t)} ) </script>
+</p>
+<p>The chart below shows a typical curve of the voltage across the inductor and resistor during energizing in an RL circuit.</p>
+<p><img alt="Figure 8.4" src="../lab8-rl-response-inductor-voltage.png" /></p>
+<p><strong><em>Figure 8.4 Voltage curve of an inductor during energizing in an RL circuit</em></strong></p>
+<p><img alt="Figure 8.5" src="../lab8-rl-response-resistor-voltage.png" /></p>
+<p><strong><em>Figure 8.5 Voltage curve of a resistor during energizing in an RL circuit</em></strong></p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/RL_circuit">Wikipedia: RL Circuit</a></p>
+<h3 id="low-pass-filters">Low-pass Filters</h3>
+<p>A low-pass filter is a circuit offering easy passage to low-frequency signals and difficult passage to high-frequency signals. There are two basic kinds of circuits capable of accomplishing this objective, and many variations of each one: The inductive low-pass filter in (Figure 8.6 Left) and the capacitive low-pass filter in (Figure 8.6 Right).</p>
+<p><img alt="Figure 8.6" src="../lab8-low-pass-filter.png" /></p>
+<p><strong><em>Figure 8.6 (Left) Inductive Low-Pass Filter, (Right) Capacitive Low-Pass Filter</em></strong></p>
+<p>In an inductive low-pass filter, the inductor’s impedance increases with increasing frequency. This high impedance in series tends to block high-frequency signals from getting to the load.</p>
+<p>In a capacitive low-pass filter, the capacitor’s impedance decreases with increasing frequency. This low impedance tends to short out high-frequency signals, dropping most of the voltage across series resistor R.</p>
+<p>All low-pass filters are rated at a certain cutoff frequency. That is the frequency above which the output voltage falls below 70.7% of the input voltage.</p>
+<p>The cutoff frequency [Hz] for an inductive low-pass filter is:</p>
+<p>
+<script type="math/tex; mode=display"> f_c = {R \over {2 \pi L}} </script>
+</p>
+<p>The cutoff frequency [Hz] for a capacitive low-pass filter is:</p>
+<p>
+<script type="math/tex; mode=display"> f_c = {1 \over {2 \pi R C}} </script>
+</p>
+<p>Source: <a href="https://www.allaboutcircuits.com/textbook/alternating-current/chpt-8/low-pass-filters/">All About Circuits: Low-pass Filters</a></p>
+<h2 id="potentiometer">Potentiometer</h2>
+<p>A potentiometer is a three-terminal resistor with a sliding or rotating contact that forms an adjustable voltage divider.[1] If only two terminals are used, one end and the wiper, it acts as a variable resistor or rheostat. The measuring instrument called a potentiometer is essentially a voltage divider used for measuring electric potential (voltage); the component is an implementation of the same principle, hence its name.</p>
+<p><img alt="Figure 8.7a" src="../lab8-pot.png" /> <img alt="Figure 8.7b" src="../lab8-pot-symbol.png" /></p>
+<p><strong><em>Figure 8.7 (Left) Potentiometer with leg indication, (Right) Potentiometer Electronics Symbol</em></strong></p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Potentiometer">Wikipedia: Potentiometer</a></p>
+<h2 id="materials">Materials</h2>
+<ul>
+<li>Safety glasses (PPE)</li>
+<li><a href="../supplies/">Lab Supplies</a><ul>
+<li>Breadboard</li>
+<li>Jumper Wires</li>
+<li>(1x) 100Ω Resistor (brown-black-brown)</li>
+<li>(1x) 330Ω Resistor (orange-orange-brown)</li>
+<li>(1x) 1kΩ Resistor (brown-black-red)</li>
+<li>(1x) 4.7kΩ resistor (yellow-violet-red)</li>
+<li>(1x) 10kΩ resistor (brown-black-orange)</li>
+<li>(1x) 100μH drum inductor</li>
+<li>(1x) 10kΩ Potentiometer (Blue Trimpot)</li>
+</ul>
+</li>
+</ul>
+<h2 id="preparation">Preparation</h2>
+<blockquote>
+<p><strong>Lab Preparation Question:</strong></p>
+<ol>
+<li>Read and summarize the lab as necessary.</li>
+<li>Copy observation tables 1, and 2 of this lab into your notebook.</li>
+<li>Sketch three breadboard diagram, one for each of Figure 8.8, Figure 8.10 and Figure 8.12 onto your notebook.</li>
+<li>Derive a formula to find the inductance of an inductor from the RL response formula.</li>
+<li>If we need to reduce a 500kHz noise to at least 70.7% of it's original value with an RL low-pass filter. Which resistor from our lab material should we if you are using the 100μH inductor?</li>
+</ol>
+</blockquote>
+<h2 id="procedures">Procedures</h2>
+<h3 id="part-1-rl-circuit">Part 1: RL Circuit</h3>
+<p>In this part of the lab, we will be exploring the transient response (de-energizing and energizing) of an RL circuit. A function generator set to square wave output will act as the closing and opening of the circuit.</p>
+<p><img alt="Figure 8.8" src="../lab8-rl-circuit-1.png" /></p>
+<p><strong><em>Figure 8.8</em></strong></p>
+<ol>
+<li>
+<p>Obtain a 100μH inductor. The inductance of an inductor cannot be easily measured using the DMM we have in the lab. As a result, in addition to observing the RL response, you'll also be estimating the inductance of the inductor.</p>
+</li>
+<li>
+<p>Select a resistor value that will give you an RL time constant, <script type="math/tex">\tau = {L \over R}</script>, of about 1μs. You'll also need a breadboard and a few jumper wires.</p>
+<blockquote>
+<p><strong>Lab Question 1:</strong> Measure the resistance value of your resistor and record it in Table 1. Refer to <a href="../lab2/">Lab 2</a> if you don't remember how to measure resistance.</p>
+<p><strong>Table 1</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Measured Resistance (R) [Ω]</td>
+<td></td>
+</tr>
+<tr>
+<td>Marked Inductance (L) [H]</td>
+<td></td>
+</tr>
+<tr>
+<td>Theoretical RL Constant (<script type="math/tex">\tau = {L \over R}</script>) [s]</td>
+<td></td>
+</tr>
+<tr>
+<td>Measured τ [s]</td>
+<td></td>
+</tr>
+<tr>
+<td>Estimated Inductance [H]</td>
+<td></td>
+</tr>
+<tr>
+<td>% Error Inductance</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lab Question 2:</strong> Calculate the theoretical RL time constant using the measured resistance value and the marked inductance value.</p>
+</blockquote>
+</li>
+<li>
+<p>Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.</p>
+</li>
+<li>
+<p>Turn on the function generator and set the output to a 3Vpp square wave at 100kHz <strong>with a 3V DC Offset at High-Z output mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
+</li>
+<li>
+<p>Turn on the DSO and adjust the settings so you'll see a single period of the RL waveform similar to Figure 8.4. Remember, the function generator is simulating the closing and opening of the circuit at 100kHz. You should see something similar to Figure 8.8 below if you setup your circuit properly. If not, verify your connection. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
+<p><img alt="Figure 8.9" src="../lab8-rl-curve.png" /></p>
+<p><strong><em>Figure 8.9 Series RL Circuit Voltage Curve: (Red) Voltage Source, (Black) Voltage Across Inductor</em></strong></p>
+<blockquote>
+<p><strong>Lab Question 3:</strong> Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RL time constant.</p>
+<p><strong>Lab Question 4:</strong> Estimate the inductance of the inductor using the equation you derived during the pre-lab. What is the # error between your estimated inductance and the marked inductance by the manufacturer?</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="part-2-rl-low-pass-filters">Part 2: RL Low-pass Filters</h3>
+<p>In this part of the lab, we'll explore a simple filter circuit using a resistor and an inductor called an inductive low-pass filter. You'll be exploring another simple filter circuit called the capacitive low-pass filter as part of the course project. A triangular (saw) wave from a signal generator will be used to simulate noise.</p>
+<p><img alt="Figure 8.10" src="../lab8-rl-filter.png" /></p>
+<p><strong><em>Figure 8.10</em></strong></p>
+<ol>
+<li>
+<p>Using the 100μH inductor from Part 1, calculate the cutoff frequency for an inductive low-pass filter for the various resistor values in Table 2.</p>
+<blockquote>
+<p><strong>Lab Question 5:</strong> Calculate the cutoff frequency for an inductive low-pass filter for various resistor values and record it in Table 2.</p>
+<p><strong>Table 2</strong></p>
+<table>
+<thead>
+<tr>
+<th>Resistor Value</th>
+<th>Cutoff Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100Ω</td>
+<td></td>
+</tr>
+<tr>
+<td>330Ω</td>
+<td></td>
+</tr>
+<tr>
+<td>1kΩ</td>
+<td></td>
+</tr>
+<tr>
+<td>4.7kΩ</td>
+<td></td>
+</tr>
+<tr>
+<td>10kΩ</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+<li>
+<p>Set up your circuit using a 10kΩ as per Figure 8.8 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.</p>
+</li>
+<li>
+<p>Turn on the function generator and set the output to a 3Vpp triangular (saw) wave or noise at 1MHz <strong>with a 3V DC Offset at High-Z output mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.</p>
+</li>
+<li>
+<p>Turn on the output of the function generator and observe the difference between the raw signal (3VDC signal plus 1MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 3V instead of 0V.</p>
+<p><img alt="Figure 8.11" src="../lab8-filter-curve.png" /></p>
+<p><strong><em>Figure 8.11 (Blue Line) Raw signal, (Orange Line) Filtered signal</em></strong></p>
+</li>
+<li>
+<p>Take a photo or make a sketch of your observation then repeat for all the resistor values.</p>
+<blockquote>
+<p><strong>Lab Question 6:</strong> At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 1MHz noise? What is the cutoff frequency?</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="part-3-rl-low-pass-filters-using-potentiometer">Part 3: RL Low-pass Filters using Potentiometer</h3>
+<p>Lastly, we are going to using a potentiometer so we can fine adjust the RL filter parameter.</p>
+<ol>
+<li>
+<p>Set up your circuit using a 1kΩ resistor, a 10kΩ Potentiometer as per Figure 8.12 with CH1 and CH2 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal).</p>
+<p><img alt="Figure 8.12" src="../lab8-rl-filter-pot.png" /></p>
+<p><strong><em>Figure 8.12</em></strong></p>
+</li>
+<li>
+<p>Turn the potentiometer to see the filtering effect at various resistance value.</p>
+</li>
+<li>
+<p>DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.</p>
+</li>
+</ol>
+<p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
