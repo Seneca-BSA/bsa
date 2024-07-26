@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 9 : RC and RL Circuit in AC - BSA Lab Manuals</title>
+    <title>Lab 9 : RC in DC and AC Circuits - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 9 : RC and RL Circuit in AC";
-        var mkdocs_page_input_path = "ses250/lab9.md";
+        var mkdocs_page_name = "Lab 9 : RC in DC and AC Circuits";
+        var mkdocs_page_input_path = "ses250\\lab9.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -63,7 +63,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 9 : RC and RL Circuit in AC</li>
+      <li class="breadcrumb-item active">Lab 9 : RC in DC and AC Circuits</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -72,182 +72,104 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-9-rc-and-rl-circuit-in-ac">Lab 9 : RC and RL Circuit in AC</h1>
+                <h1 id="lab-9-rc-in-dc-and-ac-circuits">Lab 9 : RC in DC and AC Circuits</h1>
 <p><font size="5">
 Seneca College</br>
 SES250 Electromagnatics
 </font></p>
-<h2 id="purposes">Purposes</h2>
-<ul>
-<li>To understand the concept of frequency and period of an alternating current</li>
-<li>To observe the phase shift of an RC and RL circuit in AC</li>
-</ul>
 <h2 id="objectives">Objectives</h2>
 <ul>
-<li>Assemble electronic components onto a breadboard</li>
-<li>Setup function generator to output AC sine wave</li>
-<li>Measure the frequency and the period of a periodic signal using a Digital Storage Oscilloscope (DSO)</li>
+<li>To observe the charging and discharging of a capacitor in an RC circuit</li>
+<li>To learn how to measure the frequency and the period of a periodic signal using an oscilloscope</li>
+<li>To observe the phase shift of an RC circuit in AC</li>
+</ul>
+<h2 id="purpose">Purpose</h2>
+<ul>
+<li>Generate an impulse signal to an RC circuit</li>
+<li>Measure the rise time (or time constant) of an RC circuit using a Digital Storage Oscilloscope (DSO)</li>
 <li>Measure the phase shift of an RC circuit using a DSO</li>
 </ul>
 <h2 id="description">Description</h2>
+<h3 id="capacitor">Capacitor</h3>
 <h3 id="alternating-current">Alternating Current</h3>
 <p>Alternating current (AC) is an electric current which periodically reverses direction and changes its magnitude continuously with time, in contrast to direct current (DC), which flows only in one direction.</p>
 <p>The usual waveform of alternating current in most electric power circuits is a sine wave, whose positive half-period corresponds with the positive direction of the current and vice versa (the full period is called a cycle). In certain applications, different waveforms are used, such as triangular waves or square waves.</p>
-<p><img alt="Figure 9.1" src="../lab9-ac-wave.png" /></p>
-<p><strong><em>Figure 9.1 Various AC Waveforms. From Left to Right and Top to Bottom: Sine, Square, Sawtooth or Ramp, Triangular</em></strong></p>
+<p><img alt="Figure 9.4" src="../lab9-ac-wave.png" /></p>
+<p><strong><em>Figure 9.4 Various AC Waveforms. From Left to Right and Top to Bottom: Sine, Square, Sawtooth or Ramp, Triangular</em></strong></p>
 <p>Source: <a href="https://en.wikipedia.org/wiki/Alternating_current">Wikipedia: Alternating current</a></p>
 <p>Source: <a href="https://circuitdigest.com/tutorial/ac-circuit-theory-2-waveforms-and-their-properties">Circuit Digest: AC Circuit Theory (Part 2)</a></p>
-<h3 id="root-mean-square-rms">Root Mean Square (RMS)</h3>
-<p>For alternating electric current, RMS is equal to the value of the constant direct current that would produce the same power dissipation in a resistive load.</p>
-<p>Electrical engineers often need to know the power, P, dissipated by electrical resistance, R. It is easy to do the calculation when there is a constant current, I, through the resistance. However, if the current is a time-varying function, I(t), this formula must be extended to reflect the fact that the current (and thus the instantaneous power) is varying over time. If the function is periodic (such as household AC power), it is still meaningful to discuss the average power dissipated over time.</p>
-<p>When measuring AC using a DMM, oftentimes, you are not measuring the maximum amplitude of the current and voltage but <script type="math/tex">1 \over \sqrt{2}</script> of the amplitude. This is the root-mean-square (rms) value of a sine waveform: <script type="math/tex">V_{rms}</script> and <script type="math/tex">I_{rms}</script>.</p>
-<p>
-<script type="math/tex; mode=display"> V_{rms} = {V_0 \over \sqrt{2}} </script>
-<script type="math/tex; mode=display"> I_{rms} = {I_0 \over \sqrt{2}} </script>
-</p>
-<p><img alt="Figure 9.2" src="../lab9-rms.png" /></p>
-<p><strong><em>Figure 9.2 AC Waveforms showing the difference between <script type="math/tex">V_{rms}</script>, <script type="math/tex">V_{pk} = V_0</script>, and <script type="math/tex">V_{pp}</script></em></strong></p>
-<p>Source: <a href="https://circuitdigest.com/tutorial/ac-circuit-theory-2-waveforms-and-their-properties">Circuit Digest: RMS Voltage</a></p>
-<p><strong>Note:</strong> Keep in mind that <script type="math/tex">V_{rms}</script> calculation uses <script type="math/tex">V_{0}</script>, not <script type="math/tex">V_{pp}</script>.</p>
-<h3 id="rc-circuit-phase-shift">RC Circuit Phase Shift</h3>
-<p>A Capacitive Circuit that consists of R and C in series exhibits a timing difference between the peak amplitude of the current and voltage. This timing difference is called Phase Shift. As the Capacitor opposes a change in Voltage and stores energy from the Power Supply in the form of an Electric Field, the Capacitor Voltage <script type="math/tex">V_{C}</script> lags the Capacitor Current <script type="math/tex">I_{C}</script> by 90° and lags the Power Supply Voltage V by a Phase Angle <script type="math/tex">\Phi</script>.</p>
+<p>A Capacitive Circuit that consists of R and C in series exhibits a timing difference between the peak amplitude of the current and voltage. This timing difference is called Phase Shift. As the Capacitor opposes a change in Voltage and stores energy from the Power Supply in the form of an Electric Field, the Capacitor Voltage vC lags the Capacitor Current iC by 90° and lags the Power Supply Voltage v by a Phase Angle Φ.</p>
 <p>This phase shift between voltage and current can be calculated by:</p>
 <p>
 <script type="math/tex; mode=display"> \Phi = tan^{-1} {\left({-1} \over {2 \pi fRC}\right)} </script>
 </p>
-<p>where <script type="math/tex">f</script> is AC frequency in Hz, <script type="math/tex">R</script> in Ohms and <script type="math/tex">C</script> in Farads.</p>
-<p><img alt="Figure 9.3" src="../lab9-rc-shift.png" /></p>
-<p><strong><em>Figure 9.3 V-I Relationship of the Series RC Circuit</em></strong></p>
-<h3 id="rl-circuit-phase-shift">RL Circuit Phase Shift</h3>
-<p>An Inductive Circuit that consists of R and L in series. As the Inductor opposes a change in Current and stores energy from the Power Supply in the form of a Magnetic Field, the Inductor Voltage <script type="math/tex">V_{L}</script> leads the Inductor Current <script type="math/tex">I_{L}</script> by 90° and leads the Power Supply Voltage V by a Phase Angle <script type="math/tex">\Phi</script>.</p>
-<p>This phase shift between voltage and current can be calculated by:</p>
-<p>
-<script type="math/tex; mode=display"> \Phi = tan^{-1} {\left({2 \pi fL} \over {R}\right)} </script>
-</p>
-<p>where <script type="math/tex">f</script> is AC frequency in Hz, <script type="math/tex">R</script> in Ohms and <script type="math/tex">L</script> in Henry.</p>
-<p><img alt="Figure 9.4" src="../lab9-rl-shift.png" /></p>
-<p><strong><em>Figure 9.4 V-I Relationship of the Series RL Circuit</em></strong></p>
+<p>where <script type="math/tex">f</script> is AC frequency in Hz, <script type="math/tex">R</script> in ohms and <script type="math/tex">C</script> in farads.</p>
+<p><img alt="Figure 9.5" src="../lab9-rc-shift.png" /></p>
+<p><strong><em>Figure 9.5 V-I Relationship of the Circuits RC</em></strong></p>
 <p>Source: <a href="https://www.cmm.gov.mo/eng/exhibition/secondfloor/moreinfo/2_4_4_PhaseShift.html">CMM: Phase Shift</a></p>
-<h3 id="reference">Reference</h3>
-<ul>
-<li><a href="https://www.translatorscafe.com/unit-converter/en-US/calculator/series-rc-impedance/">Series RC Circuit Impedance Calculator</a></li>
-<li><a href="https://www.translatorscafe.com/unit-converter/en-US/calculator/series-rl-impedance/">Series RL Circuit Impedance Calculator</a></li>
-</ul>
+<!-- ### Root Mean Square (RMS)
+
+For alternating electric current, RMS is equal to the value of the constant direct current that would produce the same power dissipation in a resistive load.
+
+Electrical engineers often need to know the power, P, dissipated by electrical resistance, R. It is easy to do the calculation when there is a constant current, I, through the resistance. However, if the current is a time-varying function, I(t), this formula must be extended to reflect the fact that the current (and thus the instantaneous power) is varying over time. If the function is periodic (such as household AC power), it is still meaningful to discuss the average power dissipated over time.
+
+When measuring AC using a DMM, often time, you are not measuring the maximum amplitude of the current and voltage but \(1 \over \sqrt{2}\) of the amplitude. This is the root-mean-square (rms) value of a sine waveform: \(V_{rms}\) and \(I_{rms}\).
+
+$$ V_{rms} = {V_0 \over \sqrt{2}} $$
+$$ I_{rms} = {I_0 \over \sqrt{2}} $$ -->
+
 <h2 id="materials">Materials</h2>
 <ul>
-<li>Safety glasses (PPE)</li>
-<li><a href="../supplies/">Lab Supplies</a><ul>
+<li>Resistors: 10kΩ or similar value resistor</li>
+<li>Capacitors: 10nF or similar value capacitor</li>
 <li>Breadboard</li>
-<li>Jumper Wires</li>
-<li>(1x) 100Ω Resistor (brown-black-brown)</li>
-<li>(1x) 1kΩ resistor (brown-black-red)</li>
-<li>(1x) 10kΩ resistor (brown-black-orange)</li>
-<li>(1x) 100nF Ceramic Capacitor</li>
-<li>(1x) 100μH drum inductor</li>
-</ul>
-</li>
+<li>Jumper wires</li>
 </ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <p><strong>Lab Preparation Question:</strong></p>
 <ol>
-<li>Read and summarize the lab as necessary.</li>
-<li>Copy observation Tables 1, and 2 of this lab into your notebook.</li>
-<li>Sketch a breadboard diagram of Figure 9.5 and Figure 9.7 onto your notebook.</li>
-<li>Calculate the <script type="math/tex">V_{rms}</script> for a <script type="math/tex">3 V_{pp}</script> (Not <script type="math/tex">V_{0}</script>)sine signal.</li>
-<li>Calculate the phase difference between voltage and current of an RC circuit with 10kΩ, 1kΩ, and 100Ω resistors, 100nF capacitor, and at 1kHz and 500Hz. Show all calculations.</li>
-<li>Calculate the phase difference between the voltage and current of an RL circuit with a 10kΩ, 1kΩ, and 100Ω resistors, the inductor you used in Lab 9, and at 1MHz and 500kHz. Show all calculations.</li>
+<li>
+<p>Using a resistor value of 10kΩ and a capacitor value of 10nF, find the RC time constant.</p>
+</li>
+<li>
+<p>Sketch the breadboard below onto your notebook then draw how the components will be connected to the breadboard according to the circuit shown in Figures 9.6 and 9.7. Clearly show which tie point will the wire, resistor, capacitor, function generator and oscilloscope channel(s) be attached to.</p>
+<blockquote>
+<p><img alt="Breadboard Sketch" src="lab4-breadboard-sketch.png" /></p>
+</blockquote>
+</li>
+<li>
+<p>Using a resistor value of 10kΩ and a capacitor value of 10nF, find the theoretical phase shift between voltage and current for an RC circuit in a 1kHz AC signal. Repeat the calculation for a 500Hz AC signal.</p>
+</li>
+<li>
+<p>Copy the observation tables found in this lab into your notebook.</p>
+</li>
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<h3 id="part-1-ac-waveform-and-rms-voltage">Part 1 : AC Waveform and RMS Voltage</h3>
-<p>This part of the lab is to re-familiarize with generating a waveform using a function generator and AC measurement using an oscilloscope and a digital multimeter (DMM). Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
+<h3 id="part-1-rc-circuit-in-dc">Part 1 : RC Circuit in DC</h3>
+<p>To observe the transient response of an RC circuit, the circuit will be driven with a periodic square wave to simulate the opening and closing of a switch. The period of the square wave should be much longer than the time constant, <script type="math/tex">\tau = RC</script>, of the circuit to allow the circuit to reach a steady state.</p>
 <ol>
-<li>Turn on the function generator, the DMM, and the oscilloscope.</li>
-<li>Ensure the function generator output is off. Set the function generator to High-Z output mode then set it to a 1kHz sine wave with 3Vpp as the amplitude. Leave DC offset and phase shift to zero (0).</li>
-<li>Connect the output of the function generator to CH1 of the oscilloscope. The red alligator clip of the function generator output should connect to the red alligator clip of the oscilloscope input and the same for the black alligator clip.</li>
-<li>Connect the DMM to the output of the function generator while keeping the oscilloscope connected.</li>
-<li>Adjust the DSO so that about two periods are showing on the display. Make note of the TIME/DIV and VOLT/DIV and verify if align with the setting you provided to the function generator.</li>
 <li>
-<p>Set up the DMM to measure in AC voltage mode (VAC).</p>
+<p>Acquire a 10kΩ or similar value resistor, a 10nF or similar value capacitor, a breadboard, and some jumper wires.</p>
 <blockquote>
-<p><strong>Lab Question 1:</strong> Does the reading from the DMM agree with the setting from the function generator and the DSO?</p>
-<p><strong>Lab Question 2:</strong> Your DMM should give you a reading that is not 3V, why do you think that is the case?</p>
-</blockquote>
-</li>
-<li>
-<p>Turn off the output from the function generator.</p>
-</li>
-</ol>
-<h3 id="part-2-rc-circuit-in-ac">Part 2 : RC Circuit in AC</h3>
-<p>The next part of this lab is to observe the AC response of an RC Circuit and the relationship between the voltage <script type="math/tex">V(t)</script> and the current <script type="math/tex">I(t)</script> using an oscilloscope. Since we cannot measure <script type="math/tex">I(t)</script> directly using an oscilloscope, we'll be measuring the voltage across the resistor <script type="math/tex">V_R(t)</script> since the current and voltage are always in phase at the resistor.</p>
-<p><img alt="Figure 9.5" src="../lab9-rc-circuit.png" /></p>
-<p><strong><em>Figure 9.5</em></strong></p>
-<ol>
-<li>Set up the circuit in Figure 9.7 using a 10kΩ resistor and a 100nF ceramic capacitor.
-    <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
-    <p style="font-size: 18px"><strong>DO NOT USE A POLARIZED CAPACITOR!</strong><p>
-    </div></li>
-<li>Ensure that the function generator’s output is off then set the output of the function generator to High-Z.</li>
-<li>Set the output waveform to be a sine wave then set the output amplitude to 3 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.</li>
-<li>
-<p>Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.</p>
-<p><strong>NOTE:</strong> The ground (black cable) for both CH1 and CH2 is connected to the negative (black) node of the function generator.</p>
-</li>
-<li>
-<p>Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division to see about two periods on the display.</p>
-</li>
-<li>
-<p>You should see two waveforms ressembling <script type="math/tex">V</script> and <script type="math/tex">V_R</script> in Figure 9.3. From the two signals that you see, find a peak from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest peak from CH2 (measuring <script type="math/tex">V_R(t) = I(t)</script>). CH2 (<script type="math/tex">I(t)</script>) should be leading CH1 (<script type="math/tex">V(t)</script>).</p>
-<blockquote>
-<p><strong>Lab Question 5:</strong> Which signal is leading? Does it agree with what you expect from a series RC circuit?</p>
-<p><strong>Lab Question 6:</strong> Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.</p>
-<p>
-<script type="math/tex; mode=display"> \Phi = 2 \pi {\Delta t \over T} </script>
-</p>
-<p>where <script type="math/tex">\Delta t</script> is the time difference and <script type="math/tex">T</script> is the period.</p>
-<p><strong>NOTE:</strong> <script type="math/tex">I(t)</script> leading means the time difference is a negative time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.</p>
+<p><strong>Lab Question 1:</strong> Measure the resistance and capacitance of the resistor and capacitor respectively and write down the values in Table 1.</p>
+<p><strong>Lab Question 2:</strong> Calculate the time constant <script type="math/tex">\tau = RC</script> of the RC circuit and write down the values in Table 1. The time constant should be around 0.1ms.</p>
 <p><strong>Table 1:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Freq</th>
-<th>R</th>
-<th>C</th>
-<th>Theoretical Phase Shift</th>
-<th>Time Diff</th>
-<th>Phase Shift</th>
+<th>Measured Resistance</th>
+<th>Measured Capacitance</th>
+<th>Calculated <script type="math/tex">\tau = RC</script>
+</th>
+<th>Measured <script type="math/tex">\tau</script>
+</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1 kHz</td>
-<td>10 kΩ</td>
-<td>100 nF</td>
 <td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1 kHz</td>
-<td>1 kΩ</td>
-<td>100 nF</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>500 Hz</td>
-<td>1 kΩ</td>
-<td>100 nF</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>500 Hz</td>
-<td>100 Ω</td>
-<td>100 nF</td>
 <td></td>
 <td></td>
 <td></td>
@@ -256,77 +178,81 @@ SES250 Electromagnatics
 </table>
 </blockquote>
 </li>
-</ol>
-<p><img alt="Figure 9.6" src="../lab9-shift.png" /></p>
+<li>
+<p>Assemble the circuit shown below then measure the current through the load resistor.</p>
+<p><strong>REMEMBER:</strong> Refer to <a href="../lab4/">Lab 4</a> for circuit component symbols.</p>
+<p><img alt="Figure 9.6" src="../lab9-rc-1.png" /></p>
 <p><strong><em>Figure 9.6</em></strong></p>
-<ol>
-<li>Repeat the measurement with various resistor values and frequencies to complete Table 1 to understand their relationships.</li>
+</li>
+<li>
+<p>Set the function generator to a 1kHz (or 500Hz if the capacitor doesn't fully discharge) square wave and 3Vpp as the amplitude with no offset.</p>
+<p><strong>REMEMBER:</strong> The output should be set to High-Z.</p>
+</li>
+<li>
+<p>Check your circuit to ensure there is no short circuit then turn on the function generator.</p>
+</li>
+<li>A RC response curve should show up on the DSO. Adjust the time and voltage division (using the adjustment knobs) as well as the position of the signal so one discharge period (similar to Figure 9.3 above) can be seen on the DSO.</li>
+<li>
+<p>Use the measurement tool, cursor on the oscilloscope, or the division lines, to estimate the time it takes for the voltage across the capacitor to drop ~63%.</p>
+<blockquote>
+<p><strong>Lab Question 3:</strong> Does it agree with the time constant you calculated earlier?</p>
+<p><strong>Lab Question 4: (During-Lab)</strong> Demostrate to the lab professor or instructor your RC response observation on the display of the oscilloscope.</p>
+</blockquote>
+</li>
+<li>
+<p>Keep the RC circuit intact for Part 2 of this lab.</p>
+</li>
 </ol>
-<h3 id="part-3-rl-circuit-in-ac">Part 3 : RL Circuit in AC</h3>
-<p>The next part of this lab is to observe the AC response of an RL Circuit and the relationship between the voltage <script type="math/tex">V(t)</script> and the current <script type="math/tex">I(t)</script> using an oscilloscope. Since we cannot measure <script type="math/tex">I(t)</script> directly using an oscilloscope, we'll be measuring the voltage across the resistor <script type="math/tex">V_R(t)</script> since the current and voltage are always in phase at the resistor.</p>
-<p><img alt="Figure 9.6" src="../lab9-rl-circuit.png" /></p>
-<p><strong><em>Figure 9.6</em></strong></p>
+<h3 id="part-2-rc-circuit-in-ac">Part 2 : RC Circuit in AC</h3>
+<p>The next part of this lab is to observe the AC response of an RC Circuit and the relationship between the voltage <script type="math/tex">V(t)</script> and the current <script type="math/tex">I(t)</script> using an oscilloscope. Since we cannot measure <script type="math/tex">I(t)</script> directly using an oscilloscope, we'll be measuring the voltage of the resistor <script type="math/tex">V_R(t)</script> since the current and voltage is always in phase at the resistor.</p>
 <ol>
-<li>Set up the circuit in Figure 9.6 using a 10kΩ resistor and 47μH (or the inductor you used in Lab 8).</li>
-<li>Ensure that the function generator’s output is off then set the output of the function generator to High-Z.</li>
-<li>Set the output waveform to be a sine wave then set the output amplitude to 3 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.</li>
+<li>
+<p>Using a 10kΩ or similar value resistor and 10nF or similar capacitor, assemble the circuit shown below if it's not assembled already.</p>
+<p><img alt="Figure 9.7" src="../lab9-rc-2.png" /></p>
+<p><strong><em>Figure 9.7</em></strong></p>
+</li>
+<li>
+<p>Ensure that the function generator’s output is off then set the output of the function generator to high Z (Channel &gt; Load Z &gt; High Z).</p>
+</li>
+<li>This time, set the output waveform to be a sine wave then set the output amplitude to 6 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.</li>
 <li>
 <p>Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.</p>
 <p><strong>NOTE:</strong> The ground (black cable) for both CH1 and CH2 is connected to the negative (black) node of the function generator.</p>
 </li>
 <li>
-<p>Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division to see about two periods on the display.</p>
+<p>Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division as necessary.</p>
 </li>
 <li>
-<p>You should see two waveforms ressembling <script type="math/tex">V</script> and <script type="math/tex">V_R</script> in Figure 9.4. From the two signals that you see, find a peak from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest peak from CH2 (measuring <script type="math/tex">V_R(t) = I(t)</script>). CH2 (<script type="math/tex">I(t)</script>) should be lagging CH1 (<script type="math/tex">V(t)</script>).</p>
+<p>From the two signals that you see, find a peak from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest peak from CH2 (measuring <script type="math/tex">V_R(t) = I(t)</script>).</p>
 <blockquote>
-<p><strong>Lab Question 7:</strong> Which signal is leading? Does it agree with what you expect from a series RL circuit?</p>
-<p><strong>Lab Question 8:</strong> Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.</p>
+<p><strong>Lab Question 5:</strong> Which signal is leading? Does it agree with the observation you expect from an RC circuit?</p>
+<p><strong>Lab Question 6:</strong> Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.</p>
 <p>
 <script type="math/tex; mode=display"> \Phi = 2 \pi {\Delta t \over T} </script>
 </p>
-<p><strong>NOTE:</strong> <script type="math/tex">I(t)</script> lagging means the time difference is a positive time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.</p>
+<p><strong>NOTE:</strong> The time difference might be in ms and the phase angle difference might be in RAD depending on your setting.</p>
 <p><strong>Table 2:</strong></p>
 <table>
 <thead>
 <tr>
-<th>Freq</th>
-<th>R</th>
-<th>L</th>
-<th>Theoretical Phase Shift</th>
-<th>Time Diff</th>
-<th>Phase Shift</th>
+<th></th>
+<th>Measured Resistance</th>
+<th>Measured Capacitance</th>
+<th>Measured Time Diff</th>
+<th>Measured Phase Shift</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1 MHz</td>
-<td>10 kΩ</td>
-<td>100 μH</td>
+<td>1 kHz</td>
 <td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>1 MHz</td>
-<td>1 kΩ</td>
-<td>100 μH</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>500 kHz</td>
-<td>1 kΩ</td>
-<td>100 μH</td>
+<td>500 Hz</td>
 <td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>500 kHz</td>
-<td>100 Ω</td>
-<td>100 μH</td>
 <td></td>
 <td></td>
 <td></td>
@@ -336,10 +262,14 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Repeat the measurement with various resistor values and frequencies to complete Table 1 to understand their relationships.</p>
+<p>Replace Steps 5 to 9 for a frequency of 500 Hz.</p>
 </li>
 </ol>
-<p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
+<p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate you've completed the lab and written down all your observation. You might be asked to explain some of the concepts you've learned in this lab.</p>
+<h2 id="post-lab">Post-Lab</h2>
+<ol>
+<li>Using the skills and knowledge acquired from this lab, answer the post-lab question(s) on blackboard. Due one week after the lab.</li>
+</ol>
               
             </div>
           </div><footer>

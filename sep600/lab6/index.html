@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 6";
-        var mkdocs_page_input_path = "sep600/lab6.md";
+        var mkdocs_page_input_path = "sep600\\lab6.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -79,29 +79,15 @@ SEP600 Embedded Systems
 </font></p>
 <h2 id="introduction">Introduction</h2>
 <p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
-<h3 id="cortex-m4">Cortex M4</h3>
 <ul>
 <li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a></li>
 </ul>
-<h3 id="frdm-k64f">FRDM-K64F</h3>
-<ul>
-<li><a href="../FRDMK64FUG.pdf">FRDM-K64F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">nxp.com</a>)</li>
-<li><a href="../K64P144M120SF5RM.pdf">Kinetis K64 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">nxp.com</a>)</li>
-<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F mbed</a></li>
-</ul>
-<h3 id="frdm-k66f">FRDM-K66F</h3>
-<ul>
-<li><a href="../FRDMK66FUG.pdf">FRDM-K66F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">nxp.com</a>)</li>
-<li><a href="../K66P144M180SF5RMV2.pdf">Kinetis K66 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">nxp.com</a>)</li>
-<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F mbed</a></li>
-</ul>
-<h2 id="materials">Materials</h2>
-<ul>
-<li>Safety glasses (PPE)</li>
-<li>Breadboard</li>
-<li>Jumper Wires</li>
-</ul>
+<p>In the previous lab, we explored the use of the built-in ConfigTools in MCUXpresso IDE to help with setting up interrupts. In this lab, we'll explore how to use assembly instruction to setup GPIO as well as using the ConfigTools to do the same.</p>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
@@ -110,119 +96,9 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<p>In this lab, we'll explore the use of software filtering techniques to remove noise from a digital signal and then plot the data on a computer. We'll also explore the idea of multi-threading to handle the two tasks.</p>
-<ol>
-<li>
-<p>Start the function generator to output a 1Vpp 1kHz Noise (or Triangular) wave with a 2V DC offset.</p>
-</li>
-<li>
-<p>Connect the output of the function generator to an ADC (Analog input) pin on the K64F or K66F board.</p>
-</li>
-<li>
-<p>Use the following code to read the signal from the ADC channel. Replace <code>PTXX</code> with the pin that you are using.
-    <pre></p>
-<pre><code>#include "mbed.h"
-
-int main() {
-
-    AnalogIn ain(PTXX); // Replace with your ADC pin
-
-    float reading = 0; // for saving readings
-
-    while (true) {
-        reading = ain; // read ADC
-        printf("Reading: %d\n", (int) (reading * 100)); // print as int
-        // delay for 1ms for each reading
-        ThisThread::sleep_for(1ms);
-    }
-}
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Your serial output should now be flooded with data output between 0 to 100.</p>
-</li>
-<li>
-<p>Next, instead of printing data directly from within the <code>while</code> loop of the <code>main()</code> function, we'll put the printing into a thread so it won't interfere with the ADC reading and let the processor decide how to optimize the process.</p>
-</li>
-<li>
-<p>Move the <code>printf</code> statement into a new function called <code>print_data()</code>. To pass variables into a thread, we'll make use of a pointer. Add the following code above the <code>main()</code> function.
-    <pre></p>
-<pre><code>void print_data(float *reading) {
-    while (true) {
-        printf("%d\n", (int) (*reading * 100));
-        // delay for 1ms for between print
-        ThisThread::sleep_for(1ms);
-    }
-}
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Next, we'll define a new thread called <code>print_data_thread</code> and use <code>print_data</code> as the callback function and pass the address of <code>reading</code> as the argument. Add the following above the <code>print_data()</code> function.
-    <pre></p>
-<pre><code>Thread print_data_thread;
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Add the following in the <code>main()</code> function to start the thread.
-    <pre></p>
-<pre><code>print_data_thread.start(callback(print_data, &amp;reading));
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Remember to remove the <code>printf</code> statement from your <code>main()</code> function.</p>
-</li>
-<li>
-<p>Run your new code. It should be doing the same task as before but now it is running in multi-thread.</p>
-</li>
-<li>
-<p>Let's read the data from the computer using Python and plot it out. Run the following Python script on your computer. Install <code>pyserial</code> using <code>pip install pyserial</code> and <code>matplotlib</code> using <code>pip install matplotlib</code> as required.
-    <pre></p>
-<pre><code>import serial
-import matplotlib.pyplot as plt
-import numpy as np
-plt.ion()
-fig=plt.figure()
-
-x = list()
-y = list()
-i = 0
-
-ser = serial.Serial('XXXX', 9600) # Replace XXXX with your serial port
-ser.close()
-ser.open()
-
-while True:
-
-    data = ser.readline()
-
-    x.append(i)
-    y.append(data.decode())
-
-    plt.scatter(i, float(data.decode()))
-    i += 1
-    plt.show()
-    plt.pause(0.000001)
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Run the Python code and it should open the specified serial and start plotting the data. As you can tell, it is not the most optimized plotting code. Feel free to improve the plotting.</p>
-<p><img alt="Figure 6.1" src="../lab6-plot.png" /></p>
-<p><strong><em>Figure 6.1</em></strong></p>
-</li>
-<li>
-<p>From what you can tell, the data is a bit noisy. Your task is to add the simple IIR filter discussed in class to smooth out the data on the controller. This means adding a new variable called <code>alpha</code> and <code>old_reading</code> to save the reading for the next iteration.</p>
-</li>
-</ol>
+<h2 id="post-lab-questions">Post-Lab Questions</h2>
+<p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
 <h2 id="reference">Reference</h2>
-<ul>
-<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/thread.html">Thread</a></li>
-<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/mutex.html">Mutex</a></li>
-</ul>
               
             </div>
           </div><footer>
