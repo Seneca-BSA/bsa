@@ -63,6 +63,8 @@ Source: [Capacitor Markings](https://www.matrixtsl.com/courses/ecc/index.php?n=C
 
 Source: [What Is Non-polarized Capacitor](https://www.jakelectronics.com/blog/what-is-non-polarized-capacitor)
 
+Reference Video: [How to Use A KEYSIGHT E34461A DMM to Measure Capacitance](https://youtu.be/Wf_aqRgdtww)
+
 ### RC Circuit
 
 A resistor-capacitor circuit (RC circuit), RC filter or RC network, is an electric circuit composed of resistors and capacitors. It may be driven by a voltage or current source and these will produce different responses. A first-order RC circuit is composed of one resistor and one capacitor and is the simplest type of RC circuit.
