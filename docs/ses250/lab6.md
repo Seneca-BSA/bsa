@@ -36,6 +36,8 @@ In the electronics lab, you will be using a Keysight 33500B (or similar) Functio
 
 Source: [Wikipedia: Function Generator](https://en.wikipedia.org/wiki/Function_generator)
 
+Reference Video: [How to Use A KEYSIGHT E33220A Function Generator to Generate A Sine Wave](https://youtu.be/nHpp30vARBY)
+
 ### Digital Storage Oscilloscope (DSO)
 
 An oscilloscope, or DSO (for the more modern digital storage oscilloscope), is a type of electronic test instrument that graphically displays varying signal voltages, usually as a calibrated two-dimensional plot of one or more signals as a function of time. The displayed waveform can then be analyzed for properties such as amplitude, frequency, rise time, time interval, distortion, and others. Originally, the calculation of these values required manually measuring the waveform against the scales built into the screen of the instrument. Modern digital instruments may calculate and display these properties directly.

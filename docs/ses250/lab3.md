@@ -32,6 +32,8 @@ If you don't remember how to operate the DMM and read the resistor colour band, 
 
 In Lab 2, we used the DMM as a voltmeter to measure voltage (or the potential difference) across two nodes in a circuit. When measuring voltage, the DMM is connected in **_parallel_** with the circuit as shown in Figure 2.14a from [Lab 2](lab2.md). An ideal voltmeter has infinite resistance so energy will not be dissipated by the test equipment. In practice, the internal resistance of a voltmeter is in the MΩ range.
 
+Reference Video: [How to Use A KEYSIGHT E34461A DMM to Measure Voltage](https://youtu.be/z1FmB-j7_MA)
+
 ### Current Measurement
 
 Most modern DMMs are capable of being used as an ammeter for measuring current through a circuit. Differing from voltage measurement, current measurement is made by connecting the DMM is **_series_** with the circuit as shown in Figure 3.1. An ideal ammeter has zero resistance so energy will not be dissipated by the test equipment. In practice, the internal resistance of a voltmeter is in the Ω range.
@@ -40,9 +42,13 @@ Most modern DMMs are capable of being used as an ammeter for measuring current t
 
 ***Figure 3.1* Current Measuring Circuit**
 
+Reference Video: [How to Use A KEYSIGHT E34461A DMM to Measure Current](https://youtu.be/VoejUrgtZMo)
+
 ### Resistance Measurement
 
 Most modern DMMs are also capable of measuring the resistance through a circuit. This feature, however, is most often used to measure the resistance of a single resistor. To measure resistance, put the DMM in resistance measuring mode then connect the DMM in **_parallel_** with the circuit.
+
+Reference Video: [How to Use A KEYSIGHT E34461A DMM to Measure Resistance](https://youtu.be/CGlQ2-TJ5EY)
 
 ### TinkerCAD Breadboard Simulator
 

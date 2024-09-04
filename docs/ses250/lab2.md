@@ -46,6 +46,8 @@ Source: [Wikipedia: Multimeter](https://en.wikipedia.org/wiki/Multimeter)
 
 In the electronics lab, you will be using a Keysight 34461A (or similar) Digital Multimeter. Its manual can be found here: [DMM Manual](lab2-DMM-manual.pdf)
 
+Reference Video: [How to Use A KEYSIGHT E34461A DMM to Measure Voltage](https://youtu.be/z1FmB-j7_MA)
+
 ### Direct Current (DC) Power Supply
 
 An adjustable DC power supply converts electricity from the power grid to a specified voltage and current and then provides them at its output connector.
@@ -55,6 +57,8 @@ An adjustable DC power supply converts electricity from the power grid to a spec
 ***Figure 2.2** Agilent E3632A DC Power Supply*
 
 In the electronics lab, you will be using an Agilent E3632A (or E3631A or similar) DC Power Supply. Its manual can be found here: [DC Power Supply Manual](lab2-PS-manual.pdf)
+
+Reference Video: [How to Use A KEYSIGHT E3631A Bench Power Supply](https://youtu.be/Qnx48eTvcR0)
 
 ### Resistor
 
