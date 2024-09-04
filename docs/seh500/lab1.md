@@ -17,7 +17,7 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platforms using 
 |**External Memory**|N/A|microSD socket|
 |**Connectivity**|USB, Ethernet, Add-on Bluetooth|USB, Ethernet, Add-on Bluetooth|
 |**Audio**|N/A|Audio codec and Jacks|
-|**Sensors**|Accelerometer and Magnetometer<br/>(FXOS8700CQ)|Accelerometer and Magnetometer<br/>(FXOS8700CQ)<br/>Gyroscope (FXAS21002)|
+|**Sensors**|Accelerometer and Magnetometer<br/>(FXOS8700CQ)<br/>**No longer populated!**|Accelerometer and Magnetometer<br/>(FXOS8700CQ)<br/>Gyroscope (FXAS21002)|
 |**Debug**|OpenSDAv2<br/>Virtual Serial Port|OpenSDAv2<br/>Virtual Serial Port|
 |**User Components**|RGB LED|RGB LED<br/>Two user push buttons|
 
@@ -25,11 +25,15 @@ The Freedom-K64F and Freedom-K66F are both low-cost development platforms using 
 
 Read over the lab manual for this lab. Acquire the Freedom microcontroller board and install the necessary IDE as described in the lab manual.
 
-Be familiar with the following resources:
+Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:
 
-- [FRDMK64FUG, FRDM-K64F Freedom Module User's Guide](https://os.mbed.com/media/uploads/GregC/frdm-k64f_ug_rev0.1.pdf)
+- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
+- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
+- [FRDM-K64F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG)
+- [Kinetis K64 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM)
+- [FRDM-K66F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG)
+- [Kinetis K66 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2)
 - [The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors](https://senecacollege.primo.exlibrisgroup.com/permalink/01SENC_INST/goqo0g/alma997357584903226) by Joseph Yiu
-- [Cortex-M4 Technical Reference Manual](https://developer.arm.com/documentation/ddi0439/b/)
 
 > ### Lab Preparation Question
 >
