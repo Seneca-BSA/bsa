@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 1 : Setup - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 1 : Setup";
+        var mkdocs_page_input_path = "sea700/lab1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SEA700 Robotics</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lab 1 : Setup</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-1-setup">Lab 1 : Setup</h1>
+<p><font size="5">
+Seneca Polytechnic</br>
+SEA700 Robotics for Software Engineers
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>In this course, you'll be using the <a href="https://www.hiwonder.com/products/jetauto-pro?variant=40040875229271&amp;srsltid=AfmBOopGiD-7htdo9MYV2dDxaC_hu9xuS887mAu3p1SuU0YDl9iVj6Da">JetAuto Pro ROS Robot Car</a> as the base platform for development. The JetAuto robot uses the NVIDIA Jetson Nano embedded computing boards as its controller. The robot comes with various accessories and add-ons for robotics applications and they can all be controlled using <a href="https://www.ros.org/">Robot Operating System (ROS)</a> as the backbone application. However, before jumping into using the physical, we will be learning how to use ROS and <a href="https://gazebosim.org/">Gazebo</a> to simulate the robot and it's environmental. During the design phase of any robotics project, testing the functionality of your code and the robot is a key step of project cycle. In some industrial settings (such as robot in remote location), physical access to the robot are limited or impossible. In such a case, simulating the robot's action and performance is the only way to ensure mission success.</p>
+<h3 id="what-is-ros">What is ROS?</h3>
+<p>Per the ROS website:</p>
+<blockquote>
+<p>The Robot Operating System (ROS) is a set of software libraries and tools that help you build robot applications. From drivers to state-of-the-art algorithms, and with powerful developer tools, ROS has what you need for your next robotics project. And it's all open source.</p>
+</blockquote>
+<p>The above statement isn't exactly clear so let's take a look at an example.</p>
+<p><img alt="Figure 1.1 Robotics Arm" src="../lab1-robot-arm.png" /></p>
+<p><em><strong>Figure 1.1</strong> Robotics Arm (Source: Hiwonder)</em></p>
+<p>A robotics system usually consist of various sensors, actuators, and controllers. The system in Figure 1.1 have the following:</p>
+<ol>
+<li>a servo gripper at the end of the arm</li>
+<li>a servo revolute joint that rotate the gripper</li>
+<li>a servo revolute joint for link 3-2</li>
+<li>a servo revolute joint for link 4-3</li>
+<li>a servo revolute joint for link 5-4</li>
+<li>a servo revolute joint that rotate the base</li>
+<li>a stationary camera supervise the workspace</li>
+</ol>
+<p>To pick up an object, the robot might:</p>
+<ul>
+<li>Use the camera to measure the position of the object</li>
+<li>Command the arm to move toward the object's position</li>
+<li>Once in position, command the gripper to close around the object</li>
+</ul>
+<p>To approach this problem, we'll need to break it down into smaller task. In robotics, that usually means having independent low-level control loops, each controlling a single task.</p>
+<ul>
+<li>A control loop for each joint that, given a position or velocity command, controls the power applied to the joint motor based on position sensor measurements at the joint.</li>
+<li>Another control loop that receives commands to open or close the gripper, then switches the gripper motor on and off while controlling the power applied to it to avoid crushing objects.</li>
+<li>A sensing loop that reads individual images from the camera</li>
+</ul>
+<p>With the above structure, we then couple these low-level loops together via a single high-level module that performs supervisory control of the whole system:</p>
+<ul>
+<li>Query the camera sensing loop for a single image</li>
+<li>Use a vision algorithm to compute the location of the object to grasp</li>
+<li>Compute the joint angles necessary to move the manipulator arm to this location</li>
+<li>Sends position commands to each of the joint control loops telling them to move to this position</li>
+<li>Signal the gripper control loop to close the gripper to grab the object</li>
+</ul>
+<p>An important feature of this design is that the supervisor need not know the implementation details of any of the low-level control loops: it interacts with each only through simple control messages. This encapsulation of functionality makes the system modular, making it easier to reuse code across robotic platforms.</p>
+<p>In ROS, each individual control loop is known as a node, an individual software process that performs a specific task. Nodes exchange control messages, sensor readings, and other data by publishing or subscribing to topics or by sending requests to services offered by other nodes (these concepts will be discussed in detail later in the lab).</p>
+<p>Nodes can be written in a variety of languages (including Python and C++), and ROS transparently handles the details of converting between different datatypes, exchanging messages between nodes, etc.</p>
+<p>We can then visualize the communication and interaction between different software components via a computation graph, where:</p>
+<p><img alt="Figure 1.2 Example computation graph" src="../lab1-computation-graph.png" /></p>
+<p><em><strong>Figure 1.2</strong> Example computation graph</em></p>
+<ul>
+<li>Nodes are represented by ovals (ie. <code>/usb_cam</code> or <code>/ar_track_alvar</code>)).</li>
+<li>Topics are represented by rectangles (ie. <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</code>).</li>
+<li>The flow of information to and from topics and represented by arrows. In the above example, <code>/usb_cam publishes</code>
+to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</code>, which are subscribed to by <code>/ar_track_alvar</code>.</li>
+<li>While not shown here, services would be represented by dotted arrows.</li>
+</ul>
+<h2 id="procedures">Procedures</h2>
+<p>The lab procedures assume a Ubuntu Jammy 22.04 enviornment. If you are using Windows or macOS, some modification to the steps might be required.</p>
+<h3 id="ros-installation">ROS Installation</h3>
+<p>Follow the <a href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html">ROS 2 Documentation Installation</a> instruction to install the ROS desktop package into your system. <strong>You do NOT need to install the Bare Bones or the Development tools</strong></p>
+<p>Since we want our terminal to load the ROS source everytime it start, add the <code>source</code> command to <code>.bashrc</code>.</p>
+<p>Use <code>vi</code>, <code>vim</code> or any editor to open <code>~/.bashrc</code> then add the following code at the end.</p>
+<pre><code>source /opt/ros/humble/setup.bash
+</code></pre>
+<p>After installation and setting up <code>.bashrc</code>, ensure you successfully tested the C++ talker and Python listener per the instruction by opening a NEW terminal.</p>
+<h3 id="turtlesim-test">Turtlesim Test</h3>
+<p>Turtlesim is a lightweight simulator for learning ROS 2. It illustrates what ROS 2 does at the most basic level to give you an idea of what you will do with a real robot or a robot simulation later on.</p>
+<p>The ros2 tool is how the user manages, introspects, and interacts with a ROS system. It supports multiple commands that target different aspects of the system and its operation. One might use it to start a node, set a parameter, listen to a topic, and many more. The ros2 tool is part of the core ROS 2 installation.</p>
+<p>rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt can be done on the command line, but rqt provides a more user-friendly way to manipulate ROS 2 elements.</p>
+<p>Check that the turtlesim package is installed.</p>
+<pre><code>ros2 pkg executables turtlesim
+</code></pre>
+<p>The above command should return a list of turtlesim’s executables.</p>
+<pre><code>turtlesim draw_square
+turtlesim mimic
+turtlesim turtle_teleop_key
+turtlesim turtlesim_node
+</code></pre>
+<p>To start turtlesim, enter the following command in your terminal.</p>
+<pre><code>ros2 run turtlesim turtlesim_node
+</code></pre>
+<p>The simulator window should appear, with a random turtle in the center.</p>
+<p><img alt="Figure 1.3 TurtleSim" src="lab1-turtlesim.png" /></p>
+<p><em><strong>Figure 1.3</strong> TurtleSim</em></p>
+<p>In the terminal, under the command, you will see messages from the node:</p>
+<pre><code>[INFO] [1725638823.233052860] [turtlesim]: Starting turtlesim with node name /turtlesim
+[INFO] [1725638823.245832389] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+</code></pre>
+<p>Contiune finishing the ROS2 turtlesim tutorial from Step 3 here:
+<a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html</a></p>
+<h2 id="lab-question">Lab Question</h2>
+<ol>
+<li>Create a third turtle that you can control in turtlesim with green (g = 255) as the pen line colour.</li>
+</ol>
+<p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://docs.ros.org/en/humble/index.html">ROS 2 Documentation: Humble</a></li>
+<li>EECS 206A Labs</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

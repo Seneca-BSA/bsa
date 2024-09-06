@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab2 - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab2";
+        var mkdocs_page_input_path = "sea700/lab2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SEA700 Robotics</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lab2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="creating-ros-workspaces-and-packages">Creating ROS Workspaces and Packages</h3>
+<p>Next, we'll also need to install <code>colcon</code> so we can create ROS package.</p>
+<pre><code>pip install -U colcon-common-extensions
+</code></pre>
+<p>First, we first have to create a ROS workspace – a directory used to organize and manage ROS packages. Since all ROS code must be contained within a package in a workspace, this is something you’ll do each time you start a new project.</p>
+<h4 id="creating-a-workspace">Creating a Workspace</h4>
+<ol>
+<li>
+<p>First, create a directory called <code>ros2_ws</code> and another directory called <code>lab1</code> within it.</p>
+<p><pre>
+    mkdir -p ~/ros2_ws/lab1
+    cd ~/ros2_ws/lab1
+</pre></p>
+</li>
+<li>
+<p>Next, create a directory called <code>src</code> within <code>lab1</code>.</p>
+<p><pre>
+    mkdir src
+    cd src
+</pre></p>
+</li>
+</ol>
+<h4 id="creating-a-package">Creating a Package</h4>
+<ol>
+<li>
+<p>From the <code>src</code> directory, let's create a package called <code>foo</code>.</p>
+<p><pre>
+    ros2 pkg create --build-type ament_cmake --license Apache-2.0 foo
+</pre></p>
+</li>
+<li>
+<p>Open your newly created package <code>foo</code> and examine the <code>package.xml</code> file. The only dependency in it should be <code>&lt;buildtool_depend&gt;ament_cmake&lt;/buildtool_depend&gt;</code>.</p>
+</li>
+<li>
+<p>Let's create another package and add some dependencies to it.</p>
+<p><code>ros2 pkg create --build-type ament_cmake --license Apache-2.0 bar --dependencies rclpy rclcpp std_msgs geometry_msgs turtlesim</code></p>
+</li>
+<li>
+<p>Open your newly created package <code>bar</code> and examine the <code>package.xml</code> file. There should be additional dependency now.</p>
+</li>
+</ol>
+<h4 id="understanding-ros-nodes">Understanding ROS nodes</h4>
+<ol>
+<li>Once you’ve added all your resources to the new package, the last step before you can use the package with ROS is to build it. Run the <code>colcon build</code> command from the <code>lab1</code> directory. If everything worked, you should get a success notification.</li>
+</ol>
+<h3 id="creating-ros-workspaces-and-packages_1">Creating ROS Workspaces and Packages</h3>
+<p>A quick review of some computation graph concepts:</p>
+<ul>
+<li>Node: an executable representing an individual ROS software process</li>
+<li>Message: a ROS datatype used to exchange data between nodes</li>
+<li>Topic: nodes can publish messages to a topic and/or subscribe to a topic to receive messages</li>
+</ul>
+<p>We’re now ready to test out some actual software running on ROS.</p>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
