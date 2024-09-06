@@ -12,7 +12,8 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 
 Simulator:
 
-- [ARMv7 Simulator](https://cpulator.01xz.net/)
+- [Computer System Simulator](https://cpulator.01xz.net/)
+    - ARMv7 -> ARMv7 generic
 
 Labs:
 

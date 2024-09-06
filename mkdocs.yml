@@ -2,23 +2,9 @@ site_name: BSA Lab Manuals
 nav:
     - Lab Manuals:
         - SES250 Electromagnatics: 'ses250/index.md'
-            # - 'Lab Instruction': 'ses250/instruction.md'
-            # - 'Lab Safety': 'ses250/safety.md'
-            # - 'Lab Supplies': 'ses250/supplies.md'
-            # - 'Lab 1': 'ses250/lab1.md'
-            # - 'Lab 2': 'ses250/lab2.md'
-            # - 'Lab 3': 'ses250/lab3.md'
-            # - 'Lab 4': 'ses250/lab4.md'
-            # - 'Lab 5': 'ses250/lab5.md'
-            # - 'Bonus Lab': 'ses250/lab-bonus.md'
-            # - 'Lab 6': 'ses250/lab6.md'
-            # - 'Lab 7': 'ses250/lab7.md'
-            # - 'Lab 8': 'ses250/lab8.md'
-            # - 'Lab 9': 'ses250/lab9.md'
-            # - 'Lab 10': 'ses250/lab10.md'
         - SEH500 Microprocessors: 'seh500/index.md'
-            # - 'Lab 1': 'seh500/lab1.md'
         - SEP600 Embedded Systems: 'sep600/index.md'
+        - SEA700 Robotics: 'sea700/index.md'
 
 theme:
     name: readthedocs
