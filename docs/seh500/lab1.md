@@ -206,7 +206,7 @@ This step can only be done with a microcontroller board running during debugging
 
 ## Post-Lab Questions
 
-Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
+Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard.
 
 1. Refer to the Memory map shown in class or from Figure 4.18 of Yiu, what is the starting address and ending address of the instruction code region?
 
