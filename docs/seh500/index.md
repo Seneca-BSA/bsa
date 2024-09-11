@@ -8,7 +8,7 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 - [Kinetis K64 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM)
 - [FRDM-K66F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG)
 - [Kinetis K66 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2)
-- [The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors](https://senecacollege.primo.exlibrisgroup.com/permalink/01SENC_INST/goqo0g/alma997357584903226) by Joseph Yiu
+- [The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors](https://senecacollege.primo.exlibrisgroup.com/permalink/01SENC_INST/goqo0g/alma997565899003226) by Joseph Yiu
 
 Simulator:
 
