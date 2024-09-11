@@ -35,6 +35,7 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 - [Kinetis K66 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2)
 - [The Definitive Guide to ARM® Cortex®-M3 and Cortex®-M4 Processors](https://senecacollege.primo.exlibrisgroup.com/permalink/01SENC_INST/goqo0g/alma997357584903226) by Joseph Yiu
 
+<!--
 > ### Lab Preparation Question
 >
 > Answer the following questions on Blackboard once the pre-load quiz becomes available 24 hours before the lab session.
@@ -44,6 +45,7 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 > 1. How many bytes (exact whole number) of memory are available for each of the regions above?
 > 1. Referring to Yiu or the Cortex-M4 Technical Reference, what is the instruction for loading data from memory into a register?
 > 1. Referring to Yiu or the Cortex-M4 Technical Reference, what is the instruction for storing data from a register in memory?
+-->
 
 ## Procedures
 
@@ -206,21 +208,18 @@ This step can only be done with a microcontroller board running during debugging
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
-1. In the hello_world.c example, what is the first line of code that it halts on once you start debugging? Both line numbers in the C-code and instruction address.
+1. Refer to the Memory map shown in class or from Figure 4.18 of Yiu, what is the starting address and ending address of the instruction code region?
+
+1. In the hello_world.c example, what is the instruction address of the first line of code that it halts on once you start debugging?
 
     **Note:** The instruction is at a hex address within the instruction region. You can find it in the disabled code or the Disassembly view during debug.
 
     **Hint:** The main function starts at address 0x00000924.
 
-1. Look at the register map, what is the value of the Program Counter (PC) when you first start debugging? What do you notice with respect to the question above and the memory region you found during pre-lab?
+1. Look at the register tab, what is the value of the Program Counter (PC) when you first start debugging? Refer back to the memory map in question 1 and see if it correspond to the proper memory region.
 
-1. What is the value of the Stack Pointer (SP)? Does it correspond to the memory region you found during pre-lab?
+1. What is the value of the Stack Pointer (SP)? Refer back to the memory map in question 1 and see if it correspond to the proper memory region.
 
-1. Find an example of the load instruction within the main function. What is its address and explain the instruction?
+1. Change the C-code to also display your name and student number within the print statement. Copy your main function onto blackboard.
 
-1. Find an example of the store instruction within the main function. What is its address and explain the instruction?
-
-1. Change the C-code to also display your name and student number within the print statement. Copy your main function onto Blackboard.
-
-1. Run the code and view the result using a serial terminal. Place a screenshot of the printout onto Blackboard.
-
+1. Run your modified code and view the result using the serial terminal. Your name and student number should now be displayed in the serial terminal. Take a screenshot of the printout and place it onto Blackboard.
