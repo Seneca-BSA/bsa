@@ -126,7 +126,7 @@ SEA700 Robotics for Software Engineers
 <p><img alt="Figure 1.2 Example computation graph" src="../lab1-computation-graph.png" /></p>
 <p><em><strong>Figure 1.2</strong> Example computation graph</em></p>
 <ul>
-<li>Nodes are represented by ovals (ie. <code>/usb_cam</code> or <code>/ar_track_alvar</code>)).</li>
+<li>Nodes are represented by ovals (ie. <code>/usb_cam</code> or <code>/ar_track_alvar</code>).</li>
 <li>Topics are represented by rectangles (ie. <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</code>).</li>
 <li>The flow of information to and from topics and represented by arrows. In the above example, <code>/usb_cam publishes</code>
 to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</code>, which are subscribed to by <code>/ar_track_alvar</code>.</li>
@@ -135,16 +135,25 @@ to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</co
 <h2 id="procedures">Procedures</h2>
 <p>The lab procedures assume a Ubuntu Jammy 22.04 enviornment. If you are using Windows or macOS, some modification to the steps might be required.</p>
 <h3 id="ros-installation">ROS Installation</h3>
+<ol>
+<li>
 <p>Follow the <a href="https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html">ROS 2 Documentation Installation</a> instruction to install the ROS desktop package into your system. <strong>You do NOT need to install the Bare Bones or the Development tools</strong></p>
+</li>
+<li>
 <p>Since we want our terminal to load the ROS source everytime it start, add the <code>source</code> command to <code>.bashrc</code>.</p>
-<p>Use <code>vi</code>, <code>vim</code> or any editor to open <code>~/.bashrc</code> then add the following code at the end.</p>
+<p>Use <code>vi</code>, <code>vim</code> or any editor to open <code>~/.bashrc</code> in your user's home directory then add the following code at the end.</p>
 <pre><code>source /opt/ros/humble/setup.bash
 </code></pre>
+</li>
+<li>
 <p>After installation and setting up <code>.bashrc</code>, ensure you successfully tested the C++ talker and Python listener per the instruction by opening a NEW terminal.</p>
+</li>
+</ol>
 <h3 id="turtlesim-test">Turtlesim Test</h3>
 <p>Turtlesim is a lightweight simulator for learning ROS 2. It illustrates what ROS 2 does at the most basic level to give you an idea of what you will do with a real robot or a robot simulation later on.</p>
 <p>The ros2 tool is how the user manages, introspects, and interacts with a ROS system. It supports multiple commands that target different aspects of the system and its operation. One might use it to start a node, set a parameter, listen to a topic, and many more. The ros2 tool is part of the core ROS 2 installation.</p>
-<p>rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt can be done on the command line, but rqt provides a more user-friendly way to manipulate ROS 2 elements.</p>
+<ol>
+<li>
 <p>Check that the turtlesim package is installed.</p>
 <pre><code>ros2 pkg executables turtlesim
 </code></pre>
@@ -154,7 +163,9 @@ turtlesim mimic
 turtlesim turtle_teleop_key
 turtlesim turtlesim_node
 </code></pre>
-<p>To start turtlesim, enter the following command in your terminal.</p>
+</li>
+<li>
+<p>Start turtlesim by entering the following command in your terminal.</p>
 <pre><code>ros2 run turtlesim turtlesim_node
 </code></pre>
 <p>The simulator window should appear, with a random turtle in the center.</p>
@@ -164,6 +175,24 @@ turtlesim turtlesim_node
 <pre><code>[INFO] [1725638823.233052860] [turtlesim]: Starting turtlesim with node name /turtlesim
 [INFO] [1725638823.245832389] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
 </code></pre>
+</li>
+<li>
+<p>Open a new terminal to run a new node to control the turtle in the first node. If you didn't add the <code>source</code> code in <code>.bashrc</code>, you'll need to source ROS 2 again.</p>
+<pre><code>ros2 run turtlesim turtle_teleop_key
+</code></pre>
+<p>At this point you should have three windows open: a terminal running <code>turtlesim_node</code>, a terminal running <code>turtle_teleop_key</code> and the "turtlesim window". Arrange these windows so that you can see the turtlesim window, but also have the terminal running <code>turtle_teleop_key</code> active so that you can control the turtle in turtlesim.</p>
+</li>
+<li>
+<p>Use the arrow keys on your keyboard to control the turtle. It will move around the screen, using its attached “pen” to draw the path it followed so far.</p>
+</li>
+</ol>
+<h3 id="use-rqt">Use rqt</h3>
+<p>rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt can be done on the command line, but rqt provides a more user-friendly way to manipulate ROS 2 elements.</p>
+<ol>
+<li>Open a new terminal and run rqt.<pre><code>rqt
+</code></pre>
+</li>
+</ol>
 <p>Contiune finishing the ROS2 turtlesim tutorial from Step 3 here:
 <a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html</a></p>
 <h2 id="lab-question">Lab Question</h2>
