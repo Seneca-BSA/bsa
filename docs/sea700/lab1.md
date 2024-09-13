@@ -1,4 +1,4 @@
-# Lab 1 : Setup
+# Lab 1 : Intro to ROS and TurtleSim
 
 <font size="5">
 Seneca Polytechnic</br>
@@ -63,7 +63,7 @@ We can then visualize the communication and interaction between different softwa
 
 ***Figure 1.2** Example computation graph*
 
-- Nodes are represented by ovals (ie. `/usb_cam` or `/ar_track_alvar`)).
+- Nodes are represented by ovals (ie. `/usb_cam` or `/ar_track_alvar`).
 - Topics are represented by rectangles (ie. `/usb_cam/camera_info` and `/usb_cam/image_raw`).
 - The flow of information to and from topics and represented by arrows. In the above example, `/usb_cam publishes`
 to the topics `/usb_cam/camera_info` and `/usb_cam/image_raw`, which are subscribed to by `/ar_track_alvar`.
@@ -75,17 +75,15 @@ The lab procedures assume a Ubuntu Jammy 22.04 enviornment. If you are using Win
 
 ### ROS Installation
 
-Follow the [ROS 2 Documentation Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) instruction to install the ROS desktop package into your system. **You do NOT need to install the Bare Bones or the Development tools**
+1. Follow the [ROS 2 Documentation Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) instruction to install the ROS desktop package into your system. **You do NOT need to install the Bare Bones or the Development tools**
 
-Since we want our terminal to load the ROS source everytime it start, add the `source` command to `.bashrc`.
+1. Since we want our terminal to load the ROS source everytime it start, add the `source` command to `.bashrc`.
 
-Use `vi`, `vim` or any editor to open `~/.bashrc` then add the following code at the end.
+    Use `vi`, `vim` or any editor to open `~/.bashrc` in your user's home directory then add the following code at the end.
 
-```
-source /opt/ros/humble/setup.bash
-```
-
-After installation and setting up `.bashrc`, ensure you successfully tested the C++ talker and Python listener per the instruction by opening a NEW terminal.
+        source /opt/ros/humble/setup.bash
+        
+1. After installation and setting up `.bashrc`, ensure you successfully tested the C++ talker and Python listener per the instruction by opening a NEW terminal.
 
 ### Turtlesim Test
 
@@ -93,44 +91,97 @@ Turtlesim is a lightweight simulator for learning ROS 2. It illustrates what ROS
 
 The ros2 tool is how the user manages, introspects, and interacts with a ROS system. It supports multiple commands that target different aspects of the system and its operation. One might use it to start a node, set a parameter, listen to a topic, and many more. The ros2 tool is part of the core ROS 2 installation.
 
+1. Check that the turtlesim package is installed.
+
+        ros2 pkg executables turtlesim
+
+    The above command should return a list of turtlesim’s executables.
+    
+        turtlesim draw_square
+        turtlesim mimic
+        turtlesim turtle_teleop_key
+        turtlesim turtlesim_node
+
+1. Start turtlesim by entering the following command in your terminal.
+
+        ros2 run turtlesim turtlesim_node
+
+    The simulator window should appear, with a random turtle in the center.
+
+    ![Figure 1.3 TurtleSim](lab1-turtlesim.png)
+
+    ***Figure 1.3** TurtleSim*
+
+    In the terminal, under the command, you will see messages from the node:
+
+        [INFO] [1725638823.233052860] [turtlesim]: Starting turtlesim with node name /turtlesim
+        [INFO] [1725638823.245832389] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+
+1. Open a new terminal to run a new node to control the turtle in the first node. If you didn't add the `source` code in `.bashrc`, you'll need to source ROS 2 again.
+
+        ros2 run turtlesim turtle_teleop_key
+
+    At this point you should have three windows open: a terminal running `turtlesim_node`, a terminal running `turtle_teleop_key` and the "turtlesim window". Arrange these windows so that you can see the turtlesim window, but also have the terminal running `turtle_teleop_key` active so that you can control the turtle in turtlesim.
+
+1. Use the arrow keys on your keyboard to control the turtle. It will move around the screen, using its attached “pen” to draw the path it followed so far.
+
+### Use rqt
+
 rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt can be done on the command line, but rqt provides a more user-friendly way to manipulate ROS 2 elements.
 
-Check that the turtlesim package is installed.
+1. Open a new terminal and run rqt.
 
-```
-ros2 pkg executables turtlesim
-```
+        rqt
 
-The above command should return a list of turtlesim’s executables.
+1. When running rqt for the first time, the window will be blank. No worries; just select **Plugins > Services > Service Caller** from the menu bar at the top.
+
+    ![Figure 1.4 rqt](lab1-rqt.png)
+
+    ***Figure 1.4** rqt*
+
+1. Use the refresh button to the left of the Service dropdown list to ensure all the services of your turtlesim node are available.
+
+1. Click on the Service dropdown list to see turtlesim’s services, and select the `/spawn` service to spawn another turtle.
+
+    Give the new turtle a unique name, like `turtle2`, by double-clicking between the empty single quotes in the **Expression** column. You can see that this expression corresponds to the value of **name** and is of type **string**.
+
+    Next enter some valid coordinates at which to spawn the new turtle, like x = `1.0` and y = `1.0`.
+
+    ![Figure 1.5 rqt spawn](lab1-rqt-spawn.png)
+
+    ***Figure 1.5** rqt spawn*
+
+    If you try to spawn a new turtle with the same name as an existing turtle, you will get an error message in the terminal running `turtlesim_node`.
     
-```
-turtlesim draw_square
-turtlesim mimic
-turtlesim turtle_teleop_key
-turtlesim turtlesim_node
-```
+1. Call the `spawn` service by clicking the Call button on the upper right side of the rqt window. You should see a new turtle (with a random design) spawn at the coordinates you input for x and y.
 
-To start turtlesim, enter the following command in your terminal.
+1. Refresh the service list in rqt and you will also see that now there are services related to the new turtle, `/turtle2/...`, in addition to `/turtle1/...`.
 
-```
-ros2 run turtlesim turtlesim_node
-```
+1. Next, we'll give `turtle1` an unique pen using the `/set_pen` service and have turtle1 draw with a distinct red line by changing the value of **r** to `255`, and the value of **width** to `5`. Don’t forget to call the service after updating the values.
 
-The simulator window should appear, with a random turtle in the center.
+    ![Figure 1.6 rqt set_pen](lab1-rqt-set-pen.png)
 
-![Figure 1.3 TurtleSim](lab1-turtlesim.png)
+    ***Figure 1.6** rqt set_pen*
 
-***Figure 1.3** TurtleSim*
+1. Return to the terminal where `turtle_teleop_key` is running and press the arrow keys, you will see `turtle1`’s pen has changed.
 
-In the terminal, under the command, you will see messages from the node:
+    ![Figure 1.7 TurtleSim Turtles](lab1-turtlesim-2.png)
 
-```
-[INFO] [1725638823.233052860] [turtlesim]: Starting turtlesim with node name /turtlesim
-[INFO] [1725638823.245832389] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
-```
+    ***Figure 1.7** TurtleSim Turtles*
 
-Contiune finishing the ROS2 turtlesim tutorial from Step 3 here:
-[https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html)
+### Remapping `turtle_teleop_key`
+
+1. To control `turtle2`, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls turtle1. The way to change this behavior is by remapping the `cmd_vel` topic.
+
+    In a new terminal, source ROS 2, and run:
+
+        ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+
+    Now, you can move `turtle2` when this terminal is active, and `turtle1` when the other terminal running `turtle_teleop_key` is active.
+
+    ![Figure 1.8 TurtleSim Turtles Moving](lab1-turtlesim-3.png)
+
+    ***Figure 1.8** TurtleSim Turtles*
 
 ## Lab Question
 
@@ -141,4 +192,4 @@ Once you've completed all the above steps, ask the lab professor or instructor o
 ## Reference
 
 - [ROS 2 Documentation: Humble](https://docs.ros.org/en/humble/index.html)
-- EECS 206A Labs
+- EECS 106A Labs
