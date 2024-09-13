@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 1 : Setup - BSA Lab Manuals</title>
+    <title>Lab 1 : Intro to ROS and TurtleSim - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 1 : Setup";
+        var mkdocs_page_name = "Lab 1 : Intro to ROS and TurtleSim";
         var mkdocs_page_input_path = "sea700/lab1.md";
         var mkdocs_page_url = null;
       </script>
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 1 : Setup</li>
+      <li class="breadcrumb-item active">Lab 1 : Intro to ROS and TurtleSim</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,7 +74,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-1-setup">Lab 1 : Setup</h1>
+                <h1 id="lab-1-intro-to-ros-and-turtlesim">Lab 1 : Intro to ROS and TurtleSim</h1>
 <p><font size="5">
 Seneca Polytechnic</br>
 SEA700 Robotics for Software Engineers
@@ -189,12 +189,56 @@ turtlesim turtlesim_node
 <h3 id="use-rqt">Use rqt</h3>
 <p>rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt can be done on the command line, but rqt provides a more user-friendly way to manipulate ROS 2 elements.</p>
 <ol>
-<li>Open a new terminal and run rqt.<pre><code>rqt
+<li>
+<p>Open a new terminal and run rqt.</p>
+<pre><code>rqt
 </code></pre>
 </li>
+<li>
+<p>When running rqt for the first time, the window will be blank. No worries; just select <strong>Plugins &gt; Services &gt; Service Caller</strong> from the menu bar at the top.</p>
+<p><img alt="Figure 1.4 rqt" src="../lab1-rqt.png" /></p>
+<p><em><strong>Figure 1.4</strong> rqt</em></p>
+</li>
+<li>
+<p>Use the refresh button to the left of the Service dropdown list to ensure all the services of your turtlesim node are available.</p>
+</li>
+<li>
+<p>Click on the Service dropdown list to see turtlesim’s services, and select the <code>/spawn</code> service to spawn another turtle.</p>
+<p>Give the new turtle a unique name, like <code>turtle2</code>, by double-clicking between the empty single quotes in the <strong>Expression</strong> column. You can see that this expression corresponds to the value of <strong>name</strong> and is of type <strong>string</strong>.</p>
+<p>Next enter some valid coordinates at which to spawn the new turtle, like x = <code>1.0</code> and y = <code>1.0</code>.</p>
+<p><img alt="Figure 1.5 rqt spawn" src="../lab1-rqt-spawn.png" /></p>
+<p><em><strong>Figure 1.5</strong> rqt spawn</em></p>
+<p>If you try to spawn a new turtle with the same name as an existing turtle, you will get an error message in the terminal running <code>turtlesim_node</code>.</p>
+</li>
+<li>
+<p>Call the <code>spawn</code> service by clicking the Call button on the upper right side of the rqt window. You should see a new turtle (with a random design) spawn at the coordinates you input for x and y.</p>
+</li>
+<li>
+<p>Refresh the service list in rqt and you will also see that now there are services related to the new turtle, <code>/turtle2/...</code>, in addition to <code>/turtle1/...</code>.</p>
+</li>
+<li>
+<p>Next, we'll give <code>turtle1</code> an unique pen using the <code>/set_pen</code> service and have turtle1 draw with a distinct red line by changing the value of <strong>r</strong> to <code>255</code>, and the value of <strong>width</strong> to <code>5</code>. Don’t forget to call the service after updating the values.</p>
+<p><img alt="Figure 1.6 rqt set_pen" src="../lab1-rqt-set-pen.png" /></p>
+<p><em><strong>Figure 1.6</strong> rqt set_pen</em></p>
+</li>
+<li>
+<p>Return to the terminal where <code>turtle_teleop_key</code> is running and press the arrow keys, you will see <code>turtle1</code>’s pen has changed.</p>
+<p><img alt="Figure 1.7 TurtleSim Turtles" src="../lab1-turtlesim-2.png" /></p>
+<p><em><strong>Figure 1.7</strong> TurtleSim Turtles</em></p>
+</li>
 </ol>
-<p>Contiune finishing the ROS2 turtlesim tutorial from Step 3 here:
-<a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html">https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Introducing-Turtlesim/Introducing-Turtlesim.html</a></p>
+<h3 id="remapping-turtle_teleop_key">Remapping <code>turtle_teleop_key</code></h3>
+<ol>
+<li>
+<p>To control <code>turtle2</code>, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls turtle1. The way to change this behavior is by remapping the <code>cmd_vel</code> topic.</p>
+<p>In a new terminal, source ROS 2, and run:</p>
+<pre><code>ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+</code></pre>
+<p>Now, you can move <code>turtle2</code> when this terminal is active, and <code>turtle1</code> when the other terminal running <code>turtle_teleop_key</code> is active.</p>
+<p><img alt="Figure 1.8 TurtleSim Turtles Moving" src="../lab1-turtlesim-3.png" /></p>
+<p><em><strong>Figure 1.8</strong> TurtleSim Turtles</em></p>
+</li>
+</ol>
 <h2 id="lab-question">Lab Question</h2>
 <ol>
 <li>Create a third turtle that you can control in turtlesim with green (g = 255) as the pen line colour.</li>
@@ -203,7 +247,7 @@ turtlesim turtlesim_node
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://docs.ros.org/en/humble/index.html">ROS 2 Documentation: Humble</a></li>
-<li>EECS 206A Labs</li>
+<li>EECS 106A Labs</li>
 </ul>
               
             </div>

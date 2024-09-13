@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab2 - BSA Lab Manuals</title>
+    <title>Lab 2 : ROS Nodes, Topics, Services, Parameters, Actions - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab2";
+        var mkdocs_page_name = "Lab 2 : ROS Nodes, Topics, Services, Parameters, Actions";
         var mkdocs_page_input_path = "sea700/lab2.md";
         var mkdocs_page_url = null;
       </script>
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab2</li>
+      <li class="breadcrumb-item active">Lab 2 : ROS Nodes, Topics, Services, Parameters, Actions</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,59 +74,133 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h3 id="creating-ros-workspaces-and-packages">Creating ROS Workspaces and Packages</h3>
-<p>Next, we'll also need to install <code>colcon</code> so we can create ROS package.</p>
-<pre><code>pip install -U colcon-common-extensions
+                <h1 id="lab-2-ros-nodes-topics-services-parameters-actions">Lab 2 : ROS Nodes, Topics, Services, Parameters, Actions</h1>
+<p><font size="5">
+Seneca Polytechnic</br>
+SEA700 Robotics for Software Engineers
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>A overview of some computation graph concepts:
+- <strong>Node:</strong> an executable representing an individual ROS software process
+- <strong>Topic:</strong> nodes can publish messages to a topic and/or subscribe to a topic to receive messages
+- <strong>Message:</strong> a ROS datatype used to exchange data between nodes</p>
+<h3 id="nodes-in-ros">Nodes in ROS</h3>
+<p>Each node in ROS should be responsible for a single, modular purpose, ie. controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.</p>
+<p><img alt="Figure 2.1 ROS Nodes Graph" src="../lab2-nodes-graph.gif" /></p>
+<p><em><strong>Figure 2.1</strong> ROS Nodes Graph</em></p>
+<h3 id="topics-in-ros">Topics in ROS</h3>
+<p>ROS 2 breaks complex systems down into many modular nodes. Topics are a vital element of the ROS graph that act as a bus for nodes to exchange messages.</p>
+<p><img alt="Figure 2.2 ROS Topic Graph" src="../lab2-topics-graph-1.gif" /></p>
+<p><em><strong>Figure 2.2</strong> ROS Topic Graph</em></p>
+<p>A node may publish data to any number of topics and simultaneously have subscriptions to any number of topics.</p>
+<p><img alt="Figure 2.3 ROS Topic Graph (One-to-Many)" src="../lab2-topics-graph-2.gif" /></p>
+<p><em><strong>Figure 2.3</strong> ROS Topic Graph (One-to-Many)</em></p>
+<p>Topics are one of the main ways in which data is moved between nodes and therefore between different parts of the system.</p>
+<h2 id="procedures">Procedures</h2>
+<h3 id="understand-ros-nodes">Understand ROS Nodes</h3>
+<ol>
+<li>
+<p>Open a terminal to run turtlesim. The command <code>ros2 run</code> launches an executable from a package.</p>
+<pre><code>ros2 run &lt;package_name&gt; &lt;executable_name&gt;
 </code></pre>
-<p>First, we first have to create a ROS workspace – a directory used to organize and manage ROS packages. Since all ROS code must be contained within a package in a workspace, this is something you’ll do each time you start a new project.</p>
-<h4 id="creating-a-workspace">Creating a Workspace</h4>
-<ol>
-<li>
-<p>First, create a directory called <code>ros2_ws</code> and another directory called <code>lab1</code> within it.</p>
-<p><pre>
-    mkdir -p ~/ros2_ws/lab1
-    cd ~/ros2_ws/lab1
-</pre></p>
+<p>We need the package name to be <code>turtlesim</code> and the executable name to be <code>turtlesim_node</code>.</p>
+<pre><code>ros2 run turtlesim turtlesim_node
+</code></pre>
 </li>
 <li>
-<p>Next, create a directory called <code>src</code> within <code>lab1</code>.</p>
-<p><pre>
-    mkdir src
-    cd src
-</pre></p>
+<p>To find the node names, the <code>ros2 node list</code> can be used. <code>ros2 node list</code> will show you the names of all running nodes. This is especially useful when you want to interact with a node, or when you have a system running many nodes and need to keep track of them.</p>
+<p>Open a new terminal while <code>/turtlesim</code> is still running and enter the following command:</p>
+<pre><code>ros2 node list
+</code></pre>
+<p>The terminal will return the node name:</p>
+<pre><code>/turtlesim
+</code></pre>
+</li>
+<li>
+<p>Open another new terminal and start the teleop node with the command:</p>
+<pre><code>ros2 run turtlesim turtle_teleop_key
+</code></pre>
+</li>
+<li>
+<p>Return to the terminal where you ran <code>ros2 node list</code> and run it again. You will now see the names of two active nodes:</p>
+<pre><code>/turtlesim
+/teleop_turtle
+</code></pre>
+</li>
+<li>
+<p><a href="https://design.ros2.org/articles/ros_command_line_arguments.html#name-remapping-rules">Remapping</a> allows you to reassign default node properties, like node name, topic names, service names, etc., to custom values. Let’s open another <code>/turtlesim</code> node and reassign the name to <code>/my_turtle</code>. In a new terminal, run the following command:</p>
+<pre><code>ros2 run turtlesim turtlesim_node --ros-args --remap __node:=my_turtle
+</code></pre>
+</li>
+<li>
+<p>Return to the terminal where you ran <code>ros2 node list</code>, and run it again, you will see three node names:</p>
+<pre><code>/my_turtle
+/turtlesim
+/teleop_turtle
+</code></pre>
+</li>
+<li>
+<p>To access more information about a node, use the following command:</p>
+<pre><code>ros2 node info &lt;node_name&gt;
+</code></pre>
+<p>To examine your latest node, <code>my_turtle</code>, run the following command:</p>
+<pre><code>ros2 node info /my_turtle
+</code></pre>
+<p><code>ros2 node info</code> returns a list of subscribers, publishers, services, and actions. i.e. the ROS graph connections that interact with that node. The output should look like this:</p>
+<pre><code>/my_turtle
+  Subscribers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /turtle1/cmd_vel: geometry_msgs/msg/Twist
+  Publishers:
+    /parameter_events: rcl_interfaces/msg/ParameterEvent
+    /rosout: rcl_interfaces/msg/Log
+    /turtle1/color_sensor: turtlesim/msg/Color
+    /turtle1/pose: turtlesim/msg/Pose
+  Service Servers:
+    /clear: std_srvs/srv/Empty
+    /kill: turtlesim/srv/Kill
+    /my_turtle/describe_parameters: rcl_interfaces/srv/DescribeParameters
+    /my_turtle/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+    /my_turtle/get_parameters: rcl_interfaces/srv/GetParameters
+    /my_turtle/list_parameters: rcl_interfaces/srv/ListParameters
+    /my_turtle/set_parameters: rcl_interfaces/srv/SetParameters
+    /my_turtle/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+    /reset: std_srvs/srv/Empty
+    /spawn: turtlesim/srv/Spawn
+    /turtle1/set_pen: turtlesim/srv/SetPen
+    /turtle1/teleport_absolute: turtlesim/srv/TeleportAbsolute
+    /turtle1/teleport_relative: turtlesim/srv/TeleportRelative
+  Service Clients:
+
+  Action Servers:
+    /turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+  Action Clients:
+</code></pre>
+</li>
+<li>
+<p>Run the same comand on the <code>/teleop_turtle</code> node and see the difference.</p>
 </li>
 </ol>
-<h4 id="creating-a-package">Creating a Package</h4>
+<h3 id="complete-the-following-tutorials">Complete the following tutorials</h3>
 <ol>
-<li>
-<p>From the <code>src</code> directory, let's create a package called <code>foo</code>.</p>
-<p><pre>
-    ros2 pkg create --build-type ament_cmake --license Apache-2.0 foo
-</pre></p>
-</li>
-<li>
-<p>Open your newly created package <code>foo</code> and examine the <code>package.xml</code> file. The only dependency in it should be <code>&lt;buildtool_depend&gt;ament_cmake&lt;/buildtool_depend&gt;</code>.</p>
-</li>
-<li>
-<p>Let's create another package and add some dependencies to it.</p>
-<p><code>ros2 pkg create --build-type ament_cmake --license Apache-2.0 bar --dependencies rclpy rclcpp std_msgs geometry_msgs turtlesim</code></p>
-</li>
-<li>
-<p>Open your newly created package <code>bar</code> and examine the <code>package.xml</code> file. There should be additional dependency now.</p>
-</li>
+<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
+<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
+<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
+<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html">Understanding actions</a></li>
+<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.html">Launching nodes</a></li>
+<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html">Understanding actions</a></li>
+<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">Recording and playing back data</a></li>
 </ol>
-<h4 id="understanding-ros-nodes">Understanding ROS nodes</h4>
+<h2 id="lab-question">Lab Question</h2>
 <ol>
-<li>Once you’ve added all your resources to the new package, the last step before you can use the package with ROS is to build it. Run the <code>colcon build</code> command from the <code>lab1</code> directory. If everything worked, you should get a success notification.</li>
+<li>Create a recording of a turtle performing a "Figure 8" path and play it back.</li>
 </ol>
-<h3 id="creating-ros-workspaces-and-packages_1">Creating ROS Workspaces and Packages</h3>
-<p>A quick review of some computation graph concepts:</p>
+<p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
+<h2 id="reference">Reference</h2>
 <ul>
-<li>Node: an executable representing an individual ROS software process</li>
-<li>Message: a ROS datatype used to exchange data between nodes</li>
-<li>Topic: nodes can publish messages to a topic and/or subscribe to a topic to receive messages</li>
+<li><a href="https://docs.ros.org/en/humble/index.html">ROS 2 Documentation: Humble</a></li>
+<li>EECS 106A Labs</li>
 </ul>
-<p>We’re now ready to test out some actual software running on ROS.</p>
               
             </div>
           </div><footer>
