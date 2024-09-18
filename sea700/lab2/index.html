@@ -97,7 +97,7 @@ SEA700 Robotics for Software Engineers
 <p><em><strong>Figure 2.3</strong> ROS Topic Graph (One-to-Many)</em></p>
 <p>Topics are one of the main ways in which data is moved between nodes and therefore between different parts of the system.</p>
 <h2 id="procedures">Procedures</h2>
-<h3 id="understand-ros-nodes">Understand ROS Nodes</h3>
+<h3 id="understanding-ros-nodes">Understanding ROS Nodes</h3>
 <ol>
 <li>
 <p>Open a terminal to run turtlesim. The command <code>ros2 run</code> launches an executable from a package.</p>
@@ -181,6 +181,17 @@ SEA700 Robotics for Software Engineers
 <p>Run the same comand on the <code>/teleop_turtle</code> node and see the difference.</p>
 </li>
 </ol>
+<h3 id="understanding-ros-topics">Understanding ROS Topics</h3>
+<ol>
+<li>
+<p>Close the <code>/my_turtle</code> terminal so only the <code>/turtlesim</code> and <code>/teleop_turtle</code> are open.</p>
+</li>
+<li>
+<p>We will use <code>rqt_graph</code> to visualize the changing nodes and topics, as well as the connections between them. Open a new terminal and enter the command:</p>
+<pre><code>rqt_graph
+</code></pre>
+</li>
+</ol>
 <h3 id="complete-the-following-tutorials">Complete the following tutorials</h3>
 <ol>
 <li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
@@ -188,7 +199,6 @@ SEA700 Robotics for Software Engineers
 <li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
 <li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html">Understanding actions</a></li>
 <li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.html">Launching nodes</a></li>
-<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html">Understanding actions</a></li>
 <li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">Recording and playing back data</a></li>
 </ol>
 <h2 id="lab-question">Lab Question</h2>
