@@ -196,6 +196,8 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 
     ***Figure 1.21** Disassembled Code*
 
+1. Another way to see the assembly code is to view it live during execution. To do that, at the top menu, go to "Windows > Show View > Other" then type in Disassembly.
+
 ### View the Registers Value and Memory Data during Debug
 
 This step can only be done with a microcontroller board running during debugging.

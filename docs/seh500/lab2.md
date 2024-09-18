@@ -135,7 +135,7 @@ Documentation of the Cortex-M4 instruction set can be found here:
     
     ***Figure 2.7** Register and Memory View*
 
-1. Step through the code and pay attention to the changes in the registers and memory. Step until you reach the stop label. Your code should not go any further as it will loop between the nop and b instructions. You can also see the program counter jumping back and forward. Answer question 1 of the post-lab.
+1. Step through (using Step Into or Step Over) the code and pay attention to the changes in the registers (register view) and memory (memory monitor). Step until you reach the stop label. Your code should not go any further as it will loop between the nop and b instructions. You can also see the program counter jumping back and forward.
 
 1. Next, re-run the code but this time, expand the program status register and notice the flags that change especially after an arithmetics instruction.
 
@@ -161,7 +161,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
     
     Paste your assembly code into Blackboard along with a screenshot of the memory view showing the content of the four memory addresses. 
 
-1. Cmomplete the code as necessary (ie. add all the necessary directives) and run it on your processor board. Comment out any line(s) that are invalid with "@" and explain why in the comment. Answer each question (indicated with ?) directly in the commment of your code and paste your code into Blackboard for submission.
+1. Complete the code as necessary (ie. add all the necessary directives) and run it on your processor board. Comment out any line(s) that are invalid with "@" and explain why in the comment. Answer each question (indicated with ?) directly in the commment of your code and paste your code into Blackboard for submission.
 
         mov R2, #          @ use the first 2 digits of your student ID
         mov R3, #          @ use the last 2 digits of your student ID
