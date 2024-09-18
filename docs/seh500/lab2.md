@@ -59,35 +59,26 @@ These three registers can be accessed as one combined register, referred to as x
 
 The main 4 status bits of interest are:
 
-- **N**: Negative flag
-- **Z**: Zero flag
+- **N**: Negative flag - set to 1 when the result of an operation is negative
+- **Z**: Zero flag - set to 1 when the result of an operation is zero
 - **C**: Carry (or NOT borrow) flag
-- **V**: Overflow flag
+    - set to 1 if the addition produces a carry
+    - set to 0 if the subtraction produces a borrow
+- **V**: Overflow flag - set to 1 if the result of an operation is outside the range of a signed 32-bit integer
 
 Reference: Yiu, Ch 4
+
+## Preparation
+
+Have a look at the following instruction set and ensure you understand how to lookup an instruction.
 
 ### Assembly Instruction
 
 Documentation of the Cortex-M4 instruction set can be found here:
 
 - [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
-
-## Preparation
-
-> ### Lab Preparation Question
->
-> Answer the following questions on Blackboard once the pre-load quiz becomes available 24 hours before the lab session.
-> 
-> 1. Referring to the Cortex-M4 technical manual, how many "Add" instructions are there and what are they?
-> 1. Write the instruction that loads the address 0x20000010 into register R0.
-> 1. What is the difference between mov, movw, and movt?
-> 1. Refer to the Cortex-M4 manual, define the following four flags of the Program Status Register and how they will be triggered.
-    >
-    >   - N: Negative flag
-    >   - Z: Zero flag
-    >   - C: Carry (or NOT borrow) flag
-    >   - V: Overflow flag
 
 ## Procedures
 
@@ -112,24 +103,24 @@ Documentation of the Cortex-M4 instruction set can be found here:
 
 1. Replace the code within the file with the following:
 
-    <hr/><pre>
-    .syntax unified             @ unified syntax used
-    .cpu cortex-m4              @ cpu is cortex-m4
-    .thumb                      @ use thumb encoding
+        @ add directives
+        .syntax unified             @ unified syntax used
+        .cpu cortex-m4              @ cpu is cortex-m4
+        .thumb                      @ use thumb encoding
 
-    .global main                @ declare main as a global variable
-    .type main, %function       @ set main to function type
+        .text                       @ put code into the text section of memory
+        .global main                @ declare main as a global variable
+        .type main, %function       @ set main to function type
 
-    main:                           @ start of main code with an label
-        ldr     r0, =0x20000000     @ load 0x20000000 to R0
-        mov     r1, #8              @ move #8 to R1
-        add     r1, r1, #4          @ add #4 to R1 and write to R1
-        str     r1, [r0]            @ store value of R1 to address of R0
+        main:                           @ start of main code with an label
+            ldr     r0, =0x20000000     @ load 0x20000000 to R0
+            mov     r1, #8              @ move #8 to R1
+            add     r1, r1, #4          @ add #4 to R1 and write to R1
+            str     r1, [r0]            @ store value of R1 to address of R0
 
-    stop:                           @ define a new label called stop
-        nop                         @ do nothing
-        b       stop                @ jump back label stop to form a loop
-    </pre><hr/>
+        stop:                           @ define a new label called stop
+            nop                         @ do nothing
+            b       stop                @ jump back label stop to form a loop
 
     Your code should now look like this.
 
@@ -137,7 +128,7 @@ Documentation of the Cortex-M4 instruction set can be found here:
 
     ***Figure 2.6** Assembly Code*
 
-1. Build and run the code using the debug option. Open both the register view and the memory view to address 0x20000000.
+1. Build and run the code using the debug option. Open both the register view and the memory view and set to address 0x20000000.
 
     ![Figure 2.7a Register and Memory View](lab2-registers.PNG)
     ![Figure 2.7b Register and Memory View](lab2-memory.PNG)
@@ -152,71 +143,69 @@ Documentation of the Cortex-M4 instruction set can be found here:
     
     ***Figure 2.8** Program Status Register Flags*
 
-1. Now, to test your skills, write an assembly code that performs Exercise #2 from the module 3 lecture: Perform the calculation: A + B – C = D.
+## Post-Lab Questions
+
+Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard.
+
+1. Referring to the Cortex-M4 technical manual, how many "Add" instructions are there and what are they?
+
+1. Write the instruction that loads the address 0x20000010 into register R0.
+
+1. Write a functional assembly code that performs Exercise #2 from the module 3 lecture: Perform the calculation: A + B – C = D.
     - Use 0x20000010 for variable A = first 2 digits of your student #
     - Use 0x20000014 for variable B = next 2 digits of your student #
     - Use 0x20000018 for variable C = next 2 digits of your student #
     - Use 0x2000001C for variable D = 0
 
-    Is your answer correct? Copy your code into the post-lab assignment on Blackboard.
+    We will not be using variables at this point. Run the code and verify that your answer is correct.
+    
+    Paste your assembly code into Blackboard along with a screenshot of the memory view showing the content of the four memory addresses. 
 
-1. Complete Question 3 of the post-lab.
+1. Cmomplete the code as necessary (ie. add all the necessary directives) and run it on your processor board. Comment out any line(s) that are invalid with "@" and explain why in the comment. Answer each question (indicated with ?) directly in the commment of your code and paste your code into Blackboard for submission.
 
-## Post-Lab Questions
+        mov R2, #          @ use the first 2 digits of your student ID
+        mov R3, #          @ use the last 2 digits of your student ID
 
-Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
+        @Other examples to move immediate values
+        mov     R5, #0x1234         @ R5 = ?
+        movt    R5, #0x8765         @ R5 = ?
+        movt    R5, #0x5678         @ R5 = ?
+        movw    R6, #0x12345678     @ R6 = ?
+        movw    R5, #0x5678         @ R6 = ?
 
-1. In step 6 of the first program example, what value got saved to which address at the end of the str instruction?
+        ldr     R7, =0x87654321     @ R7 = ?
 
-1. Paste your assembly code in step 8 here.
-
-1. Fill in the blank as necessary and run the following code. Comment out with "@" any line that becomes invalid and explain why. Put your answer into your code and copy it into Blackboard for submission.
-
-<hr/><pre>
-    mov R2, #          @ use the first 2 digits of your student ID
-    mov R3, #           @ use the last 2 digits of your student ID
-
-    @Other examples to move immediate values
-    mov     R5, #0x1234         @ R5 = ?
-    movt    R5, #0x8765         @ R5 = ?
-    movt    R5, #0x5678         @ R5 = ?
-    movw    R6, #0x12345678     @ R6 = ?
-    movw    R5, #0x5678         @ R6 = ?
-
-    ldr     R7, =0x87654321     @ R7 = ?
-
-    add     R1, R2, R3          @ R1 = ?
-    movt    R3, #0xFFFF         @ R3 = ?
-    adds    R1, R2, R3          @ R1 = ?
+        add     R1, R2, R3          @ R1 = ?
+        movt    R3, #0xFFFF         @ R3 = ?
+        adds    R1, R2, R3          @ R1 = ?
                     @ What are the PSR (N, Z, C, V) flags now?
 
-    subs    R1, R2, R3          @ R1 = ?
+        subs    R1, R2, R3          @ R1 = ?
                     @ How are the PSR flags affected?
 
-    mov     R4, #0xFFFFFFFF     @ R4 = ?
-    add     R1, R2, R4          @ R1 = ?
+        mov     R4, #0xFFFFFFFF     @ R4 = ?
+        add     R1, R2, R4          @ R1 = ?
                     @ How are the PSR flags affected?
 
-    adds    R1, R2, R4          @ R1 = ?
+        adds    R1, R2, R4          @ R1 = ?
                     @ What happened to the PSR flags now?
 
-    mov     R2, #0x00000002     @ R2 = ?
-    adds    R1, R2, R4          @ R1 = ?
+        mov     R2, #0x00000002     @ R2 = ?
+        adds    R1, R2, R4          @ R1 = ?
                     @ again, what happened to the PSR flags?
 
-    mov     R2, #0x00000001     @ R2 = ?
-    mov     R3, #0x00000002     @ R3 = ?
-    adds    R1, R2, R3          @ R1 = ?
+        mov     R2, #0x00000001     @ R2 = ?
+        mov     R3, #0x00000002     @ R3 = ?
+        adds    R1, R2, R3          @ R1 = ?
                     @ Add some small numbers again
                     @ and check the PSR flags again, what happened?
 
-    @ Add numbers that will create an overflow
-    mov     R2, #0x7FFFFFFF     @ R2 = ?
-    mov     R3, #0x7FFFFFFF     @ R3 = ?
+        @ Add numbers that will create an overflow
+        mov     R2, #0x7FFFFFFF     @ R2 = ?
+        mov     R3, #0x7FFFFFFF     @ R3 = ?
 
-    adds    R1, R2, R3          @ R1 = ?
+        adds    R1, R2, R3          @ R1 = ?
                     @ Check and see what happened to the PSR flags?
-</pre><hr/>
 
 ## Reference
 

@@ -38,7 +38,7 @@ Topics are one of the main ways in which data is moved between nodes and therefo
 
 ## Procedures
 
-### Understand ROS Nodes
+### Understanding ROS Nodes
 
 1. Open a terminal to run turtlesim. The command `ros2 run` launches an executable from a package.
 
@@ -118,6 +118,14 @@ Topics are one of the main ways in which data is moved between nodes and therefo
 
 1. Run the same comand on the `/teleop_turtle` node and see the difference.
 
+### Understanding ROS Topics
+
+1. Close the `/my_turtle` terminal so only the `/turtlesim` and `/teleop_turtle` are open.
+
+1. We will use `rqt_graph` to visualize the changing nodes and topics, as well as the connections between them. Open a new terminal and enter the command:
+
+        rqt_graph
+
 ### Complete the following tutorials
 
 1. [Understanding topics](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html)
@@ -125,7 +133,6 @@ Topics are one of the main ways in which data is moved between nodes and therefo
 1. [Understanding parameters](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html)
 1. [Understanding actions](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)
 1. [Launching nodes](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.html)
-1. [Understanding actions](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html)
 1. [Recording and playing back data](https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html)
 
 ## Lab Question
