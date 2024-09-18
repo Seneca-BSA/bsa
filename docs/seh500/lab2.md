@@ -143,7 +143,7 @@ Documentation of the Cortex-M4 instruction set can be found here:
     
     ***Figure 2.8** Program Status Register Flags*
 
-## Post-Lab Questions
+## Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard.
 

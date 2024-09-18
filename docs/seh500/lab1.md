@@ -204,7 +204,7 @@ This step can only be done with a microcontroller board running during debugging
 
 1. To view memory data, at the bottom right, select the "Memory" tab. Click the plus (+) symbol then type in the memory address you want to view. Usually, the memory area you want to view will be somewhere between 0x20000000 to 0x3FFFFFFF.
 
-## Post-Lab Questions
+## Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard.
 
