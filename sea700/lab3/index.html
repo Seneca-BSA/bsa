@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 3 : ROS Workspace, Package, Publisher and Subscriber - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 3 : ROS Workspace, Package, Publisher and Subscriber";
+        var mkdocs_page_input_path = "sea700/lab3.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SEA700 Robotics</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">BSA Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lab 3 : ROS Workspace, Package, Publisher and Subscriber</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-3-ros-workspace-package-publisher-and-subscriber">Lab 3 : ROS Workspace, Package, Publisher and Subscriber</h1>
+<p><font size="5">
+Seneca Polytechnic</br>
+SEA700 Robotics for Software Engineers
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<h3 id="ros-workspace">ROS Workspace</h3>
+<p>A workspace is a directory containing ROS 2 packages. Before using ROS 2, it’s necessary to source your ROS 2 installation workspace in the terminal you plan to work in. This makes ROS 2’s packages available for you to use in that terminal.</p>
+<p>You also have the option of sourcing an “overlay” - a secondary workspace where you can add new packages without interfering with the existing ROS 2 workspace that you’re extending, or “underlay”. Your underlay must contain the dependencies of all the packages in your overlay. Packages in your overlay will override packages in the underlay. It’s also possible to have several layers of underlays and overlays, with each successive overlay using the packages of its parent underlays.</p>
+<h3 id="ros-package">ROS Package</h3>
+<p>A package is an organizational unit for your ROS 2 code. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS 2 work and allow others to build and use it easily.</p>
+<p>Package creation in ROS 2 uses ament as its build system and colcon as its build tool. You can create a package using either CMake or Python, which are officially supported, though other build types do exist.</p>
+<p>ROS 2 Python and CMake packages each have their own minimum required contents:</p>
+<h4 id="cmake">CMake</h4>
+<ul>
+<li><code>CMakeLists.txt</code> file that describes how to build the code within the package</li>
+<li><code>include/&lt;package_name&gt;</code> directory containing the public headers for the package</li>
+<li><code>package.xml</code> file containing meta information about the package</li>
+<li><code>src</code> directory containing the source code for the package</li>
+</ul>
+<p>The simplest possible package may have a file structure that looks like:</p>
+<pre><code>my_package/
+    CMakeLists.txt
+    include/my_package/
+    package.xml
+    src/
+</code></pre>
+<h4 id="python">Python</h4>
+<ul>
+<li><code>package.xml</code> file containing meta information about the package</li>
+<li><code>resource/&lt;package_name&gt;</code> marker file for the package</li>
+<li><code>setup.cfg</code> is required when a package has executables, so <code>ros2</code> run can find them</li>
+<li><code>setup.py</code> containing instructions for how to install the package</li>
+<li><code>&lt;package_name&gt;</code> - a directory with the same name as your package, used by ROS 2 tools to find your package, contains <code>__init__.py</code></li>
+</ul>
+<p>The simplest possible package may have a file structure that looks like:</p>
+<pre><code>my_package/
+    package.xml
+    resource/my_package
+    setup.cfg
+    setup.py
+    my_package/
+</code></pre>
+<p>A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in one workspace (CMake, Python, etc.). You cannot have nested packages.</p>
+<p>Best practice is to have a <code>src</code> folder within your workspace, and to create your packages in there. This keeps the top level of the workspace “clean”.</p>
+<p>A trivial workspace might look like:</p>
+<pre><code>workspace_folder/
+    src/
+    cpp_package_1/
+        CMakeLists.txt
+        include/cpp_package_1/
+        package.xml
+        src/
+
+    py_package_1/
+        package.xml
+        resource/py_package_1
+        setup.cfg
+        setup.py
+        py_package_1/
+    ...
+    cpp_package_n/
+        CMakeLists.txt
+        include/cpp_package_n/
+        package.xml
+        src/
+</code></pre>
+<h2 id="procedures">Procedures</h2>
+<h3 id="install-colcon">Install Colcon</h3>
+<p><code>colcon</code> is an iteration on the ROS build tools <code>catkin_make</code>, <code>catkin_make_isolated</code>, <code>catkin_tools</code> and <code>ament_tools</code>. </p>
+<ol>
+<li>Run: <code>sudo apt install python3-colcon-common-extensions</code></li>
+</ol>
+<h3 id="create-a-workspace-directory">Create a Workspace directory</h3>
+<ol>
+<li>
+<p>Best practice is to create a new directory for every new workspace. The name doesn’t matter, but it is helpful to have it indicate the purpose of the workspace. Let’s choose the directory name <code>ros2_ws</code>, for “development workspace”. Open a new terminal and run:</p>
+<pre><code>mkdir -p ~/ros2_ws/src
+</code></pre>
+<p>Another best practice is to put any packages in your workspace into the <code>src</code> directory. The above code creates a <code>src</code> directory inside <code>ros2_ws</code>.</p>
+</li>
+</ol>
+<h3 id="create-a-c-package">Create a C++ Package</h3>
+<ol>
+<li>
+<p>Navigate into <code>ros2_ws/src</code>, and run the package creation command to create a simple C++ publisher and subscriber:</p>
+<pre><code>cd ~/ros2_ws/src
+
+ros2 pkg create --build-type ament_cmake --license Apache-2.0 cpp_pubsub
+</code></pre>
+<p>Your terminal will return a message verifying the creation of your package <code>cpp_pubsub</code> and all its necessary files and folders.</p>
+<h4 id="write-the-publisher-node">Write the publisher node</h4>
+</li>
+<li>
+<p>Navigate into <code>ros2_ws/src/cpp_pubsub/src</code>. This is the directory in any CMake package where the source files containing executables belong.</p>
+</li>
+<li>
+<p>Download the example talker code by entering the following command:</p>
+<pre><code>wget -O publisher_member_function.cpp https://raw.githubusercontent.com/ros2/examples/humble/rclcpp/topics/minimal_publisher/member_function.cpp
+</code></pre>
+</li>
+<li>
+<p>Now there will be a new file named <code>publisher_member_function.cpp</code>. Open the file using your preferred text editor. Alternatively, create a <code>.cpp</code> file with the following:</p>
+<pre><code>#include &lt;chrono&gt;
+#include &lt;functional&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+
+using namespace std::chrono_literals;
+
+/* This example creates a subclass of Node and uses std::bind() to register a
+* member function as a callback from the timer. */
+
+class MinimalPublisher : public rclcpp::Node
+{
+public:
+    MinimalPublisher()
+    : Node("minimal_publisher"), count_(0)
+    {
+        publisher_ = this-&gt;create_publisher&lt;std_msgs::msg::String&gt;("topic", 10);
+        timer_ = this-&gt;create_wall_timer(
+        500ms, std::bind(&amp;MinimalPublisher::timer_callback, this));
+    }
+
+private:
+    void timer_callback()
+    {
+        auto message = std_msgs::msg::String();
+        message.data = "Hello, world! " + std::to_string(count_++);
+        RCLCPP_INFO(this-&gt;get_logger(), "Publishing: '%s'", message.data.c_str());
+        publisher_-&gt;publish(message);
+    }
+    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Publisher&lt;std_msgs::msg::String&gt;::SharedPtr publisher_;
+    size_t count_;
+};
+
+int main(int argc, char * argv[])
+{
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared&lt;MinimalPublisher&gt;());
+    rclcpp::shutdown();
+    return 0;
+}
+</code></pre>
+<p>The top of the code includes the standard C++ headers you will be using. After the standard C++ headers is the <code>rclcpp/rclcpp.hpp</code> include which allows you to use the most common pieces of the ROS 2 system. Last is <code>std_msgs/msg/string.hpp</code>, which includes the built-in message type you will use to publish data.</p>
+<pre><code>#include &lt;chrono&gt;
+#include &lt;functional&gt;
+#include &lt;memory&gt;
+#include &lt;string&gt;
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+
+using namespace std::chrono_literals;
+</code></pre>
+<p>These lines represent the node’s dependencies. Recall that dependencies have to be added to <code>package.xml</code> and <code>CMakeLists.txt</code>, which you’ll do in the next section.</p>
+<p>The next line creates the node class <code>MinimalPublisher</code> by inheriting from <code>rclcpp::Node</code>. Every <code>this</code> in the code is referring to the node.</p>
+<pre><code>class MinimalPublisher : public rclcpp::Node
+</code></pre>
+<p>The public constructor names the node <code>minimal_publisher</code> and initializes <code>count_</code> to 0. Inside the constructor, the publisher is initialized with the <code>String</code> message type, the topic name <code>topic</code>, and the required queue size to limit messages in the event of a backup. Next, <code>timer_</code> is initialized, which causes the <code>timer_callback</code> function to be executed twice a second.</p>
+<pre><code>public:
+    MinimalPublisher()
+    : Node("minimal_publisher"), count_(0)
+    {
+        publisher_ = this-&gt;create_publisher&lt;std_msgs::msg::String&gt;("topic", 10);
+        timer_ = this-&gt;create_wall_timer(
+        500ms, std::bind(&amp;MinimalPublisher::timer_callback, this));
+    }
+</code></pre>
+<p>The <code>timer_callback</code> function is where the message data is set and the messages are actually published. The <code>RCLCPP_INFO</code> macro ensures every published message is printed to the console.</p>
+<pre><code>private:
+    void timer_callback()
+    {
+        auto message = std_msgs::msg::String();
+        message.data = "Hello, world! " + std::to_string(count_++);
+        RCLCPP_INFO(this-&gt;get_logger(), "Publishing: '%s'", message.data.c_str());
+        publisher_-&gt;publish(message);
+    }
+</code></pre>
+<p>Last is the declaration of the timer, publisher, and counter fields.</p>
+<pre><code>rclcpp::TimerBase::SharedPtr timer_;
+rclcpp::Publisher&lt;std_msgs::msg::String&gt;::SharedPtr publisher_;
+size_t count_;
+</code></pre>
+<p>Following the <code>MinimalPublisher</code> class is <code>main</code>, where the node actually executes. <code>rclcpp::init</code> initializes ROS 2, and <code>rclcpp::spin</code> starts processing data from the node, including callbacks from the timer.</p>
+<pre><code>int main(int argc, char * argv[])
+{
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared&lt;MinimalPublisher&gt;());
+    rclcpp::shutdown();
+    return 0;
+}
+</code></pre>
+<h4 id="add-dependencies">Add dependencies</h4>
+</li>
+<li>
+<p>Navigate one level back to the <code>ros2_ws/src/cpp_pubsub</code> directory, where the <code>CMakeLists.txt</code> and <code>package.xml</code> files have been created for you. Open <code>package.xml</code> with your text editor and make sure to fill in the <code>&lt;description&gt;</code>, <code>&lt;maintainer&gt;</code> and <code>&lt;license&gt;</code> tags:</p>
+<pre><code>&lt;description&gt;Examples of minimal publisher/subscriber using rclcpp&lt;/description&gt;
+&lt;maintainer email="you@email.com"&gt;Your Name&lt;/maintainer&gt;
+&lt;license&gt;Apache License 2.0&lt;/license&gt;
+</code></pre>
+</li>
+<li>
+<p>Add a new line after the <code>ament_cmake</code> buildtool dependency and paste the following dependencies corresponding to your node’s include statements:</p>
+<pre><code>&lt;depend&gt;rclcpp&lt;/depend&gt;
+&lt;depend&gt;std_msgs&lt;/depend&gt;
+</code></pre>
+<p>This declares the package needs rclcpp and std_msgs when its code is built and executed.</p>
+<p>Make sure to save the file.</p>
+<h4 id="cmakeliststxt">CMakeLists.txt</h4>
+</li>
+<li>
+<p>Now open the <code>CMakeLists.txt</code> file. Below the existing dependency <code>find_package(ament_cmake REQUIRED)</code>, add the lines:</p>
+<pre><code>find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+</code></pre>
+</li>
+<li>
+<p>After that, add the executable and name it <code>talker</code> so you can run your node using <code>ros2 run</code>:</p>
+<pre><code>add_executable(talker src/publisher_member_function.cpp)
+ament_target_dependencies(talker rclcpp std_msgs)
+</code></pre>
+</li>
+<li>
+<p>Finally, add the <code>install(TARGETS...)</code> section under the lines above so <code>ros2 run</code> can find your executable:</p>
+<pre><code>install(TARGETS
+    talker
+    DESTINATION lib/${PROJECT_NAME})
+</code></pre>
+<p>You could build your package now, source the local setup files, and run it, but let’s create the subscriber node first so you can see the full system at work.</p>
+<h4 id="write-the-subscriber-node">Write the subscriber node</h4>
+</li>
+<li>
+<p>Return to <code>ros2_ws/src/cpp_pubsub/src</code> to create the next node. Enter the following code in your terminal to download the subscriber:</p>
+<pre><code>wget -O subscriber_member_function.cpp https://raw.githubusercontent.com/ros2/examples/humble/rclcpp/topics/minimal_subscriber/member_function.cpp
+</code></pre>
+<p>Check to ensure that these files exist:</p>
+<pre><code>publisher_member_function.cpp  subscriber_member_function.cpp
+</code></pre>
+</li>
+<li>
+<p>Open the <code>subscriber_member_function.cpp</code> with your text editor. Alternatively, create a <code>.cpp</code> file with the following:</p>
+<pre><code>#include &lt;memory&gt;
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+using std::placeholders::_1;
+
+class MinimalSubscriber : public rclcpp::Node
+{
+public:
+    MinimalSubscriber()
+    : Node("minimal_subscriber")
+    {
+        subscription_ = this-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
+        "topic", 10, std::bind(&amp;MinimalSubscriber::topic_callback, this, _1));
+    }
+
+private:
+    void topic_callback(const std_msgs::msg::String &amp; msg) const
+    {
+        RCLCPP_INFO(this-&gt;get_logger(), "I heard: '%s'", msg.data.c_str());
+    }
+    rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription_;
+};
+
+int main(int argc, char * argv[])
+{
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared&lt;MinimalSubscriber&gt;());
+    rclcpp::shutdown();
+    return 0;
+}
+</code></pre>
+<p>The subscriber node’s code is nearly identical to the publisher’s. Now the node is named <code>minimal_subscriber</code>, and the constructor uses the node’s <code>create_subscription</code> class to execute the callback.</p>
+<p>There is no timer because the subscriber simply responds whenever data is published to the topic <code>topic</code>.</p>
+<pre><code>public:
+MinimalSubscriber()
+: Node("minimal_subscriber")
+{
+    subscription_ = this-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
+    "topic", 10, std::bind(&amp;MinimalSubscriber::topic_callback, this, _1));
+}
+</code></pre>
+<p>Recall from earlier lab that the topic name and message type used by the publisher and subscriber must match to allow them to communicate.</p>
+<p>The <code>topic_callback</code> function receives the string message data published over the topic, and simply writes it to the console using the <code>RCLCPP_INFO</code> macro.</p>
+<p>The only field declaration in this class is the subscription.</p>
+<p>private:
+    void topic_callback(const std_msgs::msg::String &amp; msg) const
+    {
+        RCLCPP_INFO(this-&gt;get_logger(), "I heard: '%s'", msg.data.c_str());
+    }
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;</p>
+<p>The <code>main</code> function is exactly the same, except now it spins the <code>MinimalSubscriber</code> node. For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come.</p>
+<p>Since this node has the same dependencies as the publisher node, there’s nothing new to add to <code>package.xml</code>.</p>
+<h4 id="cmakeliststxt_1">CMakeLists.txt</h4>
+</li>
+<li>
+<p>Reopen <code>CMakeLists.txt</code> and add the executable and target for the subscriber node below the publisher’s entries.</p>
+<pre><code>add_executable(listener src/subscriber_member_function.cpp)
+ament_target_dependencies(listener rclcpp std_msgs)
+
+install(TARGETS
+    talker
+    listener
+    DESTINATION lib/${PROJECT_NAME})
+</code></pre>
+<p>Make sure to save the file, and then your pub/sub system should be ready.</p>
+</li>
+</ol>
+<h3 id="build-and-run-c-package">Build and Run C++ Package</h3>
+<ol>
+<li>
+<p>You likely already have the <code>rclcpp</code> and <code>std_msgs</code> packages installed as part of your ROS 2 system. It’s good practice to run <code>rosdep</code> in the root of your workspace (<code>ros2_ws</code>) to check for missing dependencies before building:</p>
+<pre><code>cd ~/ros2_ws
+
+rosdep install -i --from-path src --rosdistro humble -y
+</code></pre>
+<p>If the <code>rosdep</code> command is not found, run the following to install, init, and update <code>rosdep</code>:</p>
+<pre><code>pip install -U rosdep
+rosdep init
+rosdep update
+</code></pre>
+<p>If you get a permission denied error, use <code>sudo</code>.</p>
+<p>When all dependencies are met, <code>rosdep</code> will return a success message:</p>
+<pre><code>#All required rosdeps installed successfully
+</code></pre>
+</li>
+<li>
+<p>Still in the root of your workspace, <code>ros2_ws</code>, build your new package:</p>
+<pre><code>colcon build --packages-select cpp_pubsub
+</code></pre>
+</li>
+<li>
+<p>Source the setup files:</p>
+<pre><code>. install/setup.bash
+</code></pre>
+</li>
+<li>
+<p>Now run the talker node from <code>ros2_ws</code>:</p>
+<pre><code>ros2 run cpp_pubsub talker
+</code></pre>
+<p>The terminal should start publishing info messages every 0.5 seconds, like so:</p>
+<pre><code>[INFO] [minimal_publisher]: Publishing: "Hello World: 0"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 1"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 2"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 3"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 4"
+</code></pre>
+</li>
+<li>
+<p>Open another terminal, source the setup files from inside <code>ros2_ws</code> again, and then start the listener node:</p>
+<pre><code>. install/setup.bash
+
+ros2 run cpp_pubsub listener
+</code></pre>
+<p>The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:</p>
+<pre><code>[INFO] [minimal_subscriber]: I heard: "Hello World: 10"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 11"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 12"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 13"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 14"
+</code></pre>
+</li>
+<li>
+<p>Enter Ctrl+C in each terminal to stop the nodes from spinning.</p>
+</li>
+</ol>
+<h3 id="create-a-python-package">Create a Python Package</h3>
+<ol>
+<li>
+<p>Navigate into <code>ros2_ws/src</code>, and run the package creation command to create a simple Python publisher and subscriber:</p>
+<pre><code>ros2 pkg create --build-type ament_python --license Apache-2.0 py_pubsub
+</code></pre>
+<p>Your terminal will return a message verifying the creation of your package <code>py_pubsub</code> and all its necessary files and folders.</p>
+<h4 id="write-the-publisher-node_1">Write the publisher node</h4>
+</li>
+<li>
+<p>Navigate into <code>ros2_ws/src/py_pubsub/py_pubsub</code>. This directory is a Python package with the same name as the ROS 2 package it’s nested in.</p>
+</li>
+<li>
+<p>Download the example talker code by entering the following command:</p>
+<pre><code>wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
+</code></pre>
+</li>
+<li>
+<p>Now there will be a new file named <code>publisher_member_function.py</code> adjacent to <code>__init__.py</code>. Open the file using your preferred text editor. Alternatively, create a .py file with the following:</p>
+<pre><code>import rclpy
+from rclpy.node import Node
+
+from std_msgs.msg import String
+
+class MinimalPublisher(Node):
+
+    def __init__(self):
+        super().__init__('minimal_publisher')
+        self.publisher_ = self.create_publisher(String, 'topic', 10)
+        timer_period = 0.5  # seconds
+        self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.i = 0
+
+    def timer_callback(self):
+        msg = String()
+        msg.data = 'Hello World: %d' % self.i
+        self.publisher_.publish(msg)
+        self.get_logger().info('Publishing: "%s"' % msg.data)
+        self.i += 1
+
+def main(args=None):
+    rclpy.init(args=args)
+
+    minimal_publisher = MinimalPublisher()
+
+    rclpy.spin(minimal_publisher)
+
+    # Destroy the node explicitly
+    # (optional - otherwise it will be done automatically
+    # when the garbage collector destroys the node object)
+    minimal_publisher.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<p>The first lines of code after the comments import <code>rclpy</code> so its <code>Node</code> class can be used.</p>
+<pre><code>import rclpy
+from rclpy.node import Node
+</code></pre>
+<p>The next statement imports the built-in string message type that the node uses to structure the data that it passes on the topic.</p>
+<pre><code>from std_msgs.msg import String
+</code></pre>
+<p>These lines represent the node’s dependencies. Recall that dependencies have to be added to <code>package.xml</code>, which you’ll do in the next section.</p>
+<p>Next, the <code>MinimalPublisher</code> class is created, which inherits from (or is a subclass of) <code>Node</code>.</p>
+<pre><code>class MinimalPublisher(Node):
+</code></pre>
+<p>Following is the definition of the class’s constructor. <code>super().__init__</code> calls the <code>Node</code> class’s constructor and gives it your node name, in this case <code>minimal_publisher</code>.</p>
+<p><code>create_publisher</code> declares that the node publishes messages of type <code>String</code> (imported from the std_msgs.msg module), over a topic named <code>topic</code>, and that the “queue size” is 10. Queue size is a required QoS (quality of service) setting that limits the amount of queued messages if a subscriber is not receiving them fast enough.</p>
+<p>Next, a timer is created with a callback to execute every 0.5 seconds. <code>self.i</code> is a counter used in the callback.</p>
+<pre><code>def __init__(self):
+    super().__init__('minimal_publisher')
+    self.publisher_ = self.create_publisher(String, 'topic', 10)
+    timer_period = 0.5  # seconds
+    self.timer = self.create_timer(timer_period, self.timer_callback)
+    self.i = 0
+</code></pre>
+<p><code>timer_callback</code> creates a message with the counter value appended, and publishes it to the console with <code>get_logger().info</code>.</p>
+<pre><code>def timer_callback(self):
+    msg = String()
+    msg.data = 'Hello World: %d' % self.i
+    self.publisher_.publish(msg)
+    self.get_logger().info('Publishing: "%s"' % msg.data)
+    self.i += 1
+</code></pre>
+<p>Lastly, the main function is defined.</p>
+<pre><code>def main(args=None):
+    rclpy.init(args=args)
+
+    minimal_publisher = MinimalPublisher()
+
+    rclpy.spin(minimal_publisher)
+
+    # Destroy the node explicitly
+    # (optional - otherwise it will be done automatically
+    # when the garbage collector destroys the node object)
+    minimal_publisher.destroy_node()
+    rclpy.shutdown()
+</code></pre>
+<p>First the <code>rclpy</code> library is initialized, then the node is created, and then it “spins” the node so its callbacks are called.</p>
+<h4 id="add-dependencies_1">Add dependencies</h4>
+</li>
+<li>
+<p>Navigate one level back to the <code>ros2_ws/src/py_pubsub</code> directory, where the <code>setup.py</code>, <code>setup.cfg</code>, and <code>package.xml</code> files have been created for you. Open <code>package.xml</code> with your text editor and make sure to fill in the <code>&lt;description&gt;</code>, <code>&lt;maintainer&gt;</code> and <code>&lt;license&gt;</code> tags:</p>
+<pre><code>&lt;description&gt;Examples of minimal publisher/subscriber using rclpy&lt;/description&gt;
+&lt;maintainer email="you@email.com"&gt;Your Name&lt;/maintainer&gt;
+&lt;license&gt;Apache License 2.0&lt;/license&gt;
+</code></pre>
+</li>
+<li>
+<p>After the lines above, add the following dependencies corresponding to your node’s import statements:</p>
+<pre><code>&lt;exec_depend&gt;rclpy&lt;/exec_depend&gt;
+&lt;exec_depend&gt;std_msgs&lt;/exec_depend&gt;
+</code></pre>
+<p>This declares the package needs <code>rclpy</code> and <code>std_msgs</code> when its code is executed.</p>
+<p>Make sure to save the file.</p>
+<h4 id="add-an-entry-point">Add an entry point</h4>
+</li>
+<li>
+<p>Open the <code>setup.py</code> file. Again, match the <code>maintainer</code>, <code>maintainer_email</code>, <code>description</code> and <code>license</code> fields to your <code>package.xml</code>:</p>
+<pre><code>maintainer='YourName',
+maintainer_email='you@email.com',
+description='Examples of minimal publisher/subscriber using rclpy',
+license='Apache License 2.0',
+</code></pre>
+</li>
+<li>
+<p>Add the following line within the <code>console_scripts</code> brackets of the <code>entry_points</code> field:</p>
+<pre><code>entry_points={
+        'console_scripts': [
+                'talker = py_pubsub.publisher_member_function:main',
+        ],
+},
+</code></pre>
+<p>Don’t forget to save.</p>
+<h4 id="check-setupcfg">Check setup.cfg</h4>
+</li>
+<li>
+<p>The contents of the <code>setup.cfg</code> file should be correctly populated automatically, like so:</p>
+<pre><code>[develop]
+script_dir=$base/lib/py_pubsub
+[install]
+install_scripts=$base/lib/py_pubsub
+</code></pre>
+<p>This is simply telling setuptools to put your executables in <code>lib</code>, because <code>ros2 run</code> will look for them there.</p>
+<p>You could build your package now, source the local setup files, and run it, but let’s create the subscriber node first so you can see the full system at work.</p>
+<h4 id="write-the-subscriber-node_1">Write the subscriber node</h4>
+</li>
+<li>
+<p>Return to <code>ros2_ws/src/py_pubsub/py_pubsub</code> to create the next node. Enter the following code in your terminal:</p>
+<pre><code>wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
+</code></pre>
+<p>Now the directory should have these files:</p>
+<pre><code>__init__.py  publisher_member_function.py  subscriber_member_function.py
+</code></pre>
+</li>
+<li>
+<p>Open the <code>subscriber_member_function.py</code> with your text editor. Alternatively, create a .py file with the following:</p>
+<pre><code>import rclpy
+from rclpy.node import Node
+
+from std_msgs.msg import String
+
+class MinimalSubscriber(Node):
+
+    def __init__(self):
+        super().__init__('minimal_subscriber')
+        self.subscription = self.create_subscription(
+            String,
+            'topic',
+            self.listener_callback,
+            10)
+        self.subscription  # prevent unused variable warning
+
+    def listener_callback(self, msg):
+        self.get_logger().info('I heard: "%s"' % msg.data)
+
+def main(args=None):
+    rclpy.init(args=args)
+
+    minimal_subscriber = MinimalSubscriber()
+
+    rclpy.spin(minimal_subscriber)
+
+    # Destroy the node explicitly
+    # (optional - otherwise it will be done automatically
+    # when the garbage collector destroys the node object)
+    minimal_subscriber.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<p>The subscriber node’s code is nearly identical to the publisher’s. The constructor creates a subscriber with the same arguments as the publisher. Recall from earlier lab that the topic name and message type used by the publisher and subscriber must match to allow them to communicate.</p>
+<pre><code>self.subscription = self.create_subscription(
+    String,
+    'topic',
+    self.listener_callback,
+    10)
+</code></pre>
+<p>The subscriber’s constructor and callback don’t include any timer definition, because it doesn’t need one. Its callback gets called as soon as it receives a message.</p>
+<p>The callback definition simply prints an info message to the console, along with the data it received. Recall that the publisher defines <code>msg.data = 'Hello World: %d' % self.i</code></p>
+<pre><code>def listener_callback(self, msg):
+    self.get_logger().info('I heard: "%s"' % msg.data)
+</code></pre>
+<p>The <code>main</code> definition is almost exactly the same, replacing the creation and spinning of the publisher with the subscriber.</p>
+<pre><code>minimal_subscriber = MinimalSubscriber()
+
+rclpy.spin(minimal_subscriber)
+</code></pre>
+<p>Since this node has the same dependencies as the publisher, there’s nothing new to add to <code>package.xml</code>. The <code>setup.cfg</code> file can also remain untouched.</p>
+<h4 id="add-an-entry-point_1">Add an entry point</h4>
+</li>
+<li>
+<p>Reopen <code>setup.py</code> and add the entry point for the subscriber node below the publisher’s entry point. The <code>entry_points</code> field should now look like this:</p>
+<pre><code>entry_points={
+        'console_scripts': [
+                'talker = py_pubsub.publisher_member_function:main',
+                'listener = py_pubsub.subscriber_member_function:main',
+        ],
+},
+</code></pre>
+<p>Make sure to save the file, and then your pub/sub system should be ready.</p>
+</li>
+</ol>
+<h3 id="build-and-run-python-package">Build and run Python Package</h3>
+<ol>
+<li>
+<p>It’s good practice to run rosdep in the root of your workspace (<code>ros2_ws</code>) to check for missing dependencies before building:</p>
+<pre><code>rosdep install -i --from-path src --rosdistro humble -y
+</code></pre>
+<p>If the <code>rosdep</code> command is not found, run the following to install, init, and update <code>rosdep</code>:</p>
+<pre><code>pip install -U rosdep
+rosdep init
+rosdep update
+</code></pre>
+<p>If you get a permission denied error, use <code>sudo</code>.</p>
+<p>When all dependencies are met, <code>rosdep</code> will return a success message:</p>
+<pre><code>#All required rosdeps installed successfully
+</code></pre>
+</li>
+<li>
+<p>Still in the root of your workspace, <code>ros2_ws</code>, build your new package:</p>
+<pre><code>colcon build --packages-select py_pubsub
+</code></pre>
+<p>If you want to build all the packages, just run <code>colcon build</code> without the option.</p>
+</li>
+<li>
+<p>Open a new terminal, navigate to <code>ros2_ws</code>, and source the setup files:</p>
+<pre><code>source install/setup.bash
+</code></pre>
+</li>
+<li>
+<p>Now run the talker node:</p>
+<pre><code>ros2 run py_pubsub talker
+</code></pre>
+<p>The terminal should start publishing info messages every 0.5 seconds, like so:</p>
+<pre><code>[INFO] [minimal_publisher]: Publishing: "Hello World: 0"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 1"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 2"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 3"
+[INFO] [minimal_publisher]: Publishing: "Hello World: 4"
+...
+</code></pre>
+</li>
+<li>
+<p>Open another terminal, source the setup files from inside <code>ros2_ws</code> again, and then start the listener node:</p>
+<pre><code>ros2 run py_pubsub listener
+</code></pre>
+<p>The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:</p>
+<pre><code>[INFO] [minimal_subscriber]: I heard: "Hello World: 10"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 11"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 12"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 13"
+[INFO] [minimal_subscriber]: I heard: "Hello World: 14"
+</code></pre>
+</li>
+<li>
+<p>Stop the listener and try to run the C++ listener from earlier:</p>
+<pre><code>ros2 run cpp_pubsub listener
+</code></pre>
+<p>You should see a similar same output.</p>
+</li>
+<li>
+<p>Enter <code>Ctrl+C</code> in each terminal to stop the nodes from spinning.</p>
+</li>
+</ol>
+<h3 id="install-gazebo">Install Gazebo</h3>
+<p>After being familiar with ROS, we'll now install the Gazebo simulation environment.</p>
+<ol>
+<li>
+<p>Following the instruction to <a href="https://gazebosim.org/docs/fortress/install_ubuntu/">install Gazebo Fortress</a>. Each Gazebo version works with a specific version of ROS.</p>
+</li>
+<li>
+<p>Once installed, start Gazebo with the following command to ensure it's functional:</p>
+<pre><code>ign gazebo
+</code></pre>
+<p><img alt="Figure 3.1 Gazebo Quick Start" src="../lab3-gazebo.png" /></p>
+<p><em><strong>Figure 3.1</strong> Gazebo Quick Start</em></p>
+</li>
+<li>
+<p>Try to start one of the senario from the quick start screen.</p>
+</li>
+<li>
+<p>Afterward, open another terminal and run the following command to see all the topics:</p>
+<pre><code>ign topic -l
+</code></pre>
+<p>Do you notice any similarity?</p>
+<p>We won't be able to connect ROS directly with Gazebo yet. That will be the topic of Lab 4 and 5.</p>
+</li>
+</ol>
+<h2 id="lab-question">Lab Question</h2>
+<ol>
+<li>
+<p>Write a new controller (C++ or Python) for turtlesim that replace <code>turtle_teleop_key</code>. Since the turtlesim node is the subscriber in this example, you’ll only need
+to write a single publisher node.</p>
+<p>Create a new package called <code>lab3_turtlesim</code>. You can create a new workspace called <code>lab3_ws</code> or use your existing workspace.</p>
+<pre><code>ros2 pkg create --build-type ament_cmake --license Apache-2.0 lab3_turtlesim --dependencies rclcpp std_msgs geometry_msgs turtlesim
+</code></pre>
+<p>or</p>
+<pre><code>ros2 pkg create --build-type ament_python --license Apache-2.0 lab3_turtlesim --dependencies rclpy std_msgs geometry_msgs turtlesim
+</code></pre>
+<p>Your node should do the following:</p>
+<ul>
+<li>Accept a command line argument specifying the name of the turtle it should control.<ul>
+<li>Running <code>ros2 lab3_turtlesim turtle_controller.cpp turtle1</code> or <code>ros2 lab3_turtlesim turtle_controller.py turtle1</code> will start a controller node that controls turtle1.</li>
+</ul>
+</li>
+<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use input() instead.</li>
+</ul>
+<p>To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.</p>
+</li>
+</ol>
+<p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://docs.ros.org/en/humble/index.html">ROS 2 Documentation: Humble</a></li>
+<li>EECS 106A Labs</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

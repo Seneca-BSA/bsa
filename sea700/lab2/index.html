@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 2 : ROS Nodes, Topics, Services, Parameters, Actions";
-        var mkdocs_page_input_path = "sea700\\lab2.md";
+        var mkdocs_page_input_path = "sea700/lab2.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -96,14 +96,25 @@ SEA700 Robotics for Software Engineers
 <p><img alt="Figure 2.3 ROS Topic Graph (One-to-Many)" src="../lab2-topics-graph-2.gif" /></p>
 <p><em><strong>Figure 2.3</strong> ROS Topic Graph (One-to-Many)</em></p>
 <p>Topics are one of the main ways in which data is moved between nodes and therefore between different parts of the system.</p>
+<h3 id="service-in-ros">Service in ROS</h3>
+<p>Services are another method of communication for nodes in the ROS graph. Services are based on a call-and-response model versus the publisher-subscriber model of topics. While topics allow nodes to subscribe to data streams and get continual updates, services only provide data when they are specifically called by a client.</p>
+<p><img alt="Figure 2.4 ROS Service Single Node" src="../lab2-service-1.gif" /></p>
+<p><em><strong>Figure 2.4</strong> ROS Service Single Node</em></p>
+<p><img alt="Figure 2.5 ROS Service Multiple Node" src="../lab2-service-2.gif" /></p>
+<p><em><strong>Figure 2.5</strong> ROS Service Multiple Node</em></p>
+<h3 id="parameter-in-ros">Parameter in ROS</h3>
+<p>A parameter is a configuration value of a node. You can think of parameters as node settings. A node can store parameters as integers, floats, booleans, strings, and lists. In ROS 2, each node maintains its own parameters.</p>
+<h3 id="actions-in-ros">Actions in ROS</h3>
+<p>Actions are one of the communication types in ROS 2 and are intended for long running tasks. They consist of three parts: a goal, feedback, and a result.</p>
+<p>Actions are built on topics and services. Their functionality is similar to services, except actions can be canceled. They also provide steady feedback, as opposed to services which return a single response.</p>
+<p>Actions use a client-server model, similar to the publisher-subscriber model. An “action client” node sends a goal to an “action server” node that acknowledges the goal and returns a stream of feedback and a result.</p>
+<p><img alt="Figure 2.6 ROS Action" src="../lab2-action.gif" /></p>
+<p><em><strong>Figure 2.6</strong> ROS Action</em></p>
 <h2 id="procedures">Procedures</h2>
 <h3 id="understanding-ros-nodes">Understanding ROS Nodes</h3>
 <ol>
 <li>
-<p>Open a terminal to run turtlesim. The command <code>ros2 run</code> launches an executable from a package.</p>
-<pre><code>ros2 run &lt;package_name&gt; &lt;executable_name&gt;
-</code></pre>
-<p>We need the package name to be <code>turtlesim</code> and the executable name to be <code>turtlesim_node</code>.</p>
+<p>Open a terminal to run turtlesim. The command <code>ros2 run &lt;package_name&gt; &lt;executable_name&gt;</code> launches an executable from a package. We need the package name to be <code>turtlesim</code> and the executable name to be <code>turtlesim_node</code>.</p>
 <pre><code>ros2 run turtlesim turtlesim_node
 </code></pre>
 </li>
@@ -140,10 +151,7 @@ SEA700 Robotics for Software Engineers
 </code></pre>
 </li>
 <li>
-<p>To access more information about a node, use the following command:</p>
-<pre><code>ros2 node info &lt;node_name&gt;
-</code></pre>
-<p>To examine your latest node, <code>my_turtle</code>, run the following command:</p>
+<p>To access more information about a node, use the following command: <code>ros2 node info &lt;node_name&gt;</code>. To examine your latest node, <code>my_turtle</code>, run the following command:</p>
 <pre><code>ros2 node info /my_turtle
 </code></pre>
 <p><code>ros2 node info</code> returns a list of subscribers, publishers, services, and actions. i.e. the ROS graph connections that interact with that node. The output should look like this:</p>
@@ -190,16 +198,541 @@ SEA700 Robotics for Software Engineers
 <p>We will use <code>rqt_graph</code> to visualize the changing nodes and topics, as well as the connections between them. Open a new terminal and enter the command:</p>
 <pre><code>rqt_graph
 </code></pre>
+<p>You can also open rqt_graph by opening <code>rqt</code> and selecting <strong>Plugins &gt; Introspection &gt; Node Graph</strong>.</p>
+<p><img alt="Figure 2.7 ROS rqt_graph" src="../lab2-rqt_graph.png" /></p>
+<p><em><strong>Figure 2.7</strong> ROS rqt_graph</em></p>
+<p>You should see the above nodes and topics, as well as two actions around the periphery of the graph (let’s ignore those for now). If you don't see the the nodes and topics, change the setting to <strong>Nodes/Topics (active)</strong> and click the refresh button. If you hover your mouse over the topic in the center, you’ll see the color highlighting like in the image above.</p>
+<p>The graph shows how the <code>/turtlesim</code> node and the <code>/teleop_turtle</code> node are communicating with each other over a topic. The <code>/teleop_turtle</code> node is publishing data (the keystrokes you enter to move the turtle around) to the <code>/turtle1/cmd_vel</code> topic, and the <code>/turtlesim</code> node is subscribed to that topic to receive the data.</p>
+<p>The highlighting feature of rqt_graph is very helpful when examining more complex systems with many nodes and topics connected in many different ways.</p>
+<p>rqt_graph is a graphical introspection tool. Now we’ll look at some command line tools for introspecting topics.</p>
+</li>
+<li>
+<p>Open another terminal and run the <code>ros2 topic list</code> command to return a list of all the topics currently active in the system:</p>
+<pre><code>/parameter_events
+/rosout
+/turtle1/cmd_vel
+/turtle1/color_sensor
+/turtle1/pose
+</code></pre>
+</li>
+<li>
+<p>Running the code with an additional argument <code>ros2 topic list -t</code> will return the same list of topics, this time with the topic type appended in brackets:</p>
+<pre><code>/parameter_events [rcl_interfaces/msg/ParameterEvent]
+/rosout [rcl_interfaces/msg/Log]
+/turtle1/cmd_vel [geometry_msgs/msg/Twist]
+/turtle1/color_sensor [turtlesim/msg/Color]
+/turtle1/pose [turtlesim/msg/Pose]
+</code></pre>
+<p>These attributes, particularly the type, are how nodes know they’re talking about the same information as it moves over topics.</p>
+<p>If you’re wondering where all these topics are in rqt_graph, you can uncheck all the boxes under <strong>Hide</strong>:</p>
+<p><img alt="Figure 2.8 ROS rqt_graph with everything unhidden" src="../lab2-rqt_graph-unhide.png" /></p>
+<p><em><strong>Figure 2.8</strong> ROS rqt_graph with everything unhidden</em></p>
+</li>
+<li>
+<p>To see the data being published on a topic, use: <code>ros2 topic echo &lt;topic_name&gt;</code>. Since we know that <code>/teleop_turtle</code> publishes data to <code>/turtlesim</code> over the <code>/turtle1/cmd_vel</code> topic, let’s use <code>echo</code> to introspect that topic:</p>
+<pre><code>ros2 topic echo /turtle1/cmd_vel
+</code></pre>
+<p>Return to the terminal where <code>turtle_teleop_key</code> is running and use the arrows to move the turtle around. Watch the terminal where your <code>echo</code> is running at the same time, and you’ll see position data being published for every movement you make:</p>
+<pre><code>linear:
+  x: 2.0
+  y: 0.0
+  z: 0.0
+angular:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+---
+</code></pre>
+</li>
+<li>
+<p>Return to rqt_graph and unhide the <strong>Debug</strong> box, hide everything else, then refresh.</p>
+<p><img alt="Figure 2.9 ROS rqt_graph with debug" src="../lab2-rqt_graph-debug.png" /></p>
+<p><em><strong>Figure 2.9</strong> ROS rqt_graph with debug node</em></p>
+<p>A new node <code>/_ros2cli_XXXXX</code> is created by the <code>echo</code> command we just ran (the number might be different). Now you can see that the publisher is publishing data over the <code>cmd_vel</code> topic, and two subscribers are subscribed to it.</p>
+</li>
+<li>
+<p>Nodes send data over topics using messages. Publishers and subscribers must send and receive the same type of message to communicate. The topic types we saw earlier after running <code>ros2 topic list -t</code> let us know what message type is used on each topic. Recall that the <code>cmd_vel</code> topic has the type <code>geometry_msgs/msg/Twist</code>. This means that in the package <code>geometry_msgs</code> there is a <code>msg</code> called <code>Twist</code>. Now we can run <code>ros2 interface show &lt;msg type&gt;</code> on this type to learn its details. Specifically, what structure of data the message expects.</p>
+<pre><code>ros2 interface show geometry_msgs/msg/Twist
+</code></pre>
+<p>For the message type from above, you should see:</p>
+<pre><code># This expresses velocity in free space broken into its linear and angular parts.
+
+Vector3  linear
+        float64 x
+        float64 y
+        float64 z
+Vector3  angular
+        float64 x
+        float64 y
+        float64 z
+</code></pre>
+<p>This tells you that the <code>/turtlesim</code> node is expecting a message with two vectors, <code>linear</code> and <code>angular</code>, of three elements each. If you recall the data we saw <code>/teleop_turtle</code> passing to <code>/turtlesim</code> with the echo command earlier.</p>
+</li>
+<li>
+<p>Now that you have the message structure, you can publish data to a topic directly from the command line using: <code>ros2 topic pub &lt;topic_name&gt; &lt;msg_type&gt; '&lt;args&gt;'</code>. The '<args>' argument is the actual data you’ll pass to the topic, in the structure you just discovered in the previous section.</p>
+<p>It’s important to note that this argument needs to be input in YAML syntax. Input the full command like so:</p>
+<pre><code>ros2 topic pub --once /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+</code></pre>
+<p><code>--once</code> is an optional argument meaning “publish one message then exit”.</p>
+<p>You will see the following output in the terminal:</p>
+<pre><code>publisher: beginning loop
+publishing #1: geometry_msgs.msg.Twist(linear=geometry_msgs.msg.Vector3(x=2.0, y=0.0, z=0.0), angular=geometry_msgs.msg.Vector3(x=0.0, y=0.0, z=1.8))
+</code></pre>
+<p>And you will see your turtle move like so:</p>
+<p><img alt="Figure 2.10 The turtle starts moving in a circle" src="../lab2-turtle-circle.png" /></p>
+<p><em><strong>Figure 2.10</strong> The turtle starts moving in a circle</em></p>
+</li>
+<li>
+<p>In order to continuously operate the turtle (and commonly the real robots which it is meant to emulate) require a steady stream of commands. So, to get the turtle to keep moving, you can run:</p>
+<pre><code>ros2 topic pub --rate 1 /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.8}}"
+</code></pre>
+<p>The difference here is the removal of the <code>--once</code> option and the addition of the <code>--rate 1</code> option, which tells <code>ros2 topic pub</code> to publish the command in a steady stream at 1 Hz.</p>
+<p><img alt="Figure 2.11 The turtle moving in a circle" src="../lab2-turtle-circle-full.png" /></p>
+<p><em><strong>Figure 2.11</strong> The turtle moving in a circle</em></p>
+</li>
+<li>
+<p>Refresh rqt_graph to see what’s happening graphically. You will see that the <code>ros2 topic pub ...</code> node (<code>/_ros2cli_32586</code> in the figure) is publishing over the <code>/turtle1/cmd_vel</code> topic, which is being received by both the <code>ros2 topic echo ...</code> node (<code>/_ros2cli_32835</code> in the figure) and the /turtlesim node now.</p>
+<p><img alt="Figure 2.12 ROS rqt_graph of turtle moving in a circle" src="../lab2-turtle-circle-graph.png" /></p>
+<p><em><strong>Figure 2.12</strong> ROS rqt_graph of turtle moving in a circle</em></p>
+</li>
+<li>
+<p>Next, in a new terminal, run <code>echo</code> on the <code>pose</code> topic and recheck rqt_graph:</p>
+<pre><code>ros2 topic echo /turtle1/pose
+</code></pre>
+<p><img alt="Figure 2.13 ROS rqt_graph of turtle moving in a circle with pose" src="../lab2-turtle-circle-graph-pose.png" /></p>
+<p><em><strong>Figure 2.13</strong> ROS rqt_graph of turtle moving in a circle with pose</em></p>
+<p>You can see that the <code>/turtlesim</code> node is also publishing to the <code>pose</code> topic, which the new echo node has subscribed to.</p>
 </li>
 </ol>
-<h3 id="complete-the-following-tutorials">Complete the following tutorials</h3>
+<h3 id="understanding-ros-services">Understanding ROS Services</h3>
 <ol>
-<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Topics/Understanding-ROS2-Topics.html">Understanding topics</a></li>
-<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Services/Understanding-ROS2-Services.html">Understanding services</a></li>
-<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Parameters/Understanding-ROS2-Parameters.html">Understanding parameters</a></li>
-<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Understanding-ROS2-Actions/Understanding-ROS2-Actions.html">Understanding actions</a></li>
-<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Launching-Multiple-Nodes/Launching-Multiple-Nodes.html">Launching nodes</a></li>
-<li><a href="https://docs.ros.org/en/humble/Tutorials/Beginner-CLI-Tools/Recording-And-Playing-Back-Data/Recording-And-Playing-Back-Data.html">Recording and playing back data</a></li>
+<li>
+<p>Leave <code>ros2 run turtlesim turtlesim_node</code> and <code>ros2 run turtlesim turtle_teleop_key</code> open and close all the other terminal.</p>
+</li>
+<li>
+<p>Open a new terminal and run the <code>ros2 service list</code> command to return a list of all the services currently active in the system:</p>
+<pre><code>/clear
+/kill
+/reset
+/spawn
+/teleop_turtle/describe_parameters
+/teleop_turtle/get_parameter_types
+/teleop_turtle/get_parameters
+/teleop_turtle/list_parameters
+/teleop_turtle/set_parameters
+/teleop_turtle/set_parameters_atomically
+/turtle1/set_pen
+/turtle1/teleport_absolute
+/turtle1/teleport_relative
+/turtlesim/describe_parameters
+/turtlesim/get_parameter_types
+/turtlesim/get_parameters
+/turtlesim/list_parameters
+/turtlesim/set_parameters
+/turtlesim/set_parameters_atomically
+</code></pre>
+<p>You will see that both nodes have the same six services with <code>parameters</code> in their names. Nearly every node in ROS 2 has these infrastructure services that parameters are built off of.</p>
+<p>For now, let’s focus on the turtlesim-specific services, <code>/clear</code>, <code>/kill</code>, <code>/reset</code>, <code>/spawn</code>, <code>/turtle1/set_pen</code>, <code>/turtle1/teleport_absolute</code>, and <code>/turtle1/teleport_relative</code>. You may recall interacting with some of these services using rqt.</p>
+</li>
+<li>
+<p>Services have types that describe how the request and response data of a service is structured. Service types are defined similarly to topic types, except service types have two parts: one message for the request and another for the response. To find out the type of a service, use the command: <code>ros2 service type &lt;service_name&gt;</code></p>
+<p>Let’s take a look at turtlesim’s <code>/clear</code> service. In a new terminal, enter the command:</p>
+<pre><code>ros2 service type /clear
+</code></pre>
+<p>Which should return:</p>
+<pre><code>std_srvs/srv/Empty
+</code></pre>
+<p>The <code>Empty</code> type means the service call sends no data when making a request and receives no data when receiving a response.</p>
+</li>
+<li>
+<p>To see the types of all the active services at the same time, you can append the <code>--show-types</code> option, abbreviated as <code>-t</code>, to the <code>list</code> command:</p>
+<pre><code>ros2 service list -t
+</code></pre>
+<p>Which will return:</p>
+<pre><code>/clear [std_srvs/srv/Empty]
+/kill [turtlesim/srv/Kill]
+/reset [std_srvs/srv/Empty]
+/spawn [turtlesim/srv/Spawn]
+...
+/turtle1/set_pen [turtlesim/srv/SetPen]
+/turtle1/teleport_absolute [turtlesim/srv/TeleportAbsolute]
+/turtle1/teleport_relative [turtlesim/srv/TeleportRelative]
+...
+</code></pre>
+</li>
+<li>
+<p>If you want to find all the services of a specific type, you can use the command: <code>ros2 service find &lt;type_name&gt;</code>. For example, you can find all the <code>Empty</code> typed services like this:</p>
+<pre><code>ros2 service find std_srvs/srv/Empty
+</code></pre>
+<p>Which will return:</p>
+<pre><code>/clear
+/reset
+</code></pre>
+</li>
+<li>
+<p>You can call services from the command line, but first you need to know the structure of the input arguments by using <code>ros2 interface show &lt;type_name&gt;</code>. Try this on the <code>/clear</code> service’s type, <code>Empty</code>:</p>
+<pre><code>ros2 interface show std_srvs/srv/Empty
+</code></pre>
+<p>Which will return:</p>
+<pre><code>---
+</code></pre>
+<p>The <code>---</code> separates the request structure (above) from the response structure (below). But, as you learned earlier, the <code>Empty</code> type doesn’t send or receive any data. So, naturally, its structure is blank.</p>
+</li>
+<li>
+<p>Let’s introspect a service with a type that sends and receives data, like <code>/spawn</code>. From the results of <code>ros2 service list -t</code>, we know <code>/spawn</code>’s type is <code>turtlesim/srv/Spawn</code>.</p>
+<p>To see the request and response arguments of the <code>/spawn</code> service, run the command:</p>
+<pre><code>ros2 interface show turtlesim/srv/Spawn
+</code></pre>
+<p>Which will return:</p>
+<pre><code>float32 x
+float32 y
+float32 theta
+string name # Optional.  A unique name will be created and returned if this is empty
+---
+string name
+</code></pre>
+<p>The information above the <code>---</code> line tells us the arguments needed to call <code>/spawn</code>.<code></code>x<code>,</code>y<code>and</code>theta<code>determine the 2D pose of the spawned turtle, and</code>name` is clearly optional.</p>
+<p>The information below the <code>---</code> line isn’t something you need to know in this case, but it can help you understand the data type of the response you get from the call.</p>
+</li>
+<li>
+<p>Now that you know what a service type is, how to find a service’s type, and how to find the structure of that type’s arguments, you can call a service using: <code>ros2 service call &lt;service_name&gt; &lt;service_type&gt; &lt;arguments&gt;</code>. The <code>&lt;arguments&gt;</code> part is optional. For example, you know that <code>Empty</code> typed services don’t have any arguments:</p>
+<pre><code>ros2 service call /clear std_srvs/srv/Empty
+</code></pre>
+<p>This command will clear the turtlesim window of any lines your turtle has drawn.</p>
+<p><img alt="Figure 2.14a Turtlesim with line" src="../lab2-turtlesim-with-line.png" />
+<img alt="Figure 2.14b Turtlesim cleared" src="../lab2-turtlesim-cleared.png" /></p>
+<p><em><strong>Figure 2.14</strong> Turtlesim with line and cleared</em></p>
+</li>
+<li>
+<p>Now let’s spawn a new turtle by calling <code>/spawn</code> and setting arguments. Input <code>&lt;arguments&gt;</code> in a service call from the command-line need to be in <a href="https://en.wikipedia.org/wiki/YAML">YAML</a> syntax. Enter the command:</p>
+<pre><code>ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: ''}"
+</code></pre>
+<p>You will get this method-style view of what’s happening, and then the service response:</p>
+<pre><code>requester: making request: turtlesim.srv.Spawn_Request(x=2.0, y=2.0, theta=0.2, name='')
+
+response:
+turtlesim.srv.Spawn_Response(name='turtle2')
+</code></pre>
+<p>Your turtlesim window will update with the newly spawned turtle right away:</p>
+<p><img alt="Figure 2.15 Turtlesim Spawn" src="../lab2-turtlesim-spawn.png" /></p>
+<p><em><strong>Figure 2.15</strong> Turtlesim Spawn</em></p>
+</li>
+</ol>
+<h3 id="understanding-ros-parameters">Understanding ROS Parameters</h3>
+<ol>
+<li>
+<p>Restart <code>ros2 run turtlesim turtlesim_node</code> and <code>ros2 run turtlesim turtle_teleop_key</code> open and close all the other terminal.</p>
+</li>
+<li>
+<p>To see the parameters belonging to your nodes, open a new terminal and enter the command:</p>
+<pre><code>ros2 param list
+</code></pre>
+<p>You will see the node namespaces, <code>/teleop_turtle</code> and <code>/turtlesim</code>, followed by each node’s parameters:</p>
+<pre><code>/teleop_turtle:
+qos_overrides./parameter_events.publisher.depth
+qos_overrides./parameter_events.publisher.durability
+qos_overrides./parameter_events.publisher.history
+qos_overrides./parameter_events.publisher.reliability
+scale_angular
+scale_linear
+use_sim_time
+/turtlesim:
+background_b
+background_g
+background_r
+qos_overrides./parameter_events.publisher.depth
+qos_overrides./parameter_events.publisher.durability
+qos_overrides./parameter_events.publisher.history
+qos_overrides./parameter_events.publisher.reliability
+use_sim_time
+</code></pre>
+<p>Every node has the parameter <code>use_sim_time</code>; it’s not unique to turtlesim.</p>
+<p>Based on their names, it looks like <code>/turtlesim</code>’s parameters determine the background color of the turtlesim window using RGB color values.</p>
+</li>
+<li>
+<p>To display the type and current value of a parameter, use the command: <code>ros2 param get &lt;node_name&gt; &lt;parameter_name&gt;</code>. Let’s find out the current value of <code>/turtlesim</code>’s parameter <code>background_g</code>:</p>
+<pre><code>ros2 param get /turtlesim background_g
+</code></pre>
+<p>Which will return the value:</p>
+<pre><code>Integer value is: 86
+</code></pre>
+<p>Now you know <code>background_g</code> holds an integer value. If you run the same command on <code>background_r</code> and <code>background_b</code>, you will get the values <code>69</code> and <code>255</code>, respectively.</p>
+</li>
+<li>
+<p>To change a parameter’s value at runtime, use the command: <code>ros2 param set &lt;node_name&gt; &lt;parameter_name&gt; &lt;value&gt;</code>. Let’s change <code>/turtlesim</code>’s background color:</p>
+<pre><code>ros2 param set /turtlesim background_r 150
+</code></pre>
+<p>Your terminal should return the message:</p>
+<pre><code>Set parameter successful
+</code></pre>
+<p>And the background of your turtlesim window should change colors:</p>
+<p><img alt="Figure 2.16 Turtlesim Purple" src="../lab2-turtlesim-purple.png" /></p>
+<p><em><strong>Figure 2.16</strong> Turtlesim Purple</em></p>
+</li>
+</ol>
+<h3 id="understanding-ros-actions">Understanding ROS Actions</h3>
+<ol>
+<li>
+<p>Restart <code>ros2 run turtlesim turtlesim_node</code> and <code>ros2 run turtlesim turtle_teleop_key</code> open and close all the other terminal.</p>
+</li>
+<li>
+<p>When you launch the <code>/teleop_turtle</code> node, you will see the following message in your terminal:</p>
+<pre><code>Use arrow keys to move the turtle.
+Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rotation.
+</code></pre>
+<p>Let’s focus on the second line, which corresponds to an action.</p>
+<p>Notice that the letter keys <code>G|B|V|C|D|E|R|T</code> form a “box” around the F key on a US QWERTY keyboard. Each key’s position around <code>F</code> corresponds to that orientation in turtlesim. For example, the <code>E</code> will rotate the turtle’s orientation to the upper left corner.</p>
+</li>
+<li>
+<p>Press <code>E</code> and pay attention to the terminal where the <code>/turtlesim</code> node is running. Each time you press one of these keys, you are sending a goal to an action server that is part of the <code>/turtlesim</code> node. The goal is to rotate the turtle to face a particular direction. A message relaying the result of the goal should display once the turtle completes its rotation:</p>
+<pre><code>[INFO] [turtlesim]: Rotation goal completed successfully
+</code></pre>
+</li>
+<li>
+<p>Try pressing the <code>C</code> key, and then pressing the <code>F</code> key before the turtle can complete its rotation. In the terminal where the <code>/turtlesim</code> node is running, you will see the message:</p>
+<pre><code>[INFO] [turtlesim]: Rotation goal canceled
+</code></pre>
+</li>
+<li>
+<p>Not only can the client-side (your input in the teleop) stop a goal, but the server-side (the <code>/turtlesim</code> node) can as well. When the server-side chooses to stop processing a goal, it is said to “abort” the goal.</p>
+<p>Try hitting the <code>D</code> key, then the <code>G</code> key before the first rotation can complete. In the terminal where the <code>/turtlesim</code> node is running, you will see the message:</p>
+<pre><code>[WARN] [turtlesim]: Rotation goal received before a previous goal finished. Aborting previous goal
+</code></pre>
+<p>This action server chose to abort the first goal because it got a new one. It could have chosen something else, like reject the new goal or execute the second goal after the first one finished. Don’t assume every action server will choose to abort the current goal when it gets a new one.</p>
+</li>
+<li>
+<p>To see the list of actions a node provides, <code>/turtlesim</code> in this case, open a new terminal and run the command:</p>
+<pre><code>ros2 node info /turtlesim
+</code></pre>
+<p>Which will return a list of <code>/turtlesim</code>’s subscribers, publishers, services, action servers and action clients:</p>
+<pre><code>/turtlesim
+Subscribers:
+/parameter_events: rcl_interfaces/msg/ParameterEvent
+/turtle1/cmd_vel: geometry_msgs/msg/Twist
+Publishers:
+/parameter_events: rcl_interfaces/msg/ParameterEvent
+/rosout: rcl_interfaces/msg/Log
+/turtle1/color_sensor: turtlesim/msg/Color
+/turtle1/pose: turtlesim/msg/Pose
+Service Servers:
+/clear: std_srvs/srv/Empty
+/kill: turtlesim/srv/Kill
+/reset: std_srvs/srv/Empty
+/spawn: turtlesim/srv/Spawn
+/turtle1/set_pen: turtlesim/srv/SetPen
+/turtle1/teleport_absolute: turtlesim/srv/TeleportAbsolute
+/turtle1/teleport_relative: turtlesim/srv/TeleportRelative
+/turtlesim/describe_parameters: rcl_interfaces/srv/DescribeParameters
+/turtlesim/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+/turtlesim/get_parameters: rcl_interfaces/srv/GetParameters
+/turtlesim/list_parameters: rcl_interfaces/srv/ListParameters
+/turtlesim/set_parameters: rcl_interfaces/srv/SetParameters
+/turtlesim/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+Service Clients:
+
+Action Servers:
+/turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+Action Clients:
+</code></pre>
+<p>Notice that the <code>/turtle1/rotate_absolute</code> action for <code>/turtlesim</code> is under <code>Action Servers</code>. This means <code>/turtlesim</code> responds to and provides feedback for the <code>/turtle1/rotate_absolute</code> action.</p>
+</li>
+<li>
+<p>On the other hand, the <code>/teleop_turtle</code> node has the name <code>/turtle1/rotate_absolute</code> under <code>Action Clients</code> meaning that it sends goals for that action name. To see that, run:</p>
+<pre><code>ros2 node info /teleop_turtle
+</code></pre>
+<p>Which will return:</p>
+<pre><code>/teleop_turtle
+Subscribers:
+/parameter_events: rcl_interfaces/msg/ParameterEvent
+Publishers:
+/parameter_events: rcl_interfaces/msg/ParameterEvent
+/rosout: rcl_interfaces/msg/Log
+/turtle1/cmd_vel: geometry_msgs/msg/Twist
+Service Servers:
+/teleop_turtle/describe_parameters: rcl_interfaces/srv/DescribeParameters
+/teleop_turtle/get_parameter_types: rcl_interfaces/srv/GetParameterTypes
+/teleop_turtle/get_parameters: rcl_interfaces/srv/GetParameters
+/teleop_turtle/list_parameters: rcl_interfaces/srv/ListParameters
+/teleop_turtle/set_parameters: rcl_interfaces/srv/SetParameters
+/teleop_turtle/set_parameters_atomically: rcl_interfaces/srv/SetParametersAtomically
+Service Clients:
+
+Action Servers:
+
+Action Clients:
+/turtle1/rotate_absolute: turtlesim/action/RotateAbsolute
+</code></pre>
+</li>
+<li>
+<p>To identify all the actions in the ROS graph, run the command:</p>
+<pre><code>ros2 action list
+</code></pre>
+<p>Which will return:</p>
+<pre><code>/turtle1/rotate_absolute
+</code></pre>
+<p>This is the only action in the ROS graph right now. It controls the turtle’s rotation, as you saw earlier. You also already know that there is one action client (part of <code>/teleop_turtle</code>) and one action server (part of /turtlesim) for this action from using the <code>ros2 node info &lt;node_name&gt;</code> command.</p>
+</li>
+<li>
+<p>Actions have types, similar to topics and services. To find <code>/turtle1/rotate_absolute</code>’s type, run the command:</p>
+<pre><code>ros2 action list -t
+</code></pre>
+<p>Which will return:</p>
+<pre><code>/turtle1/rotate_absolute [turtlesim/action/RotateAbsolute]
+</code></pre>
+<p>In brackets to the right of each action name (in this case only <code>/turtle1/rotate_absolute</code>) is the action type, <code>turtlesim/action/RotateAbsolute</code>. You will need this when you want to execute an action from the command line or from code.</p>
+</li>
+<li>
+<p>You can further introspect the <code>/turtle1/rotate_absolute</code> action with the command:</p>
+<pre><code>ros2 action info /turtle1/rotate_absolute
+</code></pre>
+<p>Which will return</p>
+<pre><code>Action: /turtle1/rotate_absolute
+Action clients: 1
+    /teleop_turtle
+Action servers: 1
+    /turtlesim
+</code></pre>
+<p>This tells us what we learned earlier from running <code>ros2 node info</code> on each node: The <code>/teleop_turtle</code> node has an action client and the <code>/turtlesim</code> node has an action server for the <code>/turtle1/rotate_absolute</code> action.</p>
+</li>
+<li>
+<p>One more piece of information you will need before sending or executing an action goal yourself is the structure of the action type.</p>
+<p>Recall that you identified <code>/turtle1/rotate_absolute</code>’s type when running the command <code>ros2 action list -t</code>. Enter the following command with the action type in your terminal:</p>
+<pre><code>ros2 interface show turtlesim/action/RotateAbsolute
+</code></pre>
+<p>Which will return:</p>
+<pre><code># The desired heading in radians
+float32 theta
+---
+# The angular displacement in radians to the starting position
+float32 delta
+---
+# The remaining rotation in radians
+float32 remaining
+</code></pre>
+<p>The section of this message above the first --- is the structure (data type and name) of the goal request. The next section is the structure of the result. The last section is the structure of the feedback.</p>
+</li>
+<li>
+<p>Now let’s send an action goal from the command line with the following syntax: <code>ros2 action send_goal &lt;action_name&gt; &lt;action_type&gt; &lt;values&gt;</code>. <code>&lt;values&gt;</code> need to be in YAML format. Keep an eye on the turtlesim window, and enter the following command into your terminal:</p>
+<pre><code>ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.57}"
+</code></pre>
+<p>You should see the turtle rotating, as well as the following message in your terminal:</p>
+<pre><code>Waiting for an action server to become available...
+Sending goal:
+    theta: 1.57
+
+Goal accepted with ID: f8db8f44410849eaa93d3feb747dd444
+
+Result:
+    delta: -1.568000316619873
+
+Goal finished with status: SUCCEEDED
+</code></pre>
+<p>All goals have a unique ID, shown in the return message. You can also see the result, a field with the name <code>delta</code>, which is the displacement to the starting position.</p>
+</li>
+<li>
+<p>To see the feedback of this goal, add <code>--feedback</code> to the <code>ros2 action send_goal</code> command:</p>
+<pre><code>ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: -1.57}" --feedback
+</code></pre>
+<p>Your terminal will return the message:</p>
+<pre><code>Sending goal:
+    theta: -1.57
+
+Goal accepted with ID: e6092c831f994afda92f0086f220da27
+
+Feedback:
+    remaining: -3.1268222332000732
+
+Feedback:
+    remaining: -3.1108222007751465
+
+...
+
+Result:
+    delta: 3.1200008392333984
+
+Goal finished with status: SUCCEEDED
+</code></pre>
+<p>You will continue to receive feedback, the remaining radians, until the goal is complete.</p>
+</li>
+</ol>
+<h3 id="understanding-recording-and-playback">Understanding Recording and Playback</h3>
+<p><code>ros2 bag</code> is a command line tool for recording data published on topics in your system. It accumulates the data passed on any number of topics and saves it in a database. You can then replay the data to reproduce the results of your tests and experiments. Recording topics is also a great way to share your work and allow others to recreate it.</p>
+<p><code>ros2 bag</code> can only record data from published messages in topics. Earlier in the lab, you learned that the <code>/turtle_teleop</code> node publishes commands on the <code>/turtle1/cmd_vel</code> topic to make the turtle move in <code>turtlesim</code>.</p>
+<ol>
+<li>
+<p>Restart <code>ros2 run turtlesim turtlesim_node</code> and <code>ros2 run turtlesim turtle_teleop_key</code> open and close all the other terminal.</p>
+</li>
+<li>
+<p>Let’s also make a new directory to store our saved recordings, just as good practice:</p>
+<pre><code>mkdir bag_files
+cd bag_files
+</code></pre>
+</li>
+<li>
+<p>To record the data published to a topic use the command syntax: <code>ros2 bag record &lt;topic_name&gt;</code>. Before running this command on your chosen topic, open a new terminal and move into the <code>bag_files</code> directory you created earlier, because the rosbag file will save in the directory where you run it. Run the command:</p>
+<pre><code>ros2 bag record /turtle1/cmd_vel
+</code></pre>
+<p>You will see the following messages in the terminal (the date and time will be different):</p>
+<pre><code>[INFO] [rosbag2_storage]: Opened database 'rosbag2_2019_10_11-05_18_45'.
+[INFO] [rosbag2_transport]: Listening for topics...
+[INFO] [rosbag2_transport]: Subscribed to topic '/turtle1/cmd_vel'
+[INFO] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...
+</code></pre>
+</li>
+<li>
+<p>Now <code>ros2 bag</code> is recording the data published on the <code>/turtle1/cmd_vel</code> topic. Return to the teleop terminal and move the turtle around again. The movements don’t matter, but try to make a recognizable pattern to see when you replay the data later.</p>
+<p><img alt="Figure 2.17 Turtlesim Recording" src="../lab2-recording-path.png" /></p>
+<p><em><strong>Figure 2.17</strong> Turtlesim Recording</em></p>
+</li>
+<li>
+<p>Press <code>Ctrl+C</code> to stop recording.</p>
+<p>The data will be accumulated in a new bag directory with a name in the pattern of <code>rosbag2_year_month_day-hour_minute_second</code>. This directory will contain a <code>metadata.yaml</code> along with the bag file in the recorded format.</p>
+</li>
+<li>
+<p>You can also record multiple topics, as well as change the name of the file <code>ros2 bag</code> saves to. Run the following command:</p>
+<pre><code>ros2 bag record -o subset /turtle1/cmd_vel /turtle1/pose
+</code></pre>
+<p>The <code>-o</code> option allows you to choose a unique name for your bag file. The following string, in this case <code>subset</code>, is the file name.</p>
+<p>To record more than one topic at a time, simply list each topic separated by a space.</p>
+<p>You will see the following message, confirming that both topics are being recorded.</p>
+<pre><code>[INFO] [rosbag2_storage]: Opened database 'subset'.
+[INFO] [rosbag2_transport]: Listening for topics...
+[INFO] [rosbag2_transport]: Subscribed to topic '/turtle1/cmd_vel'
+[INFO] [rosbag2_transport]: Subscribed to topic '/turtle1/pose'
+[INFO] [rosbag2_transport]: All requested topics are subscribed. Stopping discovery...
+</code></pre>
+<p>You can move the turtle around and press <code>Ctrl+C</code> when you’re finished.</p>
+</li>
+<li>
+<p>You can see details about your recording by running: <code>ros2 bag info &lt;bag_file_name&gt;</code>. Running this command on the subset bag file will return a list of information on the file:</p>
+<pre><code>ros2 bag info subset
+
+Files:             subset.db3
+Bag size:          228.5 KiB
+Storage id:        sqlite3
+Duration:          48.47s
+Start:             Oct 11 2019 06:09:09.12 (1570799349.12)
+End                Oct 11 2019 06:09:57.60 (1570799397.60)
+Messages:          3013
+Topic information: Topic: /turtle1/cmd_vel | Type: geometry_msgs/msg/Twist | Count: 9 | Serialization Format: cdr
+                Topic: /turtle1/pose | Type: turtlesim/msg/Pose | Count: 3004 | Serialization Format: cdr
+</code></pre>
+</li>
+<li>
+<p>Before replaying the bag file, enter <code>Ctrl+C</code> in the terminal where the teleop is running. Then make sure your turtlesim window is visible so you can see the bag file in action.</p>
+<p>Enter the command:</p>
+<pre><code>ros2 bag play subset
+</code></pre>
+<p>The terminal will return the message:</p>
+<pre><code>[INFO] [rosbag2_storage]: Opened database 'subset'.
+</code></pre>
+<p>Your turtle will follow the same path you entered while recording (though not 100% exactly; turtlesim is sensitive to small changes in the system’s timing).</p>
+<p><img alt="Figure 2.18 Turtlesim Recording" src="../lab2-recording-path.png" /></p>
+<p><em><strong>Figure 2.18</strong> Turtlesim Recording</em></p>
+<p>Because the <code>subset</code> file recorded the <code>/turtle1/pose topic</code>, the <code>ros2 bag</code> play command won’t quit for as long as you had turtlesim running, even if you weren’t moving.</p>
+<p>This is because as long as the <code>/turtlesim</code> node is active, it publishes data on the <code>/turtle1/pose</code> topic at regular intervals. You may have noticed in the <code>ros2 bag info</code> example result above that the <code>/turtle1/cmd_vel</code> topic’s <code>Count</code> information was only 9; that’s how many times we pressed the arrow keys while recording.</p>
+<p>Notice that <code>/turtle1/pose</code> has a <code>Count</code> value of over 3000; while we were recording, data was published on that topic 3000 times.</p>
+</li>
 </ol>
 <h2 id="lab-question">Lab Question</h2>
 <ol>
