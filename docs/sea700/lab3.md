@@ -303,12 +303,12 @@ A trivial workspace might look like:
     There is no timer because the subscriber simply responds whenever data is published to the topic `topic`.
 
         public:
-        MinimalSubscriber()
-        : Node("minimal_subscriber")
-        {
-            subscription_ = this->create_subscription<std_msgs::msg::String>(
-            "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
-        }
+            MinimalSubscriber()
+            : Node("minimal_subscriber")
+            {
+                subscription_ = this->create_subscription<std_msgs::msg::String>(
+                "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+            }
 
     Recall from earlier lab that the topic name and message type used by the publisher and subscriber must match to allow them to communicate.
 
@@ -316,12 +316,12 @@ A trivial workspace might look like:
 
     The only field declaration in this class is the subscription.
 
-    private:
-        void topic_callback(const std_msgs::msg::String & msg) const
-        {
-            RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
-        }
-        rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+        private:
+            void topic_callback(const std_msgs::msg::String & msg) const
+            {
+                RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg.data.c_str());
+            }
+            rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
 
     The `main` function is exactly the same, except now it spins the `MinimalSubscriber` node. For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come.
 
