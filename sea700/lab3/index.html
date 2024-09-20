@@ -355,22 +355,23 @@ int main(int argc, char * argv[])
 <p>The subscriber node’s code is nearly identical to the publisher’s. Now the node is named <code>minimal_subscriber</code>, and the constructor uses the node’s <code>create_subscription</code> class to execute the callback.</p>
 <p>There is no timer because the subscriber simply responds whenever data is published to the topic <code>topic</code>.</p>
 <pre><code>public:
-MinimalSubscriber()
-: Node("minimal_subscriber")
-{
-    subscription_ = this-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
-    "topic", 10, std::bind(&amp;MinimalSubscriber::topic_callback, this, _1));
-}
+    MinimalSubscriber()
+    : Node("minimal_subscriber")
+    {
+        subscription_ = this-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
+        "topic", 10, std::bind(&amp;MinimalSubscriber::topic_callback, this, _1));
+    }
 </code></pre>
 <p>Recall from earlier lab that the topic name and message type used by the publisher and subscriber must match to allow them to communicate.</p>
 <p>The <code>topic_callback</code> function receives the string message data published over the topic, and simply writes it to the console using the <code>RCLCPP_INFO</code> macro.</p>
 <p>The only field declaration in this class is the subscription.</p>
-<p>private:
+<pre><code>private:
     void topic_callback(const std_msgs::msg::String &amp; msg) const
     {
         RCLCPP_INFO(this-&gt;get_logger(), "I heard: '%s'", msg.data.c_str());
     }
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;</p>
+    rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription_;
+</code></pre>
 <p>The <code>main</code> function is exactly the same, except now it spins the <code>MinimalSubscriber</code> node. For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come.</p>
 <p>Since this node has the same dependencies as the publisher node, there’s nothing new to add to <code>package.xml</code>.</p>
 <h4 id="cmakeliststxt_1">CMakeLists.txt</h4>
