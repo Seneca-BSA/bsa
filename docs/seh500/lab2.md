@@ -197,8 +197,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
         mov     R2, #0x00000001     @ R2 = ?
         mov     R3, #0x00000002     @ R3 = ?
         adds    R1, R2, R3          @ R1 = ?
-                    @ Add some small numbers again
-                    @ and check the PSR flags again, what happened?
+                    @ After adding some small numbers and check the PSR flags again, what happened?
 
         @ Add numbers that will create an overflow
         mov     R2, #0x7FFFFFFF     @ R2 = ?

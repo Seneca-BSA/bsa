@@ -34,7 +34,7 @@ Below are instructions that might set or clear the status flag.
 | Addition | `ADDS R0, R1, R2` | R0 = R1 + R2, and FLAGs are updated |
 | Subtraction | `SUB  R1, R2, R3` | R1 = R2 - R3 |
 | Subtraction | `SUBS R1, R2, R3` | R1 = R2 - R3, and FLAGs are updated |
-| Subtraction | `SUBS R7, R6, #20` | R7 = R6 - 20, Sets the flags on the result |
+| Subtraction | `SUBS R7, R6, #20` | R7 = R6 - 20, and sets the FLAGs on the result |
 | Reverse Subtraction | `RSB  R4, R4, #120` | R4 = 120 - R4 |
 | Multiply | `MUL  R0, R1, R2` | R0 = R1 * R2 |
 | Division | `SDIV R0, R2, R4` | Signed divide, R0 = R2/R4 |
@@ -57,15 +57,15 @@ Below are instructions that might set or clear the status flag.
 |---|---|
 | `AND   R9, R2, R1` | R9 = R2 AND R1 |
 | `AND   R9, R2, #0xFF00` | R9 = R2 AND #0xFF00 |
+| `ANDS  R9, R8, #0x19` | with flags update |
 | `ORR   R9, R2, R1` | R9 = R2 OR R1 |
 | `ORR   R9, R2, #0xFF00` | |
 | `ORREQ R2, R0, R5` | |
-| `ANDS  R9, R8, #0x19` | |
 | `EOR   R7, R11, R10` | R7 = R11 XOR R10 |
-| `EORS  R7, R11, #0x18181818` |
+| `EORS  R7, R11, #0x18181818` | with flags update |
 | `BIC   R0, R1, #0xab` | R0 = R1 AND (NOT(#0xab)) |
 | `ORN   R7, R11, R14, ROR #4` | R7 = R11 OR (NOT(R14 ROR #4)) |
-| `ORNS  R7, R11, R14, ROR #2` | update the flags |
+| `ORNS  R7, R11, R14, ROR #2` | with flags update |
 
 ### Shift Instructions
 
@@ -73,7 +73,7 @@ Below are instructions that might set or clear the status flag.
 |---|---|
 | `LSL  R4, R5, #2`  | Logical shift left by 2 bits |
 | `LSR  R4, R5, #6`  | Logical shift right by 6 bits |
-| `LSLS R1, R2, #3` | Logical shift left by 3 bits with flag update |
+| `LSLS R1, R2, #3` | Logical shift left by 3 bits with flags update |
 | `ROR  R4, R5, R6`  | Rotate right by the value in the bottom byte of R6 |
 | `RRX  R4, R5`      | Rotate right with extend (one bit only). |
 
@@ -100,6 +100,8 @@ The APSR contains the following condition flags:
 - `Z`: Set to 1 when the result of the operation was zero, cleared to 0 otherwise.
 - `C`: Set to 1 when the operation resulted in a carry, cleared to 0 otherwise.
 - `V`: Set to 1 when the operation caused overflow, cleared to 0 otherwise.
+
+Depending on how you want branching to be done, the condition suffix can be add to the branching instruction to form a conditional branching instruction.
 
 | Suffix {cond} | Flags | Meaning |
 |---|---|---|
@@ -154,10 +156,10 @@ Similar to the previous lab.
             mov r0, #                   @ x = <use the last digits of your student ID + 1>
             mul r1, r0, r0              @ r1 = x^2, @ record r1 and psr value
             mov r4, #5
-            mul r1, r1, r4              @ r1 = 5x^2, @ record r1 and psr value
+            muls r1, r1, r4              @ r1 = 5x^2, @ record r1 and psr value
             mov r5, #6
             mul r2, r0, r5              @ r2 = 6x, @ record r2 and psr value
-            sub r3, r1, r2              @ r3 = 5x^2 - 6x, @ record r3 and psr value
+            subs r3, r1, r2              @ r3 = 5x^2 - 6x, @ record r3 and psr value
             add r3, r3, #8              @ r3 = 5x^2 - 6x + 8, @ record r3 and psr value
 
         stop:                           @ define a new label called stop
