@@ -1,3 +1,10 @@
+# Lab 4 : Gazebo and JetAuto
+
+<font size="5">
+Seneca Polytechnic</br>
+SEA700 Robotics for Software Engineers
+</font>
+
 ## Preparation
 
 In preperation of using the JetAuto robot, please go through the user manual and the basic lesson provided by the manufacturer found here:
