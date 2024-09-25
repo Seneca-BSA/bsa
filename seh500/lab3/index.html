@@ -134,7 +134,7 @@ SEH500 Microprocessors and Computer Architecture
 <tr>
 <td>Subtraction</td>
 <td><code>SUBS R7, R6, #20</code></td>
-<td>R7 = R6 - 20, Sets the flags on the result</td>
+<td>R7 = R6 - 20, and sets the FLAGs on the result</td>
 </tr>
 <tr>
 <td>Reverse Subtraction</td>
@@ -211,6 +211,10 @@ SEH500 Microprocessors and Computer Architecture
 <td>R9 = R2 AND #0xFF00</td>
 </tr>
 <tr>
+<td><code>ANDS  R9, R8, #0x19</code></td>
+<td>with flags update</td>
+</tr>
+<tr>
 <td><code>ORR   R9, R2, R1</code></td>
 <td>R9 = R2 OR R1</td>
 </tr>
@@ -223,16 +227,12 @@ SEH500 Microprocessors and Computer Architecture
 <td></td>
 </tr>
 <tr>
-<td><code>ANDS  R9, R8, #0x19</code></td>
-<td></td>
-</tr>
-<tr>
 <td><code>EOR   R7, R11, R10</code></td>
 <td>R7 = R11 XOR R10</td>
 </tr>
 <tr>
 <td><code>EORS  R7, R11, #0x18181818</code></td>
-<td></td>
+<td>with flags update</td>
 </tr>
 <tr>
 <td><code>BIC   R0, R1, #0xab</code></td>
@@ -244,7 +244,7 @@ SEH500 Microprocessors and Computer Architecture
 </tr>
 <tr>
 <td><code>ORNS  R7, R11, R14, ROR #2</code></td>
-<td>update the flags</td>
+<td>with flags update</td>
 </tr>
 </tbody>
 </table>
@@ -267,7 +267,7 @@ SEH500 Microprocessors and Computer Architecture
 </tr>
 <tr>
 <td><code>LSLS R1, R2, #3</code></td>
-<td>Logical shift left by 3 bits with flag update</td>
+<td>Logical shift left by 3 bits with flags update</td>
 </tr>
 <tr>
 <td><code>ROR  R4, R5, R6</code></td>
@@ -331,6 +331,7 @@ SEH500 Microprocessors and Computer Architecture
 <li><code>C</code>: Set to 1 when the operation resulted in a carry, cleared to 0 otherwise.</li>
 <li><code>V</code>: Set to 1 when the operation caused overflow, cleared to 0 otherwise.</li>
 </ul>
+<p>Depending on how you want branching to be done, the condition suffix can be add to the branching instruction to form a conditional branching instruction.</p>
 <table>
 <thead>
 <tr>
@@ -452,10 +453,10 @@ main:                           @ start of main code with a label
     mov r0, #                   @ x = &lt;use the last digits of your student ID + 1&gt;
     mul r1, r0, r0              @ r1 = x^2, @ record r1 and psr value
     mov r4, #5
-    mul r1, r1, r4              @ r1 = 5x^2, @ record r1 and psr value
+    muls r1, r1, r4              @ r1 = 5x^2, @ record r1 and psr value
     mov r5, #6
     mul r2, r0, r5              @ r2 = 6x, @ record r2 and psr value
-    sub r3, r1, r2              @ r3 = 5x^2 - 6x, @ record r3 and psr value
+    subs r3, r1, r2              @ r3 = 5x^2 - 6x, @ record r3 and psr value
     add r3, r3, #8              @ r3 = 5x^2 - 6x + 8, @ record r3 and psr value
 
 stop:                           @ define a new label called stop
