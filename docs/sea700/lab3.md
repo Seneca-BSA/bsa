@@ -736,17 +736,16 @@ to write a single publisher node.
 
     Create a new package called `lab3_turtlesim`. You can create a new workspace called `lab3_ws` or use your existing workspace.
 
-        ros2 pkg create --build-type ament_cmake --license Apache-2.0 lab3_turtlesim --dependencies rclcpp std_msgs geometry_msgs turtlesim
-
+        ros2 pkg create --build-type ament_cmake --license Apache-2.0 lab3_turtlesim --dependencies rclcpp geometry_msgs
     or
 
-        ros2 pkg create --build-type ament_python --license Apache-2.0 lab3_turtlesim --dependencies rclpy std_msgs geometry_msgs turtlesim
+        ros2 pkg create --build-type ament_python --license Apache-2.0 lab3_turtlesim --dependencies rclpy geometry_msgs
 
     Your node should do the following:
 
     - Accept a command line argument specifying the name of the turtle it should control.
-        - Running `ros2 lab3_turtlesim turtle_controller.cpp turtle1` or `ros2 lab3_turtlesim turtle_controller.py turtle1` will start a controller node that controls turtle1.
-    - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use input() instead.
+        - Running `ros2 run lab3_turtlesim turtle_controller turtle1` will start a controller node that controls turtle1.
+    - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as scanf() or input() instead.
     
     To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.
 
