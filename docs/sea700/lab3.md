@@ -745,7 +745,9 @@ to write a single publisher node.
 
     - Accept a command line argument specifying the name of the turtle it should control.
         - Running `ros2 run lab3_turtlesim turtle_controller turtle1` will start a controller node that controls turtle1.
-    - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as scanf() or input() instead.
+    - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as `scanf()` or `input()` instead.
+
+    **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.
     
     To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.
 
