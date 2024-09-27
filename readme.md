@@ -25,6 +25,10 @@ To update the content of this site:
     ```
     mkdocs serve
     ```
+    Or for Windows:
+    ```
+    python -m mkdocs serve
+    ```
 1. Once all changes are done, create a pull request with meaningful comment for review.
 
 ### For Admin

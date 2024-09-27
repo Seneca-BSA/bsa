@@ -739,5 +739,5 @@ Once you've completed all the above steps, ask the lab professor or instructor o
 
 ## Reference
 
-- [ROS 2 Documentation: Humble](https://docs.ros.org/en/humble/index.html)
+- [ROS Tutorials](https://wiki.ros.org/ROS/Tutorials)
 - EECS 106A Labs

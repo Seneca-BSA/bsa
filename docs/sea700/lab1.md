@@ -71,40 +71,83 @@ to the topics `/usb_cam/camera_info` and `/usb_cam/image_raw`, which are subscri
 
 ## Procedures
 
-The lab procedures assume a Ubuntu Jammy 22.04 enviornment. If you are using Windows or macOS, some modification to the steps might be required.
+For this course, we'll be using the following software environment **Ubuntu 18.04 LTS (Bionic Beaver)**. If you are using Windows or macOS, ensure ROS Melodic is installed as it is the version used by the JetAuto robot.
 
 ### ROS Installation
 
-1. Follow the [ROS 2 Documentation Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html) instruction to install the ROS desktop package into your system. **You do NOT need to install the Bare Bones or the Development tools**
+1. Follow the [ROS Melodic Installation](https://wiki.ros.org/melodic/Installation/Ubuntu) instruction to install the ROS Desktop-Full package into your system. **You do NOT need to install the Bare Bones or Individual Package**
 
 1. Since we want our terminal to load the ROS source everytime it start, add the `source` command to `.bashrc`.
 
-    Use `vi`, `vim` or any editor to open `~/.bashrc` in your user's home directory then add the following code at the end.
+        echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 
-        source /opt/ros/humble/setup.bash
+    Or use `vi`, `vim` or any editor to open `~/.bashrc` in your user's home directory then add the following code at the end.
+
+        source /opt/ros/melodic/setup.bash
         
-1. After installation and setting up `.bashrc`, ensure you successfully tested the C++ talker and Python listener per the instruction by opening a NEW terminal.
+1. After ROS installation and setting up `.bashrc`, we'll also want to install a few tools to help build ROS packages.
+
+    To install this tool and other dependencies for building ROS packages, run:
+
+        sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+1. Before you can use many ROS tools, you will need to initialize rosdep. rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. If you have not yet installed rosdep, do so as follows.
+
+        sudo apt install python-rosdep
+
+    With the following, you can initialize rosdep.
+
+        sudo rosdep init
+        rosdep update
+
+    Since Melodic is not longer a support distro, we'll need to explicitly update it.
+
+        rosdep update --rosdisto=melodic
 
 ### Turtlesim Test
 
-Turtlesim is a lightweight simulator for learning ROS 2. It illustrates what ROS 2 does at the most basic level to give you an idea of what you will do with a real robot or a robot simulation later on.
+Turtlesim is a lightweight simulator for learning ROS. It illustrates what ROS does at the most basic level to give you an idea of what you will do with a real robot or a robot simulation later on.
 
-The ros2 tool is how the user manages, introspects, and interacts with a ROS system. It supports multiple commands that target different aspects of the system and its operation. One might use it to start a node, set a parameter, listen to a topic, and many more. The ros2 tool is part of the core ROS 2 installation.
+#### Using roscore
 
-1. Check that the turtlesim package is installed.
+1. `roscore` is the first thing you should run when using ROS. It starts the ROS master node, the centralized server for managing nodes, topics, services, communication, and more. It is typically the main entry point and the first for running any ROS system. In a terminal, run:
 
-        ros2 pkg executables turtlesim
+        roscore
 
-    The above command should return a list of turtlesim’s executables.
-    
-        turtlesim draw_square
-        turtlesim mimic
-        turtlesim turtle_teleop_key
-        turtlesim turtlesim_node
+    You will see something similar to:
 
-1. Start turtlesim by entering the following command in your terminal.
+        ... logging to ~/.ros/log/9cf88ce4-b14d-11df-8a75-00251148e8cf/roslaunch-machine_name-13039.log
+        Checking log directory for disk usage. This may take awhile.
+        Press Ctrl-C to interrupt
+        Done checking log file disk usage. Usage is <1GB.
 
-        ros2 run turtlesim turtlesim_node
+        started roslaunch server http://machine_name:33919/
+        ros_comm version 1.4.7
+
+        SUMMARY
+        ======
+
+        PARAMETERS
+        * /rosversion
+        * /rosdistro
+
+        NODES
+
+        auto-starting new master
+        process[master]: started with pid [13054]
+        ROS_MASTER_URI=http://machine_name:11311/
+
+        setting /run_id to 9cf88ce4-b14d-11df-8a75-00251148e8cf
+        process[rosout-1]: started with pid [13067]
+        started core service [/rosout]
+
+#### Using rosrun
+
+1. The command `rosrun` allows you to use the package name to directly run a node within a package (without having to know the package path). Usage: `rosrun [package_name] [node_name]`.
+
+    So now we can run the `turtlesim_node` in the turtlesim package. In a new terminal:
+
+        rosrun turtlesim turtlesim_node
 
     The simulator window should appear, with a random turtle in the center.
 
@@ -112,22 +155,21 @@ The ros2 tool is how the user manages, introspects, and interacts with a ROS sys
 
     ***Figure 1.3** TurtleSim*
 
-    In the terminal, under the command, you will see messages from the node:
+1. Open a new terminal to run a new node to control the turtle in the first node. If you didn't add the `source` code in `.bashrc`, you'll need to source ROS again.
 
-        [INFO] [1725638823.233052860] [turtlesim]: Starting turtlesim with node name /turtlesim
-        [INFO] [1725638823.245832389] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+        rosrun turtlesim turtle_teleop_key
 
-1. Open a new terminal to run a new node to control the turtle in the first node. If you didn't add the `source` code in `.bashrc`, you'll need to source ROS 2 again.
-
-        ros2 run turtlesim turtle_teleop_key
-
-    At this point you should have three windows open: a terminal running `turtlesim_node`, a terminal running `turtle_teleop_key` and the "turtlesim window". Arrange these windows so that you can see the turtlesim window, but also have the terminal running `turtle_teleop_key` active so that you can control the turtle in turtlesim.
+    At this point you should have four windows open: a terminal running `roscore`, a terminal running `turtlesim_node`, a terminal running `turtle_teleop_key` and the "turtlesim window". Arrange these windows so that you can see the turtlesim window, but also have the terminal running `turtle_teleop_key` active so that you can control the turtle in turtlesim.
 
 1. Use the arrow keys on your keyboard to control the turtle. It will move around the screen, using its attached “pen” to draw the path it followed so far.
 
+    ![Figure 1.4 Turtle Moving](lab1-turtle-moving.png)
+
+    ***Figure 1.4** TurtleSim*
+
 ### Use rqt
 
-rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt can be done on the command line, but rqt provides a more user-friendly way to manipulate ROS 2 elements.
+rqt is a graphical user interface (GUI) tool for ROS. Everything done in rqt can be done on the command line, but rqt provides a more user-friendly way to manipulate ROS elements.
 
 1. Open a new terminal and run rqt.
 
@@ -135,9 +177,9 @@ rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt c
 
 1. When running rqt for the first time, the window will be blank. No worries; just select **Plugins > Services > Service Caller** from the menu bar at the top.
 
-    ![Figure 1.4 rqt](lab1-rqt.png)
+    ![Figure 1.5 rqt](lab1-rqt.png)
 
-    ***Figure 1.4** rqt*
+    ***Figure 1.5** rqt*
 
 1. Use the refresh button to the left of the Service dropdown list to ensure all the services of your turtlesim node are available.
 
@@ -157,7 +199,7 @@ rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt c
 
 1. Refresh the service list in rqt and you will also see that now there are services related to the new turtle, `/turtle2/...`, in addition to `/turtle1/...`.
 
-1. Next, we'll give `turtle1` an unique pen using the `/set_pen` service and have turtle1 draw with a distinct red line by changing the value of **r** to `255`, and the value of **width** to `5`. Don’t forget to call the service after updating the values.
+1. Next, we'll give `turtle1` an unique pen using the `/set_pen` service and have `turtle1` draw with a distinct red line by changing the value of **r** to `255`, and the value of **width** to `5`. Don’t forget to call the service after updating the values.
 
     ![Figure 1.6 rqt set_pen](lab1-rqt-set-pen.png)
 
@@ -173,9 +215,9 @@ rqt is a graphical user interface (GUI) tool for ROS 2. Everything done in rqt c
 
 1. To control `turtle2`, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls turtle1. The way to change this behavior is by remapping the `cmd_vel` topic.
 
-    In a new terminal, source ROS 2, and run:
+    In a new terminal, source ROS, and run:
 
-        ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+        rosrun turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel
 
     Now, you can move `turtle2` when this terminal is active, and `turtle1` when the other terminal running `turtle_teleop_key` is active.
 
@@ -191,5 +233,5 @@ Once you've completed all the above steps, ask the lab professor or instructor o
 
 ## Reference
 
-- [ROS 2 Documentation: Humble](https://docs.ros.org/en/humble/index.html)
+- [ROS Tutorials](https://wiki.ros.org/ROS/Tutorials)
 - EECS 106A Labs
