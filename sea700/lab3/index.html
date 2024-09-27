@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 3 : ROS Workspace, Package, Publisher and Subscriber";
-        var mkdocs_page_input_path = "sea700/lab3.md";
+        var mkdocs_page_input_path = "sea700\\lab3.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -81,337 +81,380 @@ SEA700 Robotics for Software Engineers
 </font></p>
 <h2 id="introduction">Introduction</h2>
 <h3 id="ros-workspace">ROS Workspace</h3>
-<p>A workspace is a directory containing ROS 2 packages. Before using ROS 2, it’s necessary to source your ROS 2 installation workspace in the terminal you plan to work in. This makes ROS 2’s packages available for you to use in that terminal.</p>
-<p>You also have the option of sourcing an “overlay” - a secondary workspace where you can add new packages without interfering with the existing ROS 2 workspace that you’re extending, or “underlay”. Your underlay must contain the dependencies of all the packages in your overlay. Packages in your overlay will override packages in the underlay. It’s also possible to have several layers of underlays and overlays, with each successive overlay using the packages of its parent underlays.</p>
+<p>A workspace is a directory containing ROS packages. Before using ROS, it’s necessary to source your ROS installation workspace in the terminal you plan to work in. This makes ROS’s packages available for you to use in that terminal.</p>
 <h3 id="ros-package">ROS Package</h3>
-<p>A package is an organizational unit for your ROS 2 code. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS 2 work and allow others to build and use it easily.</p>
-<p>Package creation in ROS 2 uses ament as its build system and colcon as its build tool. You can create a package using either CMake or Python, which are officially supported, though other build types do exist.</p>
-<p>ROS 2 Python and CMake packages each have their own minimum required contents:</p>
-<h4 id="cmake">CMake</h4>
+<p>A package is an organizational unit for your ROS code. If you want to be able to install your code or share it with others, then you’ll need it organized in a package. With packages, you can release your ROS work and allow others to build and use it easily.</p>
+<p>For a package to be considered a catkin package it must meet a few requirements:</p>
 <ul>
-<li><code>CMakeLists.txt</code> file that describes how to build the code within the package</li>
-<li><code>include/&lt;package_name&gt;</code> directory containing the public headers for the package</li>
-<li><code>package.xml</code> file containing meta information about the package</li>
-<li><code>src</code> directory containing the source code for the package</li>
+<li>The package must contain a catkin compliant <code>package.xml</code> file.<ul>
+<li>That <code>package.xml</code> file provides meta information about the package.</li>
+</ul>
+</li>
+<li>The package must contain a <code>CMakeLists.txt</code> which uses catkin.<ul>
+<li>If it is a catkin metapackage it must have the relevant boilerplate <code>CMakeLists.txt</code> file.</li>
+</ul>
+</li>
+<li>Each package must have its own folder<ul>
+<li>This means no nested packages nor multiple packages sharing the same directory.</li>
+</ul>
+</li>
 </ul>
 <p>The simplest possible package may have a file structure that looks like:</p>
 <pre><code>my_package/
     CMakeLists.txt
-    include/my_package/
     package.xml
-    src/
-</code></pre>
-<h4 id="python">Python</h4>
-<ul>
-<li><code>package.xml</code> file containing meta information about the package</li>
-<li><code>resource/&lt;package_name&gt;</code> marker file for the package</li>
-<li><code>setup.cfg</code> is required when a package has executables, so <code>ros2</code> run can find them</li>
-<li><code>setup.py</code> containing instructions for how to install the package</li>
-<li><code>&lt;package_name&gt;</code> - a directory with the same name as your package, used by ROS 2 tools to find your package, contains <code>__init__.py</code></li>
-</ul>
-<p>The simplest possible package may have a file structure that looks like:</p>
-<pre><code>my_package/
-    package.xml
-    resource/my_package
-    setup.cfg
-    setup.py
-    my_package/
 </code></pre>
 <p>A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in one workspace (CMake, Python, etc.). You cannot have nested packages.</p>
 <p>Best practice is to have a <code>src</code> folder within your workspace, and to create your packages in there. This keeps the top level of the workspace “clean”.</p>
 <p>A trivial workspace might look like:</p>
-<pre><code>workspace_folder/
-    src/
-        cpp_package_1/
-            CMakeLists.txt
-            include/cpp_package_1/
-            package.xml
-            src/
-
-        py_package_1/
-            package.xml
-            resource/py_package_1
-            setup.cfg
-            setup.py
-            py_package_1/
+<pre><code>workspace_folder/        -- WORKSPACE
+    src/                   -- SOURCE SPACE
+        CMakeLists.txt       -- 'Toplevel' CMake file, provided by catkin
+        package_1/
+            CMakeLists.txt     -- CMakeLists.txt file for package_1
+            package.xml        -- Package manifest for package_1
         ...
-        cpp_package_n/
-            CMakeLists.txt
-            include/cpp_package_n/
-            package.xml
-            src/
+        package_n/
+            CMakeLists.txt     -- CMakeLists.txt file for package_n
+            package.xml        -- Package manifest for package_n
 </code></pre>
 <h2 id="procedures">Procedures</h2>
-<h3 id="install-colcon">Install Colcon</h3>
-<p><code>colcon</code> is an iteration on the ROS build tools <code>catkin_make</code>, <code>catkin_make_isolated</code>, <code>catkin_tools</code> and <code>ament_tools</code>. </p>
-<ol>
-<li>Run: <code>sudo apt install python3-colcon-common-extensions</code></li>
-</ol>
 <h3 id="create-a-workspace-directory">Create a Workspace directory</h3>
 <ol>
 <li>
-<p>Best practice is to create a new directory for every new workspace. The name doesn’t matter, but it is helpful to have it indicate the purpose of the workspace. Let’s choose the directory name <code>ros2_ws</code>, for “development workspace”. Open a new terminal and run:</p>
-<pre><code>mkdir -p ~/ros2_ws/src
+<p>Best practice is to create a new directory for every new workspace. The name doesn’t matter, but it is helpful to have it indicate the purpose of the workspace. Let’s choose the directory name <code>ros_ws</code>, for “development workspace”. Open a new terminal and run:</p>
+<pre><code>mkdir -p ~/ros_ws/src
+cd ~/catkin_ws/
+catkin_make
 </code></pre>
-<p>Another best practice is to put any packages in your workspace into the <code>src</code> directory. The above code creates a <code>src</code> directory inside <code>ros2_ws</code>.</p>
+<p>The <code>catkin_make</code> command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a <code>CMakeLists.txt</code> link in your <code>src</code> folder.</p>
+<p>Another best practice is to put any packages in your workspace into the <code>src</code> directory. The above code creates a <code>src</code> directory inside <code>ros_ws</code>.</p>
+<p>If you are building ROS from source to achieve Python 3 compatibility, and have setup your system appropriately (ie: have the Python 3 versions of all the required ROS Python packages installed, such as catkin) the first catkin_make command in a clean catkin workspace must be:</p>
+<pre><code>catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
+</code></pre>
+<p>This will configure catkin_make with Python 3. You may then proceed to use just <code>catkin_make</code> for subsequent builds.</p>
+</li>
+<li>
+<p>Additionally, if you look in your current directory you should now have a 'build' and 'devel' folder. Inside the 'devel' folder you can see that there are now several setup files. Sourcing any of these files will overlay this workspace on top of your environment. Before continuing source your new setup.sh file:</p>
+<pre><code>source devel/setup.bash
+</code></pre>
+</li>
+<li>
+<p>To make sure your workspace is properly overlayed by the setup script, make sure <code>ROS_PACKAGE_PATH</code> environment variable includes the directory you're in.</p>
+<pre><code>echo $ROS_PACKAGE_PATH
+</code></pre>
+<p>You should see:</p>
+<pre><code>/home/youruser/catkin_ws/src:/opt/ros/kinetic/share
+</code></pre>
 </li>
 </ol>
 <h3 id="create-a-c-package">Create a C++ Package</h3>
 <ol>
 <li>
-<p>Navigate into <code>ros2_ws/src</code>, and run the package creation command to create a simple C++ publisher and subscriber:</p>
-<pre><code>cd ~/ros2_ws/src
+<p>Navigate into <code>ros_ws/src</code>, and run the package creation command to create a simple C++ publisher and subscriber:</p>
+<pre><code>cd ~/ros_ws/src
 
-ros2 pkg create --build-type ament_cmake --license Apache-2.0 cpp_pubsub
+catkin_create_pkg cpp_pubsub std_msgs roscpp
 </code></pre>
 <p>Your terminal will return a message verifying the creation of your package <code>cpp_pubsub</code> and all its necessary files and folders.</p>
+<p><code>catkin_create_pkg</code> requires that you give it a package_name and optionally a list of dependencies on which that package depends: <code>catkin_create_pkg &lt;package_name&gt; [depend1] [depend2] [depend3]</code></p>
 <h4 id="write-the-publisher-node">Write the publisher node</h4>
 </li>
 <li>
-<p>Navigate into <code>ros2_ws/src/cpp_pubsub/src</code>. This is the directory in any CMake package where the source files containing executables belong.</p>
+<p>Navigate into <code>ros_ws/src/cpp_pubsub/src</code>. This is the directory in any CMake package where the source files containing executables belong.</p>
 </li>
 <li>
 <p>Download the example talker code by entering the following command:</p>
-<pre><code>wget -O publisher_member_function.cpp https://raw.githubusercontent.com/ros2/examples/humble/rclcpp/topics/minimal_publisher/member_function.cpp
+<pre><code>wget -O talker.cpp https://raw.githubusercontent.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/talker/talker.cpp
 </code></pre>
 </li>
 <li>
-<p>Now there will be a new file named <code>publisher_member_function.cpp</code>. Open the file using your preferred text editor. Alternatively, create a <code>.cpp</code> file with the following:</p>
-<pre><code>#include &lt;chrono&gt;
-#include &lt;functional&gt;
-#include &lt;memory&gt;
-#include &lt;string&gt;
+<p>Now there will be a new file named <code>talker.cpp</code>. Open the file using your preferred text editor. Alternatively, create a <code>.cpp</code> file with the following:</p>
+<pre><code>#include "ros/ros.h"
+#include "std_msgs/String.h"
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
+#include &lt;sstream&gt;
 
-using namespace std::chrono_literals;
-
-/* This example creates a subclass of Node and uses std::bind() to register a
-* member function as a callback from the timer. */
-
-class MinimalPublisher : public rclcpp::Node
+/**
+ * This tutorial demonstrates simple sending of messages over the ROS system.
+ */
+int main(int argc, char **argv)
 {
-public:
-    MinimalPublisher()
-    : Node("minimal_publisher"), count_(0)
+    /**
+     * The ros::init() function needs to see argc and argv so that it can perform
+     * any ROS arguments and name remapping that were provided at the command line.
+     * For programmatic remappings you can use a different version of init() which takes
+     * remappings directly, but for most command-line programs, passing argc and argv is
+     * the easiest way to do it.  The third argument to init() is the name of the node.
+     *
+     * You must call one of the versions of ros::init() before using any other
+     * part of the ROS system.
+     */
+    ros::init(argc, argv, "talker");
+
+    /**
+     * NodeHandle is the main access point to communications with the ROS system.
+     * The first NodeHandle constructed will fully initialize this node, and the last
+     * NodeHandle destructed will close down the node.
+     */
+    ros::NodeHandle n;
+
+    /**
+     * The advertise() function is how you tell ROS that you want to
+     * publish on a given topic name. This invokes a call to the ROS
+     * master node, which keeps a registry of who is publishing and who
+     * is subscribing. After this advertise() call is made, the master
+     * node will notify anyone who is trying to subscribe to this topic name,
+     * and they will in turn negotiate a peer-to-peer connection with this
+     * node.  advertise() returns a Publisher object which allows you to
+     * publish messages on that topic through a call to publish().  Once
+     * all copies of the returned Publisher object are destroyed, the topic
+     * will be automatically unadvertised.
+     *
+     * The second parameter to advertise() is the size of the message queue
+     * used for publishing messages.  If messages are published more quickly
+     * than we can send them, the number here specifies how many messages to
+     * buffer up before throwing some away.
+     */
+    ros::Publisher chatter_pub = n.advertise&lt;std_msgs::String&gt;("chatter", 1000);
+
+    ros::Rate loop_rate(10);
+
+    /**
+     * A count of how many messages we have sent. This is used to create
+     * a unique string for each message.
+     */
+    int count = 0;
+    while (ros::ok())
     {
-        publisher_ = this-&gt;create_publisher&lt;std_msgs::msg::String&gt;("topic", 10);
-        timer_ = this-&gt;create_wall_timer(
-        500ms, std::bind(&amp;MinimalPublisher::timer_callback, this));
+        /**
+         * This is a message object. You stuff it with data, and then publish it.
+         */
+        std_msgs::String msg;
+
+        std::stringstream ss;
+        ss &lt;&lt; "hello world " &lt;&lt; count;
+        msg.data = ss.str();
+
+        ROS_INFO("%s", msg.data.c_str());
+
+        /**
+         * The publish() function is how you send messages. The parameter
+         * is the message object. The type of this object must agree with the type
+         * given as a template parameter to the advertise&lt;&gt;() call, as was done
+         * in the constructor above.
+         */
+        chatter_pub.publish(msg);
+
+        ros::spinOnce();
+
+        loop_rate.sleep();
+        ++count;
     }
 
-private:
-    void timer_callback()
-    {
-        auto message = std_msgs::msg::String();
-        message.data = "Hello, world! " + std::to_string(count_++);
-        RCLCPP_INFO(this-&gt;get_logger(), "Publishing: '%s'", message.data.c_str());
-        publisher_-&gt;publish(message);
-    }
-    rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher&lt;std_msgs::msg::String&gt;::SharedPtr publisher_;
-    size_t count_;
-};
-
-int main(int argc, char * argv[])
-{
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared&lt;MinimalPublisher&gt;());
-    rclcpp::shutdown();
     return 0;
 }
 </code></pre>
-<p>The top of the code includes the standard C++ headers you will be using. After the standard C++ headers is the <code>rclcpp/rclcpp.hpp</code> include which allows you to use the most common pieces of the ROS 2 system. Last is <code>std_msgs/msg/string.hpp</code>, which includes the built-in message type you will use to publish data.</p>
-<pre><code>#include &lt;chrono&gt;
-#include &lt;functional&gt;
-#include &lt;memory&gt;
-#include &lt;string&gt;
-
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-
-using namespace std::chrono_literals;
+<h4 id="the-code-explained">The Code Explained</h4>
+<p>Now, let's break the code down.</p>
+<pre><code>#include "ros/ros.h"
 </code></pre>
-<p>These lines represent the node’s dependencies. Recall that dependencies have to be added to <code>package.xml</code> and <code>CMakeLists.txt</code>, which you’ll do in the next section.</p>
-<p>The next line creates the node class <code>MinimalPublisher</code> by inheriting from <code>rclcpp::Node</code>. Every <code>this</code> in the code is referring to the node.</p>
-<pre><code>class MinimalPublisher : public rclcpp::Node
+<p><code>ros/ros.h</code> is a convenience include that includes all the headers necessary to use the most common public pieces of the ROS system.</p>
+<pre><code>#include "std_msgs/String.h"
 </code></pre>
-<p>The public constructor names the node <code>minimal_publisher</code> and initializes <code>count_</code> to 0. Inside the constructor, the publisher is initialized with the <code>String</code> message type, the topic name <code>topic</code>, and the required queue size to limit messages in the event of a backup. Next, <code>timer_</code> is initialized, which causes the <code>timer_callback</code> function to be executed twice a second.</p>
-<pre><code>public:
-    MinimalPublisher()
-    : Node("minimal_publisher"), count_(0)
-    {
-        publisher_ = this-&gt;create_publisher&lt;std_msgs::msg::String&gt;("topic", 10);
-        timer_ = this-&gt;create_wall_timer(
-        500ms, std::bind(&amp;MinimalPublisher::timer_callback, this));
-    }
+<p>This includes the <code>std_msgs/String</code> message, which resides in the <code>std_msgs</code> package. This is a header generated automatically from the <code>String.msg</code> file in that package. For more information on message definitions, see the <a href="https://wiki.ros.org/msg">msg</a> page.</p>
+<pre><code>ros::init(argc, argv, "talker");
 </code></pre>
-<p>The <code>timer_callback</code> function is where the message data is set and the messages are actually published. The <code>RCLCPP_INFO</code> macro ensures every published message is printed to the console.</p>
-<pre><code>private:
-    void timer_callback()
-    {
-        auto message = std_msgs::msg::String();
-        message.data = "Hello, world! " + std::to_string(count_++);
-        RCLCPP_INFO(this-&gt;get_logger(), "Publishing: '%s'", message.data.c_str());
-        publisher_-&gt;publish(message);
-    }
+<p>Initialize ROS. This allows ROS to do name remapping through the command line -- not important for now. This is also where we specify the name of our node. Node names must be unique in a running system.</p>
+<p>The name used here must be a base name, ie. it cannot have a / in it.</p>
+<pre><code>ros::NodeHandle n;
 </code></pre>
-<p>Last is the declaration of the timer, publisher, and counter fields.</p>
-<pre><code>rclcpp::TimerBase::SharedPtr timer_;
-rclcpp::Publisher&lt;std_msgs::msg::String&gt;::SharedPtr publisher_;
-size_t count_;
+<p>Create a handle to this process' node. The first <code>NodeHandle</code> created will actually do the initialization of the node, and the last one destructed will cleanup any resources the node was using.</p>
+<pre><code>ros::Publisher chatter_pub = n.advertise&lt;std_msgs::String&gt;("chatter", 1000);
 </code></pre>
-<p>Following the <code>MinimalPublisher</code> class is <code>main</code>, where the node actually executes. <code>rclcpp::init</code> initializes ROS 2, and <code>rclcpp::spin</code> starts processing data from the node, including callbacks from the timer.</p>
-<pre><code>int main(int argc, char * argv[])
+<p>Tell the master that we are going to be publishing a message of type <code>std_msgs/String</code> on the topic <code>chatter</code>. This lets the master tell any nodes listening on <code>chatter</code> that we are going to publish data on that topic. The second argument is the size of our publishing queue. In this case if we are publishing too quickly it will buffer up a maximum of 1000 messages before beginning to throw away old ones.</p>
+<p><code>NodeHandle::advertise()</code> returns a <code>ros::Publisher</code> object, which serves two purposes: 1) it contains a <code>publish()</code> method that lets you publish messages onto the topic it was created with, and 2) when it goes out of scope, it will automatically unadvertise.</p>
+<pre><code>ros::Rate loop_rate(10);
+</code></pre>
+<p>A <code>ros::Rate</code> object allows you to specify a frequency that you would like to loop at. It will keep track of how long it has been since the last call to <code>Rate::sleep()</code>, and sleep for the correct amount of time.</p>
+<p>In this case we tell it we want to run at 10Hz.</p>
+<pre><code>int count = 0;
+while (ros::ok())
 {
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared&lt;MinimalPublisher&gt;());
-    rclcpp::shutdown();
-    return 0;
-}
 </code></pre>
-<h4 id="add-dependencies">Add dependencies</h4>
-</li>
-<li>
-<p>Navigate one level back to the <code>ros2_ws/src/cpp_pubsub</code> directory, where the <code>CMakeLists.txt</code> and <code>package.xml</code> files have been created for you. Open <code>package.xml</code> with your text editor and make sure to fill in the <code>&lt;description&gt;</code>, <code>&lt;maintainer&gt;</code> and <code>&lt;license&gt;</code> tags:</p>
-<pre><code>&lt;description&gt;Examples of minimal publisher/subscriber using rclcpp&lt;/description&gt;
-&lt;maintainer email="you@email.com"&gt;Your Name&lt;/maintainer&gt;
-&lt;license&gt;Apache License 2.0&lt;/license&gt;
+<p>By default roscpp will install a SIGINT handler which provides Ctrl-C handling which will cause <code>ros::ok()</code> to return false if that happens.</p>
+<p><code>ros::ok()</code> will return false if:
+- a SIGINT is received (Ctrl-C)
+- we have been kicked off the network by another node with the same name
+- <code>ros::shutdown()</code> has been called by another part of the application.
+- all <code>ros::NodeHandles</code> have been destroyed</p>
+<p>Once ros::ok() returns false, all ROS calls will fail.</p>
+<pre><code>std_msgs::String msg;
+
+std::stringstream ss;
+ss &lt;&lt; "hello world " &lt;&lt; count;
+msg.data = ss.str();
 </code></pre>
-</li>
-<li>
-<p>Add a new line after the <code>ament_cmake</code> buildtool dependency and paste the following dependencies corresponding to your node’s include statements:</p>
-<pre><code>&lt;depend&gt;rclcpp&lt;/depend&gt;
-&lt;depend&gt;std_msgs&lt;/depend&gt;
+<p>We broadcast a message on ROS using a message-adapted class, generally generated from a msg file. More complicated datatypes are possible, but for now we're going to use the standard <code>String</code> message, which has one member: "data".</p>
+<pre><code>chatter_pub.publish(msg);
 </code></pre>
-<p>This declares the package needs rclcpp and std_msgs when its code is built and executed.</p>
-<p>Make sure to save the file.</p>
-<h4 id="cmakeliststxt">CMakeLists.txt</h4>
-</li>
-<li>
-<p>Now open the <code>CMakeLists.txt</code> file. Below the existing dependency <code>find_package(ament_cmake REQUIRED)</code>, add the lines:</p>
-<pre><code>find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+<p>Now we actually broadcast the message to anyone who is connected.</p>
+<pre><code>ROS_INFO("%s", msg.data.c_str());
 </code></pre>
-</li>
-<li>
-<p>After that, add the executable and name it <code>talker</code> so you can run your node using <code>ros2 run</code>:</p>
-<pre><code>add_executable(talker src/publisher_member_function.cpp)
-ament_target_dependencies(talker rclcpp std_msgs)
+<p><code>ROS_INFO</code> and friends are our replacement for <code>printf/cout</code>. See the <a href="https://wiki.ros.org/rosconsole">rosconsole documentation</a> for more information.</p>
+<pre><code>ros::spinOnce();
 </code></pre>
-</li>
-<li>
-<p>Finally, add the <code>install(TARGETS...)</code> section under the lines above so <code>ros2 run</code> can find your executable:</p>
-<pre><code>install(TARGETS
-    talker
-    DESTINATION lib/${PROJECT_NAME})
+<p>Calling <code>ros::spinOnce()</code> here is not necessary for this simple program, because we are not receiving any callbacks. However, if you were to add a subscription into this application, and did not have <code>ros::spinOnce()</code> here, your callbacks would never get called. So, add it for good measure.</p>
+<pre><code>loop_rate.sleep();
 </code></pre>
-<p>You could build your package now, source the local setup files, and run it, but let’s create the subscriber node first so you can see the full system at work.</p>
+<p>Now we use the <code>ros::Rate</code> object to sleep for the time remaining to let us hit our 10Hz publish rate.</p>
+<p>Here's the condensed version of what's going on:
+- Initialize the ROS system
+- Advertise that we are going to be publishing std_msgs/String messages on the chatter topic to the master
+- Loop while publishing messages to chatter 10 times a second</p>
+<p>Now we need to write a node to receive the messsages.</p>
 <h4 id="write-the-subscriber-node">Write the subscriber node</h4>
 </li>
 <li>
-<p>Return to <code>ros2_ws/src/cpp_pubsub/src</code> to create the next node. Enter the following code in your terminal to download the subscriber:</p>
-<pre><code>wget -O subscriber_member_function.cpp https://raw.githubusercontent.com/ros2/examples/humble/rclcpp/topics/minimal_subscriber/member_function.cpp
+<p>Return to <code>ros_ws/src/cpp_pubsub/src</code> to create the next node. Enter the following code in your terminal to download the subscriber:</p>
+<pre><code>wget -O listener.cpp https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp
 </code></pre>
 <p>Check to ensure that these files exist:</p>
-<pre><code>publisher_member_function.cpp  subscriber_member_function.cpp
+<pre><code>talker.cpp  listener.cpp
 </code></pre>
 </li>
 <li>
-<p>Open the <code>subscriber_member_function.cpp</code> with your text editor. Alternatively, create a <code>.cpp</code> file with the following:</p>
-<pre><code>#include &lt;memory&gt;
+<p>Open the <code>listener.cpp</code> with your text editor. Alternatively, create a <code>.cpp</code> file with the following:</p>
+<pre><code>#include "ros/ros.h"
+#include "std_msgs/String.h"
 
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-using std::placeholders::_1;
-
-class MinimalSubscriber : public rclcpp::Node
+/**
+ * This tutorial demonstrates simple receipt of messages over the ROS system.
+ */
+void chatterCallback(const std_msgs::String::ConstPtr&amp; msg)
 {
-public:
-    MinimalSubscriber()
-    : Node("minimal_subscriber")
-    {
-        subscription_ = this-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
-        "topic", 10, std::bind(&amp;MinimalSubscriber::topic_callback, this, _1));
-    }
+    ROS_INFO("I heard: [%s]", msg-&gt;data.c_str());
+}
 
-private:
-    void topic_callback(const std_msgs::msg::String &amp; msg) const
-    {
-        RCLCPP_INFO(this-&gt;get_logger(), "I heard: '%s'", msg.data.c_str());
-    }
-    rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription_;
-};
-
-int main(int argc, char * argv[])
+int main(int argc, char **argv)
 {
-    rclcpp::init(argc, argv);
-    rclcpp::spin(std::make_shared&lt;MinimalSubscriber&gt;());
-    rclcpp::shutdown();
+    /**
+     * The ros::init() function needs to see argc and argv so that it can perform
+     * any ROS arguments and name remapping that were provided at the command line.
+     * For programmatic remappings you can use a different version of init() which takes
+     * remappings directly, but for most command-line programs, passing argc and argv is
+     * the easiest way to do it.  The third argument to init() is the name of the node.
+     *
+     * You must call one of the versions of ros::init() before using any other
+     * part of the ROS system.
+     */
+    ros::init(argc, argv, "listener");
+
+    /**
+     * NodeHandle is the main access point to communications with the ROS system.
+     * The first NodeHandle constructed will fully initialize this node, and the last
+     * NodeHandle destructed will close down the node.
+     */
+    ros::NodeHandle n;
+
+    /**
+     * The subscribe() call is how you tell ROS that you want to receive messages
+     * on a given topic.  This invokes a call to the ROS
+     * master node, which keeps a registry of who is publishing and who
+     * is subscribing.  Messages are passed to a callback function, here
+     * called chatterCallback.  subscribe() returns a Subscriber object that you
+     * must hold on to until you want to unsubscribe.  When all copies of the Subscriber
+     * object go out of scope, this callback will automatically be unsubscribed from
+     * this topic.
+     *
+     * The second parameter to the subscribe() function is the size of the message
+     * queue.  If messages are arriving faster than they are being processed, this
+     * is the number of messages that will be buffered up before beginning to throw
+     * away the oldest ones.
+     */
+    ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+
+    /**
+     * ros::spin() will enter a loop, pumping callbacks.  With this version, all
+     * callbacks will be called from within this thread (the main one).  ros::spin()
+     * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
+     */
+    ros::spin();
+
     return 0;
 }
 </code></pre>
-<p>The subscriber node’s code is nearly identical to the publisher’s. Now the node is named <code>minimal_subscriber</code>, and the constructor uses the node’s <code>create_subscription</code> class to execute the callback.</p>
-<p>There is no timer because the subscriber simply responds whenever data is published to the topic <code>topic</code>.</p>
-<pre><code>public:
-    MinimalSubscriber()
-    : Node("minimal_subscriber")
-    {
-        subscription_ = this-&gt;create_subscription&lt;std_msgs::msg::String&gt;(
-        "topic", 10, std::bind(&amp;MinimalSubscriber::topic_callback, this, _1));
-    }
+<h4 id="the-code-explained_1">The Code Explained</h4>
+<p>Now, let's break it down piece by piece, ignoring some pieces that have already been explained above.</p>
+<pre><code>void chatterCallback(const std_msgs::String::ConstPtr&amp; msg)
+{
+    ROS_INFO("I heard: [%s]", msg-&gt;data.c_str());
+}
 </code></pre>
-<p>Recall from earlier lab that the topic name and message type used by the publisher and subscriber must match to allow them to communicate.</p>
-<p>The <code>topic_callback</code> function receives the string message data published over the topic, and simply writes it to the console using the <code>RCLCPP_INFO</code> macro.</p>
-<p>The only field declaration in this class is the subscription.</p>
-<pre><code>private:
-    void topic_callback(const std_msgs::msg::String &amp; msg) const
-    {
-        RCLCPP_INFO(this-&gt;get_logger(), "I heard: '%s'", msg.data.c_str());
-    }
-    rclcpp::Subscription&lt;std_msgs::msg::String&gt;::SharedPtr subscription_;
+<p>This is the callback function that will get called when a new message has arrived on the <code>chatte</code>r topic. The message is passed in a <code>boost shared_pt</code>r, which means you can store it off if you want, without worrying about it getting deleted underneath you, and without copying the underlying data.</p>
+<pre><code>ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
 </code></pre>
-<p>The <code>main</code> function is exactly the same, except now it spins the <code>MinimalSubscriber</code> node. For the publisher node, spinning meant starting the timer, but for the subscriber it simply means preparing to receive messages whenever they come.</p>
-<p>Since this node has the same dependencies as the publisher node, there’s nothing new to add to <code>package.xml</code>.</p>
-<h4 id="cmakeliststxt_1">CMakeLists.txt</h4>
-</li>
-<li>
-<p>Reopen <code>CMakeLists.txt</code> and add the executable and target for the subscriber node below the publisher’s entries.</p>
-<pre><code>add_executable(listener src/subscriber_member_function.cpp)
-ament_target_dependencies(listener rclcpp std_msgs)
-
-install(TARGETS
-    talker
-    listener
-    DESTINATION lib/${PROJECT_NAME})
+<p>Subscribe to the <code>chatter</code> topic with the master. ROS will call the <code>chatterCallback()</code> function whenever a new message arrives. The 2nd argument is the queue size, in case we are not able to process messages fast enough. In this case, if the queue reaches 1000 messages, we will start throwing away old messages as new ones arrive.</p>
+<p><code>NodeHandle::subscribe()</code> returns a <code>ros::Subscriber</code> object, that you must hold on to until you want to unsubscribe. When the Subscriber object is destructed, it will automatically unsubscribe from the <code>chatter</code> topic.</p>
+<p>There are versions of the <code>NodeHandle::subscribe()</code> function which allow you to specify a class member function, or even anything callable by a <code>Boost.Function</code> object. The <a href="https://wiki.ros.org/roscpp/Overview">roscpp</a> overview contains more information.</p>
+<pre><code>ros::spin();
 </code></pre>
-<p>Make sure to save the file, and then your pub/sub system should be ready.</p>
+<p><code>ros::spin()</code> enters a loop, calling message callbacks as fast as possible. Don't worry though, if there's nothing for it to do it won't use much CPU. <code>ros::spin()</code> will exit once <code>ros::ok()</code> returns false, which means <code>ros::shutdown()</code> has been called, either by the default Ctrl-C handler, the master telling us to shutdown, or it being called manually.</p>
+<p>Again, here's a condensed version of what's going on:</p>
+<ul>
+<li>Initialize the ROS system</li>
+<li>Subscribe to the chatter topic</li>
+<li>Spin, waiting for messages to arrive</li>
+<li>When a message arrives, the chatterCallback() function is called</li>
+</ul>
 </li>
 </ol>
 <h3 id="build-and-run-c-package">Build and Run C++ Package</h3>
 <ol>
 <li>
-<p>You likely already have the <code>rclcpp</code> and <code>std_msgs</code> packages installed as part of your ROS 2 system. It’s good practice to run <code>rosdep</code> in the root of your workspace (<code>ros2_ws</code>) to check for missing dependencies before building:</p>
-<pre><code>cd ~/ros2_ws
+<p>Now, open up <code>CMakeLists.txt</code> and ensure the following are in there.</p>
+<pre><code>## Declare ROS messages and services
+add_message_files(FILES Num.msg)
+add_service_files(FILES AddTwoInts.srv)
 
-rosdep install -i --from-path src --rosdistro humble -y
-</code></pre>
-<p>If the <code>rosdep</code> command is not found, run the following to install, init, and update <code>rosdep</code>:</p>
-<pre><code>pip install -U rosdep
-rosdep init
-rosdep update
-</code></pre>
-<p>If you get a permission denied error, use <code>sudo</code>.</p>
-<p>When all dependencies are met, <code>rosdep</code> will return a success message:</p>
-<pre><code>#All required rosdeps installed successfully
+## Generate added messages and services
+generate_messages(DEPENDENCIES std_msgs)
+
+## Declare a catkin package
+catkin_package()
+
+## Build talker and listener
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(talker src/talker.cpp)
+target_link_libraries(talker ${catkin_LIBRARIES})
+add_dependencies(talker beginner_tutorials_generate_messages_cpp)
+
+add_executable(listener src/listener.cpp)
+target_link_libraries(listener ${catkin_LIBRARIES})
+add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 </code></pre>
 </li>
 <li>
-<p>Still in the root of your workspace, <code>ros2_ws</code>, build your new package:</p>
-<pre><code>colcon build --packages-select cpp_pubsub
+<p>This will create two executables, <code>talker</code> and <code>listener</code>, which by default will go into package directory of your <code>devel</code> space, located by default at <code>~/catkin_ws/devel/lib/&lt;package name&gt;</code>.</p>
+<p>Note that you have to add dependencies for the executable targets to message generation targets:</p>
+<pre><code>add_dependencies(talker beginner_tutorials_generate_messages_cpp)
 </code></pre>
+<p>This makes sure message headers of this package are generated before being used. If you use messages from other packages inside your catkin workspace, you need to add dependencies to their respective generation targets as well, because catkin builds all projects in parallel. As of <em>Groovy</em> you can use the following variable to depend on all necessary targets:</p>
+<pre><code>target_link_libraries(talker ${catkin_LIBRARIES})
+</code></pre>
+<p>You can invoke executables directly or you can use <code>rosrun</code> to invoke them. They are not placed in <code>&lt;prefix&gt;/bin</code> because that would pollute the PATH when installing your package to the system. If you wish for your executable to be on the PATH at installation time, you can setup an install target, see: <a href="https://wiki.ros.org/catkin/CMakeLists.txt">catkin/CMakeLists.txt</a></p>
 </li>
+<li>
+<p>Now run <code>catkin_make</code> in your catkin workspace:</p>
+<pre><code>cd ~/catkin_ws
+catkin_make
+</code></pre>
+<p>Note: Or if you're adding as new pkg, you may need to tell catkin to force making by <code>--force-cmake</code> option.</p>
+</li>
+</ol>
+<p>Now you have written a simple publisher and subscriber.</p>
+<ol>
 <li>
 <p>Source the setup files:</p>
 <pre><code>. install/setup.bash
@@ -547,7 +590,7 @@ from rclpy.node import Node
     rclpy.shutdown()
 </code></pre>
 <p>First the <code>rclpy</code> library is initialized, then the node is created, and then it “spins” the node so its callbacks are called.</p>
-<h4 id="add-dependencies_1">Add dependencies</h4>
+<h4 id="add-dependencies">Add dependencies</h4>
 </li>
 <li>
 <p>Navigate one level back to the <code>ros2_ws/src/py_pubsub</code> directory, where the <code>setup.py</code>, <code>setup.cfg</code>, and <code>package.xml</code> files have been created for you. Open <code>package.xml</code> with your text editor and make sure to fill in the <code>&lt;description&gt;</code>, <code>&lt;maintainer&gt;</code> and <code>&lt;license&gt;</code> tags:</p>
@@ -775,8 +818,9 @@ to write a single publisher node.</p>
 <li>Running <code>ros2 run lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls turtle1.</li>
 </ul>
 </li>
-<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as scanf() or input() instead.</li>
+<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as <code>scanf()</code> or <code>input()</code> instead.</li>
 </ul>
+<p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.</p>
 <p>To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.</p>
 </li>
 </ol>

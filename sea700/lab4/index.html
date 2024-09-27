@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 4 : Gazebo and JetAuto";
-        var mkdocs_page_input_path = "sea700/lab4.md";
+        var mkdocs_page_input_path = "sea700\\lab4.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -79,16 +79,133 @@
 Seneca Polytechnic</br>
 SEA700 Robotics for Software Engineers
 </font></p>
+<h2 id="introduction">Introduction</h2>
+<h3 id="urdf">URDF</h3>
+<p>URDF (Unified Robot Description Format) is an XML format for representing a robot model. URDF is commonly used in Robot Operating System (ROS) tools such as rviz (Ros Visualization tool) and Gazebo simulator. It is essentially a 3-D model with information around joints, motors, mass, etc. The files are then run through the Robot Operating System (ROS). The data from the file informs the human operator what the robot looks like and is capable of before they begin operating the robot.</p>
+<p>More details on the URDF specification can be found <a href="http://wiki.ros.org/urdf/XML">here</a>.</p>
+<p>Many robotic manufacturers have URDF models of their devices available for download. These include the <a href="https://stanleyinnovation.com/rmp-urdf-3d-files/">Segway RMP</a>, <a href="http://wiki.ros.org/turtlebot_description">Turtlebot</a>, and <a href="https://github.com/Active8Robots/AR10/blob/master/ar10_description/urdf/ar10.urdf">AR10</a>.</p>
+<p>More Models:</p>
+<ul>
+<li><a href="https://github.com/adubredu/DigitRobot.jl">Agility Robotics Digit</a></li>
+<li><a href="https://github.com/ANYbotics/anymal_b_simple_description">ANYbotics Anymal</a></li>
+<li><a href="https://github.com/clearpathrobotics/spot_ros">Boston Dynamics Spot (via Clearpath ROS Driver)</a></li>
+<li><a href="https://www.clearpathrobotics.com/assets/guides/kinetic/jackal/description.html">Clearpath Jackal</a></li>
+<li><a href="https://www.clearpathrobotics.com/assets/guides/melodic/dingo/description.html">Clearpath Dingo</a></li>
+<li><a href="https://github.com/husky/husky">Clearpath Husky</a></li>
+<li><a href="http://wiki.ros.org/turtlebot_description">Clearpath Turtlebot</a></li>
+<li><a href="https://github.com/unitreerobotics/unitree_ros">Unitree Go1</a></li>
+<li><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description">Universal Robotics</a></li>
+</ul>
+<h3 id="rviz">RViz</h3>
+<p>RViz is a 3D visualizer for the Robot Operating System (ROS) framework.</p>
+<h3 id="gazebo">Gazebo</h3>
+<p>Gazebo is a 3D dynamic simulator with the ability to accurately and efficiently simulate populations of robots in complex indoor and outdoor environments. While similar to game engines, Gazebo offers physics simulation at a much higher degree of fidelity, a suite of sensors, and interfaces for both users and programs.</p>
 <h2 id="preparation">Preparation</h2>
-<p>In preperation of using the JetAuto robot, please go through the user manual and the basic lesson provided by the manufacturer found here:</p>
-<p><a href="../JetAuto-User-Manual.pdf">JetAuto User Manual</a>
-<a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a></p>
-<p>https://gazebosim.org/docs/latest/ros_installation/</p>
-<p>https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html</p>
-<p>https://gazebosim.org/docs/fortress/install/</p>
-<p>sudo apt install ros-humble-desktop</p>
-<p>sudo apt install ros-humble-urdf (not required)
-sudo apt install ros-humble-xacro</p>
+<p>In preperation of using the JetAuto robot, please be familiar with the user manual and the basic lesson provided by the manufacturer found here:</p>
+<ul>
+<li><a href="../JetAuto-User-Manual.pdf">JetAuto User Manual</a></li>
+<li><a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a></li>
+</ul>
+<h3 id="ubuntu-and-gazebo-version-change">Ubuntu and Gazebo version change</h3>
+<ol>
+<li>To maximize compartibiilty with the JetAuto robot, we need to be using ROS Melodic and Gazebo version 9 running on Ubuntu 18.04. Use <code>jetauto</code> as the username for your OS.</li>
+</ol>
+<h3 id="building-a-robot-model">Building a robot model</h3>
+<ol>
+<li>
+<p>If you are interested in building a URDF from scratch, visit the ROS tutorial <a href="https://wiki.ros.org/urdf/Tutorials">here</a>.</p>
+</li>
+<li>
+<p>For the purpose of this course, we'll be using the URDF model provided by the manufacturer in chapter 7.2 of the JetAuto Lessons. SSH into the robot and copy the <code>jetauto_ws</code> folder into your home directory.</p>
+</li>
+</ol>
+<h3 id="ssh-into-the-jetauto-robot">SSH Into the JetAuto Robot</h3>
+<p><strong>Copy this lab instruction somewhere on your computer as you'll lose connection to the internet!</strong></p>
+<ol>
+<li>
+<p>By default, the JetAuto is configured to be in AP mode. Power on the robot and connect to the robot's WiFi starting in "HW-".</p>
+<p>The password for the WiFi connection is: <strong>hiwonder</strong>.</p>
+</li>
+<li>
+<p>Once connected, use terminal (or PuTTY) to SSH into the robot at "192.168.149.1".</p>
+<p>The user is: <strong>Jetauto</strong>, and the password is: <strong>hiwonder</strong>.</p>
+<h4 id="usb-connection-with-the-robot">USB connection with the robot</h4>
+<ol>
+<li>
+<p>It is possible to connect with the robot via USB using the Jetson Nano's micro-B USB port.</p>
+</li>
+<li>
+<p>Use <code>screen</code> terminal application to connection with the robot.</p>
+<pre><code>sudo apt-get install -y screen
+sudo screen /dev/ttyACM0 115200
+</code></pre>
+</li>
+</ol>
+<h4 id="nomachine">NoMachine</h4>
+<ol>
+<li>NoMachine is another application that can be used to for remote connection with the JetNano board. Once you are connected with the robot, the credential is the same as above.</li>
+</ol>
+</li>
+</ol>
+<h3 id="jetson-nano-board">Jetson Nano Board</h3>
+<ol>
+<li>Go through all the Chapter 6 lesson in the <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a> to understand more functionality of the Jetson Nano board.</li>
+</ol>
+<h3 id="moving-the-robot">Moving the Robot</h3>
+<ol>
+<li>
+<p>This can be done in Gazebo or with the actual robot.</p>
+</li>
+<li>
+<p>Go through all the Chapter 7 lesson in the <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a> to understand how to move the robot.</p>
+</li>
+</ol>
+<h2 id="lab-question">Lab Question</h2>
+<ol>
+<li>
+<p>Write a code that will move the JetAuto robot in a 1m square shape pattern as follow:</p>
+<ul>
+<li>(0, 0, 0°) to (1, 0, 0°) - face the direction of travel</li>
+<li>(1, 0, 0°) to (1, 1, 0°) - face the outside of the square</li>
+<li>(1, 1, -90°) to (0, 1, -90°) - rotate first to face the inside of the square</li>
+<li>(0, 1, -90°) to (0, 0, 0°) - rotate the robot while traveling</li>
+</ul>
+<p>Repeat for 2 times.</p>
+</li>
+</ol>
+<!--
+https://gazebosim.org/docs/latest/ros_installation/
+
+https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+
+https://gazebosim.org/docs/fortress/install/
+
+Screen into Jetson Nano
+https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup-headless
+
+sudo apt-get install -y screen
+sudo screen /dev/ttyACM0 115200
+
+login: jetauto
+password: hiwonder
+
+hi
+
+sudo apt install ros-humble-desktop
+
+sudo apt install ros-humble-urdf (not required)
+sudo apt install ros-humble-xacro
+
+ros-melodic-
+
+-->
+
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://wiki.ros.org/ROS/Tutorials">ROS Tutorials</a></li>
+<li><a href="https://formant.io/resources/glossary/urdf/">What is the Unified Robotics Description Format (URDF)?</a></li>
+<li>EECS 106A Labs</li>
+</ul>
               
             </div>
           </div><footer>
