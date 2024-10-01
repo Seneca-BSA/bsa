@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 5 : More Branching, Subroutine, and Stack";
-        var mkdocs_page_input_path = "seh500\\lab5.md";
+        var mkdocs_page_input_path = "seh500/lab5.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -217,33 +217,6 @@ SEH500 Microprocessors and Computer Architecture
 </tr>
 </tbody>
 </table>
-<h3 id="it-if-then-block">IT (If-Then) Block</h3>
-<p>The IT (If-Then) block is a feature with ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In anorder word, an IT help ensure there are no semantic error during assembly programming.</p>
-<p>An IT block have the following syntax:</p>
-<pre><code>IT{x{y{z}}} {cond}
-</code></pre>
-<p>where:</p>
-<ul>
-<li>x - specifies the condition switch for the second instruction in the IT block.</li>
-<li>y - specifies the condition switch for the third instruction in the IT block.</li>
-<li>z - specifies the condition switch for the fourth instruction in the IT block.</li>
-<li>cond - specifies the condition for the first instruction in the IT block.</li>
-</ul>
-<p>The condition switch for the second, third and fourth instruction in the IT block can be either:</p>
-<ul>
-<li>T - Then. Applies the condition to the instruction.cond</li>
-<li>E - Else. Applies the inverse condition of to the instruction.cond</li>
-</ul>
-<p>Example:</p>
-<pre><code>itte   ne           @ define the two condition switches in IT block
-andne  r0,r0,r1     @ first line in IT block, always an if
-addsne r2,r2,#1     @ second line in IT block, then
-moveq  r2,r3        @ third line in IT block, else
-add    r0,r0,r1     @ not in IT block
-itt    eq           @ define the one condition switches in IT block
-moveq  r0,r1        @ first line in IT block, always an if
-beq    main         @ branch at end of IT block is permitted
-</code></pre>
 <h3 id="register-use-in-the-arm-procudure-call-standard">Register Use in the ARM Procudure Call Standard</h3>
 <p>So far, we've been using the general purpose registers freely without much condition of what there are ideal for or any standards. However, below is a common convention to consider when using registers:</p>
 <table>
