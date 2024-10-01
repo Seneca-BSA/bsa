@@ -49,41 +49,6 @@ See below for conditions that are set by a compare, usually CMP, instruction. Th
 | LE | Z = 1 and N != V | Less than or equal, signed, <= |
 | AL | Can have any value | Always. This is the default when no suffix is specified. |
 
-### IT (If-Then) Block
-
-The IT (If-Then) block is a feature with ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In anorder word, an IT help ensure there are no semantic error during assembly programming.
-
-An IT block have the following syntax:
-
-```
-IT{x{y{z}}} {cond}
-```
-
-where:
-
-- x - specifies the condition switch for the second instruction in the IT block.
-- y - specifies the condition switch for the third instruction in the IT block.
-- z - specifies the condition switch for the fourth instruction in the IT block.
-- cond - specifies the condition for the first instruction in the IT block.
-
-The condition switch for the second, third and fourth instruction in the IT block can be either:
-
-- T - Then. Applies the condition to the instruction.cond
-- E - Else. Applies the inverse condition of to the instruction.cond
-
-Example:
-
-```
-itte   ne			@ define the two condition switches in IT block
-andne  r0,r0,r1 	@ first line in IT block, always an if
-addsne r2,r2,#1		@ second line in IT block, then
-moveq  r2,r3		@ third line in IT block, else
-add    r0,r0,r1		@ not in IT block
-itt    eq			@ define the one condition switches in IT block
-moveq  r0,r1		@ first line in IT block, always an if
-beq    main			@ branch at end of IT block is permitted
-```
-
 ### Register Use in the ARM Procudure Call Standard
 
 So far, we've been using the general purpose registers freely without much condition of what there are ideal for or any standards. However, below is a common convention to consider when using registers:

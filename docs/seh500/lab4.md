@@ -1,4 +1,4 @@
-# Lab 4 : More Branching, Array and String in Assembly
+# Lab 4 : Branching, Array and String in Assembly
 
 <font size="5">
 Seneca College</br>
@@ -10,6 +10,7 @@ SEH500 Microprocessors and Computer Architecture
 Documentation of the Cortex-M4 instruction set can be found here:
 
 - [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
 
 In the previous lab, we explored how to use the program status flags and how to perform branching. In this lab, we'll further explore branching and variables in the form of arrays and strings.
@@ -34,14 +35,11 @@ See below for conditions that are set by a compare, usually CMP, instruction. Th
 The APSR contains the following condition flags:
 
 - **N**: Set to 1 when the result of the operation was negative, cleared to 0 otherwise.
-
 - **Z**: Set to 1 when the result of the operation was zero, cleared to 0 otherwise.
-
 - **C**: Set to 1 when the operation resulted in a carry, cleared to 0 otherwise.
-
 - **V**: Set to 1 when the operation caused overflow, cleared to 0 otherwise.
 
-| Suffix | Flags | Meaning |f
+| Suffix | Flags | Meaning |
 |---|---|---|
 | EQ | Z = 1 | Equal |
 | NE | Z = 0 | Not equal |
@@ -70,7 +68,7 @@ The APSR contains the following condition flags:
 
 ### Example of Branching Instructions
 
-Following a compare instruction.
+Following a compare instruction, branching instructions can be used as follow:
 
 | Instruction | Action |
 |---|---|
@@ -104,10 +102,38 @@ In addition to the basic LDR and STR, there are also a few other different ways 
 | Double Reg indirect<br/>Register indirect register indexed | LDR R0, [R1, R2] | Load R0<br/>with the word pointed by<br/>R1+R2 |
 | Program counter relative | LDR R0, [PC, #offset] | Load R0<br/>with the word pointed by<br/>PC+offset |
 
-## Preparation
+### IT (If-Then) Block
 
-> ### Lab Preparation Question
-> 1. Read over the lab and write a pseudocode for the post-lab exercise 4. Copy your pseudocode into Blackboard.
+The IT (If-Then) block is a feature with ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In anorder word, an IT black help ensure there are no semantic error during assembly programming.
+
+**NOTE**: An IT block is not always required as the some IDE will insert for you automatically.
+
+An IT block have the following syntax:
+
+    IT{x{y{z}}} {cond}
+
+where:
+
+- x - specifies the condition switch for the second instruction in the IT block.
+- y - specifies the condition switch for the third instruction in the IT block.
+- z - specifies the condition switch for the fourth instruction in the IT block.
+- cond - specifies the condition for the first instruction in the IT block.
+
+The condition switch for the second, third and fourth instruction in the IT block can be either:
+
+- T - Then. Applies the condition to the instruction.cond
+- E - Else. Applies the inverse condition of to the instruction.cond
+
+Example:
+
+    itte   ne			@ define the two condition switches in IT block
+    andne  r0,r0,r1 	@ first line in IT block, always an if
+    addsne r2,r2,#1		@ second line in IT block, then
+    moveq  r2,r3		@ third line in IT block, else
+    add    r0,r0,r1		@ not in IT block
+    itt    eq			@ define the one condition switches in IT block
+    moveq  r0,r1		@ first line in IT block, always an if
+    beq    main			@ branch at end of IT block is permitted
 
 ## Procedures
 
@@ -121,137 +147,138 @@ Similar to the previous lab.
 
 1. In the previous lab, we also explored the idea of using a label to reference address in memory used in the same manner as variables in high-level programming language, this time, we'll explore the use of string. Replace the code within the file with the following:
 
-    <hr/><pre>
-    .syntax unified             @ unified syntax used
-    .cpu cortex-m4              @ cpu is cortex-m4
-    .thumb                      @ use thumb encoding
+        @ Example Code #1
 
-    .data                       @ put data in the data section
-    myString: .string "Hello world!"
-        @ declare a label for a string with a null terminator
-    
-    .text
-    .global main                @ declare main as a global variable
-    .type main, %function       @ set main to function type
+        .syntax unified             @ unified syntax used
+        .cpu cortex-m4              @ cpu is cortex-m4
+        .thumb                      @ use thumb encoding
 
-    main:
-        ldr r0, =myString       @ Load the address of myString into R0
-                                @ R0 = ?
-        mov r1, #0              @ Initialize the counter
-                                @ R1 = ?
+        .data                       @ put data in the data section
+        myString: .string ""        @ put your name within the ""
+            @ declare a label for a string with a null terminator
+        
+        .text
+        .global main                @ declare main as a global variable
+        .type main, %function       @ set main to function type
 
-    loopCount:
-        ldrb r2, [r0]           @ Load the character from the address in R0
-        cmp r2, #0              @ check for null terminator
-                                @ R2 = ? During the first loop
-                                @ R2 = ? At the end of the program
-                                @ Which ASCII characters are they?
-        beq countDone           @ If it is zero...null terminated...
-                                @ We are done with the string.
-                                @ The length is in R1.
-        add r0, #1              @ Otherwise, increment the
-                                @ address to the next character
-                                @ R0 = ? During the first loop
-                                @ R0 = ? At the end of the program
-        add r1, #1              @ increment the counter for length
-                                @ R1 = ? During the first loop
-                                @ R1 = ? At the end of the program
-                                @ What is the length of the string?
-        b loopCount
+        main:
+            ldr r0, =myString       @ Load the address of myString into R0
+                                    @ R0 = ?
+            mov r1, #0              @ Initialize the counter
+                                    @ R1 = ?
 
-    countDone:
-    stop:                           @ define a new label called stop
-        nop                         @ do nothing
-        b       stop                @ jump back label stop to form a loop
-    </pre><hr/>
+        loopCount:
+            ldrb r2, [r0]           @ Load the character from the address in R0
+            cmp r2, #0              @ check for null terminator
+                                    @ R2 = ? During the first loop
+                                    @ R2 = ? At the end of the program
+                                    @ Which ASCII characters are they?
+            beq countDone           @ If it is zero...null terminated...
+                                    @ We are done with the string.
+                                    @ The length is in R1.
+            add r0, #1              @ Otherwise, increment the
+                                    @ address to the next character
+                                    @ R0 = ? During the first loop
+                                    @ R0 = ? At the end of the program
+            add r1, #1              @ increment the counter for length
+                                    @ R1 = ? During the first loop
+                                    @ R1 = ? At the end of the program
+                                    @ What is the length of the string?
+            b loopCount
 
-1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the string is saved then take a screenshot showing the memory address along with the value and ASCII character saved in it. Submit your code and screenshot it as part of the post-lab.
+        countDone:
+        stop:                           @ define a new label called stop
+            nop                         @ do nothing
+            b       stop                @ jump back label stop to form a loop
+
+1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the string is saved then take a screenshot showing the memory address along with the value and ASCII character saved in it. Submit your code and screenshot as part of the post-lab.
 
 1. In the previous code, we explored the idea of using string. In this code, we'll take a look at the use of an array. Replace the code within the file with the following:
 
-    <hr/><pre>
-    .syntax unified             @ unified syntax used
-    .cpu cortex-m4              @ cpu is cortex-m4
-    .thumb                      @ use thumb encoding
+        @ Example Code #2
 
-    .data                       @ put data in the data section
-    sump: .word sum             @ a pointer for sum
-    pointer: .word num1         @ a pointer for num1
-    n: .word 5                  @ variable n, word size, value 5
-    num1: .word 3, -7, 2, -2, 10
-                                @ array num1 with 5 element, word size
-    sum: .word 0                @ variable sum, word size, value 0
-    
-    .text
-    .global main                @ declare main as a global variable
-    .type main, %function       @ set main to function type
+        .syntax unified             @ unified syntax used
+        .cpu cortex-m4              @ cpu is cortex-m4
+        .thumb                      @ use thumb encoding
 
-    main:
-        ldr r1, =n
-        ldr r1, [r1]            @ load size of array, R1 = ?
-        @ a counter for how many elements are left to process
-        ldr r2, =pointer
-        ldr r2, [r2]            @ load base pointer of array, R2 = ?
-        mov r0, #0              @ initialize counter, R0 = ?
+        .data                       @ put data in the data section
+        sump: .word sum             @ a pointer for sum
+        pointer: .word num1         @ a pointer for num1
+        n: .word 5                  @ variable n, word size, value 5
+        num1: .word #, -#, -#, -#, # 
+            @ replace it with the last 5 digits of your student number and maintain the negative
+                                    @ array num1 with 5 element, word size
+        sum: .word 0                @ variable sum, word size, value 0
+        
+        .text
+        .global main                @ declare main as a global variable
+        .type main, %function       @ set main to function type
 
-    loop:   
-        ldr r3, [r2], #4        @ load value from array
-                                @ R3 = ? for the first loop
-                                @ R3 = ? for the second loop
-            @ increment array pointer to next word (index)
-        add r0, r0, r3          @ add value from array to counter
-                                @ R0 = ? for the first loop
-                                @ R0 = ? for the second loop
-        subs r1, r1, #1         @ decrement work counter
-                                @ R1 = ? for the first loop
-                                @ R1 = ? for the second loop
-        bgt loop                @ keep looping until the counter is zero
-        ldr r4, =sump
-        ldr r4, [r4]            @ get memory address to store sum
-        str r0, [r4]            @ store answer
-        ldr r6, [r4]            @ Check the value in the sum
+        main:
+            ldr r1, =n
+            ldr r1, [r1]            @ load size of array, R1 = ?
+            @ a counter for how many elements are left to process
+            ldr r2, =pointer
+            ldr r2, [r2]            @ load base pointer of array, R2 = ?
+            mov r0, #0              @ initialize counter, R0 = ?
 
-    stop:                           @ define a new label called stop
-        nop                         @ do nothing
-        b       stop                @ jump back label stop to form a loop
-    </pre><hr/>
+        loop:   
+            ldr r3, [r2], #4        @ load value from array
+                                    @ R3 = ? for the first loop
+                                    @ R3 = ? for the second loop
+                @ increment array pointer to next word (index)
+            add r0, r0, r3          @ add value from array to counter
+                                    @ R0 = ? for the first loop
+                                    @ R0 = ? for the second loop
+            subs r1, r1, #1         @ decrement work counter
+                                    @ R1 = ? for the first loop
+                                    @ R1 = ? for the second loop
+            bgt loop                @ keep looping until the counter is zero
+            ldr r4, =sump
+            ldr r4, [r4]            @ get memory address to store sum
+            str r0, [r4]            @ store answer
+            ldr r6, [r4]            @ Check the value in the sum
 
-1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the array is saved then take a screenshot showing the memory address along with the value and highlight the negative. Submit your code and screenshot it as part of the post-lab.
+        stop:                           @ define a new label called stop
+            nop                         @ do nothing
+            b       stop                @ jump back label stop to form a loop
+
+1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the array is saved then take a screenshot showing the memory address along with the value and highlight the negative. Submit your code and screenshot as part of the post-lab.
 
 1. Lastly, the code from the first example can also be written as follows using an array instead of a string. Also, a different comparison statement is used.
 
-    <hr/><pre>
-    .syntax unified             @ unified syntax used
-    .cpu cortex-m4              @ cpu is cortex-m4
-    .thumb                      @ use thumb encoding
+        @ Example Code #3
+        
+        .syntax unified             @ unified syntax used
+        .cpu cortex-m4              @ cpu is cortex-m4
+        .thumb                      @ use thumb encoding
 
-    .data                       @ put data in the data section
-    myString: .ascii "Hello world!\0"
-        @ declare a label for a string with a null terminator
-    
-    .text
-    .global main                @ declare main as a global variable
-    .type main, %function       @ set main to function type
+        .data                       @ put data in the data section
+        myString: .ascii "\0"       @ put your name before \0
+            @ declare a label for a string with a null terminator
+        
+        .text
+        .global main                @ declare main as a global variable
+        .type main, %function       @ set main to function type
 
-    main:
-        ldr r0, =myString       @ Load the address of myString into R0
-        mov r1, #0              @ Initialize the counter
+        main:
+            ldr r0, =myString       @ Load the address of myString into R0
+            mov r1, #0              @ Initialize the counter
 
-    loopCount:
-        ldrb r2, [r0], #1       @ Load the character from the address in R0
-                                @ and update the pointer R0
-        cbz r2, countDone       @ check for null terminator in one line
-                                @ If it is zero...null terminated...
-                                @ We are done with the string.
-                                @ The length is in R1.
-        add r1, #1              @ increment the counter for length
-        b loopCount
+        loopCount:
+            ldrb r2, [r0], #1       @ Load the character from the address in R0
+                                    @ and update the pointer R0
+            cbz r2, countDone       @ check for null terminator in one line
+                                    @ If it is zero...null terminated...
+                                    @ We are done with the string.
+                                    @ The length is in R1.
+            add r1, #1              @ increment the counter for length
+            b loopCount
 
-    countDone:
-    stop:                           @ define a new label called stop
-        nop                         @ do nothing
-        b       stop                @ jump back label stop to form a loop
-    </pre><hr/>
+        countDone:
+        stop:                           @ define a new label called stop
+            nop                         @ do nothing
+            b       stop                @ jump back label stop to form a loop
 
 1. Compare the third example code with the first example code and find the difference between then explain which line got added, removed, changed and why. Also, discuss its effect on the code then put your answer in the post-lab exercise.
 
@@ -259,11 +286,15 @@ Similar to the previous lab.
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
-1. Execute the code from step 4 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
+1. Execute Example Code #1 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
 
-1. Execute the code from step 6 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
+1. Which line(s) in Example #1 is responsible for looping through the char array and explain how it works?
 
-1. Execute the code from step 8 then compare the difference between them. Put your answers into Blackboard.
+1. Execute Example Code #2 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
+
+1. Which line(s) in Example #2 is responsible for looping through the char array and explain how it works?
+
+1. How are Example Code #3 and Example Code #1 difference in terms of loop and comparison?
 
 1. Write a program in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! (your name here)" (REPLACE (your name here) with your name).
 
@@ -272,7 +303,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
     - use R1 as the counter for vowel
     - use R2 as the counter for non-vowel
 
-1. For the code above, at the end of execution, take a screenshot of your register bank, and your memory space showing the string then copy your code into Blackboard.
+    For the code above, at the end of execution, take a screenshot of your register bank, and your memory space showing the string then copy your code into Blackboard.
 
 ## Reference
 
