@@ -51,7 +51,7 @@ The Program Status Register is composed of three status registers:
 - Execution PSR (EPSR)
 - Interrupt PSR (IPSR)
 
-These three registers can be accessed as one combined register, referred to as xPSR in some documentation. In ARM® assembler, when accessing xPSR (Figure 2.3), the symbol PSR is used.
+These three registers can be accessed as one combined register, referred to as xPSR in some documentation. In the ARM assembler, when accessing xPSR (Figure 2.3), the symbol PSR is used.
 
 ![Figure 2.3 Combined xPSR](lab2-xpsr.jpg)
 
@@ -62,8 +62,8 @@ The main 4 status bits of interest are:
 - **N**: Negative flag - set to 1 when the result of an operation is negative
 - **Z**: Zero flag - set to 1 when the result of an operation is zero
 - **C**: Carry (or NOT borrow) flag
-    - set to 1 if the addition produces a carry
-    - set to 0 if the subtraction produces a borrow
+    - set to 1 if the addition produces a carry
+    - set to 0 if the subtraction produces a borrow
 - **V**: Overflow flag - set to 1 if the result of an operation is outside the range of a signed 32-bit integer
 
 Reference: Yiu, Ch 4
@@ -77,7 +77,7 @@ Have a look at the following instruction set and ensure you understand how to lo
 Documentation of the Cortex-M4 instruction set can be found here:
 
 - [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
-    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
 
 ## Procedures
@@ -132,15 +132,15 @@ Documentation of the Cortex-M4 instruction set can be found here:
 
     ![Figure 2.7a Register and Memory View](lab2-registers.PNG)
     ![Figure 2.7b Register and Memory View](lab2-memory.PNG)
-    
+    
     ***Figure 2.7** Register and Memory View*
 
-1. Step through (using Step Into or Step Over) the code and pay attention to the changes in the registers (register view) and memory (memory monitor). Step until you reach the stop label. Your code should not go any further as it will loop between the nop and b instructions. You can also see the program counter jumping back and forward.
+1. Step through (using Step Into or Step Over) the code and pay attention to the changes in the registers (register view) and memory (memory monitor). Step until you reach the stop label. Your code should not go any further as it will loop between the `nop` and `b` instructions. You can also see the program counter jumping back and forward.
 
 1. Next, re-run the code but this time, expand the program status register and notice the flags that change especially after an arithmetics instruction.
 
     ![Figure 2.8 Program Status Register Flags](lab2-flags.PNG)
-    
+    
     ***Figure 2.8** Program Status Register Flags*
 
 ## Lab Questions
@@ -158,10 +158,10 @@ Using the skills and knowledge acquired from this lab, answer the following post
     - Use 0x2000001C for variable D = 0
 
     We will not be using variables at this point. Run the code and verify that your answer is correct.
-    
+        
     Paste your assembly code into Blackboard along with a screenshot of the memory view showing the content of the four memory addresses. 
 
-1. Complete the code as necessary (ie. add all the necessary directives) and run it on your processor board. Comment out any line(s) that are invalid with "@" and explain why in the comment. Answer each question (indicated with ?) directly in the commment of your code and paste your code into Blackboard for submission.
+1. Complete the code as necessary (ie. add all the necessary directives) and run it on your processor board. Comment out any line(s) that are invalid with "@" and explain why in the comment. Answer each question (indicated with ?) directly in the comment of your code and paste your code into Blackboard for submission.
 
         mov R2, #          @ use the first 2 digits of your student ID
         mov R3, #          @ use the last 2 digits of your student ID
@@ -197,14 +197,14 @@ Using the skills and knowledge acquired from this lab, answer the following post
         mov     R2, #0x00000001     @ R2 = ?
         mov     R3, #0x00000002     @ R3 = ?
         adds    R1, R2, R3          @ R1 = ?
-                    @ After adding some small numbers and check the PSR flags again, what happened?
+                    @ After adding some small numbers and checking the PSR flags again, what happened?
 
         @ Add numbers that will create an overflow
         mov     R2, #0x7FFFFFFF     @ R2 = ?
         mov     R3, #0x7FFFFFFF     @ R3 = ?
 
         adds    R1, R2, R3          @ R1 = ?
-                    @ Check and see what happened to the PSR flags?
+                    @ Check and see what happened to the PSR flags.
 
 ## Reference
 

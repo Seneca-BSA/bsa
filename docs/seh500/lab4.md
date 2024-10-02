@@ -19,11 +19,11 @@ In the previous lab, we explored how to use the program status flags and how to 
 
 | Mnemonic | Meaning |
 |---|---|
-| B label  | Branch |
+| B label  | Branch |
 | B{cond} label | Branch with condition |
 | BL label | Branch with Link |
 | BL{cond} label | Branch with Link with condition |
-| BX Rm  | Branch to register value |
+| BX Rm  | Branch to register value |
 | BX{cond} Rm | Branch to register value with condition |
 | BLX Rm | Branch with Link to register value |
 | BLX{cond} Rm| Branch with Link to register value with condition |
@@ -68,7 +68,7 @@ The APSR contains the following condition flags:
 
 ### Example of Branching Instructions
 
-Following a compare instruction, branching instructions can be used as follow:
+Following a compare instruction, branching instructions can be used as follows:
 
 | Instruction | Action |
 |---|---|
@@ -79,7 +79,7 @@ Following a compare instruction, branching instructions can be used as follow:
 | BPL label | branch to label when N = 0 |
 | BLT label | Conditionally branch to label, when N is set and V is clear or N is clear and V is set<br/>i.e. N != V |
 | BLE label | Conditionally branch to label, when less than or equal, <br/>Z is set or N is set and V is clear or N is clear and V is set<br/>i.e. Z = 1 or N != V |
-| BGT  label | Conditionally branch to label, when Z is clear <br/>and either N is set and V is set or N is clear and V is clear<br/>i.e.   Z = 0 and N == V |
+| BGT  label | Conditionally branch to label, when Z is clear <br/>and either N is set and V is set or N is clear and V is clear<br/>i.e.   Z = 0 and N == V |
 | BGE label | Conditionally branch to label, when greater than or equal to zero, <br/>Z is set or N is set and V is clear or N is clear and V is set<br/>i.e. Z = 1 or N == V |
 | BL label | Branch with link (Call) to label, with return address stored in LR (register R14) |
 | BX LR | Return from function call, loading LR into PC |
@@ -104,15 +104,15 @@ In addition to the basic LDR and STR, there are also a few other different ways 
 
 ### IT (If-Then) Block
 
-The IT (If-Then) block is a feature with ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In anorder word, an IT black help ensure there are no semantic error during assembly programming.
+The IT (If-Then) block is a feature with an ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In other words, an IT black helps ensure there are no semantic errors during assembly programming.
 
-**NOTE**: An IT block is not always required as the some IDE will insert for you automatically.
+**NOTE**: An IT block is not always required as some IDE will insert it for you automatically.
 
-An IT block have the following syntax:
+An IT block has the following syntax:
 
     IT{x{y{z}}} {cond}
 
-where:
+Where:
 
 - x - specifies the condition switch for the second instruction in the IT block.
 - y - specifies the condition switch for the third instruction in the IT block.
@@ -121,8 +121,8 @@ where:
 
 The condition switch for the second, third and fourth instruction in the IT block can be either:
 
-- T - Then. Applies the condition to the instruction.cond
-- E - Else. Applies the inverse condition of to the instruction.cond
+- T/t - Then. Applies the condition to the instruction.cond
+- E/e - Else. Applies the inverse condition to the instruction.cond
 
 Example:
 
@@ -207,7 +207,7 @@ Similar to the previous lab.
         n: .word 5                  @ variable n, word size, value 5
         num1: .word #, -#, -#, -#, # 
             @ replace it with the last 5 digits of your student number and maintain the negative
-                                    @ array num1 with 5 element, word size
+                                    @ array num1 with 5 elements, word size
         sum: .word 0                @ variable sum, word size, value 0
         
         .text
@@ -294,7 +294,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Which line(s) in Example #2 is responsible for looping through the char array and explain how it works?
 
-1. How are Example Code #3 and Example Code #1 difference in terms of loop and comparison?
+1. How are Example Code #3 and Example Code #1 different in terms of loop(s) and comparison statement(s)?
 
 1. Write a program in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! (your name here)" (REPLACE (your name here) with your name).
 
