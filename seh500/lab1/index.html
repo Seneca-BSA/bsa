@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 1 : Setup";
-        var mkdocs_page_input_path = "seh500/lab1.md";
+        var mkdocs_page_input_path = "seh500\\lab1.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -80,7 +80,7 @@ Seneca College</br>
 SEH500 Microprocessors and Computer Architecture
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>The Freedom-K64F and Freedom-K66F are both low-cost development platforms using the NXP Kinetis series of microcontrollers that is based on the ARM Cortex-M4 processor.</p>
+<p>The Freedom-K64F and Freedom-K66F are both low-cost development platforms using the NXP Kinetis series of microcontrollers based on the ARM Cortex-M4 processor.</p>
 <table>
 <thead>
 <tr>
@@ -156,55 +156,53 @@ SEH500 Microprocessors and Computer Architecture
 > 
 > 1. Referring to the Memory map shown in class or from Figure 4.18 of Yiu, what is the starting address and ending address of the instruction code region?
 > 1. Referring to the Memory map shown in class or from Figure 4.18 of Yiu, what is the starting address and ending address of the general purpose data memory region?
-> 1. How many bytes (exact whole number) of memory are available for each of the regions above?
+> 1. How many bytes (exact whole number) of memory are available for each region above?
 > 1. Referring to Yiu or the Cortex-M4 Technical Reference, what is the instruction for loading data from memory into a register?
-> 1. Referring to Yiu or the Cortex-M4 Technical Reference, what is the instruction for storing data from a register in memory?
+> 1. Referring to Yiu or the Cortex-M4 Technical Reference, what are the instructions for storing data from a register in memory?
 -->
 
 <h2 id="procedures">Procedures</h2>
 <h3 id="firmware-update">Firmware Update</h3>
-<ol>
-<li>
 <p>If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10. Even if you are not using Windows 10, updating the firmware might be a good idea.</p>
 <ol>
 <li>
-<p>Unplug the Freedom board then hold down the "RESET SW1" button as you plug the board into your computer to enter bootloader mode.</p>
-<p><img alt="Figure 1.1 Start in Bootloader Mode" src="../lab1-bootloader.png" /></p>
-<p><em><strong>Figure 1.1</strong> Start in Bootloader Mode</em></p>
+<p>Unplug the Freedom board then hold down the "RESET SW1" button as you plug the board into your computer to enter bootloader mode.
+    
+    <img alt="Figure 1.1 Start in Bootloader Mode" src="../lab1-bootloader.png" />
+            
+    <em><strong>Figure 1.1</strong> Start in Bootloader Mode</em></p>
 </li>
 <li>
 <p>Once plugged in, if you see anything else but "MAINTENANCE" (such as seeing "BOOTLOADER"), then we need to update the firmware.</p>
 </li>
-<li>Follow only step 1-10 on the <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">Getting Started with the FRDM-K64F</a> BUT USE THE FILES BELOW.<ul>
+<li>Follow only steps 1-10 on the <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">Getting Started with the FRDM-K64F</a> BUT USE THE FILES BELOW.<ul>
 <li>For K64F: here are the files:<ul>
 <li><a href="../0244_k20dx_bootloader_update_0x5000.bin">0244_k20dx_bootloader_update_0x5000.bin</a> for updating the OpenSDA bootloader <br/>
-(Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
+ (Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
 <li><a href="../k20dx_frdmk64f_if_crc_legacy_0x5000.bin">k20dx_frdmk64f_if_crc_legacy_0x5000</a> for loading the CMSIS-DAP application back onto the board <br/>
-(Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
+ (Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
 </ul>
 </li>
 <li>For K66F: here are the files:<ul>
 <li><a href="../0244_k20dx_bootloader_update_0x8000.bin">0244_k20dx_bootloader_update_0x8000.bin</a> for updating the OpenSDA bootloader <br/>
-(Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
+ (Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
 <li><a href="../k20dx_frdmk66f_if_crc.bin">k20dx_frdmk66f_if_crc</a> for loading the CMSIS-DAP application back onto the board <br/>
-(Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
+ (Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
+<li>If the bootloader drive is not showing, try updating the bootloader using a non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/">Follow the instructions here</a>.</li>
 </ul>
 </li>
-<li>If the bootloader drive is not showing, try updating the bootloader using non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/">Follow the instruction here</a>.</li>
 </ul>
-</li>
-</ol>
 </li>
 </ol>
 <h3 id="install-ide">Install IDE</h3>
 <ol>
 <li>
-<p>Install the <a href="https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources">MCUXpresso IDE from NXP</a> (account creation required) or using <a href="https://myapps.senecacollege.ca/">Seneca MyApps</a>. <strong>NOTE:</strong> If the board is not recognized by Windows, <a href="https://os.mbed.com/media/downloads/drivers/mbedWinSerial_16466.exe">download latest driver</a> for Windows. Links to other drivers such as P&amp;E Micro and Segger Jlink can be found here: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K64F">OpenSDA Serial and Debug Adapter</a>.</p>
+<p>Install the <a href="https://www.nxp.com/design/software/mcuxpresso-software-and-tools-/mcuxpresso-integrated-development-environment-ide:MCUXpresso-IDE?#design-resources">MCUXpresso IDE from NXP</a> (account creation required) or using <a href="https://myapps.senecacollege.ca/">Seneca MyApps</a>. <strong>NOTE:</strong> If the board is not recognized by Windows, <a href="https://os.mbed.com/media/downloads/drivers/mbedWinSerial_16466.exe">download the latest driver</a> for Windows. Links to other drivers such as P&amp;E Micro and Segger Jlink can be found here: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K64F">OpenSDA Serial and Debug Adapter</a>.</p>
 <p><img alt="Figure 1.2 Seneca MyApps" src="../lab1-myapps.png" /></p>
 <p><em><strong>Figure 1.2</strong> Seneca MyApps</em></p>
 </li>
 <li>
-<p>Select an appropriate location to save your workspace. It must be a directory to which you have write permission.</p>
+<p>Select an appropriate location to save your workspace. It must be a directory to which you have "write" permission.</p>
 <p><img alt="Figure 1.3 Select Workspace Directory" src="../lab1-workspace.png" /></p>
 <p><em><strong>Figure 1.3</strong> Select Workspace Directory</em></p>
 </li>
@@ -302,7 +300,7 @@ SEH500 Microprocessors and Computer Architecture
 <p><em><strong>Figure 1.21</strong> Disassembled Code</em></p>
 </li>
 <li>
-<p>Another way to see the assembly code is to view it live during execution. To do that, at the top menu, go to "Windows &gt; Show View &gt; Other" then type in Disassembly.</p>
+<p>Another way to see the assembly code is to view it live during execution. To do that, at the top menu, go to "Windows &gt; Show View &gt; Other" and then type in Disassembly.</p>
 </li>
 </ol>
 <h3 id="view-the-registers-value-and-memory-data-during-debug">View the Registers Value and Memory Data during Debug</h3>
@@ -323,14 +321,16 @@ SEH500 Microprocessors and Computer Architecture
 </li>
 <li>
 <p>In the hello_world.c example, what is the instruction address of the first line of code that it halts on once you start debugging?</p>
+</li>
+</ol>
 <p><strong>Note:</strong> The instruction is at a hex address within the instruction region. You can find it in the disabled code or the Disassembly view during debug.</p>
 <p><strong>Hint:</strong> The main function starts at address 0x00000924.</p>
+<ol>
+<li>
+<p>Look at the register tab, what is the value of the Program Counter (PC) when you first start debugging? Refer back to the memory map in question 1 and see if it corresponds to the proper memory region.</p>
 </li>
 <li>
-<p>Look at the register tab, what is the value of the Program Counter (PC) when you first start debugging? Refer back to the memory map in question 1 and see if it correspond to the proper memory region.</p>
-</li>
-<li>
-<p>What is the value of the Stack Pointer (SP)? Refer back to the memory map in question 1 and see if it correspond to the proper memory region.</p>
+<p>What is the value of the Stack Pointer (SP)? Refer back to the memory map in question 1 and see if it corresponds to the proper memory region.</p>
 </li>
 <li>
 <p>Change the C-code to also display your name and student number within the print statement. Copy your main function onto blackboard.</p>

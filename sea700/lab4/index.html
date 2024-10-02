@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 4 : Gazebo and JetAuto";
-        var mkdocs_page_input_path = "sea700/lab4.md";
+        var mkdocs_page_input_path = "sea700\\lab4.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -108,7 +108,7 @@ SEA700 Robotics for Software Engineers
 </ul>
 <h3 id="ubuntu-and-gazebo-version-change">Ubuntu and Gazebo version change</h3>
 <ol>
-<li>To maximize compartibiilty with the JetAuto robot, we need to be using ROS Melodic and Gazebo version 9 running on Ubuntu 18.04. Use <code>jetauto</code> as the username for your OS.</li>
+<li>To maximize compatibility with the JetAuto robot, we need to be using ROS Melodic and Gazebo version 9 running on Ubuntu 18.04. Use <code>jetauto</code> as the username for your OS.</li>
 </ol>
 <h3 id="building-a-robot-model">Building a robot model</h3>
 <ol>
@@ -189,14 +189,21 @@ sudo screen /dev/ttyACM0 115200
 login: jetauto
 password: hiwonder
 
-hi
-
-sudo apt install ros-humble-desktop
-
-sudo apt install ros-humble-urdf (not required)
-sudo apt install ros-humble-xacro
-
 ros-melodic-
+
+sudo apt install ros-melodic-joint-state-publisher-gui
+sudo apt install ros-melodic-ros-control
+sudo apt install ros-melodic-controller-manager
+
+roscore
+roslaunch jetson_gazebo world.launch
+roslaunch jetson_navigation jetson_controller.launch
+
+sudo apt install python-pip
+sudo pip install smbus2
+
+pip install rospkg
+
 
 -->
 

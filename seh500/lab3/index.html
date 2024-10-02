@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 3 : Branching in Assembly";
-        var mkdocs_page_input_path = "seh500/lab3.md";
+        var mkdocs_page_input_path = "seh500\\lab3.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -113,7 +113,7 @@ SEH500 Microprocessors and Computer Architecture
 <tbody>
 <tr>
 <td>Addition</td>
-<td><code>ADD  R0, R1, R2</code></td>
+<td><code>ADD  R0, R1, R2</code></td>
 <td>R0 = R1 + R2</td>
 </tr>
 <tr>
@@ -123,7 +123,7 @@ SEH500 Microprocessors and Computer Architecture
 </tr>
 <tr>
 <td>Subtraction</td>
-<td><code>SUB  R1, R2, R3</code></td>
+<td><code>SUB  R1, R2, R3</code></td>
 <td>R1 = R2 - R3</td>
 </tr>
 <tr>
@@ -138,12 +138,12 @@ SEH500 Microprocessors and Computer Architecture
 </tr>
 <tr>
 <td>Reverse Subtraction</td>
-<td><code>RSB  R4, R4, #120</code></td>
+<td><code>RSB  R4, R4, #120</code></td>
 <td>R4 = 120 - R4</td>
 </tr>
 <tr>
 <td>Multiply</td>
-<td><code>MUL  R0, R1, R2</code></td>
+<td><code>MUL  R0, R1, R2</code></td>
 <td>R0 = R1 * R2</td>
 </tr>
 <tr>
@@ -168,7 +168,7 @@ SEH500 Microprocessors and Computer Architecture
 </thead>
 <tbody>
 <tr>
-<td><code>MOV  R1, #0xFA05</code></td>
+<td><code>MOV  R1, #0xFA05</code></td>
 <td>Write value of 0xFA05 to R1, flags are not updated</td>
 </tr>
 <tr>
@@ -180,11 +180,11 @@ SEH500 Microprocessors and Computer Architecture
 <td>Write value in R12 to R10, flags get updated</td>
 </tr>
 <tr>
-<td><code>MOV  R3, #23</code></td>
+<td><code>MOV  R3, #23</code></td>
 <td>Write value of 23 to R3</td>
 </tr>
 <tr>
-<td><code>MOV  R8, SP</code></td>
+<td><code>MOV  R8, SP</code></td>
 <td>Write value of stack pointer to R8</td>
 </tr>
 <tr>
@@ -203,23 +203,23 @@ SEH500 Microprocessors and Computer Architecture
 </thead>
 <tbody>
 <tr>
-<td><code>AND   R9, R2, R1</code></td>
+<td><code>AND   R9, R2, R1</code></td>
 <td>R9 = R2 AND R1</td>
 </tr>
 <tr>
-<td><code>AND   R9, R2, #0xFF00</code></td>
+<td><code>AND   R9, R2, #0xFF00</code></td>
 <td>R9 = R2 AND #0xFF00</td>
 </tr>
 <tr>
-<td><code>ANDS  R9, R8, #0x19</code></td>
+<td><code>ANDS  R9, R8, #0x19</code></td>
 <td>with flags update</td>
 </tr>
 <tr>
-<td><code>ORR   R9, R2, R1</code></td>
+<td><code>ORR   R9, R2, R1</code></td>
 <td>R9 = R2 OR R1</td>
 </tr>
 <tr>
-<td><code>ORR   R9, R2, #0xFF00</code></td>
+<td><code>ORR   R9, R2, #0xFF00</code></td>
 <td></td>
 </tr>
 <tr>
@@ -227,23 +227,23 @@ SEH500 Microprocessors and Computer Architecture
 <td></td>
 </tr>
 <tr>
-<td><code>EOR   R7, R11, R10</code></td>
+<td><code>EOR   R7, R11, R10</code></td>
 <td>R7 = R11 XOR R10</td>
 </tr>
 <tr>
-<td><code>EORS  R7, R11, #0x18181818</code></td>
+<td><code>EORS  R7, R11, #0x18181818</code></td>
 <td>with flags update</td>
 </tr>
 <tr>
-<td><code>BIC   R0, R1, #0xab</code></td>
+<td><code>BIC   R0, R1, #0xab</code></td>
 <td>R0 = R1 AND (NOT(#0xab))</td>
 </tr>
 <tr>
-<td><code>ORN   R7, R11, R14, ROR #4</code></td>
+<td><code>ORN   R7, R11, R14, ROR #4</code></td>
 <td>R7 = R11 OR (NOT(R14 ROR #4))</td>
 </tr>
 <tr>
-<td><code>ORNS  R7, R11, R14, ROR #2</code></td>
+<td><code>ORNS  R7, R11, R14, ROR #2</code></td>
 <td>with flags update</td>
 </tr>
 </tbody>
@@ -258,11 +258,11 @@ SEH500 Microprocessors and Computer Architecture
 </thead>
 <tbody>
 <tr>
-<td><code>LSL  R4, R5, #2</code></td>
+<td><code>LSL  R4, R5, #2</code></td>
 <td>Logical shift left by 2 bits</td>
 </tr>
 <tr>
-<td><code>LSR  R4, R5, #6</code></td>
+<td><code>LSR  R4, R5, #6</code></td>
 <td>Logical shift right by 6 bits</td>
 </tr>
 <tr>
@@ -270,11 +270,11 @@ SEH500 Microprocessors and Computer Architecture
 <td>Logical shift left by 3 bits with flags update</td>
 </tr>
 <tr>
-<td><code>ROR  R4, R5, R6</code></td>
+<td><code>ROR  R4, R5, R6</code></td>
 <td>Rotate right by the value in the bottom byte of R6</td>
 </tr>
 <tr>
-<td><code>RRX  R4, R5</code></td>
+<td><code>RRX  R4, R5</code></td>
 <td>Rotate right with extend (one bit only).</td>
 </tr>
 </tbody>
@@ -331,7 +331,7 @@ SEH500 Microprocessors and Computer Architecture
 <li><code>C</code>: Set to 1 when the operation resulted in a carry, cleared to 0 otherwise.</li>
 <li><code>V</code>: Set to 1 when the operation caused overflow, cleared to 0 otherwise.</li>
 </ul>
-<p>Depending on how you want branching to be done, the condition suffix can be add to the branching instruction to form a conditional branching instruction.</p>
+<p>Depending on how you want branching to be done, the condition suffix can be added to the branching instruction to form a conditional branching instruction.</p>
 <table>
 <thead>
 <tr>
@@ -343,83 +343,83 @@ SEH500 Microprocessors and Computer Architecture
 <tbody>
 <tr>
 <td>EQ</td>
-<td>Z = 1</td>
-<td>Equal</td>
+<td> Z = 1</td>
+<td>    Equal</td>
 </tr>
 <tr>
 <td>NE</td>
-<td>Z = 0</td>
-<td>Not equal</td>
+<td> Z = 0</td>
+<td>    Not equal</td>
 </tr>
 <tr>
 <td>CS or HS</td>
-<td>C = 1</td>
-<td>Higher or same, unsigned</td>
+<td>   C = 1</td>
+<td>    Higher or same, unsigned</td>
 </tr>
 <tr>
 <td>CC or LO</td>
-<td>C = 0</td>
-<td>Lower, unsigned</td>
+<td>   C = 0</td>
+<td>    Lower, unsigned</td>
 </tr>
 <tr>
 <td>MI</td>
-<td>N = 1</td>
-<td>Negative</td>
+<td> N = 1</td>
+<td>    Negative</td>
 </tr>
 <tr>
 <td>PL</td>
-<td>N = 0</td>
-<td>Positive or zero</td>
+<td> N = 0</td>
+<td>    Positive or zero</td>
 </tr>
 <tr>
 <td>VS</td>
-<td>V = 1</td>
-<td>Overflow</td>
+<td> V = 1</td>
+<td>    Overflow</td>
 </tr>
 <tr>
 <td>VC</td>
-<td>V = 0</td>
-<td>No overflow</td>
+<td> V = 0</td>
+<td>    No overflow</td>
 </tr>
 <tr>
 <td>HI</td>
-<td>C = 1 and Z = 0</td>
-<td>Higher, unsigned</td>
+<td> C = 1 and Z = 0</td>
+<td>  Higher, unsigned</td>
 </tr>
 <tr>
 <td>LS</td>
-<td>C = 0 or Z = 1</td>
-<td>Lower or same, unsigned</td>
+<td> C = 0 or Z = 1</td>
+<td>   Lower or same, unsigned</td>
 </tr>
 <tr>
 <td>GE</td>
-<td>N = V</td>
-<td>Greater than or equal, signed</td>
+<td> N = V</td>
+<td>    Greater than or equal, signed</td>
 </tr>
 <tr>
 <td>LT</td>
-<td>N != V</td>
-<td>Less than, signed</td>
+<td> N != V</td>
+<td>   Less than, signed</td>
 </tr>
 <tr>
 <td>GT</td>
-<td>Z = 0 and N = V</td>
-<td>Greater than, signed</td>
+<td> Z = 0 and N = V</td>
+<td>  Greater than, signed</td>
 </tr>
 <tr>
 <td>LE</td>
-<td>Z = 1 and N != V</td>
-<td>Less than or equal, signed</td>
+<td> Z = 1 and N != V</td>
+<td> Less than or equal, signed</td>
 </tr>
 <tr>
 <td>AL</td>
-<td>Can have any value</td>
-<td>Always. This is the default when no suffix is specified.</td>
+<td> Can have any value</td>
+<td>   Always. This is the default when no suffix is specified.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="variables">Variables</h3>
-<p>VWhen defining a variable, the complier assign an address in memory with sufficient size to store the data. All variables are defined in the <code>.data</code> section of the code that should be placed above the <code>.text</code> section.</p>
+<p>When defining a variable, the compiler assigns an address in memory with sufficient size to store the data. All variables are defined in the <code>.data</code> section of the code that should be placed above the <code>.text</code> section.</p>
 <p>Some possible data types are:</p>
 <ul>
 <li><code>.byte</code>: 1 byte</li>
@@ -450,7 +450,7 @@ SEH500 Microprocessors and Computer Architecture
 .type main, %function       @ set main to function type
 
 main:                           @ start of main code with a label
-    mov r0, #                   @ x = &lt;use the last digits of your student ID + 1&gt;
+    mov r0, #                   @ x = &lt;use the last digit of your student ID + 1&gt;
     mul r1, r0, r0              @ r1 = x^2, @ record r1 and psr value
     mov r4, #5
     muls r1, r1, r4              @ r1 = 5x^2, @ record r1 and psr value
@@ -465,17 +465,17 @@ stop:                           @ define a new label called stop
 </code></pre>
 </li>
 <li>
-<p>Execute the code above and pay attention to what is happening in each register then record the PSR flags after each arithmetic instruction. Submit it as part of the post lab questions.</p>
+<p>Execute the code above and pay attention to what is happening in each register then record the PSR flags after each arithmetic instruction. Submit it as part of the post-lab questions.</p>
 </li>
 <li>
-<p>Below is another example with variables and shifting. Although variables cannot be declared in the same way as high-level programming language, it is possible to tell the assembler to automatically assign an address with a label and always reference to it using the same label. Replace the code within the file with the following:</p>
+<p>Below is another example with variables and shifting. Although variables cannot be declared in the same way as a high-level programming language, it is possible to tell the assembler to automatically assign an address with a label and always reference it using the same label. Replace the code within the file with the following:</p>
 <pre><code>.syntax unified             @ unified syntax used
 .cpu cortex-m4              @ cpu is cortex-m4
 .thumb                      @ use thumb encoding
 
-.data                       @ put data in the data section
-sum:    .word 0             @ declare a label for data of word size
-num:    .word #             @ sum and num with value of 0 and 5
+.data                       @ put variables in the data section
+sum:    .word #             @ declare a label for data of word size
+num:    .word #             @ sum and num with values of 0 and 5
 
 .text                       @ put code in the text section
 .global main                @ declare main as a global variable
@@ -500,7 +500,7 @@ stop:                           @ define a new label called stop
 </code></pre>
 </li>
 <li>
-<p>Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arthemetic instruction and submit it as part of the post lab.</p>
+<p>Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arithmetic instruction and submit it as part of the post lab.</p>
 </li>
 </ol>
 <h2 id="post-lab-questions">Post-Lab Questions</h2>
@@ -515,8 +515,9 @@ stop:                           @ define a new label called stop
 <li>
 <p>Write a program that converts Celsius to Fahrenheit or from Fahrenheit to Celsius depending on the input. If the input is above 32, it will assume the value is Fahrenheit and convert it to Celsius. If not, it will assume the value is Celsius and convert it to Fahrenheit.</p>
 <p>You will provide the input as data is saved into R0. No user input (ie. scanf) is required. The input data will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labelled space in memory). Your code must consider both cases and determine which formula to use depending on the input (ie. the code should function with input above or below 32). You can use the following as your conversion equation. You can assume the input data will always be a positive integer.</p>
-<p>C = 5 * (F - 32) / 9</p>
-<p>F = (9 * C / 5) + 32</p>
+<p>C = 5 * (F - 32) / 9
+    
+F = (9 * C / 5) + 32</p>
 <p>Put your name and student number as comments in the code and copy and paste your code into Blackboard. Also, take a screenshot of your register bank as well as your memory space showing the variable and paste them into Blackboard as well.</p>
 </li>
 </ol>

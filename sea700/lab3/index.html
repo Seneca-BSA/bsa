@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 3 : ROS Workspace, Package, Publisher and Subscriber";
-        var mkdocs_page_input_path = "sea700/lab3.md";
+        var mkdocs_page_input_path = "sea700\\lab3.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -124,7 +124,7 @@ SEA700 Robotics for Software Engineers
 <li>
 <p>Best practice is to create a new directory for every new workspace. The name doesn’t matter, but it is helpful to have it indicate the purpose of the workspace. Let’s choose the directory name <code>ros_ws</code>, for “development workspace”. Open a new terminal and run:</p>
 <pre><code>mkdir -p ~/ros_ws/src
-cd ~/catkin_ws/
+cd ~/ros_ws/
 catkin_make
 </code></pre>
 <p>The <code>catkin_make</code> command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a <code>CMakeLists.txt</code> link in your <code>src</code> folder.</p>
@@ -447,7 +447,7 @@ add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 </li>
 <li>
 <p>Now run <code>catkin_make</code> in your catkin workspace:</p>
-<pre><code>cd ~/catkin_ws
+<pre><code>cd ~/ros_ws
 catkin_make
 </code></pre>
 <p>Note: Or if you're adding as new pkg, you may need to tell catkin to force making by <code>--force-cmake</code> option.</p>
@@ -457,7 +457,7 @@ catkin_make
 <ol>
 <li>
 <p>Source the setup files:</p>
-<pre><code>. install/setup.bash
+<pre><code>source ./devel/setup.bash
 </code></pre>
 </li>
 <li>
@@ -493,8 +493,10 @@ ros2 run cpp_pubsub listener
 <h3 id="create-a-python-package">Create a Python Package</h3>
 <ol>
 <li>
-<p>Navigate into <code>ros2_ws/src</code>, and run the package creation command to create a simple Python publisher and subscriber:</p>
-<pre><code>ros2 pkg create --build-type ament_python --license Apache-2.0 py_pubsub
+<p>Navigate into <code>ros_ws/src</code>, and run the package creation command to create a simple Python publisher and subscriber:</p>
+<pre><code>cd ~/ros_ws/src
+
+ros2 pkg create --build-type ament_python --license Apache-2.0 py_pubsub
 </code></pre>
 <p>Your terminal will return a message verifying the creation of your package <code>py_pubsub</code> and all its necessary files and folders.</p>
 <h4 id="write-the-publisher-node_1">Write the publisher node</h4>

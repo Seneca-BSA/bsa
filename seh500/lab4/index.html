@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 4 : Branching, Array and String in Assembly";
-        var mkdocs_page_input_path = "seh500/lab4.md";
+        var mkdocs_page_input_path = "seh500\\lab4.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -99,7 +99,7 @@ SEH500 Microprocessors and Computer Architecture
 </thead>
 <tbody>
 <tr>
-<td>B label</td>
+<td>B label  </td>
 <td>Branch</td>
 </tr>
 <tr>
@@ -115,7 +115,7 @@ SEH500 Microprocessors and Computer Architecture
 <td>Branch with Link with condition</td>
 </tr>
 <tr>
-<td>BX Rm</td>
+<td>BX Rm  </td>
 <td>Branch to register value</td>
 </tr>
 <tr>
@@ -255,7 +255,7 @@ SEH500 Microprocessors and Computer Architecture
 </tbody>
 </table>
 <h3 id="example-of-branching-instructions">Example of Branching Instructions</h3>
-<p>Following a compare instruction, branching instructions can be used as follow:</p>
+<p>Following a compare instruction, branching instructions can be used as follows:</p>
 <table>
 <thead>
 <tr>
@@ -293,8 +293,8 @@ SEH500 Microprocessors and Computer Architecture
 <td>Conditionally branch to label, when less than or equal, <br/>Z is set or N is set and V is clear or N is clear and V is set<br/>i.e. Z = 1 or N != V</td>
 </tr>
 <tr>
-<td>BGT  label</td>
-<td>Conditionally branch to label, when Z is clear <br/>and either N is set and V is set or N is clear and V is clear<br/>i.e.   Z = 0 and N == V</td>
+<td>BGT  label</td>
+<td>Conditionally branch to label, when Z is clear <br/>and either N is set and V is set or N is clear and V is clear<br/>i.e.   Z = 0 and N == V</td>
 </tr>
 <tr>
 <td>BGE label</td>
@@ -377,12 +377,12 @@ SEH500 Microprocessors and Computer Architecture
 </tbody>
 </table>
 <h3 id="it-if-then-block">IT (If-Then) Block</h3>
-<p>The IT (If-Then) block is a feature with ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In anorder word, an IT black help ensure there are no semantic error during assembly programming.</p>
-<p><strong>NOTE</strong>: An IT block is not always required as the some IDE will insert for you automatically.</p>
-<p>An IT block have the following syntax:</p>
+<p>The IT (If-Then) block is a feature with an ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In other words, an IT black helps ensure there are no semantic errors during assembly programming.</p>
+<p><strong>NOTE</strong>: An IT block is not always required as some IDE will insert it for you automatically.</p>
+<p>An IT block has the following syntax:</p>
 <pre><code>IT{x{y{z}}} {cond}
 </code></pre>
-<p>where:</p>
+<p>Where:</p>
 <ul>
 <li>x - specifies the condition switch for the second instruction in the IT block.</li>
 <li>y - specifies the condition switch for the third instruction in the IT block.</li>
@@ -391,8 +391,8 @@ SEH500 Microprocessors and Computer Architecture
 </ul>
 <p>The condition switch for the second, third and fourth instruction in the IT block can be either:</p>
 <ul>
-<li>T - Then. Applies the condition to the instruction.cond</li>
-<li>E - Else. Applies the inverse condition of to the instruction.cond</li>
+<li>T/t - Then. Applies the condition to the instruction.cond</li>
+<li>E/e - Else. Applies the inverse condition to the instruction.cond</li>
 </ul>
 <p>Example:</p>
 <pre><code>itte   ne           @ define the two condition switches in IT block
@@ -480,7 +480,7 @@ pointer: .word num1         @ a pointer for num1
 n: .word 5                  @ variable n, word size, value 5
 num1: .word #, -#, -#, -#, # 
     @ replace it with the last 5 digits of your student number and maintain the negative
-                            @ array num1 with 5 element, word size
+                            @ array num1 with 5 elements, word size
 sum: .word 0                @ variable sum, word size, value 0
 
 .text
@@ -576,7 +576,7 @@ stop:                           @ define a new label called stop
 <p>Which line(s) in Example #2 is responsible for looping through the char array and explain how it works?</p>
 </li>
 <li>
-<p>How are Example Code #3 and Example Code #1 difference in terms of loop and comparison?</p>
+<p>How are Example Code #3 and Example Code #1 different in terms of loop(s) and comparison statement(s)?</p>
 </li>
 <li>
 <p>Write a program in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! (your name here)" (REPLACE (your name here) with your name).</p>
