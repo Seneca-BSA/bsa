@@ -166,7 +166,7 @@ Similar to the previous lab.
             nop                         @ do nothing
             b       stop                @ jump back label stop to form a loop
 
-1. Execute the code above and pay attention to what is happening in each register then record the PSR flags after each arithmetic instruction. Submit it as part of the post-lab questions.
+1. Execute the code above and pay attention to what is happening in each register then record the PSR flags after each arithmetic instruction. Submit it as part of the lab question.
 
 1. Below is another example with variables and shifting. Although variables cannot be declared in the same way as a high-level programming language, it is possible to tell the assembler to automatically assign an address with a label and always reference it using the same label. Replace the code within the file with the following:
 
@@ -199,9 +199,9 @@ Similar to the previous lab.
             nop                         @ do nothing
             b       stop                @ jump back label stop to form a loop
 
-1. Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arithmetic instruction and submit it as part of the post lab.
+1. Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arithmetic instruction and submit it as part of the lab question.
 
-## Post-Lab Questions
+## Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 

@@ -191,7 +191,7 @@ Similar to the previous lab.
             nop                         @ do nothing
             b       stop                @ jump back label stop to form a loop
 
-1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the string is saved then take a screenshot showing the memory address along with the value and ASCII character saved in it. Submit your code and screenshot as part of the post-lab.
+1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the string is saved then take a screenshot showing the memory address along with the value and ASCII character saved in it. Submit your code and screenshot as part of the lab question.
 
 1. In the previous code, we explored the idea of using string. In this code, we'll take a look at the use of an array. Replace the code within the file with the following:
 
@@ -243,7 +243,7 @@ Similar to the previous lab.
             nop                         @ do nothing
             b       stop                @ jump back label stop to form a loop
 
-1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the array is saved then take a screenshot showing the memory address along with the value and highlight the negative. Submit your code and screenshot as part of the post-lab.
+1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the array is saved then take a screenshot showing the memory address along with the value and highlight the negative. Submit your code and screenshot as part of the lab question.
 
 1. Lastly, the code from the first example can also be written as follows using an array instead of a string. Also, a different comparison statement is used.
 
@@ -280,9 +280,9 @@ Similar to the previous lab.
             nop                         @ do nothing
             b       stop                @ jump back label stop to form a loop
 
-1. Compare the third example code with the first example code and find the difference between then explain which line got added, removed, changed and why. Also, discuss its effect on the code then put your answer in the post-lab exercise.
+1. Compare the third example code with the first example code and find the difference between then explain which line got added, removed, changed and why. Also, discuss its effect on the code then put your answer in the lab question.
 
-## Post-Lab Questions
+## Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
