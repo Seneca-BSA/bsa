@@ -1,4 +1,4 @@
-# Lab 4 : Gazebo and JetAuto
+# Lab 4 : Robot Model, Gazebo and JetAuto
 
 <font size="5">
 Seneca Polytechnic</br>
@@ -29,63 +29,242 @@ More Models:
 
 ### RViz
 
-RViz is a 3D visualizer for the Robot Operating System (ROS) framework.
+RViz, or Robot Visualization, is a powerful 3D visualization tool used primarily in robotics and the Robot Operating System (ROS). It enables developers to visualize and interpret a wide array of sensor data, such as point clouds, maps, and robot models, in real-time. With its interactive features, users can manipulate objects and adjust visual settings to enhance understanding of robot behavior and performance. RViz's plugin architecture allows for extensibility, accommodating various data types and visualization needs. This makes it an invaluable resource for debugging algorithms, simulating scenarios, and gaining insights into robotic systems, ultimately aiding in the development and refinement of robotics applications.
 
 ### Gazebo
 
-Gazebo is a 3D dynamic simulator with the ability to accurately and efficiently simulate populations of robots in complex indoor and outdoor environments. While similar to game engines, Gazebo offers physics simulation at a much higher degree of fidelity, a suite of sensors, and interfaces for both users and programs.
+Gazebo is an open-source robotics simulation tool that provides a highly realistic environment for testing and developing robotic systems. It allows users to simulate robots in complex 3D environments, complete with detailed physics interactions, which include gravity, collisions, and friction. Gazebo supports a variety of sensors, such as cameras and LIDAR, enabling the generation of realistic sensor data for developing perception algorithms. Its seamless integration with the Robot Operating System (ROS) enhances its functionality, allowing developers to leverage ROS tools and libraries for robot control and communication. With a flexible plugin architecture, Gazebo can be customized to meet specific simulation needs, making it an essential platform for researchers and engineers in the field of robotics.
 
 ## Preparation
+
+### JetAuto Robot
 
 In preperation of using the JetAuto robot, please be familiar with the user manual and the basic lesson provided by the manufacturer found here:
 
 - [JetAuto User Manual](JetAuto-User-Manual.pdf)
 - [JetAuto & JetAuto Pro Resources](https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY)
 
-### Ubuntu and Gazebo version change
+### Install Gazebo
 
-1. To maximize compartibiilty with the JetAuto robot, we need to be using ROS Melodic and Gazebo version 9 running on Ubuntu 18.04. Use `jetauto` as the username for your OS.
+After being familiar with ROS, we'll now install the Gazebo simulation environment.
 
-### Building a robot model
+1. Following the instruction [here](https://classic.gazebosim.org/tutorials?tut=install_ubuntu&cat=install) to install Gazebo version 9.X to be used with ROS Melodic. Each Gazebo version works with a specific version of ROS.
 
-1. If you are interested in building a URDF from scratch, visit the ROS tutorial [here](https://wiki.ros.org/urdf/Tutorials).
+        sudo apt install gazebo9
+        sudo apt install libgazebo9-dev
 
-1. For the purpose of this course, we'll be using the URDF model provided by the manufacturer in chapter 7.2 of the JetAuto Lessons. SSH into the robot and copy the `jetauto_ws` folder into your home directory.
+1. Once installed, start Gazebo with the following command to ensure it's functional:
+
+        gazebo
+
+    ![Figure 3.1 Gazebo Running](lab4-gazebo.png)
+
+    ***Figure 3.1** Gazebo Running*
+
+1. Lastly, ensure the following ros gazebo packages are installed:
+
+        sudo apt install ros-melodic-gazebo-dev ros-melodic-gazebo-msgs ros-melodic-gazebo-plugins ros-melodic-gazebo-ros ros-melodic-gazebo-ros-control ros-melodic-gazebo-ros-pkgs
+
+## Procedures
+
+### JetAuto Robot Inspection
+
+The robot we have for this course is the JetAuto Pro assembled in the configuration:
+
+![Figure 3.2 JetAuto Pro](lab4-jetauto-pro.png)
+
+***Figure 3.2** JetAuto Pro*
+
+1. Before using the JetAuto robot, read the following:
+
+    - [JetAuto User Manual](JetAuto-User-Manual.pdf)
+        - Page 01: Guide to Battery Safety
+        - Page 03: JetAuto Pro Standard Kit Packing List
+        - Page 04-09: Installation Instruction (except for 1.4 LCD)
+            - Check all nuts and bolts to ensure confirm installation and security
+        - Page 10-11: Charging and Starting the Robot
+
+    We will NOT be using the smartphone app for controlling the robot.
 
 ### SSH Into the JetAuto Robot
 
 **Copy this lab instruction somewhere on your computer as you'll lose connection to the internet!**
 
-1. By default, the JetAuto is configured to be in AP mode. Power on the robot and connect to the robot's WiFi starting in "HW-".
+1. By default, the JetAuto is configured to be in Wifi AP mode. Power on the robot and connect to the robot's WiFi starting in "HW-". If you are unsure of which Wifi SSID is your robot broadcasting, open the "Tool" application on the robot and look for the AP name in the setting. Do NOT change any of the default settings.
 
     The password for the WiFi connection is: **hiwonder**.
 
 1. Once connected, use terminal (or PuTTY) to SSH into the robot at "192.168.149.1".
 
-    The user is: **Jetauto**, and the password is: **hiwonder**.
+        ssh jetauto@192.168.149.1
+
+    The user is: **jetauto**, and the password is: **hiwonder**.
 
     #### USB connection with the robot
 
-    1. It is possible to connect with the robot via USB using the Jetson Nano's micro-B USB port.
+    1. It is also possible to connect with the robot via USB using the Jetson Nano's micro-B USB port.
 
     1. Use `screen` terminal application to connection with the robot.
 
             sudo apt-get install -y screen
             sudo screen /dev/ttyACM0 115200
 
-    #### NoMachine
+    #### NoMachine (Use with caution)
+
+    Only recommended to be used on within a virtual machine. For security, stop the NoMachine server after you installation. 
 
     1. NoMachine is another application that can be used to for remote connection with the JetNano board. Once you are connected with the robot, the credential is the same as above.
 
-### Jetson Nano Board
+### JetAuto Workspace
 
-1. Go through all the Chapter 6 lesson in the [JetAuto & JetAuto Pro Resources](https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY) to understand more functionality of the Jetson Nano board.
+1. After connecting with the JetAuto robot, let's copy the JetAuto workspace `jetauto_ws` over to our local virtual machine so we can inspect and use it locally. Run the following command to use rsync to copy the directory over:
 
-### Moving the Robot
+        rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
 
-1. This can be done in Gazebo or with the actual robot.
+### JetAuto Robot Movement
 
-1. Go through all the Chapter 7 lesson in the [JetAuto & JetAuto Pro Resources](https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY) to understand how to move the robot.
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ul>
+<li>Ensure the battery charging cable is UNPLUGGED and all cables on the robot are secure.</li>
+<li>Ensure all structures, nuts and bolts on the robot are tightly fastened.</li>
+<li>Ensure the robot is on the ground and awy from any obstacles.</li>
+</ul>
+</div>
+
+1. In a terminal that's connected to the JetAuto robot using SSH or in JetAuto's terminal using remote desktop, stop the app service then start the `jetauto_controller` service:
+
+        sudo systemctl stop start_app_node.service
+        roslaunch jetauto_controller jetauto_controller.launch
+
+1. Now that the controller service has started, we can publish move command as Twist message to the motion controller. Before publish a command to the robot, remember you must issue a stop command for the robot to stop. Let's issue that first so you can recall it faster.
+
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+
+    Your robot should not do anything.
+
+1. Issue a move in the x-direction (forward) at 0.3 m/s, `x: 0.3`:
+
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+
+    Your robot should now start moving. Be ready to stop the robot by issuing (or up arrow twice):
+
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+
+    <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+    <ul>
+    <li>DO NOT set the movement value above 0.7 m/s to keep the robot within it control limit.</li>
+    </ul>
+    </div>
+
+    The linear values refer to the translation of the robot. Positive X is forward and positive Y is left. There is no Z-direction for this robot. Do not exceed 0.7 m/s.
+
+    The angular values refer to the rotation of the robot. Only Z-rotation is considered with positive value as counter-clockwise. Do not exceed 3.5 rad/s.
+
+1. Let's inspect the source code of the motion controller. Open the file at the following path:
+
+    **~/jetauto_ws/src/jetauto_driver/jetauto_controller/scripts/jetauto_controller_main.py**
+
+    As we can see in the controller code:
+
+        linear_x = self.go_factor*msg.linear.x
+        linear_y = self.go_factor*msg.linear.y
+        angular_z = self.turn_factor*msg.angular.z
+        
+        speed_up = False
+        if abs(self.last_linear_x - linear_x) > 0.2 or abs(self.last_linear_y - linear_y) > 0.2 or abs(self.last_angular_z - angular_z) > 1:
+            speed_up = True
+        
+        self.last_linear_x = linear_x
+        self.last_linear_y = linear_y
+        self.last_angular_z = angular_z
+
+        linear_x_, linear_y_ = linear_x * 1000.0, linear_y * 1000.0#mm to m
+        speed = math.sqrt(linear_x_ ** 2 + linear_y_ ** 2)
+        direction =  math.atan2(linear_y_, linear_x_)
+        direction = math.pi * 2 + direction if direction < 0 else direction
+        self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
+
+    The `Twist` message from `cmd_vel` provides the necessary information to calculate `speed`, `direction`, and `angular_z` for controlling the mecanum wheel using the `MecanumChassis` object.
+
+    Refer to [JetAuto & JetAuto Pro Resources](https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY) chapter 7.3 for the working principle of the mecanum wheel.
+
+1. Try other various combination of motion command to gain a better understanding of the robot's movement.
+
+1. Next, we'll try controlling the JetAuto robot using keyboard input. Keep the `jetauto_controller` terminal open. In a new/other terminal, run:
+
+        roslaunch jetauto_peripherals teleop_key_control.launch robot_name:="/"
+
+    Use w, a, s, d to control the robot.
+
+1. Inspect the source code of the teleop controller to understand it's operation by opening the file at:
+
+    **~/jetauto_ws/src/jetauto_peripherals/scripts/teleop_key_control.py**
+
+### JetAuto Robot Model
+
+Now that we can control the basic movement of the JetAuto robot, let's try to simulate it in Gazebo.
+
+1. Before we start, let's ensure we have the required package to build and view our robot model:
+
+        sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui
+
+1. Assuming `jetauto_ws` is already on your virtual machine's home directory, let's add it as a source in `~/.bashrc`.
+
+        echo "source /home/jetauto/jetauto_ws/devel/setup.bash" >> ~/.bashrc 
+
+1. To have a quick view at the URDF model, we can us RViz:
+
+        roslaunch jetauto_description display.launch model:=urdf/jetauto.urdf
+
+    You can use the `joint_state_publisher_gui` to adjust the arm angle.
+
+    ![Figure 3.3 JetAuto in RViz](lab4-rviz-jetauto.png)
+
+    ***Figure 3.3** JetAuto in Gazebo*
+
+<!--1. If you are interested in building a URDF from scratch, visit the ROS tutorial [here](https://wiki.ros.org/urdf/Tutorials).
+
+1. For the purpose of this course, we'll be using the URDF model provided by the manufacturer in chapter 7.2 of the JetAuto Lessons. SSH into the robot and copy the `jetauto_ws` folder into your home directory.-->
+
+### Running JetAuto in Gazebo
+
+1. Before we can simulate the JetAuto in gazebo, we first need to set some environment variables that our launch script look for. Edit the system's environment variables:
+
+        sudo gedit /etc/environment
+
+    We'll add the following in the environment:
+
+        LIDAR_TYPE="A1"
+        DEPTH_CAMERA_TYPE="AstraProPlus"
+        MACHINE_TYPE="JetAutoPro"
+        HOST="/"
+        MASTER="/"
+
+    Restart your system in order for the change to take effect.
+
+1. In a terminal, launch:
+
+        roslaunch jetauto_gazebo worlds.launch
+
+    Gazebo should run and you should see the JetAuto robot in the simulation enviornment.
+
+    ![Figure 3.4 JetAuto in Gazebo](lab4-gazebo-jetauto.png)
+
+    ***Figure 3.4** JetAuto in Gazebo*
+
+1. With gazebo and ros running, we can now control the virtual robot the same way as the physical robot.
+
+    Let's try publishing to the `cmd_vel` topic:
+
+        rostopic pub -1 /jetauto_1/jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+
+    Stop the robot:
+
+        rostopic pub -1 /jetauto_1/jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+
+1. We can also use the keyboard to control the robot:
+
+        roslaunch jetauto_peripherals teleop_key_control.launch robot_name:="/"
 
 ## Lab Question
 
@@ -96,34 +275,7 @@ In preperation of using the JetAuto robot, please be familiar with the user manu
     - (1, 1, -90°) to (0, 1, -90°) - rotate first to face the inside of the square
     - (0, 1, -90°) to (0, 0, 0°) - rotate the robot while traveling
 
-    Repeat for 2 times.
-
-<!--
-https://gazebosim.org/docs/latest/ros_installation/
-
-https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
-
-https://gazebosim.org/docs/fortress/install/
-
-Screen into Jetson Nano
-https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup-headless
-
-sudo apt-get install -y screen
-sudo screen /dev/ttyACM0 115200
-
-login: jetauto
-password: hiwonder
-
-hi
-
-sudo apt install ros-humble-desktop
-
-sudo apt install ros-humble-urdf (not required)
-sudo apt install ros-humble-xacro
-
-ros-melodic-
-
--->
+    Repeat this for 2 times.
 
 ## Reference
 

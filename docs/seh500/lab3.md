@@ -213,11 +213,10 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
     You will provide the input as data is saved into R0. No user input (ie. scanf) is required. The input data will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labelled space in memory). Your code must consider both cases and determine which formula to use depending on the input (ie. the code should function with input above or below 32). You can use the following as your conversion equation. You can assume the input data will always be a positive integer.
 
-    C = 5 * (F - 32) / 9
-        
-    F = (9 * C / 5) + 32
+    - C = 5 * (F - 32) / 9    
+    - F = (9 * C / 5) + 32
 
-    Put your name and student number as comments in the code and copy and paste your code into Blackboard. Also, take a screenshot of your register bank as well as your memory space showing the variable and paste them into Blackboard as well.
+    Put your name and student number as comments in the code then copy and paste your code into Blackboard. Also, take a screenshot of your register bank as well as your memory space highlighting the final variable value and paste them into Blackboard as well.
 
 ## Reference
 

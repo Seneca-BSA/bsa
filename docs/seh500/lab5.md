@@ -10,6 +10,7 @@ SEH500 Microprocessors and Computer Architecture
 Documentation of the Cortex-M4 instruction set can be found here:
 
 - [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
 
 In the previous lab, we explored how to use basic branching to control the flow of a program. In this lab, we'll further explore branching and use the stack point to create subroutine and function call procedure.
@@ -27,7 +28,7 @@ In the previous lab, we explored how to use basic branching to control the flow 
 | BLX Rm | Branch with Link to register value |
 | BLX{cond} Rm | Branch with Link to register value with condition |
 
-See below for conditions that are set by a compare, usually CMP, instruction. The CMP Rm, Rn instruction operates Rm-Rn for the sole purpose of setting the condition flags.
+See below for conditions that are set by a compare, usually `CMP`, instruction. The `CMP Rm, Rn` instruction operates `Rm-Rn` for the sole purpose of setting the condition flags.
 
 ### Review of Branching Conditions
 
@@ -82,24 +83,23 @@ As items are added to the stack (pushed), the stack pointer is moving up, and as
 
 ARM stacks are very flexible since the implementation is completely left to the software. Stack pointer is a register that points to the top of the stack. In the ARM processor, any one of the general purpose registers could be used as a stack pointer. Since it is left to the software to implement a stack, different implemenation choices result different types of stacks. Normally, there are two types of the stacks depending on which way the stack grows.
 
-1.	Ascending Stack - When items are pushed on to the stack, 
-	the stack pointer is increasing.  That means the stack grows 
-	towards higher address.
+1.	Ascending Stack - When items are pushed on to the stack, the stack pointer is increasing.
 
-2.	Descending Stack - When items are pushed on to the stack, 
-	the stack pointer is decreasing.  That means the stack is growing 
-	towards lower address.
+    That means the stack grows towards higher address.
+
+1.	Descending Stack - When items are pushed on to the stack, the stack pointer is decreasing.
+
+    That means the stack is growing towards lower address.
 
 Depending on what the stack pointer points to we can categorize the stacks into the following two types:
 
-1.	Empty Stack - Stack pointer points to the location in which the next/first item 
-	will be stored. 
-	e.g. A push will store the value, and increment the stack pointer 
-	for an  Ascending Stack. 
-2. 	Full Stack - Stack pointer points to the location in which the last item 
-	was stored. 
-	e.g. A pop will decrement the stack pointer and pull the value 
-	for an Ascending Stack.
+1.	Empty Stack - Stack pointer points to the location in which the next/first item will be stored. 
+	
+    e.g. A push will store the value, and increment the stack pointer for an Ascending Stack.
+
+2. 	Full Stack - Stack pointer points to the location in which the last item was stored. 
+	
+    e.g. A pop will decrement the stack pointer and pull the value for an Ascending Stack.
 
 So now we can have four possible types of stacks. They are:
 
@@ -112,13 +112,11 @@ They can be implemented by using the register load and store instructions.
 
 Here are some instructions used to deal with stack:
 
-```
-PUSH {R3}             @ Push R3 onto the stack
-PUSH {R0, R4-R7}	  @ Push R0, R4, R5, R6, R7 onto the stack
-PUSH {R2, LR}		  @ Push R2 and the link register onto the stack
-POP  {R0, R5, PC}	  @ pop and return from subroutine, branch to PC
-POP  {R3}             @ Pop stack value and save to R3
-```
+    PUSH {R3}             @ Push R3 onto the stack
+    PUSH {R0, R4-R7}	  @ Push R0, R4, R5, R6, R7 onto the stack
+    PUSH {R2, LR}		  @ Push R2 and the link register onto the stack
+    POP  {R0, R5, PC}	  @ pop and return from subroutine, branch to PC
+    POP  {R3}             @ Pop stack value and save to R3
 
 Push registers onto and pop registers off a full-descending stack.
 

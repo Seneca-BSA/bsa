@@ -71,7 +71,15 @@ to the topics `/usb_cam/camera_info` and `/usb_cam/image_raw`, which are subscri
 
 ## Procedures
 
-For this course, we'll be using the following software environment **Ubuntu 18.04 LTS (Bionic Beaver)**. If you are using Windows or macOS, ensure ROS Melodic is installed as it is the version used by the JetAuto robot.
+### Ubuntu Installation
+
+For this course, we'll be using the following software environment **Ubuntu 18.04 LTS (Bionic Beaver)**. If you are using Windows or macOS, ensure Ubuntu 18.04 LTS (Bionic Beaver) and ROS Melodic is installed as it is the version used by the JetAuto robot.
+
+1. Install Ubuntu 18.04 LTS (Bionic Beaver) on your computer or virtual machine
+
+    - [ubuntu-18.04.6-desktop-amd64.iso](https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso)
+    - Ensure there are at least 2 processor core, 4GB of memory, and 20GB of disk drive
+    - Ensure to use username: **jetauto** as this is the username used by the JetAuto robot to maximize compartibility of code
 
 ### ROS Installation
 

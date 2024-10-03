@@ -28,7 +28,7 @@ In the previous lab, we explored how to use the program status flags and how to 
 | BLX Rm | Branch with Link to register value |
 | BLX{cond} Rm| Branch with Link to register value with condition |
 
-See below for conditions that are set by a compare, usually CMP, instruction. The CMP Rm, Rn instruction operates Rm-Rn for the sole purpose of setting the condition flags.
+See below for conditions that are set by a compare, usually `CMP`, instruction. The `CMP Rm, Rn` instruction operates `Rm-Rn` for the sole purpose of setting the condition flags.
 
 ### Review of Branching Conditions
 
@@ -303,7 +303,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
     - use R1 as the counter for vowel
     - use R2 as the counter for non-vowel
 
-    For the code above, at the end of execution, take a screenshot of your register bank, and your memory space showing the string then copy your code into Blackboard.
+    For the code above, at the end of execution, take a screenshot of your register bank, and your memory space highlighting the string then copy your code into Blackboard.
 
 ## Reference
 

@@ -54,7 +54,7 @@ A trivial workspace might look like:
 1. Best practice is to create a new directory for every new workspace. The name doesn’t matter, but it is helpful to have it indicate the purpose of the workspace. Let’s choose the directory name `ros_ws`, for “development workspace”. Open a new terminal and run:
 
         mkdir -p ~/ros_ws/src
-        cd ~/catkin_ws/
+        cd ~/ros_ws/
         catkin_make
     
     The `catkin_make` command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a `CMakeLists.txt` link in your `src` folder.
@@ -77,19 +77,22 @@ A trivial workspace might look like:
         
     You should see:
         
-        /home/youruser/catkin_ws/src:/opt/ros/kinetic/share
+        /home/<youruser>/catkin_ws/src:/opt/ros/kinetic/share
+
+    And other path(s) if you have them added to your source.
 
 ### Create a C++ Package
 
 1. Navigate into `ros_ws/src`, and run the package creation command to create a simple C++ publisher and subscriber:
 
         cd ~/ros_ws/src
-
         catkin_create_pkg cpp_pubsub std_msgs roscpp
 
     Your terminal will return a message verifying the creation of your package `cpp_pubsub` and all its necessary files and folders.
 
-    `catkin_create_pkg` requires that you give it a package_name and optionally a list of dependencies on which that package depends: `catkin_create_pkg <package_name> [depend1] [depend2] [depend3]`
+    `catkin_create_pkg` requires that you give it a `package_name` and optionally a list of dependencies on which that package depends: `catkin_create_pkg <package_name> [depend1] [depend2] [depend3]`
+
+    More details on package creation can be found [here](https://wiki.ros.org/ROS/Tutorials/CreatingPackage).
 
     #### Write the publisher node
 
@@ -227,12 +230,13 @@ A trivial workspace might look like:
     By default roscpp will install a SIGINT handler which provides Ctrl-C handling which will cause `ros::ok()` to return false if that happens.
 
     `ros::ok()` will return false if:
+    
     - a SIGINT is received (Ctrl-C)
     - we have been kicked off the network by another node with the same name
     - `ros::shutdown()` has been called by another part of the application.
     - all `ros::NodeHandles` have been destroyed
 
-    Once ros::ok() returns false, all ROS calls will fail.
+    Once `ros::ok()` returns false, all ROS calls will fail.
 
         std_msgs::String msg;
 
@@ -259,13 +263,14 @@ A trivial workspace might look like:
     Now we use the `ros::Rate` object to sleep for the time remaining to let us hit our 10Hz publish rate.
     
     Here's the condensed version of what's going on:
+
     - Initialize the ROS system
     - Advertise that we are going to be publishing std_msgs/String messages on the chatter topic to the master
     - Loop while publishing messages to chatter 10 times a second
 
-    Now we need to write a node to receive the messsages.
-
     #### Write the subscriber node
+
+    Now we need to write a node to receive the messsages.
 
 1. Return to `ros_ws/src/cpp_pubsub/src` to create the next node. Enter the following code in your terminal to download the subscriber:
 
@@ -345,7 +350,7 @@ A trivial workspace might look like:
             ROS_INFO("I heard: [%s]", msg->data.c_str());
         }
 
-    This is the callback function that will get called when a new message has arrived on the `chatte`r topic. The message is passed in a `boost shared_pt`r, which means you can store it off if you want, without worrying about it getting deleted underneath you, and without copying the underlying data.
+    This is the callback function that will get called when a new message has arrived on the `chatter` topic. The message is passed in a `boost shared_ptr`, which means you can store it off if you want, without worrying about it getting deleted underneath you, and without copying the underlying data.
 
         ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
 
@@ -368,11 +373,7 @@ A trivial workspace might look like:
 
 ### Build and Run C++ Package
 
-1. Now, open up `CMakeLists.txt` and ensure the following are in there.
-
-        ## Declare ROS messages and services
-        add_message_files(FILES Num.msg)
-        add_service_files(FILES AddTwoInts.srv)
+1. Now, go back to the package and open up `CMakeLists.txt` and ensure the following are in there. **Note:** Some of the functions are currently commented out and some are missing.
 
         ## Generate added messages and services
         generate_messages(DEPENDENCIES std_msgs)
@@ -383,398 +384,306 @@ A trivial workspace might look like:
         ## Build talker and listener
         include_directories(include ${catkin_INCLUDE_DIRS})
 
+        add_dependencies(talker cpp_pubsub_generate_messages_cpp)
         add_executable(talker src/talker.cpp)
         target_link_libraries(talker ${catkin_LIBRARIES})
-        add_dependencies(talker beginner_tutorials_generate_messages_cpp)
-
+        
+        add_dependencies(listener cpp_pubsub_generate_messages_cpp)
         add_executable(listener src/listener.cpp)
         target_link_libraries(listener ${catkin_LIBRARIES})
-        add_dependencies(listener beginner_tutorials_generate_messages_cpp)
 
-1. This will create two executables, `talker` and `listener`, which by default will go into package directory of your `devel` space, located by default at `~/catkin_ws/devel/lib/<package name>`.
+    This will create two executables, `talker` and `listener`, which by default will go into the package directory of your `devel` space, located by default at `~/catkin_ws/devel/lib/<package name>`.
 
-    Note that you have to add dependencies for the executable targets to message generation targets:
+    Note that you have to add dependencies for the executable targets to message the generation targets:
 
-        add_dependencies(talker beginner_tutorials_generate_messages_cpp)
+        add_dependencies(talker cpp_pubsub_generate_messages_cpp)
 
-    This makes sure message headers of this package are generated before being used. If you use messages from other packages inside your catkin workspace, you need to add dependencies to their respective generation targets as well, because catkin builds all projects in parallel. As of *Groovy* you can use the following variable to depend on all necessary targets:
+    This makes sure message headers of this package are generated before being used. If you use messages from other packages inside your catkin workspace, you need to add dependencies to their respective generation targets as well, because catkin builds all projects in parallel. The following variable to allow you to depend on all necessary targets:
 
         target_link_libraries(talker ${catkin_LIBRARIES})
 
     You can invoke executables directly or you can use `rosrun` to invoke them. They are not placed in `<prefix>/bin` because that would pollute the PATH when installing your package to the system. If you wish for your executable to be on the PATH at installation time, you can setup an install target, see: [catkin/CMakeLists.txt](https://wiki.ros.org/catkin/CMakeLists.txt)
 
+1. Before building the package, it's always a good idea to check and see if all dependencies are met.
+
+        cd ~/ros_ws
+        rosdep install -i --from-path src --rosdistro melodic -y
+
+    You should get a success return:
+
+        #All required rosdeps installed successfully
+
 1. Now run `catkin_make` in your catkin workspace:
 
-        cd ~/catkin_ws
+        cd ~/ros_ws
         catkin_make
 
     Note: Or if you're adding as new pkg, you may need to tell catkin to force making by `--force-cmake` option.
 
-Now you have written a simple publisher and subscriber.
+    Now you have written a simple publisher and subscriber.
 
-1. Source the setup files:
+1. Run ROS master.
 
-        . install/setup.bash
+        roscore
 
-1. Now run the talker node from `ros2_ws`:
+1. In a new terminal, source the setup files:
 
-        ros2 run cpp_pubsub talker
+        source ./devel/setup.bash
+
+1. Now run the talker node from `ros_ws`:
+
+        rosrun cpp_pubsub talker
 
     The terminal should start publishing info messages every 0.5 seconds, like so:
 
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 0"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 1"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 2"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 3"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 4"
+        [ INFO] [1727906572.247429209]: hello world 0
+        [ INFO] [1727906572.347872260]: hello world 1
+        [ INFO] [1727906572.448580826]: hello world 2
+        [ INFO] [1727906572.548227290]: hello world 3
+        [ INFO] [1727906572.650658485]: hello world 4
 
-1. Open another terminal, source the setup files from inside `ros2_ws` again, and then start the listener node:
+1. Open another terminal, source the setup files from inside `ros_ws` again, and then start the listener node:
 
-        . install/setup.bash
-
-        ros2 run cpp_pubsub listener
+        . devel/setup.bash
+        rosrun cpp_pubsub listener
 
     The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:
 
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 10"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 11"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 12"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 13"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 14"
+        [ INFO] [1727906765.424901599]: I heard: [hello world 10]
+        [ INFO] [1727906765.525323426]: I heard: [hello world 11]
+        [ INFO] [1727906765.625240241]: I heard: [hello world 12]
+        [ INFO] [1727906765.728040103]: I heard: [hello world 13]
+        [ INFO] [1727906765.824066051]: I heard: [hello world 14]
 
 1. Enter Ctrl+C in each terminal to stop the nodes from spinning.
 
 ### Create a Python Package
 
-1. Navigate into `ros2_ws/src`, and run the package creation command to create a simple Python publisher and subscriber:
+1. Navigate into `ros_ws/src`, and run the package creation command to create a simple Python publisher and subscriber:
 
-        ros2 pkg create --build-type ament_python --license Apache-2.0 py_pubsub
+        cd ~/ros_ws/src
+        catkin_create_pkg py_pubsub std_msgs rospy
 
     Your terminal will return a message verifying the creation of your package `py_pubsub` and all its necessary files and folders.
 
     #### Write the publisher node
 
-1. Navigate into `ros2_ws/src/py_pubsub/py_pubsub`. This directory is a Python package with the same name as the ROS 2 package it’s nested in.
+1. First lets create a `scripts` folder to store our Python scripts in and navigate into it:
 
-1. Download the example talker code by entering the following command:
+        mkdir scripts
+        cd scripts
 
-        wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_publisher/examples_rclpy_minimal_publisher/publisher_member_function.py
+1. Download the example talker code and make it executable by entering the following command:
 
-1. Now there will be a new file named `publisher_member_function.py` adjacent to `__init__.py`. Open the file using your preferred text editor. Alternatively, create a .py file with the following:
+        wget https://raw.github.com/ros/ros_tutorials/kinetic-devel/rospy_tutorials/001_talker_listener/talker.py
+        chmod +x talker.py
 
-        import rclpy
-        from rclpy.node import Node
+1. Now there will be a new file named `talker.py`. Open the file using your preferred text editor. Alternatively, create a .py file with the following:
 
+        #!/usr/bin/env python
+        # license removed for brevity
+        import rospy
         from std_msgs.msg import String
 
-
-        class MinimalPublisher(Node):
-
-            def __init__(self):
-                super().__init__('minimal_publisher')
-                self.publisher_ = self.create_publisher(String, 'topic', 10)
-                timer_period = 0.5  # seconds
-                self.timer = self.create_timer(timer_period, self.timer_callback)
-                self.i = 0
-
-            def timer_callback(self):
-                msg = String()
-                msg.data = 'Hello World: %d' % self.i
-                self.publisher_.publish(msg)
-                self.get_logger().info('Publishing: "%s"' % msg.data)
-                self.i += 1
-
-
-        def main(args=None):
-            rclpy.init(args=args)
-
-            minimal_publisher = MinimalPublisher()
-
-            rclpy.spin(minimal_publisher)
-
-            # Destroy the node explicitly
-            # (optional - otherwise it will be done automatically
-            # when the garbage collector destroys the node object)
-            minimal_publisher.destroy_node()
-            rclpy.shutdown()
-
+        def talker():
+            pub = rospy.Publisher('chatter', String, queue_size=10)
+            rospy.init_node('talker', anonymous=True)
+            rate = rospy.Rate(10) # 10hz
+            while not rospy.is_shutdown():
+                hello_str = "hello world %s" % rospy.get_time()
+                rospy.loginfo(hello_str)
+                pub.publish(hello_str)
+                rate.sleep()
 
         if __name__ == '__main__':
-            main()
+            try:
+                talker()
+            except rospy.ROSInterruptException:
+                pass
 
-    The first lines of code after the comments import `rclpy` so its `Node` class can be used.
+1. Add the following to your `CMakeLists.txt`. This makes sure the python script gets installed properly, and uses the right python interpreter.
 
-        import rclpy
-        from rclpy.node import Node
+        catkin_install_python(PROGRAMS scripts/talker.py
+            DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+        )
 
-    The next statement imports the built-in string message type that the node uses to structure the data that it passes on the topic.
+    #### The Code Explained
 
+    Now, let's break the code down.
+
+        #!/usr/bin/env python
+
+    Every Python ROS Node will have this declaration at the top. The first line makes sure your script is executed as a Python script.
+
+        import rospy
         from std_msgs.msg import String
 
-    These lines represent the node’s dependencies. Recall that dependencies have to be added to `package.xml`, which you’ll do in the next section.
+    You need to import `rospy` if you are writing a ROS Node. The `std_msgs.msg` import is so that we can reuse the `std_msgs/String` message type (a simple string container) for publishing.
 
-    Next, the `MinimalPublisher` class is created, which inherits from (or is a subclass of) `Node`.
+        pub = rospy.Publisher('chatter', String, queue_size=10)
+        rospy.init_node('talker', anonymous=True)
 
-        class MinimalPublisher(Node):
+    This section of code defines the talker's interface to the rest of ROS.
+    
+    `pub = rospy.Publisher("chatter", String, queue_size=10)` declares that your node is publishing to the `chatter` topic using the message type `String`. `String` here is actually the class `std_msgs.msg.String`. The `queue_size` argument limits the amount of queued messages if any subscriber is not receiving them fast enough.
 
-    Following is the definition of the class’s constructor. `super().__init__` calls the `Node` class’s constructor and gives it your node name, in this case `minimal_publisher`.
+    The next line, `rospy.init_node(NAME, ...)`, is very important as it tells `rospy` the name of your node -- until `rospy` has this information, it cannot start communicating with the ROS Master. In this case, your node will take on the name `talker`. NOTE: the name must be a base name, i.e. it cannot contain any slashes "/".
 
-    `create_publisher` declares that the node publishes messages of type `String` (imported from the std_msgs.msg module), over a topic named `topic`, and that the “queue size” is 10. Queue size is a required QoS (quality of service) setting that limits the amount of queued messages if a subscriber is not receiving them fast enough.
+    `anonymous = True` ensures that your node has a unique name by adding random numbers to the end of NAME. Refer to [Initialization and Shutdown - Initializing your ROS Node](https://wiki.ros.org/rospy/Overview/Initialization%20and%20Shutdown#Initializing_your_ROS_Node) in the `rospy` documentation for more information about node initialization options.
 
-    Next, a timer is created with a callback to execute every 0.5 seconds. `self.i` is a counter used in the callback.
+        rate = rospy.Rate(10) # 10hz
 
-        def __init__(self):
-            super().__init__('minimal_publisher')
-            self.publisher_ = self.create_publisher(String, 'topic', 10)
-            timer_period = 0.5  # seconds
-            self.timer = self.create_timer(timer_period, self.timer_callback)
-            self.i = 0
+    This line creates a `Rate` object `rate`. With the help of its method `sleep()`, it offers a convenient way for looping at the desired `rate`. With its argument of `10`, we should expect to go through the loop 10 times per second (as long as our processing time does not exceed 1/10th of a second!)
 
-    `timer_callback` creates a message with the counter value appended, and publishes it to the console with `get_logger().info`.
+        while not rospy.is_shutdown():
+            hello_str = "hello world %s" % rospy.get_time()
+            rospy.loginfo(hello_str)
+            pub.publish(hello_str)
+            rate.sleep()
 
-        def timer_callback(self):
-            msg = String()
-            msg.data = 'Hello World: %d' % self.i
-            self.publisher_.publish(msg)
-            self.get_logger().info('Publishing: "%s"' % msg.data)
-            self.i += 1
+    This loop is a fairly standard `rospy` construct: checking the `rospy.is_shutdown()` flag and then doing work. You have to check `is_shutdown()` to check if your program should exit (e.g. if there is a Ctrl-C or otherwise). In this case, the "work" is a call to `pub.publish(hello_str)` that publishes a string to our `chatter` topic. The loop calls `rate.sleep()`, which sleeps just long enough to maintain the desired rate through the loop.
 
-    Lastly, the main function is defined.
+    (You may also run across `rospy.sleep()` which is similar to `time.sleep()` except that it works with simulated time as well (see [Clock](https://wiki.ros.org/Clock)).)
 
-        def main(args=None):
-            rclpy.init(args=args)
+    This loop also calls `rospy.loginfo(str)`, which performs triple-duty: the messages get printed to screen, it gets written to the Node's log file, and it gets written to `rosout`. `rosout` is a handy tool for debugging: you can pull up messages using `rqt_console` instead of having to find the console window with your Node's output.
 
-            minimal_publisher = MinimalPublisher()
+    `std_msgs.msg.String` is a very simple message type, so you may be wondering what it looks like to publish more complicated types. The general rule of thumb is that *constructor args are in the same order as in the .msg file*. You can also pass in no arguments and initialize the fields directly, e.g.
 
-            rclpy.spin(minimal_publisher)
+        msg = String()
+        msg.data = str
 
-            # Destroy the node explicitly
-            # (optional - otherwise it will be done automatically
-            # when the garbage collector destroys the node object)
-            minimal_publisher.destroy_node()
-            rclpy.shutdown()
+    or you can initialize some of the fields and leave the rest with default values:
 
-    First the `rclpy` library is initialized, then the node is created, and then it “spins” the node so its callbacks are called.
+        String(data=str)
 
-    #### Add dependencies
+    You may be wondering about the last little bit:
 
-1. Navigate one level back to the `ros2_ws/src/py_pubsub` directory, where the `setup.py`, `setup.cfg`, and `package.xml` files have been created for you. Open `package.xml` with your text editor and make sure to fill in the `<description>`, `<maintainer>` and `<license>` tags:
+        try:
+            talker()
+        except rospy.ROSInterruptException:
+            pass
 
-        <description>Examples of minimal publisher/subscriber using rclpy</description>
-        <maintainer email="you@email.com">Your Name</maintainer>
-        <license>Apache License 2.0</license>
-
-1. After the lines above, add the following dependencies corresponding to your node’s import statements:
-
-        <exec_depend>rclpy</exec_depend>
-        <exec_depend>std_msgs</exec_depend>
-
-    This declares the package needs `rclpy` and `std_msgs` when its code is executed.
-
-    Make sure to save the file.
-
-    #### Add an entry point
-
-1. Open the `setup.py` file. Again, match the `maintainer`, `maintainer_email`, `description` and `license` fields to your `package.xml`:
-
-        maintainer='YourName',
-        maintainer_email='you@email.com',
-        description='Examples of minimal publisher/subscriber using rclpy',
-        license='Apache License 2.0',
-
-1. Add the following line within the `console_scripts` brackets of the `entry_points` field:
-
-        entry_points={
-                'console_scripts': [
-                        'talker = py_pubsub.publisher_member_function:main',
-                ],
-        },
-
-    Don’t forget to save.
-
-    #### Check setup.cfg
-
-1. The contents of the `setup.cfg` file should be correctly populated automatically, like so:
-
-        [develop]
-        script_dir=$base/lib/py_pubsub
-        [install]
-        install_scripts=$base/lib/py_pubsub
-
-    This is simply telling setuptools to put your executables in `lib`, because `ros2 run` will look for them there.
-
-    You could build your package now, source the local setup files, and run it, but let’s create the subscriber node first so you can see the full system at work.
+    In addition to the standard Python `__main__` check, this catches a `rospy.ROSInterruptException` exception, which can be thrown by `rospy.sleep()` and `rospy.Rate.sleep()` methods when Ctrl-C is pressed or your Node is otherwise shutdown. The reason this exception is raised is so that you don't accidentally continue executing code after the `sleep()`.
 
     #### Write the subscriber node
 
-1. Return to `ros2_ws/src/py_pubsub/py_pubsub` to create the next node. Enter the following code in your terminal:
+    Now we need to write a node to receive the messages.
 
-        wget https://raw.githubusercontent.com/ros2/examples/humble/rclpy/topics/minimal_subscriber/examples_rclpy_minimal_subscriber/subscriber_member_function.py
+1. Return to `ros_ws/src/py_pubsub/scripts` to create the next node. Enter the following code in your terminal:
+
+        wget https://raw.github.com/ros/ros_tutorials/kinetic-devel/rospy_tutorials/001_talker_listener/listener.py
+        chmod +x listener.py
 
     Now the directory should have these files:
 
-        __init__.py  publisher_member_function.py  subscriber_member_function.py
+        listener.py  talker.py
 
-1. Open the `subscriber_member_function.py` with your text editor. Alternatively, create a .py file with the following:
+1. Open the `listener.py` with your text editor. Alternatively, create a .py file with the following:
 
-        import rclpy
-        from rclpy.node import Node
-
+        #!/usr/bin/env python
+        import rospy
         from std_msgs.msg import String
 
+        def callback(data):
+            rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+            
+        def listener():
 
-        class MinimalSubscriber(Node):
+            # In ROS, nodes are uniquely named. If two nodes with the same
+            # name are launched, the previous one is kicked off. The
+            # anonymous=True flag means that rospy will choose a unique
+            # name for our 'listener' node so that multiple listeners can
+            # run simultaneously.
+            rospy.init_node('listener', anonymous=True)
 
-            def __init__(self):
-                super().__init__('minimal_subscriber')
-                self.subscription = self.create_subscription(
-                    String,
-                    'topic',
-                    self.listener_callback,
-                    10)
-                self.subscription  # prevent unused variable warning
+            rospy.Subscriber("chatter", String, callback)
 
-            def listener_callback(self, msg):
-                self.get_logger().info('I heard: "%s"' % msg.data)
-
-
-        def main(args=None):
-            rclpy.init(args=args)
-
-            minimal_subscriber = MinimalSubscriber()
-
-            rclpy.spin(minimal_subscriber)
-
-            # Destroy the node explicitly
-            # (optional - otherwise it will be done automatically
-            # when the garbage collector destroys the node object)
-            minimal_subscriber.destroy_node()
-            rclpy.shutdown()
-
+            # spin() simply keeps python from exiting until this node is stopped
+            rospy.spin()
 
         if __name__ == '__main__':
-            main()
+            listener()
 
-    The subscriber node’s code is nearly identical to the publisher’s. The constructor creates a subscriber with the same arguments as the publisher. Recall from earlier lab that the topic name and message type used by the publisher and subscriber must match to allow them to communicate.
+1. Then, edit the `catkin_install_python()` call in your `CMakeLists.txt` so it looks like the following:
 
-        self.subscription = self.create_subscription(
-            String,
-            'topic',
-            self.listener_callback,
-            10)
+        catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py
+            DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+        )
 
-    The subscriber’s constructor and callback don’t include any timer definition, because it doesn’t need one. Its callback gets called as soon as it receives a message.
+    #### The Code Explained
 
-    The callback definition simply prints an info message to the console, along with the data it received. Recall that the publisher defines `msg.data = 'Hello World: %d' % self.i`
+    The code for `listener.py` is similar to `talker.py`, except we've introduced a new callback-based mechanism for subscribing to messages.
 
-        def listener_callback(self, msg):
-            self.get_logger().info('I heard: "%s"' % msg.data)
+        rospy.init_node('listener', anonymous=True)
 
-    The `main` definition is almost exactly the same, replacing the creation and spinning of the publisher with the subscriber.
+        rospy.Subscriber("chatter", String, callback)
 
-        minimal_subscriber = MinimalSubscriber()
+        # spin() simply keeps python from exiting until this node is stopped
+        rospy.spin()
 
-        rclpy.spin(minimal_subscriber)
+    This declares that your node subscribes to the `chatter` topic which is of type `std_msgs.msgs.String`. When new messages are received, `callback` is invoked with the message as the first argument.
 
-    Since this node has the same dependencies as the publisher, there’s nothing new to add to `package.xml`. The `setup.cfg` file can also remain untouched.
+    We also changed up the call to `rospy.init_node()` somewhat. We've added the `anonymous=True` keyword argument. ROS requires that each node have a unique name. If a node with the same name comes up, it bumps the previous one. This is so that malfunctioning nodes can easily be kicked off the network. The `anonymous=True` flag tells `rospy` to generate a unique name for the node so that you can have multiple `listener.py` nodes run easily.
 
-    #### Add an entry point
-
-1. Reopen `setup.py` and add the entry point for the subscriber node below the publisher’s entry point. The `entry_points` field should now look like this:
-
-        entry_points={
-                'console_scripts': [
-                        'talker = py_pubsub.publisher_member_function:main',
-                        'listener = py_pubsub.subscriber_member_function:main',
-                ],
-        },
-
-    Make sure to save the file, and then your pub/sub system should be ready.
+    The final addition, `rospy.spin()` simply keeps your node from exiting until the node has been shutdown. Unlike `roscpp`, `rospy.spin()` does not affect the subscriber callback functions, as those have their own threads.
 
 ### Build and run Python Package
 
-1. It’s good practice to run rosdep in the root of your workspace (`ros2_ws`) to check for missing dependencies before building:
+    We use CMake as our build system and, yes, you have to use it even for Python nodes. This is to make sure that the autogenerated Python code for messages and services is created.
 
-        rosdep install -i --from-path src --rosdistro humble -y
+1. Before building the package, it's always a good idea to check and see if all dependencies are met.
 
-    If the `rosdep` command is not found, run the following to install, init, and update `rosdep`:
+        cd ~/ros_ws
+        rosdep install -i --from-path src --rosdistro melodic -y
 
-        pip install -U rosdep
-        rosdep init
-        rosdep update
-
-    If you get a permission denied error, use `sudo`.
-
-    When all dependencies are met, `rosdep` will return a success message:
+    You should get a success return:
 
         #All required rosdeps installed successfully
 
-1. Still in the root of your workspace, `ros2_ws`, build your new package:
+1. Go to your catkin workspace and run `catkin_make`:
 
-        colcon build --packages-select py_pubsub
+        cd ~/cros_ws
+        catkin_make
 
-    If you want to build all the packages, just run `colcon build` without the option.
+1. Run ROS master.
 
-1. Open a new terminal, navigate to `ros2_ws`, and source the setup files:
+        roscore
 
-        source install/setup.bash
+1. Open a new terminal, navigate to `ros_ws`, and source the setup files:
+
+        source ./devel/setup.bash
 
 1. Now run the talker node:
 
-        ros2 run py_pubsub talker
+        rosrun py_pubsub talker.py
 
     The terminal should start publishing info messages every 0.5 seconds, like so:
 
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 0"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 1"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 2"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 3"
-        [INFO] [minimal_publisher]: Publishing: "Hello World: 4"
-        ...
+        [INFO] [1727910097.196673]: hello world 1727910097.2
+        [INFO] [1727910097.293260]: hello world 1727910097.29
+        [INFO] [1727910097.394363]: hello world 1727910097.39
+        [INFO] [1727910097.493223]: hello world 1727910097.49
+        [INFO] [1727910097.592866]: hello world 1727910097.59
 
-1. Open another terminal, source the setup files from inside `ros2_ws` again, and then start the listener node:
+1. Open another terminal, source the setup files from inside `ros_ws` again, and then start the listener node:
 
-        ros2 run py_pubsub listener
+        rosrun py_pubsub listener.py
 
     The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:
 
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 10"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 11"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 12"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 13"
-        [INFO] [minimal_subscriber]: I heard: "Hello World: 14"
+        [INFO] [1727910166.665430]: /listener_5173_1727910161732I heard hello world 1727910166.66
+        [INFO] [1727910166.761804]: /listener_5173_1727910161732I heard hello world 1727910166.76
+        [INFO] [1727910166.870095]: /listener_5173_1727910161732I heard hello world 1727910166.87
+        [INFO] [1727910166.963474]: /listener_5173_1727910161732I heard hello world 1727910166.96
+        [INFO] [1727910167.071514]: /listener_5173_1727910161732I heard hello world 1727910167.07
 
 1. Stop the listener and try to run the C++ listener from earlier:
 
-        ros2 run cpp_pubsub listener
+        rosrun cpp_pubsub listener
 
     You should see a similar same output.
 
 1. Enter `Ctrl+C` in each terminal to stop the nodes from spinning.
-
-### Install Gazebo
-
-After being familiar with ROS, we'll now install the Gazebo simulation environment.
-
-1. Following the instruction to [install Gazebo Fortress](https://gazebosim.org/docs/fortress/install_ubuntu/). Each Gazebo version works with a specific version of ROS.
-
-1. Once installed, start Gazebo with the following command to ensure it's functional:
-
-        ign gazebo
-
-    ![Figure 3.1 Gazebo Quick Start](lab3-gazebo.png)
-
-    ***Figure 3.1** Gazebo Quick Start*
-
-1. Try to start one of the senario from the quick start screen.
-
-1. Afterward, open another terminal and run the following command to see all the topics:
-
-        ign topic -l
-
-    Do you notice any similarity?
-
-    We won't be able to connect ROS directly with Gazebo yet. That will be the topic of Lab 4 and 5.
 
 ## Lab Question
 
@@ -783,15 +692,16 @@ to write a single publisher node.
 
     Create a new package called `lab3_turtlesim`. You can create a new workspace called `lab3_ws` or use your existing workspace.
 
-        ros2 pkg create --build-type ament_cmake --license Apache-2.0 lab3_turtlesim --dependencies rclcpp geometry_msgs
+        catkin_create_pkg lab3_turtlesim std_msgs roscpp geometry_msgs
+    
     or
 
-        ros2 pkg create --build-type ament_python --license Apache-2.0 lab3_turtlesim --dependencies rclpy geometry_msgs
+        catkin_create_pkg lab3_turtlesim std_msgs rospy geometry_msgs
 
     Your node should do the following:
 
     - Accept a command line argument specifying the name of the turtle it should control.
-        - Running `ros2 run lab3_turtlesim turtle_controller turtle1` will start a controller node that controls turtle1.
+        - Running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls turtle1.
     - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as `scanf()` or `input()` instead.
 
     **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.
@@ -802,5 +712,5 @@ Once you've completed all the above steps, ask the lab professor or instructor o
 
 ## Reference
 
-- [ROS 2 Documentation: Humble](https://docs.ros.org/en/humble/index.html)
+- [ROS Tutorials](https://wiki.ros.org/ROS/Tutorials)
 - EECS 106A Labs
