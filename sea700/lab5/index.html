@@ -3,23 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
-      <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>BSA Lab Manuals</title>
-    <link rel="stylesheet" href="css/theme.css" />
-    <link rel="stylesheet" href="css/theme_extra.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab5 - BSA Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-        <link href="css/extra.css" rel="stylesheet" />
+        <link href="../../css/extra.css" rel="stylesheet" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab Manuals";
-        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_name = "Lab5";
+        var mkdocs_page_input_path = "sea700\\lab5.md";
         var mkdocs_page_url = null;
       </script>
     
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
+      <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
       <script>hljs.highlightAll();</script> 
@@ -31,9 +31,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> BSA Lab Manuals
+          <a href="../.." class="icon icon-home"> BSA Lab Manuals
         </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -42,13 +42,13 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Lab Manuals</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="ses250/">SES250 Electromagnatics</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="seh500/">SEH500 Microprocessors</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="sep600/">SEP600 Embedded Systems</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="sea700/">SEA700 Robotics</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../">SEA700 Robotics</a>
                   </li>
               </ul>
       </div>
@@ -58,14 +58,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">BSA Lab Manuals</a>
+          <a href="../..">BSA Lab Manuals</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab Manuals</li>
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lab5</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,13 +74,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-manuals">Lab Manuals</h1>
-<ul>
-<li><a href="ses250/">SES250 Elecromagnetics Lab Manual</a></li>
-<li><a href="seh500/">SEH500 Microprocessors and Computer Architecture Lab Manual</a></li>
-<li><a href="sep600/">SEP600 Embedded Systems</a></li>
-<li><a href="sea700/">SEA700 Robotics for Software Engineers</a></li>
-</ul>
+                <h3 id="jetson-nano-board">Jetson Nano Board</h3>
+<ol>
+<li>Go through all the Chapter 6 lesson in the <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a> to understand more functionality of the Jetson Nano board.</li>
+</ol>
+<!--
+https://gazebosim.org/docs/latest/ros_installation/
+
+https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+
+https://gazebosim.org/docs/fortress/install/
+
+Screen into Jetson Nano
+https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup-headless
+
+sudo apt-get install -y screen
+sudo screen /dev/ttyACM0 115200
+
+login: jetauto
+password: hiwonder
+
+ros-melodic-
+
+sudo apt install ros-melodic-joint-state-publisher-gui
+sudo apt install ros-melodic-ros-control
+sudo apt install ros-melodic-controller-manager
+
+roscore
+roslaunch jetson_gazebo world.launch
+roslaunch jetson_navigation jetson_controller.launch
+
+sudo apt install python-pip
+sudo pip install smbus2
+
+pip install rospkg
+
+
+-->
               
             </div>
           </div><footer>
@@ -108,12 +138,12 @@
     
   </span>
 </div>
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = ".";</script>
-    <script src="js/theme_extra.js"></script>
-    <script src="js/theme.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-      <script src="search/main.js"></script>
+      <script src="../../search/main.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
@@ -122,8 +152,3 @@
 
 </body>
 </html>
-
-<!--
-MkDocs version : 1.6.1
-Build Date UTC : 2024-10-03 05:53:53.265005+00:00
--->
