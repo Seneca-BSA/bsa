@@ -188,7 +188,10 @@ sudo screen /dev/ttyACM0 115200
 <h3 id="jetauto-workspace">JetAuto Workspace</h3>
 <ol>
 <li>
-<p>After connecting with the JetAuto robot, let's copy the JetAuto workspace <code>jetauto_ws</code> over to our local virtual machine so we can inspect and use it locally. Run the following command to use rsync to copy the directory over:</p>
+<p>After connecting with the JetAuto robot, let's copy the JetAuto workspace <code>jetauto_ws</code> over to our local virtual machine so we can inspect and use it locally. Run the following command <strong>locally</strong> to use rsync to copy the directory over:</p>
+<p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+Run this command on your local machine!
+</div></p>
 <pre><code>rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
 </code></pre>
 </li>
