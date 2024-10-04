@@ -27,6 +27,10 @@ More Models:
 - [Unitree Go1](https://github.com/unitreerobotics/unitree_ros)
 - [Universal Robotics](https://github.com/UniversalRobots/Universal_Robots_ROS2_Description)
 
+### URDF vs XACRO
+
+URDF (Unified Robot Description Format) and XACRO (XML Macros) are both used in ROS (Robot Operating System) for robot modeling, but they have distinct roles. URDF is a straightforward XML format that describes the physical structure of a robot, detailing its links and joints, as well as their properties like geometry and dynamics. It's ideal for simpler robot designs where the model's complexity is limited. In contrast, XACRO is an extension of URDF that incorporates macros, allowing for parameterization and reducing redundancy in model descriptions. This makes XACRO particularly useful for complex robots or those with interchangeable components, as it facilitates easier maintenance and enhances readability. Typically, XACRO files are processed into URDF files before they are utilized in simulations or applications, combining the flexibility of XACRO with the straightforwardness of URDF.
+
 ### RViz
 
 RViz, or Robot Visualization, is a powerful 3D visualization tool used primarily in robotics and the Robot Operating System (ROS). It enables developers to visualize and interpret a wide array of sensor data, such as point clouds, maps, and robot models, in real-time. With its interactive features, users can manipulate objects and adjust visual settings to enhance understanding of robot behavior and performance. RViz's plugin architecture allows for extensibility, accommodating various data types and visualization needs. This makes it an invaluable resource for debugging algorithms, simulating scenarios, and gaining insights into robotic systems, ultimately aiding in the development and refinement of robotics applications.
@@ -121,6 +125,10 @@ The robot we have for this course is the JetAuto Pro assembled in the configurat
 
         rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
 
+1. Once `jetauto_ws` is on your virtual machine's home directory, let's add it as a source in `~/.bashrc`.
+
+        echo "source /home/jetauto/jetauto_ws/devel/setup.bash" >> ~/.bashrc 
+
 ### JetAuto Robot Movement
 
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
@@ -202,15 +210,11 @@ The robot we have for this course is the JetAuto Pro assembled in the configurat
 
 ### JetAuto Robot Model
 
-Now that we can control the basic movement of the JetAuto robot, let's try to simulate it in Gazebo.
+Now that we can control the basic movement of the JetAuto robot, let's try to simulate it in Gazebo. Robot model in URDF consist of links that are joined together to form a robot assembly. Each link have its given geometry, mass, and collision parameter. The geometry can be provide as simple shape or complex shape using solid model.
 
-1. Before we start, let's ensure we have the required package to build and view our robot model:
+1. Before we start, let's ensure we have the required package installed to view and test our robot model:
 
         sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui
-
-1. Assuming `jetauto_ws` is already on your virtual machine's home directory, let's add it as a source in `~/.bashrc`.
-
-        echo "source /home/jetauto/jetauto_ws/devel/setup.bash" >> ~/.bashrc 
 
 1. To have a quick view at the URDF model, we can us RViz:
 
@@ -222,9 +226,134 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
     ***Figure 3.3** JetAuto in Gazebo*
 
-<!--1. If you are interested in building a URDF from scratch, visit the ROS tutorial [here](https://wiki.ros.org/urdf/Tutorials).
+1. Let's open up the JetAuto URDF model file to take a look at it more closely.
 
-1. For the purpose of this course, we'll be using the URDF model provided by the manufacturer in chapter 7.2 of the JetAuto Lessons. SSH into the robot and copy the `jetauto_ws` folder into your home directory.-->
+    **~/jetauto_ws/src/jetauto_simulations/jetauto_description/urdf/jetauto_car.urdf.xacro**
+
+    Here, we see a file in XML format:
+
+        <robot name="jetauto" xmlns:xacro="http://ros.org/wiki/xacro" >
+            <xacro:property name="M_PI"               value="3.1415926535897931"/>
+            <xacro:property name="base_link_mass"     value="1.6" /> 
+            <xacro:property name="base_link_w"        value="0.297"/>
+            <xacro:property name="base_link_h"        value="0.145"/>
+            <xacro:property name="base_link_d"        value="0.11255"/>
+
+            <xacro:property name="wheel_link_mass"    value="0.1" />
+            <xacro:property name="wheel_link_radius"  value="0.049"/>
+            <xacro:property name="wheel_link_length"  value="0.04167"/>
+
+    The first few lines define the robot's name and the basic parameters of the JetAuto's body.
+    
+    - `M_PI` defines the value of π.
+    - `base_link_mass` defines the mass of the JetAuto’s body model.
+    - `base_link_w` defines the width of the JetAuto’s body model.
+    - `base_link_h` defines the height of of the JetAuto’s body model.
+    - `base_link_d` defines the length of of the JetAuto’s body model.
+    - `wheel_link_mass` defines the mass of each mecanum wheel.
+    - `wheel_link_radius` defines the radius of each mecanum wheel.
+
+    The name of the robot is also defined as `jetauto`.
+    
+        <link name="base_footprint"/>
+
+        <joint name="base_joint" type="fixed">
+            <parent link="base_footprint"/>
+            <child link="base_link"/>
+            <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        </joint>
+
+    `base_footprint` is defined as the top parent link (part) of the JetAuto model to create a overall envolope that sits as the origin. `base_link` is the base part of the robot that house the battery and motor. In the URDF mode, it is connected to `base_footprint` as a child linke. This envolope configuration ensure the wheel of the robot will always above the origin (ground).
+
+        <link
+            name="base_link">
+            <xacro:box_inertial m="${base_link_mass}" w="${base_link_w}" h="${base_link_h}" d="${base_link_d}"/>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                        filename="package://jetauto_description/meshes/base_link.stl" />
+                </geometry>
+                <material name="green"/>
+            </visual>
+            <collision>
+                <origin
+                    xyz="${base_link_w/2.0 - 0.14810} 0 ${0.126437/2 + 0.02362364}"
+                    rpy="0 0 0" />
+                <geometry>
+                    <box size="${base_link_w} ${base_link_h} ${base_link_d}" />
+                </geometry>
+            </collision>
+        </link>
+
+    Next is the link/part `base_link` along with it's elements. The mass and inertial information of the part is defined as an xacro element. The `geometry` sub-element in the `visual` element is provide by a `stl` mesh file from the `jetauto_description` package. The `collision` element is also defined as a box relative to the specified xyz cordinate.
+
+    ![Figure 3.4 JetAuto base_link STL](lab4-base_link-stl.png)
+
+    ***Figure 3.4** JetAuto base_link STL*
+
+        <link
+            name="back_shell_link">
+            <inertial>
+            <origin
+                xyz="-1.22838595456587E-05 0.00218574826309681 -0.0500522861933898"
+                rpy="0 0 0" />
+            <mass
+                value="0.0663478534899862" />
+            <inertia
+                ixx="5.65277934912267E-05"
+                ixy="-5.13394387877366E-11"
+                ixz="-4.07561372273553E-11"
+                iyy="4.33740893441632E-05"
+                iyz="-5.43059341238134E-06"
+                izz="6.86642544694324E-05" />
+            </inertial>
+            <visual>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                    filename="package://jetauto_description/meshes/back_shell_link.stl" />
+                </geometry>
+                <material name="black">
+                </material>
+            </visual>
+            <collision>
+                <origin
+                    xyz="0 0 0"
+                    rpy="0 0 0" />
+                <geometry>
+                    <mesh
+                    filename="package://jetauto_description/meshes/back_shell_link.stl" />
+                </geometry>
+            </collision>
+        </link>
+        <joint
+            name="back_shell_joint"
+            type="fixed">
+            <origin
+                xyz="-0.076481 0 0.082796"
+                rpy="-3.1416 0 1.5708" />
+            <parent
+                link="base_link" />
+            <child
+                link="back_shell_link" />
+            <axis
+                xyz="0 0 0" />
+        </joint>
+
+    The `back_shell_link` is the part that house the Jetson Nano, the expansion board, and mount the antenna. All the elements are defined in a similar manner as `back_link` and it's defined as a child link of `back_link` within it's relative position defined in `joint`.
+
+    The `wheel_XXX_link` are all defined in a similar manner.
+
+1. The JetAuto URDF model file above only defined the mechancial structure of the robot. If we take a look at the URDF file for simulating the robot in Gazebo, we'll find more links that are used and defined in other URDF files within the same package.
+
+    **~/jetauto_ws/src/jetauto_simulations/jetauto_description/urdf/jetauto.xacro**
+
+1. If you are interested in building a URDF from scratch, visit the ROS tutorial [here](https://wiki.ros.org/urdf/Tutorials).
 
 ### Running JetAuto in Gazebo
 
@@ -248,19 +377,19 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
     Gazebo should run and you should see the JetAuto robot in the simulation enviornment.
 
-    ![Figure 3.4 JetAuto in Gazebo](lab4-gazebo-jetauto.png)
+    ![Figure 3.5 JetAuto in Gazebo](lab4-gazebo-jetauto.png)
 
-    ***Figure 3.4** JetAuto in Gazebo*
+    ***Figure 3.5** JetAuto in Gazebo*
 
 1. With gazebo and ros running, we can now control the virtual robot the same way as the physical robot.
 
     Let's try publishing to the `cmd_vel` topic:
 
-        rostopic pub -1 /jetauto_1/jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
 
     Stop the robot:
 
-        rostopic pub -1 /jetauto_1/jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
 
 1. We can also use the keyboard to control the robot:
 
@@ -268,14 +397,20 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
 ## Lab Question
 
-1. Write a code that will move the JetAuto robot in a 1m square shape pattern as follow:
+1. Write a code that will move the JetAuto robot in a roughly 1m square shape pattern as follow:
 
     - (0, 0, 0°) to (1, 0, 0°) - face the direction of travel
     - (1, 0, 0°) to (1, 1, 0°) - face the outside of the square
     - (1, 1, -90°) to (0, 1, -90°) - rotate first to face the inside of the square
     - (0, 1, -90°) to (0, 0, 0°) - rotate the robot while traveling
 
-    Repeat this for 2 times.
+    Repeat this for 2 times after a start command (such as a keyboard input) is given.
+
+    **Hint:** You can follow the same approach as Lab 3 by creating a new package called `lab4_jetauto_control` in your `ros_ws` 
+
+        catkin_create_pkg lab4_jetauto_control rospy geometry_msgs
+
+    Refer to the `teleop_key_control.py` controller you used in this lab on how to publish to the jetauto nodes.
 
 ## Reference
 

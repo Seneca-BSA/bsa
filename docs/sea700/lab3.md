@@ -692,11 +692,11 @@ to write a single publisher node.
 
     Create a new package called `lab3_turtlesim`. You can create a new workspace called `lab3_ws` or use your existing workspace.
 
-        catkin_create_pkg lab3_turtlesim std_msgs roscpp geometry_msgs
+        catkin_create_pkg lab3_turtlesim roscpp geometry_msgs
     
     or
 
-        catkin_create_pkg lab3_turtlesim std_msgs rospy geometry_msgs
+        catkin_create_pkg lab3_turtlesim rospy geometry_msgs
 
     Your node should do the following:
 
