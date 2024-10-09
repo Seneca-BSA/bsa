@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 4 : Robot Model, Gazebo and JetAuto";
-        var mkdocs_page_input_path = "sea700\\lab4.md";
+        var mkdocs_page_input_path = "sea700/lab4.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -188,10 +188,7 @@ sudo screen /dev/ttyACM0 115200
 <h3 id="jetauto-workspace">JetAuto Workspace</h3>
 <ol>
 <li>
-<p>After connecting with the JetAuto robot, let's copy the JetAuto workspace <code>jetauto_ws</code> over to our local virtual machine so we can inspect and use it locally. Run the following command <strong>locally</strong> to use rsync to copy the directory over:</p>
-<p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-Run this command on your local machine!
-</div></p>
+<p>After connecting with the JetAuto robot, let's copy the JetAuto workspace <code>jetauto_ws</code> over to our local virtual machine so we can inspect and use it locally. Run the following command to use rsync to copy the directory over:</p>
 <pre><code>rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
 </code></pre>
 </li>
@@ -282,7 +279,7 @@ self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
 <ol>
 <li>
 <p>Before we start, let's ensure we have the required package installed to view and test our robot model:</p>
-<pre><code>sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui ros-melodic-joint-trajectory-controller
+<pre><code>sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui
 </code></pre>
 </li>
 <li>

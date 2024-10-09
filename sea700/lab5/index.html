@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 4 : Robot Model, Gazebo and JetAuto - BSA Lab Manuals</title>
+    <title>Lab5 - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 4 : Robot Model, Gazebo and JetAuto";
-        var mkdocs_page_input_path = "sea700\\lab5.md";
+        var mkdocs_page_name = "Lab5";
+        var mkdocs_page_input_path = "sea700/lab5.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 4 : Robot Model, Gazebo and JetAuto</li>
+      <li class="breadcrumb-item active">Lab5</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,26 +74,40 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-4-robot-model-gazebo-and-jetauto">Lab 4 : Robot Model, Gazebo and JetAuto</h1>
-<p><font size="5">
-Seneca Polytechnic</br>
-SEA700 Robotics for Software Engineers
-</font></p>
-<h3 id="jetson-nano-board">Jetson Nano Board</h3>
+                <h3 id="jetson-nano-board">Jetson Nano Board</h3>
 <ol>
 <li>Go through all the Chapter 6 lesson in the <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a> to understand more functionality of the Jetson Nano board.</li>
 </ol>
-<p>sudo apt-get install ros-melodic-slam-gmapping</p>
-<p>roslaunch jetauto_gazebo room_worlds.launch
-roslaunch jetauto_slam slam.launch sim:=true
-roslunach jetsuto_slam rviz_slam.launch sim:=true</p>
-<p>roslaunch jetauto_peripherals imu.launch
-rostopic echo /imu_data</p>
-<p>roslaunch jetauto_controller odom_publish.launch
-rostopic echo /odom_raw</p>
 <!--
+https://gazebosim.org/docs/latest/ros_installation/
 
-sudo apt-get install ros-melodic-slam-gmapping
+https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
+
+https://gazebosim.org/docs/fortress/install/
+
+Screen into Jetson Nano
+https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup-headless
+
+sudo apt-get install -y screen
+sudo screen /dev/ttyACM0 115200
+
+login: jetauto
+password: hiwonder
+
+ros-melodic-
+
+sudo apt install ros-melodic-joint-state-publisher-gui
+sudo apt install ros-melodic-ros-control
+sudo apt install ros-melodic-controller-manager
+
+roscore
+roslaunch jetson_gazebo world.launch
+roslaunch jetson_navigation jetson_controller.launch
+
+sudo apt install python-pip
+sudo pip install smbus2
+
+pip install rospkg
 
 
 -->
