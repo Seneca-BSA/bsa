@@ -85,21 +85,21 @@ ARM stacks are very flexible since the implementation is completely left to the 
 
 1.	Ascending Stack - When items are pushed on to the stack, the stack pointer is increasing.
 
-    That means the stack grows towards higher address.
+    - That means the stack grows towards higher address.
 
 1.	Descending Stack - When items are pushed on to the stack, the stack pointer is decreasing.
 
-    That means the stack is growing towards lower address.
+    - That means the stack is growing towards lower address.
 
 Depending on what the stack pointer points to we can categorize the stacks into the following two types:
 
 1.	Empty Stack - Stack pointer points to the location in which the next/first item will be stored. 
 	
-    e.g. A push will store the value, and increment the stack pointer for an Ascending Stack.
+    - e.g. A push will store the value, and increment the stack pointer for an Ascending Stack.
 
 2. 	Full Stack - Stack pointer points to the location in which the last item was stored. 
 	
-    e.g. A pop will decrement the stack pointer and pull the value for an Ascending Stack.
+    - e.g. A pop will decrement the stack pointer and pull the value for an Ascending Stack.
 
 So now we can have four possible types of stacks. They are:
 
@@ -124,11 +124,6 @@ Push registers onto and pop registers off a full-descending stack.
 
 A subroutine call can be implemented by pushing the return address on the stack and then jumping to the branch target address. When the subroutine is done, remember to pop out the saved information so that it will be able to return to the next instruction immediately after the calling point.
 
-## Preparation
-
-> ### Lab Preparation Question
-> 1. Read over the lab and write a pseudocode for the post-lab exercise 4. It should just be a small modification from the one your did in the previous lab. Submission on Blackboard is not required.
-
 ## Procedures
 
 Similar to the previous lab.
@@ -141,121 +136,121 @@ Similar to the previous lab.
 
 1. In this example, let's take a look as a simple subroutine call. Replace the code within the file with the following:
 
-    <hr/><pre>
-    .syntax unified             @ unified syntax used
-    .cpu cortex-m4              @ cpu is cortex-m4
-    .thumb                      @ use thumb encoding
+        @ Lab Example 1
+        .syntax unified             @ unified syntax used
+        .cpu cortex-m4              @ cpu is cortex-m4
+        .thumb                      @ use thumb encoding
 
-    .data                       @ put data in the data section
-    sump:   .word sum           @ declare a pointer to sum
-    sump2:  .word sum2          @ declare a pointer to sum2
-    n:      .word 5             @ declare variable n with value of 5
-    sum:    .word 0             @ declare sum with value of 0
-    sum2:   .word 0             @ declare sum2 with value of 0
-    
-    .text                       @ put code in the code section
+        .data                       @ put data in the data section
+        sump:   .word sum           @ declare a pointer to sum
+        sump2:  .word sum2          @ declare a pointer to sum2
+        n:      .word 5             @ declare variable n with value of 5
+        sum:    .word 0             @ declare sum with value of 0
+        sum2:   .word 0             @ declare sum2 with value of 0
+        
+        .text                       @ put code in the code section
 
-    .global sumup               @ declare sumup as a global variable
-    .type sumup, %function      @ set sumup to function type
+        .global sumup               @ declare sumup as a global variable
+        .type sumup, %function      @ set sumup to function type
 
-    sumup:
-        add 	r0, r0, r1 	    @ R0 = ? after first execution only
-	    subs 	r1, r1, #1      @ R1 = ? after first execution only
-	    bgt 	sumup           @ Branch back if not done
-	    bx      lr              @ PC = ?, LR = ?
-                                @ After execution, PC = ?
+        sumup:
+            add 	r0, r0, r1 	    @ R0 = ? after first execution only
+            subs 	r1, r1, #1      @ R1 = ? after first execution only
+            bgt 	sumup           @ Branch back if not done
+            bx      lr              @ PC = ?, LR = ?
+                                    @ After execution, PC = ?
 
-    .global main                @ declare main as a global variable
-    .type main, %function       @ set main to function type
+        .global main                @ declare main as a global variable
+        .type main, %function       @ set main to function type
 
-    main:
-        ldr 	r1, =n 		    @ Load count into R1
-        ldr 	r1, [r1]        @ R1 = ?
-        mov 	r0, #0          @ Clear accumulator R0
-        bl  	sumup            @ PC = ?, LR = ?
-        ldr 	r3, =sump       @ Load address of SUM to R3
-        ldr     r3, [r3]        @ R3 = ?
-        str 	r0, [r3]	    @ Store SUM
-        ldr     r4, [r3]        @ R4 = ?
-        mov     r7, #8
-        ldr 	r5, =sump2      @ Load address of SUM2 to R5
-        ldr     r5, [r5]        @ R5 = ?
-        str 	r7, [r5]	    @ Store SUM2
-        ldr     r6, [r5]        @ R6 = ?
+        main:
+            ldr 	r1, =n 		    @ Load count into R1
+            ldr 	r1, [r1]        @ R1 = ?
+            mov 	r0, #0          @ Clear accumulator R0
+            bl  	sumup            @ PC = ?, LR = ?
+            ldr 	r3, =sump       @ Load address of SUM to R3
+            ldr     r3, [r3]        @ R3 = ?
+            str 	r0, [r3]	    @ Store SUM
+            ldr     r4, [r3]        @ R4 = ?
+            mov     r7, #8
+            ldr 	r5, =sump2      @ Load address of SUM2 to R5
+            ldr     r5, [r5]        @ R5 = ?
+            str 	r7, [r5]	    @ Store SUM2
+            ldr     r6, [r5]        @ R6 = ?
 
-    stop:                           @ define a new label called stop
-        nop                         @ do nothing
-        b       stop                @ jump back label stop to form a loop
-    </pre><hr/>
+        stop:                           @ define a new label called stop
+            nop                         @ do nothing
+            b       stop                @ jump back label stop to form a loop
 
-1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the variable is saved then take a screenshot showing the memory address along with the value. Submit your code and screenshot it as part of the post-lab.
+1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address at where the variable is saved then take a screenshot showing the memory address along with its data. Submit your code and screenshot it as part of the lab question.
 
 1. In this code, we'll take a look at subroutine and stack. Replace the code within the file with the following:
 
-    <hr/><pre>
-    .syntax unified             @ unified syntax used
-    .cpu cortex-m4              @ cpu is cortex-m4
-    .thumb                      @ use thumb encoding
+        @ Lab Example 2
+        .syntax unified             @ unified syntax used
+        .cpu cortex-m4              @ cpu is cortex-m4
+        .thumb                      @ use thumb encoding
 
-    .data                       @ put data in the data section
-    sump:   .word sum           @ declare a pointer to sum
-    sump2:  .word sum2          @ declare a pointer to sum2
-    n:      .word 5             @ declare variable n with value of 5
-    sum:    .word 0             @ declare sum with value of 0
-    sum2:   .word 0             @ declare sum2 with value of 0
-    
-    .text                       @ put code in the code section
+        .data                       @ put data in the data section
+        sump:   .word sum           @ declare a pointer to sum
+        sump2:  .word sum2          @ declare a pointer to sum2
+        n:      .word 5             @ declare variable n with value of 5
+        sum:    .word 0             @ declare sum with value of 0
+        sum2:   .word 0             @ declare sum2 with value of 0
+        
+        .text                       @ put code in the code section
 
-    .global function1           @ declare as a global variable
-    .type function1, %function  @ set to function type
+        .global function1           @ declare as a global variable
+        .type function1, %function  @ set to function type
 
-    function1:
-        push    {r5, lr}        @ Save values in the stack
-                                @ which address did R5 and LR got saved to?
-	    mov     r5, #8          @ Set initial value for the delay loop	
-    delay:
-	    subs	r5, r5, #1      @ R5 = ? after first execution
-	    bne     delay
-	    pop     {r5, pc}        @ pop out the saved value from the stack, 
-			                    @ check the value in the R5
-                                @ and see if it is the saved value
-                                @ R5 = ?, PC = ?
+        function1:
+            push    {r5, lr}        @ Save values in the stack
+                                    @ which address did R5 and LR got saved to?
+            mov     r5, #8          @ Set initial value for the delay loop	
+        delay:
+            subs	r5, r5, #1      @ R5 = ? after first execution
+            bne     delay
+            pop     {r5, pc}        @ pop out the saved value from the stack, 
+                                    @ check the value in the R5
+                                    @ and see if it is the saved value
+                                    @ R5 = ?, PC = ?
 
-    .global main                @ declare main as a global variable
-    .type main, %function       @ set main to function type
+        .global main                @ declare main as a global variable
+        .type main, %function       @ set main to function type
 
-    main:
-        mov 	r0, #1          @ SP = ? then memory monitor to SP address
-        mov 	r3, #0x75
-	    push	{r0, r3}        @ SP = ? which address did #0x75
-                                @ and #1 got saved to?
-        mov 	r0, #6          @ R0 = ?
-        mov 	r3, #7          @ R3 = ?
-	    pop     {r0, r3}        @ after pop, R0 = ?, R3 = ?, SP = ?
-                                @ did the value in memory address changed
+        main:
+            mov 	r0, #1          @ SP = ? then memory monitor to SP address
+            mov 	r3, #0x75
+            push	{r0, r3}        @ SP = ? which address did #0x75
+                                    @ and #1 got saved to?
+            mov 	r0, #6          @ R0 = ?
+            mov 	r3, #7          @ R3 = ?
+            pop     {r0, r3}        @ after pop, R0 = ?, R3 = ?, SP = ?
+                                    @ did the value in memory address changed
 
-    loop:
-        add     r0, r0, #1
-	    cmp	    r0, #5
-	    bne     loop
-	    mov 	r5, #9          @ prepare for function call
-    	bl 	    function1       @ PC = ?, LR = ?, R5 = ?
-	    mov 	r3, #12
+        loop:
+            add     r0, r0, #1
+            cmp	    r0, #5
+            bne     loop
+            mov 	r5, #9          @ prepare for function call
+            bl 	    function1       @ PC = ?, LR = ?, R5 = ?
+            mov 	r3, #12
 
-    stop:                           @ define a new label called stop
-        nop                         @ do nothing
-        b       stop                @ jump back label stop to form a loop
-    </pre><hr/>
+        stop:                           @ define a new label called stop
+            nop                         @ do nothing
+            b       stop                @ jump back label stop to form a loop
 
-1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address where the stack is saved then take a screenshot showing the memory address along with the value. Submit your code and screenshot it as part of the post-lab.
+1. Execute the code above, pay attention to what is happening in each register and record their value as per the code comment. Afterward, take a look at the memory address at where the variable is saved then take a screenshot showing the memory address along with its data. Submit your code and screenshot it as part of the lab question.
 
-## Post-Lab Questions
+## Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
-1. Execute the code from step 4 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
+1. Execute Lab Example Code 1 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
 
-1. Execute the code from step 6 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
+1. Execute Lab Example Code 2 then answer the questions in the comment. Copy and paste your code with your answers along with any screenshots into Blackboard.
+
+1. Which one of the four types of stack are you using in Example Code 2? Justify your answer with the stack pointer and memory space. Use screenshots if necessary.
 
 1. Rewrite the program from the last lab in assembly language that counts how many vowels and non-vowels are in "SEH500 is very cool! (your name here)" (REPLACE (your name here) with your name). But this time, you must use at least one subroutine in your code along with the stack.
 
@@ -264,7 +259,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
     - use R1 as the counter for vowel
     - use R2 as the counter for non-vowel
 
-1. For the code above, at the end of execution, take a screenshot of your register bank, and your memory space showing the string then copy your code into Blackboard.
+    For the code above, at the end of execution, take a screenshot of your register bank, and your memory space highlighting the string then copy your screenshot and code into Blackboard.
 
 ## Reference
 
