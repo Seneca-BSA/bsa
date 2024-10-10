@@ -121,7 +121,11 @@ The robot we have for this course is the JetAuto Pro assembled in the configurat
 
 ### JetAuto Workspace
 
-1. After connecting with the JetAuto robot, let's copy the JetAuto workspace `jetauto_ws` over to our local virtual machine so we can inspect and use it locally. Run the following command to use rsync to copy the directory over:
+1. After connecting with the JetAuto robot, let's copy the JetAuto workspace `jetauto_ws` over to our local virtual machine so we can inspect and use it locally. Run the following command **locally** to use rsync to copy the directory over:
+
+    <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+    Run this command on your local machine!
+    </div>
 
         rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
 
@@ -214,7 +218,7 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
 1. Before we start, let's ensure we have the required package installed to view and test our robot model:
 
-        sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui
+        sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui ros-melodic-joint-trajectory-controller
 
 1. To have a quick view at the URDF model, we can us RViz:
 

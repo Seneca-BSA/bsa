@@ -53,25 +53,31 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 
 If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10. Even if you are not using Windows 10, updating the firmware might be a good idea.
 
+1. If you are using Windows OS, follow step 1-4 to disable the storage service on the [Getting Started with the FRDM-K64F](https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1) BUT DO NOT FOLLOW ANY OTHER STEPS.
+
 1. Unplug the Freedom board then hold down the "RESET SW1" button as you plug the board into your computer to enter bootloader mode.
     
     ![Figure 1.1 Start in Bootloader Mode](lab1-bootloader.png)
             
     ***Figure 1.1** Start in Bootloader Mode*
     
-1. Once plugged in, if you see anything else but "MAINTENANCE" (such as seeing "BOOTLOADER"), then we need to update the firmware.
-1. Follow only steps 1-10 on the [Getting Started with the FRDM-K64F](https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1) BUT USE THE FILES BELOW.
-    - For K64F: here are the files:
-        - [0244_k20dx_bootloader_update_0x5000.bin](0244_k20dx_bootloader_update_0x5000.bin) for updating the OpenSDA bootloader <br/>
- (Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/))
-        - [k20dx_frdmk64f_if_crc_legacy_0x5000](k20dx_frdmk64f_if_crc_legacy_0x5000.bin) for loading the CMSIS-DAP application back onto the board <br/>
- (Reference: [OpenSDA Serial and Debug Adapter](https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F))
-    - For K66F: here are the files:
-        - [0244_k20dx_bootloader_update_0x8000.bin](0244_k20dx_bootloader_update_0x8000.bin) for updating the OpenSDA bootloader <br/>
- (Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/))
-        - [k20dx_frdmk66f_if_crc](k20dx_frdmk66f_if_crc.bin) for loading the CMSIS-DAP application back onto the board <br/>
- (Reference: [OpenSDA Serial and Debug Adapter](https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F))
-        - If the bootloader drive is not showing, try updating the bootloader using a non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. [Follow the instructions here](https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/).
+1. Once plugged in, if you see "BOOTLOADER", then we need to update the firmware. If you see "MAINTENANCE", then you most likely have the latest firmware and don't need to perform an update.
+
+1. Once in bootloader mode, copy the bootloader files below into the "BOOTLOADER" drive. The board should load the .bin file then restart into "MAINTENANCE". If the board does not restart, manually restart it by unplugging power. If "BOOTLOADER" directory is still showing, repeat the process.
+    - K64F Bootloader: [0244_k20dx_bootloader_update_0x5000.bin](0244_k20dx_bootloader_update_0x5000.bin) for updating the OpenSDA bootloader
+    - K66F Bootloader: [0244_k20dx_bootloader_update_0x8000.bin](0244_k20dx_bootloader_update_0x8000.bin) for updating the OpenSDA bootloader
+ 
+    (Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/))
+
+    If the bootloader drive is not showing, try updating the bootloader using a non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. [Follow the instructions here](https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/).
+
+1. Once you see the "MAINTENANCE" drive. Load the firmware application back onto the board using the same methods as above.
+    - K64F Firmware Application: [k20dx_frdmk64f_if_crc_legacy_0x5000](k20dx_frdmk64f_if_crc_legacy_0x5000.bin) for loading the CMSIS-DAP application back onto the board
+    - K66F Firmware Application: [k20dx_frdmk66f_if_crc](k20dx_frdmk66f_if_crc.bin) for loading the CMSIS-DAP application back onto the board
+
+    (Reference: [OpenSDA Serial and Debug Adapter](https://www.nxp.com/opensda))
+
+    *** Later in the Lab, if you get an "0 SWD device available" error, this is usually due to a conflict with the firmware. To resoluve this, load the [Segger Jlink OpenSDA Firmware](https://www.segger.com/downloads/jlink/#JLinkOpenSDABoardSpecificFirmwares) on your board then run debug using Segger JLink as the debugger. Once a program can be uploaded onto your board, you may switch back to the DAPLink firmware. 
 
 ### Install IDE
 
