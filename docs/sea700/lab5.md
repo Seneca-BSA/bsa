@@ -1,13 +1,11 @@
-# Lab 4 : Robot Model, Gazebo and JetAuto
+# Lab 5 : Robotic Arm and SLAM
 
 <font size="5">
 Seneca Polytechnic</br>
 SEA700 Robotics for Software Engineers
 </font>
 
-### Jetson Nano Board
 
-1. Go through all the Chapter 6 lesson in the [JetAuto & JetAuto Pro Resources](https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY) to understand more functionality of the Jetson Nano board.
 
 
 sudo apt install ros-melodic-moveit

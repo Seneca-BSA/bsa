@@ -75,9 +75,9 @@ to the topics `/usb_cam/camera_info` and `/usb_cam/image_raw`, which are subscri
 
 For this course, we'll be using the following software environment **Ubuntu 18.04 LTS (Bionic Beaver)**. If you are using Windows or macOS, ensure Ubuntu 18.04 LTS (Bionic Beaver) and ROS Melodic is installed as it is the version used by the JetAuto robot.
 
-1. Install Ubuntu 18.04 LTS (Bionic Beaver) on your computer or virtual machine
+1. Install Ubuntu 18.04 LTS (Bionic Beaver) on your computer or virtual machine.
 
-    - [ubuntu-18.04.6-desktop-amd64.iso](https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso)
+    - OS Image: [ubuntu-18.04.6-desktop-amd64.iso](https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso)
     - Ensure there are at least 2 processor core, 4GB of memory, and 20GB of disk drive
     - Ensure to use username: **jetauto** as this is the username used by the JetAuto robot to maximize compartibility of code
 
@@ -99,11 +99,7 @@ For this course, we'll be using the following software environment **Ubuntu 18.0
 
         sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
 
-1. Before you can use many ROS tools, you will need to initialize rosdep. rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. If you have not yet installed rosdep, do so as follows.
-
-        sudo apt install python-rosdep
-
-    With the following, you can initialize rosdep.
+1. Before you can use many ROS tools, you will need to initialize `rosdep`. `rosdep` enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. With the following, you can initialize `rosdep`.
 
         sudo rosdep init
         rosdep update
