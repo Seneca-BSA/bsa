@@ -116,21 +116,7 @@ The robot we have for this course is the JetAuto Pro assembled in the configurat
 
     Only recommended to be used on within a virtual machine. For security, stop the NoMachine server after you installation. 
 
-    1. NoMachine is another application that can be used to for remote connection with the JetNano board. Once you are connected with the robot, the credential is the same as above.
-
-### JetAuto Workspace
-
-1. After connecting with the JetAuto robot, let's copy the JetAuto workspace `jetauto_ws` over to our local virtual machine so we can inspect and use it locally. Open a new terminla and run the following command **locally** to use rsync to copy the directory over:
-
-    <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-    Run these commands on your local machine! Not in the SSH terminal.
-    </div>
-
-        rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
-
-1. Once `jetauto_ws` is on your virtual machine's home directory, let's add it as a source in `~/.bashrc`.
-
-        echo "source /home/jetauto/jetauto_ws/devel/setup.bash" >> ~/.bashrc 
+    1. NoMachine is another application that can be used to for remote connection with the JetNano board. Once you are connected with the robot, the credential is the same as above. 
 
 ### JetAuto Robot Movement
 
@@ -149,17 +135,17 @@ The robot we have for this course is the JetAuto Pro assembled in the configurat
 
 1. Now that the controller service has started, we can publish move command as Twist message to the motion controller. Before publish a command to the robot, remember you must issue a stop command for the robot to stop. Let's issue that first so you can recall it faster.
 
-        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
 
     Your robot should not do anything.
 
 1. Issue a move in the x-direction (forward) at 0.3 m/s, `x: 0.3`:
 
-        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
 
     Your robot should now start moving. Be ready to stop the robot by issuing (or up arrow twice):
 
-        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
 
     <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
     <ul>
@@ -170,6 +156,20 @@ The robot we have for this course is the JetAuto Pro assembled in the configurat
     The linear values refer to the translation of the robot. Positive X is forward and positive Y is left. There is no Z-direction for this robot. Do not exceed 0.7 m/s.
 
     The angular values refer to the rotation of the robot. Only Z-rotation is considered with positive value as counter-clockwise. Do not exceed 3.5 rad/s.
+
+### Copying JetAuto Workspace to Local Machine for Simulation
+
+1. After figuring out how to control the JetAuto robot, let's copy the JetAuto workspace `jetauto_ws` over from the robot to our local machine so we can inspect and use it locally. Open a new terminla (you may close your SSH terminal) and run the following command **locally** to use rsync to copy the directory over:
+
+    <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+    Run these commands on your local machine! Not in the SSH terminal.
+    </div>
+
+        rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
+
+1. Once `jetauto_ws` is on your virtual machine's home directory, let's add it as a source in `~/.bashrc`.
+
+        echo "source /home/jetauto/jetauto_ws/devel/setup.bash" >> ~/.bashrc
 
 1. Let's inspect the source code of the motion controller. Open the file at the following path:
 
@@ -388,11 +388,11 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
     Let's try publishing to the `cmd_vel` topic:
 
-        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.3, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
 
     Stop the robot:
 
-        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0. z: 0.0}}'
+        rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
 
 1. We can also use the keyboard to control the robot:
 
