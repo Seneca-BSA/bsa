@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 1 : Setup";
-        var mkdocs_page_input_path = "seh500/lab1.md";
+        var mkdocs_page_input_path = "seh500\\lab1.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -166,6 +166,9 @@ SEH500 Microprocessors and Computer Architecture
 <p>If you are using the Freedom-K64F, you might need to update its firmware before using it with Windows 10. Even if you are not using Windows 10, updating the firmware might be a good idea.</p>
 <ol>
 <li>
+<p>If you are using Windows OS, follow step 1-4 to disable the storage service on the <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">Getting Started with the FRDM-K64F</a> BUT DO NOT FOLLOW ANY OTHER STEPS.</p>
+</li>
+<li>
 <p>Unplug the Freedom board then hold down the "RESET SW1" button as you plug the board into your computer to enter bootloader mode.
     
     <img alt="Figure 1.1 Start in Bootloader Mode" src="../lab1-bootloader.png" />
@@ -173,25 +176,25 @@ SEH500 Microprocessors and Computer Architecture
     <em><strong>Figure 1.1</strong> Start in Bootloader Mode</em></p>
 </li>
 <li>
-<p>Once plugged in, if you see anything else but "MAINTENANCE" (such as seeing "BOOTLOADER"), then we need to update the firmware.</p>
+<p>Once plugged in, if you see "BOOTLOADER", then we need to update the firmware. If you see "MAINTENANCE", then you most likely have the latest firmware and don't need to perform an update.</p>
 </li>
-<li>Follow only steps 1-10 on the <a href="https://www.nxp.com/document/guide/getting-started-with-the-frdm-k64f:NGS-FRDM-K64F?section=plug-it-in_plug-it-in-1">Getting Started with the FRDM-K64F</a> BUT USE THE FILES BELOW.<ul>
-<li>For K64F: here are the files:<ul>
-<li><a href="../0244_k20dx_bootloader_update_0x5000.bin">0244_k20dx_bootloader_update_0x5000.bin</a> for updating the OpenSDA bootloader <br/>
- (Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
-<li><a href="../k20dx_frdmk64f_if_crc_legacy_0x5000.bin">k20dx_frdmk64f_if_crc_legacy_0x5000</a> for loading the CMSIS-DAP application back onto the board <br/>
- (Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
+<li>
+<p>Once in bootloader mode, copy the bootloader files below into the "BOOTLOADER" drive. The board should load the .bin file then restart into "MAINTENANCE". If the board does not restart, manually restart it by unplugging power. If "BOOTLOADER" directory is still showing, repeat the process.</p>
+<ul>
+<li>K64F Bootloader: <a href="../0244_k20dx_bootloader_update_0x5000.bin">0244_k20dx_bootloader_update_0x5000.bin</a> for updating the OpenSDA bootloader</li>
+<li>K66F Bootloader: <a href="../0244_k20dx_bootloader_update_0x8000.bin">0244_k20dx_bootloader_update_0x8000.bin</a> for updating the OpenSDA bootloader</li>
 </ul>
+<p>(Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</p>
+<p>If the bootloader drive is not showing, try updating the bootloader using a non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/">Follow the instructions here</a>.</p>
 </li>
-<li>For K66F: here are the files:<ul>
-<li><a href="../0244_k20dx_bootloader_update_0x8000.bin">0244_k20dx_bootloader_update_0x8000.bin</a> for updating the OpenSDA bootloader <br/>
- (Reference: <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-update/">DAPLink bootloader update</a>)</li>
-<li><a href="../k20dx_frdmk66f_if_crc.bin">k20dx_frdmk66f_if_crc</a> for loading the CMSIS-DAP application back onto the board <br/>
- (Reference: <a href="https://www.nxp.com/design/software/sensor-toolbox/opensda-serial-and-debug-adapter:OPENSDA?tid=vanOpenSDA#FRDM-K66F">OpenSDA Serial and Debug Adapter</a>)</li>
-<li>If the bootloader drive is not showing, try updating the bootloader using a non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. <a href="https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/">Follow the instructions here</a>.</li>
+<li>
+<p>Once you see the "MAINTENANCE" drive. Load the firmware application back onto the board using the same methods as above.</p>
+<ul>
+<li>K64F Firmware Application: <a href="../k20dx_frdmk64f_if_crc_legacy_0x5000.bin">k20dx_frdmk64f_if_crc_legacy_0x5000</a> for loading the CMSIS-DAP application back onto the board</li>
+<li>K66F Firmware Application: <a href="../k20dx_frdmk66f_if_crc.bin">k20dx_frdmk66f_if_crc</a> for loading the CMSIS-DAP application back onto the board</li>
 </ul>
-</li>
-</ul>
+<p>(Reference: <a href="https://www.nxp.com/opensda">OpenSDA Serial and Debug Adapter</a>)</p>
+<p>*** Later in the Lab, if you get an "0 SWD device available" error, this is usually due to a conflict with the firmware. To resoluve this, load the <a href="https://www.segger.com/downloads/jlink/#JLinkOpenSDABoardSpecificFirmwares">Segger Jlink OpenSDA Firmware</a> on your board then run debug using Segger JLink as the debugger. Once a program can be uploaded onto your board, you may switch back to the DAPLink firmware. </p>
 </li>
 </ol>
 <h3 id="install-ide">Install IDE</h3>

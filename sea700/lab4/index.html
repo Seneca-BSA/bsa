@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 4 : Robot Model, Gazebo and JetAuto";
-        var mkdocs_page_input_path = "sea700/lab4.md";
+        var mkdocs_page_input_path = "sea700\\lab4.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -109,33 +109,32 @@ SEA700 Robotics for Software Engineers
 <li><a href="../JetAuto-User-Manual.pdf">JetAuto User Manual</a></li>
 <li><a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a></li>
 </ul>
-<h3 id="install-gazebo">Install Gazebo</h3>
+<h3 id="install-gazebo-and-other-ros-packages">Install Gazebo and other ROS packages</h3>
 <p>After being familiar with ROS, we'll now install the Gazebo simulation environment.</p>
 <ol>
 <li>
 <p>Following the instruction <a href="https://classic.gazebosim.org/tutorials?tut=install_ubuntu&amp;cat=install">here</a> to install Gazebo version 9.X to be used with ROS Melodic. Each Gazebo version works with a specific version of ROS.</p>
-<pre><code>sudo apt install gazebo9
-sudo apt install libgazebo9-dev
+<pre><code>sudo apt install gazebo9 libgazebo9-dev
 </code></pre>
 </li>
 <li>
 <p>Once installed, start Gazebo with the following command to ensure it's functional:</p>
 <pre><code>gazebo
 </code></pre>
-<p><img alt="Figure 3.1 Gazebo Running" src="../lab4-gazebo.png" /></p>
-<p><em><strong>Figure 3.1</strong> Gazebo Running</em></p>
+<p><img alt="Figure 4.1 Gazebo Running" src="../lab4-gazebo.png" /></p>
+<p><em><strong>Figure 4.1</strong> Gazebo Running</em></p>
 </li>
 <li>
 <p>Lastly, ensure the following ros gazebo packages are installed:</p>
-<pre><code>sudo apt install ros-melodic-gazebo-dev ros-melodic-gazebo-msgs ros-melodic-gazebo-plugins ros-melodic-gazebo-ros ros-melodic-gazebo-ros-control ros-melodic-gazebo-ros-pkgs
+<pre><code>sudo apt install ros-melodic-gazebo-dev ros-melodic-gazebo-msgs ros-melodic-gazebo-plugins ros-melodic-gazebo-ros ros-melodic-gazebo-ros-control ros-melodic-gazebo-ros-pkgs ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui ros-melodic-joint-trajectory-controller ros-melodic-moveit ros-melodic-trac-ik-kinematics-plugin ros-melodic-slam-gmapping
 </code></pre>
 </li>
 </ol>
 <h2 id="procedures">Procedures</h2>
 <h3 id="jetauto-robot-inspection">JetAuto Robot Inspection</h3>
 <p>The robot we have for this course is the JetAuto Pro assembled in the configuration:</p>
-<p><img alt="Figure 3.2 JetAuto Pro" src="../lab4-jetauto-pro.png" /></p>
-<p><em><strong>Figure 3.2</strong> JetAuto Pro</em></p>
+<p><img alt="Figure 4.2 JetAuto Pro" src="../lab4-jetauto-pro.png" /></p>
+<p><em><strong>Figure 4.2</strong> JetAuto Pro</em></p>
 <ol>
 <li>
 <p>Before using the JetAuto robot, read the following:</p>
@@ -188,7 +187,10 @@ sudo screen /dev/ttyACM0 115200
 <h3 id="jetauto-workspace">JetAuto Workspace</h3>
 <ol>
 <li>
-<p>After connecting with the JetAuto robot, let's copy the JetAuto workspace <code>jetauto_ws</code> over to our local virtual machine so we can inspect and use it locally. Run the following command to use rsync to copy the directory over:</p>
+<p>After connecting with the JetAuto robot, let's copy the JetAuto workspace <code>jetauto_ws</code> over to our local virtual machine so we can inspect and use it locally. Open a new terminla and run the following command <strong>locally</strong> to use rsync to copy the directory over:</p>
+<p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+Run these commands on your local machine! Not in the SSH terminal.
+</div></p>
 <pre><code>rsync -av jetauto@192.168.149.1:~/jetauto_ws/ ~/jetauto_ws
 </code></pre>
 </li>
@@ -278,8 +280,8 @@ self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
 <p>Now that we can control the basic movement of the JetAuto robot, let's try to simulate it in Gazebo. Robot model in URDF consist of links that are joined together to form a robot assembly. Each link have its given geometry, mass, and collision parameter. The geometry can be provide as simple shape or complex shape using solid model.</p>
 <ol>
 <li>
-<p>Before we start, let's ensure we have the required package installed to view and test our robot model:</p>
-<pre><code>sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui
+<p>Before we start, let's ensure we have the required package installed (if you haven't installed it from the beginning of this lab) to view and test our robot model:</p>
+<pre><code>sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui ros-melodic-joint-trajectory-controller
 </code></pre>
 </li>
 <li>
@@ -287,8 +289,8 @@ self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
 <pre><code>roslaunch jetauto_description display.launch model:=urdf/jetauto.urdf
 </code></pre>
 <p>You can use the <code>joint_state_publisher_gui</code> to adjust the arm angle.</p>
-<p><img alt="Figure 3.3 JetAuto in RViz" src="../lab4-rviz-jetauto.png" /></p>
-<p><em><strong>Figure 3.3</strong> JetAuto in Gazebo</em></p>
+<p><img alt="Figure 4.3 JetAuto in RViz" src="../lab4-rviz-jetauto.png" /></p>
+<p><em><strong>Figure 4.3</strong> JetAuto in Gazebo</em></p>
 </li>
 <li>
 <p>Let's open up the JetAuto URDF model file to take a look at it more closely.</p>
@@ -349,8 +351,8 @@ self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
 &lt;/link&gt;
 </code></pre>
 <p>Next is the link/part <code>base_link</code> along with it's elements. The mass and inertial information of the part is defined as an xacro element. The <code>geometry</code> sub-element in the <code>visual</code> element is provide by a <code>stl</code> mesh file from the <code>jetauto_description</code> package. The <code>collision</code> element is also defined as a box relative to the specified xyz cordinate.</p>
-<p><img alt="Figure 3.4 JetAuto base_link STL" src="../lab4-base_link-stl.png" /></p>
-<p><em><strong>Figure 3.4</strong> JetAuto base_link STL</em></p>
+<p><img alt="Figure 4.4 JetAuto base_link STL" src="../lab4-base_link-stl.png" /></p>
+<p><em><strong>Figure 4.4</strong> JetAuto base_link STL</em></p>
 <pre><code>&lt;link
     name="back_shell_link"&gt;
     &lt;inertial&gt;
@@ -433,8 +435,8 @@ MASTER="/"
 <pre><code>roslaunch jetauto_gazebo worlds.launch
 </code></pre>
 <p>Gazebo should run and you should see the JetAuto robot in the simulation enviornment.</p>
-<p><img alt="Figure 3.5 JetAuto in Gazebo" src="../lab4-gazebo-jetauto.png" /></p>
-<p><em><strong>Figure 3.5</strong> JetAuto in Gazebo</em></p>
+<p><img alt="Figure 4.5 JetAuto in Gazebo" src="../lab4-gazebo-jetauto.png" /></p>
+<p><em><strong>Figure 4.5</strong> JetAuto in Gazebo</em></p>
 </li>
 <li>
 <p>With gazebo and ros running, we can now control the virtual robot the same way as the physical robot.</p>
@@ -462,6 +464,7 @@ MASTER="/"
 <li>(0, 1, -90°) to (0, 0, 0°) - rotate the robot while traveling</li>
 </ul>
 <p>Repeat this for 2 times after a start command (such as a keyboard input) is given.</p>
+<p>For example: when you run <code>rosrun lab4_jetauto_control jetauto_control</code>, it'll ask for an input before performing the above action.</p>
 <p><strong>Hint:</strong> You can follow the same approach as Lab 3 by creating a new package called <code>lab4_jetauto_control</code> in your <code>ros_ws</code> </p>
 <pre><code>catkin_create_pkg lab4_jetauto_control rospy geometry_msgs
 </code></pre>

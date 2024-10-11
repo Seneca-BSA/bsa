@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab5 - BSA Lab Manuals</title>
+    <title>Lab 5 : Robotic Arm and SLAM - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab5";
-        var mkdocs_page_input_path = "sea700/lab5.md";
+        var mkdocs_page_name = "Lab 5 : Robotic Arm and SLAM";
+        var mkdocs_page_input_path = "sea700\\lab5.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab5</li>
+      <li class="breadcrumb-item active">Lab 5 : Robotic Arm and SLAM</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,43 +74,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h3 id="jetson-nano-board">Jetson Nano Board</h3>
-<ol>
-<li>Go through all the Chapter 6 lesson in the <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a> to understand more functionality of the Jetson Nano board.</li>
-</ol>
-<!--
-https://gazebosim.org/docs/latest/ros_installation/
-
-https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
-
-https://gazebosim.org/docs/fortress/install/
-
-Screen into Jetson Nano
-https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup-headless
-
-sudo apt-get install -y screen
-sudo screen /dev/ttyACM0 115200
-
-login: jetauto
-password: hiwonder
-
-ros-melodic-
-
-sudo apt install ros-melodic-joint-state-publisher-gui
-sudo apt install ros-melodic-ros-control
-sudo apt install ros-melodic-controller-manager
-
-roscore
-roslaunch jetson_gazebo world.launch
-roslaunch jetson_navigation jetson_controller.launch
-
-sudo apt install python-pip
-sudo pip install smbus2
-
-pip install rospkg
-
-
--->
+                <h1 id="lab-5-robotic-arm-and-slam">Lab 5 : Robotic Arm and SLAM</h1>
+<p><font size="5">
+Seneca Polytechnic</br>
+SEA700 Robotics for Software Engineers
+</font></p>
+<h2 id="forward-kinematics">Forward Kinematics</h2>
+<p>As discussed in lecture, the forward kinematics problem involves fnding the confguration of a specifed link in a
+robotic manipulator relative to some other reference frame, given the angles of each of the joints in the manipulator.</p>
+<h3 id="denavithartenberg-dh-parameters">Denavit–Hartenberg (DH) Parameters</h3>
+<p>In mechanical engineering, the Denavit–Hartenberg parameters (also called DH parameters) are the four parameters associated with a particular convention for attaching reference frames to the links of a spatial kinematic chain, or robot manipulator. In this convention, coordinate frames are attached to the joints between two links such that one transformation is associated with the joint <script type="math/tex">[Z]</script>, and the second is associated with the link <script type="math/tex">[X]</script>. The coordinate transformations along a serial robot consisting of n links form the kinematics equations of the robot:</p>
+<p>
+<script type="math/tex; mode=display">
+[T] = [Z_1][X_1][Z_2][X_2]...[Z_{n-1}][X_{n-1}][Z_n][X_n]
+</script>
+</p>
+<p>where <script type="math/tex">[T]</script> is the transformation that characterizes the location and orientation of the end-link.</p>
+<p><img alt="Figure 5.1 DH Kinematics Links" src="../lab5-dh-kinematics-links.png" /></p>
+<p><em><strong>Figure 5.1</strong> DH Kinematics Links</em></p>
+<p>As shown in the figure above, each joints (i-1, i, and i+1) has a unique line <script type="math/tex">S</script> (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines <script type="math/tex">S_i</script> and <script type="math/tex">S+{i+1}</script>, there is a common normal line <script type="math/tex">A_{i, i+1}</script>. By convention, z-coordinate axes are assigned to the joint axes <script type="math/tex">S_i</script> and x-coordinate axes are assigned to the common normals <script type="math/tex">A_{i, i+1}</script>.</p>
+<blockquote>
+<h4 id="four-parameters">Four Parameters</h4>
+<p>The following four transformation parameters (labelled in red text in the figure above) are known as DH parameters:</p>
+<ul>
+<li>d: offset along <script type="math/tex">S_i</script> (z-direciton) to the next common normal <script type="math/tex">A_{i, i+1}</script> (x-direction)</li>
+<li>θ: angle about <script type="math/tex">S_i</script> from old common normal <script type="math/tex">A_{i-1, i}</script> to the new common normal <script type="math/tex">A_{i, i+1}</script>
+</li>
+<li>a (or r): length of the common normal from <script type="math/tex">S_i</script> to <script type="math/tex">S_{i+1}</script>
+</li>
+<li>α: angle about common normal <script type="math/tex">A_{i-1, i}</script>, from old axis <script type="math/tex">S_i</script> to new axis <script type="math/tex">S_{i+1}</script>
+</li>
+</ul>
+</blockquote>
+<p>This convention allows the definition of the movement of links around a common joint axis <script type="math/tex">S_i</script> by the screw displacement:</p>
+<p>
+<script type="math/tex; mode=display">
+[Z_i] =
+\begin{bmatrix}
+   a & b \\
+   c & d
+\end{bmatrix}
+</script>
+</p>
+<p><img alt="Figure 5.3 Gazebo Running" src="../lab5-jetauto-kinematics.png" /></p>
+<p><em><strong>Figure 5.3</strong> Gazebo Running</em></p>
+<p>sudo apt install ros-melodic-moveit
+sudo apt install ros-melodic-trac-ik-kinematics-plugin</p>
+<p>sudo apt install ros-melodic-slam-gmapping</p>
+<p>roslaunch jetauto_moveit_config demo_gazebo.launch false_execution:=false</p>
+<p>roslaunch jetauto_gazebo room_worlds.launch
+roslaunch jetauto_slam slam.launch sim:=true
+roslunach jetsuto_slam rviz_slam.launch sim:=true</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters">Denavit–Hartenberg parameters</a></li>
+<li><a href="https://wiki.ros.org/ROS/Tutorials">ROS Tutorials</a></li>
+<li>EECS 106A Labs</li>
+</ul>
               
             </div>
           </div><footer>

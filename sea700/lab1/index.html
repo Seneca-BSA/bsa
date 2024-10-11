@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 1 : Intro to ROS and TurtleSim";
-        var mkdocs_page_input_path = "sea700/lab1.md";
+        var mkdocs_page_input_path = "sea700\\lab1.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -137,9 +137,9 @@ to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</co
 <p>For this course, we'll be using the following software environment <strong>Ubuntu 18.04 LTS (Bionic Beaver)</strong>. If you are using Windows or macOS, ensure Ubuntu 18.04 LTS (Bionic Beaver) and ROS Melodic is installed as it is the version used by the JetAuto robot.</p>
 <ol>
 <li>
-<p>Install Ubuntu 18.04 LTS (Bionic Beaver) on your computer or virtual machine</p>
+<p>Install Ubuntu 18.04 LTS (Bionic Beaver) on your computer or virtual machine.</p>
 <ul>
-<li><a href="https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso">ubuntu-18.04.6-desktop-amd64.iso</a></li>
+<li>OS Image: <a href="https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso">ubuntu-18.04.6-desktop-amd64.iso</a></li>
 <li>Ensure there are at least 2 processor core, 4GB of memory, and 20GB of disk drive</li>
 <li>Ensure to use username: <strong>jetauto</strong> as this is the username used by the JetAuto robot to maximize compartibility of code</li>
 </ul>
@@ -165,15 +165,12 @@ to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</co
 </code></pre>
 </li>
 <li>
-<p>Before you can use many ROS tools, you will need to initialize rosdep. rosdep enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. If you have not yet installed rosdep, do so as follows.</p>
-<pre><code>sudo apt install python-rosdep
-</code></pre>
-<p>With the following, you can initialize rosdep.</p>
+<p>Before you can use many ROS tools, you will need to initialize <code>rosdep</code>. <code>rosdep</code> enables you to easily install system dependencies for source you want to compile and is required to run some core components in ROS. With the following, you can initialize <code>rosdep</code>.</p>
 <pre><code>sudo rosdep init
 rosdep update
 </code></pre>
 <p>Since Melodic is not longer a support distro, we'll need to explicitly update it.</p>
-<pre><code>rosdep update --rosdisto=melodic
+<pre><code>rosdep update --rosdistro=melodic
 </code></pre>
 </li>
 </ol>
