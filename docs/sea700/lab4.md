@@ -60,9 +60,9 @@ After being familiar with ROS, we'll now install the Gazebo simulation environme
 
         gazebo
 
-    ![Figure 3.1 Gazebo Running](lab4-gazebo.png)
+    ![Figure 4.1 Gazebo Running](lab4-gazebo.png)
 
-    ***Figure 3.1** Gazebo Running*
+    ***Figure 4.1** Gazebo Running*
 
 1. Lastly, ensure the following ros gazebo packages are installed:
 
@@ -74,9 +74,9 @@ After being familiar with ROS, we'll now install the Gazebo simulation environme
 
 The robot we have for this course is the JetAuto Pro assembled in the configuration:
 
-![Figure 3.2 JetAuto Pro](lab4-jetauto-pro.png)
+![Figure 4.2 JetAuto Pro](lab4-jetauto-pro.png)
 
-***Figure 3.2** JetAuto Pro*
+***Figure 4.2** JetAuto Pro*
 
 1. Before using the JetAuto robot, read the following:
 
@@ -225,9 +225,9 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
     You can use the `joint_state_publisher_gui` to adjust the arm angle.
 
-    ![Figure 3.3 JetAuto in RViz](lab4-rviz-jetauto.png)
+    ![Figure 4.3 JetAuto in RViz](lab4-rviz-jetauto.png)
 
-    ***Figure 3.3** JetAuto in Gazebo*
+    ***Figure 4.3** JetAuto in Gazebo*
 
 1. Let's open up the JetAuto URDF model file to take a look at it more closely.
 
@@ -293,9 +293,9 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
     Next is the link/part `base_link` along with it's elements. The mass and inertial information of the part is defined as an xacro element. The `geometry` sub-element in the `visual` element is provide by a `stl` mesh file from the `jetauto_description` package. The `collision` element is also defined as a box relative to the specified xyz cordinate.
 
-    ![Figure 3.4 JetAuto base_link STL](lab4-base_link-stl.png)
+    ![Figure 4.4 JetAuto base_link STL](lab4-base_link-stl.png)
 
-    ***Figure 3.4** JetAuto base_link STL*
+    ***Figure 4.4** JetAuto base_link STL*
 
         <link
             name="back_shell_link">
@@ -380,9 +380,9 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
     Gazebo should run and you should see the JetAuto robot in the simulation enviornment.
 
-    ![Figure 3.5 JetAuto in Gazebo](lab4-gazebo-jetauto.png)
+    ![Figure 4.5 JetAuto in Gazebo](lab4-gazebo-jetauto.png)
 
-    ***Figure 3.5** JetAuto in Gazebo*
+    ***Figure 4.5** JetAuto in Gazebo*
 
 1. With gazebo and ros running, we can now control the virtual robot the same way as the physical robot.
 

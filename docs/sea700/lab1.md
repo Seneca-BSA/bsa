@@ -106,7 +106,7 @@ For this course, we'll be using the following software environment **Ubuntu 18.0
 
     Since Melodic is not longer a support distro, we'll need to explicitly update it.
 
-        rosdep update --rosdisto=melodic
+        rosdep update --rosdistro=melodic
 
 ### Turtlesim Test
 

@@ -468,7 +468,7 @@ A trivial workspace might look like:
 
     #### Write the publisher node
 
-1. First lets create a `scripts` folder to store our Python scripts in and navigate into it:
+1.  Navigate to your package `ros_ws/src/py_pubsub` and let's first create a `scripts` folder to store our Python scripts in and navigate into it:
 
         mkdir scripts
         cd scripts
