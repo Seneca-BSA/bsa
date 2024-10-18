@@ -95,7 +95,7 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <p>As shown in the figure above, each joints (i-1, i, and i+1) has a unique line <script type="math/tex">S</script> (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines <script type="math/tex">S_i</script> and <script type="math/tex">S+{i+1}</script>, there is a common normal line <script type="math/tex">A_{i, i+1}</script>. By convention, z-coordinate axes are assigned to the joint axes <script type="math/tex">S_i</script> and x-coordinate axes are assigned to the common normals <script type="math/tex">A_{i, i+1}</script>.</p>
 <blockquote>
 <h4 id="four-parameters">Four Parameters</h4>
-<p>The following four transformation parameters (labelled in red text in the figure above) are known as DH parameters:</p>
+<p>The following four transformation parameters (labelled in red text in the figure above) are known as the DH parameters:</p>
 <ul>
 <li>d: offset along <script type="math/tex">S_i</script> (z-direciton) to the next common normal <script type="math/tex">A_{i, i+1}</script> (x-direction)</li>
 <li>θ: angle about <script type="math/tex">S_i</script> from old common normal <script type="math/tex">A_{i-1, i}</script> to the new common normal <script type="math/tex">A_{i, i+1}</script>
@@ -111,20 +111,133 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <script type="math/tex; mode=display">
 [Z_i] =
 \begin{bmatrix}
-   a & b \\
-   c & d
+   cos \theta_i & -sin \theta_i & 0 & 0 \\
+   sin \theta_i & cos \theta_i & 0 & 0 \\
+   0 & 0 & 1 & d_i \\
+   0 & 0 & 0 & 1
 \end{bmatrix}
 </script>
 </p>
-<p><img alt="Figure 5.3 Gazebo Running" src="../lab5-jetauto-kinematics.png" /></p>
-<p><em><strong>Figure 5.3</strong> Gazebo Running</em></p>
-<p>sudo apt install ros-melodic-moveit
-sudo apt install ros-melodic-trac-ik-kinematics-plugin</p>
-<p>sudo apt install ros-melodic-slam-gmapping</p>
+<p>Each of these parameters could be a constant depending on the structure of the robot. Under this convention the dimensions of each link in the serial chain are defined by the screw displacement around the common normal <script type="math/tex">A_{i, i+1}</script> from the joint <script type="math/tex">S_i</script> to <script type="math/tex">S_{i+1}</script>, which is given by:</p>
+<p>
+<script type="math/tex; mode=display">
+[X_i] =
+\begin{bmatrix}
+   1 & 0 & 0 & a_{i, i+1} \\
+   0 & cos \alpha_{i, i+1} & -sin \alpha_{i, i+1} & 0 \\
+   0 & sin \alpha_{i, i+1} & cos \alpha_{i, i+1} & 0 \\
+   0 & 0 & 0 & 1
+\end{bmatrix}
+</script>
+</p>
+<p>where <script type="math/tex">\alpha_{i, i+1}</script> and <script type="math/tex">a_{i, i+1}</script> define the physical dimensions of the link in terms of the angle measured around and distance measured along the x-axis.</p>
+<h3 id="jetauto-arm-forward-kinematics">JetAuto Arm Forward Kinematics</h3>
+<p><img alt="Figure 5.2 JetAuto Arm Links" src="../lab5-jetauto-kinematics.png" /></p>
+<p><em><strong>Figure 5.2</strong> JetAuto Arm Links</em></p>
+<p>The figure above shows the kinematic link diagram of the JetAuto arm. Joint-1 is a rotary joint about the global z-axis and Joints 2-4 are rotary joint about their respective joint axis. Let's create the DH parameters table for the first two joints:</p>
+<ul>
+<li>Joint-1 is a rotation joint about the joint axis (global z-axis). Therefore, only <script type="math/tex">\theta_1</script> is non-zero. We can assume that Joint-1 is at the same position as Joint-0.</li>
+<li>Joint-2 is a rotation joint with a distance, <script type="math/tex">d</script>, from Joint-1 and 90° between the Joint-2 and Joint-1 axis. Therefore, <script type="math/tex">\alpha_2 = 90°</script>. It will also have a rotation about the Joint-2 axis, <script type="math/tex">\theta_2</script>.</li>
+</ul>
+<p>Putting this all together yield the following DH parameters table:</p>
+<p><em><strong>Table 5.1</strong> JetAuto DH Parameters Table</em></p>
+<table>
+<thead>
+<tr>
+<th>DH#</th>
+<th>d</th>
+<th>θ</th>
+<th>a</th>
+<th>α</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>
+<script type="math/tex">\theta_1</script>
+</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<script type="math/tex">d</script>
+</td>
+<td>
+<script type="math/tex">\theta_2</script>
+</td>
+<td>0</td>
+<td>
+<script type="math/tex">\pi / 2</script>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="ros-moveit">ROS MoveIt</h1>
+<p>ROS MoveIt is a powerful software framework designed for robot motion planning and manipulation within the Robot Operating System (ROS) ecosystem. It provides a robust set of tools and libraries that enable developers to implement complex motion planning algorithms, manage robot kinematics, and execute real-time motion tasks. With features such as collision detection, trajectory optimization, and support for various robotic platforms, MoveIt simplifies the process of programming robots to perform intricate movements. Its flexibility and extensibility make it a popular choice for both research and industrial applications, allowing users to create sophisticated robotic solutions tailored to specific needs.</p>
+<p><img alt="Figure 5.3 ROS MoveIt" src="../lab5-moveit.png" /></p>
+<p><em><strong>Figure 5.3</strong> ROS MoveIt</em></p>
+<p>More details on MoveIt can be found <a href="https://docs.ros.org/en/melodic/api/moveit_tutorials/html/index.html">here</a>.</p>
+<h3 id="jetauto-robot-arm-control">JetAuto Robot Arm Control</h3>
+<ol>
+<li>
+<p>Before controlling JetAuto's robot arm, let make sure we have all the package necessary installed. We'll also install the GMapping package for the second part of this Lab. Open a terminal and run the following command:</p>
+<p>sudo apt install ros-melodic-moveit ros-melodic-trac-ik-kinematics-plugin ros-melodic-slam-gmapping ros-melodic-map-server ros-melodic-amcl  ros-melodic-move-base</p>
+</li>
+<li>
+<p>Following Chapter 15.2 Lesson 2, 3, 5, 6, 7, 8 in <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a>. Use the following command to start MoveIt with Gazebo instead of the instruction provided.</p>
 <p>roslaunch jetauto_moveit_config demo_gazebo.launch false_execution:=false</p>
-<p>roslaunch jetauto_gazebo room_worlds.launch
-roslaunch jetauto_slam slam.launch sim:=true
-roslunach jetsuto_slam rviz_slam.launch sim:=true</p>
+</li>
+</ol>
+<h3 id="jetauto-slam">JetAuto SLAM</h3>
+<ol>
+<li>Following Chapter 7.2 Lesson 6, 7 in <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a>. Use the following command to start MoveIt with Gazebo instead of the instruction provided. You might need to manually open the config file from</li>
+</ol>
+<h2 id="lab-question">Lab Question</h2>
+<ol>
+<li>
+<p>Find the Cartesian coordinate of the end effector if:</p>
+</li>
+<li>
+<p>
+<script type="math/tex">\theta_1 = 45</script>
+</p>
+</li>
+<li>
+<script type="math/tex">\theta_2 = -30</script>
+</li>
+<li>
+<script type="math/tex">\theta_3 = 85</script>
+</li>
+<li>
+<p>
+<script type="math/tex">\theta_4 = 25</script>
+</p>
+</li>
+<li>
+<p>Write a program that will move the robot arm to the above position.</p>
+</li>
+<li>
+<p>Use SLAM to create and save a map of the class room. Afterward, demostrate navigating from one corner of the class to another.</p>
+</li>
+</ol>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters">Denavit–Hartenberg parameters</a></li>
