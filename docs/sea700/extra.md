@@ -16,5 +16,8 @@ rostopic echo /odom_raw
 
 sudo apt-get install ros-melodic-slam-gmapping
 
+roslaunch jetauto_gazebo room_worlds.launch
+roslaunch jetauto_slam slam.launch sim:=true
+roslunach jetsuto_slam rviz_slam.launch sim:=true
 
 -->
