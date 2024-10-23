@@ -21,7 +21,7 @@ For a package to be considered a catkin package it must meet a few requirements:
     - That `package.xml` file provides meta information about the package.
 - The package must contain a `CMakeLists.txt` which uses catkin.
     - If it is a catkin metapackage it must have the relevant boilerplate `CMakeLists.txt` file.
-- Each package must have its own folder
+- Each package must have its own directory
     - This means no nested packages nor multiple packages sharing the same directory.
 
 The simplest possible package may have a file structure that looks like:
@@ -30,13 +30,13 @@ The simplest possible package may have a file structure that looks like:
         CMakeLists.txt
         package.xml
 
-A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in one workspace (CMake, Python, etc.). You cannot have nested packages.
+A single workspace can contain as many packages as you want, each in their own directory. You can also have packages of different build types in one workspace (CMake, Python, etc.). You cannot have nested packages.
 
-Best practice is to have a `src` folder within your workspace, and to create your packages in there. This keeps the top level of the workspace “clean”.
+Best practice is to have a `src` directory within your workspace, and to create your packages in there. This keeps the top level of the workspace “clean”.
 
 A trivial workspace might look like:
 
-    workspace_folder/        -- WORKSPACE
+    workspace_directory/        -- WORKSPACE
         src/                   -- SOURCE SPACE
             CMakeLists.txt       -- 'Toplevel' CMake file, provided by catkin
             package_1/
@@ -57,7 +57,7 @@ A trivial workspace might look like:
         cd ~/ros_ws/
         catkin_make
     
-    The `catkin_make` command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a `CMakeLists.txt` link in your `src` folder.
+    The `catkin_make` command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a `CMakeLists.txt` link in your `src` directory.
 
     Another best practice is to put any packages in your workspace into the `src` directory. The above code creates a `src` directory inside `ros_ws`.
 
@@ -67,7 +67,7 @@ A trivial workspace might look like:
 
     This will configure catkin_make with Python 3. You may then proceed to use just `catkin_make` for subsequent builds.
 
-1. Additionally, if you look in your current directory you should now have a 'build' and 'devel' folder. Inside the 'devel' folder you can see that there are now several setup files. Sourcing any of these files will overlay this workspace on top of your environment. Before continuing source your new setup.sh file:
+1. Additionally, if you look in your current directory you should now have a 'build' and 'devel' directory. Inside the 'devel' directory you can see that there are now several setup files. Sourcing any of these files will overlay this workspace on top of your environment. Before continuing source your new setup.sh file:
 
         source devel/setup.bash
 
@@ -77,7 +77,7 @@ A trivial workspace might look like:
         
     You should see:
         
-        /home/<youruser>/catkin_ws/src:/opt/ros/kinetic/share
+        /home/<youruser>/ros_ws/src:/opt/ros/melodic/share
 
     And other path(s) if you have them added to your source.
 
@@ -88,7 +88,7 @@ A trivial workspace might look like:
         cd ~/ros_ws/src
         catkin_create_pkg cpp_pubsub std_msgs roscpp
 
-    Your terminal will return a message verifying the creation of your package `cpp_pubsub` and all its necessary files and folders.
+    Your terminal will return a message verifying the creation of your package `cpp_pubsub` and all its necessary files and directories.
 
     `catkin_create_pkg` requires that you give it a `package_name` and optionally a list of dependencies on which that package depends: `catkin_create_pkg <package_name> [depend1] [depend2] [depend3]`
 
@@ -392,7 +392,7 @@ A trivial workspace might look like:
         add_executable(listener src/listener.cpp)
         target_link_libraries(listener ${catkin_LIBRARIES})
 
-    This will create two executables, `talker` and `listener`, which by default will go into the package directory of your `devel` space, located by default at `~/catkin_ws/devel/lib/<package name>`.
+    This will create two executables, `talker` and `listener`, which by default will go into the package directory of your `devel` space, located by default at `~/ros_ws/devel/lib/<package name>`.
 
     Note that you have to add dependencies for the executable targets to message the generation targets:
 
@@ -464,12 +464,16 @@ A trivial workspace might look like:
         cd ~/ros_ws/src
         catkin_create_pkg py_pubsub std_msgs rospy
 
-    Your terminal will return a message verifying the creation of your package `py_pubsub` and all its necessary files and folders.
+    Your terminal will return a message verifying the creation of your package `py_pubsub` and all its necessary files and directories.
 
     #### Write the publisher node
 
-1.  Navigate to your package `ros_ws/src/py_pubsub` and let's first create a `scripts` folder to store our Python scripts in and navigate into it:
+1.  Navigate to your package `ros_ws/src/py_pubsub` and let's first create a `scripts` directories to store our Python scripts in and navigate into it:
 
+        cd py_pubsub
+
+    Create a directory.
+        
         mkdir scripts
         cd scripts
 
@@ -629,7 +633,7 @@ A trivial workspace might look like:
 
 ### Build and run Python Package
 
-    We use CMake as our build system and, yes, you have to use it even for Python nodes. This is to make sure that the autogenerated Python code for messages and services is created.
+We use CMake as our build system and, yes, you have to use it even for Python nodes. This is to make sure that the autogenerated Python code for messages and services is created.
 
 1. Before building the package, it's always a good idea to check and see if all dependencies are met.
 
@@ -642,7 +646,7 @@ A trivial workspace might look like:
 
 1. Go to your catkin workspace and run `catkin_make`:
 
-        cd ~/cros_ws
+        cd ~/ros_ws
         catkin_make
 
 1. Run ROS master.

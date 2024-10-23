@@ -219,6 +219,20 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 
         sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui ros-melodic-joint-trajectory-controller
 
+1. Before we can simulate the JetAuto in ROS and gazebo, we first need to set some environment variables that our launch script look for. Edit the system's environment variables:
+
+        sudo gedit /etc/environment
+
+    We'll add the following in the environment:
+
+        LIDAR_TYPE="A1"
+        DEPTH_CAMERA_TYPE="AstraProPlus"
+        MACHINE_TYPE="JetAutoPro"
+        HOST="/"
+        MASTER="/"
+
+    Restart your system in order for the change to take effect.
+
 1. To have a quick view at the URDF model, we can us RViz:
 
         roslaunch jetauto_description display.launch model:=urdf/jetauto.urdf
@@ -359,20 +373,6 @@ Now that we can control the basic movement of the JetAuto robot, let's try to si
 1. If you are interested in building a URDF from scratch, visit the ROS tutorial [here](https://wiki.ros.org/urdf/Tutorials).
 
 ### Running JetAuto in Gazebo
-
-1. Before we can simulate the JetAuto in gazebo, we first need to set some environment variables that our launch script look for. Edit the system's environment variables:
-
-        sudo gedit /etc/environment
-
-    We'll add the following in the environment:
-
-        LIDAR_TYPE="A1"
-        DEPTH_CAMERA_TYPE="AstraProPlus"
-        MACHINE_TYPE="JetAutoPro"
-        HOST="/"
-        MASTER="/"
-
-    Restart your system in order for the change to take effect.
 
 1. In a terminal, launch:
 
