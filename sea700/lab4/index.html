@@ -285,6 +285,19 @@ self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
 </code></pre>
 </li>
 <li>
+<p>Before we can simulate the JetAuto in ROS and gazebo, we first need to set some environment variables that our launch script look for. Edit the system's environment variables:</p>
+<pre><code>sudo gedit /etc/environment
+</code></pre>
+<p>We'll add the following in the environment:</p>
+<pre><code>LIDAR_TYPE="A1"
+DEPTH_CAMERA_TYPE="AstraProPlus"
+MACHINE_TYPE="JetAutoPro"
+HOST="/"
+MASTER="/"
+</code></pre>
+<p>Restart your system in order for the change to take effect.</p>
+</li>
+<li>
 <p>To have a quick view at the URDF model, we can us RViz:</p>
 <pre><code>roslaunch jetauto_description display.launch model:=urdf/jetauto.urdf
 </code></pre>
@@ -417,19 +430,6 @@ self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
 </ol>
 <h3 id="running-jetauto-in-gazebo">Running JetAuto in Gazebo</h3>
 <ol>
-<li>
-<p>Before we can simulate the JetAuto in gazebo, we first need to set some environment variables that our launch script look for. Edit the system's environment variables:</p>
-<pre><code>sudo gedit /etc/environment
-</code></pre>
-<p>We'll add the following in the environment:</p>
-<pre><code>LIDAR_TYPE="A1"
-DEPTH_CAMERA_TYPE="AstraProPlus"
-MACHINE_TYPE="JetAutoPro"
-HOST="/"
-MASTER="/"
-</code></pre>
-<p>Restart your system in order for the change to take effect.</p>
-</li>
 <li>
 <p>In a terminal, launch:</p>
 <pre><code>roslaunch jetauto_gazebo worlds.launch

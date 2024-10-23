@@ -111,10 +111,10 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <script type="math/tex; mode=display">
 [Z_i] =
 \begin{bmatrix}
-   cos \theta_i & -sin \theta_i & 0 & 0 \\
-   sin \theta_i & cos \theta_i & 0 & 0 \\
-   0 & 0 & 1 & d_i \\
-   0 & 0 & 0 & 1
+    cos \theta_i & -sin \theta_i & 0 & 0 \\
+    sin \theta_i & cos \theta_i & 0 & 0 \\
+    0 & 0 & 1 & d_i \\
+    0 & 0 & 0 & 1
 \end{bmatrix}
 </script>
 </p>
@@ -123,10 +123,10 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <script type="math/tex; mode=display">
 [X_i] =
 \begin{bmatrix}
-   1 & 0 & 0 & a_{i, i+1} \\
-   0 & cos \alpha_{i, i+1} & -sin \alpha_{i, i+1} & 0 \\
-   0 & sin \alpha_{i, i+1} & cos \alpha_{i, i+1} & 0 \\
-   0 & 0 & 0 & 1
+    1 & 0 & 0 & a_{i, i+1} \\
+    0 & cos \alpha_{i, i+1} & -sin \alpha_{i, i+1} & 0 \\
+    0 & sin \alpha_{i, i+1} & cos \alpha_{i, i+1} & 0 \\
+    0 & 0 & 0 & 1
 \end{bmatrix}
 </script>
 </p>
@@ -190,35 +190,460 @@ robotic manipulator relative to some other reference frame, given the angles of 
 </tr>
 </tbody>
 </table>
-<h1 id="ros-moveit">ROS MoveIt</h1>
+<h2 id="ros-moveit">ROS MoveIt</h2>
 <p>ROS MoveIt is a powerful software framework designed for robot motion planning and manipulation within the Robot Operating System (ROS) ecosystem. It provides a robust set of tools and libraries that enable developers to implement complex motion planning algorithms, manage robot kinematics, and execute real-time motion tasks. With features such as collision detection, trajectory optimization, and support for various robotic platforms, MoveIt simplifies the process of programming robots to perform intricate movements. Its flexibility and extensibility make it a popular choice for both research and industrial applications, allowing users to create sophisticated robotic solutions tailored to specific needs.</p>
 <p><img alt="Figure 5.3 ROS MoveIt" src="../lab5-moveit.png" /></p>
 <p><em><strong>Figure 5.3</strong> ROS MoveIt</em></p>
 <p>More details on MoveIt can be found <a href="https://docs.ros.org/en/melodic/api/moveit_tutorials/html/index.html">here</a>.</p>
+<h2 id="simultaneous-localization-and-mapping-slam">Simultaneous Localization and Mapping (SLAM)</h2>
+<p>Simultaneous localization and mapping (SLAM) is the computational problem of constructing or updating a map of an unknown environment while simultaneously keeping track of an agent's location within it.Popular approximate solution methods include the particle filter, extended Kalman filter, covariance intersection, and GraphSLAM. SLAM algorithms are based on concepts in computational geometry and computer vision, and are used in robot navigation, robotic mapping and odometry for virtual reality or augmented reality.</p>
+<p>SLAM algorithms are tailored to the available resources and are not aimed at perfection but at operational compliance. Published approaches are employed in self-driving cars, unmanned aerial vehicles, autonomous underwater vehicles, planetary rovers, newer domestic robots and even inside the human body.</p>
 <h3 id="jetauto-robot-arm-control">JetAuto Robot Arm Control</h3>
 <ol>
 <li>
 <p>Before controlling JetAuto's robot arm, let make sure we have all the package necessary installed. We'll also install the GMapping package for the second part of this Lab. Open a terminal and run the following command:</p>
-<p>sudo apt install ros-melodic-moveit ros-melodic-trac-ik-kinematics-plugin ros-melodic-slam-gmapping ros-melodic-map-server ros-melodic-amcl  ros-melodic-move-base</p>
+<pre><code>sudo apt install ros-melodic-moveit ros-melodic-trac-ik-kinematics-plugin ros-melodic-slam-gmapping ros-melodic-map-server ros-melodic-amcl ros-melodic-move-base ros-melodic-global-planner
+</code></pre>
 </li>
 <li>
-<p>Following Chapter 15.2 Lesson 2, 3, 5, 6, 7, 8 in <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a>. Use the following command to start MoveIt with Gazebo instead of the instruction provided.</p>
-<p>roslaunch jetauto_moveit_config demo_gazebo.launch false_execution:=false</p>
+<p>First, we'll try simulating JetAuto's robot arm in ROS using MoveIt along with a gazebo model. Open terminal and run:</p>
+<pre><code>roslaunch jetauto_moveit_config demo_gazebo.launch false_execution:=false
+</code></pre>
+<p>This should load a RViz and a Gazebo windows. By provide the <code>false</code> to the <code>false_execution</code> argument, we'll be able to move the robot arm in the Gazebo model as well.</p>
+<p><img alt="Figure 5.4 JetAuto MoveIt" src="../lab5-jetauto-moveit.png" /></p>
+<p><em><strong>Figure 5.4</strong> JetAuto MoveIt</em></p>
+<p>The top left Panel labelled "Displays" is the RViz Tool Bar, the bottom left Panel labelled "MotionPlanning" is the MoveIt Tool Area, the right Panel is the Simulation view. In the Simulation view, you can use your mouse (rigth click, left click, middle click, and wheel) to adjust the view.</p>
+</li>
+<li>
+<p>Select the <strong>"Planning"</strong> tab in MoveIt and ensure the <strong>"Planning Group"</strong> is "arm". Move the model in the Simulation view around to set the joint goal of the arm:</p>
+<ul>
+<li>The Blue ball control the position of the end effector in 3d space</li>
+<li>The Red Arrow control the y-axis of the end effector</li>
+<li>The Green Arrow control the x-axis of the end effector</li>
+<li>The Blue Arrow control the z-axis of the end effector</li>
+</ul>
+<p>Remember, once the arm is moved, the axis refer to the end effector's frame of reference.</p>
+<p><img alt="Figure 5.5 JetAuto MoveIt Planning" src="../lab5-planning-moveit.png" /></p>
+<p><em><strong>Figure 5.5</strong> JetAuto MoveIt Planning</em></p>
+<p>When you set the goal for the robot arm, MoveIt performs inverse kinematics (IK) to determine the configuration for each joint to reach the goal. When calculating the IK, collisions with other parts of the robot are already taken into consideration. If there are any anticipated collisions, they are indicated in red.</p>
+</li>
+<li>
+<p>You can also also perform forward kinematics by scrolling over to the <strong>"Joints"</strong> tab in MoveIt to view and adjust the goal rotation angle of each joint.</p>
+<p><img alt="Figure 5.6 JetAuto MoveIt Planning Joints" src="../lab5-planning-joints.png" /></p>
+<p><em><strong>Figure 5.6</strong> JetAuto MoveIt Planning Joints</em></p>
+</li>
+<li>
+<p>Once you are ready with the position for the arm to move to, go back to the <strong>"Planning"</strong> tab and click <strong>"Plan &amp; Execute"</strong>. You should see the model move from the current state to the goal state. The gazebo model should move as well.</p>
+<p><img alt="Figure 5.7 JetAuto MoveIt Planning Gazebo View" src="../lab5-planning-gazebo.png" /></p>
+<p><em><strong>Figure 5.7</strong> JetAuto MoveIt Planning Gazebo View</em></p>
+</li>
+<li>
+<p>(Optional) If you want, you can go through the demo videos and lessions provided by the manufacturer to gain a better understanding on the robot arm.</p>
+<p><a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a></p>
+<ul>
+<li>Chapter 15.1 All Lesson</li>
+<li>Chapter 15.2<ul>
+<li>Lesson 2 - <a href="https://youtu.be/OQAjGv3DnG4">Demo Video</a></li>
+<li>Lesson 3 - <a href="https://youtu.be/99P79cR54tE">Demo Video</a></li>
+<li>Lesson 4</li>
+<li>Lesson 5 - <a href="https://youtu.be/e-AjB7BJyoo">Demo Video</a></li>
+<li>Lesson 6 - <a href="https://youtu.be/vNk_7Xl6QTw">Demo Video</a></li>
+<li>Lesson 7 - <a href="https://youtu.be/TChFPe_zgd8">Demo Video</a></li>
+<li>Lesson 8 - <a href="https://youtu.be/n7zQQqZfCtU">Demo Video</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="moveit-python-interface">MoveIt Python Interface</h4>
+</li>
+<li>
+<p>Next, let's use a Python interface to work with MoveIt. Build a new ROS package in your <code>ros_ws</code> workspace and put the following script into your package and call it <strong>move_group_python_interface_tutorial.py</strong>.</p>
+<p>This script is from the <a href="https://docs.ros.org/en/melodic/api/moveit_tutorials/html/doc/move_group_python_interface/move_group_python_interface_tutorial.html">MoveIt Tutorial</a> using the Panda robot but changed to work with the JetAuto robot.</p>
+<pre><code>#!/usr/bin/env python
+
+import sys
+import copy
+import rospy
+import moveit_commander
+import moveit_msgs.msg
+import geometry_msgs.msg
+from math import pi
+from std_msgs.msg import String
+from moveit_commander.conversions import pose_to_list
+## END_SUB_TUTORIAL
+
+def all_close(goal, actual, tolerance):
+    """
+    Convenience method for testing if a list of values are within a tolerance of their counterparts in another list
+    @param: goal       A list of floats, a Pose or a PoseStamped
+    @param: actual     A list of floats, a Pose or a PoseStamped
+    @param: tolerance  A float
+    @returns: bool
+    """
+    all_equal = True
+    if type(goal) is list:
+        for index in range(len(goal)):
+            if abs(actual[index] - goal[index]) &gt; tolerance:
+                return False
+
+    elif type(goal) is geometry_msgs.msg.PoseStamped:
+        return all_close(goal.pose, actual.pose, tolerance)
+
+    elif type(goal) is geometry_msgs.msg.Pose:
+        return all_close(pose_to_list(goal), pose_to_list(actual), tolerance)
+
+    return True
+
+class MoveGroupPythonIntefaceTutorial(object):
+    """MoveGroupPythonIntefaceTutorial"""
+    def __init__(self):
+        super(MoveGroupPythonIntefaceTutorial, self).__init__()
+
+        ## BEGIN_SUB_TUTORIAL setup
+        ##
+        ## First initialize `moveit_commander`_ and a `rospy`_ node:
+        moveit_commander.roscpp_initialize(sys.argv)
+        rospy.init_node('move_group_python_interface_tutorial', anonymous=True)
+
+        ## Instantiate a `RobotCommander`_ object. Provides information such as the robot's
+        ## kinematic model and the robot's current joint states
+        robot = moveit_commander.RobotCommander()
+
+        ## Instantiate a `PlanningSceneInterface`_ object.  This provides a remote interface
+        ## for getting, setting, and updating the robot's internal understanding of the
+        ## surrounding world:
+        scene = moveit_commander.PlanningSceneInterface()
+
+        ## Instantiate a `MoveGroupCommander`_ object.  This object is an interface
+        ## to a planning group (group of joints).  In this tutorial the group is the primary
+        ## arm joints in the Panda robot, so we set the group's name to "panda_arm".
+        ## If you are using a different robot, change this value to the name of your robot
+        ## arm planning group.
+        ## This interface can be used to plan and execute motions:
+        ##group_name = "panda_arm"
+        group_name = "arm"
+        move_group = moveit_commander.MoveGroupCommander(group_name)
+
+        ## Create a `DisplayTrajectory`_ ROS publisher which is used to display
+        ## trajectories in Rviz:
+        display_trajectory_publisher = rospy.Publisher('/move_group/display_planned_path',
+                                                        moveit_msgs.msg.DisplayTrajectory,
+                                                        queue_size=20)
+
+        ## END_SUB_TUTORIAL
+
+        ## BEGIN_SUB_TUTORIAL basic_info
+        ##
+        ## Getting Basic Information
+        ## ^^^^^^^^^^^^^^^^^^^^^^^^^
+        # We can get the name of the reference frame for this robot:
+        planning_frame = move_group.get_planning_frame()
+        print "============ Planning frame: %s" % planning_frame
+
+        # We can also print the name of the end-effector link for this group:
+        eef_link = move_group.get_end_effector_link()
+        print "============ End effector link: %s" % eef_link
+
+        # We can get a list of all the groups in the robot:
+        group_names = robot.get_group_names()
+        print "============ Available Planning Groups:", robot.get_group_names()
+
+        # Sometimes for debugging it is useful to print the entire state of the
+        # robot:
+        print "============ Printing robot state"
+        print robot.get_current_state()
+        print ""
+        ## END_SUB_TUTORIAL
+
+        # Misc variables
+        self.box_name = ''
+        self.robot = robot
+        self.scene = scene
+        self.move_group = move_group
+        self.display_trajectory_publisher = display_trajectory_publisher
+        self.planning_frame = planning_frame
+        self.eef_link = eef_link
+        self.group_names = group_names
+
+    def go_to_joint_state(self):
+        # Copy class variables to local variables to make the web tutorials more clear.
+        # In practice, you should use the class variables directly unless you have a good
+        # reason not to.
+        move_group = self.move_group
+
+        ## BEGIN_SUB_TUTORIAL plan_to_joint_state
+        ##
+        ## Planning to a Joint Goal
+        ## ^^^^^^^^^^^^^^^^^^^^^^^^
+        ## The Panda's zero configuration is at a `singularity &lt;https://www.quora.com/Robotics-What-is-meant-by-kinematic-singularity&gt;`_ so the first
+        ## thing we want to do is move it to a slightly better configuration.
+        # We can get the joint values from the group and adjust some of the values:
+        joint_goal = move_group.get_current_joint_values()
+
+        joint_goal[0] = pi/4
+        joint_goal[1] = pi/4
+        joint_goal[2] = pi/4
+        joint_goal[3] = pi/4
+
+        # The go command can be called with joint values, poses, or without any
+        # parameters if you have already set the pose or joint target for the group
+        move_group.go(joint_goal, wait=True)
+
+        # Calling ``stop()`` ensures that there is no residual movement
+        move_group.stop()
+
+        ## END_SUB_TUTORIAL
+
+        # For testing:
+        current_joints = move_group.get_current_joint_values()
+        return all_close(joint_goal, current_joints, 0.01)
+
+def main():
+    try:
+        print ""
+        print "----------------------------------------------------------"
+        print "Welcome to the MoveIt MoveGroup Python Interface Tutorial"
+        print "----------------------------------------------------------"
+        print "Press Ctrl-D to exit at any time"
+        print ""
+        print "============ Press `Enter` to begin the tutorial by setting up the moveit_commander ..."
+        raw_input()
+        tutorial = MoveGroupPythonIntefaceTutorial()
+        print "============ Press `Enter` to execute a movement using a joint state goal ..."
+        raw_input()
+        tutorial.go_to_joint_state()
+        print "============ Python tutorial demo complete!"
+    except rospy.ROSInterruptException:
+        return
+    except KeyboardInterrupt:
+        return
+
+if __name__ == '__main__':
+    main()
+</code></pre>
+<p>To use the Python MoveIt interfaces, we will import the <code>moveit_commander</code> namespace. This namespace provides us with a <code>MoveGroupCommander</code> class, a <code>PlanningSceneInterface</code> class, and a <code>RobotCommander</code> class. More on these below. We also import <code>rospy</code> and some messages that we will use:</p>
+<pre><code>import sys
+import copy
+import rospy
+import moveit_commander
+import moveit_msgs.msg
+import geometry_msgs.msg
+from math import pi
+from std_msgs.msg import String
+from moveit_commander.conversions import pose_to_list
+</code></pre>
+<p>First initialize <code>moveit_commander</code> and a <code>rospy</code> node:</p>
+<pre><code>moveit_commander.roscpp_initialize(sys.argv)
+rospy.init_node('move_group_python_interface_tutorial', anonymous=True)
+</code></pre>
+<p>Instantiate a <code>RobotCommander</code> object. Provides information such as the robot’s kinematic model and the robot’s current joint states</p>
+<pre><code>robot = moveit_commander.RobotCommander()
+</code></pre>
+<p>Instantiate a <code>PlanningSceneInterface</code> object. This provides a remote interface for getting, setting, and updating the robot’s internal understanding of the surrounding world:</p>
+<pre><code>scene = moveit_commander.PlanningSceneInterface()
+</code></pre>
+<p>Instantiate a <code>MoveGroupCommander</code> object. This object is an interface to a planning group (group of joints). In this tutorial the group is the primary arm joints in the JetAuto robot, so we set the group’s name to <code>arm</code>. If you are using a different robot, change this value to the name of your robot arm planning group. This interface can be used to plan and execute motions:</p>
+<pre><code>group_name = "arm"
+move_group = moveit_commander.MoveGroupCommander(group_name)
+</code></pre>
+<p>Create a <code>DisplayTrajectory</code> ROS publisher which is used to display trajectories in Rviz:</p>
+<pre><code>display_trajectory_publisher = rospy.Publisher('/move_group/display_planned_path',
+                                            moveit_msgs.msg.DisplayTrajectory,
+                                            queue_size=20)
+</code></pre>
+<p>Getting Basic Information:</p>
+<pre><code># We can get the name of the reference frame for this robot:
+planning_frame = move_group.get_planning_frame()
+print "============ Planning frame: %s" % planning_frame
+
+# We can also print the name of the end-effector link for this group:
+eef_link = move_group.get_end_effector_link()
+print "============ End effector link: %s" % eef_link
+
+# We can get a list of all the groups in the robot:
+group_names = robot.get_group_names()
+print "============ Available Planning Groups:", robot.get_group_names()
+
+# Sometimes for debugging it is useful to print the entire state of the
+# robot:
+print "============ Printing robot state"
+print robot.get_current_state()
+print ""
+</code></pre>
+<p>Planning to a Joint Goal:</p>
+<pre><code># We can get the joint values from the group and adjust some of the values:
+joint_goal = move_group.get_current_joint_values()
+joint_goal[0] = pi/4
+joint_goal[1] = pi/4
+joint_goal[2] = pi/4
+joint_goal[3] = pi/4
+
+# The go command can be called with joint values, poses, or without any
+# parameters if you have already set the pose or joint target for the group
+move_group.go(joint_goal, wait=True)
+
+# Calling ``stop()`` ensures that there is no residual movement
+move_group.stop()
+</code></pre>
+</li>
+<li>
+<p>Make sure you made the file executeable using <code>chmod +x</code>.</p>
+</li>
+<li>
+<p>Build the package and run the script. You should see the robot arm in RViz and Gazebo move to the new configuration you defined.</p>
+</li>
+<li>
+<p>Lastly, let's try everything out on the physical robot. Copy your workspace to the JetAuto then SSH into the JetAuto.</p>
+</li>
+<li>
+<p>Stop the APP service on the robot:</p>
+<pre><code>sudo systemctl stop start_app_node.service
+</code></pre>
+</li>
+<li>
+<p>For the robot arm on the JetAuto to work, we need to start the servo controller service:</p>
+<pre><code>roslaunch hiwonder_serve_controllers start.launch
+</code></pre>
+</li>
+<li>
+<p>Next, start start MoveIt on the JetAuto. This, we won't be using Gazebo simulation:</p>
+<pre><code>roslaunch jetauto_moveit_config demo.launch false_execution:=false
+</code></pre>
+</li>
+<li>
+<p>You can now move the robot arm using MoveIt interface as well as the script in your package.</p>
+</li>
+</ol>
+<h3 id="jetauto-robot-arm-control-without-moveit">JetAuto Robot Arm Control (Without MoveIt)</h3>
+<ol>
+<li>
+<p>Although MoveIt is a good tool for simulating and moving the robot arm, but you can control the robot arm without using MoveIt. Create another python script in your package with the following:</p>
+<pre><code>#!/usr/bin/env python3
+
+import rospy
+import signal
+from hiwonder_servo_msgs.msg import MultiRawIdPosDur
+from hiwonder_servo_controllers.bus_servo_control import set_servos
+from kinematics.search_kinematics_solutions import SearchKinematicsSolutions
+
+class MoveServoNode:
+    def __init__(self, name):
+        rospy.init_node(name, anonymous=True)
+        self.z_dis = 0.4
+        self.y_init = 0.15
+        signal.signal(signal.SIGINT, self.shutdown)
+
+        self.joints_pub = rospy.Publisher('servo_controllers/port_id_1/multi_id_pos_dur', MultiRawIdPosDur, queue_size=1)
+        rospy.sleep(0.2)        
+        self.search_kinemactis_solutions = SearchKinematicsSolutions()
+        while not rospy.is_shutdown():
+            try:
+                if rospy.get_param('/hiwonder_servo_manager/running') and rospy.get_param('/joint_states_publisher/running'):
+                    break
+            except:
+                rospy.sleep(0.1)
+        self.move_servo()
+
+    def shutdown(self, signum, frame):
+        rospy.loginfo('shutdown')
+
+    def move_servo(self):
+        if self.z_dis &gt; 0.43:
+            self.z_dis = 0.43
+        if self.z_dis &lt; 0.33:
+            self.z_dis = 0.33
+
+        res = self.search_kinemactis_solutions.solveIK((0, self.y_init, self.z_dis), 0, -90, 90)
+        if res:
+            joint_data = res[1]
+            rospy.sleep(0.5)
+            set_servos(self.joints_pub, 1500, ((1, 500), (2, joint_data['joint4']), (3, joint_data['joint3']), (4, joint_data['joint2']), (5, joint_data['joint1'])))
+            rospy.sleep(1.8)
+
+        rospy.signal_shutdown('shutdown')
+
+if __name__ == '__main__':
+    MoveServoNode('move_servo')
+</code></pre>
+</li>
+<li>
+<p>The above code is extracted from example code found in:</p>
+<p>~/jetauto_ws/src/jetauto_example/scripts/</p>
+<p>It allows you to control the position of the robot arm end effector through inverse kinematics. Controlling the arm's servo directly is <strong>NOT</strong> recommended as you'll need to manually define collision limits.</p>
+<p>Run the script and the robot arm should move to the given position.</p>
 </li>
 </ol>
 <h3 id="jetauto-slam">JetAuto SLAM</h3>
 <ol>
-<li>Following Chapter 7.2 Lesson 6, 7 in <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a>. Use the following command to start MoveIt with Gazebo instead of the instruction provided. You might need to manually open the config file from</li>
+<li>
+<p>Open a terminal your computer (not the robot) and run the following:</p>
+<pre><code>roslaunch jetauto_gaezbo room_worlds.launch
+</code></pre>
+<p>This will open up a JetAuto model in a room populated with furnitures.</p>
+<p><img alt="Figure 5.8 Gazebo Room" src="../lab5-gazebo-room.png" /></p>
+<p><em><strong>Figure 5.8</strong> Gazebo Room</em></p>
+</li>
+<li>
+<p>Press the <strong>"Play"</strong> buttons at the button of the Gazebo simulator.</p>
+</li>
+<li>
+<p>Start the SLAM node. Open a new terminal and start:</p>
+<pre><code>roslaunch jetauto_slam slam.launch sim:=true
+</code></pre>
+<p>You can ignore the "No module named 'smbus2'" error because we don't have a joystick connected.</p>
+</li>
+<li>
+<p>Start RViz to visualize the map. Open a new terminal and start:</p>
+<pre><code>roslunach jetauto_slam rviz_slam.launch sim:=true
+</code></pre>
+<p>If RViz does not load with the proper config, go to <strong>File &gt; Open Config</strong> and open the follow config file:</p>
+<p><strong>~/jetauto_ws/src/jetauto_slam/rviz/without_namespace/gmapping_sim.rviz</strong></p>
+<p>You can close the default.rviz without saving.</p>
+<p><img alt="Figure 5.8 Gazebo Room Mapping" src="../lab5-gazebo-mapping.png" /></p>
+<p><em><strong>Figure 5.8</strong> Gazebo Room Mapping</em></p>
+</li>
+<li>
+<p>Start the keyboard controller and move the robot around to map the entire room. Once you are satisfied, open a new terminal and navigate to the slam map directory:</p>
+<pre><code>roscd jetauto_slam/maps
+</code></pre>
+</li>
+<li>
+<p>We'll save the map as <code>map_01</code>:</p>
+<pre><code>rosrun map_server map_saver -f map_01 map:=/map
+</code></pre>
+<p>You should see something similar to this output from the terminal:</p>
+<pre><code>[ INFO] [1729620059.595167203]: Waiting for the map
+[ INFO] [1729620060.388306846]: Received a 1248 X 384 map @ 0.025 m/pix
+[ INFO] [1729620060.388618676]: Writing map occupancy data to map_01.pgm
+[ INFO] [1729620060.400554480, 1407.036000000]: Writing map occupancy data to map_01.yaml
+[ INFO] [1729620060.400909179, 1407.036000000]: Done
+</code></pre>
+<p>Your map has now been saved.</p>
+</li>
+<li>
+<p>Close the SLAM and RViz terminals. You can keep the Gazebo room open.</p>
+</li>
+<li>
+<p>With the map saved, we'll now use it for navigation. Open a new terminal and run:</p>
+<pre><code>roslaunch jetauto_navigation navigation.launch sim:=true map:=map_01
+</code></pre>
+</li>
+</ol>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ul>
+<li>There's a plugin library error with the above code that still needs to be solved. We will need to perform the SLAM step using a phsyical robot for now.</li>
+</ul>
+</div>
+
+<ol>
+<li>There Following Chapter 7.2 Lesson 6, 7 in <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a>. Use the following command to start MoveIt with Gazebo instead of the instruction provided. You might need to manually open the config file from</li>
 </ol>
 <h2 id="lab-question">Lab Question</h2>
 <ol>
 <li>
-<p>Find the Cartesian coordinate of the end effector if:</p>
-</li>
+<p>Find the approximate artesian coordinate of the end effector (tip of the gripper) of the JetAuto if:</p>
+<ul>
 <li>
-<p>
 <script type="math/tex">\theta_1 = 45</script>
-</p>
 </li>
 <li>
 <script type="math/tex">\theta_2 = -30</script>
@@ -227,12 +652,13 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <script type="math/tex">\theta_3 = 85</script>
 </li>
 <li>
-<p>
 <script type="math/tex">\theta_4 = 25</script>
-</p>
+</li>
+</ul>
+<p>You'll need to measure the dimension of each link and construct the foward kinematics using DH parameters. You can perform the calculation by hand or using software (such as Python). You are not allowed to just read the position from ROS.</p>
 </li>
 <li>
-<p>Write a program that will move the robot arm to the above position.</p>
+<p>Write a program that will move the robot arm to the position in question 1.</p>
 </li>
 <li>
 <p>Use SLAM to create and save a map of the class room. Afterward, demostrate navigating from one corner of the class to another.</p>

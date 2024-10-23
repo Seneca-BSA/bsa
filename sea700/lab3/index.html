@@ -94,7 +94,7 @@ SEA700 Robotics for Software Engineers
 <li>If it is a catkin metapackage it must have the relevant boilerplate <code>CMakeLists.txt</code> file.</li>
 </ul>
 </li>
-<li>Each package must have its own folder<ul>
+<li>Each package must have its own directory<ul>
 <li>This means no nested packages nor multiple packages sharing the same directory.</li>
 </ul>
 </li>
@@ -104,10 +104,10 @@ SEA700 Robotics for Software Engineers
     CMakeLists.txt
     package.xml
 </code></pre>
-<p>A single workspace can contain as many packages as you want, each in their own folder. You can also have packages of different build types in one workspace (CMake, Python, etc.). You cannot have nested packages.</p>
-<p>Best practice is to have a <code>src</code> folder within your workspace, and to create your packages in there. This keeps the top level of the workspace “clean”.</p>
+<p>A single workspace can contain as many packages as you want, each in their own directory. You can also have packages of different build types in one workspace (CMake, Python, etc.). You cannot have nested packages.</p>
+<p>Best practice is to have a <code>src</code> directory within your workspace, and to create your packages in there. This keeps the top level of the workspace “clean”.</p>
 <p>A trivial workspace might look like:</p>
-<pre><code>workspace_folder/        -- WORKSPACE
+<pre><code>workspace_directory/        -- WORKSPACE
     src/                   -- SOURCE SPACE
         CMakeLists.txt       -- 'Toplevel' CMake file, provided by catkin
         package_1/
@@ -127,7 +127,7 @@ SEA700 Robotics for Software Engineers
 cd ~/ros_ws/
 catkin_make
 </code></pre>
-<p>The <code>catkin_make</code> command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a <code>CMakeLists.txt</code> link in your <code>src</code> folder.</p>
+<p>The <code>catkin_make</code> command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a <code>CMakeLists.txt</code> link in your <code>src</code> directory.</p>
 <p>Another best practice is to put any packages in your workspace into the <code>src</code> directory. The above code creates a <code>src</code> directory inside <code>ros_ws</code>.</p>
 <p>If you are building ROS from source to achieve Python 3 compatibility, and have setup your system appropriately (ie: have the Python 3 versions of all the required ROS Python packages installed, such as catkin) the first catkin_make command in a clean catkin workspace must be:</p>
 <pre><code>catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
@@ -135,7 +135,7 @@ catkin_make
 <p>This will configure catkin_make with Python 3. You may then proceed to use just <code>catkin_make</code> for subsequent builds.</p>
 </li>
 <li>
-<p>Additionally, if you look in your current directory you should now have a 'build' and 'devel' folder. Inside the 'devel' folder you can see that there are now several setup files. Sourcing any of these files will overlay this workspace on top of your environment. Before continuing source your new setup.sh file:</p>
+<p>Additionally, if you look in your current directory you should now have a 'build' and 'devel' directory. Inside the 'devel' directory you can see that there are now several setup files. Sourcing any of these files will overlay this workspace on top of your environment. Before continuing source your new setup.sh file:</p>
 <pre><code>source devel/setup.bash
 </code></pre>
 </li>
@@ -144,7 +144,7 @@ catkin_make
 <pre><code>echo $ROS_PACKAGE_PATH
 </code></pre>
 <p>You should see:</p>
-<pre><code>/home/&lt;youruser&gt;/catkin_ws/src:/opt/ros/kinetic/share
+<pre><code>/home/&lt;youruser&gt;/ros_ws/src:/opt/ros/melodic/share
 </code></pre>
 <p>And other path(s) if you have them added to your source.</p>
 </li>
@@ -156,7 +156,7 @@ catkin_make
 <pre><code>cd ~/ros_ws/src
 catkin_create_pkg cpp_pubsub std_msgs roscpp
 </code></pre>
-<p>Your terminal will return a message verifying the creation of your package <code>cpp_pubsub</code> and all its necessary files and folders.</p>
+<p>Your terminal will return a message verifying the creation of your package <code>cpp_pubsub</code> and all its necessary files and directories.</p>
 <p><code>catkin_create_pkg</code> requires that you give it a <code>package_name</code> and optionally a list of dependencies on which that package depends: <code>catkin_create_pkg &lt;package_name&gt; [depend1] [depend2] [depend3]</code></p>
 <p>More details on package creation can be found <a href="https://wiki.ros.org/ROS/Tutorials/CreatingPackage">here</a>.</p>
 <h4 id="write-the-publisher-node">Write the publisher node</h4>
@@ -435,7 +435,7 @@ add_dependencies(listener cpp_pubsub_generate_messages_cpp)
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
 </code></pre>
-<p>This will create two executables, <code>talker</code> and <code>listener</code>, which by default will go into the package directory of your <code>devel</code> space, located by default at <code>~/catkin_ws/devel/lib/&lt;package name&gt;</code>.</p>
+<p>This will create two executables, <code>talker</code> and <code>listener</code>, which by default will go into the package directory of your <code>devel</code> space, located by default at <code>~/ros_ws/devel/lib/&lt;package name&gt;</code>.</p>
 <p>Note that you have to add dependencies for the executable targets to message the generation targets:</p>
 <pre><code>add_dependencies(talker cpp_pubsub_generate_messages_cpp)
 </code></pre>
@@ -507,11 +507,14 @@ rosrun cpp_pubsub listener
 <pre><code>cd ~/ros_ws/src
 catkin_create_pkg py_pubsub std_msgs rospy
 </code></pre>
-<p>Your terminal will return a message verifying the creation of your package <code>py_pubsub</code> and all its necessary files and folders.</p>
+<p>Your terminal will return a message verifying the creation of your package <code>py_pubsub</code> and all its necessary files and directories.</p>
 <h4 id="write-the-publisher-node_1">Write the publisher node</h4>
 </li>
 <li>
-<p>Navigate to your package <code>ros_ws/src/py_pubsub</code> and let's first create a <code>scripts</code> folder to store our Python scripts in and navigate into it:</p>
+<p>Navigate to your package <code>ros_ws/src/py_pubsub</code> and let's first create a <code>scripts</code> directories to store our Python scripts in and navigate into it:</p>
+<pre><code>cd py_pubsub
+</code></pre>
+<p>Create a directory.</p>
 <pre><code>mkdir scripts
 cd scripts
 </code></pre>
@@ -654,8 +657,7 @@ rospy.spin()
 </li>
 </ol>
 <h3 id="build-and-run-python-package">Build and run Python Package</h3>
-<pre><code>We use CMake as our build system and, yes, you have to use it even for Python nodes. This is to make sure that the autogenerated Python code for messages and services is created.
-</code></pre>
+<p>We use CMake as our build system and, yes, you have to use it even for Python nodes. This is to make sure that the autogenerated Python code for messages and services is created.</p>
 <ol>
 <li>
 <p>Before building the package, it's always a good idea to check and see if all dependencies are met.</p>
@@ -668,7 +670,7 @@ rosdep install -i --from-path src --rosdistro melodic -y
 </li>
 <li>
 <p>Go to your catkin workspace and run <code>catkin_make</code>:</p>
-<pre><code>cd ~/cros_ws
+<pre><code>cd ~/ros_ws
 catkin_make
 </code></pre>
 </li>
