@@ -83,7 +83,19 @@ Similar to the previous lab.
 
 1. Set a breakpoint at the `__asm` function then debug your code. Once the program started, hit resume until it reach the breakpoint then "Step Into (F5)" the code and see what happens. You program should jump to the code in your assembly file when it hit the function call.
 
-1. Your task now is to translate the assembly code in the loop portion of Lab5 to C-code without using any assembly code except for moving data into register 5. You can use a `for` loop or a `while` loop. After you are done and get the desired result, compare the compiled assembly code with the one we have from [Lab 5](lab5.md) and comment on the difference in terms of the type and number of instructions used. 
+1. Your task now is to translate the assembly code in the loop portion of [Lab 5](lab5.md) (see below) into C-code without using any assembly code except for moving data into register (use inline assembly for such task). Use variables and move the function call as necessary. The programmer's intentioned of the C-code should be the same as the assembly code.
+
+    Translate the following:
+
+        loop:
+            add     r0, r0, #1
+            cmp	    r0, #5
+            bne     loop
+            mov 	r5, #9
+            bl 	    function1
+            mov 	r3, #12
+
+    You can use a `for` loop or a `while` loop. After you are done and get the desired result, compare the compiled assembly code with the one we have from [Lab 5](lab5.md) and comment on the difference in terms of the type and number of instructions used.
 
 1. Copy your `while` or `for` loop C-code and it's assembly code and paste it into Blackboard.
 
