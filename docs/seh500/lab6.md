@@ -7,18 +7,13 @@ SEH500 Microprocessors and Computer Architecture
 
 ## Introduction
 
-Documentation of the Cortex-M4 instruction set and FRDM-K64F user's guide can be found here:
+Documentation of the Cortex-M4 instruction set can be found here:
 
 - [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
-- [FRDMK64FUG, FRDM-K64F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG)
 
-In the previous lab, we explored how to use basic branching to control the flow of a program. In this lab, we'll further explore branching and use the stack point to create subroutine and function call procedure.
-
-## Preparation
-
-> ### Lab Preparation Question
-> 1. Read over the lab and understand the procedures.
+In our labs so far, we've been programming the processor directly using assembly language. In this lab, we'll explore combining assembly language with C programming language and how to use them interchangeablely in a program.
 
 ## Procedures
 
@@ -26,59 +21,71 @@ Similar to the previous lab.
 
 1. Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.
 
-1. In the new project configuration, this time, also select "pit" as one of the rename the project then leave all other settings as default.
+1. In the new project configuration, this time, also select "pit" as one of the driver. Rename the project then leave all other settings as default.
 
     ![Figure 6.1 Select pit in the project setting](lab6-pit.png)
 
     ***Figure 6.1** Select pit in the project setting*
 
-1. In previous labs, we wrote all of our code in assembly language using the .s file extension. In this lab, we are going to explore how to integrate C-code together with assembly code in a single project. The first way of integrating assembly code into a C-program is by using the inline assembler method.
+1. In previous labs, we wrote all of our code in assembly language using the `.s` file extension. In this lab, we are going to explore how to integrate C-code together with assembly code in a single project. The first way of integrating assembly code into a C-program is by using the inline assembler method.
 
-    <pre>
-    __asm volatile (" <Assembly Code Here> ");
-    </pre>
+        __asm volatile (" <Assembly Code Here> ");
 
     Replace (or comment out) the PRINTF "Hello World" line with the following:
 
-    <pre>
-    __asm volatile (" mov r1, #0x75 ");
-    </pre>
+        __asm volatile (" mov r0, #1 ");
 
 1. Build and create the dissambly code (or from the dissambly view window during debug). Find the inline assembly code that you wrote. Take a screenshot of it and confirm that the C-code and the assembly code are the same. Paste your result into the Post-Lab question on blackboard.
 
-1. You can also write multi-line inline assembly code as below. As the __asm function is direct replicate of what you wrote into assembly, you'll need to use newline character to specify a newline in assembly. You can also align your C-code to make it more readable.
+1. You can also write multi-line inline assembly code as below. As the `__asm` function is a direct replicate of what you wrote into assembly, you'll need to use newline character to specify a newline in assembly. You can also align your C-code to make it more readable.
 
-    <pre>
-    __asm volatile (" mov r1, #0x75 \n"
-                    " mov r3, #10 ");
-    </pre>
+        __asm volatile (" mov r1, #1 \n"
+                        " mov r3, #0x75 ");
 
-1. Open up [Lab 5](lab5.md) and transfer the code from the main label (up to but not including the code within the loop) into inline assembly code and include it into the inline code you have.
+1. Transfer the following code from [Lab 5](lab5.md) into inline assembly code and include it into the inline code you have.
 
-1. Another method is to include the assembly code in a .s file into the project. Create a function.s file in the source folder and paste the following extract from Lab 5 into it.
+        main:
+            mov 	r0, #1
+            mov 	r3, #0x75
+            push	{r0, r3}
+            mov 	r0, #6
+            mov 	r3, #7
+            pop     {r0, r3}
 
-    <hr/><pre>
-    .syntax unified             @ unified syntax used
-    .cpu cortex-m4              @ cpu is cortex-m4
-    .thumb                      @ use thumb encoding
+1. Another method to include assembly code is by adding a `.s` file into the project. Create a `function.s` file in the source folder and paste the following extract from Lab 5 into it.
 
-    .text                       @ put code in the code section
+        .syntax unified             @ unified syntax used
+        .cpu cortex-m4              @ cpu is cortex-m4
+        .thumb                      @ use thumb encoding
 
-    .global function1           @ declare as a global variable
-    .type function1, %function  @ set to function type
+        .text                       @ put code in the code section
 
-    function1:
-        push    {r5, lr}        @ Save values in the stack
-        mov     r5, #8          @ Set initial value for the delay loop
-    delay:
-        subs	r5, r5, #1      
-        bne     delay
-        pop     {r5, pc}        @ pop out the saved value from the stack
-    </pre><hr/>
+        .global function1           @ declare as a global variable
+        .type function1, %function  @ set to function type
 
-1. Next, place a function prototype at the top of your code and a function call after your inline assembly code and before the while loop into your main function. Set a breakpoint at the asm function then debug your code. Once the program started, hit resume until it reach the breakpoint then "Step Into (F5)" the code and see what happens. You program should jump to the code in your assembly file when it hit the function call.
+        function1:
+            push    {r5, lr}        @ Save values in the stack
+            mov     r5, #8          @ Set initial value for the delay loop
+        delay:
+            subs	r5, r5, #1      
+            bne     delay
+            pop     {r5, pc}        @ pop out the saved value from the stack
 
-1. Your task now is to translate the assembly code in the loop portion of Lab5 to C-code without using any assembly code except for moving data into register 5. You can use a for loop or a while loop. After you are done and get the desired result, compare the compiled assembly code with the one we have from Lab5 and comment on the difference. The code that you write should still be on top of the while(1) loop. Copy or take a screenshot of your loop and it's assembly code and paste it into Blackboard.
+1. Next, place a function prototype at the top of your code and a function call after your inline assembly code but before the while loop into your main function.
+
+    Add this on top:
+
+        void function1();
+
+    And this after your inline assembly code:
+
+        function1();
+
+1. Set a breakpoint at the `__asm` function then debug your code. Once the program started, hit resume until it reach the breakpoint then "Step Into (F5)" the code and see what happens. You program should jump to the code in your assembly file when it hit the function call.
+
+1. Your task now is to translate the assembly code in the loop portion of Lab5 to C-code without using any assembly code except for moving data into register 5. You can use a `for` loop or a `while` loop. After you are done and get the desired result, compare the compiled assembly code with the one we have from [Lab 5](lab5.md) and comment on the difference in terms of the type and number of instructions used. 
+
+1. Copy your `while` or `for` loop C-code and it's assembly code and paste it into Blackboard.
 
 1. Lastly, we are going to include a periodic interrupt timer (PIT) into our code to generate an interrupt once every second. We'll use the built-in ConfigTools in MCUXpresso for ease of implementation. The ConfigTools allow us to setup components of the processor and the microcontroller board in a quick and fast manner instead of manually coding all the necessary settings. Go to "ConfigTools > Peripherals" from the top menu. In the "Components" tab, Under "Peripheral drivers (Device specific)" add the "PIT" configuration components.
 
@@ -94,20 +101,16 @@ Similar to the previous lab.
     
     Paste the following handler code into your program.
 
-    <pre>
-    void PIT_CHANNEL_0_IRQHANDLER(void) /*ISR to process PIT channel 0 interrupts*/
-    {
-        PIT_ClearStatusFlags(PIT, PIT_CHANNEL_0, kPIT_TimerFlag);
-        //clear PIT channel 0 interrupt status flag
-        PRINTF("*\r\n");
-    }
-    </pre>
+        void PIT_CHANNEL_0_IRQHANDLER(void) /*ISR to process PIT channel 0 interrupts*/
+        {
+            PIT_ClearStatusFlags(PIT, PIT_CHANNEL_0, kPIT_TimerFlag);
+            //clear PIT channel 0 interrupt status flag
+            PRINTF("*\r\n");
+        }
 
     Then use the following code to start the PIT in your main function. You can put it at the beginning of main after all the initialization or just before the empty while loop.
 
-    <pre>
-    PIT_StartTimer(PIT_PERIPHERAL, PIT_CHANNEL_0);
-    </pre>
+        PIT_StartTimer(PIT_PERIPHERAL, PIT_CHANNEL_0);
 
 1. Build and debug. Open a serial monitor to see the serial output. Let the program run and you should see an "*" being printed every second. Verify with a watch that the output is once per second. Take a screenshot of your serial monitor output and paste it into blackboard.
 
@@ -117,7 +120,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Answer all the questions in the lab in Blackboard.
 
-1. Modify your code so instead of printing "*" every second, print a statement that display the number of minutes and seconds since the timer started. Paste your code into blackboard.
+1. Modify your code from Step 16 so instead of printing "*" every second, print a statement that display the number of minutes and seconds since the timer started. Paste your code and a screenshot of the output into blackboard.
 
 ## Reference
 
