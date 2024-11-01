@@ -572,7 +572,7 @@ if __name__ == '__main__':
 <p>Run the script and the robot arm should move to the given position.</p>
 </li>
 </ol>
-<h3 id="jetauto-slam">JetAuto SLAM</h3>
+<h3 id="jetauto-slam-simulation">JetAuto SLAM (Simulation)</h3>
 <ol>
 <li>
 <p>Open a terminal your computer (not the robot) and run the following:</p>
@@ -602,7 +602,10 @@ if __name__ == '__main__':
 <p><em><strong>Figure 5.8</strong> Gazebo Room Mapping</em></p>
 </li>
 <li>
-<p>Start the keyboard controller and move the robot around to map the entire room. Once you are satisfied, open a new terminal and navigate to the slam map directory:</p>
+<p>Start the keyboard controller and move the robot around to map the entire room.</p>
+</li>
+<li>
+<p>Once you are satisfied, open a new terminal and navigate to the slam map directory:</p>
 <pre><code>roscd jetauto_slam/maps
 </code></pre>
 </li>
@@ -627,15 +630,75 @@ if __name__ == '__main__':
 <pre><code>roslaunch jetauto_navigation navigation.launch sim:=true map:=map_01
 </code></pre>
 </li>
+<li>
+<p>Open a new terminal and run:</p>
+<pre><code>roslaunch jetauto_navigation rviz_navigation.launch sim:=true
+</code></pre>
+</li>
 </ol>
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 <ul>
-<li>There's a plugin library error with the above code that still needs to be solved. We will need to perform the SLAM step using a phsyical robot for now.</li>
+<li>There's an error with the above code that still needs to be solved. We will need to perform the SLAM step using a phsyical robot for now.</li>
 </ul>
 </div>
 
+<h3 id="jetauto-slam-physical-robot">JetAuto SLAM (Physical Robot)</h3>
 <ol>
-<li>There Following Chapter 7.2 Lesson 6, 7 in <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a>. Use the following command to start MoveIt with Gazebo instead of the instruction provided. You might need to manually open the config file from</li>
+<li>
+<p>Let's try everything out on the physical robot. SSH into the JetAuto and stop the APP service on the robot:</p>
+<pre><code>sudo systemctl stop start_app_node.service
+</code></pre>
+</li>
+<li>
+<p>Start the SLAM node and use <code>gmapping</code> as the mapping method:</p>
+<pre><code>roslaunch jetauto_slam slam.launch slam_methods:=gmapping
+</code></pre>
+</li>
+<li>
+<p>Open a new terminal and start RViz to visualize the map. Open a new terminal and start:</p>
+<pre><code>roslunach jetauto_slam rviz_slam.launch slam_methods:=gmapping
+</code></pre>
+</li>
+<li>
+<p>Open a new terminal and start the keyboard controller and move the robot around to map the entire room.</p>
+</li>
+<li>
+<p>Once you are satisfied, open a new terminal and navigate to the slam map directory:</p>
+<pre><code>roscd jetauto_slam/maps
+</code></pre>
+</li>
+<li>
+<p>We'll save the map as <code>map_01</code>:</p>
+<pre><code>rosrun map_server map_saver -f map_01 map:=/jetauto_1/map
+</code></pre>
+<p>You should see something similar to this output from the terminal:</p>
+<pre><code>[ INFO] [1729620059.595167203]: Waiting for the map
+[ INFO] [1729620060.388306846]: Received a 1248 X 384 map @ 0.025 m/pix
+[ INFO] [1729620060.388618676]: Writing map occupancy data to map_01.pgm
+[ INFO] [1729620060.400554480, 1407.036000000]: Writing map occupancy data to map_01.yaml
+[ INFO] [1729620060.400909179, 1407.036000000]: Done
+</code></pre>
+<p>Your map has now been saved.</p>
+</li>
+<li>
+<p>Close the SLAM and RViz terminals.</p>
+</li>
+<li>
+<p>With the map saved, we'll now use it for navigation. Open a new terminal and run:</p>
+<pre><code>roslaunch jetauto_navigation navigation.launch map:=map_01
+</code></pre>
+</li>
+<li>
+<p>Open a new terminal and run:</p>
+<pre><code>roslaunch jetauto_navigation rviz_navigation.launch
+</code></pre>
+<p>Now you can use the <strong>2D Pose Estimate</strong>, <strong>2D Nav Goal</strong> and <strong>Publish Point</strong> to help you navigate.</p>
+<ul>
+<li><strong>2D Pose Estimate</strong> is used to set the initial position of JetAuto,</li>
+<li><strong>2D Nav Goal</strong> is used to set a target point</li>
+<li><strong>Publish Point</strong> is used to set multiple target points</li>
+</ul>
+</li>
 </ol>
 <h2 id="lab-question">Lab Question</h2>
 <ol>
