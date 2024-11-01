@@ -501,7 +501,7 @@ move_group.stop()
 </li>
 <li>
 <p>For the robot arm on the JetAuto to work, we need to start the servo controller service:</p>
-<pre><code>roslaunch hiwonder_serve_controllers start.launch
+<pre><code>roslaunch hiwonder_servo_controllers start.launch
 </code></pre>
 </li>
 <li>
@@ -593,7 +593,7 @@ if __name__ == '__main__':
 </li>
 <li>
 <p>Start RViz to visualize the map. Open a new terminal and start:</p>
-<pre><code>roslunach jetauto_slam rviz_slam.launch sim:=true
+<pre><code>roslaunch jetauto_slam rviz_slam.launch sim:=true
 </code></pre>
 <p>If RViz does not load with the proper config, go to <strong>File &gt; Open Config</strong> and open the follow config file:</p>
 <p><strong>~/jetauto_ws/src/jetauto_slam/rviz/without_namespace/gmapping_sim.rviz</strong></p>
@@ -645,7 +645,7 @@ if __name__ == '__main__':
 <h3 id="jetauto-slam-physical-robot">JetAuto SLAM (Physical Robot)</h3>
 <ol>
 <li>
-<p>Let's try everything out on the physical robot. SSH into the JetAuto and stop the APP service on the robot:</p>
+<p>Let's try everything out on the physical robot. Connect into the JetAuto using NoMachine or any remote Desktop software and stop the APP service on the robot:</p>
 <pre><code>sudo systemctl stop start_app_node.service
 </code></pre>
 </li>
@@ -656,7 +656,7 @@ if __name__ == '__main__':
 </li>
 <li>
 <p>Open a new terminal and start RViz to visualize the map. Open a new terminal and start:</p>
-<pre><code>roslunach jetauto_slam rviz_slam.launch slam_methods:=gmapping
+<pre><code>roslaunch jetauto_slam rviz_slam.launch slam_methods:=gmapping
 </code></pre>
 </li>
 <li>
