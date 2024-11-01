@@ -481,7 +481,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
     Run the script and the robot arm should move to the given position.
 
-### JetAuto SLAM
+### JetAuto SLAM (Simulation)
 
 1. Open a terminal your computer (not the robot) and run the following:
 
@@ -515,7 +515,9 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
     ***Figure 5.8** Gazebo Room Mapping*
 
-1. Start the keyboard controller and move the robot around to map the entire room. Once you are satisfied, open a new terminal and navigate to the slam map directory:
+1. Start the keyboard controller and move the robot around to map the entire room.
+
+1. Once you are satisfied, open a new terminal and navigate to the slam map directory:
 
         roscd jetauto_slam/maps
 
@@ -539,13 +541,65 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
         roslaunch jetauto_navigation navigation.launch sim:=true map:=map_01
 
+1. Open a new terminal and run:
+
+        roslaunch jetauto_navigation rviz_navigation.launch sim:=true
+
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 <ul>
-<li>There's a plugin library error with the above code that still needs to be solved. We will need to perform the SLAM step using a phsyical robot for now.</li>
+<li>There's an error with the above code that still needs to be solved. We will need to perform the SLAM step using a phsyical robot for now.</li>
 </ul>
 </div>
 
-1. There Following Chapter 7.2 Lesson 6, 7 in [JetAuto & JetAuto Pro Resources](https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY). Use the following command to start MoveIt with Gazebo instead of the instruction provided. You might need to manually open the config file from
+### JetAuto SLAM (Physical Robot)
+
+1. Let's try everything out on the physical robot. SSH into the JetAuto and stop the APP service on the robot:
+
+        sudo systemctl stop start_app_node.service
+
+1. Start the SLAM node and use `gmapping` as the mapping method:
+
+        roslaunch jetauto_slam slam.launch slam_methods:=gmapping
+
+1. Open a new terminal and start RViz to visualize the map. Open a new terminal and start:
+
+        roslunach jetauto_slam rviz_slam.launch slam_methods:=gmapping
+
+1. Open a new terminal and start the keyboard controller and move the robot around to map the entire room.
+
+1. Once you are satisfied, open a new terminal and navigate to the slam map directory:
+
+        roscd jetauto_slam/maps
+
+1. We'll save the map as `map_01`:
+
+        rosrun map_server map_saver -f map_01 map:=/jetauto_1/map
+
+    You should see something similar to this output from the terminal:
+
+        [ INFO] [1729620059.595167203]: Waiting for the map
+        [ INFO] [1729620060.388306846]: Received a 1248 X 384 map @ 0.025 m/pix
+        [ INFO] [1729620060.388618676]: Writing map occupancy data to map_01.pgm
+        [ INFO] [1729620060.400554480, 1407.036000000]: Writing map occupancy data to map_01.yaml
+        [ INFO] [1729620060.400909179, 1407.036000000]: Done
+
+    Your map has now been saved.
+
+1. Close the SLAM and RViz terminals.
+
+1. With the map saved, we'll now use it for navigation. Open a new terminal and run:
+
+        roslaunch jetauto_navigation navigation.launch map:=map_01
+
+1. Open a new terminal and run:
+
+        roslaunch jetauto_navigation rviz_navigation.launch
+
+    Now you can use the **2D Pose Estimate**, **2D Nav Goal** and **Publish Point** to help you navigate.
+
+    - **2D Pose Estimate** is used to set the initial position of JetAuto,
+    - **2D Nav Goal** is used to set a target point
+    - **Publish Point** is used to set multiple target points
 
 ## Lab Question
 
