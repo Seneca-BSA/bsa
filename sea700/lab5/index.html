@@ -207,9 +207,9 @@ robotic manipulator relative to some other reference frame, given the angles of 
 </li>
 <li>
 <p>First, we'll try simulating JetAuto's robot arm in ROS using MoveIt along with a gazebo model. Open terminal and run:</p>
-<pre><code>roslaunch jetauto_moveit_config demo_gazebo.launch false_execution:=false
+<pre><code>roslaunch jetauto_moveit_config demo_gazebo.launch fake_execution:=false
 </code></pre>
-<p>This should load a RViz and a Gazebo windows. By provide the <code>false</code> to the <code>false_execution</code> argument, we'll be able to move the robot arm in the Gazebo model as well.</p>
+<p>This should load a RViz and a Gazebo windows. By provide the <code>false</code> to the <code>fake_execution</code> argument, we'll be able to move the robot arm in the Gazebo model as well.</p>
 <p><img alt="Figure 5.4 JetAuto MoveIt" src="../lab5-jetauto-moveit.png" /></p>
 <p><em><strong>Figure 5.4</strong> JetAuto MoveIt</em></p>
 <p>The top left Panel labelled "Displays" is the RViz Tool Bar, the bottom left Panel labelled "MotionPlanning" is the MoveIt Tool Area, the right Panel is the Simulation view. In the Simulation view, you can use your mouse (rigth click, left click, middle click, and wheel) to adjust the view.</p>
@@ -505,8 +505,8 @@ move_group.stop()
 </code></pre>
 </li>
 <li>
-<p>Next, start start MoveIt on the JetAuto. This, we won't be using Gazebo simulation:</p>
-<pre><code>roslaunch jetauto_moveit_config demo.launch false_execution:=false
+<p>Next, start MoveIt on the JetAuto. This time, we won't be using Gazebo simulation:</p>
+<pre><code>roslaunch jetauto_moveit_config demo.launch fake_execution:=false
 </code></pre>
 </li>
 <li>
@@ -576,7 +576,7 @@ if __name__ == '__main__':
 <ol>
 <li>
 <p>Open a terminal your computer (not the robot) and run the following:</p>
-<pre><code>roslaunch jetauto_gaezbo room_worlds.launch
+<pre><code>roslaunch jetauto_gazebo room_worlds.launch
 </code></pre>
 <p>This will open up a JetAuto model in a room populated with furnitures.</p>
 <p><img alt="Figure 5.8 Gazebo Room" src="../lab5-gazebo-room.png" /></p>
