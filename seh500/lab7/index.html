@@ -80,16 +80,15 @@ Seneca College</br>
 SEH500 Microprocessors and Computer Architecture
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
+<p>Documentation of the Cortex-M4 instruction set can be found here:</p>
 <ul>
-<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
-<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a></li>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a><ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of processor instructions</a></li>
 </ul>
-<p>In the previous lab, we explored the use of the built-in ConfigTools in MCUXpresso IDE to help with setting up interrupts. In this lab, we'll explore how to use assembly instruction to setup GPIO as well as using the ConfigTools to do the same.</p>
+</li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+</ul>
+<p>In our labs so far, we've been programming the processor directly using assembly language. In this lab, we'll explore combining assembly language with C programming language and how to use them interchangeablely in a program.</p>
 <h3 id="freedom-board-tricolour-led">Freedom Board Tricolour LED</h3>
 <p>The Tricolour LED on the Freedom K64 board is connected to:
 - <strong>Red</strong>: Port B Pin 22
@@ -111,13 +110,6 @@ If you are using the Freedom K66F board, the pin configurations is difference. R
 If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
 </div>
 
-<h2 id="preparation">Preparation</h2>
-<blockquote>
-<h3 id="lab-preparation-question">Lab Preparation Question</h3>
-<ol>
-<li>Read over the lab and understand the procedures.</li>
-</ol>
-</blockquote>
 <h2 id="procedures">Procedures</h2>
 <p>Similar to the previous lab.</p>
 <ol>
@@ -125,10 +117,10 @@ If you are using the Freedom K66F board, the pin configurations is difference. R
 <p>Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.</p>
 </li>
 <li>
-<p>In the new project configuration, we can keep everything to default as we won't be using the timer interrupt.</p>
+<p>In the new project configuration, we can keep everything to default as we won't be using the timer interrupt in this lab.</p>
 </li>
 <li>
-<p>First, we'll setup the GPIO for the LED output using assembly code. Create a file called function.s in the source folder. Write the following code to it. In the code, we created two functions, one for setting up the pins as GPIO output and another for turning the LED on and off.</p>
+<p>First, we'll setup the GPIO for the LED output using assembly code. Create a file called function.s in the source folder. Write the following code to it. In the code, create two functions, one for setting up the pins as GPIO output and another for turning the LED on and off.</p>
 <p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 If you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
 </div></p>
