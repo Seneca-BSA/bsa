@@ -107,9 +107,9 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
 1. First, we'll try simulating JetAuto's robot arm in ROS using MoveIt along with a gazebo model. Open terminal and run:
 
-        roslaunch jetauto_moveit_config demo_gazebo.launch false_execution:=false
+        roslaunch jetauto_moveit_config demo_gazebo.launch fake_execution:=false
 
-    This should load a RViz and a Gazebo windows. By provide the `false` to the `false_execution` argument, we'll be able to move the robot arm in the Gazebo model as well.
+    This should load a RViz and a Gazebo windows. By provide the `false` to the `fake_execution` argument, we'll be able to move the robot arm in the Gazebo model as well.
 
     ![Figure 5.4 JetAuto MoveIt](lab5-jetauto-moveit.png)
 
@@ -414,11 +414,11 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
 1. For the robot arm on the JetAuto to work, we need to start the servo controller service:
 
-        roslaunch hiwonder_serve_controllers start.launch
+        roslaunch hiwonder_servo_controllers start.launch
 
-1. Next, start start MoveIt on the JetAuto. This, we won't be using Gazebo simulation:
+1. Next, start MoveIt on the JetAuto. This time, we won't be using Gazebo simulation:
 
-        roslaunch jetauto_moveit_config demo.launch false_execution:=false
+        roslaunch jetauto_moveit_config demo.launch fake_execution:=false
 
 1. You can now move the robot arm using MoveIt interface as well as the script in your package.
 
@@ -485,7 +485,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
 1. Open a terminal your computer (not the robot) and run the following:
 
-        roslaunch jetauto_gaezbo room_worlds.launch
+        roslaunch jetauto_gazebo room_worlds.launch
 
     This will open up a JetAuto model in a room populated with furnitures.
 
@@ -503,7 +503,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
 1. Start RViz to visualize the map. Open a new terminal and start:
 
-        roslunach jetauto_slam rviz_slam.launch sim:=true
+        roslaunch jetauto_slam rviz_slam.launch sim:=true
 
     If RViz does not load with the proper config, go to **File > Open Config** and open the follow config file:
 
@@ -553,7 +553,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
 ### JetAuto SLAM (Physical Robot)
 
-1. Let's try everything out on the physical robot. SSH into the JetAuto and stop the APP service on the robot:
+1. Let's try everything out on the physical robot. Connect into the JetAuto using NoMachine or any remote Desktop software and stop the APP service on the robot:
 
         sudo systemctl stop start_app_node.service
 
@@ -563,7 +563,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
 1. Open a new terminal and start RViz to visualize the map. Open a new terminal and start:
 
-        roslunach jetauto_slam rviz_slam.launch slam_methods:=gmapping
+        roslaunch jetauto_slam rviz_slam.launch slam_methods:=gmapping
 
 1. Open a new terminal and start the keyboard controller and move the robot around to map the entire room.
 

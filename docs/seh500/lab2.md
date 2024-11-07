@@ -76,9 +76,9 @@ Have a look at the following instruction set and ensure you understand how to lo
 
 Documentation of the Cortex-M4 instruction set can be found here:
 
-- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
+- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001) ([PDF](Cortex-M4-Proc-Tech-Ref-Manual.pdf))
     - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
-- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
+- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
 ## Procedures
 
@@ -147,7 +147,7 @@ Documentation of the Cortex-M4 instruction set can be found here:
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard.
 
-1. Referring to the Cortex-M4 technical manual, how many "Add" instructions are there and what are they?
+1. Referring to the Cortex-M4 technical manual, how many "Add" instructions can you find in the manual and what are they?
 
 1. Write the instruction that loads the address 0x20000010 into register R0.
 

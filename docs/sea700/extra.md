@@ -14,6 +14,14 @@ rostopic echo /odom_raw
 
 <!--
 
+1. install ubuntu
+2. add jetauto to sudoer
+3. install ros
+2. copy jetauto_ws
+3. source and change permission of devel/setup.py
+
+rosdep install --from-paths src --ignore-src -r -y
+
 sudo apt-get install ros-melodic-slam-gmapping
 
 roslaunch jetauto_gazebo room_worlds.launch

@@ -9,15 +9,13 @@ SEH500 Microprocessors and Computer Architecture
 
 Documentation of the Cortex-M4 instruction set can be found here:
 
-- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
-    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
-- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
+- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001) ([PDF](Cortex-M4-Proc-Tech-Ref-Manual.pdf))
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
+- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
 In our labs so far, we've been programming the processor directly using assembly language. In this lab, we'll explore combining assembly language with C programming language and how to use them interchangeablely in a program.
 
 ## Procedures
-
-Similar to the previous lab.
 
 1. Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.
 
@@ -130,9 +128,9 @@ Similar to the previous lab.
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
-1. Answer all the questions in the lab in Blackboard.
+1. Answer all the questions in the lab on Blackboard.
 
-1. Modify your code from Step 16 so instead of printing "*" every second, print a statement that display the number of minutes and seconds since the timer started. Paste your code and a screenshot of the output into blackboard.
+1. Modify your code from Step 16 so instead of printing "*" every second (using your timer interrupt function), print a statement that display the number of minutes and seconds since the timer started. Paste your code and a screenshot of the output into blackboard.
 
 ## Reference
 

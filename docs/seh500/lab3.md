@@ -9,9 +9,9 @@ SEH500 Microprocessors and Computer Architecture
 
 Documentation of the Cortex-M4 instruction set can be found here:
 
-- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
-    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
-- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
+- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001) ([PDF](Cortex-M4-Proc-Tech-Ref-Manual.pdf))
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
+- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
 As you've seen in the previous lab, the ARM processor has a Program Status Register with 4 flags that might get set or clear depending on the previous ALU operation.
 
@@ -134,8 +134,6 @@ Some possible data types are:
 - `.octa`: 16 bytes
 
 ## Procedures
-
-Similar to the previous lab.
 
 1. Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.
 

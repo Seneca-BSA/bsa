@@ -9,9 +9,9 @@ SEH500 Microprocessors and Computer Architecture
 
 Documentation of the Cortex-M4 instruction set can be found here:
 
-- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
-    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
-- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
+- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001) ([PDF](Cortex-M4-Proc-Tech-Ref-Manual.pdf))
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
+- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
 In the previous lab, we explored how to use the program status flags and how to perform branching. In this lab, we'll further explore branching and variables in the form of arrays and strings.
 
@@ -136,8 +136,6 @@ Example:
     beq    main			@ branch at end of IT block is permitted
 
 ## Procedures
-
-Similar to the previous lab.
 
 1. Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.
 
