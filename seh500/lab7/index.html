@@ -82,8 +82,10 @@ SEH500 Microprocessors and Computer Architecture
 <h2 id="introduction">Introduction</h2>
 <p>Documentation of the Cortex-M4 instruction set can be found here:</p>
 <ul>
-<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)
-    - <a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of processor instructions</a></li>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of processor instructions</a></li>
+</ul>
+</li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="../DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
 </ul>
 <p>Documentation of the Freedom K64 and K66 board and it's microcontroller can be found here:</p>
@@ -299,10 +301,10 @@ void SW3_GPIOA_IRQHANDLER(void) //Interrupt Service Routine for SW3
 <p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
 <ol>
 <li>
-<p>Using the Reference Manual of the processor on your Freedom board, find the Pin Control Register (PCR), Port Data Direction Register (PDDR), and Port Data Output Register (PDOR) for the Green LED and Blue LED.</p>
+<p>Using the Reference Manual of the processor on your Freedom board, find address of the Pin Control Register (PCR), Port Data Direction Register (PDDR), and Port Data Output Register (PDOR) for the Green LED and Blue LED.</p>
 </li>
 <li>
-<p>Modify the example <strong>assembly code</strong> so all three colours of the LED will turn on and off. Paste your code and a photo of the LED turning into blackboard. RGB together should be a white light.</p>
+<p>Modify the example <strong>assembly code</strong> so all three colours of the LED will turn on and off at the same time. Paste your code and a photo of the LED turned into blackboard. RGB turned on together should be a white light.</p>
 </li>
 <li>
 <p>Implement the same timer interrupt from Lab 6 and use it to turn the LED (any colour) on and off at regular interval. Paste your code into blackboard.</p>
