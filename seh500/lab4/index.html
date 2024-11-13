@@ -76,14 +76,16 @@
               
                 <h1 id="lab-4-branching-array-and-string-in-assembly">Lab 4 : Branching, Array and String in Assembly</h1>
 <p><font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEH500 Microprocessors and Computer Architecture
 </font></p>
 <h2 id="introduction">Introduction</h2>
 <p>Documentation of the Cortex-M4 instruction set can be found here:</p>
 <ul>
-<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)
-    - <a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of processor instructions</a></li>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of processor instructions</a></li>
+</ul>
+</li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="../DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
 </ul>
 <p>In the previous lab, we explored how to use the program status flags and how to perform branching. In this lab, we'll further explore branching and variables in the form of arrays and strings.</p>
@@ -500,7 +502,7 @@ loop:
     add r0, r0, r3          @ add value from array to counter
                             @ R0 = ? for the first loop
                             @ R0 = ? for the second loop
-    subs r1, r1, #1         @ decrement work counter
+    subs r1, r1, #1         @ decrement word counter
                             @ R1 = ? for the first loop
                             @ R1 = ? for the second loop
     bgt loop                @ keep looping until the counter is zero

@@ -76,7 +76,7 @@
               
                 <h1 id="lab-7-gpio-and-interrupt">Lab 7 : GPIO and Interrupt</h1>
 <p><font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEH500 Microprocessors and Computer Architecture
 </font></p>
 <h2 id="introduction">Introduction</h2>
@@ -253,7 +253,10 @@ func_led_off();
 <p><strong><em>Figure 7.3</em></strong></p>
 </li>
 <li>
-<p>Next, open the <strong>ConfigTools &gt; Peripherals Windows</strong> or right-click on the project from the <strong>Project Explorer Project &gt; MCUXpresso Config Tools &gt; Open Perripheral</strong>. On the left hand side, go to the "Peripherals" tab. Check GPIOC for SW2 at Port C Pin 6 (PTC6) and check Enable interrupt request. Afterward, check "Enable custom handler name" and we'll name it: SW2_GPIOC_IRQHANDLER. Once done, click "Update Code" near the top.</p>
+<p>Next, open the <strong>ConfigTools &gt; Peripherals Windows</strong> or right-click on the project from the <strong>Project Explorer Project &gt; MCUXpresso Config Tools &gt; Open Perripheral</strong>. On the left hand side, go to the "Peripherals" tab. Check GPIOC for SW2 at Port C Pin 6 (PTC6). While prompted to "Add Configuration Component Instance", select the GPIO component with <strong>General Purpose Input/Output (GPIO)</strong> in the component description. If you've previous added another component, right click on GPIOC and remover them.</p>
+</li>
+<li>
+<p>Check Enable interrupt request. Afterward, check "Enable custom handler name" and we'll name it: SW2_GPIOC_IRQHANDLER. Once done, click "Update Code" near the top.</p>
 <p><img alt="Figure 7.4" src="../lab7-interrupt.png" /></p>
 <p><strong><em>Figure 7.4</em></strong></p>
 <p>For Freedom K66, SW2 is at Port D Pin 11 (PTD11), ie. GPIOD and use SW2_GPIOD_IRQHANDLER as the function name.</p>
@@ -282,7 +285,7 @@ void SW3_GPIOA_IRQHANDLER(void) //Interrupt Service Routine for SW3
 <pre><code>void SW2_GPIOD_IRQHANDLER(void) //Interrupt Service Routine for SW2
 {
     // clear interrupt flag set by button SW2 connected to pin PTD11
-    GPIO_PortClearInterruptFlags(GPIOCD 1U &lt;&lt; 11U);
+    GPIO_PortClearInterruptFlags(GPIOD 1U &lt;&lt; 11U);
     LED_RED_ON();
     // turn ON RED LED
 }
