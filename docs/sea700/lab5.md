@@ -24,16 +24,21 @@ where \([T]\) is the transformation that characterizes the location and orientat
 
 ***Figure 5.1** DH Kinematics Links*
 
-As shown in the figure above, each joints (i-1, i, and i+1) has a unique line \(S\) (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines \(S_i\) and \(S+{i+1}\), there is a common normal line \(A_{i, i+1}\). By convention, z-coordinate axes are assigned to the joint axes \(S_i\) and x-coordinate axes are assigned to the common normals \(A_{i, i+1}\).
+As shown in the figure above, each joints (i-1, i, and i+1) has a unique line \(S\) (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines \(S_i\) and \(S_{i+1}\), there is a common normal line \(A_{i, i+1}\).
+
+By convention:
+- z_i is the joint axes \(S_i\)
+- x_i is the common normal \(A_{i, i+1}\)
+- sand x-coordinate axes are assigned to the common normals \(A_{i, i+1}\).
 
 > #### Four Parameters
 
 > The following four transformation parameters (labelled in red text in the figure above) are known as the DH parameters:
 
->   - d: offset along \(S_i\) (z-direciton) to the next common normal \(A_{i, i+1}\) (x-direction)
->   - θ: angle about \(S_i\) from old common normal \(A_{i-1, i}\) to the new common normal \(A_{i, i+1}\)
->   - a (or r): length of the common normal from \(S_i\) to \(S_{i+1}\)
->   - α: angle about common normal \(A_{i-1, i}\), from old axis \(S_i\) to new axis \(S_{i+1}\)
+>   - d_i: offset along joint axis z_i (\(S_i\)) from old common normal x_{x-1} (\(A_{i-1, i}\)) to the new common normal x_i (\(A_{i, i+1}\)).
+>   - θ_i: angle about joint axis z_i (\(S_i\)) from old common normal x_{x-1} \(A_{i-1, i}\) to the new common normal x_i \(A_{i, i+1}\)
+>   - a_i (or r_i): length along the new common normal x_i \(A_{i, i+1}\) from z_i (\(S_i\)) to Z_{i+1} \(S_{i+1}\)
+>   - α_i: angle about new common normal x_i \(A_{i, i+1}\), from old axis \(S_i\) to new axis \(S_{i+1}\)
 
 This convention allows the definition of the movement of links around a common joint axis \(S_i\) by the screw displacement:
 
@@ -69,8 +74,8 @@ where \(\alpha_{i, i+1}\) and \(a_{i, i+1}\) define the physical dimensions of t
 
 The figure above shows the kinematic link diagram of the JetAuto arm. Joint-1 is a rotary joint about the global z-axis and Joints 2-4 are rotary joint about their respective joint axis. Let's create the DH parameters table for the first two joints:
 
-- Joint-1 is a rotation joint about the joint axis (global z-axis). Therefore, only \(\theta_1\) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.
-- Joint-2 is a rotation joint with a distance, \(d\), from Joint-1 and 90° between the Joint-2 and Joint-1 axis. Therefore, \(\alpha_2 = 90°\). It will also have a rotation about the Joint-2 axis, \(\theta_2\).
+- Joint-1 is a rotation joint about the joint axis (z_1). Therefore, only \(\theta_1\) (angle between x_0 and x_1) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.
+- Joint-2 is a rotation joint with a distance, \(d\), offset from Joint-1. There is a 90° change between the Joint-1 (z_1) and Joint-2 axis (z_2). Therefore, \(\alpha_2 = 90°\) (angle between z_1 and z_2 about x_2). It will also have a rotation about the Joint-2 axis (z_2), \(\theta_2\) (angle between x_1 and x_2).
 
 Putting this all together yield the following DH parameters table:
 

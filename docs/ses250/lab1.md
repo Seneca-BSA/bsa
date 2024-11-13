@@ -1,7 +1,7 @@
 # Lab 1 : Electrostatics and Triboelectric Series
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SES250 Electromagnatics
 </font>
 

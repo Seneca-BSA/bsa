@@ -1,7 +1,7 @@
 # Lab 5 : Thévenin Circuit
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SES250 Electromagnatics
 </font>
 

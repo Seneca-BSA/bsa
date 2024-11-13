@@ -1,7 +1,7 @@
 # Lab 1 : mbed library
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font>
 

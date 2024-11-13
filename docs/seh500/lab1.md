@@ -1,7 +1,7 @@
 # Lab 1 : Setup
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEH500 Microprocessors and Computer Architecture
 </font>
 

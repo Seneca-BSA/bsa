@@ -1,7 +1,7 @@
 # Lab 9 : RC and RL Circuit in AC
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SES250 Electromagnatics
 </font>
 

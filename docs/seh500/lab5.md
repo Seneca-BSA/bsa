@@ -1,7 +1,7 @@
 # Lab 5 : More Branching, Subroutine, and Stack
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEH500 Microprocessors and Computer Architecture
 </font>
 
@@ -10,7 +10,7 @@ SEH500 Microprocessors and Computer Architecture
 Documentation of the Cortex-M4 instruction set can be found here:
 
 - [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001) ([PDF](Cortex-M4-Proc-Tech-Ref-Manual.pdf))
-    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
+    - [Table of processor instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
 In the previous lab, we explored how to use basic branching to control the flow of a program. In this lab, we'll further explore branching and use the stack point to create subroutine and function call procedure.

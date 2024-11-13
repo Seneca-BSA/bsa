@@ -1,7 +1,7 @@
 # Lab 3 : Series and Parallel Resistive Circuit
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SES250 Electromagnatics
 </font>
 

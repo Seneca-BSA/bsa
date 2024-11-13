@@ -1,7 +1,7 @@
 # Lab 7 : GPIO and Interrupt
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEH500 Microprocessors and Computer Architecture
 </font>
 
@@ -191,7 +191,9 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
 
     ***Figure 7.3***
 
-1. Next, open the **ConfigTools > Peripherals Windows** or right-click on the project from the **Project Explorer Project > MCUXpresso Config Tools > Open Perripheral**. On the left hand side, go to the "Peripherals" tab. Check GPIOC for SW2 at Port C Pin 6 (PTC6) and check Enable interrupt request. Afterward, check "Enable custom handler name" and we'll name it: SW2_GPIOC_IRQHANDLER. Once done, click "Update Code" near the top.
+1. Next, open the **ConfigTools > Peripherals Windows** or right-click on the project from the **Project Explorer Project > MCUXpresso Config Tools > Open Perripheral**. On the left hand side, go to the "Peripherals" tab. Check GPIOC for SW2 at Port C Pin 6 (PTC6). While prompted to "Add Configuration Component Instance", select the GPIO component with **General Purpose Input/Output (GPIO)** in the component description. If you've previous added another component, right click on GPIOC and remover them.
+
+1. Check Enable interrupt request. Afterward, check "Enable custom handler name" and we'll name it: SW2_GPIOC_IRQHANDLER. Once done, click "Update Code" near the top.
 
     ![Figure 7.4](lab7-interrupt.png)
 
@@ -223,7 +225,7 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
         void SW2_GPIOD_IRQHANDLER(void) //Interrupt Service Routine for SW2
         {
             // clear interrupt flag set by button SW2 connected to pin PTD11
-            GPIO_PortClearInterruptFlags(GPIOCD 1U << 11U);
+            GPIO_PortClearInterruptFlags(GPIOD 1U << 11U);
             LED_RED_ON();
             // turn ON RED LED
         }

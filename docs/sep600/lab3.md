@@ -1,7 +1,7 @@
 # Lab 3 : DAC and ADC
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font>
 

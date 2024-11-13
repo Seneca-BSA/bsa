@@ -1,7 +1,7 @@
 # Lab Project : RC Lowpass Filters
 
 <font size="5">
-Seneca College<br>
+Seneca Polytechnic<br>
 SES250 Electromagnatics<br>
 Due Date: Sunday, Aug 4, 11:59 PM
 </font>

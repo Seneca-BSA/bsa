@@ -1,7 +1,7 @@
 # Lab 4 : Serial UART and I2C Communication
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font>
 

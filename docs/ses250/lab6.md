@@ -1,7 +1,7 @@
 # Lab 6 : Digital Storage Oscilloscope (DSO)
 
 <font size="5">
-Seneca College</br>
+Seneca Polytechnic</br>
 SES250 Electromagnatics
 </font>
 
