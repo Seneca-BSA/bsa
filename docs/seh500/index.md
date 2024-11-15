@@ -24,7 +24,4 @@ Labs:
 - [Lab 5 : More Branching, Subroutine, and Stack](lab5.md)
 - [Lab 6 : Timer Interrupt and C Code](lab6.md)
 - [Lab 7 : GPIO and Interrupt](lab7.md)
-<!--
-- [Lab 8 : Scheduling and Serial](lab7.md)
-- [Lab 9 : Sensors](lab8.md)
--->
+- [Lab 8 : GPIO Input and Code Optimization](lab8.md)

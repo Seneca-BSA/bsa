@@ -134,7 +134,7 @@ A subroutine call can be implemented by pushing the return address on the stack 
 
 1. In this example, let's take a look as a simple subroutine call. Replace the code within the file with the following:
 
-        @ Lab Example 1
+        @ Lab 5 Example 1
         .syntax unified             @ unified syntax used
         .cpu cortex-m4              @ cpu is cortex-m4
         .thumb                      @ use thumb encoding
@@ -184,7 +184,7 @@ A subroutine call can be implemented by pushing the return address on the stack 
 
 1. In this code, we'll take a look at subroutine and stack. Replace the code within the file with the following:
 
-        @ Lab Example 2
+        @ Lab 5 Example 2
         .syntax unified             @ unified syntax used
         .cpu cortex-m4              @ cpu is cortex-m4
         .thumb                      @ use thumb encoding
