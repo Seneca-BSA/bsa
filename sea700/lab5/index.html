@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 5 : Robotic Arm and SLAM";
-        var mkdocs_page_input_path = "sea700\\lab5.md";
+        var mkdocs_page_input_path = "sea700/lab5.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -93,20 +93,32 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <p><img alt="Figure 5.1 DH Kinematics Links" src="../lab5-dh-kinematics-links.png" /></p>
 <p><em><strong>Figure 5.1</strong> DH Kinematics Links</em></p>
 <p>As shown in the figure above, each joints (i-1, i, and i+1) has a unique line <script type="math/tex">S</script> (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines <script type="math/tex">S_i</script> and <script type="math/tex">S_{i+1}</script>, there is a common normal line <script type="math/tex">A_{i, i+1}</script>.</p>
-<p>By convention:
-- z_i is the joint axes <script type="math/tex">S_i</script>
-- x_i is the common normal <script type="math/tex">A_{i, i+1}</script>
-- sand x-coordinate axes are assigned to the common normals <script type="math/tex">A_{i, i+1}</script>.</p>
+<p>By convention:</p>
+<ul>
+<li>
+<script type="math/tex">z</script>-direction is the joint axes <script type="math/tex">S</script>. <script type="math/tex">z_i</script> describe the joint attached to the end of <script type="math/tex">\textrm{Link}_i</script>.</li>
+<li>
+<script type="math/tex">x</script>-direction is the common normal <script type="math/tex">A</script>. <script type="math/tex">x_i = z_{i} \times z_{i-1}</script> is the common normal <script type="math/tex">A_{i, i+1}</script>. If there are no unqiue common normal, <script type="math/tex">d_i</script> below become a free parameter and can be defined by joint configuration.</li>
+<li>
+<script type="math/tex">y</script>-direction is third direction using right-hand rule.</li>
+</ul>
 <blockquote>
 <h4 id="four-parameters">Four Parameters</h4>
 <p>The following four transformation parameters (labelled in red text in the figure above) are known as the DH parameters:</p>
+<p><strong>Descriptions of the Joint</strong></p>
 <ul>
-<li>d_i: offset along joint axis z_i (<script type="math/tex">S_i</script>) from old common normal x_{x-1} (<script type="math/tex">A_{i-1, i}</script>) to the new common normal x_i (<script type="math/tex">A_{i, i+1}</script>).</li>
-<li>θ_i: angle about joint axis z_i (<script type="math/tex">S_i</script>) from old common normal x_{x-1} <script type="math/tex">A_{i-1, i}</script> to the new common normal x_i <script type="math/tex">A_{i, i+1}</script>
+<li>
+<script type="math/tex">d_i</script>: sliding / offset along the joint axis <script type="math/tex">S_i</script> (<script type="math/tex">z_{i-1}</script>) from the old common normal <script type="math/tex">A_{i-1, i}</script> (<script type="math/tex">x_{x-1}</script>) to the common normal <script type="math/tex">A_{i, i+1}</script> (<script type="math/tex">x_i</script>)</li>
+<li>
+<script type="math/tex">\theta_i</script>: rotation about joint axis <script type="math/tex">S_i</script> (<script type="math/tex">z_{i-1}</script>) from the old common normal <script type="math/tex">A_{i-1, i}</script> (<script type="math/tex">x_{x-1}</script>) to the common normal <script type="math/tex">A_{i, i+1}</script> (<script type="math/tex">x_i</script>)</li>
+</ul>
+<p><strong>Physical Dimensions of the Link</strong></p>
+<ul>
+<li>
+<script type="math/tex">a_i</script> (or <script type="math/tex">r_i</script>): arm length / length along the common normal <script type="math/tex">A_{i, i+1}</script> (<script type="math/tex">x_i</script>) from the joint axis <script type="math/tex">S_i</script> (<script type="math/tex">z_{i-1}</script>) to the next joint axis <script type="math/tex">S_{i+1}</script> (<script type="math/tex">z_i</script>) at the end of <script type="math/tex">\textrm{Link}_i</script>
 </li>
-<li>a_i (or r_i): length along the new common normal x_i <script type="math/tex">A_{i, i+1}</script> from z_i (<script type="math/tex">S_i</script>) to Z_{i+1} <script type="math/tex">S_{i+1}</script>
-</li>
-<li>α_i: angle about new common normal x_i <script type="math/tex">A_{i, i+1}</script>, from old axis <script type="math/tex">S_i</script> to new axis <script type="math/tex">S_{i+1}</script>
+<li>
+<script type="math/tex">\alpha_i</script>: rotation about the common normal <script type="math/tex">A_{i, i+1}</script> (<script type="math/tex">x_i</script>) from the joint axis <script type="math/tex">S_i</script> (<script type="math/tex">z_{i-1}</script>) to the next joint axis <script type="math/tex">S_{i+1}</script> (<script type="math/tex">z_i</script>) at the end of <script type="math/tex">\textrm{Link}_i</script>
 </li>
 </ul>
 </blockquote>
@@ -138,10 +150,11 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <h3 id="jetauto-arm-forward-kinematics">JetAuto Arm Forward Kinematics</h3>
 <p><img alt="Figure 5.2 JetAuto Arm Links" src="../lab5-jetauto-kinematics.png" /></p>
 <p><em><strong>Figure 5.2</strong> JetAuto Arm Links</em></p>
-<p>The figure above shows the kinematic link diagram of the JetAuto arm. Joint-1 is a rotary joint about the global z-axis and Joints 2-4 are rotary joint about their respective joint axis. Let's create the DH parameters table for the first two joints:</p>
+<p>The figure above shows the kinematic link diagram of the JetAuto arm. Let's create the DH parameters table for the first two joints:</p>
 <ul>
-<li>Joint-1 is a rotation joint about the joint axis (z_1). Therefore, only <script type="math/tex">\theta_1</script> (angle between x_0 and x_1) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.</li>
-<li>Joint-2 is a rotation joint with a distance, <script type="math/tex">d</script>, offset from Joint-1. There is a 90° change between the Joint-1 (z_1) and Joint-2 axis (z_2). Therefore, <script type="math/tex">\alpha_2 = 90°</script> (angle between z_1 and z_2 about x_2). It will also have a rotation about the Joint-2 axis (z_2), <script type="math/tex">\theta_2</script> (angle between x_1 and x_2).</li>
+<li>Joint-0 is the base platform and will be used as the global reference.</li>
+<li>Joint-1 is the rotation platform of the robotics arm. It's a rotary joint about the joint axis (<script type="math/tex">\z_0</script>). Therefore, only <script type="math/tex">\theta_1</script> (angle between <script type="math/tex">\x_0</script> and <script type="math/tex">\x_1</script>) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.</li>
+<li>Joint-2 is the rotation of the first segment of the robotics arm. It is a rotary joint with a distance, <script type="math/tex">d</script>, offset from Joint-1 (Joint-0). There is a 90° change between the Joint-1 (z_1) and Joint-2 axis (z_2). Therefore, <script type="math/tex">\alpha_2 = 90°</script> (angle between z_1 and z_2 about x_2). It will also have a rotation about the Joint-2 axis (z_2), <script type="math/tex">\theta_2</script> (angle between x_1 and x_2).</li>
 </ul>
 <p>Putting this all together yield the following DH parameters table:</p>
 <p><em><strong>Table 5.1</strong> JetAuto DH Parameters Table</em></p>
@@ -170,12 +183,9 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <td>
 <script type="math/tex">d</script>
 </td>
-<td>
-<script type="math/tex">\theta_2</script>
-</td>
 <td>0</td>
-<td>
-<script type="math/tex">\pi / 2</script>
+<td>0</td>
+<td>-<script type="math/tex">\pi / 2</script>
 </td>
 </tr>
 <tr>
