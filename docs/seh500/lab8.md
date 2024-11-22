@@ -42,6 +42,8 @@ In this last lab of the course, we'll use program in assembly language and C pro
 
     By enabling the above, you are updating the clock gate and similar settings so their respective port can be used.
 
+    Remember to click **Update Code** once done.
+
 1. Leave all the `BOARD_Init...` code as is then replace the remaining codes with the following:
 
         /* setup the switch pin config as output per fsl_gpio.h */
@@ -235,22 +237,26 @@ $$
 
         --- time = 109995 ---
 
+    The above value is obtained using the K64F processor. If you are using a K66F processor, it will be around 70,000 us.
+
 ## Post-Lab Questions
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
 1. How is the approach of using polling to read input differ then using interrupt? Which one is better? Submit your answer on Blackboard.
 
-1. The Taylor Series expansion code is written in a manner that's modular and somewhat easy to understand but not in an optimized manner in terms of fast execution. Using techniques that you've learned in class and your knowledge of assembly instruction, modify the code between timer start and timer end, including the helper function and any related variables, so it'll take less then 80ms (20% improvement) to execute the code. For every change and optimization you made, provide a brief reason on how it improve execution time.
+1. The Taylor Series expansion code is written in a manner that's modular and somewhat easy to understand but not in an optimized manner in terms of fast execution. Using techniques that you've learned in class and your knowledge of assembly instruction, modify the code between timer start and timer end, including the helper function and any related variables, so there's at least 20% improvement in speed to execute the code. For every change and optimization you made, provide a brief reason on how it improve execution time.
 
     Hints and limiations:
 
     - You may modify the code in C or re-write the code in assembly or use inline assembly
     - You may add or remove any variables or functions
-    - You may perform pre-calculation as you see fit 
+    - The degree of the approximation is fixed at 11 (ie. it does not need to be a variable)
+    - You may perform pre-calculation as you see fit
+    - sin(x) must be calculated inside the while loop using taylor series expansion, ie. Term1 + Term2 + ...
     - You cannot use a SIN function lookup table
 
-    Paste your code, explanation of every changes, and a screenshot of the terminal output on blackboard. The output value after optimization should be very similar to the value after optimization.
+    Paste your code, explanation of every changes, and a screenshot of the terminal output before and after optimization on blackboard. The output value after optimization should be very similar to the value after optimization.
 
     **Challenge:** Achieve at least 50% improvement in speed.
 
