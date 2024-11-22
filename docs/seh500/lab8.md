@@ -86,6 +86,7 @@ In this last lab of the course, we'll use program in assembly language and C pro
         {
             volatile uint32_t i = 0;
             /* at 120MHz, 120,000,000 instructions = 1s */
+            /* for K66 at 180MHz, 180,000,000 instructions = 1s */
             for (i = 0; i < 120000000; ++i)
             {
                 __asm("NOP"); /* delay */
