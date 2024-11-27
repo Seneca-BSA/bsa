@@ -114,10 +114,11 @@ SEH500 Microprocessors and Computer Architecture
 <li>BOARD_InitBUTTONsPins</li>
 <li>BOARD_InitLEDsPins</li>
 </ul>
-<p>By enabling the above, you are updating the clock gate and similar settings so their respective port can be used.</p>
+<p>By enabling the above, you are updating the clock gate and pin settings so their respective port can be used.</p>
+<p>Remember to click <strong>Update Code</strong> once done.</p>
 </li>
 <li>
-<p>Leave all the <code>BOARD_Init...</code> code as is then replace the remaining codes with the following:</p>
+<p>Leave all the <code>BOARD_Init...</code> function in your <code>main.c</code> as is then replace the remaining codes with the following:</p>
 <pre><code>/* setup the switch pin config as output per fsl_gpio.h */
 gpio_pin_config_t sw_config = {
     kGPIO_DigitalInput,
@@ -157,6 +158,7 @@ return 0 ;
 {
     volatile uint32_t i = 0;
     /* at 120MHz, 120,000,000 instructions = 1s */
+    /* for K66 at 180MHz, 180,000,000 instructions = 1s */
     for (i = 0; i &lt; 120000000; ++i)
     {
         __asm("NOP"); /* delay */
@@ -312,6 +314,7 @@ x = 3138, sin_x = 2
 
 --- time = 109995 ---
 </code></pre>
+<p>The above value is obtained using the K64F processor. If you are using a K66F processor, it will be around 70,000 us.</p>
 </li>
 </ol>
 <h2 id="post-lab-questions">Post-Lab Questions</h2>
@@ -321,15 +324,17 @@ x = 3138, sin_x = 2
 <p>How is the approach of using polling to read input differ then using interrupt? Which one is better? Submit your answer on Blackboard.</p>
 </li>
 <li>
-<p>The Taylor Series expansion code is written in a manner that's modular and somewhat easy to understand but not in an optimized manner in terms of fast execution. Using techniques that you've learned in class and your knowledge of assembly instruction, modify the code between timer start and timer end, including the helper function and any related variables, so it'll take less then 80ms (20% improvement) to execute the code. For every change and optimization you made, provide a brief reason on how it improve execution time.</p>
+<p>The Taylor Series expansion code is written in a manner that's modular and somewhat easy to understand but not in an optimized manner in terms of fast execution. Using techniques that you've learned in class and your knowledge of assembly instruction, modify the code between timer start and timer end, including the helper function and any related variables, so there's at least 20% improvement in speed to execute the code. For every change and optimization you made, provide a brief reason on how it improve execution time.</p>
 <p>Hints and limiations:</p>
 <ul>
 <li>You may modify the code in C or re-write the code in assembly or use inline assembly</li>
 <li>You may add or remove any variables or functions</li>
-<li>You may perform pre-calculation as you see fit </li>
+<li>The degree of the approximation is fixed at 11 (ie. it does not need to be a variable)</li>
+<li>You may perform pre-calculation as you see fit</li>
+<li>sin(x) must be calculated inside the while loop using taylor series expansion, ie. Term1 + Term2 + ...</li>
 <li>You cannot use a SIN function lookup table</li>
 </ul>
-<p>Paste your code, explanation of every changes, and a screenshot of the terminal output on blackboard. The output value after optimization should be very similar to the value after optimization.</p>
+<p>Paste your code, explanation of every changes, and a screenshot of the terminal output before and after optimization on blackboard. The output value after optimization should be very similar to the value after optimization.</p>
 <p><strong>Challenge:</strong> Achieve at least 50% improvement in speed.</p>
 </li>
 </ol>
