@@ -27,18 +27,24 @@ where \([T]\) is the transformation that characterizes the location and orientat
 As shown in the figure above, each joints (i-1, i, and i+1) has a unique line \(S\) (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines \(S_i\) and \(S_{i+1}\), there is a common normal line \(A_{i, i+1}\).
 
 By convention:
-- z_i is the joint axes \(S_i\)
-- x_i is the common normal \(A_{i, i+1}\)
-- sand x-coordinate axes are assigned to the common normals \(A_{i, i+1}\).
+
+- \(z\)-direction is the joint axes \(S\). \(z_i\) describe the joint attached to the end of \(\textrm{Link}_i\).
+- \(x\)-direction is the common normal \(A\). \(x_i = z_{i} \times z_{i-1}\) is the common normal \(A_{i, i+1}\). If there are no unqiue common normal, \(d_i\) below become a free parameter and can be defined by joint configuration.
+- \(y\)-direction is third direction using right-hand rule.
 
 > #### Four Parameters
 
 > The following four transformation parameters (labelled in red text in the figure above) are known as the DH parameters:
-
->   - d_i: offset along joint axis z_i (\(S_i\)) from old common normal x_{x-1} (\(A_{i-1, i}\)) to the new common normal x_i (\(A_{i, i+1}\)).
->   - θ_i: angle about joint axis z_i (\(S_i\)) from old common normal x_{x-1} \(A_{i-1, i}\) to the new common normal x_i \(A_{i, i+1}\)
->   - a_i (or r_i): length along the new common normal x_i \(A_{i, i+1}\) from z_i (\(S_i\)) to Z_{i+1} \(S_{i+1}\)
->   - α_i: angle about new common normal x_i \(A_{i, i+1}\), from old axis \(S_i\) to new axis \(S_{i+1}\)
+>
+> **Descriptions of the Joint**
+>
+>   - \(d_i\): sliding / offset along the joint axis \(S_i\) (\(z_{i-1}\)) from the old common normal \(A_{i-1, i}\) (\(x_{x-1}\)) to the common normal \(A_{i, i+1}\) (\(x_i\))
+>   - \(\theta_i\): rotation about joint axis \(S_i\) (\(z_{i-1}\)) from the old common normal \(A_{i-1, i}\) (\(x_{x-1}\)) to the common normal \(A_{i, i+1}\) (\(x_i\))
+>
+> **Physical Dimensions of the Link**
+>
+>   - \(a_i\) (or \(r_i\)): arm length / length along the common normal \(A_{i, i+1}\) (\(x_i\)) from the joint axis \(S_i\) (\(z_{i-1}\)) to the next joint axis \(S_{i+1}\) (\(z_i\)) at the end of \(\textrm{Link}_i\)
+>   - \(\alpha_i\): rotation about the common normal \(A_{i, i+1}\) (\(x_i\)) from the joint axis \(S_i\) (\(z_{i-1}\)) to the next joint axis \(S_{i+1}\) (\(z_i\)) at the end of \(\textrm{Link}_i\)
 
 This convention allows the definition of the movement of links around a common joint axis \(S_i\) by the screw displacement:
 
@@ -72,10 +78,11 @@ where \(\alpha_{i, i+1}\) and \(a_{i, i+1}\) define the physical dimensions of t
 
 ***Figure 5.2** JetAuto Arm Links*
 
-The figure above shows the kinematic link diagram of the JetAuto arm. Joint-1 is a rotary joint about the global z-axis and Joints 2-4 are rotary joint about their respective joint axis. Let's create the DH parameters table for the first two joints:
+The figure above shows the kinematic link diagram of the JetAuto arm. Let's create the DH parameters table for the first two joints:
 
-- Joint-1 is a rotation joint about the joint axis (z_1). Therefore, only \(\theta_1\) (angle between x_0 and x_1) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.
-- Joint-2 is a rotation joint with a distance, \(d\), offset from Joint-1. There is a 90° change between the Joint-1 (z_1) and Joint-2 axis (z_2). Therefore, \(\alpha_2 = 90°\) (angle between z_1 and z_2 about x_2). It will also have a rotation about the Joint-2 axis (z_2), \(\theta_2\) (angle between x_1 and x_2).
+- Joint-0 is the base platform and will be used as the global reference.
+- Joint-1 is the rotation platform of the robotics arm. It's a rotary joint about the joint axis (\(\z_0\)). Therefore, only \(\theta_1\) (angle between \(\x_0\) and \(\x_1\)) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.
+- Joint-2 is the rotation of the first segment of the robotics arm. It is a rotary joint with a distance, \(d\), offset from Joint-1 (Joint-0). There is a 90° change between the Joint-1 (z_1) and Joint-2 axis (z_2). Therefore, \(\alpha_2 = 90°\) (angle between z_1 and z_2 about x_2). It will also have a rotation about the Joint-2 axis (z_2), \(\theta_2\) (angle between x_1 and x_2).
 
 Putting this all together yield the following DH parameters table:
 
@@ -84,7 +91,7 @@ Putting this all together yield the following DH parameters table:
 | DH# | d | θ | a | α |
 |---|---|---|---|---|
 | 1 | 0 | \(\theta_1\) | 0 | 0 |
-| 2 | \(d\) | \(\theta_2\) | 0 | \(\pi / 2\) |
+| 2 | \(d\) | 0 | 0 | -\(\pi / 2\) |
 | 3 | | | | |
 | 4 | | | | |
 
