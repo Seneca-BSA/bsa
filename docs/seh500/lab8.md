@@ -222,7 +222,7 @@ $$
         }
         return 0;
 
-1. Build and Debug, then Run he code using **Resume (F8)**. Press switch 2 and see the red LED turn on and off. Everytime when you press switch 2, \(sin(x)\) calculation from \(0\) to \(\pi\) are calculated at one-thousand intervals. If you open the **Serial Monitor (Terminal)**, it'll say the execution took about 100ms.
+1. Build and Debug, then Run he code using **Resume (F8)**. Press switch 2 and see the red LED turn on and off. Everytime when you press switch 2, \(sin(x)\) calculation from \(0\) to \(\pi\) are calculated at one-thousand intervals. If you open the **Serial Monitor (Terminal)**, it'll say the execution took about 100ms (or 70ms for K66).
 
     The output should be similar to this:
 
