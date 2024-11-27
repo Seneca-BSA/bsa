@@ -40,11 +40,11 @@ In this last lab of the course, we'll use program in assembly language and C pro
     - BOARD_InitBUTTONsPins
     - BOARD_InitLEDsPins
 
-    By enabling the above, you are updating the clock gate and similar settings so their respective port can be used.
+    By enabling the above, you are updating the clock gate and pin settings so their respective port can be used.
 
     Remember to click **Update Code** once done.
 
-1. Leave all the `BOARD_Init...` code as is then replace the remaining codes with the following:
+1. Leave all the `BOARD_Init...` function in your `main.c` as is then replace the remaining codes with the following:
 
         /* setup the switch pin config as output per fsl_gpio.h */
         gpio_pin_config_t sw_config = {
