@@ -19,7 +19,7 @@ Then call campus security: 416-764-0911 for assistance
 
 ## Laboratory First Aid and Safety Procedures
 
-- [Lab Safety Presentation Slides](safety-SES250-Lab-Safety-RevA.pdf)
+- [Lab Safety Presentation Slides](safety-SES250-Lab-Safety-RevB.pdf)
 
 ## Lab WHMIS Training
 
