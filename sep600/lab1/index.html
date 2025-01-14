@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 1 : mbed library - BSA Lab Manuals</title>
+    <title>Lab 1 : mbed OS and IDE - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 1 : mbed library";
+        var mkdocs_page_name = "Lab 1 : mbed OS and IDE";
         var mkdocs_page_input_path = "sep600/lab1.md";
         var mkdocs_page_url = null;
       </script>
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 1 : mbed library</li>
+      <li class="breadcrumb-item active">Lab 1 : mbed OS and IDE</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,50 +74,154 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-1-mbed-library">Lab 1 : mbed library</h1>
+                <h1 id="lab-1-mbed-os-and-ide">Lab 1 : mbed OS and IDE</h1>
 <p><font size="5">
 Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font></p>
 <h2 id="introduction">Introduction</h2>
 <p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
+<p>Documentation of the Freedom K64 and K66 board and it's microcontroller can be found here:</p>
 <ul>
-<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
-<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
-<li><a href="../FRDMK64FUG.pdf">FRDM-K64F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">nxp.com</a>)</li>
-<li><a href="../K64P144M120SF5RM.pdf">Kinetis K64 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">nxp.com</a>)</li>
-<li><a href="../FRDMK66FUG.pdf">FRDM-K66F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">nxp.com</a>)</li>
-<li><a href="../K66P144M180SF5RMV2.pdf">Kinetis K66 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">nxp.com</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a> (<a href="../FRDMK64FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a> (<a href="../K64P144M120SF5RM.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a> (<a href="../FRDMK66FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a> (<a href="../K66P144M180SF5RMV2.pdf">PDF</a>)</li>
 </ul>
+<p>Documentation of the Cortex-M4 instruction set can be found here:</p>
+<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of processor instructions</a></li>
+</ul>
+</li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
+</ul>
+<h2 id="mbed-os-and-library">mbed OS and Library</h2>
+<p>Mbed OS is an open-source, real-time operating system designed for embedded systems and Internet of Things (IoT) devices. Developed by Arm, it provides a robust platform for building applications that require low power, high performance, and real-time capabilities. Mbed OS offers a rich set of libraries and middleware that simplify the development process, including device drivers, networking stacks, security features, and cloud connectivity. It supports a wide range of microcontrollers and hardware platforms, making it easier for developers to create scalable and reliable solutions for connected devices. With its focus on ease of use and efficiency, Mbed OS helps streamline development for embedded systems in industries like automotive, healthcare, and industrial automation.</p>
+<p>The Mbed OS <code>mbed.h</code> include hepler functions, objects, and keyword to simplify the development process. Although using the mbed OS is not required for the Freedom K64F and K66F microcontroller board, making use of it will greatly speedup the development cycle.</p>
 <h2 id="preparation">Preparation</h2>
-<p>Read over the lab manual for this lab. Acquire the Freedom microcontroller board and install the necessary IDE as described in the lab manual.</p>
-<blockquote>
-<h3 id="lab-preparation-question">Lab Preparation Question</h3>
 <ol>
-<li>Read over the lab and understand the procedures.</li>
+<li>Read over the lab manual for this lab.</li>
+<li>Acquire a Freedom (K64F or K66F) microcontroller board and install the necessary IDE as described in the lab manual.</li>
 </ol>
-</blockquote>
 <h2 id="procedures">Procedures</h2>
+<p>Recently, ARM made the <a href="https://os.mbed.com/blog/entry/Important-Update-on-Mbed/">announcement</a> on retiring the Mbed platform and OS. However, the Mbed codebase will still be useable for simplification of embedded system development. The retiring of Mbed OS also mean limited support on the Mbed Cloud and Mbed Studio IDE. However, ARM is still actively maintaining it's <a href="https://studio.keil.arm.com/">Keil Studio Cloud</a> and related IDE products to allow the use of the Mbed OS in embedded system development.</p>
 <ol>
-<li>Go to the following link to download the code for a simple blink LED program. This is the code you'll base your lab exercise with. <a href="https://github.com/Seneca-BSA/bsa-sep600">https://github.com/Seneca-BSA/bsa-sep600</a></li>
-<li>Once you've downloaded the code above, unzip it locally.</li>
-<li>Open MCUXpresso then import the project by File &gt; Import Project from File System or Archive. Find the folder that you've unzipped the code from above then select the folder "lab" for import.</li>
-<li>Click Finish to import the project.
-    <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-    The code in the project is for a K64F board, if you are using the Freedom K66F board, the pin configurations is difference. Refer to the Freedom K66F board manual for the correct pin number.
-    </div></li>
-<li>Open up the main.cpp code and you should see a printf statement along with a few functions that controls the pin direction and the pin state. We are now using the mbed-os library and most of the coding done from this point will be using C++. However, with knowledged of assembly language, you can still program the microcontroller using assembler.</li>
-<li>Build and debug the code and you should see the LED blink.</li>
-<li>The API used in the code is the <a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">mbed I/O API</a>. Our baremetal mbed OS might not be at the latest version so some of the features might not work properly.</li>
-<li>Your task for this lab is to modify the progam to simulate brigthening and dimming of the LED using a concept called PWM but implementing it from a software side. Re-write the code so the LED will turn on for 99 microsecond and off for 1 microsecond. This means your LED is on 99% of the time. Build and debug the program. What do you notice?</li>
-<li>Change your code so your LED is ON for 50% of the time.
-    &gt; <strong>Lab Question:</strong> What do you notice?</li>
+<li><a href="https://studio.keil.arm.com/">Keil Studio Cloud</a> will be the perferred IDE that we are going to use for this course.<ul>
+<li><a href="https://os.mbed.com/studio/">Mbed Studio</a> can still be used but are no longer perferred</li>
+</ul>
+</li>
 <li>
-<p>Lastly, re-write your program so your LED will loop between 0% and 100% brightness with sufficient delay so we (as human) can see the fading in and out of the LED.</p>
-<p><strong>Hint:</strong> You might need to change the period from 100 us to something longer in order for the microcontroller to response properly.</p>
+<p><strong>Using the Chrome Browser</strong>, login to <a href="https://studio.keil.arm.com/">Keil Studio Cloud</a>. Create an Mbed account as necessary with any e-mail address of your choice. Chrome is the most browser for use with Keil Studio Cloud.</p>
+<p><img alt="Figure 1.1 Keil Studio Cloud Login" src="../lab1-login.png" /></p>
+<p><em><strong>Figure 1.1</strong> Keil Studio Cloud Login</em></p>
+</li>
+<li>
+<p>After login, you'll see a familar interface that is based on Visual studio Code. Click "+ New project" and select "mbed-os-example-blinky" under "Mbed OS 6" from the Example project menu. Rename the project as "lab1" then <strong>Add project</strong>.</p>
+<p><img alt="Figure 1.2 Add Project" src="../lab1-add-project.png" /></p>
+<p><em><strong>Figure 1.2</strong> Add Project</em></p>
+</li>
+<li>
+<p>Open up <code>main.cpp</code> from the project tree and you should see a very simple LED blinking code in the IDE. At this point, the code will not compile because we have not defined the "Build target". Select "FRDM-K64F" or "FRDM-K66F" depending on your hardware. All error should go away now.</p>
+<p><img alt="Figure 1.3 Keil Studio Cloude IDE with Blinky project" src="../lab1-add-project.png" /></p>
+<p><em><strong>Figure 1.3</strong> Keil Studio Cloude IDE with Blinky project</em></p>
+</li>
+<li>
+<p>Keil Studio Cloud uses the web USB interface to connect with your micrcontroller board. The interface will only work if the Chrome browser have full premission to use your computer's USB port. Plug your microcontroller board into your computer. Once plugged in, under "Connected device", you should see your microcontroller board show up. If your board is not showing up, don't worry, you can still uplpoad your code onto your microcontroller using an alternative method.</p>
+</li>
+<li>
+<p>Mbed OS is an embedded Real-time Operating System (RTOS) that we'll be discussing later in the term. A RTOS, comparing to non-RTOS (or bare metal), allow the operating system to manage pirority and resource to ensure timely execution of each task or thread.</p>
+<p>In the example code:</p>
+<pre><code>int main()
+{
+    // Initialise the digital pin LED1 as an output
+    DigitalOut led(LED1);
+
+    while (true) {
+        led = !led;
+        ThisThread::sleep_for(BLINKING_RATE);
+    }
+}
+</code></pre>
+<p><code>DigitalOut</code> define a object called <code>led</code> using the <code>LED1</code> keyword. This is the pin connected to the red LED.</p>
+<p>The <code>led</code> object can then be used directly as a variable to toggle the ON/OFF of the LED.</p>
+<p><code>ThisThread::sleep_for();</code> put the current <code>main</code> thread to sleep for 500ms as defined by <code>BLINKING_RATE</code>. In later lab, you'll be able to define additional threads.</p>
+<p>Below are references to learn more about the code:</p>
+<ul>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/index.html">Mbed API list</a></li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/Freescale/wiki/frdm-k64f-pinnames">FRDM-K64F Mbed pinnames</a></li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/NXP/wiki/FRDM-K66F-Pinnames">FRDM-K66F Mbed pinnames</a></li>
+</ul>
+</li>
+<li>
+<p>At this point, there are two ways to upload the code onto your mircocontroller board.</p>
+<ul>
+<li><strong>Method 1:</strong> If your browser have full permission to the web USB interface, you'll be able to click the "Run project" (Play) button to build and upload the code. The "Flashing" status will go to 100%.</li>
+<li><strong>Method 2:</strong> If you cannot upload directly from your browser, you can click the "Build project" (Hammer) button to compile the code. After build is complete, you'll be offered to save the <code>.bin</code> file. Save and copy that file onto the "K64F" or "K66F" directory (from your computer's files explorer) to flash your microcontroller board.</li>
+</ul>
+</li>
+<li>
+<p>Your board should start blinking at 1 Hz.</p>
+</li>
+<li>
+<p>Next, we'll output something through USB serial so we can read it using our computer's serial port. Depending on your browser permission, the Keil Studio Cloud online interface may work. However, to increase robustness, use a terminal software to read serial port. Here are some options:</p>
+<ul>
+<li>Windows: <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">PuTTY</a> or <a href="https://teratermproject.github.io/index-en.html">TeraTerm</a></li>
+<li>Mac/Linux: <code>screen</code> or <code>putty</code></li>
+</ul>
+</li>
+<li>
+<p>Add the following line to your code with a logic so everytime when the LED turns ON and <em>only when the LED turns ON</em>, the message is printed to the serial port. You can be creative with your message.</p>
+<pre><code>printf("SEP600 is Cool!\n");
+</code></pre>
+<p>Remember, print <em>only when the LED turns ON</em>.</p>
+</li>
+<li>
+<p>Open the serial port that your microcontroller is connected to (ie. COM4 or /dev/ttyACM0, etc. depending on your platform) at baud rate 9600 using PuTTY, screen or a termianl program of your choice. You should see the following being printed:</p>
+<pre><code>SEP600 is Cool!
+SEP600 is Cool!
+SEP600 is Cool!
+...
+</code></pre>
+<p>To find which port your microcontroller board is connected to:</p>
+<ul>
+<li>Windows: open device manager and look under COM port then unplug and re-plug your board to find the COM port</li>
+<li>Mac/Linux: use <code>dmesg | grep /dev/tty*</code> or look in <code>/sys/class/tty</code> then unplug and re-plug your board to find the port</li>
+</ul>
+<p>If don't see the output, check your code and ensure you are opening the proper COM port. If problem presist, be resourceful and try to troubleshoot the issue.</p>
+<p>Typical setting for PuTTY:</p>
+<p><img alt="Figure 1.4 Open COM port with PuTTY" src="../lab1-putty.jpg" /></p>
+<p><em><strong>Figure 1.4</strong> Open COM port with PuTTY</em></p>
+<p>Typical command for <code>screen</code>:</p>
+<pre><code>screen /dev/ttyACM0 9600
+</code></pre>
+</li>
+<li>
+<p>Lastly, add an input logic using <code>scanf</code>, <code>getchar</code> or any input function so the blinking will only start after a serial input (such as pressing "Enter") from the user.</p>
+<p>Initial Output:</p>
+<pre><code>Press Enter to Start!
+</code></pre>
+<p>After Enter key pressed:</p>
+<pre><code>Press Enter to Start!
+SEP600 is Cool!
+SEP600 is Cool!
+SEP600 is Cool!
+...
+</code></pre>
 </li>
 </ol>
+<p>Once you've completed all the steps above, ask the lab professor or instructor over and demostrate that you've completed the lab. You might be asked to explain some of the concepts you've learned in this lab.</p>
 <h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://studio.keil.arm.com/">Keil Studio Cloud</a></li>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/index.html">Mbed API list</a></li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/Freescale/wiki/frdm-k64f-pinnames">FRDM-K64F Mbed pinnames</a></li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/NXP/wiki/FRDM-K66F-Pinnames">FRDM-K66F Mbed pinnames</a></li>
+</ul>
               
             </div>
           </div><footer>
