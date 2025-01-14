@@ -29,7 +29,7 @@ SES250 Electromagnatics
 
 ## SES250 Lab Kit
 
-The following lab components are mandatory for you to brign to the lab for this course. They are common in the field of Electronics / Electrical Engineering are some of them will be used in future classes.
+The following lab components are mandatory for you to brign to the lab for this course. They are common in the field of Electronics / Electrical Engineering and some of the components will be used in future courses.
 
 Also included on the list are some of the places you can purchase the items. They can also be purchased from other major online retailers but links will not be provided as their product listing is very dynamic.
 
