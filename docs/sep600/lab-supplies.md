@@ -25,9 +25,6 @@ The following lab components are mandatory for you to brign to the lab for this 
 
 Also included on the list are some of the places you can purchase the items. They can also be purchased from other major online retailers but links will not be provided as their product listing is very dynamic.
 
-Coming Soon.
-
-<!--
 | Item | [Canada Robotix](https://www.canadarobotix.com/) | [Creatron](https://www.creatroninc.com/) | [Sayal](https://sayal.com/) |
 | --- | --- | --- | --- |
 | (1x) Full-size Breadboard | [Breadboard](https://www.canadarobotix.com/products/160) | [Breadboard](https://www.creatroninc.com/product/full-size-breadboard-white/) | [Breadboard Kit](https://secure.sayal.com/STORE4/prodetails.php?SKU=162075) |
@@ -40,16 +37,15 @@ Coming Soon.
 | (2x) 100nF 50V 20% Ceramic Capacitor | [5 pcs](https://www.canadarobotix.com/products/905) | [2 pcs](https://www.creatroninc.com/product/monolithic-ceramic-capacitor-2-pack/) | |
 | (2x) 10μF 50V 20% Electrolytic Capacitor | [2 pcs](https://www.canadarobotix.com/products/960) | [1 pc](https://www.creatroninc.com/product/electrolytic-capacitor/) | [2 pcs](https://secure.sayal.com/STORE4/prodetails.php?SKU=238791) |
 | (2x) 100μF 50V 20% Electrolytic Capacitor | [2 pcs](https://www.canadarobotix.com/products/1087) | [1 pc](https://www.creatroninc.com/product/electrolytic-capacitor/) | [2 pcs](https://secure.sayal.com/STORE4/prodetails.php?SKU=233058) |
-| (1x) 100µH 1A 10% Drum Core Inductor | [2 pcs](https://www.canadarobotix.com/products/5164) | | |
 | (1x) Red 5mm LED | [5pcs](https://www.canadarobotix.com/products/706) | [10 pcs](https://www.creatroninc.com/product/5mm-led-red-10-pack/) | [5 pcs](https://secure.sayal.com/STORE4/prodetails.php?SKU=205842) |
 | (1x) Potentiometer 10K with Knob | [1 pc](https://www.canadarobotix.com/products/553) | | [1 pc](https://secure.sayal.com/STORE4/prodetails.php?SKU=260634) |
-
-Canada Robotix has bundled the above components into a single kit: [SES250 Lab Kit](https://www.canadarobotix.com/products/5122)
+| (1x) Op-Amp LM358 or Similar | [1 pc](https://www.canadarobotix.com/products/621) | | |
+| (2x) Momentary Push Button/Tactile Switch | [1 pc](https://www.canadarobotix.com/products/854) | | |
+| (1x) I2C Character LCD Module or Similar | [1 pc](https://www.canadarobotix.com/products/2008) | | |
 
 ## Other Optional Components
 
 | Item | [Canada Robotix](https://www.canadarobotix.com/) | [Creatron](https://www.creatroninc.com/) | [Sayal](https://sayal.com/) |
 | --- | --- | --- | --- |
 | Alligator Leads | [10 pcs](https://www.canadarobotix.com/products/637) | [10 pcs](https://www.creatroninc.com/product/small-alligator-wire-10-pack/) | [10 pcs](https://secure.sayal.com/STORE4/prodetails.php?SKU=263885) |
-
--->
+| (1x) Mini Photocell (Light Sensor) | [1 pc](https://www.canadarobotix.com/products/1138) | | |

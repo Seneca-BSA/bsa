@@ -40,6 +40,47 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 
 ## Procedures
 
+![Figure 2.4](lab2-rc-circuit.png)
+
+***Figure 2.4** RC Circuit.*
+
+1. Without removing your comparator, pull-up and pull-down circuit, acquire a resistor and a capacitor to assemble an RC circuit as given above and attach the PWM signal to a PWM-capable pin of your microcontroller (ones with purple PWM label in the pinout diagram). Refer to the microcontroller board manual for details on pin assignment.
+
+    <div style="padding: 15px; border: 1px solid red; background-color: orange; color: white;"><font size="5">If you are using a polarize capacitor, ensure the polarity of your connection is correct.</font></div>
+
+1. What is the RC time constant for your circuit? You'll need this for your program.
+
+1. Modify your code to set up a PWM pin.
+
+        int main()
+        {
+            ...
+            PwmOut pwm(PTXXX); // Replace PTXXX with your pwm pin
+            ...
+        }
+
+1. Add the following code to start the PWM output. Use a period that is at least twice your RC time constant.
+
+        int main()
+        {
+            ...
+            pwm.period(XXXf); // period in s
+            pwm.write(0.50f); // duty cycle 0.5f = 50%
+            ...
+        }
+
+1. Turn on the DSO and connect CH1 to the PWM pin and CH2 to the RC circuit output signal. DSO ground will be common with your circuit ground.
+
+1. Run and test your program then adjust the DSO so both CH1 and CH2 are in view. Your signal should look like similar to the graph below.
+
+    ![Figure 2.2](lab2-rc-pwm.png)
+
+    ***Figure 2.2** PWM signal after RC smoothing.*
+
+1. Adjust your PWM settings so there's less than 10% fluctuation between the high and low voltage after the RC filter (CH2).
+    > **Lab Question:** What is the PWM frequency needed to achieve this?
+
+
 ### Part 1: PWM Output vs DAC Output
 
 In Part 1, we'll set up a PWM and a DAC to compare the difference between the output.

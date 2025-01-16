@@ -12,9 +12,11 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 
 Labs:
 
+- [Lab Safety](lab-safety.md)
+- [Lab Supplies](lab-supplies.md)
 - [Lab 1 : mbed OS and IDE](lab1.md)
+- [Lab 2 : Comparator and Digital I/O](lab2.md)
 <!--
-- [Lab 2 : Digital I/O](lab2.md)
 - [Lab 3 : DAC and ADC](lab3.md)
 - [Lab 4 : Serial UART and I2C Communication](lab4.md)
 - [Lab 5 : LCD](lab5.md)

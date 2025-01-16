@@ -39,7 +39,7 @@ Recently, ARM made the [announcement](https://os.mbed.com/blog/entry/Important-U
 
 1. [Keil Studio Cloud](https://studio.keil.arm.com/) will be the perferred IDE that we are going to use for this course.
     - [Mbed Studio](https://os.mbed.com/studio/) can still be used but are no longer perferred
-1. **Using the Chrome Browser**, login to [Keil Studio Cloud](https://studio.keil.arm.com/). Create an Mbed account as necessary with any e-mail address of your choice. Chrome is the most browser for use with Keil Studio Cloud.
+1. **Using the Chrome Browser**, login to [Keil Studio Cloud](https://studio.keil.arm.com/). Create an Mbed account as necessary with your school e-mail as using a personal e-mail will result in additional verification from ARM. Chrome is the most browser for use with Keil Studio Cloud.
 
     ![Figure 1.1 Keil Studio Cloud Login](lab1-login.png)
 
@@ -90,23 +90,23 @@ Recently, ARM made the [announcement](https://os.mbed.com/blog/entry/Important-U
 
 1. At this point, there are two ways to upload the code onto your mircocontroller board.
 
-    - **Method 1:** If your browser have full permission to the web USB interface, you'll be able to click the "Run project" (Play) button to build and upload the code. The "Flashing" status will go to 100%.
-    - **Method 2:** If you cannot upload directly from your browser, you can click the "Build project" (Hammer) button to compile the code. After build is complete, you'll be offered to save the `.bin` file. Save and copy that file onto the "K64F" or "K66F" directory (from your computer's files explorer) to flash your microcontroller board.
+    - **Method 1: (the lucky few)** If your browser have full permission to the web USB interface, you'll be able to click the "Run project" (Play) button to build and upload the code in a single step. The "Flashing" status will go to 100% and the code is now uploaded on your board.
+    - **Method 2: (the majority)** If you cannot upload directly from your browser (ie. the Flashing status does not advances when you click Run), refresh and click the "Build project" (Hammer) button to compile the code. After code build is complete, you'll be offered to save the `.bin` file. Save and copy that file onto the "K64F" or "K66F" directory (from your computer's files explorer) to flash your microcontroller board. This process might take a few second to a few minutes depending on your setup. Be patient and wait until the board restart after the file is uploaded.
 
-1. Your board should start blinking at 1 Hz.
+1. Your board should start blinking at 1 Hz. If it's not blinking, reset the board.
 
-1. Next, we'll output something through USB serial so we can read it using our computer's serial port. Depending on your browser permission, the Keil Studio Cloud online interface may work. However, to increase robustness, use a terminal software to read serial port. Here are some options:
+1. Next, we'll output something through USB serial so we can read it using our computer's serial port. Depending on your browser permission, the Keil Studio Cloud online serial monitor interface may work. However, to increase robustness, use a terminal software from your computer to read the serial port. Here are some options:
 
     - Windows: [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) or [TeraTerm](https://teratermproject.github.io/index-en.html)
     - Mac/Linux: `screen` or `putty`
 
-1. Add the following line to your code with a logic so everytime when the LED turns ON and *only when the LED turns ON*, the message is printed to the serial port. You can be creative with your message.
+1. Add the following line to your code with a logic so everytime when the LED turns ON and *only when (immediately after) the LED turns ON*, the message is printed to the serial port. You can be creative with your message.
 
         printf("SEP600 is Cool!\n");
 
-    Remember, print *only when the LED turns ON*.
+    Remember, print *only when (immediately after) the LED turns ON*.
 
-1. Open the serial port that your microcontroller is connected to (ie. COM4 or /dev/ttyACM0, etc. depending on your platform) at baud rate 9600 using PuTTY, screen or a termianl program of your choice. You should see the following being printed:
+1. Open the serial port that your microcontroller is connected to (ie. COM4 or /dev/tty.usb... or /dev/ttyACM0, etc. depending on your platform) at a baud rate 9600 using PuTTY, screen or a termianl program of your choice. You should see the following being printed:
 
         SEP600 is Cool!
         SEP600 is Cool!
@@ -116,9 +116,9 @@ Recently, ARM made the [announcement](https://os.mbed.com/blog/entry/Important-U
     To find which port your microcontroller board is connected to:
 
     - Windows: open device manager and look under COM port then unplug and re-plug your board to find the COM port
-    - Mac/Linux: use `dmesg | grep /dev/tty*` or look in `/sys/class/tty` then unplug and re-plug your board to find the port
+    - Mac/Linux: use `ls /dev/tty*` then unplug and re-plug your board to find the device port
 
-    If don't see the output, check your code and ensure you are opening the proper COM port. If problem presist, be resourceful and try to troubleshoot the issue.
+    If you don't see the output, check your code and ensure you are opening the proper port. If problem presist, be resourceful and try to troubleshoot the issue.
 
     Typical setting for PuTTY:
 
@@ -128,9 +128,11 @@ Recently, ARM made the [announcement](https://os.mbed.com/blog/entry/Important-U
 
     Typical command for `screen`:
     
-        screen /dev/ttyACM0 9600
+        screen /dev/ttyXXXXXXXXXXXX 9600
 
-1. Lastly, add an input logic using `scanf`, `getchar` or any input function so the blinking will only start after a serial input (such as pressing "Enter") from the user.
+    Replace the above command with the name of your port. To exit the `screen` interface, use `Crtl + A` then `\`. See documentation.
+
+1. Lastly, add an input logic using `scanf`, `getchar` or any input function so the blinking will only start after an serial input (such as pressing "Enter") from the user.
 
     Initial Output:
 
@@ -144,7 +146,7 @@ Recently, ARM made the [announcement](https://os.mbed.com/blog/entry/Important-U
         SEP600 is Cool!
         ...
 
-Once you've completed all the steps above, ask the lab professor or instructor over and demostrate that you've completed the lab. You might be asked to explain some of the concepts you've learned in this lab.
+Once you've completed all the steps above (and ONLY when you are ready as you'll only have one opportunity to demo), ask the lab professor or instructor over and demostrate that you've completed the lab. You might be asked to explain some of the concepts you've learned in this lab.
 
 ## Reference
 
