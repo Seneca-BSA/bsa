@@ -114,6 +114,50 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
+<p><img alt="Figure 2.4" src="../lab2-rc-circuit.png" /></p>
+<p><em><strong>Figure 2.4</strong> RC Circuit.</em></p>
+<ol>
+<li>
+<p>Without removing your comparator, pull-up and pull-down circuit, acquire a resistor and a capacitor to assemble an RC circuit as given above and attach the PWM signal to a PWM-capable pin of your microcontroller (ones with purple PWM label in the pinout diagram). Refer to the microcontroller board manual for details on pin assignment.</p>
+<p><div style="padding: 15px; border: 1px solid red; background-color: orange; color: white;"><font size="5">If you are using a polarize capacitor, ensure the polarity of your connection is correct.</font></div></p>
+</li>
+<li>
+<p>What is the RC time constant for your circuit? You'll need this for your program.</p>
+</li>
+<li>
+<p>Modify your code to set up a PWM pin.</p>
+<pre><code>int main()
+{
+    ...
+    PwmOut pwm(PTXXX); // Replace PTXXX with your pwm pin
+    ...
+}
+</code></pre>
+</li>
+<li>
+<p>Add the following code to start the PWM output. Use a period that is at least twice your RC time constant.</p>
+<pre><code>int main()
+{
+    ...
+    pwm.period(XXXf); // period in s
+    pwm.write(0.50f); // duty cycle 0.5f = 50%
+    ...
+}
+</code></pre>
+</li>
+<li>
+<p>Turn on the DSO and connect CH1 to the PWM pin and CH2 to the RC circuit output signal. DSO ground will be common with your circuit ground.</p>
+</li>
+<li>
+<p>Run and test your program then adjust the DSO so both CH1 and CH2 are in view. Your signal should look like similar to the graph below.</p>
+<p><img alt="Figure 2.2" src="../lab2-rc-pwm.png" /></p>
+<p><em><strong>Figure 2.2</strong> PWM signal after RC smoothing.</em></p>
+</li>
+<li>
+<p>Adjust your PWM settings so there's less than 10% fluctuation between the high and low voltage after the RC filter (CH2).
+    &gt; <strong>Lab Question:</strong> What is the PWM frequency needed to achieve this?</p>
+</li>
+</ol>
 <h3 id="part-1-pwm-output-vs-dac-output">Part 1: PWM Output vs DAC Output</h3>
 <p>In Part 1, we'll set up a PWM and a DAC to compare the difference between the output.</p>
 <ol>
