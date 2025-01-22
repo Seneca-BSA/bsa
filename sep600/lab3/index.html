@@ -80,23 +80,25 @@ Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
-<h3 id="cortex-m4">Cortex M4</h3>
+<p>Documentation for the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
+<p>Documentation for the Freedom K64 and K66 boards and their microcontrollers can be found here:</p>
 <ul>
-<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
-<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a> (<a href="../FRDMK64FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a> (<a href="../K64P144M120SF5RM.pdf">PDF</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/Freescale/wiki/frdm-k64f-pinnames">FRDM-K64F Mbed Pin Names</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a> (<a href="../FRDMK66FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a> (<a href="../K66P144M180SF5RMV2.pdf">PDF</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/NXP/wiki/FRDM-K66F-Pinnames">FRDM-K66F Mbed Pin Names</a></li>
 </ul>
-<h3 id="frdm-k64f">FRDM-K64F</h3>
+<p>Documentation for the Cortex-M4 instruction set can be found here:</p>
 <ul>
-<li><a href="../FRDMK64FUG.pdf">FRDM-K64F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">nxp.com</a>)</li>
-<li><a href="../K64P144M120SF5RM.pdf">Kinetis K64 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">nxp.com</a>)</li>
-<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F mbed</a></li>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of Processor Instructions</a></li>
 </ul>
-<h3 id="frdm-k66f">FRDM-K66F</h3>
-<ul>
-<li><a href="../FRDMK66FUG.pdf">FRDM-K66F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">nxp.com</a>)</li>
-<li><a href="../K66P144M180SF5RMV2.pdf">Kinetis K66 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">nxp.com</a>)</li>
-<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F mbed</a></li>
+</li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="../DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
 </ul>
 <h2 id="materials">Materials</h2>
 <ul>
@@ -115,7 +117,7 @@ SEP600 Embedded Systems
 </blockquote>
 <h2 id="procedures">Procedures</h2>
 <p><img alt="Figure 2.4" src="../lab2-rc-circuit.png" /></p>
-<p><em><strong>Figure 2.4</strong> RC Circuit.</em></p>
+<p><em><strong>Figure 2.4</strong> Manual PWM RC Circuit.</em></p>
 <ol>
 <li>
 <p>Without removing your comparator, pull-up and pull-down circuit, acquire a resistor and a capacitor to assemble an RC circuit as given above and attach the PWM signal to a PWM-capable pin of your microcontroller (ones with purple PWM label in the pinout diagram). Refer to the microcontroller board manual for details on pin assignment.</p>
@@ -158,7 +160,7 @@ SEP600 Embedded Systems
     &gt; <strong>Lab Question:</strong> What is the PWM frequency needed to achieve this?</p>
 </li>
 </ol>
-<h3 id="part-1-pwm-output-vs-dac-output">Part 1: PWM Output vs DAC Output</h3>
+<h3 id="part-2-pwm-output-vs-dac-output">Part 2: PWM Output vs DAC Output</h3>
 <p>In Part 1, we'll set up a PWM and a DAC to compare the difference between the output.</p>
 <ol>
 <li>Connect a PWM output pin to CH1 of the DSO. Refer to the mbed board pages to identify which pin is a PWM pin.</li>
@@ -215,7 +217,8 @@ SEP600 Embedded Systems
 <p>Keep the DSO connected.</p>
 </li>
 </ol>
-<h3 id="part-2-adc-input">Part 2: ADC Input</h3>
+<h3 id="part-2-current-driver">Part 2: Current Driver</h3>
+<h3 id="part-3-analog-input">Part 3: Analog Input</h3>
 <p>Next, we'll connect the ADC to an analog voltage input so it can be read into the microcontroller. The voltage signal will come from the bench power supply. To prevent damaging the ADC, we'll first use a voltage division to halve the signal. <strong>Never connect the power supply directly to the ADC without a resistor.</strong></p>
 <p><img alt="Figure 3.2" src="../lab3-vs-adc.png" /></p>
 <p><em><strong>Figure 3.2</strong> Voltage division circuit for ADC input</em></p>
