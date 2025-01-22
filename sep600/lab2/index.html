@@ -100,6 +100,10 @@ SEP600 Embedded Systems
 </li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="../DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
 </ul>
+<h3 id="comparator">Comparator</h3>
+<p>An operational amplifier (op-amp) can be used as a comparator, a device that compares two input voltages and outputs a signal based on which input is higher. In this configuration, the op-amp is typically used in an open-loop mode, meaning it has no feedback loop, allowing it to operate as a high-gain amplifier. When the non-inverting input voltage exceeds the inverting input voltage, the output swings to one extreme (positive saturation), and when the inverting input voltage exceeds the non-inverting input, the output swings to the other extreme (negative saturation). This sharp transition between high and low states makes op-amp comparators ideal for digital signal processing, threshold detection, and creating square waves. They are widely used in applications such as zero-crossing detectors, overcurrent protection circuits, and pulse-width modulation.</p>
+<p><img alt="Figure 2.1" src="../lab2-comparator.png" /></p>
+<p><strong><em>Figure 2.1</em></strong></p>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>Safety glasses (PPE)</li>
@@ -114,11 +118,11 @@ SEP600 Embedded Systems
 <p>Read over the lab manual for this lab and acquire the necessary materials.</p>
 <h2 id="procedures">Procedures</h2>
 <h3 id="part-1-comparator-and-digital-input">Part 1: Comparator and Digital Input</h3>
-<p><img alt="Figure 2.1" src="../lab2-part-1.png" /></p>
-<p><strong><em>Figure 2.1</em></strong></p>
+<p><img alt="Figure 2.2" src="../lab2-part-1.png" /></p>
+<p><strong><em>Figure 2.2</em></strong></p>
 <ol>
 <li>
-<p>Acquire a breadboard, an Op-Amp, jumper wires, and the necessary resistors to assemble the circuit shown in Figure 2.1. Use your microcontroller board as the power source and refer to your op-amp's datasheet for its pinout.</p>
+<p>Acquire a breadboard, an Op-Amp, jumper wires, and the necessary resistors to assemble the circuit shown above. Use your microcontroller board as the power source and refer to your op-amp's datasheet for its pinout.</p>
 </li>
 <li>
 <p>Choose R1 and R2 so that the reference value for the comparator is 1V. Remember that the maximum power for a typical through-hole resistor is 1/4W. Double-check the maximum power rating of the resistor you are using to select the appropriate resistance value.</p>
@@ -128,8 +132,8 @@ SEP600 Embedded Systems
 </li>
 <li>
 <p>Connect the output of the comparator to any PTXXX pin on the FRDM-K64F. All the numbered pins (PTXXX) can also be used as DigitalIn and DigitalOut interfaces. For the FRDM-K66F, refer to the <a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F Mbed Reference</a>.</p>
-<p><img alt="Figure 2.2" src="../lab2-frdm_k64f_reve4_header_pinout.jpg" /></p>
-<p><strong><em>Figure 2.2</em></strong>: FRDM-K64F Header Pinout from <a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F Mbed Reference</a>.</p>
+<p><img alt="Figure 2.3" src="../lab2-frdm_k64f_reve4_header_pinout.jpg" /></p>
+<p><strong><em>Figure 2.3</em></strong>: FRDM-K64F Header Pinout from <a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F Mbed Reference</a>.</p>
 </li>
 <li>
 <p>Ensure the negative connector of the power supply, your comparator, and your microcontroller all share a common ground reference voltage.</p>
@@ -168,8 +172,8 @@ SEP600 Embedded Systems
 </li>
 </ol>
 <h3 id="part-2-pull-up-and-pull-down">Part 2: Pull-Up and Pull-Down</h3>
-<p><img alt="Figure 2.3" src="../lab2-pull-up-down.png" /></p>
-<p><strong><em>Figure 2.3</em></strong>: (A) Pull-Up Input. (B) Pull-Down Input.</p>
+<p><img alt="Figure 2.4" src="../lab2-pull-up-down.png" /></p>
+<p><strong><em>Figure 2.4</em></strong>: (A) Pull-Up Input. (B) Pull-Down Input.</p>
 <ol>
 <li>
 <p>Without disassembling the Part 1 circuit, acquire a 1kΩ (or higher resistance value) resistor, a button (or use jumper wires as a switch), and jumper wires to assemble a Pull-Up circuit as shown above. Attach the output signal to one of the digital input pins of your microcontroller.</p>
