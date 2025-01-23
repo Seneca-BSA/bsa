@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 3 : DAC and ADC - BSA Lab Manuals</title>
+    <title>Lab 3 : PWM, DAC and Analog Input - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 3 : DAC and ADC";
+        var mkdocs_page_name = "Lab 3 : PWM, DAC and Analog Input";
         var mkdocs_page_input_path = "sep600/lab3.md";
         var mkdocs_page_url = null;
       </script>
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 3 : DAC and ADC</li>
+      <li class="breadcrumb-item active">Lab 3 : PWM, DAC and Analog Input</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,7 +74,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-3-dac-and-adc">Lab 3 : DAC and ADC</h1>
+                <h1 id="lab-3-pwm-dac-and-analog-input">Lab 3 : PWM, DAC and Analog Input</h1>
 <p><font size="5">
 Seneca Polytechnic</br>
 SEP600 Embedded Systems
@@ -100,6 +100,8 @@ SEP600 Embedded Systems
 </li>
 <li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="../DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
 </ul>
+<h3 id="pulse-width-modulation-pwm">Pulse Width Modulation (PWM)</h3>
+<p>AS discuss in class and tested out in Lab 2, Pulse Width Modulation (PWM) is a technique used to control the amount of power delivered to an electrical device by varying the width of the pulses in a signal. It involves turning a signal on and off at a high frequency, with the proportion of time the signal is "on" (the duty cycle) determining the average voltage or power delivered. A higher duty cycle means more power, while a lower duty cycle reduces power. PWM is widely used in applications such as motor control, light dimming, and power regulation because it allows for efficient energy use and precise control of the output. It is favored for its simplicity, cost-effectiveness, and ability to operate with minimal heat generation compared to traditional methods of voltage regulation.</p>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>Safety glasses (PPE)</li>
@@ -116,6 +118,7 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
+<h3 id="part-1-pwm-output-vs-dac-output">Part 1: PWM Output vs DAC Output</h3>
 <p><img alt="Figure 2.4" src="../lab2-rc-circuit.png" /></p>
 <p><em><strong>Figure 2.4</strong> Manual PWM RC Circuit.</em></p>
 <ol>
@@ -160,7 +163,6 @@ SEP600 Embedded Systems
     &gt; <strong>Lab Question:</strong> What is the PWM frequency needed to achieve this?</p>
 </li>
 </ol>
-<h3 id="part-2-pwm-output-vs-dac-output">Part 2: PWM Output vs DAC Output</h3>
 <p>In Part 1, we'll set up a PWM and a DAC to compare the difference between the output.</p>
 <ol>
 <li>Connect a PWM output pin to CH1 of the DSO. Refer to the mbed board pages to identify which pin is a PWM pin.</li>

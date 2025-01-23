@@ -125,10 +125,11 @@ SEP600 Embedded Systems
 <p>Acquire a breadboard, an Op-Amp, jumper wires, and the necessary resistors to assemble the circuit shown above. Use your microcontroller board as the power source and refer to your op-amp's datasheet for its pinout.</p>
 </li>
 <li>
-<p>Choose R1 and R2 so that the reference value for the comparator is 1V. Remember that the maximum power for a typical through-hole resistor is 1/4W. Double-check the maximum power rating of the resistor you are using to select the appropriate resistance value.</p>
+<p>Choose R1 and R2 so that the reference value for the comparator is <strong>2V</strong>. Remember that the maximum power for a typical through-hole resistor is 1/4W. Double-check the maximum power rating of the resistor you are using to select the appropriate resistance value.</p>
 </li>
 <li>
 <p>Connect the output of the variable power supply to the input of the comparator. Alternatively, you may use the output of a potentiometer instead of a power supply.</p>
+<p><strong>Recommendation:</strong> It is always a good idea to validate your circuit's output before connecting it to a microcontroller.</p>
 </li>
 <li>
 <p>Connect the output of the comparator to any PTXXX pin on the FRDM-K64F. All the numbered pins (PTXXX) can also be used as DigitalIn and DigitalOut interfaces. For the FRDM-K66F, refer to the <a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F Mbed Reference</a>.</p>
@@ -161,10 +162,10 @@ SEP600 Embedded Systems
 <p>Replace PTXXX with the pin you connected the comparator output to.</p>
 </li>
 <li>
-<p>Once the code has been uploaded, set the power supply output to 0.5V and turn on the power supply. Did the red LED turn ON or OFF?</p>
+<p>Once the code has been uploaded, set the power supply output to 1V and turn on the power supply. Did the red LED turn ON or OFF?</p>
 </li>
 <li>
-<p>Raise the power supply voltage to 2V. Did the red LED turn ON or OFF now?
+<p>Raise the power supply voltage to 3V. Did the red LED turn ON or OFF now?
     <div style="padding: 15px; border: 1px solid red; background-color: orange; color: white;"><font size="5">Do not raise the power supply voltage higher than 5V</font></div></p>
 </li>
 <li>
@@ -177,6 +178,7 @@ SEP600 Embedded Systems
 <ol>
 <li>
 <p>Without disassembling the Part 1 circuit, acquire a 1kΩ (or higher resistance value) resistor, a button (or use jumper wires as a switch), and jumper wires to assemble a Pull-Up circuit as shown above. Attach the output signal to one of the digital input pins of your microcontroller.</p>
+<p><strong>Recommendation:</strong> It is always a good idea to validate your circuit's output before connecting it to a microcontroller.</p>
 </li>
 <li>
 <p>What is the current passing through the resistor when the switch is closed? Is this a safe current for the resistor? How can you modify the circuit to reduce its energy consumption?</p>
@@ -184,7 +186,7 @@ SEP600 Embedded Systems
 <li>
 <p>Modify the code from Part 1 to include an additional DigitalIn object for reading the button input. The new logic will be as follows:</p>
 <ul>
-<li>Only if the input to the comparator is above 1V, the Red LED will turn ON if the button is pressed. That is, the comparator input acts as the master switch.</li>
+<li>Only if the input to the comparator is above 2V, the Red LED will turn ON if the button is pressed. That is, the comparator input acts as the master switch.</li>
 </ul>
 <p>Remember, you'll need to set up a digital pin input object for the button input first. Use serial print statements for debugging or information as necessary.</p>
 </li>
