@@ -1,4 +1,4 @@
-# Lab 2 : Comparator and Digital I/O
+# Lab 2: Comparator and Digital I/O
 
 <font size="5">
 Seneca Polytechnic</br>
@@ -26,14 +26,22 @@ Documentation for the Cortex-M4 instruction set can be found here:
     - [Table of Processor Instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
 - [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
+### Comparator
+
+An operational amplifier (op-amp) can be used as a comparator, a device that compares two input voltages and outputs a signal based on which input is higher. In this configuration, the op-amp operates in open-loop mode, meaning there is no feedback loop, allowing it to function as a high-gain amplifier. When the non-inverting input voltage exceeds the inverting input voltage, the output swings to one extreme (positive saturation). Conversely, when the inverting input voltage exceeds the non-inverting input, the output swings to the other extreme (negative saturation). This sharp transition between high and low states makes op-amp comparators ideal for digital signal processing, threshold detection, and square wave generation. They are widely used in applications such as zero-crossing detectors, overcurrent protection circuits, and pulse-width modulation.
+
+![Figure 2.1](lab2-comparator.png)
+
+***Figure 2.1***
+
 ## Materials
 - Safety glasses (PPE)
 - Breadboard
 - Jumper wires
-- (1x) Op-Amp (LM358, LM324 or similar)
+- (1x) Op-Amp (LM358, LM324, or similar)
 - Various 1kΩ-10kΩ resistors
-- Various 0.1-10µF capacitors
 - (2x) Buttons or switches
+- (1x) Potentiometer (Optional)
 
 ## Preparation
 
@@ -43,23 +51,25 @@ Read over the lab manual for this lab and acquire the necessary materials.
 
 ### Part 1: Comparator and Digital Input
 
-![Figure 2.1](lab2-part-1.png)
+![Figure 2.2](lab2-part-1.png)
 
-***Figure 2.1***
+***Figure 2.2***
 
-1. Acquire a breadboard, an Op-Amp, jumper wires, and the necessary resistors to assemble the circuit shown in Figure 2.1.
+1. Acquire a breadboard, an op-amp, jumper wires, and the necessary resistors to assemble the circuit shown above. Use your microcontroller board as the 3.3V power source for the comparator, and refer to your op-amp's datasheet for its pinout.
 
-2. Choose R1 and R2 so that the reference value for the comparator is 1V. Remember that the maximum power for a typical through-hole resistor is 1/4W. Double-check the maximum power rating of the resistor you are using to select the appropriate resistance value.
+2. Choose R1 and R2 so that the reference voltage (inverting input) for the comparator is **2V**. Keep in mind that the maximum power for a typical through-hole resistor is 1/4W. Double-check the maximum power rating of the resistor you are using to select the appropriate resistance value.
 
-3. Connect the output of the variable power supply to the input of the comparator.
+3. Connect the output of the variable power supply to the non-inverting input of the comparator. Alternatively, you may use the output of a potentiometer instead of a power supply.
 
-4. Connect the output of the comparator to any PTXXX pin on the FRDM-K64F. All the numbered pins (PTXXX) can also be used as DigitalIn and DigitalOut interfaces. For the FRDM-K66F, refer to the [FRDM-K66F Mbed Reference](https://os.mbed.com/platforms/FRDM-K66F/).
+    **Recommendation:** It is always a good idea to validate your circuit's output before connecting it to a microcontroller.
 
-    ![Figure 2.2](lab2-frdm_k64f_reve4_header_pinout.jpg)
+4. Connect the output of the comparator to any PTXXX pin on the FRDM-K64F. All numbered pins (PTXXX) can be used as DigitalIn and DigitalOut interfaces. For the FRDM-K66F, refer to the [FRDM-K66F Mbed Reference](https://os.mbed.com/platforms/FRDM-K66F/).
 
-    ***Figure 2.2***: FRDM-K64F Header Pinout from [FRDM-K64F Mbed Reference](https://os.mbed.com/platforms/FRDM-K64F/).
+    ![Figure 2.3](lab2-frdm_k64f_reve4_header_pinout.jpg)
 
-5. Ensure the negative connector of the power supply, your comparator, and your microcontroller all share a common ground reference voltage.
+    ***Figure 2.3***: FRDM-K64F Header Pinout from [FRDM-K64F Mbed Reference](https://os.mbed.com/platforms/FRDM-K64F/).
+
+5. Ensure that the negative connector of the power supply, your comparator, and your microcontroller all share a common ground reference voltage.
 
 6. Program the following code into your microcontroller:
 
@@ -83,26 +93,28 @@ Read over the lab manual for this lab and acquire the necessary materials.
 
     Replace PTXXX with the pin you connected the comparator output to.
 
-7. Once the code has been uploaded, set the power supply output to 0.5V and turn on the power supply. Did the red LED turn ON or OFF?
+7. Once the code has been uploaded, set the power supply output to 1V and turn on the power supply. Did the red LED turn ON or OFF?
 
-8. Raise the power supply voltage to 2V. Did the red LED turn ON or OFF now?
+8. Raise the power supply voltage to 3V. Did the red LED turn ON or OFF now?
     <div style="padding: 15px; border: 1px solid red; background-color: orange; color: white;"><font size="5">Do not raise the power supply voltage higher than 5V</font></div>
 
 9. Ensure you fully understand how the power supply voltage is affecting the comparator's output and how the signal is being read by the microcontroller as a digital input.
 
 ### Part 2: Pull-Up and Pull-Down
 
-![Figure 2.3](lab2-pull-up-down.png)
+![Figure 2.4](lab2-pull-up-down.png)
 
-***Figure 2.3***: (A) Pull-Up Input. (B) Pull-Down Input.
+***Figure 2.4***: (A) Pull-Up Input. (B) Pull-Down Input.
 
 1. Without disassembling the Part 1 circuit, acquire a 1kΩ (or higher resistance value) resistor, a button (or use jumper wires as a switch), and jumper wires to assemble a Pull-Up circuit as shown above. Attach the output signal to one of the digital input pins of your microcontroller.
+
+    **Recommendation:** It is always a good idea to validate your circuit's output before connecting it to a microcontroller.
 
 2. What is the current passing through the resistor when the switch is closed? Is this a safe current for the resistor? How can you modify the circuit to reduce its energy consumption?
 
 3. Modify the code from Part 1 to include an additional DigitalIn object for reading the button input. The new logic will be as follows:
 
-    - Only if the input to the comparator is above 1V, the Red LED will turn ON if the button is pressed. That is, the comparator input acts as the master switch.
+    - Only if the input to the comparator is above 2V, the red LED will turn ON only if the button is pressed. That is, the comparator input acts as the master switch.
     
     Remember, you'll need to set up a digital pin input object for the button input first. Use serial print statements for debugging or information as necessary.
 
@@ -110,11 +122,11 @@ Read over the lab manual for this lab and acquire the necessary materials.
 
 5. Without taking apart your Pull-Up circuit, assemble another Pull-Down circuit as shown above and attach the signal to another digital input pin of your microcontroller.
 
-6. Modify your code so the second switch you assembled will trigger the second LED (LED2) to turn on when pressed. As before, the LED will only be able to be switched on if the input to the comparator is above 1V. Keep in mind that you are now using a Pull-Down circuit as input.
+6. Modify your code so the second switch you assembled will trigger the second LED (LED2) to turn ON only if the button is pressed. As before, the LED will only turn on if the input to the comparator is above 2V. Keep in mind that you are now using a Pull-Down circuit as input.
 
 7. Run and test your program.
 
-8. Ensure you fully understand digital input and output, as well as Pull-Up and Pull-Down circuits. Play around with the code or circuit as necessary to increase your understanding.
+8. Ensure you fully understand digital input and output, as well as Pull-Up and Pull-Down circuits. Experiment with the code or circuit as necessary to deepen your understanding.
 
 ### Part 3: PWM Output
 
@@ -141,7 +153,9 @@ Read over the lab manual for this lab and acquire the necessary materials.
 
 4. Run and test your program. Turn on the DSO and adjust the settings to see CH1 as a stable square wave. What do you notice about the ratio between the ON time and OFF time of the square wave? What is the PWM frequency?
 
-5. Modify your code so that one of the buttons will ALSO increase the PWM duty cycle by 10% (i.e., 60%), and the other button will ALSO decrease the duty cycle by 10% (i.e., 40%). All other comparator and LED logic should remain in the code. The increase and decrease should happen in real-time right after the button press. Use serial print statements for debugging or information as necessary.
+5. Modify your code so that one of the buttons will also increment the PWM duty cycle by 10% (i.e., +0.10f), and the other button will decrement the duty cycle by 10% (i.e., -0.10f). All other comparator and LED logic should remain in the code. The increase and decrease should happen in real-time right after the button press. Use serial print statements for debugging or information as necessary.
+
+    Hint: You only need to change the duty cycle. You do not have to redefine the PWM object or the PWM period.
 
 6. Ensure you fully understand the concept of PWM.
 

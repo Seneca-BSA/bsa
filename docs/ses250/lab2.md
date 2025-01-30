@@ -122,17 +122,20 @@ Lab preparation must be done individually in the lab notebook.
 
 > **Lab Preparation Question:**
 >
-> READ OVER ALL THE LAB BACKGROUND AND LAB STEPS.jacky
+> READ OVER ALL THE LAB BACKGROUND AND LAB STEPS.
+>
 > 1. Copy the following observation table in your notebook for this lab:
+>
+    >   **Table 1:**
     >
-    >    ||Output: +1V|Output: +2V|Output: +5V|Output: +10V|
-    >    |---|---|---|---|---|
-    >    |Range: 100mV||||||
-    >    |Range: 1V||||||
-    >    |Range: 10V||||||
-    >    |Range: 100V||||||
-    >    |Range: 1000V||||||
-    >
+    >   ||Output: +1V|Output: +2V|Output: +5V|Output: +10V|
+    >   |---|---|---|---|---|
+    >   |Range: 100mV||||||
+    >   |Range: 1V||||||
+    >   |Range: 10V||||||
+    >   |Range: 100V||||||
+    >   |Range: 1000V||||||
+>
 > 1. Copy Figure 2.13 into your notebook then draw a voltmeter symbol and its connection into the diagram according to the circuit in Figure 2.14.
 > 1. Research: Besides voltage, resistance, and current, list two other electronics-related properties a modem DMM can measure.
 > 1. In your words, explain the difference between the two ON/OFF settings (Power ON/OFF and Output ON/OFF) of the DC power supply we use in this lab.
@@ -256,6 +259,7 @@ Lab preparation must be done individually in the lab notebook.
 
     **NOTE:** The reading might fluctuate but record at least 4 significant digits to the best of your ability in estimating **AND record all LEADING ZEROS**.
 
+    >    **Table 2:**
     >
     >    ||Output: +1V|Output: +2V|Output: +5V|Output: +10V|
     >    |---|---|---|---|---|
@@ -271,7 +275,7 @@ Lab preparation must be done individually in the lab notebook.
 
     > **Lab Question 5:** Does this value agree with the Ohm's law calculation you made earlier in the pre-lab?
 
-1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BENN MARKED BY THE INSTRUCTOR.
+1. DO NOT DISASSEMBLE YOUR CIRCUIT UNTIL YOUR LAB HAS BEEN MARKED BY THE INSTRUCTOR.
 
 1. Turn off the DC power supply and disconnect the alligator clips.
 
