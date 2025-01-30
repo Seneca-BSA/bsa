@@ -112,6 +112,75 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
+<h3 id="part-3-analog-input">Part 3: Analog Input</h3>
+<p>Next, we'll connect the ADC to an analog voltage input so it can be read into the microcontroller. The voltage signal will come from the bench power supply. To prevent damaging the ADC, we'll first use a voltage division to halve the signal. <strong>Never connect the power supply directly to the ADC without a resistor.</strong></p>
+<p><img alt="Figure 3.2" src="../lab3-vs-adc.png" /></p>
+<p><em><strong>Figure 3.2</strong> Voltage division circuit for ADC input</em></p>
+<ol>
+<li>Assemble the voltage division circuit above on your breadboard and connect the voltage divider output to an analog input pin. Vs will be provided by the bench power supply. Ensure the power supply output is OFF. Optionally, you can use a potentiometer to achieve the same.</li>
+<li>As a precaution, we only want to supply a maximum of 3.3V to the ADC pin, this means the power supply output should never to above 6.6V. Set the power supply output to 1V.</li>
+<li>
+<p>Add the following code in the main function of your code but before the while loop to set up an analog input pin. Remember, you'll need to replace PTXX with the PWM pin that you are using.
+    <pre></p>
+<pre><code>int main()
+{
+    ...
+    AnalogIn ain(PTXX); // replace with a ADC pin
+    ...
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Next, replace the while loop with the following code so we are controlling the DAC output and the PWM duty cycle with the analog input.
+    <pre></p>
+<pre><code>while (true)
+{
+    i = ain; // read ADC
+    aout = i; // set DAC out %
+    pwm = i; // set PWM duty cycle %
+
+    // delay for 10ms, 1000ms for each ramp up
+    ThisThread::sleep_for(100ms);
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Next, let's print the reading out as well. Modify your code to include the following respectively.
+    <pre></p>
+<pre><code>while (true)
+{
+    ...
+    // print the percentage, 16 bit normalized values, and something we understand
+    printf("percentage: %3.3f%% ", ain.read() * 100.0f);
+    printf("normalized: 0x%04X ", ain.read_u16());
+    printf("normalized: %3.3fV \n", ain * 3.3); // % * 3.3V
+    ...
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Per <a href="https://github.com/ARMmbed/mbed-os/blob/master/platform/source/minimal-printf/README.md">Minimal printf and snprintf</a>, as of mbed OS 6, printf no longer print floating point by default to save memory. In order to enable printing of floating point value, enable it by creating a file called <code>mbed_app.json</code> in the root project folder and add the following code to it.
+    <pre></p>
+<pre><code>{
+    "target_overrides": {
+        "*": {
+            "target.printf_lib": "std"
+        }
+    }
+}
+</code></pre>
+</pre>
+</li>
+<li>
+<p>Turn on the power supply output and run the program. You should see a constant 0.5V on the DSO, at about 15% duty cycle PWM wave, and a serial output state of about 15% and 0.5V.</p>
+<blockquote>
+<p><strong>Lab Question:</strong> What do you think can be done to reduce reading fluctuation? How do you think that can be achieved?</p>
+</blockquote>
+</li>
+</ol>
 <h3 id="part-1-onboard-i2c-accelerometer-and-magnetometer">Part 1: Onboard I2C Accelerometer and Magnetometer</h3>
 <p>In Part 1, we'll take a look at how to get reading from the onboard accelerometer and magnetometer.</p>
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
@@ -289,6 +358,7 @@ ThisThread::sleep_for(1s);
 </ol>
 <h2 id="reference">Reference</h2>
 <ul>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">AnalogIn</a></li>
 <li>[1] <a href="https://learn.sparkfun.com/tutorials/i2c/all">https://learn.sparkfun.com/tutorials/i2c/all</a></li>
 <li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/unbufferedserial.html">UnbufferedSerial</a></li>
 </ul>
