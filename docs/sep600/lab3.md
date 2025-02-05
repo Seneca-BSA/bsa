@@ -143,7 +143,7 @@ Next, we'll set up a PWM and a DAC to compare the difference between the outputs
             ...
         }
 
-4. Turn on the DSO and run the program. Both LEDs should be ON at about half brightness. You should also see a PWM square wave on the channel connected to the PWM circuit and a 1.65V flat line on the channel connected to the DAC.
+4. Turn on the DSO and run the program. You should also see a PWM square wave on the channel connected to the PWM circuit and a 1.65V flat line on the channel connected to the DAC. Did both LEDs turn on? If not, try increasing the output value until the LED turn o.
 
 5. Modify your code so the two LEDs both start from 0% brightness and then gradually (at least 10 steps) increase to 100% brightness over a period of 1 second. Afterward, gradually (at least 10 steps) decrease to 0% brightness over a period of 1 second.
 
@@ -153,7 +153,7 @@ Next, we'll set up a PWM and a DAC to compare the difference between the outputs
 
     ***Figure 3.5** DAC and PWM Output*
 
-    > **Lab Question:** What difference do you notice between the two LEDs?
+    > **Lab Question:** What difference do you notice between the two LEDs? Which method is better?
 
     > **Lab Question:** After the LED reaches full brightness, at what PWM duty cycle do you start noticing a decrease in LED brightness?
 
