@@ -121,7 +121,12 @@ Next, we'll set up a PWM and a DAC to compare the difference between the outputs
 2. Use your microcontroller's 3.3V output and GND connection for the current driver circuit. Select \(R_B\) and \(R_L\) appropriately.
 
     - \(R_L\) should allow only 20mA of current to pass through the LED.
-    - \(R_B\) should allow the NPN transistor to drive at least 20mA of current when it's fully ON at saturation. Refer to the NPN transistor's datasheet for the gain value.
+    - \(R_B\) should allow the NPN transistor to drive at least 20mA of current when it's fully ON at saturation.
+    
+    Refer to the NPN transistor's datasheet for the gain value. It is often refered to as \(h_{FE}\) by maunfacturer. The following formula from lecture slides might be useful for your calculation.
+
+    $$ I_C = \beta I_B $$
+    $$ V_{IN} - V_{BE} = I_B R_B $$
 
 3. Modify your code to add a DAC output and a second PWM output. Since there's only one DAC available, the DAC pin name is fixed.
 
