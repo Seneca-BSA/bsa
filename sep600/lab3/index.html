@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 3: PWM and DAC";
-        var mkdocs_page_input_path = "sep600\\lab3.md";
+        var mkdocs_page_input_path = "sep600/lab3.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -115,8 +115,7 @@ SEP600 Embedded Systems
 <li>Jumper wires</li>
 <li>Various 1kΩ–10kΩ resistors</li>
 <li>Various 0.1µF–10µF capacitors</li>
-<li>(2x) NPN Transistors (2N2222, 2N3904, or similar)</li>
-<li>(2x) LEDs</li>
+<li>(2x) NPN Transistors (LM358, LM324, or similar)</li>
 </ul>
 <h2 id="preparation">Preparation</h2>
 <p>Read over the lab manual for this lab and acquire the necessary materials.</p>
@@ -190,13 +189,8 @@ SEP600 Embedded Systems
 <li>
 <script type="math/tex">R_L</script> should allow only 20mA of current to pass through the LED.</li>
 <li>
-<script type="math/tex">R_B</script> should allow the NPN transistor to drive at least 20mA of current when it's fully ON at saturation.</li>
+<script type="math/tex">R_B</script> should allow the NPN transistor to drive at least 20mA of current when it's fully ON at saturation. Refer to the NPN transistor's datasheet for the gain value.</li>
 </ul>
-<p>Refer to the NPN transistor's datasheet for the gain value. It is often refered to as <script type="math/tex">h_{FE}</script> by maunfacturer. The following formula from lecture slides might be useful for your calculation.</p>
-<p>
-<script type="math/tex; mode=display"> I_C = \beta I_B </script>
-<script type="math/tex; mode=display"> V_{IN} - V_{BE} = I_B R_B </script>
-</p>
 </li>
 <li>
 <p>Modify your code to add a DAC output and a second PWM output. Since there's only one DAC available, the DAC pin name is fixed.</p>
@@ -215,7 +209,7 @@ SEP600 Embedded Systems
 </code></pre>
 </li>
 <li>
-<p>Turn on the DSO and run the program. You should also see a PWM square wave on the channel connected to the PWM circuit and a 1.65V flat line on the channel connected to the DAC. Did both LEDs turn on? If not, try increasing the output value until the LED turn on.</p>
+<p>Turn on the DSO and run the program. Both LEDs should be ON at about half brightness. You should also see a PWM square wave on the channel connected to the PWM circuit and a 1.65V flat line on the channel connected to the DAC.</p>
 </li>
 <li>
 <p>Modify your code so the two LEDs both start from 0% brightness and then gradually (at least 10 steps) increase to 100% brightness over a period of 1 second. Afterward, gradually (at least 10 steps) decrease to 0% brightness over a period of 1 second.</p>
@@ -223,7 +217,7 @@ SEP600 Embedded Systems
 <p><img alt="Figure 3.5" src="../lab3-dac-pwm.png" /></p>
 <p><em><strong>Figure 3.5</strong> DAC and PWM Output</em></p>
 <blockquote>
-<p><strong>Lab Question:</strong> What difference do you notice between the two LEDs? Which method is better?</p>
+<p><strong>Lab Question:</strong> What difference do you notice between the two LEDs?</p>
 <p><strong>Lab Question:</strong> After the LED reaches full brightness, at what PWM duty cycle do you start noticing a decrease in LED brightness?</p>
 </blockquote>
 </li>
