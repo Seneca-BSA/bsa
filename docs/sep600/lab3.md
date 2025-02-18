@@ -48,7 +48,8 @@ A Digital-to-Analog Converter (DAC) is an essential component in modern electron
 - Jumper wires
 - Various 1kΩ–10kΩ resistors
 - Various 0.1µF–10µF capacitors
-- (2x) NPN Transistors (2N3904, 2N2222, or similar)
+- (2x) NPN Transistors (2N2222, 2N3904, or similar)
+- (2x) LEDs
 
 ## Preparation
 
@@ -120,7 +121,12 @@ Next, we'll set up a PWM and a DAC to compare the difference between the outputs
 2. Use your microcontroller's 3.3V output and GND connection for the current driver circuit. Select \(R_B\) and \(R_L\) appropriately.
 
     - \(R_L\) should allow only 20mA of current to pass through the LED.
-    - \(R_B\) should allow the NPN transistor to drive at least 20mA of current when it's fully ON at saturation. Refer to the NPN transistor's datasheet for the gain value.
+    - \(R_B\) should allow the NPN transistor to drive at least 20mA of current when it's fully ON at saturation.
+    
+    Refer to the NPN transistor's datasheet for the gain value. It is often refered to as \(h_{FE}\) by maunfacturer. The following formula from lecture slides might be useful for your calculation.
+
+    $$ I_C = \beta I_B $$
+    $$ V_{IN} - V_{BE} = I_B R_B $$
 
 3. Modify your code to add a DAC output and a second PWM output. Since there's only one DAC available, the DAC pin name is fixed.
 
@@ -137,7 +143,7 @@ Next, we'll set up a PWM and a DAC to compare the difference between the outputs
             ...
         }
 
-4. Turn on the DSO and run the program. Both LEDs should be ON at about half brightness. You should also see a PWM square wave on the channel connected to the PWM circuit and a 1.65V flat line on the channel connected to the DAC.
+4. Turn on the DSO and run the program. You should also see a PWM square wave on the channel connected to the PWM circuit and a 1.65V flat line on the channel connected to the DAC. Did both LEDs turn on? If not, try increasing the output value until the LED turn on.
 
 5. Modify your code so the two LEDs both start from 0% brightness and then gradually (at least 10 steps) increase to 100% brightness over a period of 1 second. Afterward, gradually (at least 10 steps) decrease to 0% brightness over a period of 1 second.
 
@@ -147,7 +153,7 @@ Next, we'll set up a PWM and a DAC to compare the difference between the outputs
 
     ***Figure 3.5** DAC and PWM Output*
 
-    > **Lab Question:** What difference do you notice between the two LEDs?
+    > **Lab Question:** What difference do you notice between the two LEDs? Which method is better?
 
     > **Lab Question:** After the LED reaches full brightness, at what PWM duty cycle do you start noticing a decrease in LED brightness?
 

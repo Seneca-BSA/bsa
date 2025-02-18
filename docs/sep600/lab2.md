@@ -132,6 +132,8 @@ Read over the lab manual for this lab and acquire the necessary materials.
 
 1. Without removing your comparator, Pull-Up, and Pull-Down circuits, connect a PWM-capable pin of your microcontroller (those with a purple PWM label in the pinout diagram) to CH1 of the DSO. Refer to the microcontroller board manual for details on pin assignments. Connect the DSO ground to the common ground of your circuit.
 
+    **NOTE:** In order for microcontroller to reliablilty read from external signal (such as from a power supply), **they must all share the same reference (common ground).**
+
 2. Modify your code to set up a PWM pin:
 
         int main()
