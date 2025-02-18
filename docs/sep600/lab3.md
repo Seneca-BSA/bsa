@@ -48,7 +48,7 @@ A Digital-to-Analog Converter (DAC) is an essential component in modern electron
 - Jumper wires
 - Various 1kΩ–10kΩ resistors
 - Various 0.1µF–10µF capacitors
-- (2x) NPN Transistors (LM358, LM324, or similar)
+- (2x) NPN Transistors (2N3904, 2N2222, or similar)
 
 ## Preparation
 

@@ -136,7 +136,7 @@ Lab preparation must be done individually in the lab notebook.
     >   |Range: 100V||||||
     >   |Range: 1000V||||||
 >
-> 1. Copy Figure 2.13 into your notebook then draw a voltmeter symbol and its connection into the diagram according to the circuit in Figure 2.14.
+> 1. Copy Figure 2.13 (with the power supply and resistor symbol) into your notebook then add a voltmeter (symobl) and its connection into the diagram according to the circuit in Figure 2.14.
 > 1. Research: Besides voltage, resistance, and current, list two other electronics-related properties a modem DMM can measure.
 > 1. In your words, explain the difference between the two ON/OFF settings (Power ON/OFF and Output ON/OFF) of the DC power supply we use in this lab.
 > 1. Using Ohm's Law: \(V = IR\), calculate the current through a 1kΩ resistor if 5V of potential difference is applied across the resistor.
@@ -221,11 +221,13 @@ Lab preparation must be done individually in the lab notebook.
 
 1. Connect the jumper wire from the red cable of the DMM to the same row as the first resistor lead. Then connect the jumper wire from the black cable of the DMM to the same row as the second resistor lead.
 
-    ![Figure 2.14a](lab2-voltage-circuit.png)
-
-    ![Figure 2.14b](lab2-connection-2.png)
+    ![Figure 2.14](lab2-voltage-circuit.png)
 
     ***Figure 2.14***
+
+    ![Figure 2.15](lab2-connection-2.png)
+
+    ***Figure 2.15***
 
 1. Press the "Display Limit" button (2) on the power supply again and verify the voltage is adjusted to +5.000V and the banana cables are connected. Also, verify that the exposed portion of the red alligator clip is NOT touching the exposed portion of the black alligator clip.
 
@@ -237,9 +239,9 @@ Lab preparation must be done individually in the lab notebook.
 
 1. Notice that the DMM should now read about +5V, similar to as shown in Figure 2.15. Make a note of the range value beside the “Auto” on the DMM display.
 
-    ![Figure 2.15](lab2-reading-1.png)
+    ![Figure 2.16](lab2-reading-1.png)
 
-    ***Figure 2.15***
+    ***Figure 2.16***
 
 1. With the power supply output ON, adjust the output voltage to +13V. **Note:** If the output range does not allow you to go to 13V, switch the output range (10) and terminals as necessary.
 
