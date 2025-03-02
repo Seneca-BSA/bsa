@@ -210,6 +210,7 @@ SEP600 Embedded Systems
 <ol>
 <li>
 <p>Without removing your comparator, Pull-Up, and Pull-Down circuits, connect a PWM-capable pin of your microcontroller (those with a purple PWM label in the pinout diagram) to CH1 of the DSO. Refer to the microcontroller board manual for details on pin assignments. Connect the DSO ground to the common ground of your circuit.</p>
+<p><strong>NOTE:</strong> In order for microcontroller to reliablilty read from external signal (such as from a power supply), <strong>they must all share the same reference (common ground).</strong></p>
 </li>
 <li>
 <p>Modify your code to set up a PWM pin:</p>
@@ -246,7 +247,7 @@ SEP600 Embedded Systems
 <p>Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You might be asked to explain some of the concepts you've learned in this lab.</p>
 <h2 id="references">References</h2>
 <ul>
-<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">mbed I/O API</a></li>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html">mbed I/O APIs</a></li>
 <li><a href="https://os.mbed.com/handbook/DigitalIn">DigitalIn</a></li>
 <li><a href="https://os.mbed.com/handbook/DigitalOut">DigitalOut</a></li>
 <li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/pwmout.html">PwmOut</a></li>
