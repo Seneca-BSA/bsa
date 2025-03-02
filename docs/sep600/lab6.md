@@ -76,7 +76,7 @@ In this lab, we'll explore the use of software filtering techniques to remove no
             while (true) {
                 printf("%d\n", (int) (*reading * 100));
                 // delay for 1ms for between print
-                ThisThread::sleep_for(1ms);
+                ThisThread::sleep_for(100ms);
             }
         }
 

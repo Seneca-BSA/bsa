@@ -17,9 +17,8 @@ Labs:
 - [Lab 1 : mbed OS and IDE](lab1.md)
 - [Lab 2 : Comparator and Digital I/O](lab2.md)
 - [Lab 3 : PWM and DAC](lab3.md)
+- [Lab 4 : ADC and RTOS](lab4.md)
 <!--
-Analog Input and RTOS
-- [Lab 4 : Serial UART and I2C Communication](lab4.md)
 - [Lab 5 : LCD](lab5.md)
 - [Lab 6 : Filtering and RTOS](lab6.md)
 - Lab 7 : Servo and Sensor

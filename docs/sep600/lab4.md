@@ -1,4 +1,4 @@
-# Lab 4 : Serial UART and I2C Communication
+# Lab 4: ADC and RTOS
 
 <font size="5">
 Seneca Polytechnic</br>
@@ -7,165 +7,101 @@ SEP600 Embedded Systems
 
 ## Introduction
 
-Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:
+Documentation for the Cortex-M4 instruction set, the board user’s guide, and the microcontroller reference manual can be found here:
 
-### Cortex M4
+Documentation for the Freedom K64 and K66 boards and their microcontrollers can be found here:
 
-- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
-- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
+- [FRDM-K64F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG) ([PDF](FRDMK64FUG.pdf))
+- [Kinetis K64 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM) ([PDF](K64P144M120SF5RM.pdf))
+- [FRDM-K64F Mbed Reference](https://os.mbed.com/platforms/FRDM-K64F/)
+- [FRDM-K64F Mbed Pin Names](https://os.mbed.com/teams/Freescale/wiki/frdm-k64f-pinnames)
+- [FRDM-K66F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG) ([PDF](FRDMK66FUG.pdf))
+- [Kinetis K66 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2) ([PDF](K66P144M180SF5RMV2.pdf))
+- [FRDM-K66F Mbed Reference](https://os.mbed.com/platforms/FRDM-K66F/)
+- [FRDM-K66F Mbed Pin Names](https://os.mbed.com/teams/NXP/wiki/FRDM-K66F-Pinnames)
 
-### FRDM-K64F
+Documentation for the Cortex-M4 instruction set can be found here:
 
-- [FRDM-K64F Freedom Module User’s Guide](FRDMK64FUG.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG))
-- [Kinetis K64 Reference Manual](K64P144M120SF5RM.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM))
-- [FRDM-K64F mbed](https://os.mbed.com/platforms/FRDM-K64F/)
+- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001) ([PDF](Cortex-M4-Proc-Tech-Ref-Manual.pdf))
+    - [Table of Processor Instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
+- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
-### FRDM-K66F
+### Analog-to-Digital Converter (ADC)
 
-- [FRDM-K66F Freedom Module User’s Guide](FRDMK66FUG.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG))
-- [Kinetis K66 Reference Manual](K66P144M180SF5RMV2.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2))
-- [FRDM-K66F mbed](https://os.mbed.com/platforms/FRDM-K66F/)
+An ADC is a crucial component in modern electronics that converts continuous analog signals into discrete digital values. This conversion allows electronic systems to process real-world analog signals, such as sound, temperature, or light, which are inherently continuous, by transforming them into a format that digital devices like microcontrollers or computers can understand. ADCs are commonly used in applications like audio processing, signal sampling, sensor interfacing, and communications. The quality and accuracy of an ADC are determined by factors such as its resolution (the number of bits used in the conversion) and its sampling rate (how frequently it captures data).
+
+![Figure 4.1](lab4-adc.png)
+
+***Figure 4.1** ADC Output*
+
+### Real-Time Operating System (RTOS)
+
+An RTOS in an embedded system is a specialized operating system designed to manage hardware resources and execute tasks within strict timing constraints. Unlike general-purpose operating systems, an RTOS prioritizes real-time performance, ensuring that critical tasks execute within a predictable time frame. It typically uses a scheduler (such as preemptive, cooperative, or hybrid) to manage multiple tasks efficiently, balancing system responsiveness and resource utilization. RTOSs like FreeRTOS, VxWorks, and QNX are widely used in applications such as automotive systems, medical devices, industrial automation, and IoT devices, where deterministic behavior is crucial for reliability and safety. By providing features like task prioritization, inter-task communication, and real-time scheduling, an RTOS enhances the performance and stability of embedded systems, making them suitable for time-sensitive applications.
+
+![Figure 4.2](lab4-rtos.png)
+
+***Figure 4.2** RTOS Program Flowchart*
 
 ## Materials
+
 - Safety glasses (PPE)
 - Breadboard
-- Jumper Wires
+- Jumper wires
+- (1×) 10kΩ Resistor
+- (1×) 1kΩ–10kΩ Potentiometer (Optional)
 
 ## Preparation
 
-> ### Lab Preparation Question
-> 1. Read over the lab and understand the procedures.
+Read over the lab manual and acquire the necessary materials.
 
 ## Procedures
 
-### Part 3: Analog Input
+### Part 1: Analog Input
 
-Next, we'll connect the ADC to an analog voltage input so it can be read into the microcontroller. The voltage signal will come from the bench power supply. To prevent damaging the ADC, we'll first use a voltage division to halve the signal. **Never connect the power supply directly to the ADC without a resistor.**
+![Figure 4.3](lab4-adc-circuit.png)
 
-![Figure 3.2](lab3-vs-adc.png)
+***Figure 4.3** ADC Input Circuit.*
 
-***Figure 3.2** Voltage division circuit for ADC input*
+1. Acquire a breadboard, a 10kΩ resistor or a 10kΩ potentiometer, and jumper wires to assemble the circuit shown above. You may use the workbench power supply as \(V_{IN}\) and assemble circuit (a) or use a potentiometer to generate the output signal and assemble circuit (b). Attach the output signal to an ADC-capable (Analog Input) pin on your microcontroller (pins with an orange Analog In label in the pinout diagram from [Lab 2](lab2.md)). Refer to the microcontroller board manual for details on pin assignment. Ensure all devices share a common ground.
 
-1. Assemble the voltage division circuit above on your breadboard and connect the voltage divider output to an analog input pin. Vs will be provided by the bench power supply. Ensure the power supply output is OFF. Optionally, you can use a potentiometer to achieve the same.
-1. As a precaution, we only want to supply a maximum of 3.3V to the ADC pin, this means the power supply output should never to above 6.6V. Set the power supply output to 1V.
-1. Add the following code in the main function of your code but before the while loop to set up an analog input pin. Remember, you'll need to replace PTXX with the PWM pin that you are using.
-    <pre>
-    
+    <div style="padding: 15px; border: 1px solid red; background-color: orange; color: white;"><font size="5">DO NOT set the power supply voltage above 3.3V.</font></div>
+
+1. Ensure the power supply output is OFF and set it to less than 3.3V.
+
+1. Start a new program and insert the following code into the main function before the while loop to set up an analog input pin. Replace PTXX with the ADC pin you are using.
+  
         int main()
         {
             ...
-            AnalogIn ain(PTXX); // replace with a ADC pin
+            AnalogIn ain(PTXX); // Replace with an ADC pin
             ...
         }
-    </pre>
 
-1. Next, replace the while loop with the following code so we are controlling the DAC output and the PWM duty cycle with the analog input.
-    <pre>
-    
-        while (true)
-        {
-            i = ain; // read ADC
-            aout = i; // set DAC out %
-            pwm = i; // set PWM duty cycle %
-
-            // delay for 10ms, 1000ms for each ramp up
-            ThisThread::sleep_for(100ms);
-        }
-    </pre>
-
-1. Next, let's print the reading out as well. Modify your code to include the following respectively.
-    <pre>
+1. Insert the following code in the main while loop to read the analog input every 500ms:
     
         while (true)
         {
             ...
-            // print the percentage, 16 bit normalized values, and something we understand
-            printf("percentage: %3.3f%% ", ain.read() * 100.0f);
-            printf("normalized: 0x%04X ", ain.read_u16());
-            printf("normalized: %3.3fV \n", ain * 3.3); // % * 3.3V
-            ...
-        }
-    </pre>
+            reading = ain; // Read ADC
 
-1. Per [Minimal printf and snprintf](https://github.com/ARMmbed/mbed-os/blob/master/platform/source/minimal-printf/README.md), as of mbed OS 6, printf no longer print floating point by default to save memory. In order to enable printing of floating point value, enable it by creating a file called `mbed_app.json` in the root project folder and add the following code to it.
-    <pre>
-
-        {
-            "target_overrides": {
-                "*": {
-                    "target.printf_lib": "std"
-                }
-            }
-        }
-    </pre>
-
-1. Turn on the power supply output and run the program. You should see a constant 0.5V on the DSO, at about 15% duty cycle PWM wave, and a serial output state of about 15% and 0.5V.
-
-    > **Lab Question:** What do you think can be done to reduce reading fluctuation? How do you think that can be achieved?
-
-### Part 1: Onboard I2C Accelerometer and Magnetometer
-
-In Part 1, we'll take a look at how to get reading from the onboard accelerometer and magnetometer.
-
-<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-Check to see if the accelerometer is assembled on your board. NXP had a production change in 2023 and no longer assembles the FXOS8700CQ onto the Freedom board. If your board is missing the accelerometer chip (as shown in Figure 4.1 below), this part of the Lab will not work.
-</div>
-
-The location U8 on the Freedom Board should be assembled with the FXOS8700CQ accelerometer chip.
-
-![Figure 4.1](lab4-u8.png)
-
-***Figure 4.1** Freedom Board with missing FXOS8700CQ accelerometer chip*
-
-1. To use the FXOS8700CQ, you'll need to add the FXOS8700CQ library to your project. Start Mbed Studio then go to File > Add Library to Active Program. When prompted, provide the following link [https://os.mbed.com/teams/NXP/code/FXOS8700Q/](https://os.mbed.com/teams/NXP/code/FXOS8700Q/).
-
-1. The I2C pins used to connect to the accelerometer for the Freedom board are as follows:
-
-    | | K64F | K66F |
-    |---|---|---|
-    |SDA|PTE25|PTD9|
-    |SCL|PTE24|PTD8|
-
-    Start your program with the following code to include the proper library and set up I2C.
-    <pre>
-
-        #include "mbed.h"
-        #include "FXOS8700Q.h"
-
-        I2C i2c(I2C_SDA, I2C_SCL); // replace with I2C pins
-    </pre>
-
-1. Next, we'll create the accelerometer and magnetometer objects using the I2C object we created and the accelerometer's address. You can find the address in the header file.
-    <pre>
-
-        FXOS8700QAccelerometer acc(i2c, FXOS8700CQ_SLAVE_ADDR1);
-        FXOS8700QMagnetometer mag(i2c, FXOS8700CQ_SLAVE_ADDR1);
-    </pre>
-    > **Lab Question:** Look into the header file to find the slave address in HEX?
-
-1. Declare the variables for the sensor data within the `main` function then enable the sensor.
-    <pre>
-
-        motion_data_units_t acc_data, mag_data;
-        float faX, faY, faZ, fmX, fmY, fmZ, tmp_float;
-
-        acc.enable();
-        mag.enable();
-    </pre>
-
-1. Add a `while` loop to get accelerometer readings and print it out.
-    <pre>
-
-        while (true) {
-            acc.getAxis(acc_data);
-            mag.getAxis(mag_data);
-            printf("%3.3f %3.3f\r\n", acc_data.x, mag_data.x);
+            // Delay for 500ms
             ThisThread::sleep_for(500ms);
+            ...
         }
-    </pre>
 
-1. Per [Minimal printf and snprintf](https://github.com/ARMmbed/mbed-os/blob/master/platform/source/minimal-printf/README.md), as of mbed OS 6, printf no longer prints floating point by default to save memory. To enable printing of floating point value, enable it by creating a file called `mbed_app.json` in the root project folder and adding the following code to it.
-    <pre>
+1. Modify your code to print the reading values as follows:
+    
+        while (true)
+        {
+            ...
+            // Print the percentage, 16-bit normalized values, and human-readable format
+            printf("Percentage: %-3d ", reading * 100);
+            printf("Normalized: %-4dmV ", reading * 3.3 * 1000);
+            printf("Raw HEX: 0x%04X\n", ain.read_u16());
+            ...
+        }
+
+    Since **mbed OS 6** no longer enables floating-point printing by default, you can enable it by creating a file called `mbed_app.json` in the root project folder and adding:
 
         {
             "target_overrides": {
@@ -174,69 +110,48 @@ The location U8 on the Freedom Board should be assembled with the FXOS8700CQ acc
                 }
             }
         }
-    </pre>
 
-1. Run your program and you should now see accelerometer and magnetometer readings. Refer to the FXOS8700Q libraries for other library functions and reading you can get.
-    
-    > **Lab Question:** Try getting readings from different axes to figure out which direction is X, Y, and Z? When there is acceleration in an axis, you'll get acceleration reading on that axis (including gravity).
+1. Set the power supply output to 1V, then turn it on and run the program. If using a potentiometer, set it to a middle position.
 
-### Part 2: Visualize I2C Signal
+1. Open a terminal to read the serial output from your microcontroller, which should display the voltage of the output signal.
 
-1. Power off the Freedom board and connect the SDA pin to CH1 and the SCL pin to CH2 of the oscilloscope. If you are using the K66F board, use I2C1 at PTC11 and PTC10 for this part of the lab.
+1. Modify the serial output to show the **raw ADC output in binary** instead of HEX.
 
-1. With the I2C code running, adjust the oscilloscope to see the full I2C data frame. Use the "Serial" option under Measure on the right of the face plate to align the I2C signal. If Serial measurement is not available, you might need to do this manually. If you cannot see the I2C signal, decrease the delay in each loop so data are sent more often and use "Single" reading instead of continuous readings.
-    
-    > **Lab Question:** Using the figure below as a reference, identify the start condition, the address, ACK, data, and stop condition of your I2C signal. You should be able to identify the address you are sending from Part 1.
+    > **Lab Question:** How many bits does the ADC on your microcontroller have, and what is its resolution?
 
-    ![Figure 4.2](lab4-i2c-frame.jpg)
+### Part 2: RTOS Multi-Threading
 
-    ***Figure 4.2** I2C data frame [1]*
+1. Instead of printing data directly in the `while` loop of `main()`, we'll utilize **multi-threading** in mbed OS by running the printing function in a separate thread.
 
-### Part 3: UART Communication
+1. Move the `printf` statements into a new function called `print_data()`, using a pointer to pass variables. Add the following above `main()`:
 
-In this part of the lab, you'll be working with the group beside you to communicate between processor board.
-
-1. Add the following code to your program create an unbuffered serial object for UART.
-
-    | | K64F | K66F |
-    |---|---|---|
-    |UART TX|PTC17|PTC4|
-    |UART RX|PTC16|PTC3|
-
-    <pre>
-    
-        static BufferedSerial serial_port(UART_TX, UART_RX, 9600); // replace with UART pins
-    </pre>
-
-1. Add the following in your `while` loop to send some data.
-    <pre>
-
-        static char c = 'a';
-        static int x = 1;
-        serial_port.write(&c, 1);
-        c += x;
-        if (c >= 'z' || c <= 'a')
-            x *= -1;
-        ThisThread::sleep_for(1s);
-    </pre>
-
-1. Add the following code in the while loop to read incoming UART data from buffer and print it to terminal.
-    <pre>
-
-        if (serial_port.read(&c, 1)) {
-            // Echo the input back to the terminal.
-            ThisThread::sleep_for(100ms); // allow reading to finish
-            printf("%c\n", c);
+        void print_data(float *reading) {
+            while (true) {
+                printf("Percentage: %-3d ", *reading * 100);
+                printf("Normalized: %-4dmV ", *reading * 3.3 * 1000);
+                // Delay for 1s
+                ThisThread::sleep_for(1000ms);
+            }
         }
-        
-    </pre>
 
-1. Connect the UART TX pin from one board to the UART RX pin on another board as well as a common ground. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be displayed on the serial console.
+1. Define a new thread above `print_data()`:
 
-    > **Lab Question:** Change your code to send multiple characters through UART.
+        Thread print_data_thread;
 
-## Reference
+1. Start the thread in `main()`:
 
+        print_data_thread.start(callback(print_data, &reading));
+
+1. Remeber to remove the `printf` statements from `main()`.
+
+1. Run the updated code. It should function the same as Part 1 but now runs in a separate thread.
+
+1. Modify your code to use **Mutex or Semaphore** to prevent race conditions and ensure thread safety. Refer to class notes for implementation. For example, the variable "reading" should be guaranteed as unchanged between the printf statements.
+
+Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.
+
+## References
+
+- [mbed I/O APIs](https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html)
 - [AnalogIn](https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html)
-- [1] [https://learn.sparkfun.com/tutorials/i2c/all](https://learn.sparkfun.com/tutorials/i2c/all)
-- [UnbufferedSerial](https://os.mbed.com/docs/mbed-os/v6.16/apis/unbufferedserial.html)
+- [mbed RTOS APIs](https://os.mbed.com/docs/mbed-os/v6.16/apis/scheduling-rtos-and-event-handling.html)

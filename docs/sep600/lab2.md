@@ -165,7 +165,7 @@ Once you've completed all the steps above (and ONLY when you are ready, as you'l
 
 ## References
 
-- [mbed I/O API](https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html)
+- [mbed I/O APIs](https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html)
 - [DigitalIn](https://os.mbed.com/handbook/DigitalIn)
 - [DigitalOut](https://os.mbed.com/handbook/DigitalOut)
 - [PwmOut](https://os.mbed.com/docs/mbed-os/v6.16/apis/pwmout.html)

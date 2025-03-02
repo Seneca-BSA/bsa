@@ -63,7 +63,7 @@ Read over the lab manual for this lab and acquire the necessary materials.
 
 ***Figure 3.3** PWM Output with RC Smoothing Circuit.*
 
-1. Acquire a breadboard, a resistor, a capacitor, and jumper wires to assemble the circuit shown above. Attach the PWM signal to a PWM-capable pin of your microcontroller (pins with a purple PWM label in the pinout diagram). Refer to the microcontroller board manual for details on pin assignment.
+1. Acquire a breadboard, a resistor, a capacitor, and jumper wires to assemble the circuit shown above. Attach the PWM signal to a PWM-capable pin of your microcontroller (pins with a purple PWM label in the pinout diagram from [Lab 2](lab2.md)). Refer to the microcontroller board manual for details on pin assignment.
 
     <div style="padding: 15px; border: 1px solid red; background-color: orange; color: white;"><font size="5">If you are using a polarized capacitor, ensure the polarity of your connection is correct.</font></div>
 
@@ -163,6 +163,6 @@ Once you've completed all the steps above (and ONLY when you are ready, as you'l
 
 ## References
 
-- [mbed I/O API](https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html)
+- [mbed I/O APIs](https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html)
 - [PwmOut](https://os.mbed.com/docs/mbed-os/v6.16/apis/pwmout.html)
 - [AnalogOut](https://os.mbed.com/docs/mbed-os/v6.16/apis/analogout.html)
