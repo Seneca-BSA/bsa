@@ -194,7 +194,7 @@ SEP600 Embedded Systems
 <p>Instead of printing data directly in the <code>while</code> loop of <code>main()</code>, we'll utilize <strong>multi-threading</strong> in mbed OS by running the printing function in a separate thread.</p>
 </li>
 <li>
-<p>Move the <code>printf</code> statements into a new function called <code>print_data()</code>, using a pointer to pass variables. Add the following above <code>main()</code>:</p>
+<p>Move the two <code>printf</code> statements for <code>reading</code> into a new function called <code>print_data()</code>, using a pointer to pass variables. Add the following above <code>main()</code>:</p>
 <pre><code>void print_data(float *reading) {
     while (true) {
         printf("Percentage: %-3d ", *reading * 100);
@@ -216,13 +216,16 @@ SEP600 Embedded Systems
 </code></pre>
 </li>
 <li>
-<p>Remeber to remove the <code>printf</code> statements from <code>main()</code>.</p>
+<p>Run the updated code.</p>
+<blockquote>
+<p><strong>Lab Question:</strong> Why is the RAW reading printed out twice?</p>
+</blockquote>
 </li>
 <li>
-<p>Run the updated code. It should function the same as Part 1 but now runs in a separate thread.</p>
-</li>
-<li>
-<p>Modify your code to use <strong>Mutex or Semaphore</strong> to prevent race conditions and ensure thread safety. Refer to class notes for implementation. For example, the variable "reading" should be guaranteed as unchanged between the printf statements.</p>
+<p>Modify your code so the output is the same as Part 1 then use <strong>Mutex or Semaphore</strong> to prevent race conditions and ensure thread safety. Refer to class notes for implementation. For example, the variable "reading" should be guaranteed as unchanged between the printf statements. <strong>Note:</strong> All analog reading must occur in the main thread.</p>
+<blockquote>
+<p><strong>Lab Question:</strong> What shared resource(s) are you protecting and what could happen if it's not protected?</p>
+</blockquote>
 </li>
 </ol>
 <p>Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.</p>
