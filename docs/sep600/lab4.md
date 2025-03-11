@@ -45,6 +45,7 @@ An RTOS in an embedded system is a specialized operating system designed to mana
 ## Materials
 
 - Safety glasses (PPE)
+- Freedom K64F or K66F Board
 - Breadboard
 - Jumper wires
 - (1×) 10kΩ Resistor
@@ -123,7 +124,7 @@ Read over the lab manual and acquire the necessary materials.
 
 1. Instead of printing data directly in the `while` loop of `main()`, we'll utilize **multi-threading** in mbed OS by running the printing function in a separate thread.
 
-1. Move the `printf` statements into a new function called `print_data()`, using a pointer to pass variables. Add the following above `main()`:
+1. Move the two `printf` statements for `reading` into a new function called `print_data()`, using a pointer to pass variables. Add the following above `main()`:
 
         void print_data(float *reading) {
             while (true) {
@@ -142,11 +143,13 @@ Read over the lab manual and acquire the necessary materials.
 
         print_data_thread.start(callback(print_data, &reading));
 
-1. Remeber to remove the `printf` statements from `main()`.
+1. Run the updated code.
 
-1. Run the updated code. It should function the same as Part 1 but now runs in a separate thread.
+    > **Lab Question:** Why is the RAW reading printed out twice?
 
-1. Modify your code to use **Mutex or Semaphore** to prevent race conditions and ensure thread safety. Refer to class notes for implementation. For example, the variable "reading" should be guaranteed as unchanged between the printf statements.
+1. Modify your code so the output is the same as Part 1 then use **Mutex or Semaphore** to prevent race conditions and ensure thread safety. Refer to class notes for implementation. For example, the variable "reading" should be guaranteed as unchanged between the printf statements. **Note:** All analog reading must occur in the main thread.
+
+    > **Lab Question:** What shared resource(s) are you protecting and what could happen if it's not protected?
 
 Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.
 

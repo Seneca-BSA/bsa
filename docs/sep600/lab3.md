@@ -44,6 +44,7 @@ A Digital-to-Analog Converter (DAC) is an essential component in modern electron
 
 ## Materials
 - Safety glasses (PPE)
+- Freedom K64F or K66F Board
 - Breadboard
 - Jumper wires
 - Various 1kΩ–10kΩ resistors

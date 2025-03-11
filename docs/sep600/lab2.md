@@ -36,6 +36,7 @@ An operational amplifier (op-amp) can be used as a comparator, a device that com
 
 ## Materials
 - Safety glasses (PPE)
+- Freedom K64F or K66F Board
 - Breadboard
 - Jumper wires
 - (1x) Op-Amp (LM358, LM324, or similar)

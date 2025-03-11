@@ -1,39 +1,45 @@
-# Lab 5 : Parallel LCD and Interrupt
+# Lab 4 : Serial UART and I2C Communication
 
 <font size="5">
 Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font>
 
-## Introduction
+### Introduction
 
-Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:
+Documentation for the Cortex-M4 instruction set, the board user’s guide, and the microcontroller reference manual can be found here:
 
-### Cortex M4
+Documentation for the Freedom K64 and K66 boards and their microcontrollers can be found here:
 
-- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001)
-- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/)
+- [FRDM-K64F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG) ([PDF](FRDMK64FUG.pdf))
+- [Kinetis K64 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM) ([PDF](K64P144M120SF5RM.pdf))
+- [FRDM-K64F Mbed Reference](https://os.mbed.com/platforms/FRDM-K64F/)
+- [FRDM-K64F Mbed Pin Names](https://os.mbed.com/teams/Freescale/wiki/frdm-k64f-pinnames)
+- [FRDM-K66F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG) ([PDF](FRDMK66FUG.pdf))
+- [Kinetis K66 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2) ([PDF](K66P144M180SF5RMV2.pdf))
+- [FRDM-K66F Mbed Reference](https://os.mbed.com/platforms/FRDM-K66F/)
+- [FRDM-K66F Mbed Pin Names](https://os.mbed.com/teams/NXP/wiki/FRDM-K66F-Pinnames)
 
-### FRDM-K64F
+Documentation for the Cortex-M4 instruction set can be found here:
 
-- [FRDM-K64F Freedom Module User’s Guide](FRDMK64FUG.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG))
-- [Kinetis K64 Reference Manual](K64P144M120SF5RM.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM))
-- [FRDM-K64F mbed](https://os.mbed.com/platforms/FRDM-K64F/)
+- [Arm Cortex-M4 Processor Technical Reference Manual Revision](https://developer.arm.com/documentation/100166/0001) ([PDF](Cortex-M4-Proc-Tech-Ref-Manual.pdf))
+    - [Table of Processor Instructions](https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions)
+- [ARMv7-M Architecture Reference Manual](https://developer.arm.com/documentation/ddi0403/latest/) ([PDF](DDI0403E_e_armv7m_arm.pdf))
 
-### FRDM-K66F
+### Serial Universal Asynchronous Receiver/Transmitter (UART)
 
-- [FRDM-K66F Freedom Module User’s Guide](FRDMK66FUG.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG))
-- [Kinetis K66 Reference Manual](K66P144M180SF5RMV2.pdf) (From [nxp.com](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2))
-- [FRDM-K66F mbed](https://os.mbed.com/platforms/FRDM-K66F/)
+Serial UART is a communication protocol commonly used for transmitting and receiving data between devices over a serial interface. It operates asynchronously, meaning that data is sent without needing a clock signal, using start bits, data bits, optional parity bits, and stop bits to structure each data frame. UART is widely used in embedded systems, microcontrollers, and computer communication for its simplicity, low cost, and reliability. Devices communicate by converting parallel data into a serial stream for transmission and converting it back on the receiving end. Typical use cases include connecting peripherals like sensors, GPS modules, and Bluetooth devices to a microcontroller or computer. It typically requires only two wires—one for transmitting data (TX) and one for receiving data (RX)—making it efficient for many small-scale applications.
+
+### Inter-Integrated Circuit (I2C)
+
+I2C is a synchronous, multi-master, multi-slave communication protocol commonly used to connect low-speed peripheral devices like sensors, displays, and memory chips to microcontrollers. It uses only two wires for communication: a serial data line (SDA) and a serial clock line (SCL), allowing multiple devices to share the same bus. I2C operates in a master-slave configuration, where the master device controls the clock and initiates communication with the slave devices. Each device on the bus is assigned a unique address, and data is transferred in packets, which include the address and the data to be sent. I2C is favored for its simplicity, ease of use, and ability to connect multiple devices with minimal wiring, making it ideal for embedded systems and applications where space and resources are limited.
 
 ## Materials
 - Safety glasses (PPE)
+- Freedom K64F or K66F Board
 - Breadboard
-- LCD Display (Parallel**)
-- 1kΩ Resistors
 - Jumper Wires
-
-** If you are using an I2C LCD, connect the LCD to the I2C pins and use the I2C library instead of the parallel LCD library.
+- (2×) 1kΩ Resistors
 
 ## Preparation
 
@@ -42,55 +48,76 @@ Documentation of the Cortex-M4 instruction set, board user's guide, and the micr
 
 ## Procedures
 
-### Part 1: Parallel LCD
+### Part 1: Onboard I2C Accelerometer and Magnetometer (Or any I2C Sensor or I2C LCD)
 
-In Part 1, we'll take a look at how to connect and display characters to a parallel LCD.
+In Part 1, we'll take a look at how to get reading from the onboard accelerometer and magnetometer (or any I2C sensor or send message to a I2C LCD).
 
-A parallel 16x2 LCD shown in Figure 5.1 usually uses 4-wire for parallel data transfer plus 2-wire for enable and register select. A 8-wire data configuration is sometimes used but normally not required.
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+Check to see if the accelerometer is assembled on your board. NXP had a production change in 2023 and no longer assembles the FXOS8700CQ onto the Freedom board. If your board is missing the accelerometer chip (as shown in Figure 4.1 below), this part of the Lab will not work.
+</div>
 
-![Figure 5.1](lab5-lcd.png)
+The location U8 on the Freedom Board should be assembled with the FXOS8700CQ accelerometer chip.
 
-***Figure 5.1** 16x2 LCD*
+![Figure 5.1](lab5-u8.png)
 
-The typical pinout and connection for a 16x2 LCD are given below. Please keep in mind that depending on the manufacturer, some labels and configurations may vary.
+***Figure 5.1** Freedom Board with missing FXOS8700CQ accelerometer chip*
 
-| LCD Pin # | LCD label | K64F/K66F Pin |
-|---|---|---|
-| 1 | GND / VSS | GND / 0V |
-| 2 | VDD / VCC | 5V |
-| 3 | VO | 1kΩ to GND / 0V |
-| 4 | RS | D9 |
-| 5 | R/W | GND / 0V |
-| 6 | E | D8 |
-| 7 | DB0 | N/C |
-| 8 | DB1 | N/C |
-| 9 | DB2 | N/C |
-| 10 | DB3 | N/C |
-| 11 | DB4 | D4 |
-| 12 | DB5 | D5 |
-| 13 | DB6 | D6 |
-| 14 | DB7 | D7 |
-| 15 | LED+ | 1kΩ to 5V |
-| 16 | LED- | N/C |
+1. To use the FXOS8700CQ, you'll need to add the FXOS8700CQ library to your project. Start Kiel Studio then go to File > Add Mbed Library to Active Program. When prompted, provide the following link [https://os.mbed.com/teams/NXP/code/FXOS8700Q/](https://os.mbed.com/teams/NXP/code/FXOS8700Q/).
 
-- Some models work with 3.3V instead of 5V
-- VO pin configuration varies depending on the manufacturer. A potentiometer can be used instead of a 1kΩ Resistor for adjustable contrast
+    - If you are using another sensor, find the library for your sensor in the mbed library repository.
+    - If you are using an I2C LCD, use this library: [https://os.mbed.com/users/sstaub/code/mbedLCDi2c/](I2C LCD: https://os.mbed.com/users/sstaub/code/mbedLCDi2c/)
 
-You may change the pin to use on the K64F/K66F board depending on your application and pin availability.
+1. The following code depend on the I2C device that you are using. The pins used for connection to the accelerometer on the Freedom board are as follows:
 
-1. Acquire an LCD and resistor then connect them to the Freedom K64F/K66F board as per the connection table given above and the diagram below. If you are using an I2C LCD, connect the LCD to an I2C pin.
+    | | K64F | K66F |
+    |---|---|---|
+    |SDA|PTE25|PTD9|
+    |SCL|PTE24|PTD8|
 
-    ![Figure 5.2](lab5-lcd-connection.png)
+    The Freedom have multiple I2Cs. For the K66F, the I2C pins you see on the pinout map are not on the same I2C network as the onboard sensor.
 
-    ***Figure 5.2** LCD connection with Freedom board*
+    Start your program with the following code to include the proper library and set up I2C.
 
-1. Open mbed Studio and install the following library to your project depending if you are using the Parallel or I2C version of the LCD.
+        #include "mbed.h"
+        #include "FXOS8700Q.h"
 
-    - Parallel LCD: https://os.mbed.com/users/sstaub/code/mbedLCD/
-    - I2C LCD: https://os.mbed.com/users/sstaub/code/mbedLCDi2c/
+        I2C i2c(I2C_SDA, I2C_SCL); // replace with I2C pins
 
-1. Use the following code to output some message on the display.
-    <pre>
+1. Next, we'll create the accelerometer and magnetometer objects using the I2C object we created and the accelerometer's address. You can find the address in the header file.
+
+        FXOS8700QAccelerometer acc(i2c, FXOS8700CQ_SLAVE_ADDR1);
+        FXOS8700QMagnetometer mag(i2c, FXOS8700CQ_SLAVE_ADDR1);
+
+    > **Lab Question:** Look into the header file for the FXOS8700Q (or the one for your I2C device) to find the slave address in HEX?
+
+1. Declare the variables for the sensor data within the `main` function then enable the sensor. This varies depending on your I2C devices.
+
+        motion_data_units_t acc_data, mag_data;
+        float faX, faY, faZ, fmX, fmY, fmZ, tmp_float;
+
+        acc.enable();
+        mag.enable();
+
+1. Add a `while` loop to get accelerometer readings and print it out. You may change the print statement to just integer if you don't want to setup float.
+
+        while (true) {
+            acc.getAxis(acc_data);
+            mag.getAxis(mag_data);
+            printf("%3.3f %3.3f\r\n", acc_data.x, mag_data.x);
+            ThisThread::sleep_for(500ms);
+        }
+
+1. (Optional) Per [Minimal printf and snprintf](https://github.com/ARMmbed/mbed-os/blob/master/platform/source/minimal-printf/README.md), as of mbed OS 6, printf no longer prints floating point by default to save memory. To enable printing of floating point value, enable it by creating a file called `mbed_app.json` in the root project folder and adding the following code to it.
+
+        {
+            "target_overrides": {
+                "*": {
+                    "target.printf_lib": "std"
+                }
+            }
+        }
+
+1. If you are using an I2C LCD, you may use the following code to output some message on the display.
 
         #include "mbed.h"
         #include "LCD.h"
@@ -108,47 +135,61 @@ You may change the pin to use on the K64F/K66F board depending on your applicati
             lcd.printf("Hello World!\n"); // display text
 
         }
-    </pre>
 
-1. After uploading your code, the LCD should show "START" for 2 seconds then "Hello World!".
+1. Run your program and you should now see accelerometer and magnetometer readings (or the LCD displaying a message). Refer to the FXOS8700Q libraries for other library functions and reading you can get.
+    
+    > **Lab Question:** Try getting readings from different axes to figure out which direction is X, Y, and Z? When there is acceleration in an axis, you'll get acceleration reading on that axis (including gravity).
 
-    > **Lab Question:** Modify your code to display your name and student number on row 1 and your lab partner's name and student name on row 2 (or be creative like "SEP600 Embedded System is Awesome"). Since the message will be too wide for the LCD, display the text as a horizontal scrolling message at a reasonable rate. 
-    >
-    > **Hint:** There are many ways to do this. Refer to the library documentation on how to move the print cursor.
+### Part 2: Visualize I2C Signal
 
-### Part 2: Interrupt
+1. Power off the Freedom board and connect the SDA pin to CH1 and the SCL pin to CH2 of the oscilloscope. If you are using the K66F board, use I2C1 at PTC11 and PTC10 for this part of the lab.
 
-Interrupt is a way for the microcontroller to listen to events without continuously polling from the input.
+1. Power the board back on With the I2C code running, adjust the oscilloscope to see the full I2C data frame. Use the "Serial" option under Measure on the right of the face plate to align the I2C signal. If Serial measurement is not available or cannot lock into the I2C signal, you might need to do this manually. If you cannot see the I2C signal, decrease the delay in each loop so data are sent more often and use "Single" reading instead of continuous readings.
+    
+    > **Lab Question:** Using the figure below as a reference, identify the start condition, the address, ACK, data, and stop condition of your I2C signal. You should be able to identify the HEX address you are sending from Part 1.
 
-1. Connect a pull-up or pull-down button to any digital pin of your choosing.
+    ![Figure 5.2](lab5-i2c-frame.jpg)
 
-1. Add the following code before ``main()`` to create an interrupt object.
-    <pre>
+    ***Figure 5.2** I2C data frame [1]*
 
-        InterruptIn button(PTXX);
+### Part 3: UART Communication
 
-    </pre>
+In this part of the lab, you'll be working with the group beside you to communicate between processor board.
 
-1. Add the following interrupt routine before ``main()`` and add the appropriate code for displaying a message on the LCD.
-    <pre>
+1. Add the following code to your program to create an unbuffered serial object for UART.
 
-        void button_isr(){
-            // display an interrupt messages on the LCD
-            // USE wait_us for delay
-            // DO NOT use ThisThread::sleep_for
+    | | K64F | K66F |
+    |---|---|---|
+    |UART TX|PTC17|PTC4|
+    |UART RX|PTC16|PTC3|
+
+    
+        static BufferedSerial serial_port(UART_TX, UART_RX, 9600); // replace with UART pins
+
+1. Create a new thread then add a loop with the following to send some data.
+
+        static char c = 'a';
+        static int x = 1;
+        serial_port.write(&c, 1);
+        c += x;
+        if (c >= 'z' || c <= 'a')
+            x *= -1;
+        ThisThread::sleep_for(1s);
+
+1. Create a new thread or add the following code in the main `while` loop to read incoming UART data and print it to terminal.
+
+        if (serial_port.read(&c, 1)) {
+            // Echo the input back to the terminal.
+            ThisThread::sleep_for(100ms); // allow reading to finish
+            printf("%c\n", c);
         }
 
-    </pre>
+1. Connect the UART TX pin from one Freedom board to the UART RX pin on another board with an inline 1kΩ Resistor as well as a common ground. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be displayed on the serial console. Do the same in reverse so you have two-ways communication between the boards.
 
-1. Within ``main()`` Attach the interrupt routine with the button and adjust for rise or fall edge depending on your circuit configuration.
-    <pre>
-
-        button.rise(&button_isr);
-
-    </pre>
-
-1. Upload and test your interrupt.
+    > **Lab Question:** Change your code to send multiple characters at a time (ie. "ABC123\n") through UART.
 
 ## Reference
 
-- [InterruptIn](https://os.mbed.com/docs/mbed-os/v6.16/apis/interruptin.html)
+- [AnalogIn](https://os.mbed.com/docs/mbed-os/v6.16/apis/i-o-apis.html)
+- [1] [https://learn.sparkfun.com/tutorials/i2c/all](https://learn.sparkfun.com/tutorials/i2c/all)
+- [UnbufferedSerial](https://os.mbed.com/docs/mbed-os/v6.16/apis/unbufferedserial.html)
