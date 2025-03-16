@@ -80,16 +80,40 @@ Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
+<p>Documentation for the Cortex-M4 instruction set, the board user's guide, and the microcontroller reference manual can be found here:</p>
+<p>Documentation for the Freedom K64 and K66 boards and their microcontrollers can be found here:</p>
 <ul>
-<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
-<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a></li>
-<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a> (<a href="../FRDMK64FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a> (<a href="../K64P144M120SF5RM.pdf">PDF</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/Freescale/wiki/frdm-k64f-pinnames">FRDM-K64F Mbed Pin Names</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a> (<a href="../FRDMK66FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a> (<a href="../K66P144M180SF5RMV2.pdf">PDF</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/NXP/wiki/FRDM-K66F-Pinnames">FRDM-K66F Mbed Pin Names</a></li>
 </ul>
-<p>In the previous lab, we explored the use of the built-in ConfigTools in MCUXpresso IDE to help with setting up interrupts. In this lab, we'll explore how to use assembly instruction to setup GPIO as well as using the ConfigTools to do the same.</p>
+<p>Documentation for the Cortex-M4 instruction set can be found here:</p>
+<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of Processor Instructions</a></li>
+</ul>
+</li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="../DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
+</ul>
+<h3 id="low-pass-filter">Low-Pass Filter</h3>
+<p>A low-pass filter is an electronic circuit or signal processing technique that allows signals with frequencies below a certain cutoff frequency to pass through, while attenuating or blocking higher-frequency signals. This makes low-pass filters ideal for filtering out high-frequency noise from signals, which is particularly useful in applications like audio processing, communications, and sensor data acquisition. Noise, often caused by electrical interference or other environmental factors, typically manifests as high-frequency components. By using a low-pass filter, these unwanted high-frequency noise signals are reduced, leaving behind the cleaner, more relevant low-frequency signals. The effectiveness of a low-pass filter in noise reduction depends on the cutoff frequency, which must be carefully selected to ensure that the desired signal remains intact while unwanted noise is removed.</p>
+<p><img alt="Figure 7.1" src="../lab7-low-pass-filter.png" /></p>
+<p><em><strong>Figure 7.1</strong> Sample Low-Pass Filter</em></p>
+<p><img alt="Figure 7.2" src="../lab7-filtering.png" /></p>
+<p><em><strong>Figure 7.2</strong> Signal Filtering</em></p>
+<h2 id="materials">Materials</h2>
+<ul>
+<li>Safety glasses (PPE)</li>
+<li>Freedom K64F or K66F Board</li>
+<li>Breadboard</li>
+<li>Jumper Wires</li>
+<li>(1×) 1kΩ–10kΩ Potentiometer (Optional)</li>
+</ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
@@ -98,9 +122,87 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<h2 id="post-lab-questions">Post-Lab Questions</h2>
-<p>Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.</p>
+<p>In this lab, we'll explore the use of software filtering techniques to remove noise from a digital signal and then plot the data on a computer. We'll also explore the concept of multi-threading to handle the two tasks.</p>
+<ol>
+<li>
+<p>Start the function generator to output a 1Vpp 1kHz Triangular (Ramp) wave with a 2V DC offset. Alternatively, you can read data from a sensor that you are using in your project.</p>
+</li>
+<li>
+<p>Connect the output of the function generator to an ADC (Analog input) pin on the K64F or K66F board.</p>
+</li>
+<li>
+<p>Use the following code to read the signal from the ADC channel. Replace <code>PTXX</code> with the pin that you are using.</p>
+<pre><code>#include "mbed.h"
+
+int main() {
+
+    AnalogIn ain(PTXX); // Replace with your ADC pin
+
+    float reading = 0; // for saving readings
+
+    while (true) {
+        reading = ain; // read ADC
+        printf("Reading: %d\n", (int) (reading * 100)); // print as int
+        // delay for 1ms for each reading
+        ThisThread::sleep_for(1ms);
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>Your serial output should now be flooded with data output between 0 to 100.</p>
+</li>
+<li>
+<p>Next, move the printing of the data into a thread so it won't interfere with the ADC reading and let the processor decide how to optimize the process.</p>
+</li>
+<li>
+<p>Next, let's read the data from the computer using Python and plot it. Install <code>pyserial</code> using <code>pip install pyserial</code> and <code>matplotlib</code> using <code>pip install matplotlib</code> as required. Run the following Python script on your computer. </p>
+<pre><code>import serial
+import matplotlib.pyplot as plt
+import numpy as np
+plt.ion()
+fig=plt.figure()
+
+x = list()
+y = list()
+i = 0
+
+ser = serial.Serial('XXXX', 9600) # Replace XXXX with your serial port
+ser.close()
+ser.open()
+
+while True:
+
+    data = ser.readline()
+
+    x.append(i)
+    y.append(data.decode())
+
+    plt.scatter(i, float(data.decode()))
+    i += 1
+    plt.show()
+    plt.pause(0.000001)
+</code></pre>
+</li>
+<li>
+<p>Run the Python code and it should open the specified serial and start plotting the data. As you can tell, it is not the most optimized plotting code.</p>
+<p><img alt="Figure 6.1" src="../lab6-plot.png" /></p>
+<p><strong><em>Figure 6.1</em></strong></p>
+</li>
+<li>
+<p>Change the Python code so the plot becomes a line graph that's displaying the reading similar to an oscilloscope, i.e., replacing old readings with new ones instead of just adding readings to the graph.</p>
+</li>
+<li>
+<p>You should see a triangular wave (simulating noisy data) on your Python oscilloscope. Your task is to add the simple IIR filter discussed in class to smooth out the data on the controller. This means adding a new variable called <code>alpha</code> and <code>old_reading</code> to save the reading for the next iteration.</p>
+<pre><code>filtered_reading = old_reading + alpha * (adc_reading – old_reading);
+</code></pre>
+</li>
+</ol>
+<p>Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.</p>
 <h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Infinite_impulse_response">Infinite Impulse Response</a></li>
+</ul>
               
             </div>
           </div><footer>

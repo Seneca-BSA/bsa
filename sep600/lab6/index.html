@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 6 - BSA Lab Manuals</title>
+    <title>Lab 6 : LCD and Interrupt - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 6";
+        var mkdocs_page_name = "Lab 6 : LCD and Interrupt";
         var mkdocs_page_input_path = "sep600/lab6.md";
         var mkdocs_page_url = null;
       </script>
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 6</li>
+      <li class="breadcrumb-item active">Lab 6 : LCD and Interrupt</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,36 +74,105 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-6">Lab 6</h1>
+                <h1 id="lab-6-lcd-and-interrupt">Lab 6 : LCD and Interrupt</h1>
 <p><font size="5">
 Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>Documentation of the Cortex-M4 instruction set, board user's guide, and the microcontroller reference manual can be found here:</p>
-<h3 id="cortex-m4">Cortex M4</h3>
+<p>Documentation for the Cortex-M4 instruction set, the board user's guide, and the microcontroller reference manual can be found here:</p>
+<p>Documentation for the Freedom K64 and K66 boards and their microcontrollers can be found here:</p>
 <ul>
-<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a></li>
-<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">FRDM-K64F Freedom Module User’s Guide</a> (<a href="../FRDMK64FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">Kinetis K64 Reference Manual</a> (<a href="../K64P144M120SF5RM.pdf">PDF</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/Freescale/wiki/frdm-k64f-pinnames">FRDM-K64F Mbed Pin Names</a></li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">FRDM-K66F Freedom Module User’s Guide</a> (<a href="../FRDMK66FUG.pdf">PDF</a>)</li>
+<li><a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">Kinetis K66 Reference Manual</a> (<a href="../K66P144M180SF5RMV2.pdf">PDF</a>)</li>
+<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F Mbed Reference</a></li>
+<li><a href="https://os.mbed.com/teams/NXP/wiki/FRDM-K66F-Pinnames">FRDM-K66F Mbed Pin Names</a></li>
 </ul>
-<h3 id="frdm-k64f">FRDM-K64F</h3>
+<p>Documentation for the Cortex-M4 instruction set can be found here:</p>
 <ul>
-<li><a href="../FRDMK64FUG.pdf">FRDM-K64F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK64FUG">nxp.com</a>)</li>
-<li><a href="../K64P144M120SF5RM.pdf">Kinetis K64 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K64P144M120SF5RM">nxp.com</a>)</li>
-<li><a href="https://os.mbed.com/platforms/FRDM-K64F/">FRDM-K64F mbed</a></li>
+<li><a href="https://developer.arm.com/documentation/100166/0001">Arm Cortex-M4 Processor Technical Reference Manual Revision</a> (<a href="../Cortex-M4-Proc-Tech-Ref-Manual.pdf">PDF</a>)<ul>
+<li><a href="https://developer.arm.com/documentation/100166/0001/Programmers-Model/Instruction-set-summary/Table-of-processor-instructions">Table of Processor Instructions</a></li>
 </ul>
-<h3 id="frdm-k66f">FRDM-K66F</h3>
+</li>
+<li><a href="https://developer.arm.com/documentation/ddi0403/latest/">ARMv7-M Architecture Reference Manual</a> (<a href="../DDI0403E_e_armv7m_arm.pdf">PDF</a>)</li>
+</ul>
+<h3 id="162-or-other-size-lcd-module">16×2 (or other size) LCD Module</h3>
+<p>A 16×2 Liquid Crystal Display module has 16 columns and 2 rows of characters. Most 16×2 (as well as 8×1, 20×2, and 20×4) LCD modules use a Hitachi HD44780 (or compatible) LCD controller. Each character space can display a single alphanumeric character, symbol, or custom character. The display operates by selectively controlling the liquid crystal pixels, making them opaque or transparent to create characters or graphics. The LCD controller works in 2 main modes: </p>
 <ul>
-<li><a href="../FRDMK66FUG.pdf">FRDM-K66F Freedom Module User’s Guide</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG">nxp.com</a>)</li>
-<li><a href="../K66P144M180SF5RMV2.pdf">Kinetis K66 Reference Manual</a> (From <a href="https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2">nxp.com</a>)</li>
-<li><a href="https://os.mbed.com/platforms/FRDM-K66F/">FRDM-K66F mbed</a></li>
+<li><strong>4-bit Mode:</strong> Data is sent to the LCD module in two consecutive nibbles. The higher nibble, consisting of data lines D4 to D7, is sent first, followed by the lower nibble with data lines D0 to D3. This configuration allows us to send 8-bit data using only four data lines, conserving valuable I/O pins on the microcontroller.</li>
+<li><strong>8-bit Mode:</strong> The LCD can directly receive 8-bit data in a single transmission, using all eight data lines (D0 to D7). As a result, this mode offers faster and more efficient data transfer compared to the 4-bit mode. However, it requires more I/O pins on the microcontroller, potentially limiting its application in projects with limited resources.</li>
 </ul>
+<p>When using the LCD module in 4-bit mode, only 4 wires are required for parallel data transfer, plus 2 wires for enable. However, with the help of an I2C parallel port expander (I2C backpack), only 2 wires through I2C are required to work with the LCD module.</p>
+<p><img alt="Figure 6.1" src="../lab6-lcd.png" /></p>
+<p><em><strong>Figure 6.1</strong> 16x2 LCD</em></p>
+<p>Some common commands are:</p>
+<table>
+<thead>
+<tr>
+<th>Command Name</th>
+<th>HEX Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clear Display</td>
+<td>0x01</td>
+<td>This command clears the entire display, resetting the cursor position to the home position (0, 0).</td>
+</tr>
+<tr>
+<td>Return Home</td>
+<td>0x02</td>
+<td>Sending this command moves the cursor to the home position (0, 0) without clearing the display.</td>
+</tr>
+<tr>
+<td>Entry Mode Set</td>
+<td>0x04</td>
+<td>This command determines the cursor movement direction and whether the display should shift.</td>
+</tr>
+<tr>
+<td>Display On/Off Control</td>
+<td>0x08</td>
+<td>This command controls the display, cursor, and cursor blinking options.</td>
+</tr>
+<tr>
+<td>Cursor or Display Shift</td>
+<td>0x10</td>
+<td>Used to shift the cursor or the entire display left or right without changing the display data.</td>
+</tr>
+<tr>
+<td>Function Set</td>
+<td>0x20</td>
+<td>This command sets the LCD data length (4-bit or 8-bit), number of display lines, and font size.</td>
+</tr>
+<tr>
+<td>Set CGRAM Address</td>
+<td>0x40</td>
+<td>This command sets the address of the Character Generator RAM (CGRAM) for custom character creation.</td>
+</tr>
+<tr>
+<td>Set DDRAM Address</td>
+<td>0x80</td>
+<td>This command sets the address of the Display Data RAM (DDRAM), allowing data to be written to a specific location on the LCD.</td>
+</tr>
+</tbody>
+</table>
+<p>Reference: <a href="https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller">HD44780 LCD Controller</a></p>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>Safety glasses (PPE)</li>
+<li>Freedom K64F or K66F Board</li>
 <li>Breadboard</li>
 <li>Jumper Wires</li>
+<li>LCD Display (Parallel or I2C)</li>
+<li>Various 1kΩ–10kΩ resistors</li>
+<li>Button</li>
 </ul>
+<p><strong>If you are using an I2C LCD, connect the LCD to the I2C pins and use the I2C library instead of the parallel LCD library.</strong></p>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
 <h3 id="lab-preparation-question">Lab Preparation Question</h3>
@@ -112,118 +181,184 @@ SEP600 Embedded Systems
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<p>In this lab, we'll explore the use of software filtering techniques to remove noise from a digital signal and then plot the data on a computer. We'll also explore the idea of multi-threading to handle the two tasks.</p>
+<h3 id="part-1-lcd-module">Part 1: LCD Module</h3>
 <ol>
 <li>
-<p>Start the function generator to output a 1Vpp 1kHz Noise (or Triangular) wave with a 2V DC offset.</p>
+<p>Acquire an LCD and a resistor, then connect them to the Freedom K64F/K66F board as per the connection table and the diagram below. If you are using an I2C LCD, connect the LCD to the I2C pins.</p>
+<p><img alt="Figure 6.2" src="../lab6-lcd-connection.png" /></p>
+<p><em><strong>Figure 6.2</strong> LCD connection with Freedom board</em></p>
+<p>The typical pinout and connection for a 16x2 LCD are given below. Please keep in mind that depending on the manufacturer, some labels and configurations may vary.</p>
+<table>
+<thead>
+<tr>
+<th>LCD Pin #</th>
+<th>LCD Label</th>
+<th>K64F/K66F Pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>GND / VSS</td>
+<td>GND / 0V</td>
+</tr>
+<tr>
+<td>2</td>
+<td>VDD / VCC</td>
+<td>5V</td>
+</tr>
+<tr>
+<td>3</td>
+<td>VO</td>
+<td>1kΩ to GND / 0V</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RS</td>
+<td>D9</td>
+</tr>
+<tr>
+<td>5</td>
+<td>R/W</td>
+<td>GND / 0V</td>
+</tr>
+<tr>
+<td>6</td>
+<td>E</td>
+<td>D8</td>
+</tr>
+<tr>
+<td>7</td>
+<td>DB0</td>
+<td>N/C</td>
+</tr>
+<tr>
+<td>8</td>
+<td>DB1</td>
+<td>N/C</td>
+</tr>
+<tr>
+<td>9</td>
+<td>DB2</td>
+<td>N/C</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DB3</td>
+<td>N/C</td>
+</tr>
+<tr>
+<td>11</td>
+<td>DB4</td>
+<td>D4</td>
+</tr>
+<tr>
+<td>12</td>
+<td>DB5</td>
+<td>D5</td>
+</tr>
+<tr>
+<td>13</td>
+<td>DB6</td>
+<td>D6</td>
+</tr>
+<tr>
+<td>14</td>
+<td>DB7</td>
+<td>D7</td>
+</tr>
+<tr>
+<td>15</td>
+<td>LED+</td>
+<td>1kΩ to 5V</td>
+</tr>
+<tr>
+<td>16</td>
+<td>LED-</td>
+<td>N/C</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Some models work with 3.3V instead of 5V.</li>
+<li>VO pin configuration varies depending on the manufacturer. A potentiometer can be used instead of a 1kΩ resistor for adjustable contrast.</li>
+</ul>
+<p>You may change the pins used on the K64F/K66F board depending on your application and pin availability.</p>
 </li>
 <li>
-<p>Connect the output of the function generator to an ADC (Analog input) pin on the K64F or K66F board.</p>
+<p>Open Keil Studio and install the following library to your project depending on whether you are using the Parallel or I2C version of the LCD.</p>
+<ul>
+<li>Parallel LCD: https://os.mbed.com/users/sstaub/code/mbedLCD/</li>
+<li>I2C LCD: https://os.mbed.com/users/sstaub/code/mbedLCDi2c/</li>
+</ul>
 </li>
 <li>
-<p>Use the following code to read the signal from the ADC channel. Replace <code>PTXX</code> with the pin that you are using.
-    <pre></p>
+<p>Use the following code to output a message on the display:</p>
 <pre><code>#include "mbed.h"
+#include "LCD.h"
+
+LCD lcd(D9, D8, D4, D5, D6, D7, LCD16x2); // RS, EN, D4-D7, Type
 
 int main() {
 
-    AnalogIn ain(PTXX); // Replace with your ADC pin
+    lcd.cls(); // clear display
+    lcd.locate(0, 0); // set cursor location
+    lcd.printf("SEP600\n"); // display text
+    ThisThread::sleep_for(2s);
+    lcd.cls(); // clear display
+    lcd.locate(0, 0); // set cursor location
+    lcd.printf("Hello World!\n"); // display text
 
-    float reading = 0; // for saving readings
-
-    while (true) {
-        reading = ain; // read ADC
-        printf("Reading: %d\n", (int) (reading * 100)); // print as int
-        // delay for 1ms for each reading
-        ThisThread::sleep_for(1ms);
-    }
 }
 </code></pre>
-</pre>
 </li>
 <li>
-<p>Your serial output should now be flooded with data output between 0 to 100.</p>
+<p>After uploading your code, the LCD should show "SEP600" for 2 seconds, then "Hello World!".</p>
+<blockquote>
+<p><strong>Lab Question:</strong> Modify your code to display your name and student number on row 1, and your lab partner's name and student number on row 2 (or be creative, like "SEP600 Embedded Systems is Awesome"). Since the message will be too wide for the LCD, display the text as a horizontal scrolling message at a reasonable rate.</p>
+<p><strong>Hint:</strong> There are many ways to do this. Refer to the library documentation on how to move the print cursor.</p>
+</blockquote>
 </li>
 <li>
-<p>Next, instead of printing data directly from within the <code>while</code> loop of the <code>main()</code> function, we'll put the printing into a thread so it won't interfere with the ADC reading and let the processor decide how to optimize the process.</p>
-</li>
-<li>
-<p>Move the <code>printf</code> statement into a new function called <code>print_data()</code>. To pass variables into a thread, we'll make use of a pointer. Add the following code above the <code>main()</code> function.
-    <pre></p>
-<pre><code>void print_data(float *reading) {
-    while (true) {
-        printf("%d\n", (int) (*reading * 100));
-        // delay for 1ms for between print
-        ThisThread::sleep_for(100ms);
-    }
-}
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Next, we'll define a new thread called <code>print_data_thread</code> and use <code>print_data</code> as the callback function and pass the address of <code>reading</code> as the argument. Add the following above the <code>print_data()</code> function.
-    <pre></p>
-<pre><code>Thread print_data_thread;
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Add the following in the <code>main()</code> function to start the thread.
-    <pre></p>
-<pre><code>print_data_thread.start(callback(print_data, &amp;reading));
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Remember to remove the <code>printf</code> statement from your <code>main()</code> function.</p>
-</li>
-<li>
-<p>Run your new code. It should be doing the same task as before but now it is running in multi-thread.</p>
-</li>
-<li>
-<p>Let's read the data from the computer using Python and plot it out. Run the following Python script on your computer. Install <code>pyserial</code> using <code>pip install pyserial</code> and <code>matplotlib</code> using <code>pip install matplotlib</code> as required.
-    <pre></p>
-<pre><code>import serial
-import matplotlib.pyplot as plt
-import numpy as np
-plt.ion()
-fig=plt.figure()
-
-x = list()
-y = list()
-i = 0
-
-ser = serial.Serial('XXXX', 9600) # Replace XXXX with your serial port
-ser.close()
-ser.open()
-
-while True:
-
-    data = ser.readline()
-
-    x.append(i)
-    y.append(data.decode())
-
-    plt.scatter(i, float(data.decode()))
-    i += 1
-    plt.show()
-    plt.pause(0.000001)
-</code></pre>
-</pre>
-</li>
-<li>
-<p>Run the Python code and it should open the specified serial and start plotting the data. As you can tell, it is not the most optimized plotting code. Feel free to improve the plotting.</p>
-<p><img alt="Figure 6.1" src="../lab6-plot.png" /></p>
-<p><strong><em>Figure 6.1</em></strong></p>
-</li>
-<li>
-<p>From what you can tell, the data is a bit noisy. Your task is to add the simple IIR filter discussed in class to smooth out the data on the controller. This means adding a new variable called <code>alpha</code> and <code>old_reading</code> to save the reading for the next iteration.</p>
+<p>If you are using an I2C LCD module, use the oscilloscope to see the I2C data frame. You should be able to see the message that you are sending to the module, such as 83 in binary for the letter "S".</p>
 </li>
 </ol>
+<h3 id="part-2-interrupt">Part 2: Interrupt</h3>
+<p>An interrupt is a way for the microcontroller to listen for events without continuously polling the input. Most of the GPIO pins on the Freedom K64F or K66F board can be attached to an interrupt.</p>
+<ol>
+<li>
+<p>Connect a pull-up or pull-down button to any digital pin of your choosing.</p>
+</li>
+<li>
+<p>Add the following code before <code>main()</code> to create an interrupt object.</p>
+<pre><code>InterruptIn button(PTXX);
+</code></pre>
+</li>
+<li>
+<p>Add the following interrupt routine before <code>main()</code> and include the appropriate code for displaying a message on the LCD when the interrupt is triggered. Display the message for a few seconds, then return to displaying the previous message.</p>
+<pre><code>void button_isr(){
+    // Display an interrupt message on the LCD
+    // Use wait_us for delay
+    // Do NOT use ThisThread::sleep_for
+}
+</code></pre>
+<blockquote>
+<p><strong>Hint:</strong> You can try triggering a flag in the interrupt and then display the message in the <code>main()</code> loop or in a separate thread.</p>
+</blockquote>
+</li>
+<li>
+<p>Within <code>main()</code>, attach the interrupt routine to the button and adjust for the rising or falling edge, depending on your circuit configuration.</p>
+<pre><code>button.rise(&amp;button_isr);
+</code></pre>
+</li>
+<li>
+<p>Upload and test your interrupt.</p>
+</li>
+</ol>
+<p>Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.</p>
 <h2 id="reference">Reference</h2>
 <ul>
-<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/thread.html">Thread</a></li>
-<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/mutex.html">Mutex</a></li>
+<li><a href="https://os.mbed.com/docs/mbed-os/v6.16/apis/interruptin.html">InterruptIn</a></li>
 </ul>
               
             </div>
