@@ -1,13 +1,13 @@
-# Lab 4 : Serial UART and I2C Communication
+# Lab 5 : Serial UART and I2C Communication
 
 <font size="5">
 Seneca Polytechnic</br>
 SEP600 Embedded Systems
 </font>
 
-### Introduction
+## Introduction
 
-Documentation for the Cortex-M4 instruction set, the board user’s guide, and the microcontroller reference manual can be found here:
+Documentation for the Cortex-M4 instruction set, the board user's guide, and the microcontroller reference manual can be found here:
 
 Documentation for the Freedom K64 and K66 boards and their microcontrollers can be found here:
 
@@ -40,6 +40,7 @@ I2C is a synchronous, multi-master, multi-slave communication protocol commonly 
 - Breadboard
 - Jumper Wires
 - (2×) 1kΩ Resistors
+- LCD Display (Parallel or I2C) (Optional)
 
 ## Preparation
 
@@ -187,6 +188,8 @@ In this part of the lab, you'll be working with the group beside you to communic
 1. Connect the UART TX pin from one Freedom board to the UART RX pin on another board with an inline 1kΩ Resistor as well as a common ground. Once you run the program, the TX board will start sending a char per loop to the RX board and the received data will be displayed on the serial console. Do the same in reverse so you have two-ways communication between the boards.
 
     > **Lab Question:** Change your code to send multiple characters at a time (ie. "ABC123\n") through UART.
+
+Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.
 
 ## Reference
 

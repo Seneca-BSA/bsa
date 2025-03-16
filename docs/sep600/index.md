@@ -19,8 +19,5 @@ Labs:
 - [Lab 3 : PWM and DAC](lab3.md)
 - [Lab 4 : ADC and RTOS](lab4.md)
 - [Lab 5 : Serial UART and I2C](lab5.md)
-<!--
-- [Lab 5 : LCD](lab5.md)
-- [Lab 6 : Filtering and RTOS](lab6.md)
-- Lab 7 : Servo and Sensor
-- Lab 8 : RTOS-->
+- [Lab 6 : LCD and Interrupt](lab6.md)
+- [Lab 7 : Filtering](lab7.md)
