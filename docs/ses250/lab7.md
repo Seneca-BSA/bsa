@@ -195,7 +195,7 @@ In this part of the lab, we will be exploring the transient response (dischargin
 1. Turn on the function generator and set the output to a 3Vpp square wave at 10Hz **with a 3V DC Offset at High-Z ouptut mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
-    <p style="font-size: 18px"><strong>Ensure the function generator is set to 1V DC offset</strong><p>
+    <p style="font-size: 18px"><strong>Ensure the function generator is set to 3V DC offset</strong><p>
     </div>
 
 1. Turn on the DSO and adjust the settings to zoom into the falling edge of the square wave so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
