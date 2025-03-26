@@ -187,7 +187,7 @@ SEP600 Embedded Systems
 <p>Acquire an LCD and a resistor, then connect them to the Freedom K64F/K66F board as per the connection table and the diagram below. If you are using an I2C LCD, connect the LCD to the I2C pins.</p>
 <p><img alt="Figure 6.2" src="../lab6-lcd-connection.png" /></p>
 <p><em><strong>Figure 6.2</strong> LCD connection with Freedom board</em></p>
-<p>The typical pinout and connection for a 16x2 LCD are given below. Please keep in mind that depending on the manufacturer, some labels and configurations may vary.</p>
+<p>The typical pinout and connection for a parallel 16x2 LCD are given below. Please keep in mind that depending on the manufacturer, some labels and configurations may vary.</p>
 <table>
 <thead>
 <tr>
@@ -288,16 +288,18 @@ SEP600 Embedded Systems
 <li>
 <p>Open Keil Studio and install the following library to your project depending on whether you are using the Parallel or I2C version of the LCD.</p>
 <ul>
-<li>Parallel LCD: https://os.mbed.com/users/sstaub/code/mbedLCD/</li>
-<li>I2C LCD: https://os.mbed.com/users/sstaub/code/mbedLCDi2c/</li>
+<li>Parallel LCD: <a href="https://os.mbed.com/users/sstaub/code/mbedLCD/">https://os.mbed.com/users/sstaub/code/mbedLCD/</a></li>
+<li>I2C LCD: <a href="https://os.mbed.com/users/sstaub/code/mbedLCDi2c/">https://os.mbed.com/users/sstaub/code/mbedLCDi2c/</a></li>
 </ul>
 </li>
 <li>
 <p>Use the following code to output a message on the display:</p>
 <pre><code>#include "mbed.h"
-#include "LCD.h"
+#include "LCD.h" // for parallel LCD
+#include "LCDi2c.h" // for I2C LCD
 
-LCD lcd(D9, D8, D4, D5, D6, D7, LCD16x2); // RS, EN, D4-D7, Type
+// LCD lcd(D9, D8, D4, D5, D6, D7, LCD16x2); // for parallel LCD: RS, EN, D4-D7, Type
+// LCDi2c lcd(I2C_SDA, I2C_SCL, LCD16x2); // for I2C LCD: SDA, SCL
 
 int main() {
 
