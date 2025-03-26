@@ -293,10 +293,10 @@ SEP600 Embedded Systems
 </ul>
 </li>
 <li>
-<p>Use the following code to output a message on the display:</p>
+<p>Use the following code to output a message on the display. Uncomment the necessary lines for the LCD screen you are using:</p>
 <pre><code>#include "mbed.h"
-#include "LCD.h" // for parallel LCD
-#include "LCDi2c.h" // for I2C LCD
+// #include "LCD.h" // for parallel LCD
+// #include "LCDi2c.h" // for I2C LCD
 
 // LCD lcd(D9, D8, D4, D5, D6, D7, LCD16x2); // for parallel LCD: RS, EN, D4-D7, Type
 // LCDi2c lcd(I2C_SDA, I2C_SCL, LCD16x2); // for I2C LCD: SDA, SCL
