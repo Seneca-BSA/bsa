@@ -313,18 +313,178 @@ int main() {
 
 }
 </code></pre>
+<p>When the LCD is operating in 4-bit mode, command and data are sent to the LCD 4-bit at a time throught D4-D7. When the RS pin on the LCD is low (0), the LCD treat the parallel input as command. When the RS pin on the LCD is high (1), the LCD treat the parallel input as data to be displayed.</p>
+<p>Here's the sequence for printing "SEP":</p>
+<table>
+<thead>
+<tr>
+<th>Command/Data</th>
+<th>RS Pin</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x80</td>
+<td>LOW</td>
+<td>Display the next charater at Row 0, Col 0</td>
+</tr>
+<tr>
+<td>0x53</td>
+<td>HIGH</td>
+<td>ASCII of captial "S" in HEX</td>
+</tr>
+<tr>
+<td>0x81</td>
+<td>LOW</td>
+<td>Display the next charater at Row 0, Col 0</td>
+</tr>
+<tr>
+<td>0x45</td>
+<td>HIGH</td>
+<td>ASCII of captial "E" in HEX</td>
+</tr>
+<tr>
+<td>0x82</td>
+<td>LOW</td>
+<td>Display the next charater at Row 0, Col 0</td>
+</tr>
+<tr>
+<td>0x50</td>
+<td>HIGH</td>
+<td>ASCII of captial "P" in HEX</td>
+</tr>
+</tbody>
+</table>
 </li>
 <li>
 <p>After uploading your code, the LCD should show "SEP600" for 2 seconds, then "Hello World!".</p>
+</li>
+<li>
+<p>If you are using a parallel LCD, you may skip this steps as tools for sniffing the four data line will be required to read the signals. If you are using an I2C LCD module, use the oscilloscope to take a look at the I2C data frame. You should be able to see the command and data that you are sending to the module.</p>
+<p>The I2C I/O expander is attached to the LCD as follow:</p>
+<table>
+<thead>
+<tr>
+<th>Bit-7 (MSB)</th>
+<th>Bit-6</th>
+<th>Bit-5</th>
+<th>Bit-4</th>
+<th>Bit-3</th>
+<th>Bit-2</th>
+<th>Bit-1</th>
+<th>Bit-0 (LSB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DB7</td>
+<td>DB6</td>
+<td>DB5</td>
+<td>DB4</td>
+<td>BL</td>
+<td>E</td>
+<td>RW</td>
+<td>RS</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>BL (Backlight) is LED+. Set this to high to turn on the backlight.</li>
+<li>E is Enable. Transistion of this pin from HIGH to LOW trigger reading of the command/data.</li>
+<li>RW is Read/Write. Set this to LOW when writing to the LCD.</li>
+<li>RS is Register Select. Set this to LOW when writing command, set this to HIGH when writing data.</li>
+</ul>
+<p>Since only 4-bit will be sent at a time, each command and data is divided into high and low nibbles for data transmission in bits 4-7 along with settings in bits 0-3.</p>
+<p>As a result, the I2C transmission you'll see is:</p>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x8X</td>
+<td>High nibble of first command "0x80" + X settings depending on your code</td>
+</tr>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x0X</td>
+<td>Low nibble of first command "0x80" + X settings depending on your code</td>
+</tr>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x5X</td>
+<td>High nibble of first data "S" + X settings depending on your code</td>
+</tr>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x3X</td>
+<td>High nibble of first data "S" + X settings depending on your code</td>
+</tr>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x8X</td>
+<td>High nibble of second command "0x81" + X settings depending on your code</td>
+</tr>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x1X</td>
+<td>Low nibble of second command "0x81" + X settings depending on your code</td>
+</tr>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x4X</td>
+<td>High nibble of second data "E" + X settings depending on your code</td>
+</tr>
+<tr>
+<td>0x27 &lt;&lt; 1</td>
+<td>7-bit address + Write</td>
+</tr>
+<tr>
+<td>0x5X</td>
+<td>High nibble of second data "E" + X settings depending on your code</td>
+</tr>
+<tr>
+<td></td>
+<td>Same pattern for the remaining command and data</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Lab Question:</strong> Based on your message, compare the I2C signal and see if you can find the "Hel" from "Hello World!".</p>
+</blockquote>
+<p>(Optional) If you want to take a screenshot of your oscilloscope for analysis, an easy way to do this is to connect to its web interface using the computer at your workstation. Press Utility &gt; I/O &gt; LAN on the oscilloscope to find it's IP address then navigate to this IP address using a browser on the workstation computer.</p>
+</li>
+<li>
+<p>Let's display some longer message.</p>
 <blockquote>
 <p><strong>Lab Question:</strong> Modify your code to display your name and student number on row 1, and your lab partner's name and student number on row 2 (or be creative, like "SEP600 Embedded Systems is Awesome"). Since the message will be too wide for the LCD, display the text as a horizontal scrolling message at a reasonable rate.</p>
 <p><strong>Hint:</strong> There are many ways to do this. Refer to the library documentation on how to move the print cursor.</p>
-</blockquote>
-</li>
-<li>
-<p>If you are using an I2C LCD module, use the oscilloscope to see the I2C data frame. You should be able to see the message that you are sending to the module, such as 83 in binary for the letter "S".</p>
-<blockquote>
-<p><strong>Lab Question:</strong> Based on your message, compare the I2C signal with the binary value of the first few ASCII charaters that you are expecting.</p>
 </blockquote>
 </li>
 </ol>
