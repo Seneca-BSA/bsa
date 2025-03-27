@@ -261,7 +261,7 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.</p>
+<p>Set up your circuit as per Figure 8.8 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.</p>
 </li>
 <li>
 <p>Turn on the function generator and set the output to a 3Vpp square wave at 100kHz <strong>with a 3V DC Offset at High-Z output mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
@@ -295,23 +295,15 @@ SES250 Electromagnatics
 </thead>
 <tbody>
 <tr>
+<td>33Ω</td>
+<td></td>
+</tr>
+<tr>
+<td>50Ω</td>
+<td></td>
+</tr>
+<tr>
 <td>100Ω</td>
-<td></td>
-</tr>
-<tr>
-<td>330Ω</td>
-<td></td>
-</tr>
-<tr>
-<td>1kΩ</td>
-<td></td>
-</tr>
-<tr>
-<td>4.7kΩ</td>
-<td></td>
-</tr>
-<tr>
-<td>10kΩ</td>
 <td></td>
 </tr>
 </tbody>
@@ -319,13 +311,13 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Set up your circuit using a 10kΩ as per Figure 8.8 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.</p>
+<p>Set up your circuit using a 10kΩ as per Figure 8.10 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.</p>
 </li>
 <li>
-<p>Turn on the function generator and set the output to a 3Vpp triangular (saw) wave or noise at 1MHz <strong>with a 3V DC Offset at High-Z output mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.</p>
+<p>Turn on the function generator and set the output to a 3Vpp triangular (saw with 50% symmetry) wave at 200kHz <strong>with a 3V DC Offset at High-Z output mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.</p>
 </li>
 <li>
-<p>Turn on the output of the function generator and observe the difference between the raw signal (3VDC signal plus 1MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 3V instead of 0V.</p>
+<p>Turn on the output of the function generator and observe the difference between the raw signal (3VDC 200kHz signal) and the filtered signal. You should see something (but not exactly) in Figure 8.11 with the centre at 3V instead of 0V.</p>
 <p><img alt="Figure 8.11" src="../lab8-filter-curve.png" /></p>
 <p><strong><em>Figure 8.11 (Blue Line) Raw signal, (Orange Line) Filtered signal</em></strong></p>
 </li>
