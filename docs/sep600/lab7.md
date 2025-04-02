@@ -54,7 +54,7 @@ A low-pass filter is an electronic circuit or signal processing technique that a
 
 In this lab, we'll explore the use of software filtering techniques to remove noise from a digital signal and then plot the data on a computer. We'll also explore the concept of multi-threading to handle the two tasks.
 
-1. Start the function generator to output a 1Vpp 1kHz Triangular (Ramp) wave with a 2V DC offset. Alternatively, you can read data from a sensor that you are using in your project.
+1. Start the function generator to output a 1Vpp 1kHz Triangular (Ramp, 50% symmetry) wave with a 2V DC offset. Remember to set the output to high Z mode. Alternatively, you can read data from a sensor that you are using in your project.
 
 1. Connect the output of the function generator to an ADC (Analog input) pin on the K64F or K66F board.
 
@@ -119,6 +119,8 @@ In this lab, we'll explore the use of software filtering techniques to remove no
 1. You should see a triangular wave (simulating noisy data) on your Python oscilloscope. Your task is to add the simple IIR filter discussed in class to smooth out the data on the controller. This means adding a new variable called `alpha` and `old_reading` to save the reading for the next iteration.
 
         filtered_reading = old_reading + alpha * (adc_reading – old_reading);
+
+    Plot both the unfiltered and filtered signal on the same plot.
 
 Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.
 
