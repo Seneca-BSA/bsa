@@ -103,8 +103,8 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
 > 1. Read and summarize the lab as necessary.
 > 1. Copy observation Tables 1, and 2 of this lab into your notebook.
 > 1. Sketch a breadboard diagram of Figure 9.5 and Figure 9.7 onto your notebook.
-> 1. Calculate the \(V_{rms}\) for a \(3 V_{pp}\) (Not \(V_{0}\))sine signal.
-> 1. Calculate the phase difference between voltage and current of an RC series circuit with a the following:
+> 1. Calculate the \(V_{rms}\) for a \(3 V_{pp}\) (Not \(V_{0}\)) sine signal.
+> 1. Calculate the phase difference [°] between voltage and current of an RC series circuit with a the following:
 >
     > - 10kΩ resistors and 100nF capacitor at 1kHz
     > - 1kΩ resistors and 100nF capacitor at 1kHz
@@ -113,7 +113,7 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
     >
     > Show all calculations and fill them into the Theoretical Phase Shift column of Table 1.
 >
-> 1. Calculate the phase difference between the voltage and current of an RL series circuit with a 100Ω, 330Ω resistors, 100μH inductor, and at 100kHz and 200kHz. Show all calculations and fill them into the Theoretical Phase Shift column of Table 2.
+> 1. Calculate the phase difference [°] between the voltage and current of an RL series circuit with a 100Ω, 330Ω resistors, 100μH inductor, and at 100kHz and 200kHz. Show all calculations and fill them into the Theoretical Phase Shift column of Table 2.
 >
     > - 100Ω resistors and 100μH inductor at 100kHz
     > - 330Ω resistors and 100μH inductor at 100kHz
@@ -171,11 +171,11 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
     >
     > where \(\Delta t\) is the time difference and \(T\) is the period.
     >
-    > **NOTE:** \(I(t)\) leading means the time difference is a negative time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.
+    > **NOTE:** \(I(t)\) leading means the time difference is a negative time. Also, the time difference might be in [ms] and the phase angle difference might be in [RAD] depending on your setting.
     >
     >   **Table 1:**
     >
-    >   |Freq|R|C|Theoretical Phase Shift|Time Diff|Phase Shift|
+    >   |Freq|R|C|Theoretical Phase Shift [°]|Time Diff|Phase Shift [°]|
     >   |---|---|---|---|---|---|
     >   |1 kHz|10 kΩ|100 nF|||
     >   |1 kHz|1 kΩ|100 nF|||
@@ -213,11 +213,11 @@ The next part of this lab is to observe the AC response of an RL Circuit and the
     >
     > $$ \phi = 2 \pi {\Delta t \over T} $$
     >
-    > **NOTE:** \(I(t)\) lagging means the time difference is a positive time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.
+    > **NOTE:** \(I(t)\) lagging means the time difference is a positive time. Also, the time difference might be in [ms] and the phase angle difference might be in [RAD] depending on your setting.
     >
     >   **Table 2:**
     >
-    >   |Freq|R|L|Theoretical Phase Shift|Time Diff|Phase Shift|
+    >   |Freq|R|L|Theoretical Phase Shift [°]|Time Diff|Phase Shift [°]|
     >   |---|---|---|---|---|---|
     >   |100 kHz|100 Ω|100 μH|||
     >   |100 kHz|330 Ω|100 μH|||
