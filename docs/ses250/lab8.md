@@ -190,7 +190,7 @@ In this part of the lab, we will be exploring the transient response (de-energiz
     >
     > **Lab Question 2:** Calculate the theoretical RL time constant using the measured resistance value and the marked inductance value.
 
-1. Set up your circuit as per Figure 8.7 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.
+1. Set up your circuit as per Figure 8.8 with CH1 of the DSO measuring the voltage across the inductor. The transient current through the inductor can only be estimated using the voltage across.
 
 1. Turn on the function generator and set the output to a 3Vpp square wave at 100kHz **with a 3V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
@@ -220,17 +220,15 @@ In this part of the lab, we'll explore a simple filter circuit using a resistor 
     >
     > | Resistor Value | Cutoff Frequency |
     > |---|---|
+    > | 33Ω ||
+    > | 50Ω ||
     > | 100Ω ||
-    > | 330Ω ||
-    > | 1kΩ ||
-    > | 4.7kΩ ||
-    > | 10kΩ ||
 
-1. Set up your circuit using a 10kΩ as per Figure 8.8 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.
+1. Set up your circuit using a 10kΩ as per Figure 8.10 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.
 
-1. Turn on the function generator and set the output to a 3Vpp triangular (saw) wave or noise at 1MHz **with a 3V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.
+1. Turn on the function generator and set the output to a 3Vpp triangular (saw with 50% symmetry) wave at 200kHz **with a 3V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.
 
-1. Turn on the output of the function generator and observe the difference between the raw signal (3VDC signal plus 1MHz noise) and the filtered signal. You should see something (but not exactly) in Figure 8.10 with the centre at 3V instead of 0V.
+1. Turn on the output of the function generator and observe the difference between the raw signal (3VDC 200kHz signal) and the filtered signal. You should see something (but not exactly) in Figure 8.11 with the centre at 3V instead of 0V.
 
     ![Figure 8.11](lab8-filter-curve.png)
 
