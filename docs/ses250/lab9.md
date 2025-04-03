@@ -13,7 +13,7 @@ SES250 Electromagnatics
 - Assemble electronic components onto a breadboard
 - Setup function generator to output AC sine wave
 - Measure the frequency and the period of a periodic signal using a Digital Storage Oscilloscope (DSO)
-- Measure the phase shift of an RC circuit using a DSO
+- Measure the phase shift of an RC and RL circuit using a DSO
 
 ## Description
 
@@ -152,7 +152,7 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
     >
     > **Lab Question 6:** Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.
     >
-    > $$ \Phi = 2 \pi {\Delta t \over T} $$
+    > $$ \phi = 2 \pi {\Delta t \over T} $$
     >
     > where \(\Delta t\) is the time difference and \(T\) is the period.
     >
@@ -177,9 +177,9 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
 
 The next part of this lab is to observe the AC response of an RL Circuit and the relationship between the voltage \(V(t)\) and the current \(I(t)\) using an oscilloscope. Since we cannot measure \(I(t)\) directly using an oscilloscope, we'll be measuring the voltage across the resistor \(V_R(t)\) since the current and voltage are always in phase at the resistor.
 
-![Figure 9.6](lab9-rl-circuit.png)
+![Figure 9.7](lab9-rl-circuit.png)
 
-***Figure 9.6***
+***Figure 9.7***
 
 1. Set up the circuit in Figure 9.6 using a 100 Ω resistor and 100 μH.
 1. Ensure that the function generator’s output is off then set the output of the function generator to **High-Z**.
@@ -196,7 +196,7 @@ The next part of this lab is to observe the AC response of an RL Circuit and the
     >
     > **Lab Question 8:** Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.
     >
-    > $$ \Phi = 2 \pi {\Delta t \over T} $$
+    > $$ \phi = 2 \pi {\Delta t \over T} $$
     >
     > **NOTE:** \(I(t)\) lagging means the time difference is a positive time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.
     >
