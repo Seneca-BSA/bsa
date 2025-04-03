@@ -90,6 +90,7 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
     - Breadboard
     - Jumper Wires
     - (1x) 100Ω Resistor (brown-black-brown)
+    - (1x) 330Ω Resistor (orange-orange-brown)
     - (1x) 1kΩ resistor (brown-black-red)
     - (1x) 10kΩ resistor (brown-black-orange)
     - (1x) 100nF Ceramic Capacitor
@@ -103,8 +104,8 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
 > 1. Copy observation Tables 1, and 2 of this lab into your notebook.
 > 1. Sketch a breadboard diagram of Figure 9.5 and Figure 9.7 onto your notebook.
 > 1. Calculate the \(V_{rms}\) for a \(3 V_{pp}\) (Not \(V_{0}\))sine signal.
-> 1. Calculate the phase difference between voltage and current of an RC circuit with 10kΩ, 1kΩ, and 100Ω resistors, 100nF capacitor, and at 1kHz and 500Hz. Show all calculations.
-> 1. Calculate the phase difference between the voltage and current of an RL circuit with a 10kΩ, 1kΩ, and 100Ω resistors, the inductor you used in Lab 9, and at 1MHz and 500kHz. Show all calculations.
+> 1. Calculate the phase difference between voltage and current of an RC series circuit with a 10kΩ, 1kΩ resistors, 100nF capacitor, and at 1kHz and 500Hz. Show all calculations and fill them into the Theoretical Phase Shift column of Table 1.
+> 1. Calculate the phase difference between the voltage and current of an RL circuit with a 100Ω, 330Ω resistors, 100μH inductor, and at 100kHz and 200kHz. Show all calculations and fill them into the Theoretical Phase Shift column of Table 2.
 
 ## Procedures
 
@@ -113,7 +114,7 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
 This part of the lab is to re-familiarize with generating a waveform using a function generator and AC measurement using an oscilloscope and a digital multimeter (DMM). Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
 1. Turn on the function generator, the DMM, and the oscilloscope.
-1. Ensure the function generator output is off. Set the function generator to High-Z output mode then set it to a 1kHz sine wave with 3Vpp as the amplitude. Leave DC offset and phase shift to zero (0).
+1. Ensure the function generator output is off. Set the function generator to **High-Z output mode** then set it to a 1kHz sine wave with 3Vpp as the amplitude. Leave DC offset and phase shift to zero (0).
 1. Connect the output of the function generator to CH1 of the oscilloscope. The red alligator clip of the function generator output should connect to the red alligator clip of the oscilloscope input and the same for the black alligator clip.
 1. Connect the DMM to the output of the function generator while keeping the oscilloscope connected.
 1. Adjust the DSO so that about two periods are showing on the display. Make note of the TIME/DIV and VOLT/DIV and verify if align with the setting you provided to the function generator.
@@ -137,7 +138,7 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
     <p style="font-size: 18px"><strong>DO NOT USE A POLARIZED CAPACITOR!</strong><p>
     </div>
-1. Ensure that the function generator’s output is off then set the output of the function generator to High-Z.
+1. Ensure that the function generator’s output is off then set the output of the function generator to **High-Z**.
 1. Set the output waveform to be a sine wave then set the output amplitude to 3 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.
 1. Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.
 
@@ -164,7 +165,7 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
     >   |1 kHz|10 kΩ|100 nF|||
     >   |1 kHz|1 kΩ|100 nF|||
     >   |500 Hz|1 kΩ|100 nF|||
-    >   |500 Hz|100 Ω|100 nF|||
+    >   |500 Hz|10 kΩ|100 nF|||
 
 ![Figure 9.6](lab9-shift.png)
 
@@ -180,9 +181,9 @@ The next part of this lab is to observe the AC response of an RL Circuit and the
 
 ***Figure 9.6***
 
-1. Set up the circuit in Figure 9.6 using a 10kΩ resistor and 47μH (or the inductor you used in Lab 8).
-1. Ensure that the function generator’s output is off then set the output of the function generator to High-Z.
-1. Set the output waveform to be a sine wave then set the output amplitude to 3 Vpp and the frequency to 1.00 kHz. Leave offset voltage and phase at 0.
+1. Set up the circuit in Figure 9.6 using a 100 Ω resistor and 100 μH.
+1. Ensure that the function generator’s output is off then set the output of the function generator to **High-Z**.
+1. Set the output waveform to be a sine wave then set the output amplitude to 3 Vpp and the frequency to 100 kHz. Leave offset voltage and phase at 0.
 1. Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.
 
     **NOTE:** The ground (black cable) for both CH1 and CH2 is connected to the negative (black) node of the function generator.
@@ -203,11 +204,11 @@ The next part of this lab is to observe the AC response of an RL Circuit and the
     >
     >   |Freq|R|L|Theoretical Phase Shift|Time Diff|Phase Shift|
     >   |---|---|---|---|---|---|
-    >   |1 MHz|10 kΩ|100 μH|||
-    >   |1 MHz|1 kΩ|100 μH|||
-    >   |500 kHz|1 kΩ|100 μH|||
-    >   |500 kHz|100 Ω|100 μH|||
+    >   |100 kHz|100 Ω|100 μH|||
+    >   |100 kHz|330 Ω|100 μH|||
+    >   |200 kHz|330 Ω|100 μH|||
+    >   |200 kHz|100 Ω|100 μH|||
 
-1. Repeat the measurement with various resistor values and frequencies to complete Table 1 to understand their relationships.
+1. Repeat the measurement with various resistor values and frequencies to complete Table 2 to understand their relationships.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.

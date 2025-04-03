@@ -80,7 +80,7 @@ Reference: [HD44780 LCD Controller](https://en.wikipedia.org/wiki/Hitachi_HD4478
 
     ***Figure 6.2** LCD connection with Freedom board*
 
-    The typical pinout and connection for a 16x2 LCD are given below. Please keep in mind that depending on the manufacturer, some labels and configurations may vary.
+    The typical pinout and connection for a parallel 16x2 LCD are given below. Please keep in mind that depending on the manufacturer, some labels and configurations may vary.
 
     | LCD Pin # | LCD Label | K64F/K66F Pin |
     |---|---|---|
@@ -106,17 +106,19 @@ Reference: [HD44780 LCD Controller](https://en.wikipedia.org/wiki/Hitachi_HD4478
 
     You may change the pins used on the K64F/K66F board depending on your application and pin availability.
 
-2. Open Keil Studio and install the following library to your project depending on whether you are using the Parallel or I2C version of the LCD.
+1. Open Keil Studio and install the following library to your project depending on whether you are using the Parallel or I2C version of the LCD.
 
-    - Parallel LCD: https://os.mbed.com/users/sstaub/code/mbedLCD/
-    - I2C LCD: https://os.mbed.com/users/sstaub/code/mbedLCDi2c/
+    - Parallel LCD: [https://os.mbed.com/users/sstaub/code/mbedLCD/](https://os.mbed.com/users/sstaub/code/mbedLCD/)
+    - I2C LCD: [https://os.mbed.com/users/sstaub/code/mbedLCDi2c/](https://os.mbed.com/users/sstaub/code/mbedLCDi2c/)
 
-3. Use the following code to output a message on the display:
+1. Use the following code to output a message on the display. Uncomment the necessary lines for the LCD screen you are using:
 
         #include "mbed.h"
-        #include "LCD.h"
+        // #include "LCD.h" // for parallel LCD
+        // #include "LCDi2c.h" // for I2C LCD
 
-        LCD lcd(D9, D8, D4, D5, D6, D7, LCD16x2); // RS, EN, D4-D7, Type
+        // LCD lcd(D9, D8, D4, D5, D6, D7, LCD16x2); // for parallel LCD: RS, EN, D4-D7, Type
+        // LCDi2c lcd(I2C_SDA, I2C_SCL, LCD16x2); // for I2C LCD: SDA, SCL
  
         int main() {
 
@@ -130,13 +132,67 @@ Reference: [HD44780 LCD Controller](https://en.wikipedia.org/wiki/Hitachi_HD4478
 
         }
 
-4. After uploading your code, the LCD should show "SEP600" for 2 seconds, then "Hello World!".
+    When the LCD is operating in 4-bit mode, command and data are sent to the LCD 4-bit at a time throught D4-D7. When the RS pin on the LCD is low (0), the LCD treat the parallel input as command. When the RS pin on the LCD is high (1), the LCD treat the parallel input as data to be displayed.
+
+    Here's the sequence for printing "SEP":
+
+    | Command/Data | RS Pin | Description |
+    |---|---|---|
+    | 0x80 | LOW | Display the next charater at Row 0, Col 0 |
+    | 0x53 | HIGH | ASCII of captial "S" in HEX |
+    | 0x81 | LOW | Display the next charater at Row 0, Col 0 |
+    | 0x45 | HIGH | ASCII of captial "E" in HEX |
+    | 0x82 | LOW | Display the next charater at Row 0, Col 0 |
+    | 0x50 | HIGH | ASCII of captial "P" in HEX |
+
+1. After uploading your code, the LCD should show "SEP600" for 2 seconds, then "Hello World!".
+
+1. If you are using a parallel LCD, you may skip this steps as tools for sniffing the four data line will be required to read the signals. If you are using an I2C LCD module, use the oscilloscope to take a look at the I2C data frame. You should be able to see the command and data that you are sending to the module.
+
+    The I2C I/O expander is attached to the LCD as follow:
+
+    | Bit-7 (MSB) | Bit-6 | Bit-5 | Bit-4 | Bit-3 | Bit-2 | Bit-1 | Bit-0 (LSB) |
+    |---|---|---|---|---|---|---|---|
+    | DB7 | DB6 | DB5 | DB4 | BL | E | RW | RS |
+
+    * BL (Backlight) is LED+. Set this to high to turn on the backlight.
+    * E is Enable. Transistion of this pin from HIGH to LOW trigger reading of the command/data.
+    * RW is Read/Write. Set this to LOW when writing to the LCD.
+    * RS is Register Select. Set this to LOW when writing command, set this to HIGH when writing data.
+
+    Since only 4-bit will be sent at a time, each command and data is divided into high and low nibbles for data transmission in bits 4-7 along with settings in bits 0-3.
+
+    As a result, the I2C transmission you'll see is:
+
+    | Data | Description |
+    |---|---|
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x8X | High nibble of first command "0x80" + X settings depending on your code |
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x0X | Low nibble of first command "0x80" + X settings depending on your code |
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x5X | High nibble of first data "S" + X settings depending on your code |
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x3X | High nibble of first data "S" + X settings depending on your code |
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x8X | High nibble of second command "0x81" + X settings depending on your code |
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x1X | Low nibble of second command "0x81" + X settings depending on your code |
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x4X | High nibble of second data "E" + X settings depending on your code |
+    | 0x27 << 1 | 7-bit address + Write |
+    | 0x5X | High nibble of second data "E" + X settings depending on your code |
+    | | Same pattern for the remaining command and data |
+
+    > **Lab Question:** Based on your message, compare the I2C signal and see if you can find the "Hel" from "Hello World!".
+    
+    (Optional) If you want to take a screenshot of your oscilloscope for analysis, an easy way to do this is to connect to its web interface using the computer at your workstation. Press Utility > I/O > LAN on the oscilloscope to find it's IP address then navigate to this IP address using a browser on the workstation computer.
+
+1. Let's display some longer message.
 
     > **Lab Question:** Modify your code to display your name and student number on row 1, and your lab partner's name and student number on row 2 (or be creative, like "SEP600 Embedded Systems is Awesome"). Since the message will be too wide for the LCD, display the text as a horizontal scrolling message at a reasonable rate.
     >
     > **Hint:** There are many ways to do this. Refer to the library documentation on how to move the print cursor.
-
-5. If you are using an I2C LCD module, use the oscilloscope to see the I2C data frame. You should be able to see the message that you are sending to the module, such as 83 in binary for the letter "S".
 
 ### Part 2: Interrupt
 
@@ -163,6 +219,8 @@ An interrupt is a way for the microcontroller to listen for events without conti
         button.rise(&button_isr);
 
 5. Upload and test your interrupt.
+
+    > **Lab Question:** What will happen if you put a wait() function in the interrupt?
 
 Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.
 
