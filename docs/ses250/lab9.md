@@ -104,8 +104,23 @@ Source: [CMM: Phase Shift](https://www.cmm.gov.mo/eng/exhibition/secondfloor/mor
 > 1. Copy observation Tables 1, and 2 of this lab into your notebook.
 > 1. Sketch a breadboard diagram of Figure 9.5 and Figure 9.7 onto your notebook.
 > 1. Calculate the \(V_{rms}\) for a \(3 V_{pp}\) (Not \(V_{0}\))sine signal.
-> 1. Calculate the phase difference between voltage and current of an RC series circuit with a 10kΩ, 1kΩ resistors, 100nF capacitor, and at 1kHz and 500Hz. Show all calculations and fill them into the Theoretical Phase Shift column of Table 1.
-> 1. Calculate the phase difference between the voltage and current of an RL circuit with a 100Ω, 330Ω resistors, 100μH inductor, and at 100kHz and 200kHz. Show all calculations and fill them into the Theoretical Phase Shift column of Table 2.
+> 1. Calculate the phase difference between voltage and current of an RC series circuit with a the following:
+>
+    > - 10kΩ resistors and 100nF capacitor at 1kHz
+    > - 1kΩ resistors and 100nF capacitor at 1kHz
+    > - 1kΩ resistors and 100nF capacitor at 500Hz
+    > - 10kΩ resistors and 100nF capacitor at 500Hz
+    >
+    > Show all calculations and fill them into the Theoretical Phase Shift column of Table 1.
+>
+> 1. Calculate the phase difference between the voltage and current of an RL series circuit with a 100Ω, 330Ω resistors, 100μH inductor, and at 100kHz and 200kHz. Show all calculations and fill them into the Theoretical Phase Shift column of Table 2.
+>
+    > - 100Ω resistors and 100μH inductor at 100kHz
+    > - 330Ω resistors and 100μH inductor at 100kHz
+    > - 330Ω resistors and 100μH inductor at 200kHz
+    > - 100Ω resistors and 100μH inductor at 200kHz
+    >
+    > Show all calculations and fill them into the Theoretical Phase Shift column of Table 2.
 
 ## Procedures
 
