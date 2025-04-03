@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 7";
-        var mkdocs_page_input_path = "sep600/lab7.md";
+        var mkdocs_page_input_path = "sep600\\lab7.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -125,7 +125,7 @@ SEP600 Embedded Systems
 <p>In this lab, we'll explore the use of software filtering techniques to remove noise from a digital signal and then plot the data on a computer. We'll also explore the concept of multi-threading to handle the two tasks.</p>
 <ol>
 <li>
-<p>Start the function generator to output a 1Vpp 1kHz Triangular (Ramp) wave with a 2V DC offset. Alternatively, you can read data from a sensor that you are using in your project.</p>
+<p>Start the function generator to output a 1Vpp 1kHz Triangular (Ramp, 50% symmetry) wave with a 2V DC offset. Remember to set the output to high Z mode. Alternatively, you can read data from a sensor that you are using in your project.</p>
 </li>
 <li>
 <p>Connect the output of the function generator to an ADC (Analog input) pin on the K64F or K66F board.</p>
@@ -196,6 +196,7 @@ while True:
 <p>You should see a triangular wave (simulating noisy data) on your Python oscilloscope. Your task is to add the simple IIR filter discussed in class to smooth out the data on the controller. This means adding a new variable called <code>alpha</code> and <code>old_reading</code> to save the reading for the next iteration.</p>
 <pre><code>filtered_reading = old_reading + alpha * (adc_reading – old_reading);
 </code></pre>
+<p>Plot both the unfiltered and filtered signal on the same plot.</p>
 </li>
 </ol>
 <p>Once you've completed all the steps above (and ONLY when you are ready, as you'll only have one opportunity to demo), ask the lab professor or instructor to come over and demonstrate that you've completed the lab. You may be asked to explain some of the concepts you've learned in this lab.</p>
