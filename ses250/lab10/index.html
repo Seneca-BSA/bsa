@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 10 : RLC Circuit Resonance - BSA Lab Manuals</title>
+    <title>Lab 10: RLC Circuit Resonance - BSA Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,8 +13,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 10 : RLC Circuit Resonance";
-        var mkdocs_page_input_path = "ses250\\lab10.md";
+        var mkdocs_page_name = "Lab 10: RLC Circuit Resonance";
+        var mkdocs_page_input_path = "ses250/lab10.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -65,7 +65,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 10 : RLC Circuit Resonance</li>
+      <li class="breadcrumb-item active">Lab 10: RLC Circuit Resonance</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -74,104 +74,117 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-10-rlc-circuit-resonance">Lab 10 : RLC Circuit Resonance</h1>
+                <h1 id="lab-10-rlc-circuit-resonance">Lab 10: RLC Circuit Resonance</h1>
 <p><font size="5">
 Seneca Polytechnic</br>
-SES250 Electromagnatics
+SES250 Electromagnetics
 </font></p>
 <h2 id="purposes">Purposes</h2>
 <ul>
-<li>To examine the AC response of an RLC circuit and find the resonance frequency</li>
+<li>To examine the AC response of an RLC circuit and find the resonance frequency.</li>
 </ul>
 <h2 id="objectives">Objectives</h2>
 <ul>
-<li>Assemble electronic components onto a breadboard</li>
-<li>Setup function generator to output AC sine wave</li>
-<li>Build an RLC circuit for resonant frequency measurement</li>
+<li>Assemble electronic components onto a breadboard.</li>
+<li>Set up a function generator to output an AC sine wave.</li>
+<li>Build an RLC circuit for resonant frequency measurement.</li>
 </ul>
 <h2 id="description">Description</h2>
-<p>An RLC circuit is an electrical circuit consisting of a resistor (R), an inductor (L), and a capacitor (C), connected in series or in parallel. The circuit forms a harmonic oscillator for current and resonates in a manner similar to an LC circuit. Introducing the resistor increases the decay of these oscillations, which is also known as damping. The resistor also reduces the peak resonant frequency.</p>
-<p>An important property of this circuit is its ability to resonate at a specific frequency, the resonance frequency, <script type="math/tex">f_{0}</script>. Its angular frequency alternative, <script type="math/tex">\omega_{0}</script>, is given as:</p>
+<p>An RLC circuit is an electrical circuit consisting of a resistor (R), an inductor (L), and a capacitor (C), connected in series or parallel. The circuit forms a harmonic oscillator for current and resonates in a manner similar to an LC circuit. Introducing the resistor increases the decay of these oscillations, which is also known as damping. The resistor also reduces the peak resonant frequency.</p>
+<p>In such circuit, the current amplitude is:</p>
+<p>
+<script type="math/tex; mode=display"> I_{0} = { V_{0} \over \sqrt { R^2 + ( \omega L − 1 / \omega C )^2 } } </script>
+</p>
+<p>An important property of this circuit is its ability to resonate at a specific frequency, known as the resonance frequency, <script type="math/tex">f_{0}</script>. Its angular frequency alternative, <script type="math/tex">\omega_{0}</script>, is given as:</p>
 <p>
 <script type="math/tex; mode=display"> \omega_{0} = 2 \pi f_0 </script>
 </p>
-<p>The resonant frequency is defined as the frequency at which the impedance of the circuit is at a minimum. Equivalently, it can be defined as the frequency at which the impedance is purely real (that is, purely resistive). This occurs because the impedances of the inductor and capacitor at resonant are equal but of opposite sign and cancel out. The resonant frequency for an RLC circuit is:</p>
+<p>The resonant frequency is defined as the frequency at which the impedance of the circuit is at a minimum. Equivalently, it can be defined as the frequency at which the impedance is purely real (i.e., purely resistive). This occurs because the impedances of the inductor and capacitor at resonance are equal but of opposite sign and cancel each other out. The resonant frequency for an RLC circuit is:</p>
 <p>
-<script type="math/tex; mode=display"> \omega_{0} = {1 \over { \sqrt{LC}}} </script>
+<script type="math/tex; mode=display"> \omega_{0} = \frac{1}{\sqrt{LC}} </script>
 </p>
-<p>Source: <a href="https://en.wikipedia.org/wiki/RLC_circuit">Wikipedia: RLC circuit</a></p>
+<p>If we can vary the frequency of the AC source while keeping the amplitude of its output voltage constant, then the current changes accordingly. A plot of <script type="math/tex">I_{0}</script> versus <script type="math/tex">\omega</script> is shown in Figure 10.1.</p>
+<p><img alt="Figure 10.1" src="../lab10-rlc-response.jpeg" /></p>
+<p><em><strong>Figure 10.1</strong> At an RLC circuit’s resonant frequency, <script type="math/tex">\omega_{0}=\sqrt{1/LC}</script>, the current amplitude is at its maximum value.</em></p>
+<p>Source:</p>
+<ul>
+<li><a href="https://openstax.org/books/university-physics-volume-2/pages/15-5-resonance-in-an-ac-circuit">University Physic Vol 2: 15.5 Resonance in an AC Circuit</a></li>
+<li><a href="https://en.wikipedia.org/wiki/RLC_circuit">Wikipedia: RLC circuit</a></li>
+</ul>
 <h3 id="reference">Reference</h3>
 <ul>
-<li><a href="https://www.translatorscafe.com/unit-converter/en-US/calculator/series-rc-impedance/">Series RC Circuit Impedance Calculator</a></li>
+<li><a href="https://www.translatorscafe.com/unit-converter/en-US/calculator/series-rlc-impedance/">Series RLC Circuit Impedance Calculator</a></li>
 </ul>
 <h2 id="materials">Materials</h2>
 <ul>
 <li>Safety glasses (PPE)</li>
 <li><a href="../supplies/">Lab Supplies</a><ul>
 <li>Breadboard</li>
-<li>Jumper Wires</li>
+<li>Jumper wires</li>
 <li>(1x) 10kΩ resistor (brown-black-orange)</li>
-<li>(1x) 100nF Ceramic Capacitor</li>
-<li>(1x) 100μH toroidal inductor (supplied by the instructor)</li>
+<li>(1x) 100nF ceramic capacitor</li>
+<li>(1x) 100μH drum inductor</li>
 </ul>
 </li>
 </ul>
 <h2 id="preparation">Preparation</h2>
 <blockquote>
-<p><strong>Lab Preparation Question:</strong></p>
+<p><strong>Lab Preparation Questions:</strong></p>
 <ol>
 <li>Read and summarize the lab as necessary.</li>
-<li>Copy observation Table 1 of this lab into your notebook.</li>
-<li>Sketch a breadboard diagram of Figure 10.1 onto your notebook.</li>
-<li>Calculate the theoretical resonant frequency for a series RLC circuit in AC with a 10kΩ resistor, 100nF capacitor, and the inductor value you used from Lab 9. Show all calculations.</li>
+<li>Sketch a breadboard diagram of Figure 10.2 in your notebook.</li>
+<li>Copy observation Table 1 from this lab into your notebook.</li>
+<li>Calculate the theoretical phase shift for each of the frequency in Table 1 for a series RLC circuit in AC with a 10kΩ resistor, 100nF capacitor, and 100μH inductor. Show the calculation for at least one value. Fill in the theoretical phase shift column in Table 1.</li>
+<li>Calculate the theoretical resonant frequency for a series RLC circuit in AC with a 10kΩ resistor, 100nF capacitor, and 100μH inductor. Show all calculations.</li>
 </ol>
 </blockquote>
 <h2 id="procedures">Procedures</h2>
-<p>In this lab, we'll observe the AC response of an RLC Circuit and the relationship between the voltage <script type="math/tex">V(t)</script> and the current <script type="math/tex">I(t)</script> using an oscilloscope. Since we cannot measure <script type="math/tex">I(t)</script> directly using an oscilloscope, we'll be measuring the voltage across the resistor <script type="math/tex">V_R(t)</script> since the current and voltage are always in phase at the resistor.</p>
-<p><img alt="Figure 10.1" src="../lab10-rlc-circuit.png" /></p>
-<p><strong><em>Figure 10.1</em></strong></p>
+<p>In this lab, we'll observe the AC response of an RLC circuit and the relationship between the voltage <script type="math/tex">V(t)</script> and the current <script type="math/tex">I(t)</script> using an oscilloscope. Since we cannot measure <script type="math/tex">I(t)</script> directly with an oscilloscope, we'll measure the voltage across the resistor <script type="math/tex">V_R(t)</script>, as the current and voltage are always in phase at the resistor.</p>
+<p><img alt="Figure 10.2" src="../lab10-rlc-circuit.png" /></p>
+<p><strong><em>Figure 10.2</em></strong></p>
 <ol>
-<li>Set up the circuit in Figure 10.1 using a 10kΩ resistor, a 100nF ceramic capacitor and 47μH (or the inductor you used in Lab 9).
+<li>Set up the circuit in Figure 10.2 using a 10kΩ resistor, a 100nF ceramic capacitor, and a 47μH (or the inductor used in Lab 9).
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
     <p style="font-size: 18px"><strong>DO NOT USE A POLARIZED CAPACITOR!</strong><p>
     </div></li>
-<li>Ensure that the function generator’s output is off then set the output of the function generator to High-Z.</li>
-<li>Set the output waveform to be a sine wave then set the output amplitude to 6 Vpp and the frequency to 10.0 Hz. Leave offset voltage and phase at 0.</li>
+<li>Ensure that the function generator’s output is off, then set the output of the function generator to High-Z.</li>
+<li>Set the output waveform to a sine wave, then set the output amplitude to 6 Vpp and the frequency to 10.0 Hz. Leave offset voltage and phase at 0.</li>
 <li>
-<p>Turn on the oscilloscope then connect CH1 and CH2 to the circuit per the circuit diagram.</p>
+<p>Turn on the oscilloscope, then connect CH1 and CH2 to the circuit per the circuit diagram.</p>
 <p><strong>NOTE:</strong> The ground (black cable) for both CH1 and CH2 is connected to the negative (black) node of the function generator.</p>
 </li>
 <li>
-<p>Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division to see about two periods on the display.</p>
+<p>Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division to display about two periods on the screen.</p>
 </li>
 <li>
-<p>From the two signals that you see, find a peak from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest peak from CH2 (measuring <script type="math/tex">V_R(t) = I(t)</script>).</p>
+<p>From the two signals, find time difference <script type="math/tex"> \Delta T </script> using a zero crossing (or peak) from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest zero crossing (or peak) from CH2 (measuring <script type="math/tex">V_R(t) = I(t)</script>). You may use the horizontal position knob to move one of the signals to the center for easier measurement. Also write down the <script type="math/tex">V_R</script> peak-to-peak into Table 1.</p>
 <blockquote>
-<p><strong>Lab Question 1:</strong> Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 1.</p>
+<p><strong>Lab Question 1:</strong> Convert this time difference to the phase angle difference using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 1.</p>
 <p>
-<script type="math/tex; mode=display"> \Phi = 2 \pi {\Delta t \over T} </script>
+<script type="math/tex; mode=display"> \phi = 2 \pi {\Delta t \over T} \text{ or } \phi = 360° {\Delta t \over T} </script>
 </p>
-<p><strong>NOTE:</strong> If <script type="math/tex">I(t)</script> is leading, the time difference is a negative time. Also, the time difference might be in ms and the phase angle difference might be in RAD depending on your setting.</p>
+<p><strong>NOTE:</strong> If <script type="math/tex">I(t)</script> is leading, the time difference will be negative. Also, the time difference might be in [ms] and the phase angle difference might be in [RAD] depending on your setting.</p>
 <p><strong>Table 1:</strong>  </p>
 <table>
 <thead>
 <tr>
-<th>Freq</th>
-<th>Theoretical <script type="math/tex">Phi</script>
-</th>
-<th>Measured <script type="math/tex">V_{Rpp}</script>
+<th>Frequency</th>
+<th>Theoretical <script type="math/tex"> \phi </script>
 </th>
 <th>
-<script type="math/tex">\Delta T</script>
+<script type="math/tex"> \Delta T </script>
 </th>
 <th>
-<script type="math/tex">\Phi</script>
+<script type="math/tex"> \phi </script>
 </th>
 <th>
-<script type="math/tex">\|I\|</script>
+<script type="math/tex"> V_{R_{pp}} </script>
 </th>
 <th>
-<script type="math/tex">\|Z_T\|</script>
+<script type="math/tex"> \|I\| </script>
+</th>
+<th>
+<script type="math/tex"> \|Z_T\| </script>
 </th>
 </tr>
 </thead>
@@ -240,7 +253,7 @@ SES250 Electromagnatics
 <td></td>
 </tr>
 <tr>
-<td>500 kHz</td>
+<td>200 kHz</td>
 <td></td>
 <td></td>
 <td></td>
@@ -259,47 +272,36 @@ SES250 Electromagnatics
 </tr>
 </tbody>
 </table>
-<ul>
-<li>
-<script type="math/tex">\Phi = 2 \pi {\Delta t / T} = 360° (\Delta t) f</script>
-</li>
-</ul>
+<p>Leave extra lines for additional data points.</p>
 </blockquote>
 </li>
 <li>
-<p>Calculate the magnitude of the current <script type="math/tex">\|I\|</script> and magnitude of the total impedance <script type="math/tex">\|Z_T\|</script>.</p>
+<p>Using the measured peak-to-peak <script type="math/tex">V_R</script>, calculate the magnitude of the current <script type="math/tex"> \|I\| </script> and the magnitude of the total impedance <script type="math/tex"> \|Z_T\| </script>.</p>
 <blockquote>
-<p><strong>Lab Question 2:</strong> Using the measured peak-to-peak <script type="math/tex">V_{R}</script>, calculate the magnitude of the current <script type="math/tex">\|I\|</script> and magnitude of the total impedance <script type="math/tex">\|Z_T\|</script>. Record your answers in Table 1.</p>
-<ul>
-<li>
-<script type="math/tex">\|I\| = V_R / R</script>
-</li>
-<li>
-<script type="math/tex">\|Z_T\| = V_S / \|I\|</script>
-</li>
-</ul>
+<p><strong>Lab Question 2:</strong> Calculate the magnitude of the current and the magnitude of the total impedance and record your answers in Table 1.</p>
+<p>
+<script type="math/tex; mode=display"> \|I\| = \frac{V_R}{R} \text{          } \|Z_T\| = \frac{V_S}{\|I\|} </script>
+</p>
 </blockquote>
 </li>
 <li>
 <p>Open a spreadsheet software and plot the data.</p>
 <blockquote>
-<p><strong>Lab Question 3:</strong> Using the data from Table 1, open a spreadsheet software and plot the following:</p>
-<ol>
-<li>Phase Shift vs Frequency</li>
-<li>Magnitude of the Current <script type="math/tex">\|I\|</script> vs Frequency</li>
-<li>Magnitude of the Total Impedance <script type="math/tex">\|Z_T\|</script> vs. Frequency</li>
-</ol>
+<p><strong>Lab Question 3:</strong> Using the data from Table 1, open a spreadsheet software and plot the following against frequency (x-axis):</p>
+<ul>
+<li>Series 1: Phase Shift <script type="math/tex"> \phi </script>
+</li>
+<li>Series 2: Magnitude of the Current <script type="math/tex"> \|I\| </script>
+</li>
+<li>Series 3: Magnitude of the Total Impedance <script type="math/tex"> \|Z_T\| </script>
+</li>
+</ul>
 </blockquote>
 </li>
 <li>
-<p>Repeat the measurement at more frequencies until a minimum phase shift can be found.</p>
+<p>Repeat the measurements at more frequencies until a minimum phase shift is found.</p>
 <blockquote>
-<p><strong>Lab Question 4:</strong> Using the additional data you recorded onto Table 1 and your plots:</p>
-<ol>
-<li>Find the frequency at which <script type="math/tex">\Phi = 0°</script>.</li>
-<li>Find the frequency at which <script type="math/tex">\|I\|</script> has a maximum value.</li>
-<li>Find the frequency at which <script type="math/tex">\|Z_T\|</script> has a minimum value.</li>
-</ol>
+<p><strong>Lab Question 4:</strong> Using the additional data you recorded in Table 1 and your plots, what do you observe regarding to <script type="math/tex"> \|I\| </script> and <script type="math/tex"> \|Z_T\| </script> when the phase shift is at it's minimum, <script type="math/tex"> \phi \approx 0 </script>?</p>
 </blockquote>
 </li>
 </ol>
