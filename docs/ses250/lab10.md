@@ -70,7 +70,7 @@ In this lab, we'll observe the AC response of an RLC circuit and the relationshi
 
 ***Figure 10.2***
 
-1. Set up the circuit in Figure 10.2 using a 10kΩ resistor, a 100nF ceramic capacitor, and a 47μH (or the inductor used in Lab 9).
+1. Set up the circuit in Figure 10.2 using a 10kΩ resistor, a 100nF ceramic capacitor, and a 100μH.
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
     <p style="font-size: 18px"><strong>DO NOT USE A POLARIZED CAPACITOR!</strong><p>
     </div>
@@ -82,7 +82,7 @@ In this lab, we'll observe the AC response of an RLC circuit and the relationshi
 
 5. Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division to display about two periods on the screen.
 
-6. From the two signals, find time difference \( \Delta T \) using a zero crossing (or peak) from CH1 (measuring \(V(t)\)) and the closest zero crossing (or peak) from CH2 (measuring \(V_R(t) = I(t)\)). You may use the horizontal position knob to move one of the signals to the center for easier measurement. Also write down the \(V_R\) peak-to-peak into Table 1.
+6. From the two signals, find time difference \( \Delta T \) using a zero crossing (or peak) from CH1 (measuring \(V(t)\)) and the closest zero crossing (or peak) from CH2 (measuring \(V_R(t) \propto I(t)\)). You may use the horizontal position knob to move one of the signals to the center for easier measurement. Also write down the \(V_R\) peak-to-peak into Table 1.
 
     > **Lab Question 1:** Convert this time difference to the phase angle difference using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 1.
     >

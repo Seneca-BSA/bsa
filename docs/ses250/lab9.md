@@ -52,11 +52,11 @@ Source: [Circuit Digest: RMS Voltage](https://circuitdigest.com/tutorial/ac-circ
 
 ### RC Circuit Phase Shift
 
-A Capacitive Circuit that consists of R and C in series exhibits a timing difference between the peak amplitude of the current and voltage. This timing difference is called Phase Shift. As the Capacitor opposes a change in Voltage and stores energy from the Power Supply in the form of an Electric Field, the Capacitor Voltage \(V_{C}\) lags the Capacitor Current \(I_{C}\) by 90° and lags the Power Supply Voltage V by a Phase Angle \(\Phi\).
+A Capacitive Circuit that consists of R and C in series exhibits a timing difference between the peak amplitude of the current and voltage. This timing difference is called Phase Shift. As the Capacitor opposes a change in Voltage and stores energy from the Power Supply in the form of an Electric Field, the Capacitor Voltage \(V_{C}\) lags the Capacitor Current \(I_{C}\) by 90° and lags the Power Supply Voltage V by a Phase Angle \(\phi\).
 
-This phase shift between voltage and current can be calculated by:
+This phase shift [RAD] between voltage and current can be calculated by:
 
-$$ \Phi = tan^{-1} {\left({-1} \over {2 \pi fRC}\right)} $$
+$$ \phi = tan^{-1} {\left({-1} \over {2 \pi fRC}\right)} $$
 
 where \(f\) is AC frequency in Hz, \(R\) in Ohms and \(C\) in Farads.
 
@@ -66,11 +66,11 @@ where \(f\) is AC frequency in Hz, \(R\) in Ohms and \(C\) in Farads.
 
 ### RL Circuit Phase Shift
 
-An Inductive Circuit that consists of R and L in series. As the Inductor opposes a change in Current and stores energy from the Power Supply in the form of a Magnetic Field, the Inductor Voltage \(V_{L}\) leads the Inductor Current \(I_{L}\) by 90° and leads the Power Supply Voltage V by a Phase Angle \(\Phi\).
+An Inductive Circuit that consists of R and L in series. As the Inductor opposes a change in Current and stores energy from the Power Supply in the form of a Magnetic Field, the Inductor Voltage \(V_{L}\) leads the Inductor Current \(I_{L}\) by 90° and leads the Power Supply Voltage V by a Phase Angle \(\phi\).
 
-This phase shift between voltage and current can be calculated by:
+This phase shift [RAD] between voltage and current can be calculated by:
 
-$$ \Phi = tan^{-1} {\left({2 \pi fL} \over {R}\right)} $$
+$$ \phi = tan^{-1} {\left({2 \pi fL} \over {R}\right)} $$
 
 where \(f\) is AC frequency in Hz, \(R\) in Ohms and \(L\) in Henry.
 
@@ -131,7 +131,7 @@ This part of the lab is to re-familiarize with generating a waveform using a fun
 1. Turn on the function generator, the DMM, and the oscilloscope.
 1. Ensure the function generator output is off. Set the function generator to **High-Z output mode** then set it to a 1kHz sine wave with 3Vpp as the amplitude. Leave DC offset and phase shift to zero (0).
 1. Connect the output of the function generator to CH1 of the oscilloscope. The red alligator clip of the function generator output should connect to the red alligator clip of the oscilloscope input and the same for the black alligator clip.
-1. Connect the DMM to the output of the function generator while keeping the oscilloscope connected.
+1. Connect the DMM to the output of the function generator while keeping the oscilloscope connected. All three red clips connected togehter then three black connected together or use breadboard and jumper wires.
 1. Adjust the DSO so that about two periods are showing on the display. Make note of the TIME/DIV and VOLT/DIV and verify if align with the setting you provided to the function generator.
 1. Set up the DMM to measure in AC voltage mode (VAC).
 
@@ -163,9 +163,9 @@ The next part of this lab is to observe the AC response of an RC Circuit and the
 
 1. You should see two waveforms ressembling \(V\) and \(V_R\) in Figure 9.3. From the two signals that you see, find a peak from CH1 (measuring \(V(t)\)) and the closest peak from CH2 (measuring \(V_R(t) = I(t)\)). CH2 (\(I(t)\)) should be leading CH1 (\(V(t)\)).
 
-    > **Lab Question 5:** Which signal is leading? Does it agree with what you expect from a series RC circuit?
+    > **Lab Question 3:** Which signal is leading? Does it agree with what you expect from a series RC circuit?
     >
-    > **Lab Question 6:** Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.
+    > **Lab Question 4:** Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.
     >
     > $$ \phi = 2 \pi {\Delta t \over T} \text{ or } \phi = 360° {\Delta t \over T} $$
     >
@@ -207,9 +207,9 @@ The next part of this lab is to observe the AC response of an RL Circuit and the
 
 1. You should see two waveforms ressembling \(V\) and \(V_R\) in Figure 9.4. From the two signals that you see, find a peak from CH1 (measuring \(V(t)\)) and the closest peak from CH2 (measuring \(V_R(t) = I(t)\)). CH2 (\(I(t)\)) should be lagging CH1 (\(V(t)\)).
 
-    > **Lab Question 7:** Which signal is leading? Does it agree with what you expect from a series RL circuit?
+    > **Lab Question 5:** Which signal is leading? Does it agree with what you expect from a series RL circuit?
     >
-    > **Lab Question 8:** Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.
+    > **Lab Question 6:** Find the time difference between the two signals. You may use the horizontal position knob to move one of the signals to the centre for easier measurement. Afterward, convert this time difference you found to the phase angle difference by using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 2.
     >
     > $$ \phi = 2 \pi {\Delta t \over T} \text{ or } \phi = 360° {\Delta t \over T} $$
     >
