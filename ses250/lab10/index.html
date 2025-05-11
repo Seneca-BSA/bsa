@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 10: RLC Circuit Resonance - BSA Lab Manuals</title>
+    <title>Lab 10: RLC Circuit Resonance - Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 10: RLC Circuit Resonance";
-        var mkdocs_page_input_path = "ses250/lab10.md";
+        var mkdocs_page_input_path = "ses250\\lab10.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+          <a href="../.." class="icon icon-home"> Lab Manuals
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -40,16 +40,25 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../">SES250 Electromagnatics</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../sea700/">SEA700 Robotics</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../../aig240/">AIG240 Robotics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">SES250 Electromagnatics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sea700/">SEA700 Robotics for Engineer</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -58,7 +67,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">BSA Lab Manuals</a>
+          <a href="../..">Lab Manuals</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -143,7 +152,7 @@ SES250 Electromagnetics
 <p><img alt="Figure 10.2" src="../lab10-rlc-circuit.png" /></p>
 <p><strong><em>Figure 10.2</em></strong></p>
 <ol>
-<li>Set up the circuit in Figure 10.2 using a 10kΩ resistor, a 100nF ceramic capacitor, and a 47μH (or the inductor used in Lab 9).
+<li>Set up the circuit in Figure 10.2 using a 10kΩ resistor, a 100nF ceramic capacitor, and a 100μH.
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
     <p style="font-size: 18px"><strong>DO NOT USE A POLARIZED CAPACITOR!</strong><p>
     </div></li>
@@ -157,11 +166,12 @@ SES250 Electromagnetics
 <p>Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division to display about two periods on the screen.</p>
 </li>
 <li>
-<p>From the two signals, find time difference <script type="math/tex"> \Delta T </script> using a zero crossing (or peak) from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest zero crossing (or peak) from CH2 (measuring <script type="math/tex">V_R(t) = I(t)</script>). You may use the horizontal position knob to move one of the signals to the center for easier measurement. Also write down the <script type="math/tex">V_R</script> peak-to-peak into Table 1.</p>
+<p>From the two signals, find time difference <script type="math/tex"> \Delta t </script> using a zero crossing (or peak) from CH1 (measuring <script type="math/tex">V(t)</script>) and the closest zero crossing (or peak) from CH2 (measuring <script type="math/tex">V_R(t) \propto I(t)</script>). You may use the horizontal position knob to move one of the signals to the center for easier measurement. Also write down the <script type="math/tex">V_R</script> peak-to-peak into Table 1.</p>
 <blockquote>
 <p><strong>Lab Question 1:</strong> Convert this time difference to the phase angle difference using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 1.</p>
 <p>
-<script type="math/tex; mode=display"> \phi = 2 \pi {\Delta t \over T} \text{ or } \phi = 360° {\Delta t \over T} </script>
+<script type="math/tex; mode=display"> \phi = 2 \pi {\Delta t \over T} </script>
+<script type="math/tex; mode=display"> \phi = 360° {\Delta t \over T} </script>
 </p>
 <p><strong>NOTE:</strong> If <script type="math/tex">I(t)</script> is leading, the time difference will be negative. Also, the time difference might be in [ms] and the phase angle difference might be in [RAD] depending on your setting.</p>
 <p><strong>Table 1:</strong>  </p>
@@ -172,7 +182,7 @@ SES250 Electromagnetics
 <th>Theoretical <script type="math/tex"> \phi </script>
 </th>
 <th>
-<script type="math/tex"> \Delta T </script>
+<script type="math/tex"> \Delta t </script>
 </th>
 <th>
 <script type="math/tex"> \phi </script>
@@ -262,6 +272,24 @@ SES250 Electromagnetics
 <td></td>
 </tr>
 <tr>
+<td>500 kHz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1 MHz</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
 <td>...</td>
 <td></td>
 <td></td>
@@ -280,14 +308,15 @@ SES250 Electromagnetics
 <blockquote>
 <p><strong>Lab Question 2:</strong> Calculate the magnitude of the current and the magnitude of the total impedance and record your answers in Table 1.</p>
 <p>
-<script type="math/tex; mode=display"> \|I\| = \frac{V_R}{R} \text{          } \|Z_T\| = \frac{V_S}{\|I\|} </script>
+<script type="math/tex; mode=display"> \|I\| = \frac{V_R}{R} </script>
+<script type="math/tex; mode=display"> \|Z_T\| = \frac{V_S}{\|I\|} </script>
 </p>
 </blockquote>
 </li>
 <li>
 <p>Open a spreadsheet software and plot the data.</p>
 <blockquote>
-<p><strong>Lab Question 3:</strong> Using the data from Table 1, open a spreadsheet software and plot the following against frequency (x-axis):</p>
+<p><strong>Lab Question 3:</strong> Using the data from Table 1, open a spreadsheet software (Excel, Sheet, or similar) and plot the following against frequency (x-axis):</p>
 <ul>
 <li>Series 1: Phase Shift <script type="math/tex"> \phi </script>
 </li>

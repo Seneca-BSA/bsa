@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 1 : Intro to ROS and TurtleSim - BSA Lab Manuals</title>
+    <title>Lab 1 : Intro to ROS and TurtleSim - Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 1 : Intro to ROS and TurtleSim";
-        var mkdocs_page_input_path = "aig240/lab1.md";
+        var mkdocs_page_input_path = "aig240\\lab1.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="../.." class="icon icon-home"> BSA Lab Manuals
+          <a href="../.." class="icon icon-home"> Lab Manuals
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -40,16 +40,25 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Lab Manuals</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../sea700/">SEA700 Robotics</a>
-                  </li>
+                <li class="toctree-l1"><a class="reference internal" href="../">AIG240 Robotics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sea700/">SEA700 Robotics for Engineer</a>
+                </li>
               </ul>
       </div>
     </div>
@@ -58,7 +67,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../..">BSA Lab Manuals</a>
+          <a href="../..">Lab Manuals</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -144,14 +153,63 @@ to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</co
 <li>Ensure to use username: <strong>jetauto</strong> as this is the username used by the JetAuto robot to maximize compartibility of code</li>
 </ul>
 </li>
-</ol>
-<h3 id="ros-installation">ROS Installation</h3>
-<ol>
 <li>
-<p>Follow the <a href="https://wiki.ros.org/melodic/Installation/Ubuntu">ROS Melodic Installation</a> instruction to install the ROS Desktop-Full package into your system. <strong>You do NOT need to install the Bare Bones or Individual Package</strong></p>
+<p>If you are using a laptop with an ARM processor, you'll need to install the <a href="https://cdimage.ubuntu.com/releases/18.04.6/release/">64-bit ARM (ARMv8/AArch64) server install image</a> then install a desktop interface (such as gnome) from command line.</p>
 </li>
 <li>
-<p>Since we want our terminal to load the ROS source everytime it start, add the <code>source</code> command to <code>.bashrc</code>.</p>
+<p>If you are using the Windwos OS, some students were able to install Ubuntu and run ROS using <code>wsl</code>.</p>
+</li>
+</ol>
+<h3 id="add-jetauto-user-as-sudoer">Add <code>jetauto</code> User as Sudoer</h3>
+<p><strong>Run in the Ubuntu Machine</strong></p>
+<ol>
+<li>
+<p>Depending on how the Ubuntu OS was installed, your active user <code>jetauto</code> may not have sudoer permission. If that's the case, you'll need to add <code>jetauto</code> into the sudoer group from the <code>root</code> user.</p>
+<p>Switch to the <code>root</code> user:</p>
+<pre><code>su root
+</code></pre>
+<p>Change the <code>jetauto</code> user into the sudoer group</p>
+<pre><code>usermod -a -G sudo jetauto
+</code></pre>
+</li>
+<li>
+<p>Logout then re-login (or restart) to the <code>jetauto</code> user. You may now verify if you have sudo permission by:</p>
+<pre><code>sudo -v
+</code></pre>
+</li>
+</ol>
+<h3 id="ros-installation">ROS Installation</h3>
+<p><strong>Run in the Ubuntu Machine</strong></p>
+<p><strong>Note:</strong> You may also follow the official <a href="https://wiki.ros.org/melodic/Installation/Ubuntu">ROS Melodic Installation</a> instruction to install the ROS Desktop-Full package into your system. <strong>You do NOT need to install the Bare Bones or Individual Package</strong></p>
+<p><strong>Note:</strong> Instruction may vary if you are not </p>
+<ol>
+<li>
+<p>Setup your computer to accept software from packages.ros.org.</p>
+<pre><code>sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'
+</code></pre>
+</li>
+<li>
+<p>Set up your keys</p>
+<p>If you haven't already installed curl:</p>
+<pre><code>sudo apt install curl
+</code></pre>
+<p>Add the Key:</p>
+<pre><code>curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+</code></pre>
+</li>
+<li>
+<p>Now, make sure your system package index is up-to-date:</p>
+<pre><code>sudo apt update
+</code></pre>
+</li>
+<li>
+<p>Next, we'll install the full desktop version of ROS with rqt, rviz, robot-generic libraries, 2D/3D simulators and 2D/3D perception, etc.:</p>
+<pre><code>sudo apt install ros-melodic-desktop-full
+</code></pre>
+<p>Later, if you need to install other ROS packages, you can use the following command: <code>sudo apt install ros-melodic-&lt;PACKAGE&gt;</code> e.g. <code>sudo apt install ros-melodic-slam-gmapping</code>. To find available packages, use: <code>apt search ros-melodic</code></p>
+</li>
+<li>
+<p>Since we want our terminal to load the ROS source everytime it starts, add the <code>source</code> command to <code>.bashrc</code> so the ROS environment variables are automatically added to your bash session every time a new shell is launched:</p>
 <pre><code>echo "source /opt/ros/melodic/setup.bash" &gt;&gt; ~/.bashrc
 </code></pre>
 <p>Or use <code>vi</code>, <code>vim</code> or any editor to open <code>~/.bashrc</code> in your user's home directory then add the following code at the end.</p>
@@ -213,8 +271,8 @@ started core service [/rosout]
 <h4 id="using-rosrun">Using rosrun</h4>
 <ol>
 <li>
-<p>The command <code>rosrun</code> allows you to use the package name to directly run a node within a package (without having to know the package path). Usage: <code>rosrun [package_name] [node_name]</code>.</p>
-<p>So now we can run the <code>turtlesim_node</code> in the turtlesim package. In a new terminal:</p>
+<p>The command <code>rosrun</code> allows you to use the package name to directly run a node within a package (without having to know the package path). Usage: <code>rosrun [package_name] [node_name]</code>.
+    So now we can run the <code>turtlesim_node</code> in the turtlesim package. In a new terminal:</p>
 <pre><code>rosrun turtlesim turtlesim_node
 </code></pre>
 <p>The simulator window should appear, with a random turtle in the center.</p>
