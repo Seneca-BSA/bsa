@@ -82,17 +82,18 @@ In this lab, we'll observe the AC response of an RLC circuit and the relationshi
 
 5. Turn on the function generator output and observe the relationship between CH1 and CH2. Adjust the voltage and time division to display about two periods on the screen.
 
-6. From the two signals, find time difference \( \Delta T \) using a zero crossing (or peak) from CH1 (measuring \(V(t)\)) and the closest zero crossing (or peak) from CH2 (measuring \(V_R(t) \propto I(t)\)). You may use the horizontal position knob to move one of the signals to the center for easier measurement. Also write down the \(V_R\) peak-to-peak into Table 1.
+6. From the two signals, find time difference \( \Delta t \) using a zero crossing (or peak) from CH1 (measuring \(V(t)\)) and the closest zero crossing (or peak) from CH2 (measuring \(V_R(t) \propto I(t)\)). You may use the horizontal position knob to move one of the signals to the center for easier measurement. Also write down the \(V_R\) peak-to-peak into Table 1.
 
     > **Lab Question 1:** Convert this time difference to the phase angle difference using the formula below. Does it agree with the phase angle difference you calculated in your pre-lab? Write your result in Table 1.
     >
-    > $$ \phi = 2 \pi {\Delta t \over T} \text{ or } \phi = 360° {\Delta t \over T} $$
+    > $$ \phi = 2 \pi {\Delta t \over T} $$
+    > $$ \phi = 360° {\Delta t \over T} $$
     >
     > **NOTE:** If \(I(t)\) is leading, the time difference will be negative. Also, the time difference might be in [ms] and the phase angle difference might be in [RAD] depending on your setting.
     >
     > **Table 1:**  
     > 
-    > | Frequency | Theoretical \( \phi \) | \( \Delta T \) | \( \phi \) | \( V_{R_{pp}} \) | \( \|I\| \) | \( \|Z_T\| \) |
+    > | Frequency | Theoretical \( \phi \) | \( \Delta t \) | \( \phi \) | \( V_{R_{pp}} \) | \( \|I\| \) | \( \|Z_T\| \) |
     > | --- | --- | --- | --- | --- | --- | --- |
     > | 10 Hz |  |  |  |  |  |  |
     > | 500 Hz |  |  |  |  |  |  |
@@ -102,6 +103,8 @@ In this lab, we'll observe the AC response of an RLC circuit and the relationshi
     > | 50 kHz |  |  |  |  |  |  |
     > | 100 kHz |  |  |  |  |  |  |
     > | 200 kHz |  |  |  |  |  |  |
+    > | 500 kHz |  |  |  |  |  |  |
+    > | 1 MHz |  |  |  |  |  |  |
     > | ... |  |  |  |  |  |  |
     >
     > Leave extra lines for additional data points.
@@ -110,11 +113,12 @@ In this lab, we'll observe the AC response of an RLC circuit and the relationshi
     
     > **Lab Question 2:** Calculate the magnitude of the current and the magnitude of the total impedance and record your answers in Table 1.
     >
-    > $$ \|I\| = \frac{V_R}{R} \text{          } \|Z_T\| = \frac{V_S}{\|I\|} $$
+    > $$ \|I\| = \frac{V_R}{R} $$
+    > $$ \|Z_T\| = \frac{V_S}{\|I\|} $$
 
 8. Open a spreadsheet software and plot the data.
     
-    > **Lab Question 3:** Using the data from Table 1, open a spreadsheet software and plot the following against frequency (x-axis):
+    > **Lab Question 3:** Using the data from Table 1, open a spreadsheet software (Excel, Sheet, or similar) and plot the following against frequency (x-axis):
     >
     > - Series 1: Phase Shift \( \phi \)
     > - Series 2: Magnitude of the Current \( \|I\| \)
