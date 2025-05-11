@@ -81,11 +81,61 @@ For this course, we'll be using the following software environment **Ubuntu 18.0
     - Ensure there are at least 2 processor core, 4GB of memory, and 20GB of disk drive
     - Ensure to use username: **jetauto** as this is the username used by the JetAuto robot to maximize compartibility of code
 
+1. If you are using a laptop with an ARM processor, you'll need to install the [64-bit ARM (ARMv8/AArch64) server install image](https://cdimage.ubuntu.com/releases/18.04.6/release/) then install a desktop interface (such as gnome) from command line.
+
+1. If you are using the Windwos OS, some students were able to install Ubuntu and run ROS using `wsl`.
+
+### Add `jetauto` User as Sudoer
+
+**Run in the Ubuntu Machine**
+
+1. Depending on how the Ubuntu OS was installed, your active user ``jetauto`` may not have sudoer permission. If that's the case, you'll need to add ``jetauto`` into the sudoer group from the ``root`` user.
+
+    Switch to the `root` user:
+
+        su root
+
+    Change the `jetauto` user into the sudoer group
+
+        usermod -a -G sudo jetauto
+
+1. Logout then re-login (or restart) to the ``jetauto`` user. You may now verify if you have sudo permission by:
+
+        sudo -v
+
 ### ROS Installation
 
-1. Follow the [ROS Melodic Installation](https://wiki.ros.org/melodic/Installation/Ubuntu) instruction to install the ROS Desktop-Full package into your system. **You do NOT need to install the Bare Bones or Individual Package**
+**Run in the Ubuntu Machine**
 
-1. Since we want our terminal to load the ROS source everytime it start, add the `source` command to `.bashrc`.
+**Note:** You may also follow the official [ROS Melodic Installation](https://wiki.ros.org/melodic/Installation/Ubuntu) instruction to install the ROS Desktop-Full package into your system. **You do NOT need to install the Bare Bones or Individual Package**
+
+**Note:** Instruction may vary if you are not 
+
+1. Setup your computer to accept software from packages.ros.org.
+
+        sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+1. Set up your keys
+
+    If you haven't already installed curl:
+
+        sudo apt install curl
+
+    Add the Key:
+
+        curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
+1. Now, make sure your system package index is up-to-date:
+
+        sudo apt update
+
+1. Next, we'll install the full desktop version of ROS with rqt, rviz, robot-generic libraries, 2D/3D simulators and 2D/3D perception, etc.:
+
+        sudo apt install ros-melodic-desktop-full
+
+    Later, if you need to install other ROS packages, you can use the following command: ``sudo apt install ros-melodic-<PACKAGE>`` e.g. ``sudo apt install ros-melodic-slam-gmapping``. To find available packages, use: ``apt search ros-melodic``
+
+1. Since we want our terminal to load the ROS source everytime it starts, add the `source` command to `.bashrc` so the ROS environment variables are automatically added to your bash session every time a new shell is launched:
 
         echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 
@@ -148,7 +198,6 @@ Turtlesim is a lightweight simulator for learning ROS. It illustrates what ROS d
 #### Using rosrun
 
 1. The command `rosrun` allows you to use the package name to directly run a node within a package (without having to know the package path). Usage: `rosrun [package_name] [node_name]`.
-
     So now we can run the `turtlesim_node` in the turtlesim package. In a new terminal:
 
         rosrun turtlesim turtlesim_node

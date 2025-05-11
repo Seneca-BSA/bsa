@@ -1,10 +1,10 @@
-site_name: BSA Lab Manuals
+site_name: Lab Manuals
 nav:
-    - Lab Manuals:
+        - AIG240 Robotics: 'aig240/index.md'
         - SES250 Electromagnatics: 'ses250/index.md'
         - SEH500 Microprocessors: 'seh500/index.md'
         - SEP600 Embedded Systems: 'sep600/index.md'
-        - SEA700 Robotics: 'sea700/index.md'
+        - SEA700 Robotics for Engineer: 'sea700/index.md'
 
 theme:
     name: readthedocs
