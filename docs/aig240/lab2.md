@@ -77,7 +77,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
 
 1. Open another new terminal and start the teleop node with the command:
 
-        rosrun turtlesim turtle_teleop_keyy
+        rosrun turtlesim turtle_teleop_key
 
 1. Return to the terminal where you ran `rosnode list` and run it again. You will now see the names of three active nodes:
 
