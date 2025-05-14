@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 2 : ROS Nodes, Topics, Services, Parameters, Actions";
-        var mkdocs_page_input_path = "sea700/lab2.md";
+        var mkdocs_page_input_path = "sea700\\lab2.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -89,12 +89,10 @@ Seneca Polytechnic</br>
 SEA700 Robotics for Software Engineers
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>A overview of some computation graph concepts:</p>
-<ul>
-<li><strong>Node:</strong> an executable representing an individual ROS software process</li>
-<li><strong>Topic:</strong> nodes can publish messages to a topic and/or subscribe to a topic to receive messages</li>
-<li><strong>Message:</strong> a ROS datatype used to exchange data between nodes</li>
-</ul>
+<p>A overview of some computation graph concepts:
+- <strong>Node:</strong> an executable representing an individual ROS software process
+- <strong>Topic:</strong> nodes can publish messages to a topic and/or subscribe to a topic to receive messages
+- <strong>Message:</strong> a ROS datatype used to exchange data between nodes</p>
 <h3 id="nodes-in-ros">Nodes in ROS</h3>
 <p>Each node in ROS should be responsible for a single, modular purpose, ie. controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.</p>
 <p><img alt="Figure 2.1 ROS Nodes Graph" src="../lab2-nodes-graph.gif" /></p>
