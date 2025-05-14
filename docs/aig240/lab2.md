@@ -2,12 +2,13 @@
 
 <font size="5">
 Seneca Polytechnic</br>
-SEA700 Robotics for Software Engineers
+AIG240 Robotics for Software Engineers
 </font>
 
 ## Introduction
 
 A overview of some computation graph concepts:
+
 - **Node:** an executable representing an individual ROS software process
 - **Topic:** nodes can publish messages to a topic and/or subscribe to a topic to receive messages
 - **Message:** a ROS datatype used to exchange data between nodes
@@ -446,106 +447,12 @@ Usage:
 
     ***Figure 2.16** Turtlesim Purple*
 
-### Understanding Recording and Playback
+## Lab Exercise
 
-`rosbag` is a command line tool for recording data published on topics in your system. It accumulates the data passed on any number of topics and saves it in a database. You can then replay the data to reproduce the results of your tests and experiments. Recording topics is also a great way to share your work and allow others to recreate it.
-
-`rosbag` can only record data from published messages in topics. Earlier in the lab, you learned that the `/turtle_teleop` node publishes commands on the `/turtle1/cmd_vel` topic to make the turtle move in `turtlesim`.
-
-1. Restart `roscore`, `rosrun turtlesim turtlesim_node` and `ro run turtlesim turtle_teleop_key` open and close all the other terminal.
-
-1. Let’s also make a new directory to store our saved recordings, just as good practice. Open a new terminal and run:
-
-        mkdir ~/bag_files
-        cd ~/bag_files
-
-1. To record the data published to a topic use the command syntax: `rosbag record [topic_name]`. Run the command:
-
-        rosbag record /turtle1/cmd_vel
-
-    You will see the following messages in the terminal (the date and time will be different):
-
-        [ INFO] [1727727815.120194012]: Subscribing to /turtle1/cmd_vel
-        [ INFO] [1727727815.122105256]: Recording to '2024-09-30-16-23-35.bag'.
-
-1. Now `rosbag` is recording the data published on the `/turtle1/cmd_vel` topic. Return to the teleop terminal and move the turtle around again. The movements don’t matter, but try to make a recognizable pattern to see when you replay the data later.
-
-    ![Figure 2.17 Turtlesim Recording](lab2-recording-path.png)
-
-    ***Figure 2.17** Turtlesim Recording*
-
-1. Press `Ctrl+C` to stop recording.
-
-    The data will be accumulated in a new bag directory with a name in the pattern of `year_month_day-hour-minute-second`.
-
-1. You can also record multiple topics, as well as change the name of the file `rosbag` saves to. Run the following command:
-
-        rosbag record -O subset /turtle1/cmd_vel /turtle1/pose
-
-    The `-O` option allows you to choose a unique name for your bag file. The following string, in this case `subset`, is the file name.
-
-    To record more than one topic at a time, simply list each topic separated by a space or you can use the `-a` to record all topics.
-
-    You will see the following message, confirming that both topics are being recorded.
-
-        [ INFO] [1727728178.421665012]: Subscribing to /turtle1/cmd_vel
-        [ INFO] [1727728178.425904027]: Subscribing to /turtle1/pose
-        [ INFO] [1727728178.430928233]: Recording to 'subset.bag'.
-
-    You can move the turtle around and press `Ctrl+C` when you’re finished.
-
-1. You can see details about your recording by running: `rosbag info <bag_file_name>`. Running this command on the subset bag file will return a list of information on the file:
-
-        rosbag info subset.bag
-
-    You should see something like:
-
-        path:        subset.bag
-        version:     2.0
-        duration:    35.5s
-        start:       Sep 30 2024 16:29:38.64 (1727728178.64)
-        end:         Sep 30 2024 16:30:14.15 (1727728214.15)
-        size:        184.7 KB
-        messages:    2307
-        compression: none [1/1 chunks]
-        types:       geometry_msgs/Twist [9f195f881246fdfa2798d1d3eebca84a]
-                     turtlesim/Pose      [863b248d5016ca62ea2e895ae5265cf9]
-        topics:      /turtle1/cmd_vel     92 msgs    : geometry_msgs/Twist
-                     /turtle1/pose      2215 msgs    : turtlesim/Pose
-
-1. Before replaying the bag file, enter `Ctrl+C` in the terminal where the `teleop` is running. Then make sure your turtlesim window is visible so you can see the bag file in action.
-
-    Enter the command:
-
-        rosbag play subset
-
-    The terminal will return the message:
-
-        [ INFO] [1727728462.171253911]: Opening subset.bag
-
-        Waiting 0.2 seconds after advertising topics... done.
-
-        Hit space to toggle paused, or 's' to step.
-         [DELAYED]  Bag Time:
-         ...
-
-    After some time, your turtle will follow the same path you entered while recording (though not 100% exactly; turtlesim is sensitive to small changes in the system’s timing).
-
-    ![Figure 2.18 Turtlesim Recording](lab2-recording-path.png)
-
-    ***Figure 2.18** Turtlesim Recording*
-
-    Because the `subset` file recorded the `/turtle1/pose topic`, the `rosbag` play command will be recording for as long as you had turtlesim running, even if you weren’t moving.
-    
-    This is because as long as the `/turtlesim` node is active, it publishes data on the `/turtle1/pose` topic at regular intervals. You may have noticed in the `rosbag info` example result above that the `/turtle1/cmd_vel` topic’s `Count` information was only 92; that’s how many times we pressed the arrow keys while recording.
-    
-    Notice that `/turtle1/pose` has a `Count` value of over 2000; while we were recording, data was published on that topic over 2000 times.
-
-## Lab Question
-
-1. Change the background of `turtlesim` to orange or cyan then create a recording of a turtle performing a "Figure 8" path (clockwise circle followed by counter-clockwise circle). Play it back.
-
-Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
+1. Change the background of `turtlesim` to orange or cyan.
+1. Create another turtle into `turtlesim`.
+1. Command the first turtle to move in a large circle in the clockwise direction continously.
+1. A the same time as the first turtle is moving, command the second turtle to move in a smaller circle in the counter-clockwise direction for one full circle only.
 
 ## Reference
 

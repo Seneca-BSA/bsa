@@ -8,6 +8,7 @@ SEA700 Robotics for Software Engineers
 ## Introduction
 
 A overview of some computation graph concepts:
+
 - **Node:** an executable representing an individual ROS software process
 - **Topic:** nodes can publish messages to a topic and/or subscribe to a topic to receive messages
 - **Message:** a ROS datatype used to exchange data between nodes
