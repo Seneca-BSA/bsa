@@ -685,11 +685,11 @@ We use CMake as our build system and, yes, you have to use it even for Python no
 
         rosrun cpp_pubsub listener
 
-    You should see a similar same output.
+    You should see a similar output.
 
-1. Enter `Ctrl+C` in each terminal to stop the nodes from spinning.
+1. Press `Ctrl+C` in each terminal to stop the nodes from spinning.
 
-## Lab Exercise (Project #1)
+## Lab Exercise ([Project 1](project1.md))
 
 1. Write a new controller (C++ or Python) for turtlesim that replace `turtle_teleop_key`. Since the turtlesim node is the subscriber in this example, you’ll only need
 to write a single publisher node.
