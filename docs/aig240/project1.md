@@ -22,17 +22,17 @@ In this project, you will demonstrate your achievement in setting up a ROS1 envi
 
 **NOTE:** This project must be completed individually.
 
-- Seneca Academic Integrity Policy
-- Seneca Generative Artificial Intelligence (GenAI) Policy
+- [Seneca Academic Integrity Policy](https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html)
+- [Seneca Generative Artificial Intelligence (GenAI) Policy](https://www.senecapolytechnic.ca/about/policies/generative-ai-policy.html)
 
 ### Step 1: Set Up Your ROS Environment
 
-1. Install ROS1 as per the Lab 1 instructions.
-2. Create your ROS workspace as per the Lab 3 instructions.
+1. Install ROS1 as per the [Lab 1](lab1.md) instructions.
+2. Create your ROS workspace as per the [Lab 3](lab3.md) instructions.
 
 ### Step 2: Create and Run a Simple ROS Node
 
-Use open-source code, AI-generated code, or your own code to create a controller as described below (and in Lab 3) to make the robot move in TurtleSim.
+Use open-source code, AI-generated code, or your own code to create a controller as described below (and in [Lab 3](lab3.md)) to make the robot move in TurtleSim.
 
 Your node should do the following:
 
