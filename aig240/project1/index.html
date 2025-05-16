@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Project 1 - Setting up ROS1 and TurtleSim - Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Project 1 - Setting up ROS1 and TurtleSim";
+        var mkdocs_page_input_path = "aig240\\project1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">AIG240 Robotics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sea700/">SEA700 Robotics for Engineer</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Project 1 - Setting up ROS1 and TurtleSim</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="project-1-setting-up-ros1-and-turtlesim">Project 1 - Setting up ROS1 and TurtleSim</h1>
+<p><font size="5">
+Seneca Polytechnic</br>
+AIG240 Robotics for Software Engineers
+</font></p>
+<p><font size="5">
+<strong>Due:</strong> Sunday, Jun 1, 2025 at 11:59PM on Blackboard</br>
+<strong>Weight:</strong> 10%
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<p>In this project, you will demonstrate your achievement in setting up a ROS1 environment and creating a simple node to control a robot using TurtleSim.</p>
+<h2 id="objectives">Objectives</h2>
+<ol>
+<li>Set up the ROS1 environment.</li>
+<li>Create a simple ROS node to control a robot.</li>
+<li>Answer assessment questions.</li>
+</ol>
+<p><strong>NOTE:</strong> This project must be completed individually.</p>
+<ul>
+<li>Seneca Academic Integrity Policy</li>
+<li>Seneca Generative Artificial Intelligence (GenAI) Policy</li>
+</ul>
+<h3 id="step-1-set-up-your-ros-environment">Step 1: Set Up Your ROS Environment</h3>
+<ol>
+<li>Install ROS1 as per the Lab 1 instructions.</li>
+<li>Create your ROS workspace as per the Lab 3 instructions.</li>
+</ol>
+<h3 id="step-2-create-and-run-a-simple-ros-node">Step 2: Create and Run a Simple ROS Node</h3>
+<p>Use open-source code, AI-generated code, or your own code to create a controller as described below (and in Lab 3) to make the robot move in TurtleSim.</p>
+<p>Your node should do the following:</p>
+<ul>
+<li>Accept a command-line argument specifying the name of the turtle it should control.<ul>
+<li>For example, running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
+</ul>
+</li>
+<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> keys to control the turtle by publishing velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when a key is pressed. When the key is released, the turtle should STOP moving.</strong></li>
+<li>The controller should be able to listen to multiple keys simultaneously. For example, if <code>w</code> and <code>a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contradictory, there should be no movement.</li>
+</ul>
+<p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.<br />
+<strong>Hint:</strong> Refer to the <code>turtle_teleop_key</code> source code as a reference.</p>
+<h2 id="assessment-questions">Assessment Questions</h2>
+<ol>
+<li>What command did you use to create a ROS package?</li>
+<li>Explain why and how you used ROS messages in your program.</li>
+<li>Describe the steps to launch ROS, TurtleSim, and your ROS node simultaneously.</li>
+<li>How do you verify that your ROS node is publishing messages correctly?</li>
+</ol>
+<h2 id="submission">Submission</h2>
+<ol>
+<li>A link to your project folder (e.g., on GitHub (private) or Google Drive) containing all the necessary files and code.</li>
+<li>A video showing your code running in Gazebo and the robot moving.</li>
+<li>A text file containing the answers to the questions for every group member.</li>
+</ol>
+<h3 id="late-submission-penalty">Late Submission Penalty</h3>
+<ol>
+<li>A 25% reduction from the full mark will be applied for every 24 hours the submission is late after the deadline.</li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

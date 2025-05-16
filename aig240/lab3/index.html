@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 3 : ROS Workspace, Package, Publisher and Subscriber";
-        var mkdocs_page_input_path = "aig240/lab3.md";
+        var mkdocs_page_input_path = "aig240\\lab3.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -727,12 +727,13 @@ catkin_make
 <p>Enter <code>Ctrl+C</code> in each terminal to stop the nodes from spinning.</p>
 </li>
 </ol>
-<h2 id="lab-question">Lab Question</h2>
+<h2 id="lab-exercise-project-1">Lab Exercise (Project #1)</h2>
 <ol>
 <li>
 <p>Write a new controller (C++ or Python) for turtlesim that replace <code>turtle_teleop_key</code>. Since the turtlesim node is the subscriber in this example, you’ll only need
 to write a single publisher node.</p>
 <p>Create a new package called <code>lab3_turtlesim</code>. You can create a new workspace called <code>lab3_ws</code> or use your existing workspace.</p>
+<p>The command to create the packages are given below depending on your preferred programming language. You'll need the <code>geometry_msgs</code> dependency to use the <code>twist</code> object.</p>
 <pre><code>catkin_create_pkg lab3_turtlesim roscpp geometry_msgs
 </code></pre>
 <p>or</p>
@@ -741,12 +742,14 @@ to write a single publisher node.</p>
 <p>Your node should do the following:</p>
 <ul>
 <li>Accept a command line argument specifying the name of the turtle it should control.<ul>
-<li>Running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls turtle1.</li>
+<li>ie. running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
 </ul>
 </li>
-<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as <code>scanf()</code> or <code>input()</code> instead.</li>
+<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.</strong></li>
+<li>The controller should be able to listen to multiple keys. ie. if <code>w</code> and <code>a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.</li>
 </ul>
-<p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.</p>
+<p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.
+<strong>Hint:</strong> Find the <code>turtle_teleop_key</code> source code as a reference.</p>
 <p>To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.</p>
 </li>
 </ol>
