@@ -689,12 +689,14 @@ We use CMake as our build system and, yes, you have to use it even for Python no
 
 1. Enter `Ctrl+C` in each terminal to stop the nodes from spinning.
 
-## Lab Question
+## Lab Exercise (Project #1)
 
 1. Write a new controller (C++ or Python) for turtlesim that replace `turtle_teleop_key`. Since the turtlesim node is the subscriber in this example, you’ll only need
 to write a single publisher node.
 
     Create a new package called `lab3_turtlesim`. You can create a new workspace called `lab3_ws` or use your existing workspace.
+
+    The command to create the packages are given below depending on your preferred programming language. You'll need the `geometry_msgs` dependency to use the `twist` object.
 
         catkin_create_pkg lab3_turtlesim roscpp geometry_msgs
     
@@ -705,10 +707,12 @@ to write a single publisher node.
     Your node should do the following:
 
     - Accept a command line argument specifying the name of the turtle it should control.
-        - Running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls turtle1.
-    - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as `scanf()` or `input()` instead.
+        - ie. running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls `turtle1`.
+    - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. **The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.**
+    - The controller should be able to listen to multiple keys. ie. if `w` and `a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.
 
     **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.
+    **Hint:** Find the `turtle_teleop_key` source code as a reference.
     
     To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.
 
