@@ -748,8 +748,8 @@ to write a single publisher node.</p>
 <li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.</strong></li>
 <li>The controller should be able to listen to multiple keys. ie. if <code>w</code> and <code>a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.</li>
 </ul>
-<p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.
-<strong>Hint:</strong> Find the <code>turtle_teleop_key</code> source code as a reference.</p>
+<p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.</p>
+<p><strong>Hint:</strong> Find the <code>turtle_teleop_key</code> source code as a reference.</p>
 <p>To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.</p>
 </li>
 </ol>
