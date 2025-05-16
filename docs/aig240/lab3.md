@@ -712,6 +712,7 @@ to write a single publisher node.
     - The controller should be able to listen to multiple keys. ie. if `w` and `a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.
 
     **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.
+    
     **Hint:** Find the `turtle_teleop_key` source code as a reference.
     
     To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.
