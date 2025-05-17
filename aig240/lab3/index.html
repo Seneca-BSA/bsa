@@ -276,7 +276,7 @@ int main(int argc, char **argv)
 <pre><code>ros::init(argc, argv, "talker");
 </code></pre>
 <p>Initialize ROS. This allows ROS to do name remapping through the command line -- not important for now. This is also where we specify the name of our node. Node names must be unique in a running system.</p>
-<p>The name used here must be a base name, ie. it cannot have a / in it.</p>
+<p>The name used here must be a base name, i.e., it cannot have a / in it.</p>
 <pre><code>ros::NodeHandle n;
 </code></pre>
 <p>Create a handle to this process' node. The first <code>NodeHandle</code> created will actually do the initialization of the node, and the last one destructed will cleanup any resources the node was using.</p>
@@ -742,11 +742,11 @@ to write a single publisher node.</p>
 <p>Your node should do the following:</p>
 <ul>
 <li>Accept a command line argument specifying the name of the turtle it should control.<ul>
-<li>ie. running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
+<li>i.e., running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
 </ul>
 </li>
 <li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.</strong></li>
-<li>The controller should be able to listen to multiple keys. ie. if <code>w</code> and <code>a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.</li>
+<li>The controller should be able to listen to multiple keys. i.e., if <code>w</code> and <code>a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.</li>
 </ul>
 <p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.</p>
 <p><strong>Hint:</strong> Find the <code>turtle_teleop_key</code> source code as a reference.</p>

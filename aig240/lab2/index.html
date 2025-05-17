@@ -89,14 +89,14 @@ Seneca Polytechnic</br>
 AIG240 Robotics for Software Engineers
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>A overview of some computation graph concepts:</p>
+<p>An overview of some computation graph concepts:</p>
 <ul>
 <li><strong>Node:</strong> an executable representing an individual ROS software process</li>
 <li><strong>Topic:</strong> nodes can publish messages to a topic and/or subscribe to a topic to receive messages</li>
 <li><strong>Message:</strong> a ROS datatype used to exchange data between nodes</li>
 </ul>
 <h3 id="nodes-in-ros">Nodes in ROS</h3>
-<p>Each node in ROS should be responsible for a single, modular purpose, ie. controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.</p>
+<p>Each node in ROS should be responsible for a single, modular purpose, i.e., controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.</p>
 <p><img alt="Figure 2.1 ROS Nodes Graph" src="../lab2-nodes-graph.gif" /></p>
 <p><em><strong>Figure 2.1</strong> ROS Nodes Graph</em></p>
 <h3 id="topics-in-ros">Topics in ROS</h3>
@@ -119,7 +119,7 @@ AIG240 Robotics for Software Engineers
 <h3 id="understanding-ros-nodes">Understanding ROS Nodes</h3>
 <ol>
 <li>
-<p>Open a terminal to run ROS using <code>roscore</code> and another tmerinal to run turtlesim. The command <code>rosrun [package_name] [node_name]</code> launches an executable from a package. We need the package name to be <code>turtlesim</code> and the executable name to be <code>turtlesim_node</code>.</p>
+<p>Open a terminal to run ROS using <code>roscore</code> and another terminal to run turtlesim. The command <code>rosrun [package_name] [node_name]</code> launches an executable from a package. We need the package name to be <code>turtlesim</code> and the executable name to be <code>turtlesim_node</code>.</p>
 <pre><code>roscore
 </code></pre>
 <p>Then, in a new terminal:</p>
@@ -189,7 +189,7 @@ Services:
 </code></pre>
 </li>
 <li>
-<p>Run the same comand on the <code>/teleop_turtle</code> node and see the difference.</p>
+<p>Run the same command on the <code>/teleop_turtle</code> node and see the difference.</p>
 </li>
 </ol>
 <h3 id="understanding-ros-topics">Understanding ROS Topics</h3>
@@ -204,7 +204,7 @@ Services:
 <p>You can also open rqt_graph by opening <code>rqt</code> and selecting <strong>Plugins &gt; Introspection &gt; Node Graph</strong>.</p>
 <p><img alt="Figure 2.6 ROS rqt_graph" src="../lab2-rqt_graph.png" /></p>
 <p><em><strong>Figure 2.6</strong> ROS rqt_graph</em></p>
-<p>You should see the above nodes and topics, as well as two actions around the periphery of the graph (let’s ignore those for now). If you don't see the the nodes and topics, click the refresh button. If you hover your mouse over the topic in the center, you’ll see the colour highlighting like in the image above.</p>
+<p>You should see the above nodes and topics, as well as two actions around the periphery of the graph (let’s ignore those for now). If you don't see the nodes and topics, click the refresh button. If you hover your mouse over the topic in the center, you’ll see the colour highlighting like in the image above.</p>
 <p>The graph shows how the <code>/turtlesim</code> node and the <code>/teleop_turtle</code> node are communicating with each other over a topic. The <code>/teleop_turtle</code> node is publishing data (the keystrokes you enter to move the turtle around) to the <code>/turtle1/cmd_vel</code> topic, and the <code>/turtlesim</code> node is subscribed to that topic to receive the data.</p>
 <p>The highlighting feature of <code>rqt_graph</code> is very helpful when examining more complex systems with many nodes and topics connected in many different ways.</p>
 <p><code>rqt_graph</code> is a graphical introspection tool. Now we’ll look at some command line tools for introspecting topics.</p>
@@ -489,8 +489,8 @@ string name
 <ol>
 <li>Change the background of <code>turtlesim</code> to orange or cyan.</li>
 <li>Create another turtle into <code>turtlesim</code>.</li>
-<li>Command the first turtle to move in a large circle in the clockwise direction continously.</li>
-<li>A the same time as the first turtle is moving, command the second turtle to move in a smaller circle in the counter-clockwise direction for one full circle only.</li>
+<li>Command the first turtle to move in a large circle in the clockwise direction continuously.</li>
+<li>At the same time as the first turtle is moving, command the second turtle to move in a smaller circle in the counter-clockwise direction for one full circle only.</li>
 </ol>
 <h2 id="reference">Reference</h2>
 <ul>
