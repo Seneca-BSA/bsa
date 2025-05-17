@@ -7,7 +7,7 @@ AIG240 Robotics for Software Engineers
 
 ## Introduction
 
-A overview of some computation graph concepts:
+An overview of some computation graph concepts:
 
 - **Node:** an executable representing an individual ROS software process
 - **Topic:** nodes can publish messages to a topic and/or subscribe to a topic to receive messages
@@ -15,7 +15,7 @@ A overview of some computation graph concepts:
 
 ### Nodes in ROS
 
-Each node in ROS should be responsible for a single, modular purpose, ie. controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.
+Each node in ROS should be responsible for a single, modular purpose, i.e., controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.
 
 ![Figure 2.1 ROS Nodes Graph](lab2-nodes-graph.gif)
 
@@ -57,7 +57,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
 
 ### Understanding ROS Nodes
 
-1. Open a terminal to run ROS using `roscore` and another tmerinal to run turtlesim. The command `rosrun [package_name] [node_name]` launches an executable from a package. We need the package name to be `turtlesim` and the executable name to be `turtlesim_node`.
+1. Open a terminal to run ROS using `roscore` and another terminal to run turtlesim. The command `rosrun [package_name] [node_name]` launches an executable from a package. We need the package name to be `turtlesim` and the executable name to be `turtlesim_node`.
 
         roscore
 
@@ -124,7 +124,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
          * /turtle1/teleport_absolute
          * /turtle1/teleport_relative
 
-1. Run the same comand on the `/teleop_turtle` node and see the difference.
+1. Run the same command on the `/teleop_turtle` node and see the difference.
 
 ### Understanding ROS Topics
 
@@ -140,7 +140,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
 
     ***Figure 2.6** ROS rqt_graph*
 
-    You should see the above nodes and topics, as well as two actions around the periphery of the graph (let’s ignore those for now). If you don't see the the nodes and topics, click the refresh button. If you hover your mouse over the topic in the center, you’ll see the colour highlighting like in the image above.
+    You should see the above nodes and topics, as well as two actions around the periphery of the graph (let’s ignore those for now). If you don't see the nodes and topics, click the refresh button. If you hover your mouse over the topic in the center, you’ll see the colour highlighting like in the image above.
 
     The graph shows how the `/turtlesim` node and the `/teleop_turtle` node are communicating with each other over a topic. The `/teleop_turtle` node is publishing data (the keystrokes you enter to move the turtle around) to the `/turtle1/cmd_vel` topic, and the `/turtlesim` node is subscribed to that topic to receive the data.
 
@@ -451,8 +451,8 @@ Usage:
 
 1. Change the background of `turtlesim` to orange or cyan.
 1. Create another turtle into `turtlesim`.
-1. Command the first turtle to move in a large circle in the clockwise direction continously.
-1. A the same time as the first turtle is moving, command the second turtle to move in a smaller circle in the counter-clockwise direction for one full circle only.
+1. Command the first turtle to move in a large circle in the clockwise direction continuously.
+1. At the same time as the first turtle is moving, command the second turtle to move in a smaller circle in the counter-clockwise direction for one full circle only.
 
 ## Reference
 

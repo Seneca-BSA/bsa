@@ -205,7 +205,7 @@ A trivial workspace might look like:
 
     Initialize ROS. This allows ROS to do name remapping through the command line -- not important for now. This is also where we specify the name of our node. Node names must be unique in a running system.
 
-    The name used here must be a base name, ie. it cannot have a / in it.
+    The name used here must be a base name, i.e., it cannot have a / in it.
 
         ros::NodeHandle n;
 
@@ -707,9 +707,9 @@ to write a single publisher node.
     Your node should do the following:
 
     - Accept a command line argument specifying the name of the turtle it should control.
-        - ie. running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls `turtle1`.
+        - i.e., running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls `turtle1`.
     - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. **The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.**
-    - The controller should be able to listen to multiple keys. ie. if `w` and `a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.
+    - The controller should be able to listen to multiple keys. i.e., if `w` and `a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.
 
     **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.
     
