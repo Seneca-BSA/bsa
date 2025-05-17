@@ -78,20 +78,21 @@ For this course, we'll be using the following software environment **Ubuntu 18.0
 1. Install Ubuntu 18.04 LTS (Bionic Beaver) on your computer or virtual machine (VirtualBox recommended).
 
     - OS Image: [ubuntu-18.04.6-desktop-amd64.iso](https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso)
-    - Ensure there are at least 2 processor core, 4GB of memory, and 20GB of disk drive
+    - Ensure there are at least 4 processor core, 4GB of memory, and 20GB of disk drive. This is to emulate the same spec as a [Jetson Nano](https://developer.nvidia.com/embedded/jetson-nano)
+        - You may provide more processor cores and memory to enhance your simulation experience
     - Ensure to use username: **jetauto** as this is the username used by the JetAuto robot to maximize compartibility of code
 
 1. If you are using a laptop with an ARM processor, you'll need to install the [64-bit ARM (ARMv8/AArch64) server install image](https://cdimage.ubuntu.com/releases/18.04.6/release/) then install a desktop interface (such as gnome) from command line.
 
 1. If you are using the Windwos OS, some students were able to install Ubuntu and run ROS using `wsl`.
 
-### Add `jetauto` User as Sudoer
+### Add `jetauto` User as Sudoer and install Desktop GUI
 
 **Run in the Ubuntu Machine**
 
-1. Depending on how the Ubuntu OS was installed, your active user ``jetauto`` may not have sudoer permission. If that's the case, you'll need to add ``jetauto`` into the sudoer group from the ``root`` user.
+1. Depending on how the Ubuntu OS was installed, your active user ``jetauto`` may not have sudoer permission. If that's the case, you'll need to switch to the ``root`` user and add ``jetauto`` into the sudoer group.
 
-    Switch to the `root` user:
+    Open a terminal and switch to the `root` user:
 
         su root
 
@@ -101,7 +102,25 @@ For this course, we'll be using the following software environment **Ubuntu 18.0
 
 1. Logout then re-login (or restart) to the ``jetauto`` user. You may now verify if you have sudo permission by:
 
-        sudo -v
+        sudo -V
+
+    If it gives you a permission error, that means you are not a sudoer yet.
+
+1. Now that you are a sudoer, let's perform a system update and upgrade. **DO NOT upgrade to Ubuntu 20 or higher when prompted**, we need Ubuntu 18.
+
+        sudo apt update && sudo apt upgrade
+
+1. If you didn't install the desktop version of Ubuntu, install the Ubuntu gnome desktop (or similar). We need to GUI.
+
+        sudo apt install ubuntu-gnome-desktop
+
+    After install is complete, restart the system.
+
+        reboot
+
+    The Ubuntu GNOME deskptop should run after the system restart.
+
+1. Lastly, ensure you can open a terminal from the GUI. If terminal failed to start, go to Settings and change the language to "English (CA)" and save. You may switch it back afterward. It's a bug with missing attribute with Ubuntu desktop.
 
 ### ROS Installation
 
