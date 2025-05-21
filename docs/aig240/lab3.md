@@ -713,7 +713,7 @@ to write a single publisher node.
 
     **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.
     
-    **Hint:** Find the `turtle_teleop_key` source code as a reference.
+    **Hint:** Find the `turtle_teleop_key` source code as a reference. [teleop_turtle_key.cpp](https://docs.ros.org/en/kinetic/api/turtlesim/html/teleop__turtle__key_8cpp_source.html)
     
     To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.
 
