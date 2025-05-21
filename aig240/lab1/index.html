@@ -353,9 +353,9 @@ started core service [/rosout]
 <h3 id="remapping-turtle_teleop_key">Remapping <code>turtle_teleop_key</code></h3>
 <ol>
 <li>
-<p>To control <code>turtle2</code>, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls <code>turtle1</code>. The way to change this behavior is by remapping the <code>cmd_vel</code> topic.</p>
+<p>To control <code>turtle2</code>, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls <code>turtle1</code>. The way to change this behavior is by remapping the <code>cmd_vel</code> topic and provide a new name for the node.</p>
 <p>In a new terminal, source ROS, and run:</p>
-<pre><code>rosrun turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel
+<pre><code>rosrun turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel __name:=teleop_turtle2
 </code></pre>
 <p>Now, you can move <code>turtle2</code> when this terminal is active, and <code>turtle1</code> when the other terminal running <code>turtle_teleop_key</code> is active.</p>
 <p><img alt="Figure 1.8 TurtleSim Turtles Moving" src="../lab1-turtlesim-3.png" /></p>
