@@ -285,11 +285,11 @@ rqt is a graphical user interface (GUI) tool for ROS. Everything done in rqt can
 
 ### Remapping `turtle_teleop_key`
 
-1. To control `turtle2`, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls `turtle1`. The way to change this behavior is by remapping the `cmd_vel` topic.
+1. To control `turtle2`, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls `turtle1`. The way to change this behavior is by remapping the `cmd_vel` topic and provide a new name for the node.
 
     In a new terminal, source ROS, and run:
 
-        rosrun turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel
+        rosrun turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel __name:=teleop_turtle2
 
     Now, you can move `turtle2` when this terminal is active, and `turtle1` when the other terminal running `turtle_teleop_key` is active.
 
