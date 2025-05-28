@@ -114,12 +114,15 @@ AIG240 Robotics for Software Engineers
 <p>Use open-source code, AI-generated code, or your own code to create a controller as described below (and in <a href="../lab3/">Lab 3</a>) to make the robot move in TurtleSim.</p>
 <p>Your node should do the following:</p>
 <ul>
-<li>Accept a command-line argument specifying the name of the turtle it should control.<ul>
-<li>For example, running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
+<li>Accept a command line argument specifying the name of the turtle it should control.<ul>
+<li>i.e., running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
 </ul>
 </li>
-<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> keys to control the turtle by publishing velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when a key is pressed. When the key is released, the turtle should STOP moving.</strong></li>
-<li>The controller should be able to listen to multiple keys simultaneously. For example, if <code>w + a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contradictory, there should be no movement.</li>
+<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> (and <code>q</code>, <code>e</code>, <code>c</code>, and <code>z</code>) to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.</strong><ul>
+<li>Option 1 (Easy) Single keypress: In addition to just forward/backward and turns, the turtle should move forward and turn left in a circular path if <code>q</code> is pressed and similar for <code>e</code>, <code>c</code>, and <code>z</code> in their corresponding direction.</li>
+<li>Option 2 (Hard) Multiple keypress: If you want to challenge your Python skills, make the controller so it listen to multiple keys. i.e., if <code>w + a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement. You'll need to install additional Python package to achieve this.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.<br />
 <strong>Hint:</strong> Refer to the <code>turtle_teleop_key</code> source code as a reference.</p>

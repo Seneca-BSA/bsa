@@ -735,7 +735,7 @@ rosrun py_pubsub listener.py
 <h2 id="lab-exercise-project-1">Lab Exercise (<a href="../project1/">Project 1</a>)</h2>
 <ol>
 <li>
-<p>Write a new controller (C++ or Python) for turtlesim that replace <code>turtle_teleop_key</code>. Since the turtlesim node is the subscriber in this example, you’ll only need
+<p>Write a new controller (C++ or Python) for turtlesim that replaces <code>turtle_teleop_key</code>. Since the turtlesim node is the subscriber in this example, you’ll only need
 to write a single publisher node.</p>
 <p>Create a new package called <code>lab3_turtlesim</code>. You can create a new workspace called <code>lab3_ws</code> or use your existing workspace.</p>
 <p>The command to create the packages are given below depending on your preferred programming language. You'll need the <code>geometry_msgs</code> dependency to use the <code>twist</code> object.</p>
@@ -750,8 +750,11 @@ to write a single publisher node.</p>
 <li>i.e., running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
 </ul>
 </li>
-<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.</strong></li>
-<li>The controller should be able to listen to multiple keys. i.e., if <code>w + a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.</li>
+<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> (and <code>q</code>, <code>e</code>, <code>c</code>, and <code>z</code>) to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.</strong><ul>
+<li>Option 1 (Easy) Single keypress: In addition to just forward/backward and turns, the turtle should move forward and turn left in a circular path if <code>q</code> is pressed and similar for <code>e</code>, <code>c</code>, and <code>z</code> in their corresponding direction.</li>
+<li>Option 2 (Hard) Multiple keypress: If you want to challenge your Python skills, make the controller so it listen to multiple keys. i.e., if <code>w + a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement. You'll need to install additional Python package to achieve this.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.</p>
 <p><strong>Hint:</strong> Find the <code>turtle_teleop_key</code> source code as a reference. <a href="https://docs.ros.org/en/kinetic/api/turtlesim/html/teleop__turtle__key_8cpp_source.html">teleop_turtle_key.cpp</a></p>
