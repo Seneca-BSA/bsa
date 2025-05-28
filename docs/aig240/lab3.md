@@ -722,8 +722,6 @@ to write a single publisher node.
     
     To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.
 
-Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
-
 ## Reference
 
 - [ROS Tutorials](https://wiki.ros.org/ROS/Tutorials)
