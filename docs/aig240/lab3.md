@@ -57,15 +57,9 @@ A trivial workspace might look like:
         cd ~/ros_ws/
         catkin_make
     
-    The `catkin_make` command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a `CMakeLists.txt` link in your `src` directory.
+    The `catkin_make` command is a convenience tool for working with catkin workspaces. When running it for the first time in your workspace, it will create a `CMakeLists.txt` link in your `src` directory.
 
     Another best practice is to put any packages in your workspace into the `src` directory. The above code creates a `src` directory inside `ros_ws`.
-
-    If you are building ROS from source to achieve Python 3 compatibility, and have setup your system appropriately (ie: have the Python 3 versions of all the required ROS Python packages installed, such as catkin) the first catkin_make command in a clean catkin workspace must be:
-
-        catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
-
-    This will configure catkin_make with Python 3. You may then proceed to use just `catkin_make` for subsequent builds.
 
 1. Additionally, if you look in your current directory you should now have a 'build' and 'devel' directory. Inside the 'devel' directory you can see that there are now several setup files. Sourcing any of these files will overlay this workspace on top of your environment. Before continuing source your new setup.sh file:
 
@@ -77,7 +71,7 @@ A trivial workspace might look like:
         
     You should see:
         
-        /home/<youruser>/ros_ws/src:/opt/ros/melodic/share
+        /home/jetauto/ros_ws/src:/opt/ros/melodic/share
 
     And other path(s) if you have them added to your source.
 
@@ -97,6 +91,8 @@ A trivial workspace might look like:
     #### Write the publisher node
 
 1. Navigate into `ros_ws/src/cpp_pubsub/src`. This is the directory in any CMake package where the source files containing executables belong.
+
+        cd ~/ros_ws/src/cpp_pubsub/src
 
 1. Download the example talker code by entering the following command:
 
@@ -276,7 +272,7 @@ A trivial workspace might look like:
 
         wget -O listener.cpp https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp
 
-    Check to ensure that these files exist:
+    Check to ensure that these files exist inside the `ros_ws/src/cpp_pubsub/src` folder:
 
         talker.cpp  listener.cpp
 
@@ -373,7 +369,15 @@ A trivial workspace might look like:
 
 ### Build and Run C++ Package
 
-1. Now, go back to the package and open up `CMakeLists.txt` and ensure the following are in there. **Note:** Some of the functions are currently commented out and some are missing.
+1. Now, go back to the `cpp_pubsub` package and open up `ros_ws/src/cpp_pubsub/CMakeLists.txt` and ensure the following lines are in there and not commented out. **Note:** Some of the functions are currently commented out and some are missing.
+
+    If the folder `cpp_pubsub` does not exist, that means you have not created the C++ package. Go back to the previous section to create the package.
+
+        cmake_minimum_required(VERSION 3.0.2)
+        project(cpp_pubsub)
+
+        ## Find catkin and any catkin packages
+        find_package(catkin REQUIRED COMPONENTS roscpp std_msgs genmsg)
 
         ## Generate added messages and services
         generate_messages(DEPENDENCIES std_msgs)
@@ -382,15 +386,17 @@ A trivial workspace might look like:
         catkin_package()
 
         ## Build talker and listener
-        include_directories(include ${catkin_INCLUDE_DIRS})
+        include_directories(
+            include ${catkin_INCLUDE_DIRS}
+        )
 
-        add_dependencies(talker cpp_pubsub_generate_messages_cpp)
         add_executable(talker src/talker.cpp)
         target_link_libraries(talker ${catkin_LIBRARIES})
+        add_dependencies(talker cpp_pubsub_generate_messages_cpp)
         
-        add_dependencies(listener cpp_pubsub_generate_messages_cpp)
         add_executable(listener src/listener.cpp)
         target_link_libraries(listener ${catkin_LIBRARIES})
+        add_dependencies(listener cpp_pubsub_generate_messages_cpp)
 
     This will create two executables, `talker` and `listener`, which by default will go into the package directory of your `devel` space, located by default at `~/ros_ws/devel/lib/<package name>`.
 
@@ -428,6 +434,7 @@ A trivial workspace might look like:
 
 1. In a new terminal, source the setup files:
 
+        cd ~/ros_ws
         source ./devel/setup.bash
 
 1. Now run the talker node from `ros_ws`:
@@ -444,6 +451,7 @@ A trivial workspace might look like:
 
 1. Open another terminal, source the setup files from inside `ros_ws` again, and then start the listener node:
 
+        cd ~/ros_ws
         . devel/setup.bash
         rosrun cpp_pubsub listener
 
@@ -470,7 +478,7 @@ A trivial workspace might look like:
 
 1.  Navigate to your package `ros_ws/src/py_pubsub` and let's first create a `scripts` directories to store our Python scripts in and navigate into it:
 
-        cd py_pubsub
+        cd ~/ros_ws/src/py_pubsub
 
     Create a directory.
         
@@ -504,12 +512,6 @@ A trivial workspace might look like:
                 talker()
             except rospy.ROSInterruptException:
                 pass
-
-1. Add the following to your `CMakeLists.txt`. This makes sure the python script gets installed properly, and uses the right python interpreter.
-
-        catkin_install_python(PROGRAMS scripts/talker.py
-            DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-        )
 
     #### The Code Explained
 
@@ -608,7 +610,7 @@ A trivial workspace might look like:
         if __name__ == '__main__':
             listener()
 
-1. Then, edit the `catkin_install_python()` call in your `CMakeLists.txt` so it looks like the following:
+1. Add the following to your `ros_ws/src/py_pubsub/CMakeLists.txt` in the `py_pubsub` package. This makes sure the python scripts get installed properly, and uses the right python interpreter. You may just add this to the end of the `CMakeLists.txt`.
 
         catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py
             DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -655,6 +657,7 @@ We use CMake as our build system and, yes, you have to use it even for Python no
 
 1. Open a new terminal, navigate to `ros_ws`, and source the setup files:
 
+        cd ~/ros_ws
         source ./devel/setup.bash
 
 1. Now run the talker node:
@@ -671,6 +674,8 @@ We use CMake as our build system and, yes, you have to use it even for Python no
 
 1. Open another terminal, source the setup files from inside `ros_ws` again, and then start the listener node:
 
+        cd ~/ros_ws
+        . devel/setup.bash
         rosrun py_pubsub listener.py
 
     The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:
