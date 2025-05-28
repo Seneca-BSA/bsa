@@ -36,10 +36,11 @@ Use open-source code, AI-generated code, or your own code to create a controller
 
 Your node should do the following:
 
-- Accept a command-line argument specifying the name of the turtle it should control.
-    - For example, running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls `turtle1`.
-- Use `w`, `a`, `s`, `d` keys to control the turtle by publishing velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. **The turtle should ONLY move when a key is pressed. When the key is released, the turtle should STOP moving.**
-- The controller should be able to listen to multiple keys simultaneously. For example, if `w + a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contradictory, there should be no movement.
+- Accept a command line argument specifying the name of the turtle it should control.
+    - i.e., running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls `turtle1`.
+- Use `w`, `a`, `s`, `d` (and `q`, `e`, `c`, and `z`) to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. **The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.**
+    - Option 1 (Easy) Single keypress: In addition to just forward/backward and turns, the turtle should move forward and turn left in a circular path if `q` is pressed and similar for `e`, `c`, and `z` in their corresponding direction.
+    - Option 2 (Hard) Multiple keypress: If you want to challenge your Python skills, make the controller so it listen to multiple keys. i.e., if `w + a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement. You'll need to install additional Python package to achieve this.
 
 **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.  
 **Hint:** Refer to the `turtle_teleop_key` source code as a reference.

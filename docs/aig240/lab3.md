@@ -696,7 +696,7 @@ We use CMake as our build system and, yes, you have to use it even for Python no
 
 ## Lab Exercise ([Project 1](project1.md))
 
-1. Write a new controller (C++ or Python) for turtlesim that replace `turtle_teleop_key`. Since the turtlesim node is the subscriber in this example, you’ll only need
+1. Write a new controller (C++ or Python) for turtlesim that replaces `turtle_teleop_key`. Since the turtlesim node is the subscriber in this example, you’ll only need
 to write a single publisher node.
 
     Create a new package called `lab3_turtlesim`. You can create a new workspace called `lab3_ws` or use your existing workspace.
@@ -713,8 +713,9 @@ to write a single publisher node.
 
     - Accept a command line argument specifying the name of the turtle it should control.
         - i.e., running `rosrun lab3_turtlesim turtle_controller turtle1` will start a controller node that controls `turtle1`.
-    - Use `w`, `a`, `s`, `d` to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. **The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.**
-    - The controller should be able to listen to multiple keys. i.e., if `w + a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement.
+    - Use `w`, `a`, `s`, `d` (and `q`, `e`, `c`, and `z`) to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original `turtle_teleop_key`. **The turtle should ONLY move when is key is pressed. When the key is released, the turtle should STOP moving.**
+        - Option 1 (Easy) Single keypress: In addition to just forward/backward and turns, the turtle should move forward and turn left in a circular path if `q` is pressed and similar for `e`, `c`, and `z` in their corresponding direction.
+        - Option 2 (Hard) Multiple keypress: If you want to challenge your Python skills, make the controller so it listen to multiple keys. i.e., if `w + a` are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement. You'll need to install additional Python package to achieve this.
 
     **Hint:** You'll need to use the `Twist` message type in the `geometry_msgs` package.
     
