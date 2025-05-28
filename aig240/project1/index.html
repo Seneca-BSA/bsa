@@ -119,7 +119,7 @@ AIG240 Robotics for Software Engineers
 </ul>
 </li>
 <li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> keys to control the turtle by publishing velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when a key is pressed. When the key is released, the turtle should STOP moving.</strong></li>
-<li>The controller should be able to listen to multiple keys simultaneously. For example, if <code>w</code> and <code>a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contradictory, there should be no movement.</li>
+<li>The controller should be able to listen to multiple keys simultaneously. For example, if <code>w + a</code> are pressed, the turtle should move forward and turn left in a circular path. If the keys pressed are contradictory, there should be no movement.</li>
 </ul>
 <p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.<br />
 <strong>Hint:</strong> Refer to the <code>turtle_teleop_key</code> source code as a reference.</p>
