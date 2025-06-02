@@ -89,11 +89,11 @@ Seneca Polytechnic</br>
 AIG240 Robotics for Software Engineers
 </font></p>
 <p><font size="5">
-<strong>Due:</strong> Sunday, Jun 15, 2025 at 11:59PM on Blackboard</br>
+<strong>Due:</strong> Sunday, June 15, 2025 at 11:59 PM on Blackboard</br>
 <strong>Weight:</strong> 10%
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>In this project, you will demonstrate your achievement in setting up a ROS1 environment and creating a simple node to control a robot using TurtleSim.</p>
+<p>In this project, you will demonstrate your achievement in setting up a ROS1 environment and creating a simple node to control a robot using Gazebo.</p>
 <h2 id="objectives">Objectives</h2>
 <ol>
 <li>Set up the Gazebo environment to work with ROS.</li>
@@ -108,32 +108,34 @@ AIG240 Robotics for Software Engineers
 <h3 id="step-1-set-up-your-gazebo-environment">Step 1: Set Up Your Gazebo Environment</h3>
 <ol>
 <li>Install Gazebo as per the <a href="../lab4/">Lab 4</a> instructions.</li>
-<li>Create your a new ROS workspace (or use the same) as per the <a href="../lab3/">Lab 3</a> instructions.</li>
+<li>Create your new ROS workspace (or use the same one) as per the <a href="../lab3/">Lab 3</a> instructions.</li>
 </ol>
 <h3 id="step-2-create-and-run-a-simple-ros-node">Step 2: Create and Run a Simple ROS Node</h3>
 <p>Use open-source code, AI-generated code, or your own code to create a control script as described below to make the JetAuto robot move according to a pattern in Gazebo.</p>
-<p>Write a code that will move the JetAuto robot in a roughly 1 metre square shape pattern as follow:</p>
+<p>Write code that will move the JetAuto robot in a roughly 1-meter square shape pattern as follows:</p>
+<p><img alt="Figure 1 Square Movement Pattern" src="../lab4-task.png" /></p>
+<p><em><strong>Figure 1</strong> Square Movement Pattern</em></p>
 <p>Start:</p>
-<ul>
-<li>move from (0, 0, 0°) to (1, 0, 0°) facing the direction of travel; then</li>
-<li>move from (1, 0, 0°) to (1, 1, 0°) without turning so the robot is facing the outside of the square; then</li>
-<li>turn from (1, 1, 0°) to (1, 1, -90°) to face into the square</li>
-<li>move from (1, 1, -90°) to (0, 1, -90°) facing the inside of the square</li>
-<li>move from (0, 1, -90°) to (0, 0, 0°) by rotating the robot while traveling</li>
-</ul>
-<p>Repeat this for 2 times after a start command (such as a keyboard input) is given.</p>
-<p>For example: after launching the JetAuto in Gazebo, when you run <code>rosrun lab4_jetauto_control jetauto_control</code>, it'll ask for an input before performing the above action.</p>
-<p><strong>Hint:</strong> You can follow the same approach as Lab 3 by creating a new package called <code>lab4_jetauto_control</code> in your <code>ros_ws</code> </p>
+<ol>
+<li>Move from (0, 0, 0°) to (1, 0, 0°) facing the direction of travel; then</li>
+<li>Move from (1, 0, 0°) to (1, 1, 0°) without turning, so the robot is facing the outside of the square; then</li>
+<li>Turn from (1, 1, 0°) to (1, 1, -90°) to face into the square.</li>
+<li>Move from (1, 1, -90°) to (0, 1, -90°) facing the inside of the square.</li>
+<li>Move from (0, 1, -90°) to (0, 0, 0°) by rotating the robot while traveling.</li>
+</ol>
+<p>Repeat this 2 times after a start command (such as a keyboard input) is given.</p>
+<p>For example: after launching the JetAuto in Gazebo, when you run <code>rosrun lab4_jetauto_control jetauto_control</code>, it will ask for input before performing the above action.</p>
+<p><strong>Hint:</strong> You can follow the same approach as Lab 3 by creating a new package called <code>lab4_jetauto_control</code> in your <code>ros_ws</code>.</p>
 <pre><code>    catkin_create_pkg lab4_jetauto_control rospy geometry_msgs
 </code></pre>
-<p>Refer to the <code>teleop_key_control.py</code> controller you used in this lab on how to publish to the jetauto nodes.</p>
+<p>Refer to the <code>teleop_key_control.py</code> controller you used in <a href="../lab4/">lab4</a> on how to publish to the JetAuto nodes.</p>
 <h2 id="assessment-questions">Assessment Questions</h2>
 <ol>
 <li>What command did you use to launch the JetAuto robot in Gazebo?</li>
-<li>Which two other launch files were called when you launch worlds.launch? <strong>Hint:</strong> Inspect the launch files in jetauto_ws/src/jetauto_simulation/jetauto_gazebo/launch</li>
+<li>Which two other launch files were called when you launched <code>worlds.launch</code>? <strong>Hint:</strong> Inspect the launch files in <code>jetauto_ws/src/jetauto_simulation/jetauto_gazebo/launch</code>.</li>
 <li>Describe the process of setting up the ROS workspace and creating the package.</li>
-<li>How do you estimate the robot moved roughly 1 metre in each of the steps?</li>
-<li>What challenges did you face with making the robot move in a straight line while turning, and how did you overcome that?</li>
+<li>How do you estimate that the robot moved roughly 1 meter in each of the steps?</li>
+<li>What challenges did you face with making the robot move in a straight line while turning, and how did you overcome them?</li>
 </ol>
 <h2 id="submission">Submission</h2>
 <ol>
