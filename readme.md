@@ -6,14 +6,21 @@ This is the supplementary materials website for various courses.
 
 This site is created using [MkDocs](https://www.mkdocs.org/).
 
-The following instruction is tested in Ubunut 20. Windows instruction should be similar.
+The following instruction is tested in Ubunut 24. Windows instruction should be similar.
 
 To update the content of this site:
 
 1. Ensure python and pip is installed on your computer.
-1. Install mkdocs.
     ```
+    sudo apt install pip
+    ```
+1. As of Ubuntu 24, we must create a virtual environment. Install mkdocs.
+    ```
+    cd ~
+    python3 -m venv mkdocs
+    source ~/mkdocs/bin/activate
     pip install mkdocs
+    pip install python-markdown-math
     ```
 1. Clone this project locally.
     ```
@@ -21,8 +28,9 @@ To update the content of this site:
     cd bsa
     ```
 1. Make changes as necessary.
-1. To preview your change locally:
+1. Activate the virtual environment as necessary. To preview your change locally:
     ```
+    source ~/mkdocs/bin/activate
     mkdocs serve
     ```
     Or for Windows:

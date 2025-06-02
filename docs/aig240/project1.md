@@ -55,7 +55,7 @@ Your node should do the following:
 ## Submission
 
 1. A link to your project folder (e.g., on GitHub (private) or Google Drive) containing all the necessary files and code.
-2. A video showing your code running in Gazebo and the robot moving.
+2. A video showing your code running in TurtleSim and the robot moving.
 3. A text file containing the answers to the questions for every group member.
 
 ### Late Submission Penalty
