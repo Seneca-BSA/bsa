@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 5 : Robotic Arm and SLAM - Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 5 : Robotic Arm and SLAM";
+        var mkdocs_page_input_path = "aig240/lab5.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">AIG240 Robotics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sea700/">SEA700 Robotics for Engineer</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lab 5 : Robotic Arm and SLAM</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-5-robotic-arm-and-slam">Lab 5 : Robotic Arm and SLAM</h1>
+<p><font size="5">
+Seneca Polytechnic</br>
+SEA700 Robotics for Software Engineers
+</font></p>
+<h3 id="jetauto-robot-inspection">JetAuto Robot Inspection</h3>
+<p>The robot we have for this course is the JetAuto Pro assembled in the configuration:</p>
+<p><img alt="Figure 4.2 JetAuto Pro" src="../lab4-jetauto-pro.png" /></p>
+<p><em><strong>Figure 4.2</strong> JetAuto Pro</em></p>
+<ol>
+<li>
+<p>Before using the JetAuto robot, read the following:</p>
+<ul>
+<li><a href="../JetAuto-User-Manual.pdf">JetAuto User Manual</a><ul>
+<li>Page 01: Guide to Battery Safety</li>
+<li>Page 03: JetAuto Pro Standard Kit Packing List</li>
+<li>Page 04-09: Installation Instruction (except for 1.4 LCD)<ul>
+<li>Check all nuts and bolts to ensure confirm installation and security</li>
+</ul>
+</li>
+<li>Page 10-11: Charging and Starting the Robot</li>
+</ul>
+</li>
+</ul>
+<p>We will NOT be using the smartphone app for controlling the robot.</p>
+</li>
+</ol>
+<h3 id="ssh-into-the-jetauto-robot">SSH Into the JetAuto Robot</h3>
+<p><strong>Copy this lab instruction somewhere on your computer as you'll lose connection to the internet!</strong></p>
+<ol>
+<li>
+<p>By default, the JetAuto is configured to be in Wifi AP mode. Power on the robot and connect to the robot's WiFi starting in "HW-". If you are unsure of which Wifi SSID is your robot broadcasting, open the "Tool" application on the robot and look for the AP name in the setting. Do NOT change any of the default settings.</p>
+<p>The password for the WiFi connection is: <strong>hiwonder</strong>.</p>
+</li>
+<li>
+<p>Once connected, use terminal (or PuTTY) to SSH into the robot at "192.168.149.1".</p>
+<pre><code>ssh jetauto@192.168.149.1
+</code></pre>
+<p>The user is: <strong>jetauto</strong>, and the password is: <strong>hiwonder</strong>.</p>
+<h4 id="usb-connection-with-the-robot">USB connection with the robot</h4>
+<ol>
+<li>
+<p>It is also possible to connect with the robot via USB using the Jetson Nano's micro-B USB port.</p>
+</li>
+<li>
+<p>Use <code>screen</code> terminal application to connection with the robot.</p>
+<pre><code>sudo apt-get install -y screen
+sudo screen /dev/ttyACM0 115200
+</code></pre>
+</li>
+</ol>
+<h4 id="nomachine-use-with-caution">NoMachine (Use with caution)</h4>
+<p>Only recommended to be used on within a virtual machine. For security, stop the NoMachine server after you installation. </p>
+<ol>
+<li>NoMachine is another application that can be used to for remote connection with the JetNano board. Once you are connected with the robot, the credential is the same as above. </li>
+</ol>
+</li>
+</ol>
+<h3 id="jetauto-robot-movement">JetAuto Robot Movement</h3>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ul>
+<li>Ensure the battery charging cable is UNPLUGGED and all cables on the robot are secure.</li>
+<li>Ensure all structures, nuts and bolts on the robot are tightly fastened.</li>
+<li>Ensure the robot is on the ground and awy from any obstacles.</li>
+</ul>
+</div>
+
+<ol>
+<li>
+<p>In a terminal that's connected to the JetAuto robot using SSH or in JetAuto's terminal using remote desktop, stop the app service then start the <code>jetauto_controller</code> service:</p>
+<pre><code>sudo systemctl stop start_app_node.service
+roslaunch jetauto_controller jetauto_controller.launch
+</code></pre>
+</li>
+<li>
+<p>Now that the controller service has started, we can publish move command as Twist message to the motion controller. Before publish a command to the robot, remember you must issue a stop command for the robot to stop. Let's issue that first so you can recall it faster.</p>
+<pre><code>rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
+</code></pre>
+<p>Your robot should not do anything.</p>
+</li>
+<li>
+<p>Issue a move in the x-direction (forward) at 0.3 m/s, <code>x: 0.3</code>:</p>
+<pre><code>rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
+</code></pre>
+<p>Your robot should now start moving. Be ready to stop the robot by issuing (or up arrow twice):</p>
+<pre><code>rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
+</code></pre>
+<p><div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ul>
+<li>DO NOT set the movement value above 0.7 m/s to keep the robot within it control limit.</li>
+</ul>
+</div></p>
+<p>The linear values refer to the translation of the robot. Positive X is forward and positive Y is left. There is no Z-direction for this robot. Do not exceed 0.7 m/s.</p>
+<p>The angular values refer to the rotation of the robot. Only Z-rotation is considered with positive value as counter-clockwise. Do not exceed 3.5 rad/s.</p>
+</li>
+</ol>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

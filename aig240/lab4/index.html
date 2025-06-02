@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Lab 4 : Robot Model and Gazebo - Lab Manuals</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../css/extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Lab 4 : Robot Model and Gazebo";
+        var mkdocs_page_input_path = "aig240/lab4.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Lab Manuals
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../">AIG240 Robotics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../ses250/">SES250 Electromagnatics</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../seh500/">SEH500 Microprocessors</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sep600/">SEP600 Embedded Systems</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../sea700/">SEA700 Robotics for Engineer</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Lab Manuals</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Lab 4 : Robot Model and Gazebo</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="lab-4-robot-model-and-gazebo">Lab 4 : Robot Model and Gazebo</h1>
+<p><font size="5">
+Seneca Polytechnic</br>
+AIG240 Robotics for Software Engineers
+</font></p>
+<h2 id="introduction">Introduction</h2>
+<h3 id="urdf">URDF</h3>
+<p>URDF (Unified Robot Description Format) is an XML format for representing a robot model. URDF is commonly used in Robot Operating System (ROS) tools such as rviz (Ros Visualization tool) and Gazebo simulator. It is essentially a 3-D model with information around joints, motors, mass, etc. The files are then run through the Robot Operating System (ROS). The data from the file informs the human operator what the robot looks like and is capable of before they begin operating the robot.</p>
+<p>More details on the URDF specification can be found <a href="http://wiki.ros.org/urdf/XML">here</a>.</p>
+<p>Many robotic manufacturers have URDF models of their devices available for download. These include the <a href="https://stanleyinnovation.com/rmp-urdf-3d-files/">Segway RMP</a>, <a href="http://wiki.ros.org/turtlebot_description">Turtlebot</a>, and <a href="https://github.com/Active8Robots/AR10/blob/master/ar10_description/urdf/ar10.urdf">AR10</a>.</p>
+<p>More Models:</p>
+<ul>
+<li><a href="https://github.com/adubredu/DigitRobot.jl">Agility Robotics Digit</a></li>
+<li><a href="https://github.com/ANYbotics/anymal_b_simple_description">ANYbotics Anymal</a></li>
+<li><a href="https://github.com/clearpathrobotics/spot_ros">Boston Dynamics Spot (via Clearpath ROS Driver)</a></li>
+<li><a href="https://www.clearpathrobotics.com/assets/guides/kinetic/jackal/description.html">Clearpath Jackal</a></li>
+<li><a href="https://www.clearpathrobotics.com/assets/guides/melodic/dingo/description.html">Clearpath Dingo</a></li>
+<li><a href="https://github.com/husky/husky">Clearpath Husky</a></li>
+<li><a href="http://wiki.ros.org/turtlebot_description">Clearpath Turtlebot</a></li>
+<li><a href="https://github.com/unitreerobotics/unitree_ros">Unitree Go1</a></li>
+<li><a href="https://github.com/UniversalRobots/Universal_Robots_ROS2_Description">Universal Robotics</a></li>
+</ul>
+<h3 id="urdf-vs-xacro">URDF vs XACRO</h3>
+<p>URDF (Unified Robot Description Format) and XACRO (XML Macros) are both used in ROS (Robot Operating System) for robot modeling, but they have distinct roles. URDF is a straightforward XML format that describes the physical structure of a robot, detailing its links and joints, as well as their properties like geometry and dynamics. It's ideal for simpler robot designs where the model's complexity is limited. In contrast, XACRO is an extension of URDF that incorporates macros, allowing for parameterization and reducing redundancy in model descriptions. This makes XACRO particularly useful for complex robots or those with interchangeable components, as it facilitates easier maintenance and enhances readability. Typically, XACRO files are processed into URDF files before they are utilized in simulations or applications, combining the flexibility of XACRO with the straightforwardness of URDF.</p>
+<h3 id="rviz">RViz</h3>
+<p>RViz, or Robot Visualization, is a powerful 3D visualization tool used primarily in robotics and the Robot Operating System (ROS). It enables developers to visualize and interpret a wide array of sensor data, such as point clouds, maps, and robot models, in real-time. With its interactive features, users can manipulate objects and adjust visual settings to enhance understanding of robot behavior and performance. RViz's plugin architecture allows for extensibility, accommodating various data types and visualization needs. This makes it an invaluable resource for debugging algorithms, simulating scenarios, and gaining insights into robotic systems, ultimately aiding in the development and refinement of robotics applications.</p>
+<h3 id="gazebo">Gazebo</h3>
+<p>Gazebo is an open-source robotics simulation tool that provides a highly realistic environment for testing and developing robotic systems. It allows users to simulate robots in complex 3D environments, complete with detailed physics interactions, which include gravity, collisions, and friction. Gazebo supports a variety of sensors, such as cameras and LIDAR, enabling the generation of realistic sensor data for developing perception algorithms. Its seamless integration with the Robot Operating System (ROS) enhances its functionality, allowing developers to leverage ROS tools and libraries for robot control and communication. With a flexible plugin architecture, Gazebo can be customized to meet specific simulation needs, making it an essential platform for researchers and engineers in the field of robotics.</p>
+<h2 id="preparation">Preparation</h2>
+<h3 id="jetauto-robot">JetAuto Robot</h3>
+<p>In preperation of using the JetAuto robot, please be familiar with the user manual and the basic lesson provided by the manufacturer found here:</p>
+<ul>
+<li><a href="../JetAuto-User-Manual.pdf">JetAuto User Manual</a></li>
+<li><a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a></li>
+</ul>
+<h2 id="procedures">Procedures</h2>
+<h3 id="install-gazebo-and-other-ros-packages">Install Gazebo and other ROS packages</h3>
+<p>After being familiar with ROS, we'll now install the Gazebo simulation environment.</p>
+<ol>
+<li>
+<p>Following the instruction <a href="https://classic.gazebosim.org/tutorials?tut=install_ubuntu&amp;cat=install">here</a> to install Gazebo version 9.X to be used with ROS Melodic. Each Gazebo version works with a specific version of ROS.</p>
+<pre><code>sudo apt install gazebo9 libgazebo9-dev
+</code></pre>
+</li>
+<li>
+<p>Once installed, start Gazebo with the following command to ensure it's functional:</p>
+<pre><code>gazebo
+</code></pre>
+<p><img alt="Figure 4.1 Gazebo Running" src="../lab4-gazebo.png" /></p>
+<p><em><strong>Figure 4.1</strong> Gazebo Running</em></p>
+</li>
+<li>
+<p>Lastly, ensure the following ros gazebo packages are installed:</p>
+<pre><code>sudo apt install ros-melodic-gazebo-dev ros-melodic-gazebo-msgs ros-melodic-gazebo-plugins ros-melodic-gazebo-ros ros-melodic-gazebo-ros-control ros-melodic-gazebo-ros-pkgs ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui ros-melodic-joint-trajectory-controller ros-melodic-moveit ros-melodic-trac-ik-kinematics-plugin ros-melodic-slam-gmapping
+</code></pre>
+</li>
+</ol>
+<h3 id="download-the-jetauto-workspace-to-local-machine-for-simulation">Download the JetAuto Workspace to Local Machine for Simulation</h3>
+<ol>
+<li>
+<p>For this lab, we'll use the JetAuto workspace <code>jetauto_ws</code> on our local virtual machine so we can test the robot locally in a simulation before programming the actual robot.</p>
+<p><a href="https://drive.google.com/file/d/1SSaqoji_3H5vm9ZKAljeWPFmDUGfCc_u/view?usp=drive_link">Download jetauto_ws.zip</a> and unzip it to the <code>jetauto</code> user's directory: <code>/home/jetauto/</code></p>
+<p>If you downloaded the file on your host machine instead of your virtual machine, you may use WinSCP to transfer the file over to your virtual machine.</p>
+<p><strong>On your virtual machine:</strong> Open a terminal and ensure <code>open-ssh</code> is installed.</p>
+<pre><code>sudo apt-get install openssh-server
+</code></pre>
+<p>Enable and start ssh as necessary:</p>
+<pre><code>sudo systemctl enable ssh
+sudo systemctl start ssh
+</code></pre>
+<p><strong>On your host machine:</strong> Open WinSCP and connect to: 127.0.0.1 port 22.</p>
+<p>Copy the <code>jetauto_ws</code> folder from <code>jetauto_ws.zip</code> into <code>/home/jetauto/</code>.</p>
+</li>
+<li>
+<p>Once <code>jetauto_ws</code> is on your virtual machine's <code>jetauto</code> user's directory, let's add it as a source in <code>~/.bashrc</code>.</p>
+<pre><code>echo "source /home/jetauto/jetauto_ws/devel/setup.bash" &gt;&gt; ~/.bashrc
+</code></pre>
+</li>
+</ol>
+<h3 id="jetauto-robot-model">JetAuto Robot Model</h3>
+<p>Now that the JetAuto robot workspace is on the virtual machine, let's try to simulate it in Gazebo. Robot model in URDF consist of links that are joined together to form a robot assembly. Each link have its given geometry, mass, and collision parameter. The geometry can be provide as simple shape or complex shape using solid model.</p>
+<ol>
+<li>
+<p>Before we start, let's ensure (double check) we have the required package installed (if you haven't installed it from the beginning of this lab) to view and test our robot model:</p>
+<pre><code>sudo apt install ros-melodic-joint-state-publisher ros-melodic-joint-state-publisher-gui ros-melodic-joint-trajectory-controller
+</code></pre>
+</li>
+<li>
+<p>Next, we need to set some environment variables that our launch script to look for. Edit the system's environment variables:</p>
+<pre><code>sudo gedit /etc/environment
+</code></pre>
+<p>We'll add the following in the environment:</p>
+<pre><code>LIDAR_TYPE="A1"
+DEPTH_CAMERA_TYPE="AstraProPlus"
+MACHINE_TYPE="JetAutoPro"
+HOST="/"
+MASTER="/"
+</code></pre>
+<p><strong>Restart your virtual machine in order for the change to take effect.</strong></p>
+</li>
+<li>
+<p>Now, let's have a quick view at the URDF model, we can use RViz for visualization. A launch file allow us to start multiple nodes at once as well as defining other attributes.</p>
+<pre><code>roslaunch jetauto_description display.launch model:=urdf/jetauto.urdf
+</code></pre>
+<p>You may inspect this particular launch file at the following location:</p>
+<p><strong>~/jetauto_ws/src/jetauto_simulations/jetauto_description/launch/display.launch</strong></p>
+<p>In it, you'll find it start three nodes:</p>
+<ul>
+<li>joint_state_publisher_gui</li>
+<li>robot_state_publisher</li>
+<li>rviz</li>
+</ul>
+<p>You can find more information about <code>roslaunch</code> and <code>.launch</code> file in the offical ROS tutorial: <a href="https://wiki.ros.org/roslaunch">roslaunch</a> and <a href="https://wiki.ros.org/ROS/Tutorials/Roslaunch%20tips%20for%20larger%20projects">Roslaunch tips for large projects</a>.</p>
+</li>
+<li>
+<p>Once RViz is started, you can use the <code>joint_state_publisher_gui</code> to adjust the arm angle.</p>
+<p><img alt="Figure 4.3 JetAuto in RViz" src="../lab4-rviz-jetauto.png" /></p>
+<p><em><strong>Figure 4.3</strong> JetAuto in Gazebo</em></p>
+</li>
+<li>
+<p>Let's open up the JetAuto URDF model file to take a look at it more closely.</p>
+<p><strong>~/jetauto_ws/src/jetauto_simulations/jetauto_description/urdf/jetauto_car.urdf.xacro</strong></p>
+<p>Here, we see a file in XML format:</p>
+<pre><code>&lt;robot name="jetauto" xmlns:xacro="http://ros.org/wiki/xacro" &gt;
+    &lt;xacro:property name="M_PI"               value="3.1415926535897931"/&gt;
+    &lt;xacro:property name="base_link_mass"     value="1.6" /&gt; 
+    &lt;xacro:property name="base_link_w"        value="0.297"/&gt;
+    &lt;xacro:property name="base_link_h"        value="0.145"/&gt;
+    &lt;xacro:property name="base_link_d"        value="0.11255"/&gt;
+
+    &lt;xacro:property name="wheel_link_mass"    value="0.1" /&gt;
+    &lt;xacro:property name="wheel_link_radius"  value="0.049"/&gt;
+    &lt;xacro:property name="wheel_link_length"  value="0.04167"/&gt;
+</code></pre>
+<p>The first few lines define the robot's name and the basic parameters of the JetAuto's body.</p>
+<ul>
+<li><code>M_PI</code> defines the value of π.</li>
+<li><code>base_link_mass</code> defines the mass of the JetAuto’s body model.</li>
+<li><code>base_link_w</code> defines the width of the JetAuto’s body model.</li>
+<li><code>base_link_h</code> defines the height of of the JetAuto’s body model.</li>
+<li><code>base_link_d</code> defines the length of of the JetAuto’s body model.</li>
+<li><code>wheel_link_mass</code> defines the mass of each mecanum wheel.</li>
+<li><code>wheel_link_radius</code> defines the radius of each mecanum wheel.</li>
+</ul>
+<p>The name of the robot is also defined as <code>jetauto</code>.</p>
+<pre><code>&lt;link name="base_footprint"/&gt;
+
+&lt;joint name="base_joint" type="fixed"&gt;
+    &lt;parent link="base_footprint"/&gt;
+    &lt;child link="base_link"/&gt;
+    &lt;origin xyz="0.0 0.0 0.0" rpy="0 0 0"/&gt;
+&lt;/joint&gt;
+</code></pre>
+<p><code>base_footprint</code> is defined as the top parent link (part) of the JetAuto model to create a overall envolope that sits as the origin. <code>base_link</code> is the base part of the robot that house the battery and motor. In the URDF mode, it is connected to <code>base_footprint</code> as a child linke. This envolope configuration ensure the wheel of the robot will always above the origin (ground).</p>
+<pre><code>&lt;link
+    name="base_link"&gt;
+    &lt;xacro:box_inertial m="${base_link_mass}" w="${base_link_w}" h="${base_link_h}" d="${base_link_d}"/&gt;
+    &lt;visual&gt;
+        &lt;origin
+            xyz="0 0 0"
+            rpy="0 0 0" /&gt;
+        &lt;geometry&gt;
+            &lt;mesh
+                filename="package://jetauto_description/meshes/base_link.stl" /&gt;
+        &lt;/geometry&gt;
+        &lt;material name="green"/&gt;
+    &lt;/visual&gt;
+    &lt;collision&gt;
+        &lt;origin
+            xyz="${base_link_w/2.0 - 0.14810} 0 ${0.126437/2 + 0.02362364}"
+            rpy="0 0 0" /&gt;
+        &lt;geometry&gt;
+            &lt;box size="${base_link_w} ${base_link_h} ${base_link_d}" /&gt;
+        &lt;/geometry&gt;
+    &lt;/collision&gt;
+&lt;/link&gt;
+</code></pre>
+<p>Next is the link/part <code>base_link</code> along with it's elements. The mass and inertial information of the part is defined as an xacro element. The <code>geometry</code> sub-element in the <code>visual</code> element is provide by a <code>stl</code> mesh file from the <code>jetauto_description</code> package. The <code>collision</code> element is also defined as a box relative to the specified xyz cordinate.</p>
+<p><img alt="Figure 4.4 JetAuto base_link STL" src="../lab4-base_link-stl.png" /></p>
+<p><em><strong>Figure 4.4</strong> JetAuto base_link STL</em></p>
+<pre><code>&lt;link
+    name="back_shell_link"&gt;
+    &lt;inertial&gt;
+    &lt;origin
+        xyz="-1.22838595456587E-05 0.00218574826309681 -0.0500522861933898"
+        rpy="0 0 0" /&gt;
+    &lt;mass
+        value="0.0663478534899862" /&gt;
+    &lt;inertia
+        ixx="5.65277934912267E-05"
+        ixy="-5.13394387877366E-11"
+        ixz="-4.07561372273553E-11"
+        iyy="4.33740893441632E-05"
+        iyz="-5.43059341238134E-06"
+        izz="6.86642544694324E-05" /&gt;
+    &lt;/inertial&gt;
+    &lt;visual&gt;
+        &lt;origin
+            xyz="0 0 0"
+            rpy="0 0 0" /&gt;
+        &lt;geometry&gt;
+            &lt;mesh
+            filename="package://jetauto_description/meshes/back_shell_link.stl" /&gt;
+        &lt;/geometry&gt;
+        &lt;material name="black"&gt;
+        &lt;/material&gt;
+    &lt;/visual&gt;
+    &lt;collision&gt;
+        &lt;origin
+            xyz="0 0 0"
+            rpy="0 0 0" /&gt;
+        &lt;geometry&gt;
+            &lt;mesh
+            filename="package://jetauto_description/meshes/back_shell_link.stl" /&gt;
+        &lt;/geometry&gt;
+    &lt;/collision&gt;
+&lt;/link&gt;
+&lt;joint
+    name="back_shell_joint"
+    type="fixed"&gt;
+    &lt;origin
+        xyz="-0.076481 0 0.082796"
+        rpy="-3.1416 0 1.5708" /&gt;
+    &lt;parent
+        link="base_link" /&gt;
+    &lt;child
+        link="back_shell_link" /&gt;
+    &lt;axis
+        xyz="0 0 0" /&gt;
+&lt;/joint&gt;
+</code></pre>
+<p>The <code>back_shell_link</code> is the part that house the Jetson Nano, the expansion board, and mount the antenna. All the elements are defined in a similar manner as <code>back_link</code> and it's defined as a child link of <code>back_link</code> within it's relative position defined in <code>joint</code>.</p>
+<p>The <code>wheel_XXX_link</code> are all defined in a similar manner.</p>
+</li>
+<li>
+<p>The JetAuto URDF model file above only defined the mechancial structure of the robot. If we take a look at the URDF file for simulating the robot in Gazebo, we'll find more links that are used and defined in other URDF files within the same package.</p>
+<p><strong>~/jetauto_ws/src/jetauto_simulations/jetauto_description/urdf/jetauto.xacro</strong></p>
+</li>
+<li>
+<p>If you are interested in building a URDF from scratch, visit the ROS tutorial <a href="https://wiki.ros.org/urdf/Tutorials">here</a>.</p>
+</li>
+<li>
+<p>Close all terminals.</p>
+</li>
+</ol>
+<h3 id="running-jetauto-robot-in-gazebo">Running JetAuto robot in Gazebo</h3>
+<ol>
+<li>
+<p>In a terminal, launch:</p>
+<pre><code>roslaunch jetauto_gazebo worlds.launch
+</code></pre>
+<p>Gazebo should run and you should see the JetAuto robot in the simulation enviornment.</p>
+<p><img alt="Figure 4.5 JetAuto in Gazebo" src="../lab4-gazebo-jetauto.png" /></p>
+<p><em><strong>Figure 4.5</strong> JetAuto in Gazebo</em></p>
+</li>
+<li>
+<p>With Gazebo and ROS running, we can now control the virtual robot the same way as the physical robot.</p>
+<p>Let's try publishing to the <code>cmd_vel</code> topic. Open a new terminal and run:</p>
+<pre><code>rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
+</code></pre>
+<p>Stop the robot:</p>
+<pre><code>rostopic pub -1 /jetauto_controller/cmd_vel geometry_msgs/Twist '{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}'
+</code></pre>
+<p>Do you notice the JetAuto robot listen to the same <code>cmd_vel</code> topics and use the same <code>Twist</code> message as <code>TurtleSim</code>?</p>
+</li>
+<li>
+<p>Let's inspect the source code of the motion controller to take a closer look. Open the file at the following path:</p>
+<p><strong>~/jetauto_ws/src/jetauto_driver/jetauto_controller/scripts/jetauto_controller_main.py</strong></p>
+<p>As we can see in the controller code:</p>
+<pre><code>linear_x = self.go_factor*msg.linear.x
+linear_y = self.go_factor*msg.linear.y
+angular_z = self.turn_factor*msg.angular.z
+
+speed_up = False
+if abs(self.last_linear_x - linear_x) &gt; 0.2 or abs(self.last_linear_y - linear_y) &gt; 0.2 or abs(self.last_angular_z - angular_z) &gt; 1:
+    speed_up = True
+
+self.last_linear_x = linear_x
+self.last_linear_y = linear_y
+self.last_angular_z = angular_z
+
+linear_x_, linear_y_ = linear_x * 1000.0, linear_y * 1000.0#mm to m
+speed = math.sqrt(linear_x_ ** 2 + linear_y_ ** 2)
+direction =  math.atan2(linear_y_, linear_x_)
+direction = math.pi * 2 + direction if direction &lt; 0 else direction
+self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
+</code></pre>
+<p>The <code>Twist</code> message from <code>cmd_vel</code> provides the necessary information to calculate <code>speed</code>, <code>direction</code>, and <code>angular_z</code> for controlling the mecanum wheel using the <code>MecanumChassis</code> object.</p>
+<p>Refer to <a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a> chapter 7.3 for the working principle of the mecanum wheel.</p>
+</li>
+<li>
+<p>Try other various combination of motion command to gain a better understanding of the robot's movement such as changing the linear value for both <code>x</code> and <code>y</code> as well as the angular values.</p>
+</li>
+<li>
+<p>Next, we'll try controlling the JetAuto robot using keyboard input. In a new/other terminal, run:</p>
+<pre><code>roslaunch jetauto_peripherals teleop_key_control.launch robot_name:="/"
+</code></pre>
+<p>Use w, a, s, d to control the robot.</p>
+</li>
+<li>
+<p>Inspect the source code of the teleop controller to understand it's operation by opening the file at:</p>
+<p><strong>~/jetauto_ws/src/jetauto_peripherals/scripts/teleop_key_control.py</strong></p>
+</li>
+</ol>
+<h2 id="lab-question">Lab Question</h2>
+<ol>
+<li>
+<p>Modify the controller you created from <a href="../lab3/">lab3</a> (or create a new one) so it'll publish to the <code>/jetauto_controller/cmd_vel</code> topic for controlling the JetAuto robot in Gazeob.</p>
+<p><strong>Hint:</strong> You can follow the same approach as Lab 3 by creating a new package called <code>lab4_jetauto_control</code> in your <code>ros_ws</code> </p>
+<pre><code>catkin_create_pkg lab4_jetauto_control rospy geometry_msgs
+</code></pre>
+<p>Refer to the <code>teleop_key_control.py</code> controller you used in this lab on how to publish to the jetauto nodes.</p>
+</li>
+</ol>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://wiki.ros.org/ROS/Tutorials">ROS Tutorials</a></li>
+<li><a href="https://formant.io/resources/glossary/urdf/">What is the Unified Robotics Description Format (URDF)?</a></li>
+<li>EECS 106A Labs</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
