@@ -93,7 +93,17 @@ After becoming familiar with ROS, we'll now install the Gazebo simulation enviro
 
 1. Once `jetauto_ws` is on your virtual machine's `jetauto` user directory, let's add it as a source in `~/.bashrc`.
 
+    First, we need to change the workspace setup script to be an executable:
+    
+        sudo chmod +x /home/jetauto/jetauto_ws/devel/_setup_util.py
+
+    Then:
+
         echo "source /home/jetauto/jetauto_ws/devel/setup.bash" >> ~/.bashrc
+
+    Use `nano` to check if the `source` line got added to the end of `~/.bashrc`
+
+        nano ~/.bashrc
 
 ### JetAuto Robot Model
 
@@ -330,6 +340,17 @@ Now that the JetAuto robot workspace is on the virtual machine, let's try to sim
 
     Use w, a, s, d to control the robot.
 
+    **Troubleshooting:** If you get a `No module named 'rospkg'` error, it means there are some errors with the python interpretor and the ROS package. First, ensure `rospkg` is installed:
+
+        sudo apt install python-rospkg
+
+    **Troubleshooting:** If the problem presist, try removing `python-rospkg` which will also remove a long list of `ros` modules. Then re-install ROS.
+
+        sudo apt remove python-rospkg
+        sudo apt install ros-melodic-desktop-full
+
+    **Make sure you re-install all the dependency at the start of this lab as well.**
+    
 1. Inspect the source code of the teleop controller to understand its operation by opening the file at:
 
     **~/jetauto_ws/src/jetauto_peripherals/scripts/teleop_key_control.py**
