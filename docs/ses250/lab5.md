@@ -97,9 +97,11 @@ For this lab, you'll be using the same circuit as the one from Lab 4 but you'll 
 
 1. Turn off the output of the power supplies then repeat the measurement above for all \(R_L\) values.
 
+1. DO NOT disassemble the circuit.
+
 ### Part 2: Thévenin Equivalent Circuit
 
-1. Next, assemble the Thévenin circuit given below with the resistor value you calculate in the pre-lab. Start with 1kΩ for \(R_L\). 
+1. Next, assemble the Thévenin circuit given below with the resistor value you calculate in the pre-lab. Start with 1kΩ for \(R_L\). Assemble it beside the circuit from Part 1.
 
     ![Figure 5.3](lab5-thevenin-circuit.png)
 
