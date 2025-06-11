@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 4: Robot Model and Gazebo";
-        var mkdocs_page_input_path = "aig240/lab4.md";
+        var mkdocs_page_input_path = "aig240\\lab4.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -158,7 +158,14 @@ sudo systemctl start ssh
 </li>
 <li>
 <p>Once <code>jetauto_ws</code> is on your virtual machine's <code>jetauto</code> user directory, let's add it as a source in <code>~/.bashrc</code>.</p>
+<p>First, we need to change the workspace setup script to be an executable:</p>
+<pre><code>sudo chmod +x /home/jetauto/jetauto_ws/devel/_setup_util.py
+</code></pre>
+<p>Then:</p>
 <pre><code>echo "source /home/jetauto/jetauto_ws/devel/setup.bash" &gt;&gt; ~/.bashrc
+</code></pre>
+<p>Use <code>nano</code> to check if the <code>source</code> line got added to the end of <code>~/.bashrc</code></p>
+<pre><code>nano ~/.bashrc
 </code></pre>
 </li>
 </ol>
@@ -381,6 +388,14 @@ self.mecanum.set_velocity(speed, direction, angular_z, speed_up=speed_up)
 <pre><code>roslaunch jetauto_peripherals teleop_key_control.launch robot_name:="/"
 </code></pre>
 <p>Use w, a, s, d to control the robot.</p>
+<p><strong>Troubleshooting:</strong> If you get a <code>No module named 'rospkg'</code> error, it means there are some errors with the python interpretor and the ROS package. First, ensure <code>rospkg</code> is installed:</p>
+<pre><code>sudo apt install python-rospkg
+</code></pre>
+<p><strong>Troubleshooting:</strong> If the problem presist, try removing <code>python-rospkg</code> which will also remove a long list of <code>ros</code> modules. Then re-install ROS.</p>
+<pre><code>sudo apt remove python-rospkg
+sudo apt install ros-melodic-desktop-full
+</code></pre>
+<p><strong>Make sure you re-install all the dependency at the start of this lab as well.</strong></p>
 </li>
 <li>
 <p>Inspect the source code of the teleop controller to understand its operation by opening the file at:</p>
