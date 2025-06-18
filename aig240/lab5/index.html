@@ -144,19 +144,23 @@ sudo screen /dev/ttyACM0 115200
 </li>
 </ol>
 </li>
+</ol>
+<h3 id="remote-desktop-into-the-jetauto-robot">Remote Desktop into the JetAuto Robot</h3>
+<ol>
 <li>
-<p>NoMachine Remote Desktop/Access (Use with caution)</p>
-<p><strong>Only recommended to be used on within your virtual machine.</strong> For security, do not install on your host computer and stop the NoMachine server after you installation.</p>
-<p>NoMachine is a tool that allow for remote desktop and access. It is a powerful tool that is pre-installed on the JetAuto image but use with caution as it will automatically create a start a remote access server after installaion to allow for remote connection.</p>
-<p>Disconnect from the robot and re-connect to the internet to <a href="https://downloads.nomachine.com/everybody/">Download and Install NoMachine</a>.</p>
-<p>After installing, reconnect with JetAuto's Wifi AP and you should be able to search for the JetAuto machine from NoMachine.</p>
+<p><strong>Only recommended to be used on within your virtual machine.</strong> For security, do not install NoMachine on your host computer and stop the NoMachine server after your installation.</p>
+<p>NoMachine is a tool that allows for remote desktop and access. It is a powerful tool that is pre-installed on the JetAuto image but use with caution as it will also automatically create a start a remote access server after installaion open up your machine for remote connection.</p>
+<p>Disconnect your computer from the JetAuto robot and re-connect to the internet to <a href="https://downloads.nomachine.com/everybody/">Download and Install NoMachine</a>.</p>
+</li>
+<li>
+<p>After installing NoMachine, reconnect to JetAuto's Wifi AP and you should be able to search for the JetAuto robot from NoMachine.</p>
 <p>Once you are connected with the robot, the credential is the same as above.</p>
 </li>
 <li>
-<p>Now that you have two methods in connecting with the JetAuto robot, you may use either one to control the robot. Keep in mind, the SSH method is running off your virtual machine and connecting to JetAuto using command line where the NoMachine is connecting to JetAuto robot's actual desktop (remote desktop).</p>
+<p>Now that you have two methods in connecting with the JetAuto robot, you may use either one to control the robot. Keep in mind, the SSH method is running off your virtual machine and connecting to JetAuto using command line where the NoMachine is connecting to JetAuto robot's actual desktop (remote desktop). GUI tools such as RViz will not work on command line interface.</p>
 </li>
 <li>
-<p>To conserve battery life, you may unplug the LCD screen at this point but remember that LCD screen must be plugged in during power on in order for the JetAuto to detect it for displaying the desktop.</p>
+<p>To conserve battery life, once you've connected to your robot, you may unplug the LCD screen but remember that the LCD screen must be plugged in during power on in order for the robot to detect it for displaying the desktop.</p>
 </li>
 </ol>
 <h3 id="jetauto-robot-movement">JetAuto Robot Movement</h3>
