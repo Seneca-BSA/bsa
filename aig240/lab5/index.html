@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 5 : Robotic Arm and SLAM - Lab Manuals</title>
+    <title>Lab 5 : JetAuto Robot - Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 5 : Robotic Arm and SLAM";
+        var mkdocs_page_name = "Lab 5 : JetAuto Robot";
         var mkdocs_page_input_path = "aig240\\lab5.md";
         var mkdocs_page_url = null;
       </script>
@@ -74,7 +74,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 5 : Robotic Arm and SLAM</li>
+      <li class="breadcrumb-item active">Lab 5 : JetAuto Robot</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -83,14 +83,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-5-robotic-arm-and-slam">Lab 5 : Robotic Arm and SLAM</h1>
+                <h1 id="lab-5-jetauto-robot">Lab 5 : JetAuto Robot</h1>
 <p><font size="5">
 Seneca Polytechnic</br>
-SEA700 Robotics for Software Engineers
+AIG240 Robotics
 </font></p>
 <h3 id="jetauto-robot-inspection">JetAuto Robot Inspection</h3>
 <p>The robot we have for this course is the JetAuto Pro assembled in the configuration:</p>
-<p><img alt="Figure 4.2 JetAuto Pro" src="../lab4-jetauto-pro.png" /></p>
+<p><img alt="Figure 5.2 JetAuto Pro" src="../lab5-jetauto-pro.png" /></p>
 <p><em><strong>Figure 4.2</strong> JetAuto Pro</em></p>
 <ol>
 <li>
@@ -110,7 +110,7 @@ SEA700 Robotics for Software Engineers
 <p>We will NOT be using the smartphone app for controlling the robot.</p>
 </li>
 </ol>
-<h3 id="ssh-into-the-jetauto-robot">SSH Into the JetAuto Robot</h3>
+<h3 id="ssh-into-the-jetauto-robot">SSH into the JetAuto Robot</h3>
 <p><strong>Copy this lab instruction somewhere on your computer as you'll lose connection to the internet!</strong></p>
 <ol>
 <li>
@@ -178,7 +178,35 @@ roslaunch jetauto_controller jetauto_controller.launch
 <p>The linear values refer to the translation of the robot. Positive X is forward and positive Y is left. There is no Z-direction for this robot. Do not exceed 0.7 m/s.</p>
 <p>The angular values refer to the rotation of the robot. Only Z-rotation is considered with positive value as counter-clockwise. Do not exceed 3.5 rad/s.</p>
 </li>
+<li>
+<p>Next, try using the controller you created in Lab 4 to control the robot.</p>
+</li>
 </ol>
+<h2 id="lab-question">Lab Question</h2>
+<ol>
+<li>Similar to Lab 4, write code that will move the JetAuto robot in a roughly 1-meter square shape pattern as below. But this time, you'll be implementing it on the physical JetAuto robot.</li>
+</ol>
+<p><img alt="Figure 1 Square Movement Pattern" src="../lab4-task.png" /></p>
+<p><em><strong>Figure 1</strong> Square Movement Pattern</em></p>
+<p>Start:</p>
+<ol>
+<li>Move from (0, 0, 0°) to (1, 0, 0°) facing the direction of travel; then</li>
+<li>Move from (1, 0, 0°) to (1, 1, 0°) without turning, so the robot is facing the outside of the square; then</li>
+<li>Turn from (1, 1, 0°) to (1, 1, -90°) to face into the square.</li>
+<li>Move from (1, 1, -90°) to (0, 1, -90°) facing the inside of the square.</li>
+<li>Move from (0, 1, -90°) to (0, 0, 0°) by rotating the robot while traveling.</li>
+</ol>
+<p>Repeat this 2 times after a start command (such as a keyboard input) is given.</p>
+<p>For example: after launching the JetAuto in Gazebo, when you run <code>rosrun lab4_jetauto_control jetauto_control</code>, it will ask for input before performing the above action.</p>
+<p><strong>Hint:</strong> You can follow the same approach as Lab 3 by creating a new package called <code>lab4_jetauto_control</code> in your <code>ros_ws</code>.</p>
+<pre><code>    catkin_create_pkg lab4_jetauto_control rospy geometry_msgs
+</code></pre>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://wiki.ros.org/ROS/Tutorials">ROS Tutorials</a></li>
+<li><a href="../JetAuto-User-Manual.pdf">JetAuto User Manual</a></li>
+<li>EECS 106A Labs</li>
+</ul>
               
             </div>
           </div><footer>
