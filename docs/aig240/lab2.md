@@ -2,7 +2,7 @@
 
 <font size="5">
 Seneca Polytechnic</br>
-AIG240 Robotics for Software Engineers
+AIG240 Robotics
 </font>
 
 ## Introduction
