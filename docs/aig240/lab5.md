@@ -133,8 +133,8 @@ Start:
 
 1. Move forward from (0, 0, 0°) to (1, 0, 0°) facing the direction of travel; then
 2. Move left sideway from (1, 0, 0°) to (1, 1, 0°) without turning, so the robot is facing the outside of the square; then
-3. Turn clockwise from (1, 1, 0°) to (1, 1, -90°) to face into the square.
-4. Move right sideway from (1, 1, -90°) to (0, 1, -90°) facing the inside of the square.
+3. Turn clockwise from (1, 1, 0°) to (1, 1, -90°) to face into the square; then
+4. Move right sideway from (1, 1, -90°) to (0, 1, -90°) facing the inside of the square; then
 5. Move forward and turn from (0, 1, -90°) to (0, 0, 0°) by rotating the robot while traveling.
 
 Repeat this 2 times after a start command (such as a keyboard input) is given.
