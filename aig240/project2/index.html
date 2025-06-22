@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Project 2 - Moving JetAuto in Gazebo";
-        var mkdocs_page_input_path = "aig240\\project2.md";
+        var mkdocs_page_input_path = "aig240/project2.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -117,11 +117,11 @@ AIG240 Robotics
 <p><em><strong>Figure 1</strong> Square Movement Pattern</em></p>
 <p>Start:</p>
 <ol>
-<li>Move from (0, 0, 0°) to (1, 0, 0°) facing the direction of travel; then</li>
-<li>Move from (1, 0, 0°) to (1, 1, 0°) without turning, so the robot is facing the outside of the square; then</li>
-<li>Turn from (1, 1, 0°) to (1, 1, -90°) to face into the square.</li>
-<li>Move from (1, 1, -90°) to (0, 1, -90°) facing the inside of the square.</li>
-<li>Move from (0, 1, -90°) to (0, 0, 0°) by rotating the robot while traveling.</li>
+<li>Move forward from (0, 0, 0°) to (1, 0, 0°) facing the direction of travel; then</li>
+<li>Move left sideway from (1, 0, 0°) to (1, 1, 0°) without turning, so the robot is facing the outside of the square; then</li>
+<li>Turn clockwise from (1, 1, 0°) to (1, 1, -90°) to face into the square.</li>
+<li>Move right sideway from (1, 1, -90°) to (0, 1, -90°) facing the inside of the square.</li>
+<li>Move forward and turn from (0, 1, -90°) to (0, 0, 0°) by rotating the robot while traveling.</li>
 </ol>
 <p>Repeat this 2 times after a start command (such as a keyboard input) is given.</p>
 <p>For example: after launching the JetAuto in Gazebo, when you run <code>rosrun lab4_jetauto_control jetauto_control</code>, it will ask for input before performing the above action.</p>
