@@ -228,6 +228,8 @@ SES250 Electromagnatics
 </tr>
 </tbody>
 </table>
+<p>Marked C (μF) = marking on the capacitor
+Measured C (μF) = Measured C with Cable (μF) - Cable Capacitance (μF)</p>
 </blockquote>
 </li>
 <li>
@@ -252,13 +254,19 @@ SES250 Electromagnatics
 </ol>
 <h3 id="part-2-rc-circuit">Part 2: RC Circuit</h3>
 <p>In this part of the lab, we will be exploring the transient response (discharging and charging) of an RC circuit. A function generator set to square wave output will act as the closing and opening of the circuit.</p>
-<p><img alt="Figure 7.8" src="../lab7-rc-circuit-1.png" /></p>
+<p><img alt="Figure 7.8" src="../lab7-circuit.png" /></p>
 <p><strong><em>Figure 7.8</em></strong></p>
+<p>When the function generator's output is positive relative to the negative terminal (similar to the DC circuit below with the switch CLOSED), it is charging the capacitor. During this period, the voltage across the capacitor will raise to the same voltage as the output of the function generator.</p>
+<p><img alt="Figure 7.9" src="../lab7-circuit-1.png" /></p>
+<p><strong><em>Figure 7.9</em></strong></p>
+<p>When the function generator's output is the same relative to the negative terminal (similar to the DC circuit below with the switch OPEN), no more current is supplied by the function generator. During this period, the voltage across the capacitor will drop as it is discharging by the series RC circuit with the LED.</p>
+<p><img alt="Figure 7.10" src="../lab7-circuit-2.png" /></p>
+<p><strong><em>Figure 7.10</em></strong></p>
 <ol>
 <li>
 <p>Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, a LED and a few jumper wires. You should also have the capacitor you worked with earlier.</p>
 <blockquote>
-<p><strong>Lab Question 5:</strong> Measure the resistance value of your resistor and record it in Table 2. Refer to <a href="../lab2/">Lab 2</a> if you don't remember how to measure resistance.</p>
+<p><strong>Lab Question 5:</strong> Measure the resistance value of your resistor and record it in Table 2. Refer to <a href="../lab2/">Lab 2</a> if you don't remember how to measure resistance. Copy your measured capacitor value from above and insert it into Table 2 as well.</p>
 <p><strong>Table 2</strong></p>
 <table>
 <thead>
@@ -304,13 +312,13 @@ SES250 Electromagnatics
 </div></p>
 </li>
 <li>
-<p>Turn on the function generator and set the output to a 3Vpp square wave at 1Hz <strong>with a 3V DC Offset at High-Z ouptut mode</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
+<p>Turn on the function generator and set the output to <strong>High-Z output mode</strong>. Afterward, set the output to a 3Vpp square wave at 10Hz <strong>with a 3V DC Offset</strong>. Leave all other settings as default. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
 <p><div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
-<p style="font-size: 18px"><strong>Ensure the function generator is set to 3V DC offset</strong><p>
+<p style="font-size: 18px"><strong>Ensure the function generator is in High-Z mode and set to 3V DC offset</strong><p>
 </div></p>
 </li>
 <li>
-<p>Turn on the DSO and adjust the settings to zoom into the falling edge of the square wave so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 1Hz. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
+<p>Turn on the DSO and adjust the settings to zoom into the falling edge of the square wave so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to <a href="../lab6/">Lab 6</a> if you don't remember how to use a function generator.</p>
 <blockquote>
 <p><strong>Lab Question 7:</strong> Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RC time constant.</p>
 <p><strong>Table 3</strong></p>
@@ -352,7 +360,7 @@ SES250 Electromagnatics
 </blockquote>
 </li>
 <li>
-<p>Repeat step 2 with the various values of resistors and capacitors.</p>
+<p>Repeat step 2 with the various values of resistors and capacitors. Adjust the period (by adjust the frequency) of the function generator output so it is about 5-10x the RC time constant for best result in measurement.</p>
 <blockquote>
 <p><strong>Lab Question 9:</strong> What do you observe regarding the RC time constant as the resistor and the capacitor value increase and decrease?</p>
 <p><strong>Lab Question 10:</strong> What do you observe from the LED in term of the charging / discharging cycle of the capacitor? Remember, where there are current, the LED will turn on.</p>
