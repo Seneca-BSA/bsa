@@ -146,6 +146,9 @@ In this part of the lab, we will be exploring the capacitance of a capacitor.
     > |1|||||
     > |2|||||
     > |3|||||
+    >
+    > Marked C (μF) = marking on the capacitor
+    > Measured C (μF) = Measured C with Cable (μF) - Cable Capacitance (μF)
 
 1. Acquire a 100nF Capacitor (usually small and orange with marking 104 for 10 x 10^4 pF) then connect the two leads of the capacitor to the DMM.
 
@@ -167,13 +170,25 @@ In this part of the lab, we will be exploring the capacitance of a capacitor.
 
 In this part of the lab, we will be exploring the transient response (discharging and charging) of an RC circuit. A function generator set to square wave output will act as the closing and opening of the circuit.
 
-![Figure 7.8](lab7-rc-circuit-1.png)
+![Figure 7.8](lab7-circuit.png)
 
 ***Figure 7.8***
 
+When the function generator's output is positive relative to the negative terminal (similar to the DC circuit below with the switch CLOSED), it is charging the capacitor. During this period, the voltage across the capacitor will raise to the same voltage as the output of the function generator.
+
+![Figure 7.9](lab7-circuit-1.png)
+
+***Figure 7.9***
+
+When the function generator's output is the same relative to the negative terminal (similar to the DC circuit below with the switch OPEN), no more current is supplied by the function generator. During this period, the voltage across the capacitor will drop as it is discharging by the series RC circuit with the LED.
+
+![Figure 7.10](lab7-circuit-2.png)
+
+***Figure 7.10***
+
 1. Obtain a 1kΩ resistor, 10kΩ resistors, a breadboard, a LED and a few jumper wires. You should also have the capacitor you worked with earlier.
 
-    > **Lab Question 5:** Measure the resistance value of your resistor and record it in Table 2. Refer to [Lab 2](lab2.md) if you don't remember how to measure resistance.
+    > **Lab Question 5:** Measure the resistance value of your resistor and record it in Table 2. Refer to [Lab 2](lab2.md) if you don't remember how to measure resistance. Copy your measured capacitor value from above and insert it into Table 2 as well.
     >
     > **Table 2**
     >
@@ -191,13 +206,13 @@ In this part of the lab, we will be exploring the transient response (dischargin
     <p style="font-size: 18px"><strong>INCORRECT CONNECTION AGAINST THE POLARIZATION OF THE CAPACITOR CAN BE CATASTROPHIC!</strong><p>
     </div>
 
-1. Turn on the function generator and set the output to a 3Vpp square wave at 1Hz **with a 3V DC Offset at High-Z ouptut mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the function generator and set the output to **High-Z output mode**. Afterward, set the output to a 3Vpp square wave at 10Hz **with a 3V DC Offset**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
     <div style="padding: 15px; border: 1px solid red; background-color: red; color: white;">
-    <p style="font-size: 18px"><strong>Ensure the function generator is set to 3V DC offset</strong><p>
+    <p style="font-size: 18px"><strong>Ensure the function generator is in High-Z mode and set to 3V DC offset</strong><p>
     </div>
 
-1. Turn on the DSO and adjust the settings to zoom into the falling edge of the square wave so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 1Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
+1. Turn on the DSO and adjust the settings to zoom into the falling edge of the square wave so you'll see a single period of the RC waveform similar to Figure 7.5. Remember, the function generator is simulating the closing and opening of the circuit at 10Hz. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator.
 
     > **Lab Question 7:** Using the grid line or the measurement tool, find the time it takes for the voltage to drop 67% from the maximum and record it as the measured RC time constant.
     >
@@ -211,7 +226,7 @@ In this part of the lab, we will be exploring the transient response (dischargin
     >
     > **Lab Question 8:** Calculate the percentage error of the estimated and measured RC time constant.
 
-1. Repeat step 2 with the various values of resistors and capacitors.
+1. Repeat step 2 with the various values of resistors and capacitors. Adjust the period (by adjust the frequency) of the function generator output so it is about 5-10x the RC time constant for best result in measurement.
 
     > **Lab Question 9:** What do you observe regarding the RC time constant as the resistor and the capacitor value increase and decrease?
 
