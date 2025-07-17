@@ -159,7 +159,7 @@ Source: [Wikipedia: Potentiometer](https://en.wikipedia.org/wiki/Potentiometer)
 > 1. Copy observation tables 1, and 2 of this lab into your notebook.
 > 1. Sketch three breadboard diagram, one for each of Figure 8.8, Figure 8.10 and Figure 8.12 onto your notebook.
 > 1. Derive a formula to find the inductance of an inductor from the RL response formula.
-> 1. If we need to reduce a 500kHz noise to at least 70.7% of it's original value with an RL low-pass filter. Which resistor from our lab material should we if you are using the 100μH inductor?
+> 1. If we need to reduce a 200kHz noise to at least 70.7% of it's original value with an RL low-pass filter. Which resistor from our lab material should we if you are using the 100μH inductor?
 
 ## Procedures
 
@@ -224,9 +224,9 @@ In this part of the lab, we'll explore a simple filter circuit using a resistor 
     > | 50Ω ||
     > | 100Ω ||
 
-1. Set up your circuit using a 10kΩ as per Figure 8.10 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Start from the largest resistor.
+1. Set up your circuit as per Figure 8.10 with CH1 of the DSO measuring the voltage between the inductor and the resistor (the output of the RL low-pass filter) and CH2 connected to the output of the function generator (raw signal). Use a combination of series and parallel resistors from your kit to product the above resistor. Start from the largest resistor.
 
-1. Turn on the function generator and set the output to a 3Vpp triangular (saw with 50% symmetry) wave at 200kHz **with a 3V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 1V with noise at 1MHz.
+1. Turn on the function generator and set the output to a 3Vpp triangular (saw with 50% symmetry) wave at 200kHz **with a 3V DC Offset at High-Z output mode**. Leave all other settings as default. Refer to [Lab 6](lab6.md) if you don't remember how to use a function generator. This will simulate a signal at 3V with noise at 200kHz.
 
 1. Turn on the output of the function generator and observe the difference between the raw signal (3VDC 200kHz signal) and the filtered signal. You should see something (but not exactly) in Figure 8.11 with the centre at 3V instead of 0V.
 
@@ -236,7 +236,7 @@ In this part of the lab, we'll explore a simple filter circuit using a resistor 
 
 1. Take a photo or make a sketch of your observation then repeat for all the resistor values.
 
-    > **Lab Question 6:** At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 1MHz noise? What is the cutoff frequency?
+    > **Lab Question 6:** At which resistor value do you start to see significant improvement in filtering out (smoothing off) the 200kHz noise? What is the cutoff frequency?
 
 ### Part 3: RL Low-pass Filters using Potentiometer
 
