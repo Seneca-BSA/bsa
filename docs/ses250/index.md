@@ -6,7 +6,7 @@
 - [Lab Safety](safety.md)
 - [Lab Supplies](supplies.md)
 - [Lab 1 : Electrostatics and Triboelectric Series](lab1.md)
-- [Lab 2 : Digital Multimeter, Power Supply, and Ohm's Law](lab2.md)
+<!--- [Lab 2 : Digital Multimeter, Power Supply, and Ohm's Law](lab2.md)
 - [Lab 3 : Series and Parallel Resistive Circuit](lab3.md)
 - [Lab 4 : Kirchhoff's Laws](lab4.md)
 - [Lab 5 : Thévenin Theorem](lab5.md)
@@ -18,4 +18,4 @@
 
 ## Lab Project
 
-- [Lab Project](lab-project.md)
+- [Lab Project](lab-project.md)-->
