@@ -89,81 +89,148 @@ Seneca Polytechnic</br>
 SEA700 Robotics for Software Engineers
 </font></p>
 <h2 id="introduction">Introduction</h2>
-<p>In this course, you'll be using the <a href="https://www.hiwonder.com/products/jetauto-pro?variant=40040875229271&amp;srsltid=AfmBOopGiD-7htdo9MYV2dDxaC_hu9xuS887mAu3p1SuU0YDl9iVj6Da">JetAuto Pro ROS Robot Car</a> as the base platform for development. The JetAuto robot uses the NVIDIA Jetson Nano embedded computing boards as its controller. The robot comes with various accessories and add-ons for robotics applications and they can all be controlled using <a href="https://www.ros.org/">Robot Operating System (ROS)</a> as the backbone application. However, before jumping into using the physical, we will be learning how to use ROS and <a href="https://gazebosim.org/">Gazebo</a> to simulate the robot and it's environmental. During the design phase of any robotics project, testing the functionality of your code and the robot is a key step of project cycle. In some industrial settings (such as robot in remote location), physical access to the robot are limited or impossible. In such a case, simulating the robot's action and performance is the only way to ensure mission success.</p>
+<p>In this course, you'll be using the <a href="https://www.hiwonder.com/products/jetauto-pro?variant=40040875229271&amp;srsltid=AfmBOopGiD-7htdo9MYV2dDxaC_hu9xuS887mAu3p1SuU0YDl9iVj6Da">JetAuto Pro ROS Robot Car</a> as the base platform for development. The JetAuto robot uses the NVIDIA Jetson Nano embedded computing board as its controller. The robot comes with various accessories and add-ons for robotics applications, all of which can be controlled using the <a href="https://www.ros.org/">Robot Operating System (ROS)</a> as the core framework.</p>
+<p>However, before working with the physical robot, we will first learn how to use ROS and <a href="https://gazebosim.org/">Gazebo</a> to simulate the robot and its environment. During the design phase of any robotics project, testing your code and robot functionality in a simulated environment is a crucial part of the development cycle. In some industrial settings (such as robots deployed in remote locations), physical access to the robot may be limited or impossible. In such cases, simulating the robot's actions and performance is the only way to ensure mission success.</p>
 <h3 id="what-is-ros">What is ROS?</h3>
 <p>Per the ROS website:</p>
 <blockquote>
 <p>The Robot Operating System (ROS) is a set of software libraries and tools that help you build robot applications. From drivers to state-of-the-art algorithms, and with powerful developer tools, ROS has what you need for your next robotics project. And it's all open source.</p>
 </blockquote>
-<p>The above statement isn't exactly clear so let's take a look at an example.</p>
+<p>The above description may sound abstract, so let’s look at a practical example.</p>
 <p><img alt="Figure 1.1 Robotics Arm" src="../lab1-robot-arm.png" /></p>
 <p><em><strong>Figure 1.1</strong> Robotics Arm (Source: Hiwonder)</em></p>
-<p>A robotics system usually consist of various sensors, actuators, and controllers. The system in Figure 1.1 have the following:</p>
+<p>A robotics system usually consists of various sensors, actuators, and controllers. The system in Figure 1.1 includes the following:</p>
 <ol>
-<li>a servo gripper at the end of the arm</li>
-<li>a servo revolute joint that rotate the gripper</li>
-<li>a servo revolute joint for link 3-2</li>
-<li>a servo revolute joint for link 4-3</li>
-<li>a servo revolute joint for link 5-4</li>
-<li>a servo revolute joint that rotate the base</li>
-<li>a stationary camera supervise the workspace</li>
+<li>A servo gripper at the end of the arm  </li>
+<li>A servo revolute joint that rotates the gripper  </li>
+<li>A servo revolute joint for link 3–2  </li>
+<li>A servo revolute joint for link 4–3  </li>
+<li>A servo revolute joint for link 5–4  </li>
+<li>A servo revolute joint that rotates the base  </li>
+<li>A stationary camera supervising the workspace  </li>
 </ol>
 <p>To pick up an object, the robot might:</p>
 <ul>
-<li>Use the camera to measure the position of the object</li>
-<li>Command the arm to move toward the object's position</li>
-<li>Once in position, command the gripper to close around the object</li>
+<li>Use the camera to determine the object's position  </li>
+<li>Command the arm to move to the object's location  </li>
+<li>Once in position, command the gripper to close around the object  </li>
 </ul>
-<p>To approach this problem, we'll need to break it down into smaller task. In robotics, that usually means having independent low-level control loops, each controlling a single task.</p>
+<p>To achieve this, we break the process into smaller tasks. In robotics, this typically means having independent low-level control loops, each responsible for a single function:</p>
 <ul>
-<li>A control loop for each joint that, given a position or velocity command, controls the power applied to the joint motor based on position sensor measurements at the joint.</li>
-<li>Another control loop that receives commands to open or close the gripper, then switches the gripper motor on and off while controlling the power applied to it to avoid crushing objects.</li>
-<li>A sensing loop that reads individual images from the camera</li>
+<li>A control loop for each joint that, given a position or velocity command, controls the power applied to the joint motor based on position sensor measurements  </li>
+<li>A control loop for the gripper, which turns the gripper motor on and off and adjusts power to avoid crushing objects  </li>
+<li>A sensing loop that reads images from the camera  </li>
 </ul>
-<p>With the above structure, we then couple these low-level loops together via a single high-level module that performs supervisory control of the whole system:</p>
+<p>These low-level loops are then coordinated via a high-level supervisory control module:</p>
 <ul>
-<li>Query the camera sensing loop for a single image</li>
-<li>Use a vision algorithm to compute the location of the object to grasp</li>
-<li>Compute the joint angles necessary to move the manipulator arm to this location</li>
-<li>Sends position commands to each of the joint control loops telling them to move to this position</li>
-<li>Signal the gripper control loop to close the gripper to grab the object</li>
+<li>Request an image from the camera sensing loop  </li>
+<li>Use a vision algorithm to calculate the target object's location  </li>
+<li>Calculate joint angles to move the arm to the location  </li>
+<li>Send commands to the joint control loops  </li>
+<li>Signal the gripper control loop to close  </li>
 </ul>
-<p>An important feature of this design is that the supervisor need not know the implementation details of any of the low-level control loops: it interacts with each only through simple control messages. This encapsulation of functionality makes the system modular, making it easier to reuse code across robotic platforms.</p>
-<p>In ROS, each individual control loop is known as a node, an individual software process that performs a specific task. Nodes exchange control messages, sensor readings, and other data by publishing or subscribing to topics or by sending requests to services offered by other nodes (these concepts will be discussed in detail later in the lab).</p>
-<p>Nodes can be written in a variety of languages (including Python and C++), and ROS transparently handles the details of converting between different datatypes, exchanging messages between nodes, etc.</p>
-<p>We can then visualize the communication and interaction between different software components via a computation graph, where:</p>
+<p>An important feature of this architecture is modularity: the supervisor need not understand the implementation of any control loop. It communicates with each via simple control messages. This abstraction makes it easier to reuse code across platforms.</p>
+<p>In ROS, each control loop is implemented as a <strong>node</strong>—a software process performing a specific task. Nodes communicate by publishing and subscribing to <strong>topics</strong> or using <strong>services</strong> (concepts covered later in this lab).</p>
+<p>Nodes can be written in many languages (including Python and C++), and ROS handles data conversion and message passing seamlessly.</p>
+<p>We can visualize this system using a <strong>computation graph</strong>:</p>
 <p><img alt="Figure 1.2 Example computation graph" src="../lab1-computation-graph.png" /></p>
 <p><em><strong>Figure 1.2</strong> Example computation graph</em></p>
 <ul>
-<li>Nodes are represented by ovals (ie. <code>/usb_cam</code> or <code>/ar_track_alvar</code>).</li>
-<li>Topics are represented by rectangles (ie. <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</code>).</li>
-<li>The flow of information to and from topics and represented by arrows. In the above example, <code>/usb_cam publishes</code>
-to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</code>, which are subscribed to by <code>/ar_track_alvar</code>.</li>
-<li>While not shown here, services would be represented by dotted arrows.</li>
+<li>Nodes are shown as ovals (e.g., <code>/usb_cam</code> or <code>/ar_track_alvar</code>)  </li>
+<li>Topics are shown as rectangles (e.g., <code>/usb_cam/camera_info</code>, <code>/usb_cam/image_raw</code>)  </li>
+<li>Arrows show the direction of data flow between nodes and topics. For example, <code>/usb_cam</code> publishes to <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</code>, which are subscribed to by <code>/ar_track_alvar</code>  </li>
+<li>Services, not shown here, are represented by dotted arrows</li>
 </ul>
 <h2 id="procedures">Procedures</h2>
 <h3 id="ubuntu-installation">Ubuntu Installation</h3>
-<p>For this course, we'll be using the following software environment <strong>Ubuntu 18.04 LTS (Bionic Beaver)</strong>. If you are using Windows or macOS, ensure Ubuntu 18.04 LTS (Bionic Beaver) and ROS Melodic is installed as it is the version used by the JetAuto robot.</p>
+<p>For this course, we'll use <strong>Ubuntu 18.04 LTS (Bionic Beaver)</strong>. If you're using Windows or macOS, ensure Ubuntu 18.04 is running on a virtual machine, as this matches the JetAuto platform.</p>
+<p>You can also refer to this <a href="https://youtu.be/kZuOnZjDDss">Installation Video</a>.</p>
 <ol>
 <li>
-<p>Install Ubuntu 18.04 LTS (Bionic Beaver) on your computer or virtual machine (VirtualBox recommended).</p>
+<p>Install Ubuntu 18.04 on your computer or virtual machine (VirtualBox recommended).</p>
 <ul>
-<li>OS Image: <a href="https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso">ubuntu-18.04.6-desktop-amd64.iso</a></li>
-<li>Ensure there are at least 2 processor core, 4GB of memory, and 20GB of disk drive</li>
-<li>Ensure to use username: <strong>jetauto</strong> as this is the username used by the JetAuto robot to maximize compartibility of code</li>
+<li>OS Image: <a href="https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso">ubuntu-18.04.6-desktop-amd64.iso</a>  </li>
+<li>Allocate at least 4 CPU cores, 4 GB RAM, and 20 GB of storage to emulate a <a href="https://developer.nvidia.com/embedded/jetson-nano">Jetson Nano</a>  </li>
+<li>Use the username: <strong>jetauto</strong> to maintain code compatibility  </li>
 </ul>
+</li>
+<li>
+<p>If using an ARM-based laptop, install the <a href="https://cdimage.ubuntu.com/releases/18.04.6/release/">ARM64 server image</a> and then manually add a desktop interface</p>
+</li>
+<li>
+<p>On Windows, some students have used <code>wsl</code> to run Ubuntu and ROS</p>
+</li>
+</ol>
+<h3 id="add-jetauto-user-as-sudoer-and-install-desktop-gui">Add <code>jetauto</code> User as Sudoer and Install Desktop GUI</h3>
+<p><strong>Run in the Ubuntu Machine</strong></p>
+<ol>
+<li>
+<p>Depending on how the Ubuntu OS was installed, your active user <code>jetauto</code> may not have sudoer permission. If that's the case, you'll need to switch to the <code>root</code> user and add <code>jetauto</code> into the sudoer group</p>
+<p>Open a terminal and switch to the <code>root</code> user:</p>
+<pre><code>su root
+</code></pre>
+<p>Change the <code>jetauto</code> user into the sudoer group:</p>
+<pre><code>usermod -a -G sudo jetauto
+</code></pre>
+</li>
+<li>
+<p>Log out then re-login (or restart) to the <code>jetauto</code> user. You may now verify if you have sudo permission by:</p>
+<pre><code>sudo -v
+</code></pre>
+<p>If it gives you a permission error, that means you are not a sudoer yet</p>
+</li>
+<li>
+<p>Now that you are a sudoer, let's perform a system update and upgrade. <strong>DO NOT upgrade to Ubuntu 20 or higher when prompted</strong>—we need Ubuntu 18:</p>
+<pre><code>sudo apt update &amp;&amp; sudo apt upgrade
+</code></pre>
+</li>
+<li>
+<p>If you didn't install the desktop version of Ubuntu, install the Ubuntu GNOME desktop (or similar). We need the GUI:</p>
+<pre><code>sudo apt install ubuntu-gnome-desktop
+</code></pre>
+<p>After the install is complete, restart the system:</p>
+<pre><code>reboot
+</code></pre>
+<p>The Ubuntu GNOME desktop should run after the system restart</p>
+</li>
+<li>
+<p>Lastly, ensure you can open a terminal from the GUI. If the terminal fails to start, go to Settings and change the language to "English (CA)" and save. You may switch it back afterward. It's a bug with a missing attribute in the Ubuntu desktop</p>
 </li>
 </ol>
 <h3 id="ros-installation">ROS Installation</h3>
+<p><strong>Run in the Ubuntu Machine</strong></p>
+<p><strong>Note:</strong> You may also follow the official <a href="https://wiki.ros.org/melodic/Installation/Ubuntu">ROS Melodic Installation</a> instructions to install the ROS Desktop-Full package into your system. <strong>You do NOT need to install the Bare Bones or Individual Package</strong></p>
 <ol>
 <li>
-<p>Follow the <a href="https://wiki.ros.org/melodic/Installation/Ubuntu">ROS Melodic Installation</a> instruction to install the ROS Desktop-Full package into your system. <strong>You do NOT need to install the Bare Bones or Individual Package</strong></p>
+<p>Set up your computer to accept software from packages.ros.org.</p>
+<pre><code>sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" &gt; /etc/apt/sources.list.d/ros-latest.list'
+</code></pre>
 </li>
 <li>
-<p>Since we want our terminal to load the ROS source everytime it start, add the <code>source</code> command to <code>.bashrc</code>.</p>
+<p>Set up your keys</p>
+<p>If you haven't already installed curl:</p>
+<pre><code>sudo apt install curl
+</code></pre>
+<p>Add the key:</p>
+<pre><code>curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+</code></pre>
+</li>
+<li>
+<p>Now, make sure your system package index is up-to-date:</p>
+<pre><code>sudo apt update
+</code></pre>
+</li>
+<li>
+<p>Next, we'll install the full desktop version of ROS with rqt, rviz, robot-generic libraries, 2D/3D simulators and 2D/3D perception, etc.:</p>
+<pre><code>sudo apt install ros-melodic-desktop-full
+</code></pre>
+<p>Later, if you need to install other ROS packages, you can use the following command: <code>sudo apt install ros-melodic-&lt;PACKAGE&gt;</code> e.g. <code>sudo apt install ros-melodic-slam-gmapping</code>. To find available packages, use: <code>apt search ros-melodic</code></p>
+</li>
+<li>
+<p>Since we want our terminal to load the ROS source every time it starts, add the <code>source</code> command to <code>.bashrc</code> so the ROS environment variables are automatically added to your bash session every time a new shell is launched:</p>
 <pre><code>echo "source /opt/ros/melodic/setup.bash" &gt;&gt; ~/.bashrc
 </code></pre>
-<p>Or use <code>vi</code>, <code>vim</code> or any editor to open <code>~/.bashrc</code> in your user's home directory then add the following code at the end.</p>
+<p>Or use <code>vi</code>, <code>vim</code>, or any editor to open <code>~/.bashrc</code> in your user's home directory then add the following code at the end.</p>
 <pre><code>source /opt/ros/melodic/setup.bash
 </code></pre>
 </li>
@@ -178,7 +245,7 @@ to the topics <code>/usb_cam/camera_info</code> and <code>/usb_cam/image_raw</co
 <pre><code>sudo rosdep init
 rosdep update
 </code></pre>
-<p>Since Melodic is not longer a support distro, we'll need to explicitly update it.</p>
+<p>Since Melodic is no longer a supported distro, we'll need to explicitly update it.</p>
 <pre><code>rosdep update --rosdistro=melodic
 </code></pre>
 </li>
@@ -222,8 +289,8 @@ started core service [/rosout]
 <h4 id="using-rosrun">Using rosrun</h4>
 <ol>
 <li>
-<p>The command <code>rosrun</code> allows you to use the package name to directly run a node within a package (without having to know the package path). Usage: <code>rosrun [package_name] [node_name]</code>.</p>
-<p>So now we can run the <code>turtlesim_node</code> in the turtlesim package. In a new terminal:</p>
+<p>The command <code>rosrun</code> allows you to use the package name to directly run a node within a package (without having to know the package path). Usage: <code>rosrun [package_name] [node_name]</code>.<br />
+   So now we can run the <code>turtlesim_node</code> in the turtlesim package. In a new terminal:</p>
 <pre><code>rosrun turtlesim turtlesim_node
 </code></pre>
 <p>The simulator window should appear, with a random turtle in the center.</p>
@@ -234,7 +301,7 @@ started core service [/rosout]
 <p>Open a new terminal to run a new node to control the turtle in the first node. If you didn't add the <code>source</code> code in <code>.bashrc</code>, you'll need to source ROS again.</p>
 <pre><code>rosrun turtlesim turtle_teleop_key
 </code></pre>
-<p>At this point you should have four windows open: a terminal running <code>roscore</code>, a terminal running <code>turtlesim_node</code>, a terminal running <code>turtle_teleop_key</code> and the "turtlesim window". Arrange these windows so that you can see the turtlesim window, but also have the terminal running <code>turtle_teleop_key</code> active so that you can control the turtle in turtlesim.</p>
+<p>At this point you should have four windows open: a terminal running <code>roscore</code>, a terminal running <code>turtlesim_node</code>, a terminal running <code>turtle_teleop_key</code>, and the "turtlesim window". Arrange these windows so that you can see the turtlesim window but also have the terminal running <code>turtle_teleop_key</code> active so that you can control the turtle in turtlesim.</p>
 </li>
 <li>
 <p>Use the arrow keys on your keyboard to control the turtle. It will move around the screen, using its attached “pen” to draw the path it followed so far.</p>
@@ -259,9 +326,9 @@ started core service [/rosout]
 <p>Use the refresh button to the left of the Service dropdown list to ensure all the services of your turtlesim node are available.</p>
 </li>
 <li>
-<p>Click on the Service dropdown list to see turtlesim’s services, and select the <code>/spawn</code> service to spawn another turtle.</p>
+<p>Click on the Service dropdown list to see turtlesim’s services and select the <code>/spawn</code> service to spawn another turtle.</p>
 <p>Give the new turtle a unique name, like <code>turtle2</code>, by double-clicking between the empty single quotes in the <strong>Expression</strong> column. You can see that this expression corresponds to the value of <strong>name</strong> and is of type <strong>string</strong>.</p>
-<p>Next enter some valid coordinates at which to spawn the new turtle, like x = <code>1.0</code> and y = <code>1.0</code>.</p>
+<p>Next, enter some valid coordinates at which to spawn the new turtle, like x = <code>1.0</code> and y = <code>1.0</code>.</p>
 <p><img alt="Figure 1.5 rqt spawn" src="../lab1-rqt-spawn.png" /></p>
 <p><em><strong>Figure 1.5</strong> rqt spawn</em></p>
 <p>If you try to spawn a new turtle with the same name as an existing turtle, you will get an error message in the terminal running <code>turtlesim_node</code>.</p>
@@ -273,7 +340,7 @@ started core service [/rosout]
 <p>Refresh the service list in rqt and you will also see that now there are services related to the new turtle, <code>/turtle2/...</code>, in addition to <code>/turtle1/...</code>.</p>
 </li>
 <li>
-<p>Next, we'll give <code>turtle1</code> an unique pen using the <code>/set_pen</code> service and have <code>turtle1</code> draw with a distinct red line by changing the value of <strong>r</strong> to <code>255</code>, and the value of <strong>width</strong> to <code>5</code>. Don’t forget to call the service after updating the values.</p>
+<p>Next, we'll give <code>turtle1</code> a unique pen using the <code>/set_pen</code> service and have <code>turtle1</code> draw with a distinct red line by changing the value of <strong>r</strong> to <code>255</code>, and the value of <strong>width</strong> to <code>5</code>. Don’t forget to call the service after updating the values.</p>
 <p><img alt="Figure 1.6 rqt set_pen" src="../lab1-rqt-set-pen.png" /></p>
 <p><em><strong>Figure 1.6</strong> rqt set_pen</em></p>
 </li>
@@ -286,20 +353,19 @@ started core service [/rosout]
 <h3 id="remapping-turtle_teleop_key">Remapping <code>turtle_teleop_key</code></h3>
 <ol>
 <li>
-<p>To control <code>turtle2</code>, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls turtle1. The way to change this behavior is by remapping the <code>cmd_vel</code> topic.</p>
+<p>To control <code>turtle2</code>, you need a second teleop node. However, if you try to run the same command as before, you will notice that this one also controls <code>turtle1</code>. The way to change this behavior is by remapping the <code>cmd_vel</code> topic and provide a new name for the node.</p>
 <p>In a new terminal, source ROS, and run:</p>
-<pre><code>rosrun turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel
+<pre><code>rosrun turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel __name:=teleop_turtle2
 </code></pre>
 <p>Now, you can move <code>turtle2</code> when this terminal is active, and <code>turtle1</code> when the other terminal running <code>turtle_teleop_key</code> is active.</p>
 <p><img alt="Figure 1.8 TurtleSim Turtles Moving" src="../lab1-turtlesim-3.png" /></p>
 <p><em><strong>Figure 1.8</strong> TurtleSim Turtles</em></p>
 </li>
 </ol>
-<h2 id="lab-question">Lab Question</h2>
+<h2 id="lab-exercise">Lab Exercise</h2>
 <ol>
 <li>Create a third turtle that you can control in turtlesim with green (g = 255) as the pen line colour.</li>
 </ol>
-<p>Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.</p>
 <h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://wiki.ros.org/ROS/Tutorials">ROS Tutorials</a></li>
