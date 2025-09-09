@@ -299,7 +299,7 @@ rqt is a graphical user interface (GUI) tool for ROS. Everything done in rqt can
 
 ## Lab Exercise
 
-1. Create a third turtle that you can control in turtlesim with green (g = 255) as the pen line colour.
+1. Create a third turtle that you can control in turtlesim with green (g = 255) as the pen line colour. Move the third robot around to draw a green line.
 
 ## Reference
 
