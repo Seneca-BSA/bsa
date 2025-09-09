@@ -20,3 +20,9 @@ Then call campus security: 416-764-0911 for assistance
 ## Laboratory First Aid and Safety Procedures
 
 - [Lab Safety Presentation Slides](BSA-Electronics-Lab-Safety-RevC.pdf)
+
+## Lab Agreement
+
+The following Lab agreement are to be signed by each student and submitted on blackboard by the due date.
+
+- [Lab Agreement](SDDS-Lab-Agreement.pdf)
