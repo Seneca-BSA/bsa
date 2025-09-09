@@ -14,7 +14,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "Lab 3 : ROS Workspace, Package, Publisher and Subscriber";
-        var mkdocs_page_input_path = "sea700/lab3.md";
+        var mkdocs_page_input_path = "sea700\\lab3.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -136,12 +136,8 @@ SEA700 Robotics for Software Engineers
 cd ~/ros_ws/
 catkin_make
 </code></pre>
-<p>The <code>catkin_make</code> command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a <code>CMakeLists.txt</code> link in your <code>src</code> directory.</p>
+<p>The <code>catkin_make</code> command is a convenience tool for working with catkin workspaces. When running it for the first time in your workspace, it will create a <code>CMakeLists.txt</code> link in your <code>src</code> directory.</p>
 <p>Another best practice is to put any packages in your workspace into the <code>src</code> directory. The above code creates a <code>src</code> directory inside <code>ros_ws</code>.</p>
-<p>If you are building ROS from source to achieve Python 3 compatibility, and have setup your system appropriately (ie: have the Python 3 versions of all the required ROS Python packages installed, such as catkin) the first catkin_make command in a clean catkin workspace must be:</p>
-<pre><code>catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
-</code></pre>
-<p>This will configure catkin_make with Python 3. You may then proceed to use just <code>catkin_make</code> for subsequent builds.</p>
 </li>
 <li>
 <p>Additionally, if you look in your current directory you should now have a 'build' and 'devel' directory. Inside the 'devel' directory you can see that there are now several setup files. Sourcing any of these files will overlay this workspace on top of your environment. Before continuing source your new setup.sh file:</p>
@@ -153,7 +149,7 @@ catkin_make
 <pre><code>echo $ROS_PACKAGE_PATH
 </code></pre>
 <p>You should see:</p>
-<pre><code>/home/&lt;youruser&gt;/ros_ws/src:/opt/ros/melodic/share
+<pre><code>/home/jetauto/ros_ws/src:/opt/ros/melodic/share
 </code></pre>
 <p>And other path(s) if you have them added to your source.</p>
 </li>
@@ -172,6 +168,8 @@ catkin_create_pkg cpp_pubsub std_msgs roscpp
 </li>
 <li>
 <p>Navigate into <code>ros_ws/src/cpp_pubsub/src</code>. This is the directory in any CMake package where the source files containing executables belong.</p>
+<pre><code>cd ~/ros_ws/src/cpp_pubsub/src
+</code></pre>
 </li>
 <li>
 <p>Download the example talker code by entering the following command:</p>
@@ -276,7 +274,7 @@ int main(int argc, char **argv)
 <pre><code>ros::init(argc, argv, "talker");
 </code></pre>
 <p>Initialize ROS. This allows ROS to do name remapping through the command line -- not important for now. This is also where we specify the name of our node. Node names must be unique in a running system.</p>
-<p>The name used here must be a base name, ie. it cannot have a / in it.</p>
+<p>The name used here must be a base name, i.e., it cannot have a / in it.</p>
 <pre><code>ros::NodeHandle n;
 </code></pre>
 <p>Create a handle to this process' node. The first <code>NodeHandle</code> created will actually do the initialization of the node, and the last one destructed will cleanup any resources the node was using.</p>
@@ -333,7 +331,7 @@ msg.data = ss.str();
 <p>Return to <code>ros_ws/src/cpp_pubsub/src</code> to create the next node. Enter the following code in your terminal to download the subscriber:</p>
 <pre><code>wget -O listener.cpp https://raw.github.com/ros/ros_tutorials/kinetic-devel/roscpp_tutorials/listener/listener.cpp
 </code></pre>
-<p>Check to ensure that these files exist:</p>
+<p>Check to ensure that these files exist inside the <code>ros_ws/src/cpp_pubsub/src</code> folder:</p>
 <pre><code>talker.cpp  listener.cpp
 </code></pre>
 </li>
@@ -426,23 +424,32 @@ int main(int argc, char **argv)
 <h3 id="build-and-run-c-package">Build and Run C++ Package</h3>
 <ol>
 <li>
-<p>Now, go back to the package and open up <code>CMakeLists.txt</code> and ensure the following are in there. <strong>Note:</strong> Some of the functions are currently commented out and some are missing.</p>
-<pre><code>## Generate added messages and services
+<p>Now, go back to the <code>cpp_pubsub</code> package and open up <code>ros_ws/src/cpp_pubsub/CMakeLists.txt</code> and ensure the following lines are in there and not commented out. <strong>Note:</strong> Some of the functions are currently commented out and some are missing.</p>
+<p>If the folder <code>cpp_pubsub</code> does not exist, that means you have not created the C++ package. Go back to the previous section to create the package.</p>
+<pre><code>cmake_minimum_required(VERSION 3.0.2)
+project(cpp_pubsub)
+
+## Find catkin and any catkin packages
+find_package(catkin REQUIRED COMPONENTS roscpp std_msgs genmsg)
+
+## Generate added messages and services
 generate_messages(DEPENDENCIES std_msgs)
 
 ## Declare a catkin package
 catkin_package()
 
 ## Build talker and listener
-include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(
+    include ${catkin_INCLUDE_DIRS}
+)
 
-add_dependencies(talker cpp_pubsub_generate_messages_cpp)
 add_executable(talker src/talker.cpp)
 target_link_libraries(talker ${catkin_LIBRARIES})
+add_dependencies(talker cpp_pubsub_generate_messages_cpp)
 
-add_dependencies(listener cpp_pubsub_generate_messages_cpp)
 add_executable(listener src/listener.cpp)
 target_link_libraries(listener ${catkin_LIBRARIES})
+add_dependencies(listener cpp_pubsub_generate_messages_cpp)
 </code></pre>
 <p>This will create two executables, <code>talker</code> and <code>listener</code>, which by default will go into the package directory of your <code>devel</code> space, located by default at <code>~/ros_ws/devel/lib/&lt;package name&gt;</code>.</p>
 <p>Note that you have to add dependencies for the executable targets to message the generation targets:</p>
@@ -477,7 +484,8 @@ catkin_make
 </li>
 <li>
 <p>In a new terminal, source the setup files:</p>
-<pre><code>source ./devel/setup.bash
+<pre><code>cd ~/ros_ws
+source ./devel/setup.bash
 </code></pre>
 </li>
 <li>
@@ -494,7 +502,8 @@ catkin_make
 </li>
 <li>
 <p>Open another terminal, source the setup files from inside <code>ros_ws</code> again, and then start the listener node:</p>
-<pre><code>. devel/setup.bash
+<pre><code>cd ~/ros_ws
+. devel/setup.bash
 rosrun cpp_pubsub listener
 </code></pre>
 <p>The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:</p>
@@ -521,7 +530,7 @@ catkin_create_pkg py_pubsub std_msgs rospy
 </li>
 <li>
 <p>Navigate to your package <code>ros_ws/src/py_pubsub</code> and let's first create a <code>scripts</code> directories to store our Python scripts in and navigate into it:</p>
-<pre><code>cd py_pubsub
+<pre><code>cd ~/ros_ws/src/py_pubsub
 </code></pre>
 <p>Create a directory.</p>
 <pre><code>mkdir scripts
@@ -556,13 +565,6 @@ if __name__ == '__main__':
         talker()
     except rospy.ROSInterruptException:
         pass
-</code></pre>
-</li>
-<li>
-<p>Add the following to your <code>CMakeLists.txt</code>. This makes sure the python script gets installed properly, and uses the right python interpreter.</p>
-<pre><code>catkin_install_python(PROGRAMS scripts/talker.py
-    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
 </code></pre>
 <h4 id="the-code-explained_2">The Code Explained</h4>
 <p>Now, let's break the code down.</p>
@@ -646,7 +648,7 @@ if __name__ == '__main__':
 </code></pre>
 </li>
 <li>
-<p>Then, edit the <code>catkin_install_python()</code> call in your <code>CMakeLists.txt</code> so it looks like the following:</p>
+<p>Add the following to your <code>ros_ws/src/py_pubsub/CMakeLists.txt</code> in the <code>py_pubsub</code> package. This makes sure the python scripts get installed properly, and uses the right python interpreter. You may just add this to the end of the <code>CMakeLists.txt</code>.</p>
 <pre><code>catkin_install_python(PROGRAMS scripts/talker.py scripts/listener.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
@@ -690,7 +692,8 @@ catkin_make
 </li>
 <li>
 <p>Open a new terminal, navigate to <code>ros_ws</code>, and source the setup files:</p>
-<pre><code>source ./devel/setup.bash
+<pre><code>cd ~/ros_ws
+source ./devel/setup.bash
 </code></pre>
 </li>
 <li>
@@ -707,7 +710,9 @@ catkin_make
 </li>
 <li>
 <p>Open another terminal, source the setup files from inside <code>ros_ws</code> again, and then start the listener node:</p>
-<pre><code>rosrun py_pubsub listener.py
+<pre><code>cd ~/ros_ws
+. devel/setup.bash
+rosrun py_pubsub listener.py
 </code></pre>
 <p>The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:</p>
 <pre><code>[INFO] [1727910166.665430]: /listener_5173_1727910161732I heard hello world 1727910166.66
@@ -721,32 +726,39 @@ catkin_make
 <p>Stop the listener and try to run the C++ listener from earlier:</p>
 <pre><code>rosrun cpp_pubsub listener
 </code></pre>
-<p>You should see a similar same output.</p>
+<p>You should see a similar output.</p>
 </li>
 <li>
-<p>Enter <code>Ctrl+C</code> in each terminal to stop the nodes from spinning.</p>
+<p>Press <code>Ctrl+C</code> in each terminal to stop the nodes from spinning.</p>
 </li>
 </ol>
-<h2 id="lab-question">Lab Question</h2>
+<h2 id="lab-exercise">Lab Exercise</h2>
 <ol>
 <li>
-<p>Write a new controller (C++ or Python) for turtlesim that replace <code>turtle_teleop_key</code>. Since the turtlesim node is the subscriber in this example, you’ll only need
+<p>Write a new controller (C++ or Python) for turtlesim that replaces <code>turtle_teleop_key</code>. Since the turtlesim node is the subscriber in this example, you’ll only need
 to write a single publisher node.</p>
 <p>Create a new package called <code>lab3_turtlesim</code>. You can create a new workspace called <code>lab3_ws</code> or use your existing workspace.</p>
+<p>The command to create the packages are given below depending on your preferred programming language. You'll need the <code>geometry_msgs</code> dependency to use the <code>twist</code> object.</p>
+<p>For CPP project:</p>
 <pre><code>catkin_create_pkg lab3_turtlesim roscpp geometry_msgs
 </code></pre>
-<p>or</p>
+<p>or for Python project:</p>
 <pre><code>catkin_create_pkg lab3_turtlesim rospy geometry_msgs
 </code></pre>
 <p>Your node should do the following:</p>
 <ul>
 <li>Accept a command line argument specifying the name of the turtle it should control.<ul>
-<li>Running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls turtle1.</li>
+<li>i.e., running <code>rosrun lab3_turtlesim turtle_controller turtle1</code> will start a controller node that controls <code>turtle1</code>.</li>
 </ul>
 </li>
-<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. Capturing individual keystrokes from the terminal is slightly complicated, so feel free to use keyboard input such as <code>scanf()</code> or <code>input()</code> instead.</li>
+<li>Use <code>w</code>, <code>a</code>, <code>s</code>, <code>d</code> and <code>q</code>, <code>e</code>, <code>c</code>, and <code>z</code> to control the turtle by publish velocity control messages on the appropriate topic whenever the user presses those keys on the keyboard, as in the original <code>turtle_teleop_key</code>. <strong>The turtle should ONLY move when a key is pressed. When the key is released, the turtle should immediately STOP moving.</strong><ul>
+<li>Option 1 (Easy) Single keypress: In addition to just forward/backward and turns, the turtle should move forward and turn left in a circular path if <code>q</code> is pressed and similar for <code>e</code>, <code>c</code>, and <code>z</code> in their corresponding direction.</li>
+<li>Option 2 (Hard) Multiple keypress: If you want to challenge your programming skills, make the controller so it'll listen to multiple keys. i.e., if <code>w + a</code> are pressed, the turtle will move forward and turn left in a circular path. If the keys pressed are contracdicting, there should be no movement. You'll need to install additional package and library to achieve this.</li>
+</ul>
+</li>
 </ul>
 <p><strong>Hint:</strong> You'll need to use the <code>Twist</code> message type in the <code>geometry_msgs</code> package.</p>
+<p><strong>Hint:</strong> Find the <code>turtle_teleop_key</code> source code as a reference. <a href="https://docs.ros.org/en/kinetic/api/turtlesim/html/teleop__turtle__key_8cpp_source.html">teleop_turtle_key.cpp</a></p>
 <p>To test, spawn multiple turtles and open multiple instances of your new turtle controller node, each linked to a different turtle.</p>
 </li>
 </ol>
