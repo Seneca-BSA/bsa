@@ -7,7 +7,7 @@ SEA700 Robotics for Software Engineers
 
 ## Introduction
 
-A overview of some computation graph concepts:
+An overview of some computation graph concepts:
 
 - **Node:** an executable representing an individual ROS software process
 - **Topic:** nodes can publish messages to a topic and/or subscribe to a topic to receive messages
@@ -15,7 +15,7 @@ A overview of some computation graph concepts:
 
 ### Nodes in ROS
 
-Each node in ROS should be responsible for a single, modular purpose, ie. controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.
+Each node in ROS should be responsible for a single, modular purpose, i.e., controlling the wheel motors or publishing the sensor data from a laser range-finder. Each node can send and receive data from other nodes via topics, services, actions, or parameters. A full robotic system is comprised of many nodes working in concert.
 
 ![Figure 2.1 ROS Nodes Graph](lab2-nodes-graph.gif)
 
@@ -57,7 +57,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
 
 ### Understanding ROS Nodes
 
-1. Open a terminal to run ROS using `roscore` and another tmerinal to run turtlesim. The command `rosrun [package_name] [node_name]` launches an executable from a package. We need the package name to be `turtlesim` and the executable name to be `turtlesim_node`.
+1. Open a terminal to run ROS using `roscore` and another terminal to run turtlesim. The command `rosrun [package_name] [node_name]` launches an executable from a package. We need the package name to be `turtlesim` and the executable name to be `turtlesim_node`.
 
         roscore
 
@@ -78,7 +78,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
 
 1. Open another new terminal and start the teleop node with the command:
 
-        rosrun turtlesim turtle_teleop_keyy
+        rosrun turtlesim turtle_teleop_key
 
 1. Return to the terminal where you ran `rosnode list` and run it again. You will now see the names of three active nodes:
 
@@ -124,7 +124,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
          * /turtle1/teleport_absolute
          * /turtle1/teleport_relative
 
-1. Run the same comand on the `/teleop_turtle` node and see the difference.
+1. Run the same command on the `/teleop_turtle` node and see the difference.
 
 ### Understanding ROS Topics
 
@@ -140,7 +140,7 @@ A parameter is a configuration value of a node. You can think of parameters as n
 
     ***Figure 2.6** ROS rqt_graph*
 
-    You should see the above nodes and topics, as well as two actions around the periphery of the graph (let’s ignore those for now). If you don't see the the nodes and topics, click the refresh button. If you hover your mouse over the topic in the center, you’ll see the colour highlighting like in the image above.
+    You should see the above nodes and topics, as well as two actions around the periphery of the graph (let’s ignore those for now). If you don't see the nodes and topics, click the refresh button. If you hover your mouse over the topic in the center, you’ll see the colour highlighting like in the image above.
 
     The graph shows how the `/turtlesim` node and the `/teleop_turtle` node are communicating with each other over a topic. The `/teleop_turtle` node is publishing data (the keystrokes you enter to move the turtle around) to the `/turtle1/cmd_vel` topic, and the `/turtlesim` node is subscribed to that topic to receive the data.
 
@@ -447,104 +447,12 @@ Usage:
 
     ***Figure 2.16** Turtlesim Purple*
 
-### Understanding Recording and Playback
+## Lab Exercise
 
-`rosbag` is a command line tool for recording data published on topics in your system. It accumulates the data passed on any number of topics and saves it in a database. You can then replay the data to reproduce the results of your tests and experiments. Recording topics is also a great way to share your work and allow others to recreate it.
-
-`rosbag` can only record data from published messages in topics. Earlier in the lab, you learned that the `/turtle_teleop` node publishes commands on the `/turtle1/cmd_vel` topic to make the turtle move in `turtlesim`.
-
-1. Restart `roscore`, `rosrun turtlesim turtlesim_node` and `ro run turtlesim turtle_teleop_key` open and close all the other terminal.
-
-1. Let’s also make a new directory to store our saved recordings, just as good practice. Open a new terminal and run:
-
-        mkdir ~/bag_files
-        cd ~/bag_files
-
-1. To record the data published to a topic use the command syntax: `rosbag record [topic_name]`. Run the command:
-
-        rosbag record /turtle1/cmd_vel
-
-    You will see the following messages in the terminal (the date and time will be different):
-
-        [ INFO] [1727727815.120194012]: Subscribing to /turtle1/cmd_vel
-        [ INFO] [1727727815.122105256]: Recording to '2024-09-30-16-23-35.bag'.
-
-1. Now `rosbag` is recording the data published on the `/turtle1/cmd_vel` topic. Return to the teleop terminal and move the turtle around again. The movements don’t matter, but try to make a recognizable pattern to see when you replay the data later.
-
-    ![Figure 2.17 Turtlesim Recording](lab2-recording-path.png)
-
-    ***Figure 2.17** Turtlesim Recording*
-
-1. Press `Ctrl+C` to stop recording.
-
-    The data will be accumulated in a new bag directory with a name in the pattern of `year_month_day-hour-minute-second`.
-
-1. You can also record multiple topics, as well as change the name of the file `rosbag` saves to. Run the following command:
-
-        rosbag record -O subset /turtle1/cmd_vel /turtle1/pose
-
-    The `-O` option allows you to choose a unique name for your bag file. The following string, in this case `subset`, is the file name.
-
-    To record more than one topic at a time, simply list each topic separated by a space or you can use the `-a` to record all topics.
-
-    You will see the following message, confirming that both topics are being recorded.
-
-        [ INFO] [1727728178.421665012]: Subscribing to /turtle1/cmd_vel
-        [ INFO] [1727728178.425904027]: Subscribing to /turtle1/pose
-        [ INFO] [1727728178.430928233]: Recording to 'subset.bag'.
-
-    You can move the turtle around and press `Ctrl+C` when you’re finished.
-
-1. You can see details about your recording by running: `rosbag info <bag_file_name>`. Running this command on the subset bag file will return a list of information on the file:
-
-        rosbag info subset.bag
-
-    You should see something like:
-
-        path:        subset.bag
-        version:     2.0
-        duration:    35.5s
-        start:       Sep 30 2024 16:29:38.64 (1727728178.64)
-        end:         Sep 30 2024 16:30:14.15 (1727728214.15)
-        size:        184.7 KB
-        messages:    2307
-        compression: none [1/1 chunks]
-        types:       geometry_msgs/Twist [9f195f881246fdfa2798d1d3eebca84a]
-                     turtlesim/Pose      [863b248d5016ca62ea2e895ae5265cf9]
-        topics:      /turtle1/cmd_vel     92 msgs    : geometry_msgs/Twist
-                     /turtle1/pose      2215 msgs    : turtlesim/Pose
-
-1. Before replaying the bag file, enter `Ctrl+C` in the terminal where the `teleop` is running. Then make sure your turtlesim window is visible so you can see the bag file in action.
-
-    Enter the command:
-
-        rosbag play subset
-
-    The terminal will return the message:
-
-        [ INFO] [1727728462.171253911]: Opening subset.bag
-
-        Waiting 0.2 seconds after advertising topics... done.
-
-        Hit space to toggle paused, or 's' to step.
-         [DELAYED]  Bag Time:
-         ...
-
-    After some time, your turtle will follow the same path you entered while recording (though not 100% exactly; turtlesim is sensitive to small changes in the system’s timing).
-
-    ![Figure 2.18 Turtlesim Recording](lab2-recording-path.png)
-
-    ***Figure 2.18** Turtlesim Recording*
-
-    Because the `subset` file recorded the `/turtle1/pose topic`, the `rosbag` play command will be recording for as long as you had turtlesim running, even if you weren’t moving.
-    
-    This is because as long as the `/turtlesim` node is active, it publishes data on the `/turtle1/pose` topic at regular intervals. You may have noticed in the `rosbag info` example result above that the `/turtle1/cmd_vel` topic’s `Count` information was only 92; that’s how many times we pressed the arrow keys while recording.
-    
-    Notice that `/turtle1/pose` has a `Count` value of over 2000; while we were recording, data was published on that topic over 2000 times.
-
-## Lab Question
-
-1. Change the background of `turtlesim` to orange or cyan then create a recording of a turtle performing a "Figure 8" path (clockwise circle followed by counter-clockwise circle). Play it back.
+1. Change the background of `turtlesim` to orange or cyan.
+1. Create another turtle into `turtlesim`.
+1. Command the first turtle to move in a large circle in the clockwise direction continuously.
+1. At the same time as the first turtle is moving, command the second turtle to move in a smaller circle in the counter-clockwise direction for one full circle only.
 
 Once you've completed all the above steps, ask the lab professor or instructor over and demostrate that you've completed the lab and written down all your observations. You might be asked to explain some of the concepts you've learned in this lab.
 
