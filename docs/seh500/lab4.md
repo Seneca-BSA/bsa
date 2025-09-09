@@ -145,7 +145,7 @@ Example:
 
 1. In the previous lab, we also explored the idea of using a label to reference address in memory used in the same manner as variables in high-level programming language, this time, we'll explore the use of string. Replace the code within the file with the following:
 
-        @ Example Code #1
+        @ Example Code 4.1
 
         .syntax unified             @ unified syntax used
         .cpu cortex-m4              @ cpu is cortex-m4
@@ -193,7 +193,7 @@ Example:
 
 1. In the previous code, we explored the idea of using string. In this code, we'll take a look at the use of an array. Replace the code within the file with the following:
 
-        @ Example Code #2
+        @ Example Code 4.2
 
         .syntax unified             @ unified syntax used
         .cpu cortex-m4              @ cpu is cortex-m4
@@ -245,7 +245,7 @@ Example:
 
 1. Lastly, the code from the first example can also be written as follows using an array instead of a string. Also, a different comparison statement is used.
 
-        @ Example Code #3
+        @ Example Code 4.3
         
         .syntax unified             @ unified syntax used
         .cpu cortex-m4              @ cpu is cortex-m4

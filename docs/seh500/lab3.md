@@ -143,6 +143,8 @@ Some possible data types are:
 
 1. Replace the code within the file with the following:
 
+        @ Example Code 3.1
+        
         .syntax unified             @ unified syntax used
         .cpu cortex-m4              @ cpu is cortex-m4
         .thumb                      @ use thumb encoding
@@ -151,14 +153,15 @@ Some possible data types are:
         .type main, %function       @ set main to function type
 
         main:                           @ start of main code with a label
-            mov r0, #                   @ x = <use the last digit of your student ID + 1>
-            mul r1, r0, r0              @ r1 = x^2, @ record r1 and psr value
+            mov r0, #                   @ x = <use the last digit of your student ID. use 1 if 0.>
+            mul r1, r0, r0              @ r1 = x^2, @ r1 = ? and psr value N, Z, C, V = ?
+                                        @ record all value after instruction execution
             mov r4, #5
-            muls r1, r1, r4              @ r1 = 5x^2, @ record r1 and psr value
+            muls r1, r1, r4             @ r1 = 5x^2, @ r1 = ? and psr value N, Z, C, V = ?
             mov r5, #6
-            mul r2, r0, r5              @ r2 = 6x, @ record r2 and psr value
-            subs r3, r1, r2              @ r3 = 5x^2 - 6x, @ record r3 and psr value
-            add r3, r3, #8              @ r3 = 5x^2 - 6x + 8, @ record r3 and psr value
+            mul r2, r0, r5              @ r2 = 6x, @ r2 = ? and psr value N, Z, C, V = ?
+            subs r3, r1, r2             @ r3 = 5x^2 - 6x, @ r3 = ? and psr value N, Z, C, V = ?
+            add r3, r3, #8              @ r3 = 5x^2 - 6x + 8, @ r3 = ? and psr value N, Z, C, V = ?
 
         stop:                           @ define a new label called stop
             nop                         @ do nothing
@@ -168,6 +171,8 @@ Some possible data types are:
 
 1. Below is another example with variables and shifting. Although variables cannot be declared in the same way as a high-level programming language, it is possible to tell the assembler to automatically assign an address with a label and always reference it using the same label. Replace the code within the file with the following:
 
+        @ Example Code 3.2
+        
         .syntax unified             @ unified syntax used
         .cpu cortex-m4              @ cpu is cortex-m4
         .thumb                      @ use thumb encoding
@@ -187,7 +192,9 @@ Some possible data types are:
 
         loop:
             add r0, r0, r1          @ Add number into R0, @ record psr value for each loop
+                                    @ after itr 1, N, Z, C, V = ?
             subs r1, r1, #1         @ Decrement loop counter R1, @ record psr value for each loop
+                                    @ after itr 1, N, Z, C, V = ?
             bgt loop                @ Branch back if not done
             ldr r3, =sum            @ Load address of SUM to R3
             str r0, [r3]            @ Store SUM
@@ -214,7 +221,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
     - C = 5 * (F - 32) / 9    
     - F = (9 * C / 5) + 32
 
-    Put your name and student number as comments in the code then copy and paste your code into Blackboard. Also, take a screenshot of your register bank as well as your memory space highlighting the final variable value and paste them into Blackboard as well.
+    Put your name and student number as comments in the code then copy and paste your code into Blackboard. Also, take a screenshot of your register bank as well as your memory space highlighting the final variable value after code execution and paste them into Blackboard as well.
 
 ## Reference
 

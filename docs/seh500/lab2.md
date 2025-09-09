@@ -158,16 +158,16 @@ Using the skills and knowledge acquired from this lab, answer the following post
     - Use 0x2000001C for variable D = 0
 
     We will not be using variables at this point. Run the code and verify that your answer is correct.
-        
-    Paste your assembly code into Blackboard along with a screenshot of the memory view showing the content of the four memory addresses. 
+    
+    Paste your assembly code into Blackboard along with a screenshot of the "memory view" showing the content of the four memory addresses after code execution. 
 
 1. Complete the code as necessary (ie. add all the necessary directives) and run it on your processor board. Comment out any line(s) that are invalid with "@" and explain why in the comment. Answer each question (indicated with ?) directly in the comment of your code and paste your code into Blackboard for submission.
 
         mov R2, #          @ use the first 2 digits of your student ID
-        mov R3, #          @ use the last 2 digits of your student ID
+        mov R3, #          @ use the last 2 digits of your student ID. Use 01 if it's 00.
 
         @Other examples to move immediate values
-        mov     R5, #0x1234         @ R5 = ?
+        mov     R5, #0x1234         @ R5 = ? After the execution of the instruction.
         movt    R5, #0x8765         @ R5 = ?
         movt    R5, #0x5678         @ R5 = ?
         movw    R6, #0x12345678     @ R6 = ?
@@ -178,25 +178,30 @@ Using the skills and knowledge acquired from this lab, answer the following post
         add     R1, R2, R3          @ R1 = ?
         movt    R3, #0xFFFF         @ R3 = ?
         adds    R1, R2, R3          @ R1 = ?
-                    @ What are the PSR (N, Z, C, V) flags now?
+                    @ What are the PSR (N, Z, C, V) flags now? N, Z, C, V = ?
 
         subs    R1, R2, R3          @ R1 = ?
+                    @ N, Z, C, V = ?
                     @ How are the PSR flags affected?
 
         mov     R4, #0xFFFFFFFF     @ R4 = ?
         add     R1, R2, R4          @ R1 = ?
+                    @ N, Z, C, V = ?
                     @ How are the PSR flags affected?
 
         adds    R1, R2, R4          @ R1 = ?
+                    @ N, Z, C, V = ?
                     @ What happened to the PSR flags now?
 
         mov     R2, #0x00000002     @ R2 = ?
         adds    R1, R2, R4          @ R1 = ?
+                    @ N, Z, C, V = ?
                     @ again, what happened to the PSR flags?
 
         mov     R2, #0x00000001     @ R2 = ?
         mov     R3, #0x00000002     @ R3 = ?
         adds    R1, R2, R3          @ R1 = ?
+                    @ N, Z, C, V = ?
                     @ After adding some small numbers and checking the PSR flags again, what happened?
 
         @ Add numbers that will create an overflow
@@ -204,6 +209,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
         mov     R3, #0x7FFFFFFF     @ R3 = ?
 
         adds    R1, R2, R3          @ R1 = ?
+                    @ N, Z, C, V = ?
                     @ Check and see what happened to the PSR flags.
 
 ## Reference
