@@ -80,13 +80,13 @@ You can also refer to this [Installation Video](https://youtu.be/kZuOnZjDDss).
 
 1. Install Ubuntu 18.04 on your computer or virtual machine (VirtualBox recommended).
 
-    - OS Image: [ubuntu-18.04.6-desktop-amd64.iso](https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso)  
+    - OS Image: [ubuntu-18.04.6-desktop-amd64.iso](https://www.releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso) from [Ubuntu 18 Image](https://releases.ubuntu.com/18.04/)
     - Allocate at least 4 CPU cores, 4 GB RAM, and 20 GB of storage to emulate a [Jetson Nano](https://developer.nvidia.com/embedded/jetson-nano)  
     - Use the username: **jetauto** to maintain code compatibility  
 
-2. If using an ARM-based laptop, install the [ARM64 server image](https://cdimage.ubuntu.com/releases/18.04.6/release/) and then manually add a desktop interface
+2. If you are using an ARM-based laptop (ie. with an Apple M1/2/3/4 chips), install the [ubuntu-18.04.6-server-arm64.iso](https://cdimage.ubuntu.com/releases/18.04.6/release/ubuntu-18.04.6-server-arm64.iso) from [Ubuntu 18 CD Image](https://cdimage.ubuntu.com/releases/18.04.6/release/) and then manually add a desktop interface (Step 4 in the next session below).
 
-3. On Windows, some students have used `wsl` to run Ubuntu and ROS
+3. On Windows, some students reported some success using `wsl` to run Ubuntu and ROS but I've not tested it completely.
 
 ### Add `jetauto` User as Sudoer and Install Desktop GUI
 
