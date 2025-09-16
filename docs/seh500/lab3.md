@@ -141,7 +141,7 @@ Some possible data types are:
 
 1. Once the project is created, rename the C-code file from ".c" to ".s". If the IDE is not allowing you to rename, delete the C-code file and create a new file of the same name but with the extension ".s".
 
-1. Replace the code within the file with the following:
+1. Replace the code within the file with the following and fill in any missing information as required:
 
         @ Example Code 3.1
         
@@ -153,15 +153,20 @@ Some possible data types are:
         .type main, %function       @ set main to function type
 
         main:                           @ start of main code with a label
-            mov r0, #                   @ x = <use the last digit of your student ID. use 1 if 0.>
-            mul r1, r0, r0              @ r1 = x^2, @ r1 = ? and psr value N, Z, C, V = ?
+            mov r0, #                   @ r0 = <last digit of your student ID. use 1 if 0.>
+            mul r1, r0, r0              @ r1 = ? and psr value N, Z, C, V = ?
+                                        @ what's math formula to get the value of r1?
                                         @ record all value after instruction execution
             mov r4, #5
-            muls r1, r1, r4             @ r1 = 5x^2, @ r1 = ? and psr value N, Z, C, V = ?
+            muls r1, r1, r4             @ r1 = ? and psr value N, Z, C, V = ?
+                                        @ what's math formula to get the value of r1?
             mov r5, #6
-            mul r2, r0, r5              @ r2 = 6x, @ r2 = ? and psr value N, Z, C, V = ?
-            subs r3, r1, r2             @ r3 = 5x^2 - 6x, @ r3 = ? and psr value N, Z, C, V = ?
-            add r3, r3, #8              @ r3 = 5x^2 - 6x + 8, @ r3 = ? and psr value N, Z, C, V = ?
+            mul r2, r0, r5              @ r2 = ? and psr value N, Z, C, V = ?
+                                        @ what's math formula to get the value of r2?
+            subs r3, r1, r2             @ r3 = ? and psr value N, Z, C, V = ?
+                                        @ what's math formula to get the value of r3?
+            add r3, r3, #8              @ r3 = ? and psr value N, Z, C, V = ?
+                                        @ what's math formula to get the value of r1?
 
         stop:                           @ define a new label called stop
             nop                         @ do nothing
@@ -169,7 +174,7 @@ Some possible data types are:
 
 1. Execute the code above and pay attention to what is happening in each register then record the PSR flags after each arithmetic instruction. Submit it as part of the lab question.
 
-1. Below is another example with variables and shifting. Although variables cannot be declared in the same way as a high-level programming language, it is possible to tell the assembler to automatically assign an address with a label and always reference it using the same label. Replace the code within the file with the following:
+1. Below is another example but this time with variables and shifting. Although variables cannot be declared in the same way as a high-level programming language, it is possible to tell the assembler to automatically assign an address with a label and always reference it using the same label. Replace the code within the file with the following and fill in any missing information as required:
 
         @ Example Code 3.2
         
@@ -177,11 +182,11 @@ Some possible data types are:
         .cpu cortex-m4              @ cpu is cortex-m4
         .thumb                      @ use thumb encoding
 
-        .data                       @ put variables in the data section
-        sum:    .word #             @ declare a label for data of word size
-        num:    .word #             @ sum and num with values of 0 and 5
+        .data                       @ define the data section, used for variables
+        sum:    .word #             @ declare two word size labels
+        num:    .word #             @ assign sum and num with values of 0 and 5
 
-        .text                       @ put code in the text section
+        .text                       @ define the text section, used for code
         .global main                @ declare main as a global variable
         .type main, %function       @ set main to function type
 
@@ -190,7 +195,7 @@ Some possible data types are:
             ldr r1, [r1]            @ Load count into R1
             mov r0, #0              @ Clear accumulator R0
 
-        loop:
+        loop:                       @ loop label for branching
             add r0, r0, r1          @ Add number into R0, @ record psr value for each loop
                                     @ after itr 1, N, Z, C, V = ?
             subs r1, r1, #1         @ Decrement loop counter R1, @ record psr value for each loop
@@ -208,20 +213,27 @@ Some possible data types are:
 
 ## Lab Questions
 
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<b>GenAI Usage Policy:</b>
+<p>Submission of answers or code generated by AI, or from external help, containing concepts or instructions not shown/taught/discussed in this course will immediately result in a report of Academic Integrity violation.</p>
+<p>If GenAI was used as a learning aid, you must cite it for every answer that used GenAI as a tool, as follows:<p>
+<ul><li>GenAI used: Copilot for concept research; ChatGPT for editing and grammar enhancement; Gemini for code generation in section 1, as identified.</li></ul>
+</div>
+
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
-1. Execute the code from step 4 then record the PSR flags. Copy and paste your code with PSR flags into Blackboard.
+1. Execute the code from Example Code 3.1, then record the PSR flags. Copy and paste your code with PSR flags and a screenshot of the register bank (showing all the registers used) at the end of code execution into Blackboard for submission. **No mark will be awarded if no screenshot with the expected result is provided.**
 
-1. Execute the code from step 6 then record the PSR flags. Copy and paste your code with PSR flags into Blackboard.
+1. Execute the code from Example Code 3.2, then record the PSR flags. Copy and paste your code with PSR flags and a screenshot of the register bank (showing all the registers used) at the end of code execution into Blackboard for submission. **No mark will be awarded if no screenshot with the expected result is provided.**
 
 1. Write a program that converts Celsius to Fahrenheit or from Fahrenheit to Celsius depending on the input. If the input is above 32, it will assume the value is Fahrenheit and convert it to Celsius. If not, it will assume the value is Celsius and convert it to Fahrenheit.
 
-    You will provide the input as data is saved into R0. No user input (ie. scanf) is required. The input data will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labelled space in memory). Your code must consider both cases and determine which formula to use depending on the input (ie. the code should function with input above or below 32). You can use the following as your conversion equation. You can assume the input data will always be a positive integer.
+    You will provide the input as data saved in R0. No user input (ie. scanf) is required. The input data will be the last two digits of your student number. Do NOT modify R0 afterward. Your code must be written in assembly with the output saved in a variable (labelled space in memory). Your code must consider both cases and determine which formula to use depending on the input (ie. the code should function with input above or below 32). You can use the following as your conversion equation. You can assume the input data will always be a positive integer.
 
     - C = 5 * (F - 32) / 9    
     - F = (9 * C / 5) + 32
 
-    Put your name and student number as comments in the code then copy and paste your code into Blackboard. Also, take a screenshot of your register bank as well as your memory space highlighting the final variable value after code execution and paste them into Blackboard as well.
+    Put your name and student number as comments in the code, then copy and paste your code into Blackboard. Also, take a screenshot of your register bank as well as your memory space, highlighting the final variable value after code execution and paste them into Blackboard as well. **No mark will be awarded if no screenshot with the expected result is provided.**
 
 ## Reference
 
