@@ -736,7 +736,7 @@ rosrun py_pubsub listener.py
 <ol>
 <li>
 <p>Write a new controller (C++ or Python) for turtlesim that replaces <code>turtle_teleop_key</code>. Since the turtlesim node is the subscriber in this example, you’ll only need
-to write a single publisher node.</p>
+to write a single publisher node. Remember, you'll still need to maintain the ability to accept which turtle to control as an argument. ie. <code>rosrun lab3_turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel __name:=teleop_turtle2</code> will control <code>turtle2</code>.</p>
 <p>Create a new package called <code>lab3_turtlesim</code>. You can create a new workspace called <code>lab3_ws</code> or use your existing workspace.</p>
 <p>The command to create the packages are given below depending on your preferred programming language. You'll need the <code>geometry_msgs</code> dependency to use the <code>twist</code> object.</p>
 <p>For CPP project:</p>
