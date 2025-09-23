@@ -697,7 +697,7 @@ We use CMake as our build system and, yes, you have to use it even for Python no
 ## Lab Exercise
 
 1. Write a new controller (C++ or Python) for turtlesim that replaces `turtle_teleop_key`. Since the turtlesim node is the subscriber in this example, you’ll only need
-to write a single publisher node.
+to write a single publisher node. Remember, you'll still need to maintain the ability to accept which turtle to control as an argument. ie. `rosrun lab3_turtlesim turtle_teleop_key turtle1/cmd_vel:=turtle2/cmd_vel __name:=teleop_turtle2` will control `turtle2`.
 
     Create a new package called `lab3_turtlesim`. You can create a new workspace called `lab3_ws` or use your existing workspace.
 
