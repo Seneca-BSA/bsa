@@ -133,6 +133,20 @@ Some possible data types are:
 - `.quad`: 8 bytes
 - `.octa`: 16 bytes
 
+### Endianness (Data Arrangment)
+
+Endianness describes the order in which bytes of multi-byte data (like integers) are stored in computer memory or transmitted over a network. The two main types are little-endian, which stores the least-significant byte first (at the lowest address), and big-endian, which stores the most-significant byte first. This order matters because if two systems with different endianness exchange data, the data can be misinterpreted.
+
+Types of Endianness:
+
+- **Little-Endian:** The least-significant byte (the "little end") is stored first, at the lowest memory address.
+- **Big-Endian:** The most-significant byte (the "big end") is stored first, at the lowest memory address. This is also known as "network byte order" and is used in network protocols.
+
+For example, consider the 32-bit hexadecimal number 0x12345678:
+
+- **Little-Endian:** Stored in memory as 0x78 0x56 0x34 0x12
+- **Big-Endian:** Stored in memory as 0x12 0x34 0x56 0x78
+
 ## Procedures
 
 1. Open MCUXpresso then start a new C/C++ project based on the Freedom board model that you have.
@@ -183,8 +197,8 @@ Some possible data types are:
         .thumb                      @ use thumb encoding
 
         .data                       @ define the data section, used for variables
-        sum:    .word #             @ declare two word size labels
-        num:    .word #             @ assign sum and num with values of 0 and 5
+        num:    .word #             @ declare two word size labels (fill in the values)
+        sum:    .word #             @ assign num and sum with values of 5 and 0
 
         .text                       @ define the text section, used for code
         .global main                @ declare main as a global variable
@@ -208,6 +222,8 @@ Some possible data types are:
         stop:                           @ define a new label called stop
             nop                         @ do nothing
             b       stop                @ jump back label stop to form a loop
+
+1. Start the code in debug mode but don't run the code yet. Open up the memory view and start monitoring memory address `0x20000000`. You should see `00000005` at address `0x20000000`, which is the variable `num`. Right click in memory view and change the cell size to 1 byte. Refer to the Endianness discussion in the lab intro to determine if the data is stored as Little-endian or Big-endian in memory. Afteward, change the view back to 4 bytes for easier reading.
 
 1. Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arithmetic instruction and submit it as part of the lab question.
 
