@@ -437,6 +437,18 @@ SEH500 Microprocessors and Computer Architecture
 <li><code>.quad</code>: 8 bytes</li>
 <li><code>.octa</code>: 16 bytes</li>
 </ul>
+<h3 id="endianness-data-arrangment">Endianness (Data Arrangment)</h3>
+<p>Endianness describes the order in which bytes of multi-byte data (like integers) are stored in computer memory or transmitted over a network. The two main types are little-endian, which stores the least-significant byte first (at the lowest address), and big-endian, which stores the most-significant byte first. This order matters because if two systems with different endianness exchange data, the data can be misinterpreted.</p>
+<p>Types of Endianness:</p>
+<ul>
+<li><strong>Little-Endian:</strong> The least-significant byte (the "little end") is stored first, at the lowest memory address.</li>
+<li><strong>Big-Endian:</strong> The most-significant byte (the "big end") is stored first, at the lowest memory address. This is also known as "network byte order" and is used in network protocols.</li>
+</ul>
+<p>For example, consider the 32-bit hexadecimal number 0x12345678:</p>
+<ul>
+<li><strong>Little-Endian:</strong> Stored in memory as 0x78 0x56 0x34 0x12</li>
+<li><strong>Big-Endian:</strong> Stored in memory as 0x12 0x34 0x56 0x78</li>
+</ul>
 <h2 id="procedures">Procedures</h2>
 <ol>
 <li>
@@ -492,8 +504,8 @@ stop:                           @ define a new label called stop
 .thumb                      @ use thumb encoding
 
 .data                       @ define the data section, used for variables
-sum:    .word #             @ declare two word size labels
-num:    .word #             @ assign sum and num with values of 0 and 5
+num:    .word #             @ declare two word size labels (fill in the values)
+sum:    .word #             @ assign num and sum with values of 5 and 0
 
 .text                       @ define the text section, used for code
 .global main                @ declare main as a global variable
@@ -518,6 +530,9 @@ stop:                           @ define a new label called stop
     nop                         @ do nothing
     b       stop                @ jump back label stop to form a loop
 </code></pre>
+</li>
+<li>
+<p>Start the code in debug mode but don't run the code yet. Open up the memory view and start monitoring memory address <code>0x20000000</code>. You should see <code>00000005</code> at address <code>0x20000000</code>, which is the variable <code>num</code>. Right click in memory view and change the cell size to 1 byte. Refer to the Endianness discussion in the lab intro to determine if the data is stored as Little-endian or Big-endian in memory. Afteward, change the view back to 4 bytes for easier reading.</p>
 </li>
 <li>
 <p>Execute the code above, pay attention the what is happening in each register then record the PSR flags after each arithmetic instruction and submit it as part of the lab question.</p>
