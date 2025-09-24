@@ -57,7 +57,8 @@ If you are using the Freedom-K64F, you might need to update its firmware before 
  
     (Reference: [DAPLink bootloader update](https://os.mbed.com/blog/entry/DAPLink-bootloader-update/))
 
-    If the bootloader drive is not showing, try updating the bootloader using a non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. [Follow the instructions here](https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/).
+    **Troubleshooting**
+    - If the bootloader drive is not showing, try updating the bootloader using a non-Windows 10 computer. If it is still not showing up, the board might be in a bricked state. In this case, an external device must be used to flash a new bootloader. [Follow the instructions here](https://os.mbed.com/blog/entry/DAPLink-bootloader-updates-with-external/).
 
 1. Once you see the "MAINTENANCE" drive. Load the firmware application back onto the board using the same methods as above.
     - K64F Firmware Application: [k20dx_frdmk64f_if_crc_legacy_0x5000](k20dx_frdmk64f_if_crc_legacy_0x5000.bin) for loading the CMSIS-DAP application back onto the board

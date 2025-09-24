@@ -162,7 +162,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
     - Use address 0x20000010 to store value A = first 2 digits of your student #
     - Use address 0x20000014 to store value B = next 2 digits of your student #
     - Use address 0x20000018 to store value C = next 2 digits of your student #
-    - Use address 0x2000001C to store value D = 0
+    - Use address 0x2000001C to store value D = 0, this will be used to save your result at the end
 
     We will not be initializing and assigning the values directly into memory or using variables for this exercise. Hint: you'll need to save the value into memory using instructions.
     

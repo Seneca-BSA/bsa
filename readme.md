@@ -47,6 +47,11 @@ To update the content of this site:
     ```
 1. To deploy the latest local content to github page.
     ```
+    source ~/mkdocs/bin/activate
+    mkdocs gh-deploy
+    ```
+    Or for Windows:
+    ```
     python -m mkdocs gh-deploy
     ```
     **NOTE:** This does not push to the working branch. It only push to the gh-pages branch which serve the content.
