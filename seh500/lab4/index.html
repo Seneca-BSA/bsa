@@ -386,33 +386,24 @@ SEH500 Microprocessors and Computer Architecture
 </tbody>
 </table>
 <h3 id="it-if-then-block">IT (If-Then) Block</h3>
-<p>The IT (If-Then) block is a feature with an ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In other words, an IT black helps ensure there are no semantic errors during assembly programming.</p>
+<p>The <code>IT</code> (If-Then) instruction makes a single following instruction (the IT block) conditional. In another words, the IT black helps simplify the If-Then logics without having to explicitly use branching.</p>
 <p><strong>NOTE</strong>: An IT block is not always required as some IDE will insert it for you automatically.</p>
 <p>An IT block has the following syntax:</p>
-<pre><code>IT{x{y{z}}} {cond}
+<pre><code>IT cond
+instruction
 </code></pre>
 <p>Where:</p>
 <ul>
-<li>x - specifies the condition switch for the second instruction in the IT block.</li>
-<li>y - specifies the condition switch for the third instruction in the IT block.</li>
-<li>z - specifies the condition switch for the fourth instruction in the IT block.</li>
-<li>cond - specifies the condition for the first instruction in the IT block.</li>
+<li><code>cond</code> - specifies the condition for the first instruction in the IT block.</li>
+<li><code>instruction</code> - specifies the instruciton (only one line) to execute for the true case.</li>
 </ul>
-<p>The condition switch for the second, third and fourth instruction in the IT block can be either:</p>
-<ul>
-<li>T/t - Then. Applies the condition to the instruction.cond</li>
-<li>E/e - Else. Applies the inverse condition to the instruction.cond</li>
-</ul>
+<p><strong>IT block covering more than one instruction is deprecated</strong></p>
 <p>Example:</p>
-<pre><code>itte   ne           @ define the two condition switches in IT block
-andne  r0,r0,r1     @ first line in IT block, always an if
-addsne r2,r2,#1     @ second line in IT block, then
-moveq  r2,r3        @ third line in IT block, else
-add    r0,r0,r1     @ not in IT block
-itt    eq           @ define the one condition switches in IT block
-moveq  r0,r1        @ first line in IT block, always an if
-beq    main         @ branch at end of IT block is permitted
+<pre><code>it     ne           @ define the condition of the IT block
+andne  r0,r0,r1     @ instruction to be executed only if TRUE
+add    r0,r0,r1     @ not in IT block, always executed
 </code></pre>
+<p>The trigger(flag) of the condition come from previous instruction such as <code>cmp</code>, <code>subs</code>, etc.</p>
 <h2 id="procedures">Procedures</h2>
 <ol>
 <li>

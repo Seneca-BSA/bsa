@@ -474,6 +474,7 @@ SEH500 Microprocessors and Computer Architecture
 main:                           @ start of main code with a label
     mov r0, #                   @ r0 = &lt;last digit of your student ID. use 1 if 0.&gt;
     mul r1, r0, r0              @ r1 = ? and psr value N, Z, C, V = ?
+                                @ (ie. r1 = 5 and N, Z, C, V = 0, 0, 1, 0)
                                 @ what's math formula to get the value of r1?
                                 @ record all value after instruction execution
     mov r4, #5
@@ -485,7 +486,7 @@ main:                           @ start of main code with a label
     subs r3, r1, r2             @ r3 = ? and psr value N, Z, C, V = ?
                                 @ what's math formula to get the value of r3?
     add r3, r3, #8              @ r3 = ? and psr value N, Z, C, V = ?
-                                @ what's math formula to get the value of r1?
+                                @ what's math formula to get the value of r3?
 
 stop:                           @ define a new label called stop
     nop                         @ do nothing
@@ -512,17 +513,17 @@ sum:    .word #             @ assign num and sum with values of 5 and 0
 .type main, %function       @ set main to function type
 
 main:                       @ start of main code with a label
-    ldr r1, =num            @ Load count into R1
-    ldr r1, [r1]            @ Load count into R1
-    mov r0, #0              @ Clear accumulator R0
+    ldr r1, =num            @ Load count into r1
+    ldr r1, [r1]            @ Load count into r1
+    mov r0, #0              @ Clear accumulator r0
 
 loop:                       @ loop label for branching
-    add r0, r0, r1          @ Add number into R0, @ record psr value for each loop
-                            @ after itr 1, N, Z, C, V = ?
+    add r0, r0, r1          @ Add number into r0, @ record psr value for each loop
+                            @ after loop iteration 1, N, Z, C, V = ?
     subs r1, r1, #1         @ Decrement loop counter R1, @ record psr value for each loop
-                            @ after itr 1, N, Z, C, V = ?
+                            @ after loop iteration 1, N, Z, C, V = ?
     bgt loop                @ Branch back if not done
-    ldr r3, =sum            @ Load address of SUM to R3
+    ldr r3, =sum            @ Load address of SUM to r3
     str r0, [r3]            @ Store SUM
     ldr r4, [r3]
 
