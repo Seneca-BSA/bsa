@@ -104,36 +104,29 @@ In addition to the basic LDR and STR, there are also a few other different ways 
 
 ### IT (If-Then) Block
 
-The IT (If-Then) block is a feature with an ARM processor that validates the conditions specified in the IT instructions against the conditions specified in the following instructions. In other words, an IT black helps ensure there are no semantic errors during assembly programming.
+The `IT` (If-Then) instruction makes a single following instruction (the IT block) conditional. In another words, the IT black helps simplify the If-Then logics without having to explicitly use branching.
 
 **NOTE**: An IT block is not always required as some IDE will insert it for you automatically.
 
 An IT block has the following syntax:
 
-    IT{x{y{z}}} {cond}
+    IT cond
+    instruction
 
 Where:
 
-- x - specifies the condition switch for the second instruction in the IT block.
-- y - specifies the condition switch for the third instruction in the IT block.
-- z - specifies the condition switch for the fourth instruction in the IT block.
-- cond - specifies the condition for the first instruction in the IT block.
+- `cond` - specifies the condition for the first instruction in the IT block.
+- `instruction` - specifies the instruciton (only one line) to execute for the true case.
 
-The condition switch for the second, third and fourth instruction in the IT block can be either:
-
-- T/t - Then. Applies the condition to the instruction.cond
-- E/e - Else. Applies the inverse condition to the instruction.cond
+**IT block covering more than one instruction is deprecated**
 
 Example:
 
-    itte   ne			@ define the two condition switches in IT block
-    andne  r0,r0,r1 	@ first line in IT block, always an if
-    addsne r2,r2,#1		@ second line in IT block, then
-    moveq  r2,r3		@ third line in IT block, else
-    add    r0,r0,r1		@ not in IT block
-    itt    eq			@ define the one condition switches in IT block
-    moveq  r0,r1		@ first line in IT block, always an if
-    beq    main			@ branch at end of IT block is permitted
+    it     ne			@ define the condition of the IT block
+    andne  r0,r0,r1 	@ instruction to be executed only if TRUE
+    add    r0,r0,r1		@ not in IT block, always executed
+
+The trigger(flag) of the condition come from previous instruction such as `cmp`, `subs`, etc.
 
 ## Procedures
 
