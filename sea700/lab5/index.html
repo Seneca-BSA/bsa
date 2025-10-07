@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Lab 5 : Robotic Arm and SLAM - Lab Manuals</title>
+    <title>Lab 5: Robotic Arm and SLAM - Lab Manuals</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,7 +13,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Lab 5 : Robotic Arm and SLAM";
+        var mkdocs_page_name = "Lab 5: Robotic Arm and SLAM";
         var mkdocs_page_input_path = "sea700/lab5.md";
         var mkdocs_page_url = null;
       </script>
@@ -74,7 +74,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Lab 5 : Robotic Arm and SLAM</li>
+      <li class="breadcrumb-item active">Lab 5: Robotic Arm and SLAM</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -83,37 +83,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="lab-5-robotic-arm-and-slam">Lab 5 : Robotic Arm and SLAM</h1>
+                <h1 id="lab-5-robotic-arm-and-slam">Lab 5: Robotic Arm and SLAM</h1>
 <p><font size="5">
 Seneca Polytechnic</br>
 SEA700 Robotics for Software Engineers
 </font></p>
 <h2 id="forward-kinematics">Forward Kinematics</h2>
-<p>As discussed in lecture, the forward kinematics problem involves fnding the confguration of a specifed link in a
+<p>As discussed in lecture, the forward kinematics problem involves <strong>finding</strong> the <strong>configuration</strong> of a <strong>specified</strong> link in a
 robotic manipulator relative to some other reference frame, given the angles of each of the joints in the manipulator.</p>
 <h3 id="denavithartenberg-dh-parameters">Denavit–Hartenberg (DH) Parameters</h3>
 <p>In mechanical engineering, the Denavit–Hartenberg parameters (also called DH parameters) are the four parameters associated with a particular convention for attaching reference frames to the links of a spatial kinematic chain, or robot manipulator. In this convention, coordinate frames are attached to the joints between two links such that one transformation is associated with the joint <script type="math/tex">[Z]</script>, and the second is associated with the link <script type="math/tex">[X]</script>. The coordinate transformations along a serial robot consisting of n links form the kinematics equations of the robot:</p>
 <p>
-<script type="math/tex; mode=display">
-[T] = [Z_1][X_1][Z_2][X_2]...[Z_{n-1}][X_{n-1}][Z_n][X_n]
-</script>
+<script type="math/tex; mode=display">[T] = [Z_1][X_1][Z_2][X_2]...[Z_{n-1}][X_{n-1}][Z_n][X_n]</script>
 </p>
 <p>where <script type="math/tex">[T]</script> is the transformation that characterizes the location and orientation of the end-link.</p>
 <p><img alt="Figure 5.1 DH Kinematics Links" src="../lab5-dh-kinematics-links.png" /></p>
 <p><em><strong>Figure 5.1</strong> DH Kinematics Links</em></p>
-<p>As shown in the figure above, each joints (i-1, i, and i+1) has a unique line <script type="math/tex">S</script> (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines <script type="math/tex">S_i</script> and <script type="math/tex">S_{i+1}</script>, there is a common normal line <script type="math/tex">A_{i, i+1}</script>.</p>
-<p>By convention:</p>
+<p>As shown in the figure above, each <strong>joint</strong> (i-1, i, and i+1) has a unique line <script type="math/tex">S</script> (shown as a dotted line in the figure above) in space that forms the joint axis and <strong>defines</strong> the relative movement of its two links. For each sequence of lines <script type="math/tex">S_i</script> and <script type="math/tex">S_{i+1}</script>, there is a common normal line <script type="math/tex">A_{i, i+1}</script>.</p>
+<p><strong>By convention:</strong></p>
 <ul>
 <li>
-<script type="math/tex">z</script>-direction is the joint axes <script type="math/tex">S</script>. <script type="math/tex">z_i</script> describe the joint attached to the end of <script type="math/tex">\textrm{Link}_i</script>.</li>
+<script type="math/tex">z</script>-direction - is in the joint <strong>axis</strong> <script type="math/tex">S</script> direction. <script type="math/tex">z_i</script>
+<strong>describes</strong> the joint attached to the end of <script type="math/tex">\textrm{Link}_i</script> (i.e., the next joint).</li>
 <li>
-<script type="math/tex">x</script>-direction is the common normal <script type="math/tex">A</script>. <script type="math/tex">x_i = z_{i} \times z_{i-1}</script> is the common normal <script type="math/tex">A_{i, i+1}</script>. If there are no unqiue common normal, <script type="math/tex">d_i</script> below become a free parameter and can be defined by joint configuration.</li>
+<script type="math/tex">x</script>-direction - is the common normal <script type="math/tex">A</script>. <script type="math/tex">x_i = z_{i} \times z_{i-1}</script> is the common normal <script type="math/tex">A_{i, i+1}</script>. If there is no <strong>unique</strong> common normal, <script type="math/tex">d_i</script> below <strong>becomes</strong> a free parameter and can be defined by joint configuration. Also, the <script type="math/tex">x_i</script> axis must <strong>intersect</strong> both the <script type="math/tex">z_{i-1}</script> and <script type="math/tex">z_i</script> axes.</li>
 <li>
-<script type="math/tex">y</script>-direction is third direction using right-hand rule.</li>
+<script type="math/tex">y</script>-direction - is the third direction using the right-hand rule.</li>
+<li>the origin of joint i is at the intersection of <script type="math/tex">x_i</script> and <script type="math/tex">z_i</script>.</li>
 </ul>
 <blockquote>
 <h4 id="four-parameters">Four Parameters</h4>
-<p>The following four transformation parameters (labelled in red text in the figure above) are known as the DH parameters:</p>
+<p>The following four transformation parameters (<strong>labeled</strong> in red text in the figure above) are known as the DH parameters:</p>
 <p><strong>Descriptions of the Joint</strong></p>
 <ul>
 <li>
@@ -143,7 +143,7 @@ robotic manipulator relative to some other reference frame, given the angles of 
 \end{bmatrix}
 </script>
 </p>
-<p>Each of these parameters could be a constant depending on the structure of the robot. Under this convention the dimensions of each link in the serial chain are defined by the screw displacement around the common normal <script type="math/tex">A_{i, i+1}</script> from the joint <script type="math/tex">S_i</script> to <script type="math/tex">S_{i+1}</script>, which is given by:</p>
+<p>Each of these parameters could be a constant depending on the structure of the robot. Under this convention, the dimensions of each link in the serial chain are defined by the screw displacement around the common normal <script type="math/tex">A_{i, i+1}</script> from joint <script type="math/tex">S_i</script> to <script type="math/tex">S_{i+1}</script>, which is given by:</p>
 <p>
 <script type="math/tex; mode=display">
 [X_i] =
@@ -159,18 +159,32 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <h3 id="jetauto-arm-forward-kinematics">JetAuto Arm Forward Kinematics</h3>
 <p><img alt="Figure 5.2 JetAuto Arm Links" src="../lab5-jetauto-kinematics.png" /></p>
 <p><em><strong>Figure 5.2</strong> JetAuto Arm Links</em></p>
-<p>The figure above shows the kinematic link diagram of the JetAuto arm. Let's create the DH parameters table for the first two joints:</p>
+<p>The figure above shows the kinematic link diagram of the JetAuto arm. Let's create the DH parameters table for the first two links:</p>
+<p>First, let's define the joints:</p>
 <ul>
-<li>Joint-0 is the base platform and will be used as the global reference.</li>
-<li>Joint-1 is the rotation platform of the robotics arm. It's a rotary joint about the joint axis (<script type="math/tex">\z_0</script>). Therefore, only <script type="math/tex">\theta_1</script> (angle between <script type="math/tex">\x_0</script> and <script type="math/tex">\x_1</script>) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.</li>
-<li>Joint-2 is the rotation of the first segment of the robotics arm. It is a rotary joint with a distance, <script type="math/tex">d</script>, offset from Joint-1 (Joint-0). There is a 90° change between the Joint-1 (z_1) and Joint-2 axis (z_2). Therefore, <script type="math/tex">\alpha_2 = 90°</script> (angle between z_1 and z_2 about x_2). It will also have a rotation about the Joint-2 axis (z_2), <script type="math/tex">\theta_2</script> (angle between x_1 and x_2).</li>
+<li>Joint-1 is the rotation platform of the <strong>robotic</strong> arm. We'll define <script type="math/tex">z_1</script> along the joint axis. For convenience, we'll define <script type="math/tex">z_1</script> as upward, <script type="math/tex">x_1</script> as right, then <script type="math/tex">y_1</script> must point into the page due to the right-hand rule.</li>
+<li>Joint-0 is the base of the robot and will be used as the global reference. We'll define it in the same direction as Joint-1 for convenience. Consideration of Joint-0 is only necessary in this case because there's an offset between the base platform and Joint-1. Normally, Joint-1 can be used as the global reference.</li>
+<li>Joint-2 is the rotation servo of the first segment of the <strong>robotic</strong> arm. We can define the joint axis <script type="math/tex">z_2</script> as into the page. Taking the cross product of <script type="math/tex">x_2 = z_{2} \times z_{1}</script>
+<strong>yields</strong> an <script type="math/tex">x_2</script> that is to the right. Therefore, <script type="math/tex">y_1</script> is upward due to the right-hand rule.</li>
+<li>Joint-3 is the rotation servo of the second segment of the <strong>robotic</strong> arm. We can define the joint axis <script type="math/tex">z_3</script> as into the page to stay consistent with Joint-2. Since <script type="math/tex">z_2</script> and <script type="math/tex">z_3</script> are parallel, <script type="math/tex">x_3</script> will need to intersect <script type="math/tex">z_2</script> and <script type="math/tex">z_3</script> and point to the right. Therefore, <script type="math/tex">y_1</script> is upward due to the right-hand rule.</li>
+<li>Joint-4 and Joint-5 can be defined in a similar manner as above.</li>
 </ul>
-<p>Putting this all together yield the following DH parameters table:</p>
+<p>Now, we can define the links and find the DH parameters:</p>
+<ul>
+<li>Link-1 is from the base platform to the rotation platform Joint-1; this link is just an offset of <script type="math/tex">d_1</script> along the <script type="math/tex">z_0</script> direction.</li>
+<li>Link-2 is from the rotation platform to the rotation servo of the <strong>robotic</strong> arm. There's a distance of <script type="math/tex">d_2</script> along the <script type="math/tex">z_1</script> direction, and the joint will have <script type="math/tex">\theta_2</script> rotation about <script type="math/tex">z_1</script>. There is no offset in the <script type="math/tex">x_2</script>
+<strong>direction</strong>, and from the <script type="math/tex">z_1</script> direction to the <script type="math/tex">z_2</script> direction, there's a rotation of <script type="math/tex">\alpha_2 = -90°</script>.</li>
+<li>Link-3 is from the first rotation servo to the second rotation servo of the <strong>robotic</strong> arm. There is no offset in the <script type="math/tex">z_2</script>
+<strong>direction</strong>, and the joint will have <script type="math/tex">\theta_3</script> rotation about <script type="math/tex">z_2</script>. There is an offset of <script type="math/tex">a_3</script> in the <script type="math/tex">x_3</script>
+<strong>direction</strong> between <script type="math/tex">z_2</script> to <script type="math/tex">z_3</script>, and there is no rotation between the <script type="math/tex">z_2</script> direction and the <script type="math/tex">z_3</script> direction.</li>
+<li>Link-4 and Link-5 can be defined in a similar manner as above.</li>
+</ul>
+<p>Putting this all together <strong>yields</strong> the following DH parameters table:</p>
 <p><em><strong>Table 5.1</strong> JetAuto DH Parameters Table</em></p>
 <table>
 <thead>
 <tr>
-<th>DH#</th>
+<th>Link #</th>
 <th>d</th>
 <th>θ</th>
 <th>a</th>
@@ -180,29 +194,34 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <tbody>
 <tr>
 <td>1</td>
-<td>0</td>
 <td>
-<script type="math/tex">\theta_1</script>
+<script type="math/tex">d_1</script>
 </td>
+<td>0</td>
 <td>0</td>
 <td>0</td>
 </tr>
 <tr>
 <td>2</td>
 <td>
-<script type="math/tex">d</script>
+<script type="math/tex">d_2</script>
+</td>
+<td>
+<script type="math/tex">\theta_2</script>
 </td>
 <td>0</td>
-<td>0</td>
-<td>-<script type="math/tex">\pi / 2</script>
-</td>
+<td>-90°</td>
 </tr>
 <tr>
 <td>3</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>0</td>
+<td>
+<script type="math/tex">\theta_3</script>
+</td>
+<td>
+<script type="math/tex">a_3</script>
+</td>
+<td>0</td>
 </tr>
 <tr>
 <td>4</td>
@@ -211,60 +230,68 @@ robotic manipulator relative to some other reference frame, given the angles of 
 <td></td>
 <td></td>
 </tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
 </tbody>
 </table>
+<p>Your task as part of the lab is to complete this table.</p>
 <h2 id="ros-moveit">ROS MoveIt</h2>
 <p>ROS MoveIt is a powerful software framework designed for robot motion planning and manipulation within the Robot Operating System (ROS) ecosystem. It provides a robust set of tools and libraries that enable developers to implement complex motion planning algorithms, manage robot kinematics, and execute real-time motion tasks. With features such as collision detection, trajectory optimization, and support for various robotic platforms, MoveIt simplifies the process of programming robots to perform intricate movements. Its flexibility and extensibility make it a popular choice for both research and industrial applications, allowing users to create sophisticated robotic solutions tailored to specific needs.</p>
 <p><img alt="Figure 5.3 ROS MoveIt" src="../lab5-moveit.png" /></p>
 <p><em><strong>Figure 5.3</strong> ROS MoveIt</em></p>
 <p>More details on MoveIt can be found <a href="https://docs.ros.org/en/melodic/api/moveit_tutorials/html/index.html">here</a>.</p>
 <h2 id="simultaneous-localization-and-mapping-slam">Simultaneous Localization and Mapping (SLAM)</h2>
-<p>Simultaneous localization and mapping (SLAM) is the computational problem of constructing or updating a map of an unknown environment while simultaneously keeping track of an agent's location within it.Popular approximate solution methods include the particle filter, extended Kalman filter, covariance intersection, and GraphSLAM. SLAM algorithms are based on concepts in computational geometry and computer vision, and are used in robot navigation, robotic mapping and odometry for virtual reality or augmented reality.</p>
-<p>SLAM algorithms are tailored to the available resources and are not aimed at perfection but at operational compliance. Published approaches are employed in self-driving cars, unmanned aerial vehicles, autonomous underwater vehicles, planetary rovers, newer domestic robots and even inside the human body.</p>
+<p>Simultaneous localization and mapping (SLAM) is the computational problem of constructing or updating a map of an unknown environment while simultaneously keeping track of an agent's location within it. Popular approximate solution methods include the particle filter, extended Kalman filter, covariance intersection, and GraphSLAM. SLAM algorithms are based on concepts in computational geometry and computer vision, and are used in robot navigation, robotic mapping, and odometry for virtual reality or augmented reality.</p>
+<p>SLAM algorithms are tailored to the available resources and are not aimed at perfection but at operational compliance. Published approaches are employed in self-driving cars, unmanned aerial vehicles, autonomous underwater vehicles, planetary rovers, newer domestic robots, and even inside the human body.</p>
 <h3 id="jetauto-robot-arm-control">JetAuto Robot Arm Control</h3>
 <ol>
 <li>
-<p>Before controlling JetAuto's robot arm, let make sure we have all the package necessary installed. We'll also install the GMapping package for the second part of this Lab. Open a terminal and run the following command:</p>
+<p>Before controlling JetAuto's robot arm, <strong>let's</strong> make sure we have all the <strong>necessary packages</strong> installed. We'll also install the GMapping package for the second part of this Lab. Open a terminal and run the following command:</p>
 <pre><code>sudo apt install ros-melodic-moveit ros-melodic-trac-ik-kinematics-plugin ros-melodic-slam-gmapping ros-melodic-map-server ros-melodic-amcl ros-melodic-move-base ros-melodic-global-planner
 </code></pre>
 </li>
 <li>
-<p>First, we'll try simulating JetAuto's robot arm in ROS using MoveIt along with a gazebo model. Open terminal and run:</p>
+<p>First, we'll try simulating JetAuto's robot arm in ROS using MoveIt along with a Gazebo model. Open a terminal and run:</p>
 <pre><code>roslaunch jetauto_moveit_config demo_gazebo.launch fake_execution:=false
 </code></pre>
-<p>This should load a RViz and a Gazebo windows. By provide the <code>false</code> to the <code>fake_execution</code> argument, we'll be able to move the robot arm in the Gazebo model as well.</p>
+<p>This should load RViz and Gazebo <strong>windows</strong>. By <strong>providing</strong> <code>false</code> to the <code>fake_execution</code> argument, we'll be able to move the robot arm in the Gazebo model as well.</p>
 <p><img alt="Figure 5.4 JetAuto MoveIt" src="../lab5-jetauto-moveit.png" /></p>
 <p><em><strong>Figure 5.4</strong> JetAuto MoveIt</em></p>
-<p>The top left Panel labelled "Displays" is the RViz Tool Bar, the bottom left Panel labelled "MotionPlanning" is the MoveIt Tool Area, the right Panel is the Simulation view. In the Simulation view, you can use your mouse (rigth click, left click, middle click, and wheel) to adjust the view.</p>
+<p>The top-left Panel <strong>labeled</strong> "Displays" is the RViz Tool Bar, the bottom-left Panel <strong>labeled</strong> "MotionPlanning" is the MoveIt Tool Area, and the right Panel is the Simulation view. In the Simulation view, you can use your mouse (<strong>right-click</strong>, left-click, middle-click, and wheel) to adjust the view.</p>
 </li>
 <li>
 <p>Select the <strong>"Planning"</strong> tab in MoveIt and ensure the <strong>"Planning Group"</strong> is "arm". Move the model in the Simulation view around to set the joint goal of the arm:</p>
 <ul>
-<li>The Blue ball control the position of the end effector in 3d space</li>
-<li>The Red Arrow control the y-axis of the end effector</li>
-<li>The Green Arrow control the x-axis of the end effector</li>
-<li>The Blue Arrow control the z-axis of the end effector</li>
+<li>The Blue ball <strong>controls</strong> the position of the end effector in 3D space.</li>
+<li>The Red Arrow <strong>controls</strong> the y-axis of the end effector.</li>
+<li>The Green Arrow <strong>controls</strong> the x-axis of the end effector.</li>
+<li>The Blue Arrow <strong>controls</strong> the z-axis of the end effector.</li>
 </ul>
-<p>Remember, once the arm is moved, the axis refer to the end effector's frame of reference.</p>
+<p>Remember, once the arm is moved, the <strong>axes</strong> <strong>refer</strong> to the end effector's frame of reference.</p>
 <p><img alt="Figure 5.5 JetAuto MoveIt Planning" src="../lab5-planning-moveit.png" /></p>
 <p><em><strong>Figure 5.5</strong> JetAuto MoveIt Planning</em></p>
 <p>When you set the goal for the robot arm, MoveIt performs inverse kinematics (IK) to determine the configuration for each joint to reach the goal. When calculating the IK, collisions with other parts of the robot are already taken into consideration. If there are any anticipated collisions, they are indicated in red.</p>
 </li>
 <li>
-<p>You can also also perform forward kinematics by scrolling over to the <strong>"Joints"</strong> tab in MoveIt to view and adjust the goal rotation angle of each joint.</p>
+<p>You can also perform forward kinematics by scrolling over to the <strong>"Joints"</strong> tab in MoveIt to view and adjust the goal rotation angle of each joint.</p>
 <p><img alt="Figure 5.6 JetAuto MoveIt Planning Joints" src="../lab5-planning-joints.png" /></p>
 <p><em><strong>Figure 5.6</strong> JetAuto MoveIt Planning Joints</em></p>
 </li>
 <li>
-<p>Once you are ready with the position for the arm to move to, go back to the <strong>"Planning"</strong> tab and click <strong>"Plan &amp; Execute"</strong>. You should see the model move from the current state to the goal state. The gazebo model should move as well.</p>
+<p>Once you are ready with the position for the arm to move to, go back to the <strong>"Planning"</strong> tab and click <strong>"Plan &amp; Execute"</strong>. You should see the model move from the current state to the goal state. The Gazebo model should move as well.</p>
 <p><img alt="Figure 5.7 JetAuto MoveIt Planning Gazebo View" src="../lab5-planning-gazebo.png" /></p>
 <p><em><strong>Figure 5.7</strong> JetAuto MoveIt Planning Gazebo View</em></p>
 </li>
 <li>
-<p>(Optional) If you want, you can go through the demo videos and lessions provided by the manufacturer to gain a better understanding on the robot arm.</p>
+<p>(Optional) If you want, you can go through the demo videos and <strong>lessons</strong> provided by the manufacturer to gain a better understanding of the robot arm.</p>
 <p><a href="https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY">JetAuto &amp; JetAuto Pro Resources</a></p>
 <ul>
-<li>Chapter 15.1 All Lesson</li>
+<li>Chapter 15.1 All <strong>Lessons</strong></li>
 <li>Chapter 15.2<ul>
 <li>Lesson 2 - <a href="https://youtu.be/OQAjGv3DnG4">Demo Video</a></li>
 <li>Lesson 3 - <a href="https://youtu.be/99P79cR54tE">Demo Video</a></li>
@@ -454,21 +481,21 @@ from math import pi
 from std_msgs.msg import String
 from moveit_commander.conversions import pose_to_list
 </code></pre>
-<p>First initialize <code>moveit_commander</code> and a <code>rospy</code> node:</p>
+<p>First, initialize <code>moveit_commander</code> and a <code>rospy</code> node:</p>
 <pre><code>moveit_commander.roscpp_initialize(sys.argv)
 rospy.init_node('move_group_python_interface_tutorial', anonymous=True)
 </code></pre>
-<p>Instantiate a <code>RobotCommander</code> object. Provides information such as the robot’s kinematic model and the robot’s current joint states</p>
+<p>Instantiate a <code>RobotCommander</code> object. This object provides information such as the robot’s kinematic model and its current joint states.</p>
 <pre><code>robot = moveit_commander.RobotCommander()
 </code></pre>
 <p>Instantiate a <code>PlanningSceneInterface</code> object. This provides a remote interface for getting, setting, and updating the robot’s internal understanding of the surrounding world:</p>
 <pre><code>scene = moveit_commander.PlanningSceneInterface()
 </code></pre>
-<p>Instantiate a <code>MoveGroupCommander</code> object. This object is an interface to a planning group (group of joints). In this tutorial the group is the primary arm joints in the JetAuto robot, so we set the group’s name to <code>arm</code>. If you are using a different robot, change this value to the name of your robot arm planning group. This interface can be used to plan and execute motions:</p>
+<p>Instantiate a <code>MoveGroupCommander</code> object. This object is an interface to a planning group (a group of joints). In this tutorial, the group is the primary arm joints in the JetAuto robot, so we set the group’s name to <code>arm</code>. If you are using a different robot, change this value to the name of your robot arm planning group. This interface can be used to plan and execute motions:</p>
 <pre><code>group_name = "arm"
 move_group = moveit_commander.MoveGroupCommander(group_name)
 </code></pre>
-<p>Create a <code>DisplayTrajectory</code> ROS publisher which is used to display trajectories in Rviz:</p>
+<p>Create a <code>DisplayTrajectory</code> ROS publisher, which is used to display trajectories in RViz:</p>
 <pre><code>display_trajectory_publisher = rospy.Publisher('/move_group/display_planned_path',
                                             moveit_msgs.msg.DisplayTrajectory,
                                             queue_size=20)
@@ -486,7 +513,7 @@ print "============ End effector link: %s" % eef_link
 group_names = robot.get_group_names()
 print "============ Available Planning Groups:", robot.get_group_names()
 
-# Sometimes for debugging it is useful to print the entire state of the
+# Sometimes for debugging, it is useful to print the entire state of the
 # robot:
 print "============ Printing robot state"
 print robot.get_current_state()
@@ -509,13 +536,13 @@ move_group.stop()
 </code></pre>
 </li>
 <li>
-<p>Make sure you made the file executeable using <code>chmod +x</code>.</p>
+<p>Make sure you have made the file <strong>executable</strong> using <code>chmod +x</code>.</p>
 </li>
 <li>
 <p>Build the package and run the script. You should see the robot arm in RViz and Gazebo move to the new configuration you defined.</p>
 </li>
 <li>
-<p>Lastly, let's try everything out on the physical robot. Copy your workspace to the JetAuto then SSH into the JetAuto.</p>
+<p>Lastly, let's try everything out on the physical robot. Copy your workspace to the JetAuto, then SSH into the JetAuto.</p>
 </li>
 <li>
 <p>Stop the APP service on the robot:</p>
@@ -528,18 +555,18 @@ move_group.stop()
 </code></pre>
 </li>
 <li>
-<p>Next, start MoveIt on the JetAuto. This time, we won't be using Gazebo simulation:</p>
+<p>Next, start MoveIt on the JetAuto. This time, we won't be using the Gazebo simulation:</p>
 <pre><code>roslaunch jetauto_moveit_config demo.launch fake_execution:=false
 </code></pre>
 </li>
 <li>
-<p>You can now move the robot arm using MoveIt interface as well as the script in your package.</p>
+<p>You can now move the robot arm using the MoveIt interface as well as the script in your package.</p>
 </li>
 </ol>
 <h3 id="jetauto-robot-arm-control-without-moveit">JetAuto Robot Arm Control (Without MoveIt)</h3>
 <ol>
 <li>
-<p>Although MoveIt is a good tool for simulating and moving the robot arm, but you can control the robot arm without using MoveIt. Create another python script in your package with the following:</p>
+<p>Although MoveIt is a good tool for simulating and moving the robot arm, you can also control the robot arm without using MoveIt. Create another Python script in your package with the following:</p>
 <pre><code>#!/usr/bin/env python3
 
 import rospy
@@ -557,7 +584,7 @@ class MoveServoNode:
 
         self.joints_pub = rospy.Publisher('servo_controllers/port_id_1/multi_id_pos_dur', MultiRawIdPosDur, queue_size=1)
         rospy.sleep(0.2)        
-        self.search_kinemactis_solutions = SearchKinematicsSolutions()
+        self.search_kinematics_solutions = SearchKinematicsSolutions()
         while not rospy.is_shutdown():
             try:
                 if rospy.get_param('/hiwonder_servo_manager/running') and rospy.get_param('/joint_states_publisher/running'):
@@ -575,7 +602,7 @@ class MoveServoNode:
         if self.z_dis &lt; 0.33:
             self.z_dis = 0.33
 
-        res = self.search_kinemactis_solutions.solveIK((0, self.y_init, self.z_dis), 0, -90, 90)
+        res = self.search_kinematics_solutions.solveIK((0, self.y_init, self.z_dis), 0, -90, 90)
         if res:
             joint_data = res[1]
             rospy.sleep(0.5)
@@ -592,21 +619,21 @@ if __name__ == '__main__':
 <p>The above code is extracted from example code found in:</p>
 <p>~/jetauto_ws/src/jetauto_example/scripts/</p>
 <p>It allows you to control the position of the robot arm end effector through inverse kinematics. Controlling the arm's servo directly is <strong>NOT</strong> recommended as you'll need to manually define collision limits.</p>
-<p>Run the script and the robot arm should move to the given position.</p>
+<p>Run the script, and the robot arm should move to the given position in the first three terms of the inverse kinematics solver function <code>(0, self.y_init, self.z_dis)</code>.</p>
 </li>
 </ol>
 <h3 id="jetauto-slam-simulation">JetAuto SLAM (Simulation)</h3>
 <ol>
 <li>
-<p>Open a terminal your computer (not the robot) and run the following:</p>
+<p>Open a terminal on your computer (not the robot) and run the following:</p>
 <pre><code>roslaunch jetauto_gazebo room_worlds.launch
 </code></pre>
-<p>This will open up a JetAuto model in a room populated with furnitures.</p>
+<p>This will open up a JetAuto model in a room populated with <strong>furniture</strong>.</p>
 <p><img alt="Figure 5.8 Gazebo Room" src="../lab5-gazebo-room.png" /></p>
 <p><em><strong>Figure 5.8</strong> Gazebo Room</em></p>
 </li>
 <li>
-<p>Press the <strong>"Play"</strong> buttons at the button of the Gazebo simulator.</p>
+<p>Press the <strong>"Play"</strong> button at the <strong>bottom</strong> of the Gazebo simulator.</p>
 </li>
 <li>
 <p>Start the SLAM node. Open a new terminal and start:</p>
@@ -618,7 +645,7 @@ if __name__ == '__main__':
 <p>Start RViz to visualize the map. Open a new terminal and start:</p>
 <pre><code>roslaunch jetauto_slam rviz_slam.launch sim:=true
 </code></pre>
-<p>If RViz does not load with the proper config, go to <strong>File &gt; Open Config</strong> and open the follow config file:</p>
+<p>If RViz does not load with the proper config, go to <strong>File &gt; Open Config</strong> and open the <strong>following</strong> config file:</p>
 <p><strong>~/jetauto_ws/src/jetauto_slam/rviz/without_namespace/gmapping_sim.rviz</strong></p>
 <p>You can close the default.rviz without saving.</p>
 <p><img alt="Figure 5.8 Gazebo Room Mapping" src="../lab5-gazebo-mapping.png" /></p>
@@ -653,22 +680,28 @@ if __name__ == '__main__':
 <pre><code>roslaunch jetauto_navigation navigation.launch sim:=true map:=map_01
 </code></pre>
 </li>
-<li>
-<p>Open a new terminal and run:</p>
-<pre><code>roslaunch jetauto_navigation rviz_navigation.launch sim:=true
+</ol>
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ul>
+<li>There's an error with the navigation code in simulation that still needs to be solved. We will need to perform the SLAM step using a <strong>physical</strong> robot for now.</li>
+</ul>
+</div>
+
+<ol>
+<li>Open a new terminal and run:<pre><code>roslaunch jetauto_navigation rviz_navigation.launch sim:=true
 </code></pre>
 </li>
 </ol>
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 <ul>
-<li>There's an error with the above code that still needs to be solved. We will need to perform the SLAM step using a phsyical robot for now.</li>
+<li>There's an error with the navigation code in simulation that still needs to be solved. We will need to perform the SLAM step using a <strong>physical</strong> robot for now.</li>
 </ul>
 </div>
 
 <h3 id="jetauto-slam-physical-robot">JetAuto SLAM (Physical Robot)</h3>
 <ol>
 <li>
-<p>Let's try everything out on the physical robot. Connect into the JetAuto using NoMachine or any remote Desktop software and stop the APP service on the robot:</p>
+<p>Let's try everything out on the physical robot. <strong>Connect</strong> to the JetAuto using NoMachine or any remote <strong>desktop</strong> software and stop the APP service on the robot:</p>
 <pre><code>sudo systemctl stop start_app_node.service
 </code></pre>
 </li>
@@ -678,7 +711,7 @@ if __name__ == '__main__':
 </code></pre>
 </li>
 <li>
-<p>Open a new terminal and start RViz to visualize the map. Open a new terminal and start:</p>
+<p>Open a new terminal and start RViz to visualize the map:</p>
 <pre><code>roslaunch jetauto_slam rviz_slam.launch slam_methods:=gmapping
 </code></pre>
 </li>
@@ -715,42 +748,42 @@ if __name__ == '__main__':
 <p>Open a new terminal and run:</p>
 <pre><code>roslaunch jetauto_navigation rviz_navigation.launch
 </code></pre>
-<p>Now you can use the <strong>2D Pose Estimate</strong>, <strong>2D Nav Goal</strong> and <strong>Publish Point</strong> to help you navigate.</p>
+<p>Now you can use the <strong>2D Pose Estimate</strong>, <strong>2D Nav Goal</strong>, and <strong>Publish Point</strong> to help you navigate.</p>
 <ul>
-<li><strong>2D Pose Estimate</strong> is used to set the initial position of JetAuto,</li>
-<li><strong>2D Nav Goal</strong> is used to set a target point</li>
-<li><strong>Publish Point</strong> is used to set multiple target points</li>
+<li><strong>2D Pose Estimate</strong> is used to set the initial position of JetAuto.</li>
+<li><strong>2D Nav Goal</strong> is used to set a target point.</li>
+<li><strong>Publish Point</strong> is used to set multiple target points.</li>
 </ul>
 </li>
 </ol>
-<h2 id="lab-question">Lab Question</h2>
+<h2 id="lab-questions">Lab Questions</h2>
 <ol>
 <li>
-<p>Find the approximate artesian coordinate of the end effector (tip of the gripper) of the JetAuto if:</p>
+<p>Find the approximate <strong>Cartesian</strong> coordinate of the end effector (tip of the gripper) of the JetAuto if:</p>
 <ul>
 <li>
-<script type="math/tex">\theta_1 = 45</script>
+<script type="math/tex">\theta_1 = 45^\circ</script>
 </li>
 <li>
-<script type="math/tex">\theta_2 = -30</script>
+<script type="math/tex">\theta_2 = -30^\circ</script>
 </li>
 <li>
-<script type="math/tex">\theta_3 = 85</script>
+<script type="math/tex">\theta_3 = 85^\circ</script>
 </li>
 <li>
-<script type="math/tex">\theta_4 = 25</script>
+<script type="math/tex">\theta_4 = 25^\circ</script>
 </li>
 </ul>
-<p>You'll need to measure the dimension of each link and construct the foward kinematics using DH parameters. You can perform the calculation by hand or using software (such as Python). You are not allowed to just read the position from ROS.</p>
+<p>You'll need to measure the <strong>dimensions</strong> of each link and construct the <strong>forward</strong> kinematics using DH parameters. You can perform the calculation by hand or using software (such as Python). You are not allowed to just read the position from ROS, but you can find the length of each link in MoveIt.</p>
 </li>
 <li>
 <p>Write a program that will move the robot arm to the position in question 1.</p>
 </li>
 <li>
-<p>Use SLAM to create and save a map of the class room. Afterward, demostrate navigating from one corner of the class to another.</p>
+<p>Use SLAM to create and save a map of the <strong>classroom</strong>. Afterward, <strong>demonstrate</strong> navigating from one corner of the class to another.</p>
 </li>
 </ol>
-<h2 id="reference">Reference</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters">Denavit–Hartenberg parameters</a></li>
 <li><a href="https://wiki.ros.org/ROS/Tutorials">ROS Tutorials</a></li>
