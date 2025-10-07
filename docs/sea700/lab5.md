@@ -1,4 +1,4 @@
-# Lab 5 : Robotic Arm and SLAM
+# Lab 5: Robotic Arm and SLAM
 
 <font size="5">
 Seneca Polytechnic</br>
@@ -7,16 +7,14 @@ SEA700 Robotics for Software Engineers
 
 ## Forward Kinematics
 
-As discussed in lecture, the forward kinematics problem involves fnding the confguration of a specifed link in a
+As discussed in lecture, the forward kinematics problem involves **finding** the **configuration** of a **specified** link in a
 robotic manipulator relative to some other reference frame, given the angles of each of the joints in the manipulator.
 
 ### Denavit–Hartenberg (DH) Parameters
 
 In mechanical engineering, the Denavit–Hartenberg parameters (also called DH parameters) are the four parameters associated with a particular convention for attaching reference frames to the links of a spatial kinematic chain, or robot manipulator. In this convention, coordinate frames are attached to the joints between two links such that one transformation is associated with the joint \([Z]\), and the second is associated with the link \([X]\). The coordinate transformations along a serial robot consisting of n links form the kinematics equations of the robot:
 
-$$
-[T] = [Z_1][X_1][Z_2][X_2]...[Z_{n-1}][X_{n-1}][Z_n][X_n]
-$$
+$$[T] = [Z_1][X_1][Z_2][X_2]...[Z_{n-1}][X_{n-1}][Z_n][X_n]$$
 
 where \([T]\) is the transformation that characterizes the location and orientation of the end-link.
 
@@ -24,17 +22,18 @@ where \([T]\) is the transformation that characterizes the location and orientat
 
 ***Figure 5.1** DH Kinematics Links*
 
-As shown in the figure above, each joints (i-1, i, and i+1) has a unique line \(S\) (shown as dotted line in the figure above) in space that forms the joint axis and define the relative movement of its two links. For each sequence of lines \(S_i\) and \(S_{i+1}\), there is a common normal line \(A_{i, i+1}\).
+As shown in the figure above, each **joint** (i-1, i, and i+1) has a unique line \(S\) (shown as a dotted line in the figure above) in space that forms the joint axis and **defines** the relative movement of its two links. For each sequence of lines \(S_i\) and \(S_{i+1}\), there is a common normal line \(A_{i, i+1}\).
 
-By convention:
+**By convention:**
 
-- \(z\)-direction is the joint axes \(S\). \(z_i\) describe the joint attached to the end of \(\textrm{Link}_i\).
-- \(x\)-direction is the common normal \(A\). \(x_i = z_{i} \times z_{i-1}\) is the common normal \(A_{i, i+1}\). If there are no unqiue common normal, \(d_i\) below become a free parameter and can be defined by joint configuration.
-- \(y\)-direction is third direction using right-hand rule.
+- \(z\)-direction - is in the joint **axis** \(S\) direction. \(z_i\) **describes** the joint attached to the end of \(\textrm{Link}_i\) (i.e., the next joint).
+- \(x\)-direction - is the common normal \(A\). \(x_i = z_{i} \times z_{i-1}\) is the common normal \(A_{i, i+1}\). If there is no **unique** common normal, \(d_i\) below **becomes** a free parameter and can be defined by joint configuration. Also, the \(x_i\) axis must **intersect** both the \(z_{i-1}\) and \(z_i\) axes.
+- \(y\)-direction - is the third direction using the right-hand rule.
+- the origin of joint i is at the intersection of \(x_i\) and \(z_i\).
 
 > #### Four Parameters
-
-> The following four transformation parameters (labelled in red text in the figure above) are known as the DH parameters:
+>
+> The following four transformation parameters (**labeled** in red text in the figure above) are known as the DH parameters:
 >
 > **Descriptions of the Joint**
 >
@@ -58,7 +57,7 @@ $$
 \end{bmatrix}
 $$
 
-Each of these parameters could be a constant depending on the structure of the robot. Under this convention the dimensions of each link in the serial chain are defined by the screw displacement around the common normal \(A_{i, i+1}\) from the joint \(S_i\) to \(S_{i+1}\), which is given by:
+Each of these parameters could be a constant depending on the structure of the robot. Under this convention, the dimensions of each link in the serial chain are defined by the screw displacement around the common normal \(A_{i, i+1}\) from joint \(S_i\) to \(S_{i+1}\), which is given by:
 
 $$
 [X_i] =
@@ -78,22 +77,36 @@ where \(\alpha_{i, i+1}\) and \(a_{i, i+1}\) define the physical dimensions of t
 
 ***Figure 5.2** JetAuto Arm Links*
 
-The figure above shows the kinematic link diagram of the JetAuto arm. Let's create the DH parameters table for the first two joints:
+The figure above shows the kinematic link diagram of the JetAuto arm. Let's create the DH parameters table for the first two links:
 
-- Joint-0 is the base platform and will be used as the global reference.
-- Joint-1 is the rotation platform of the robotics arm. It's a rotary joint about the joint axis (\(\z_0\)). Therefore, only \(\theta_1\) (angle between \(\x_0\) and \(\x_1\)) is non-zero. We can assume that Joint-1 is at the same position as Joint-0.
-- Joint-2 is the rotation of the first segment of the robotics arm. It is a rotary joint with a distance, \(d\), offset from Joint-1 (Joint-0). There is a 90° change between the Joint-1 (z_1) and Joint-2 axis (z_2). Therefore, \(\alpha_2 = 90°\) (angle between z_1 and z_2 about x_2). It will also have a rotation about the Joint-2 axis (z_2), \(\theta_2\) (angle between x_1 and x_2).
+First, let's define the joints:
 
-Putting this all together yield the following DH parameters table:
+- Joint-1 is the rotation platform of the **robotic** arm. We'll define \(z_1\) along the joint axis. For convenience, we'll define \(z_1\) as upward, \(x_1\) as right, then \(y_1\) must point into the page due to the right-hand rule.
+- Joint-0 is the base of the robot and will be used as the global reference. We'll define it in the same direction as Joint-1 for convenience. Consideration of Joint-0 is only necessary in this case because there's an offset between the base platform and Joint-1. Normally, Joint-1 can be used as the global reference.
+- Joint-2 is the rotation servo of the first segment of the **robotic** arm. We can define the joint axis \(z_2\) as into the page. Taking the cross product of \(x_2 = z_{2} \times z_{1}\) **yields** an \(x_2\) that is to the right. Therefore, \(y_1\) is upward due to the right-hand rule.
+- Joint-3 is the rotation servo of the second segment of the **robotic** arm. We can define the joint axis \(z_3\) as into the page to stay consistent with Joint-2. Since \(z_2\) and \(z_3\) are parallel, \(x_3\) will need to intersect \(z_2\) and \(z_3\) and point to the right. Therefore, \(y_1\) is upward due to the right-hand rule.
+- Joint-4 and Joint-5 can be defined in a similar manner as above.
+
+Now, we can define the links and find the DH parameters:
+
+- Link-1 is from the base platform to the rotation platform Joint-1; this link is just an offset of \(d_1\) along the \(z_0\) direction.
+- Link-2 is from the rotation platform to the rotation servo of the **robotic** arm. There's a distance of \(d_2\) along the \(z_1\) direction, and the joint will have \(\theta_2\) rotation about \(z_1\). There is no offset in the \(x_2\) **direction**, and from the \(z_1\) direction to the \(z_2\) direction, there's a rotation of \(\alpha_2 = -90°\).
+- Link-3 is from the first rotation servo to the second rotation servo of the **robotic** arm. There is no offset in the \(z_2\) **direction**, and the joint will have \(\theta_3\) rotation about \(z_2\). There is an offset of \(a_3\) in the \(x_3\) **direction** between \(z_2\) to \(z_3\), and there is no rotation between the \(z_2\) direction and the \(z_3\) direction.
+- Link-4 and Link-5 can be defined in a similar manner as above.
+
+Putting this all together **yields** the following DH parameters table:
 
 ***Table 5.1** JetAuto DH Parameters Table*
 
-| DH# | d | θ | a | α |
+| Link # | d | θ | a | α |
 |---|---|---|---|---|
-| 1 | 0 | \(\theta_1\) | 0 | 0 |
-| 2 | \(d\) | 0 | 0 | -\(\pi / 2\) |
-| 3 | | | | |
+| 1 | \(d_1\) | 0 | 0 | 0 |
+| 2 | \(d_2\) | \(\theta_2\) | 0 | -90° |
+| 3 | 0 | \(\theta_3\) | \(a_3\) | 0 |
 | 4 | | | | |
+| 5 | | | | |
+
+Your task as part of the lab is to complete this table.
 
 ## ROS MoveIt
 
@@ -107,36 +120,36 @@ More details on MoveIt can be found [here](https://docs.ros.org/en/melodic/api/m
 
 ## Simultaneous Localization and Mapping (SLAM)
 
-Simultaneous localization and mapping (SLAM) is the computational problem of constructing or updating a map of an unknown environment while simultaneously keeping track of an agent's location within it.Popular approximate solution methods include the particle filter, extended Kalman filter, covariance intersection, and GraphSLAM. SLAM algorithms are based on concepts in computational geometry and computer vision, and are used in robot navigation, robotic mapping and odometry for virtual reality or augmented reality.
+Simultaneous localization and mapping (SLAM) is the computational problem of constructing or updating a map of an unknown environment while simultaneously keeping track of an agent's location within it. Popular approximate solution methods include the particle filter, extended Kalman filter, covariance intersection, and GraphSLAM. SLAM algorithms are based on concepts in computational geometry and computer vision, and are used in robot navigation, robotic mapping, and odometry for virtual reality or augmented reality.
 
-SLAM algorithms are tailored to the available resources and are not aimed at perfection but at operational compliance. Published approaches are employed in self-driving cars, unmanned aerial vehicles, autonomous underwater vehicles, planetary rovers, newer domestic robots and even inside the human body.
+SLAM algorithms are tailored to the available resources and are not aimed at perfection but at operational compliance. Published approaches are employed in self-driving cars, unmanned aerial vehicles, autonomous underwater vehicles, planetary rovers, newer domestic robots, and even inside the human body.
 
 ### JetAuto Robot Arm Control
 
-1. Before controlling JetAuto's robot arm, let make sure we have all the package necessary installed. We'll also install the GMapping package for the second part of this Lab. Open a terminal and run the following command:
+1. Before controlling JetAuto's robot arm, **let's** make sure we have all the **necessary packages** installed. We'll also install the GMapping package for the second part of this Lab. Open a terminal and run the following command:
 
         sudo apt install ros-melodic-moveit ros-melodic-trac-ik-kinematics-plugin ros-melodic-slam-gmapping ros-melodic-map-server ros-melodic-amcl ros-melodic-move-base ros-melodic-global-planner
 
-1. First, we'll try simulating JetAuto's robot arm in ROS using MoveIt along with a gazebo model. Open terminal and run:
+1. First, we'll try simulating JetAuto's robot arm in ROS using MoveIt along with a Gazebo model. Open a terminal and run:
 
         roslaunch jetauto_moveit_config demo_gazebo.launch fake_execution:=false
 
-    This should load a RViz and a Gazebo windows. By provide the `false` to the `fake_execution` argument, we'll be able to move the robot arm in the Gazebo model as well.
+    This should load RViz and Gazebo **windows**. By **providing** `false` to the `fake_execution` argument, we'll be able to move the robot arm in the Gazebo model as well.
 
     ![Figure 5.4 JetAuto MoveIt](lab5-jetauto-moveit.png)
 
     ***Figure 5.4** JetAuto MoveIt*
 
-    The top left Panel labelled "Displays" is the RViz Tool Bar, the bottom left Panel labelled "MotionPlanning" is the MoveIt Tool Area, the right Panel is the Simulation view. In the Simulation view, you can use your mouse (rigth click, left click, middle click, and wheel) to adjust the view.
+    The top-left Panel **labeled** "Displays" is the RViz Tool Bar, the bottom-left Panel **labeled** "MotionPlanning" is the MoveIt Tool Area, and the right Panel is the Simulation view. In the Simulation view, you can use your mouse (**right-click**, left-click, middle-click, and wheel) to adjust the view.
 
 1. Select the **"Planning"** tab in MoveIt and ensure the **"Planning Group"** is "arm". Move the model in the Simulation view around to set the joint goal of the arm:
 
-    - The Blue ball control the position of the end effector in 3d space
-    - The Red Arrow control the y-axis of the end effector
-    - The Green Arrow control the x-axis of the end effector
-    - The Blue Arrow control the z-axis of the end effector
+    - The Blue ball **controls** the position of the end effector in 3D space.
+    - The Red Arrow **controls** the y-axis of the end effector.
+    - The Green Arrow **controls** the x-axis of the end effector.
+    - The Blue Arrow **controls** the z-axis of the end effector.
 
-    Remember, once the arm is moved, the axis refer to the end effector's frame of reference.
+    Remember, once the arm is moved, the **axes** **refer** to the end effector's frame of reference.
 
     ![Figure 5.5 JetAuto MoveIt Planning](lab5-planning-moveit.png)
 
@@ -144,23 +157,23 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
     When you set the goal for the robot arm, MoveIt performs inverse kinematics (IK) to determine the configuration for each joint to reach the goal. When calculating the IK, collisions with other parts of the robot are already taken into consideration. If there are any anticipated collisions, they are indicated in red.
 
-1. You can also also perform forward kinematics by scrolling over to the **"Joints"** tab in MoveIt to view and adjust the goal rotation angle of each joint.
+1. You can also perform forward kinematics by scrolling over to the **"Joints"** tab in MoveIt to view and adjust the goal rotation angle of each joint.
 
     ![Figure 5.6 JetAuto MoveIt Planning Joints](lab5-planning-joints.png)
 
     ***Figure 5.6** JetAuto MoveIt Planning Joints*
 
-1. Once you are ready with the position for the arm to move to, go back to the **"Planning"** tab and click **"Plan & Execute"**. You should see the model move from the current state to the goal state. The gazebo model should move as well.
+1. Once you are ready with the position for the arm to move to, go back to the **"Planning"** tab and click **"Plan & Execute"**. You should see the model move from the current state to the goal state. The Gazebo model should move as well.
 
     ![Figure 5.7 JetAuto MoveIt Planning Gazebo View](lab5-planning-gazebo.png)
 
     ***Figure 5.7** JetAuto MoveIt Planning Gazebo View*
 
-1. (Optional) If you want, you can go through the demo videos and lessions provided by the manufacturer to gain a better understanding on the robot arm.
+1. (Optional) If you want, you can go through the demo videos and **lessons** provided by the manufacturer to gain a better understanding of the robot arm.
 
     [JetAuto & JetAuto Pro Resources](https://drive.google.com/drive/folders/16pwHYO8rK-22oAzStc7-olP9Weq7AbzY)
     
-    - Chapter 15.1 All Lesson
+    - Chapter 15.1 All **Lessons**
     - Chapter 15.2
         - Lesson 2 - [Demo Video](https://youtu.be/OQAjGv3DnG4)
         - Lesson 3 - [Demo Video](https://youtu.be/99P79cR54tE)
@@ -354,12 +367,12 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
         from std_msgs.msg import String
         from moveit_commander.conversions import pose_to_list
 
-    First initialize `moveit_commander` and a `rospy` node:
+    First, initialize `moveit_commander` and a `rospy` node:
 
         moveit_commander.roscpp_initialize(sys.argv)
         rospy.init_node('move_group_python_interface_tutorial', anonymous=True)
 
-    Instantiate a `RobotCommander` object. Provides information such as the robot’s kinematic model and the robot’s current joint states
+    Instantiate a `RobotCommander` object. This object provides information such as the robot’s kinematic model and its current joint states.
 
         robot = moveit_commander.RobotCommander()
 
@@ -367,12 +380,12 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
         scene = moveit_commander.PlanningSceneInterface()
 
-    Instantiate a `MoveGroupCommander` object. This object is an interface to a planning group (group of joints). In this tutorial the group is the primary arm joints in the JetAuto robot, so we set the group’s name to `arm`. If you are using a different robot, change this value to the name of your robot arm planning group. This interface can be used to plan and execute motions:
+    Instantiate a `MoveGroupCommander` object. This object is an interface to a planning group (a group of joints). In this tutorial, the group is the primary arm joints in the JetAuto robot, so we set the group’s name to `arm`. If you are using a different robot, change this value to the name of your robot arm planning group. This interface can be used to plan and execute motions:
 
         group_name = "arm"
         move_group = moveit_commander.MoveGroupCommander(group_name)
     
-    Create a `DisplayTrajectory` ROS publisher which is used to display trajectories in Rviz:
+    Create a `DisplayTrajectory` ROS publisher, which is used to display trajectories in RViz:
 
         display_trajectory_publisher = rospy.Publisher('/move_group/display_planned_path',
                                                     moveit_msgs.msg.DisplayTrajectory,
@@ -392,7 +405,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
         group_names = robot.get_group_names()
         print "============ Available Planning Groups:", robot.get_group_names()
 
-        # Sometimes for debugging it is useful to print the entire state of the
+        # Sometimes for debugging, it is useful to print the entire state of the
         # robot:
         print "============ Printing robot state"
         print robot.get_current_state()
@@ -414,11 +427,11 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
         # Calling ``stop()`` ensures that there is no residual movement
         move_group.stop()
 
-1. Make sure you made the file executeable using `chmod +x`.
+1. Make sure you have made the file **executable** using `chmod +x`.
 
 1. Build the package and run the script. You should see the robot arm in RViz and Gazebo move to the new configuration you defined.
 
-1. Lastly, let's try everything out on the physical robot. Copy your workspace to the JetAuto then SSH into the JetAuto.
+1. Lastly, let's try everything out on the physical robot. Copy your workspace to the JetAuto, then SSH into the JetAuto.
 
 1. Stop the APP service on the robot:
 
@@ -428,15 +441,15 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
         roslaunch hiwonder_servo_controllers start.launch
 
-1. Next, start MoveIt on the JetAuto. This time, we won't be using Gazebo simulation:
+1. Next, start MoveIt on the JetAuto. This time, we won't be using the Gazebo simulation:
 
         roslaunch jetauto_moveit_config demo.launch fake_execution:=false
 
-1. You can now move the robot arm using MoveIt interface as well as the script in your package.
+1. You can now move the robot arm using the MoveIt interface as well as the script in your package.
 
 ### JetAuto Robot Arm Control (Without MoveIt)
 
-1. Although MoveIt is a good tool for simulating and moving the robot arm, but you can control the robot arm without using MoveIt. Create another python script in your package with the following:
+1. Although MoveIt is a good tool for simulating and moving the robot arm, you can also control the robot arm without using MoveIt. Create another Python script in your package with the following:
 
         #!/usr/bin/env python3
 
@@ -455,7 +468,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
                 
                 self.joints_pub = rospy.Publisher('servo_controllers/port_id_1/multi_id_pos_dur', MultiRawIdPosDur, queue_size=1)
                 rospy.sleep(0.2)        
-                self.search_kinemactis_solutions = SearchKinematicsSolutions()
+                self.search_kinematics_solutions = SearchKinematicsSolutions()
                 while not rospy.is_shutdown():
                     try:
                         if rospy.get_param('/hiwonder_servo_manager/running') and rospy.get_param('/joint_states_publisher/running'):
@@ -473,7 +486,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
                 if self.z_dis < 0.33:
                     self.z_dis = 0.33
 
-                res = self.search_kinemactis_solutions.solveIK((0, self.y_init, self.z_dis), 0, -90, 90)
+                res = self.search_kinematics_solutions.solveIK((0, self.y_init, self.z_dis), 0, -90, 90)
                 if res:
                     joint_data = res[1]
                     rospy.sleep(0.5)
@@ -491,21 +504,21 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
     It allows you to control the position of the robot arm end effector through inverse kinematics. Controlling the arm's servo directly is **NOT** recommended as you'll need to manually define collision limits.
 
-    Run the script and the robot arm should move to the given position.
+    Run the script, and the robot arm should move to the given position in the first three terms of the inverse kinematics solver function `(0, self.y_init, self.z_dis)`.
 
 ### JetAuto SLAM (Simulation)
 
-1. Open a terminal your computer (not the robot) and run the following:
+1. Open a terminal on your computer (not the robot) and run the following:
 
         roslaunch jetauto_gazebo room_worlds.launch
 
-    This will open up a JetAuto model in a room populated with furnitures.
+    This will open up a JetAuto model in a room populated with **furniture**.
 
     ![Figure 5.8 Gazebo Room](lab5-gazebo-room.png)
 
     ***Figure 5.8** Gazebo Room*
 
-1. Press the **"Play"** buttons at the button of the Gazebo simulator.
+1. Press the **"Play"** button at the **bottom** of the Gazebo simulator.
 
 1. Start the SLAM node. Open a new terminal and start:
 
@@ -517,7 +530,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
         roslaunch jetauto_slam rviz_slam.launch sim:=true
 
-    If RViz does not load with the proper config, go to **File > Open Config** and open the follow config file:
+    If RViz does not load with the proper config, go to **File > Open Config** and open the **following** config file:
 
     **~/jetauto_ws/src/jetauto_slam/rviz/without_namespace/gmapping_sim.rviz**
 
@@ -553,19 +566,25 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
         roslaunch jetauto_navigation navigation.launch sim:=true map:=map_01
 
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<ul>
+<li>There's an error with the navigation code in simulation that still needs to be solved. We will need to perform the SLAM step using a <strong>physical</strong> robot for now.</li>
+</ul>
+</div>
+
 1. Open a new terminal and run:
 
         roslaunch jetauto_navigation rviz_navigation.launch sim:=true
 
 <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
 <ul>
-<li>There's an error with the above code that still needs to be solved. We will need to perform the SLAM step using a phsyical robot for now.</li>
+<li>There's an error with the navigation code in simulation that still needs to be solved. We will need to perform the SLAM step using a <strong>physical</strong> robot for now.</li>
 </ul>
 </div>
 
 ### JetAuto SLAM (Physical Robot)
 
-1. Let's try everything out on the physical robot. Connect into the JetAuto using NoMachine or any remote Desktop software and stop the APP service on the robot:
+1. Let's try everything out on the physical robot. **Connect** to the JetAuto using NoMachine or any remote **desktop** software and stop the APP service on the robot:
 
         sudo systemctl stop start_app_node.service
 
@@ -573,7 +592,7 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
         roslaunch jetauto_slam slam.launch slam_methods:=gmapping
 
-1. Open a new terminal and start RViz to visualize the map. Open a new terminal and start:
+1. Open a new terminal and start RViz to visualize the map:
 
         roslaunch jetauto_slam rviz_slam.launch slam_methods:=gmapping
 
@@ -607,28 +626,28 @@ SLAM algorithms are tailored to the available resources and are not aimed at per
 
         roslaunch jetauto_navigation rviz_navigation.launch
 
-    Now you can use the **2D Pose Estimate**, **2D Nav Goal** and **Publish Point** to help you navigate.
+    Now you can use the **2D Pose Estimate**, **2D Nav Goal**, and **Publish Point** to help you navigate.
 
-    - **2D Pose Estimate** is used to set the initial position of JetAuto,
-    - **2D Nav Goal** is used to set a target point
-    - **Publish Point** is used to set multiple target points
+    - **2D Pose Estimate** is used to set the initial position of JetAuto.
+    - **2D Nav Goal** is used to set a target point.
+    - **Publish Point** is used to set multiple target points.
 
-## Lab Question
+## Lab Questions
 
-1. Find the approximate artesian coordinate of the end effector (tip of the gripper) of the JetAuto if:
+1. Find the approximate **Cartesian** coordinate of the end effector (tip of the gripper) of the JetAuto if:
 
-    - \(\theta_1 = 45\)
-    - \(\theta_2 = -30\)
-    - \(\theta_3 = 85\)
-    - \(\theta_4 = 25\)
+    - \(\theta_1 = 45^\circ\)
+    - \(\theta_2 = -30^\circ\)
+    - \(\theta_3 = 85^\circ\)
+    - \(\theta_4 = 25^\circ\)
 
-    You'll need to measure the dimension of each link and construct the foward kinematics using DH parameters. You can perform the calculation by hand or using software (such as Python). You are not allowed to just read the position from ROS.
+    You'll need to measure the **dimensions** of each link and construct the **forward** kinematics using DH parameters. You can perform the calculation by hand or using software (such as Python). You are not allowed to just read the position from ROS, but you can find the length of each link in MoveIt.
 
 1. Write a program that will move the robot arm to the position in question 1.
 
-1. Use SLAM to create and save a map of the class room. Afterward, demostrate navigating from one corner of the class to another.
+1. Use SLAM to create and save a map of the **classroom**. Afterward, **demonstrate** navigating from one corner of the class to another.
 
-## Reference
+## References
 
 - [Denavit–Hartenberg parameters](https://en.wikipedia.org/wiki/Denavit%E2%80%93Hartenberg_parameters)
 - [ROS Tutorials](https://wiki.ros.org/ROS/Tutorials)
