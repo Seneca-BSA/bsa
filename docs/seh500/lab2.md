@@ -180,7 +180,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
         movt    R5, #0x8765         @ R5 = ?
         movt    R5, #0x5678         @ R5 = ?
         movw    R6, #0x12345678     @ R6 = ?
-        movw    R5, #0x5678         @ R6 = ?
+        movw    R6, #0x5678         @ R6 = ?
 
         ldr     R7, =0x87654321     @ R7 = ?
 
