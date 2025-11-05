@@ -20,19 +20,19 @@ Documentation of the Freedom K64 and K66 board and it's microcontroller can be f
 - [FRDM-K66F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG) ([PDF](FRDMK66FUG.pdf))
 - [Kinetis K66 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2) ([PDF](K66P144M180SF5RMV2.pdf))
 
-In this last lab of the course, we'll use program in assembly language and C programming language interchangeablely and explore the advantage and disadvantage of using a high-level language.
+In this last lab of the course, we'll use code in assembly language and C programming language interchangeablely and explore the advantage and disadvantage of using a high-level language.
 
 ## Procedures
 
 ### Reading Input using Polling
 
-1. First, let's setup out project in a similar manner as Lab 7. Create a new project ensure the following driver is available in addition to the default settings.
+1. First, let's setup our project in a similar manner as Lab 7. Create a new project and ensure the following driver is available in addition to the default settings.
 
     - pit
 
     If there are missing driver and SDK components from your project, you may add them at any time by clicking **Manage SDK Component** at the top of the project explorer or **Right click on the project > SDK Management > Manage SDK Component**.
 
-1. Use the **ConfigTools > Config Tools Overview** or right click on your project in the **Project Explorer** and Open the **MCUXpresso Config Tools > Open Tools Overview** windows to enable he following:
+1. Use the **ConfigTools > Config Tools Overview** or right click on your project in the **Project Explorer** and open the **MCUXpresso Config Tools > Open Tools Overview** windows to enable he following:
 
     Under Pins > Functional groups, ensure the followings are enabled:
 
@@ -40,7 +40,7 @@ In this last lab of the course, we'll use program in assembly language and C pro
     - BOARD_InitBUTTONsPins
     - BOARD_InitLEDsPins
 
-    By enabling the above, you are updating the clock gate and pin settings so their respective port can be used.
+    By enabling the above, you are updating the clock gate and pin settings so their respective port can be used as GPIO.
 
     Remember to click **Update Code** once done.
 
@@ -87,23 +87,25 @@ In this last lab of the course, we'll use program in assembly language and C pro
             volatile uint32_t i = 0;
             /* at 120MHz, 120,000,000 instructions = 1s */
             /* for K66 at 180MHz, 180,000,000 instructions = 1s */
-            for (i = 0; i < 120000000; ++i)
+            for (i = 0; i < 240000000; ++i)
             {
                 __asm("NOP"); /* delay */
             }
         }
 
-    Now that we know how to program the K64 (or K66) processor using assembly, we can use some of the built-in functions and keywords from the SDK to help us with programming the board. There are no compenhensive manual on all the helper functions and keywords aviable. The best place to look is their respecitve library file. This also allow us to write one set of code for multiple processors as long as the helper functions and keywords are available. 
+    Now that we know how to program the K64 (or K66) processor using assembly, we can use some of the built-in functions and keywords from the SDK to help us with programming the board. There are no compenhensive manual on all the helper functions and keywords avilable for use. The best place to look is their respecitve library file. Using the built-in functions and keywords also allow us to interchangeably use the same program for multiple processors as long as the helper functions and keywords are available.
 
-1. Build and Debug, then Run he code using **Resume (F8)**. Press switch 2 and see the red LED turn on and off.
+    **Those helper functions and keywords may be usedful for your project.**
 
-1. What happens when you press the switch when the LED is ON? How is the approach of using polling to read input differ then using interrupt? Which one is better? Submit your answer on Blackboard.
+1. Build and run your code in debug, then click "Run" the code or using **Resume (F8)**. Now, press switch 2 and see the red LED turn on and off.
+
+1. What happens when you press the switch when the LED is ON? How is the approach of using polling to read input differ then using interrupt? Which one is better in which situation?
 
 ### Code Optimization
 
-In class, we discussed various ways on code optimizing. One key thing to remember is shorter code does not means faster code.
+In class, we discussed various ways on code optimization. One key thing to remember is shorter code does not always means faster code. The actual sequence of instructions provided to the processor greatly depend on how the high-level code and how the compiler convert the high-level into assembly instructions.
 
-A Taylor Series expansion is a way of finding the approximiate value of a function. The Taylor Series expansion of a Sine function is given as follow:
+In this example, we'll try to optimze a code written for Taylor series expansion. A Taylor series expansion is a way of finding the approximiate value of a complex function when the solution cannot be easily determine using simple math. The Taylor Series expansion of a Sine function is given as follow:
 
 $$
 sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + ...
@@ -114,6 +116,8 @@ Each term is generalized to:
 $$
 \textrm{Term}_n = (-1)^n \frac{x^{(2n + 1)}}{(2n + 1)!}
 $$
+
+This is a common method calculator use to approximate trigonometric functions.
 
 1. Go to **ConfigTools > Peripherals** from the top menu. In the "Components" tab, Under "Peripheral drivers (Device specific)" add the "PIT" configuration components. Set up the PIT at **1us** (one microsecond interval).
 
@@ -130,7 +134,7 @@ $$
             timer_counter++;
         }
 
-1. Next, we have a few helper functions to help calculate the Taylor Series expansion.
+1. Next, we'll add a few helper functions to help calculate the Taylor Series expansion.
 
         /* factorial calculation */
         int factorial(int num) {
@@ -173,7 +177,7 @@ $$
             return result;
         }
 
-1. Next, change all of the from the `printf` statement onward to:
+1. Next, change all of the code from the `printf` statement onward to:
 
         float x = 0.0;
         float sin_x = 0.0;
@@ -222,7 +226,7 @@ $$
         }
         return 0;
 
-1. Build and Debug, then Run he code using **Resume (F8)**. Press switch 2 and see the red LED turn on and off. Everytime when you press switch 2, \(sin(x)\) calculation from \(0\) to \(\pi\) are calculated at one-thousand intervals. If you open the **Serial Monitor (Terminal)**, it'll say the execution took about 100ms (or 70ms for K66).
+1. Build and Debug, then Run the code or using **Resume (F8)**. Press switch 2 and see the red LED turn on and off. Everytime when you press switch 2, \(sin(x)\) calculation from \(0\) to \(\pi\) are calculated at one-thousandth intervals. If you open the **Serial Monitor (Terminal)**, it'll display the calculation and the execution time of about 100ms (or 70ms for K66).
 
     The output should be similar to this:
 
@@ -240,26 +244,39 @@ $$
 
     The above value is obtained using the K64F processor. If you are using a K66F processor, it will be around 70,000 us.
 
+    The value of x and sin_x are multiplied by 1000 for storage as integers.
+
 ## Post-Lab Questions
+
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<b>GenAI Usage Policy:</b>
+<p>Submission of answers or code generated by AI, or from external help, containing concepts or instructions not shown/taught/discussed in this course will immediately result in a report of Academic Integrity violation.</p>
+<p>If GenAI was used as a learning aid, you must cite it for every answer that used GenAI as a tool, as follows:<p>
+<ul><li>GenAI used: Copilot for concept research; ChatGPT for editing and grammar enhancement; Gemini for code generation in section 1, as identified.</li></ul>
+</div>
 
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
-1. How is the approach of using polling to read input differ then using interrupt? Which one is better? Submit your answer on Blackboard.
+1. How is the approach of using polling to read input different then using an interrupt? Which one is better in which situation? Submit your answer on Blackboard.
 
-1. The Taylor Series expansion code is written in a manner that's modular and somewhat easy to understand but not in an optimized manner in terms of fast execution. Using techniques that you've learned in class and your knowledge of assembly instruction, modify the code between timer start and timer end, including the helper function and any related variables, so there's at least 20% improvement in speed to execute the code. For every change and optimization you made, provide a brief reason on how it improve execution time.
+1. The Taylor Series expansion code is written in a manner that's modular and somewhat easy to understand, but not in an optimized manner in terms of fast execution. Using techniques that you've learned in class and your knowledge of assembly instruction, modify the code between timer start and timer end, including the helper function and any related variables, so there's at least 20% improvement in speed to execute the code. For every change and optimization you made, provide a brief reason on how it improve execution time.
 
-    Hints and limiations:
+    Hints and limitations:
 
-    - You may modify the code in C or re-write the code in assembly or use inline assembly
+    - You must perform **at least two optimizations in assembly language** using inline assembly or a function (ie. use Peephole optimization, loop unrolling written in assembly, etc.)
+    - You may make other modifications in C or rewrite the code in assembly, or use inline assembly
     - You may add or remove any variables or functions
     - The degree of the approximation is fixed at 11 (ie. it does not need to be a variable)
-    - You may perform pre-calculation as you see fit
-    - sin(x) must be calculated inside the while loop using taylor series expansion, ie. Term1 + Term2 + ...
+    - You may perform pre-calculation as you see fit (ie. use 0.5 instead of 1/2)
+    - sin(x) must be calculated inside the while loop using Taylor series expansion, ie. Term1 + Term2 + ...
     - You cannot use a SIN function lookup table
+    - There should be no change to the output and number of intervals (ie. when x = 3125, sin_x = 15)
 
-    Paste your code, explanation of every changes, and a screenshot of the terminal output before and after optimization on blackboard. The output value after optimization should be very similar to the value after optimization.
+    Paste your code with an explanation of every change, and a screenshot of the terminal output before and after optimization on blackboard. The output value after optimization should be the same after optimization. **No mark will be awarded if no code and screenshot with the expected result are provided.**
 
-    **Challenge:** Achieve at least 50% improvement in speed.
+    **Challenge 1:** Extra 3 marks if you achieve at least 50% improvement in speed and **at least four optimizations are done in assembly language**.
+
+    **Challenge 2:** Extra 2 marks for the most optimized code, 1 mark for the second and 0.5 mark for the third.
 
 ## Reference
 

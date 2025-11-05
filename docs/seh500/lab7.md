@@ -20,7 +20,7 @@ Documentation of the Freedom K64 and K66 board and it's microcontroller can be f
 - [FRDM-K66F Freedom Module User’s Guide](https://www.nxp.com/webapp/Download?colCode=FRDMK66FUG) ([PDF](FRDMK66FUG.pdf))
 - [Kinetis K66 Reference Manual](https://www.nxp.com/webapp/Download?colCode=K66P144M180SF5RMV2) ([PDF](K66P144M180SF5RMV2.pdf))
 
-In our labs so far, we've been programming the processor directly using assembly language. In this lab, we'll explore combining assembly language with C programming language and how to use them interchangeablely in a program.
+In this lab, we'll further explore combining assembly language with C programming language and how to use them interchangeablely in a program. In addition, this lab will introduce the use of interrupt to control the blinking of an LED.
 
 ### Freedom Board Tricolour LED
 
@@ -62,10 +62,12 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
 
 1. In the new project configuration, similar to the previous lab, also select "pit" as one of the driver. Rename the project then leave all other settings as default.
 
-1. First, we'll setup the GPIO for the LED output using assembly code. Create a file called `function.s` in the source folder. Write the following code to it. In the code, create three functions, one for setting up the pins as GPIO output and the other for turning the LED on and off.
+1. First, we'll setup the pins for the LED output using assembly code. The onboard LED and buttons are connected to what is known as General Purpose Input/Output (GPIO) pins on the microcontroller. In our case, they are connected to pre-determined pins on the microcontroller board.
+
+    Create a file called `function.s` in the source folder. Write the following code to it. In the code, create three functions: one for setting up the pins as GPIO output, and the others for turning the LED on and off.
 
     <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
-    If you are using the Freedom K66F board, the pin configurations is difference. Read the lab manual carefully and refer to the K66 documentation as necessary for pin configuration.
+    If you are using the Freedom K66F board, the pin configurations are difference. Read the lab manual carefully and refer to the K66 documentation as necessary for pin configuration.
     </div>
 
         .syntax unified             @ unified syntax used
@@ -123,7 +125,7 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
 
     ### Code Explained
 
-    The ARM Cortex M4 has been designed with gates to disable the clock to regions of the processor and therefore reduce the dynamic power that is consumed the logic local to the clock gate. By default, the clock gates to General Purpose Input/Output (GPIO) ports are disabled. In order to use the Red LED at Port B Pin 22, we need to enable the Port B clock gate.
+    The ARM Cortex M4 has been designed with gates to enable/disable the clock to different regions of the processor and therefore reduce the dynamic power that is consumed when those regions are not used. By default, the clock gates to all General Purpose Input/Output (GPIO) ports are disabled. In order to use the Red LED at Port B Pin 22, we need to enable the Port B clock gate.
 
         ldr r1, =0x40048038     @ System Clock Gate Control Register 5 (SIM_SCGC5)
         ldr r0, [r1]            @ read current register value
@@ -156,7 +158,7 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
 
     To control the power output of each pin, we need to set the output setting of the pin to HIGH. This can be set using the GPIOB Port Data Output Register (PDOR) (GPIOB_PDOR) at address `0x400FF040`. For the Freedom board, the LED circuit is connected so a logic level of LOW will turn the LED on and HIGH will turn the LED off. Therefore, we'll set bit 22 for pin 22 to 1 or 0 depending on how we want to control the LED. Refer to the [Kinetis K64 Reference Manual](K64P144M120SF5RM.pdf) Section 55.2.1 for GPIO PDOR details and Section 55.2 for GPIO memory map. For K66, (GPIOC_PDOR) is at address `0x400FF080`. Refer to the [Kinetis K66 Reference Manual](K66P144M180SF5RMV2.pdf) Section 63.3.1 for GPIO PDOR details and Section 63.3 for GPIO memory map.
 
-1. Next, place a `setup()`, `func_led_on()` and `func_led_off()` function prototype at the top of your C-code and function calls before the `while` loop in your main function. You can also comment out or remove the print statement.
+1. Next, place the `setup()`, `func_led_on()` and `func_led_off()` function prototypes at the top of your C-code and their respective function calls before the `while` loop in your main function. You can also comment out or remove the print statement from the default code.
 
         void setup();
         void func_led_on();
@@ -168,9 +170,9 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
         func_led_on();
         func_led_off();
 
-1. Build and run your code in debug mode. Step Over (F6) the initial functions until you get to the setup function. Then Step Into (F5) the `setup()`, `func_led_on()`, and `func_led_off()` functions. You should see the debug cursor jump into the assembly code. Keep stepping through the code and the RED led should turn on and off.
+1. Build and run your code in debug mode. Step Over (F6) the initial functions until you get to the setup function. Then Step Into (F5) the `setup()`, `func_led_on()`, and `func_led_off()` functions. You should see the debug cursor jump into the assembly code in `function.s`. Keep stepping through the code and the RED led should turn on and off.
 
-1. Next, we'll setup an interrupt with the onboard switch to control the LED. To do that, we'll use the ConfigTools to help setup the interrupt as setting it up using assembly require knowledge of the vector table and interrupt register (a more lengthy process). Right click on your project in the **Project Explorer** and Open the **MCUXpresso Config Tools > Open Tools Overview** windows.
+1. Next, we'll setup an interrupt with the onboard button to control the LED. To do that, we'll use the ConfigTools to help setup the interrupt as setting it up using assembly require knowledge of the vector table and interrupt register (a more lengthy process that we will not explore in this lab). Right click on your project in the **Project Explorer** and open the **MCUXpresso Config Tools > Open Tools Overview** windows.
 
     Under Pins > Functional groups, enable:
 
@@ -179,31 +181,33 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
     - BOARD_InitLEDsPins
     - BOARD_InitDEBUG_UARTPins
     
-    By clicking on the flag to ensure there's a check mark.
-    
-    Under Peripherals > Functional groups, enable:
-    
-    - BOARD_InitPeripherals
-    
-    Close and Update Code.
+    by clicking on the flag to ensure there's a check mark. Refer to the figure below and notice the green flags with check mark in front the respective functional groups.
 
     ![Figure 7.3](lab7-config-overview.png)
 
     ***Figure 7.3***
 
-1. Next, open the **ConfigTools > Peripherals Windows** or right-click on the project from the **Project Explorer Project > MCUXpresso Config Tools > Open Perripheral**. On the left hand side, go to the "Peripherals" tab. Check GPIOC for SW2 at Port C Pin 6 (PTC6). While prompted to "Add Configuration Component Instance", select the GPIO component with **General Purpose Input/Output (GPIO)** in the component description. If you've previously added another component, right click on GPIOC and remover them.
+    Under Peripherals > Functional groups, also enable the following in a similar manner:
+    
+    - BOARD_InitPeripherals
+    
+    Click **Close and Update** Code on the top menu.
 
-1. Check Enable interrupt request. Afterward, check "Enable custom handler name" and we'll name it: SW2_GPIOC_IRQHANDLER. Once done, click "Update Code" near the top.
+1. Next, open the **ConfigTools > Peripherals Windows** or right-click on the project from the **Project Explorer Project > MCUXpresso Config Tools > Open Perripheral**. On the left hand side, go to the "Peripherals" tab. Check **GPIOC** for SW2 at Port C Pin 6 (PTC6). When prompted to "Add Configuration Component Instance", select the GPIO component with **General Purpose Input/Output (GPIO)** in the component description. If you've previously added another component, right click on GPIOC and remove them.
+
+    <div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+    **If you are using the Freedom K66F board**, SW2 is at Port D Pin 11 (PTD11). Check **GPIOD** for the port and use SW2_GPIOD_IRQHANDLER as the function name in the next step.
+    </div>
+
+1. Check "Enable interrupt request" then check "Enable custom handler name". We'll name it: SW2_GPIOC_IRQHANDLER. Once done, click "Update Code" near the top.
 
     ![Figure 7.4](lab7-interrupt.png)
 
     ***Figure 7.4***
 
-    For Freedom K66, SW2 is at Port D Pin 11 (PTD11), ie. GPIOD and use SW2_GPIOD_IRQHANDLER as the function name.
+1. Repeat the last step for SW3 at Port A Pin 4 (PTA4), ie. GPIOA. Name the handler as SW3_GPIOA_IRQHANDLER. Switch 3 is also at Port A for the K66 board so no modification is required for this step.
 
-1. Repeat the last step for switch 3 at Port A Pin 4 (PTA4), ie. GPIOA. Name the handler as SW3_GPIOA_IRQHANDLER.
-
-1. Lastly, add the following two functions at the end of your C-code (outside of your main function) and comment out or remove the function call: `setup()`, `func_led_on()`, `func_led_off()` to the assembly code. We'll use he built in LED function from MCUXpresso to control the LED.
+1. Lastly, add the following two interrupt handler functions at the end of your C-code (outside of your main function) and comment out or remove the function call: `setup()`, `func_led_on()`, `func_led_off()` in the assembly code. We'll use he built in LED function from MCUXpresso to control the LED.
 
         void SW2_GPIOC_IRQHANDLER(void) //Interrupt Service Routine for SW2
         {
@@ -241,13 +245,20 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
 
 ## Post-Lab Questions
 
+<div style="padding: 15px; border: 1px solid orange; background-color: orange; color: black;">
+<b>GenAI Usage Policy:</b>
+<p>Submission of answers or code generated by AI, or from external help, containing concepts or instructions not shown/taught/discussed in this course will immediately result in a report of Academic Integrity violation.</p>
+<p>If GenAI was used as a learning aid, you must cite it for every answer that used GenAI as a tool, as follows:<p>
+<ul><li>GenAI used: Copilot for concept research; ChatGPT for editing and grammar enhancement; Gemini for code generation in section 1, as identified.</li></ul>
+</div>
+
 Using the skills and knowledge acquired from this lab, answer the following post-lab question(s) on Blackboard. Due one week after the lab.
 
-1. Using the Reference Manual of the processor on your Freedom board, find address of the Pin Control Register (PCR), Port Data Direction Register (PDDR), and Port Data Output Register (PDOR) for the Green LED and Blue LED.
+1. Using the Reference Manual of the processor on your Freedom board, find the address of the Pin Control Register (PCR), Port Data Direction Register (PDDR), and Port Data Output Register (PDOR) for the Green LED and Blue LED. See the example code from this lab for a reference to the Red LED.
 
-1. Modify the example **assembly code** so all three colours of the LED will turn on and off at the same time. Paste your code and a photo of the LED turned into blackboard. RGB turned on together should be a white light.
+1. Modify the example **assembly code** so all three colours of the LED will turn on and off at the same time. Then use func_led_on() and func_led_off() in the interrupt handler to see its effect. Paste or take a screenshot of your assembly code and paste a photo of the LEDs turned on into blackboard. When the RGBs LEDs are turned on together, they should produce a white light. **No mark will be awarded if no screenshot and photos with the expected result are provided.**
 
-1. Implement the same timer interrupt from Lab 6 and use it to turn the LED (any colour) on and off at regular interval. Paste your code into blackboard.
+1. Implement the same timer interrupt from [Lab 6](lab6.md) and use it to turn the LED (any colour) on and off at regular interval (ie. 1s). Paste or take a screenshot of your interrupt handler code and paste it into blackboard. **No mark will be awarded if no screenshot of the expected result is provided.**
 
 ## Reference
 
