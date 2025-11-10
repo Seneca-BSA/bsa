@@ -286,11 +286,11 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Execute Example Code 4.1, then answer the questions in the comment. Copy and paste your code with your answers, along with the necessary screenshots, into Blackboard. **No mark will be awarded if no screenshot with the expected result is provided.**
 
-1. Which line(s) in Example Code 4.1 are responsible for looping through the char array, and explain how it works?
+1. Which line(s) in Example Code 4.1 are responsible for looping through the char array, and explain how it works? Do not include line(s) that are irrelevant to looping.
 
 1. Execute Example Code 4.2, then answer the questions in the comment. Copy and paste your code with your answers, along with the necessary screenshots, into Blackboard. **No mark will be awarded if no screenshot with the expected result is provided.**
 
-1. Which line(s) in Example Code 4.2 are responsible for looping through the char array, and explain how it works?
+1. Which line(s) in Example Code 4.2 are responsible for looping through the number array, and explain how it works? Do not include line(s) that are irrelevant to looping.
 
 1. How are Example Code 4.3 and Example Code 4.1 different in terms of loop(s) and comparison statement(s)?
 
