@@ -229,7 +229,7 @@ The Push Button Switches connections on the Freedom K64 board can be found in th
         void SW2_GPIOD_IRQHANDLER(void) //Interrupt Service Routine for SW2
         {
             // clear interrupt flag set by button SW2 connected to pin PTD11
-            GPIO_PortClearInterruptFlags(GPIOD 1U << 11U);
+            GPIO_PortClearInterruptFlags(GPIOD, 1U << 11U);
             LED_RED_ON();
             // turn ON RED LED
         }
@@ -258,7 +258,7 @@ Using the skills and knowledge acquired from this lab, answer the following post
 
 1. Modify the example **assembly code** so all three colours of the LED will turn on and off at the same time. Then use func_led_on() and func_led_off() in the interrupt handler to see its effect. Paste or take a screenshot of your assembly code and paste a photo of the LEDs turned on into blackboard. When the RGBs LEDs are turned on together, they should produce a white light. **No mark will be awarded if no screenshot and photos with the expected result are provided.**
 
-1. Implement the same timer interrupt from [Lab 6](lab6.md) and use it to turn the LED (any colour) on and off at regular interval (ie. 1s). Paste or take a screenshot of your interrupt handler code and paste it into blackboard. **No mark will be awarded if no screenshot of the expected result is provided.**
+1. Implement the same timer interrupt from [Lab 6](lab6.md) and use it to turn the LED (any colour) on and off at regular interval (ie. 1s). Copy or take a screenshot of your interrupt handler code and paste it into blackboard. **No mark will be awarded if no screenshot of the expected result is provided.**
 
 ## Reference
 
