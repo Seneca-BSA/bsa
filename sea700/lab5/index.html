@@ -549,11 +549,12 @@ move_group.stop()
 <pre><code>sudo systemctl stop start_app_node.service
 </code></pre>
 </li>
-<li>
-<p>For the robot arm on the JetAuto to work, we need to start the servo controller service:</p>
-<pre><code>roslaunch hiwonder_servo_controllers start.launch
-</code></pre>
-</li>
+</ol>
+<!-- 1. For the robot arm on the JetAuto to work, we need to start the servo controller service:
+
+        roslaunch hiwonder_servo_controllers start.launch -->
+
+<ol>
 <li>
 <p>Next, start MoveIt on the JetAuto. This time, we won't be using the Gazebo simulation:</p>
 <pre><code>roslaunch jetauto_moveit_config demo.launch fake_execution:=false
